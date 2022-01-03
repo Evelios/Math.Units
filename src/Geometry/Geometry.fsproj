@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <WarnOn>3390;$(WarnOn)</WarnOn>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Title>Geometry</Title>
+        <Authors>Thomas Waters</Authors>
+        <Company />
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Fsharp.Geometry</PackageId>
+        <Description>A functional geometry library for working with 2D spatial structures.</Description>
+        <Copyright>Thomas Waters</Copyright>
+        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
+        <PackageTags>geometry</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="Float.fs" />
+      <Compile Include="Types.fs" />
+      <Compile Include="Angle.fs" />
+      <Compile Include="Direction2D.fs" />
+      <Compile Include="Vector2D.fs" />
+      <Compile Include="Point2D.fs" />
+      <Compile Include="Frame2D.fs" />
+      <Compile Include="LineSegment2D.fs" />
+      <Compile Include="Line2D.fs" />
+      <Compile Include="BoundingBox2D.fs" />
+      <Compile Include="Size.fs" />
+      <Compile Include="Circle2D.fs" />
+      <Compile Include="Polygon2D.fs" />
+      <Compile Include="Intersection2D.fs" />
+      <Compile Include="Boolean2D.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FSharp.Json" Version="0.4.0" />
+      <PackageReference Include="MathNet.Spatial" Version="0.6.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Utilities\Utilities.fsproj" />
+    </ItemGroup>
+
+</Project>

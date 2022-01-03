@@ -1,0 +1,15 @@
+# Mac Files
+.DS_Store
+
+# Jetbrains & Dot Net Files
+
+bin/
+obj/
+build/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+contentModel.xml
+**/*.user
+.idea/**/workspace.xml
+.idea/**/tasks.xml

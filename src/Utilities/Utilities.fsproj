@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Conversions\TryParse.fs" />
+        <Compile Include="Conversions\MapExtensions.fs" />
+        <Compile Include="Conversions\Transforms.fs" />
+        <Compile Include="Conversions\StringConverter.fs" />
+        <Compile Include="Conversions\NamingConventions.fs" />
+        <Compile Include="Extensions\DiscriminatedUnion.fs" />
+        <Compile Include="Extensions\ListExtensions.fs" />
+        <Compile Include="Extensions\ViewExtensions.fs" />
+        <Compile Include="Extensions\EventExtensions.fs" />
+        <Compile Include="Extensions\ImageExtensions.fs" />
+        <Compile Include="Extensions\TupleExtensions.fs" />
+        <Compile Include="Extensions\StringExtensions.fs" />
+        <Compile Include="Extensions\MapExtensions.fs" />
+        <Compile Include="Extensions\SeqExtensions.fs" />
+        <Compile Include="Extensions\ArrayExtensions.fs" />
+        <Compile Include="Extensions\Float.fs" />
+        <Compile Include="Collections\StringMap.fs" />
+        <Compile Include="Collections\Tree.fs" />
+        <Compile Include="Collections\UnorderedTuple2.fs" />
+        <Compile Include="Collections\Percentage.fs" />
+        <Compile Include="Gen.fs" />
+        <Compile Include="Debug.fs" />
+        <Compile Include="Log.fs" />
+        <Compile Include="Tests.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FsCheck" Version="2.16.0" />
+      <PackageReference Include="FSharp.Json" Version="0.4.0" />
+      <PackageReference Include="JaggerJo.Avalonia.FuncUI.DSL" Version="0.4.0" />
+    </ItemGroup>
+
+</Project>
