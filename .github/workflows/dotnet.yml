@@ -27,7 +27,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.7
         with:
           useConfigFile: true
-          configFilePath: ./.github/gitversion.yml  v
+          configFilePath: ./.github/gitversion.yml
 
       - name: Setup .NET Newest
         uses: actions/setup-dotnet@v1.7.2
