@@ -7,6 +7,8 @@ bin/
 obj/
 build/
 /packages/
+/package/
+*.nupgk
 riderModule.iml
 /_ReSharper.Caches/
 contentModel.xml
