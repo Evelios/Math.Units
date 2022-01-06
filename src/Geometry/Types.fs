@@ -4,9 +4,9 @@ open System
 
 // ---- Lengths ----
 
-type Pixels = float
+type Pixels = Pixels
 
-type Meters = float
+type Meters = Meters
 
 type 'Unit Length = 'Unit
 
@@ -107,9 +107,9 @@ type Point2D<'Length, 'Coordinates> =
 
     member this.LessThan(other: Point2D<'Length, 'Coordinates>) =
         if almostEqual (float this.x) (float other.x) then
-            float this.y < float other.y
+            this.y < other.y
         else
-            float this.x < float other.x
+            this.x < other.x
 
     override this.Equals(obj: obj) : bool =
         match obj with

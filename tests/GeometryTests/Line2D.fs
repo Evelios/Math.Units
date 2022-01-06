@@ -38,7 +38,7 @@ let ``Vertex is on line`` vertex line =
     Assert.That(Line2D.isPointOnLine vertex line)
 
 [<Property>]
-let ``Line perpendicular through point`` point line =
+let ``Line perpendicular through point`` (point: Point2D<float, TestSpace>) (line: Line2D<float, TestSpace>) =
     let perpLine = Line2D.perpThroughPoint point line
 
     Line2D.arePerpendicular perpLine line
@@ -57,7 +57,7 @@ let ``Line Intersection`` () =
     Assert.AreEqual(expected, actual)
 
 [<Property>]
-let ``Intersection lies on both lines`` l1 l2 =
+let ``Intersection lies on both lines`` (l1: Line2D<float, TestSpace>) (l2: Line2D<float, TestSpace>) =
     match Line2D.intersect l1 l2 with
     | Some intersection ->
         Line2D.isPointOnLine intersection l1

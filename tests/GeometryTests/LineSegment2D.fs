@@ -7,8 +7,7 @@ open Utilities.Extensions
 open Geometry
 
 [<SetUp>]
-let SetUp () =
-    Gen.ArbGeometry.Register()
+let SetUp () = Gen.ArbGeometry.Register()
 
 let pointDistanceTestCases =
     [ "Endpoint", (Point2D.xy 0. 5.), 0.
@@ -69,7 +68,10 @@ let ``Line Segment Intersection`` () =
     Assert.AreEqual(expected, actual)
 
 [<Property>]
-let ``Intersection lies on both line segments`` l1 l2 =
+let ``Intersection lies on both line segments``
+    (l1: LineSegment2D<float, TestSpace>)
+    (l2: LineSegment2D<float, TestSpace>)
+    =
     match LineSegment2D.intersect l1 l2 with
     | Some intersection ->
         LineSegment2D.isPointOnLine intersection l1
