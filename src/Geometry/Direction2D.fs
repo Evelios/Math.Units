@@ -24,7 +24,7 @@ module Direction2D =
     // Rotate a direction by 90 degrees counterclockwise.
     let rotateCounterclockwise (direction: Direction2D) : Direction2D = xy -direction.Y direction.X
 
-    let placeIn (reference: Frame2D) (direction: Direction2D) : Direction2D =
+    let placeIn (reference: Frame2D<'Length, 'Coordinates>) (direction: Direction2D) : Direction2D =
         let dx = reference.XDirection
         let dy = reference.YDirection
 

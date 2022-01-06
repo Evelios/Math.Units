@@ -4,7 +4,7 @@ open Geometry
 open SharpVG
 
 module Draw =
-    let private point2DToPoint (point: Point2D) : Point =
+    let private point2DToPoint (point: Point2D<Pixels, 'Coordinates>) : Point =
         Point.create (Length.ofFloat point.X) (Length.ofFloat point.Y)
 
     [<Literal>]
@@ -13,11 +13,11 @@ module Draw =
     [<Literal>]
     let pointSize = 5.
 
-    let point (point: Point2D) =
+    let point (point: Point2D<Pixels, 'Coordinates>) =
         Circle.create (point2DToPoint point) (Length.ofFloat pointSize)
         |> Element.create
 
-    let polygon (polygon: Polygon2D) =
+    let polygon (polygon: Polygon2D<Pixels, 'Coordinates>) =
         Seq.map point2DToPoint polygon.Points
         |> List.ofSeq
         |> Polygon.ofList

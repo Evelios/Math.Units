@@ -6,21 +6,21 @@ open Geometry
 [<CustomEquality>]
 [<CustomComparison>]
 [<Struct>]
-type LineSegment2D =
+type LineSegment2D<'Length, 'Coordinates> =
     private
-        { start: Point2D
-          finish: Point2D }
+        { start: Point2D<'Length, 'Coordinates>
+          finish: Point2D<'Length, 'Coordinates> }
 
     member this.Start = this.start
     member this.Finish = this.finish
 
-    interface IComparable<LineSegment2D> with
+    interface IComparable<LineSegment2D<'Length, 'Coordinates>> with
         member this.CompareTo(line) = this.Comparison(line)
 
     interface IComparable with
         member this.CompareTo(obj) =
             match obj with
-            | :? LineSegment2D as vertex -> this.Comparison(vertex)
+            | :? LineSegment2D<'Length, 'Coordinates> as vertex -> this.Comparison(vertex)
             | _ -> failwith "incompatible comparison"
 
     member this.Comparison(other) =
@@ -28,7 +28,7 @@ type LineSegment2D =
         elif this.LessThan(other) then -1
         else 1
 
-    member this.LessThan(other: LineSegment2D) =
+    member this.LessThan(other: LineSegment2D<'Length, 'Coordinates>) =
         let firstLower = min this.start this.finish
 
         let firstGreater = max this.start this.finish
@@ -44,26 +44,26 @@ type LineSegment2D =
 
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? LineSegment2D as other ->
+        | :? LineSegment2D<'Length, 'Coordinates> as other ->
             (this.start = other.start
              && this.finish = other.finish)
             || (this.start = other.finish
                 && this.finish = other.start)
         | _ -> false
 
-    static member (*)(lhs: LineSegment2D, rhs: float) : LineSegment2D =
+    static member (*)(lhs: LineSegment2D<'Length, 'Coordinates>, rhs: float) : LineSegment2D<'Length, 'Coordinates> =
         { start = lhs.start * rhs
           finish = lhs.finish * rhs }
 
 
-    static member (*)(lhs: float, rhs: LineSegment2D) : LineSegment2D = rhs * lhs
+    static member (*)(lhs: float, rhs: LineSegment2D<'Length, 'Coordinates>) : LineSegment2D<'Length, 'Coordinates> = rhs * lhs
 
-    static member (/)(lhs: LineSegment2D, rhs: float) : LineSegment2D =
+    static member (/)(lhs: LineSegment2D<'Length, 'Coordinates>, rhs: float) : LineSegment2D<'Length, 'Coordinates> =
         { start = lhs.start / rhs
           finish = lhs.finish / rhs }
 
 
-    static member (/)(lhs: float, rhs: LineSegment2D) : LineSegment2D = rhs / lhs
+    static member (/)(lhs: float, rhs: LineSegment2D<'Length, 'Coordinates>) : LineSegment2D<'Length, 'Coordinates> = rhs / lhs
 
     override this.GetHashCode() : int =
         HashCode.Combine(this.start, this.finish)
@@ -73,45 +73,45 @@ module LineSegment2D =
 
     /// Generate a line segment from two points. This doesn't perform any checks ensuring that the points are not equal.
     /// If that is the behavior that you want you should use <see cref="safeFrom"/> function.
-    let from (start: Point2D) (finish: Point2D) = { start = start; finish = finish }
+    let from (start: Point2D<'Length, 'Coordinates>) (finish: Point2D<'Length, 'Coordinates>) = { start = start; finish = finish }
 
     /// Safely create a line segment. This function returns `None` when the two points are almost equal.
     /// This has to do with the <see cref="Geometry.Internal.Tolerance"/>.
-    let safeFrom (start: Point2D) (finish: Point2D) =
+    let safeFrom (start: Point2D<'Length, 'Coordinates>) (finish: Point2D<'Length, 'Coordinates>) =
         if start = finish then
             None
         else
             Some(from start finish)
 
     /// Create a line segment starting at point in a particular direction and length
-    let fromPointAndVector (start: Point2D) (direction: Vector2D) =
+    let fromPointAndVector (start: Point2D<'Length, 'Coordinates>) (direction: Vector2D<'Length, 'Coordinates>) =
         { start = start
           finish = start + direction }
 
 
     (* Attributes *)
 
-    let direction (line: LineSegment2D) : Vector2D =
+    let direction (line: LineSegment2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> =
         Vector2D.normalize (line.finish - line.start)
 
-    let length (line: LineSegment2D) : float =
+    let length (line: LineSegment2D<'Length, 'Coordinates>) : float =
         Point2D.distanceTo line.start line.finish
 
     
     (* Modifiers *)
     
-    let round (l: LineSegment2D) = from (Point2D.round l.Start) (Point2D.round l.Finish)
+    let round (l: LineSegment2D<'Length, 'Coordinates>) = from (Point2D.round l.Start) (Point2D.round l.Finish)
     
 
     (* Queries *)
 
-    let areParallel (first: LineSegment2D) (second: LineSegment2D) : bool =
+    let areParallel (first: LineSegment2D<'Length, 'Coordinates>) (second: LineSegment2D<'Length, 'Coordinates>) : bool =
         let d1 = direction first
         let d2 = direction second
 
         d1 = d2 || Vector2D.neg d1 = d2
 
-    let pointClosestTo (point: Point2D) (line: LineSegment2D) =
+    let pointClosestTo (point: Point2D<'Length, 'Coordinates>) (line: LineSegment2D<'Length, 'Coordinates>) =
         if point = line.start || point = line.finish then
             point
         else
@@ -127,18 +127,18 @@ module LineSegment2D =
             let alongVector = dotProduct * direction line
             line.start + alongVector
 
-    let isPointOnLine (point: Point2D) (line: LineSegment2D) : bool =
+    let isPointOnLine (point: Point2D<'Length, 'Coordinates>) (line: LineSegment2D<'Length, 'Coordinates>) : bool =
         point = line.start
         || point = line.finish
         || point = pointClosestTo point line
 
-    let distanceToPoint (point: Point2D) (line: LineSegment2D) : float =
+    let distanceToPoint (point: Point2D<'Length, 'Coordinates>) (line: LineSegment2D<'Length, 'Coordinates>) : float =
         Point2D.distanceTo point (pointClosestTo point line)
 
 
     /// Try to find the intersection between two lines. If the lines are parallel (even if they are overlapping) then no
     /// intersection is returned
-    let intersect (lhs: LineSegment2D) (rhs: LineSegment2D) : Point2D option =
+    let intersect (lhs: LineSegment2D<'Length, 'Coordinates>) (rhs: LineSegment2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> option =
         if areParallel lhs rhs then
             None
         else

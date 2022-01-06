@@ -2,6 +2,8 @@ namespace GeometryTests
 
 open Geometry
 
+type TestSpace = TestSpace
+
 module Test =
 
     let equal (expected: float) (actual: float) : bool =

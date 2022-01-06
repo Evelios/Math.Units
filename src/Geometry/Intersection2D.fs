@@ -5,7 +5,7 @@ module Intersection2D =
 
     /// Try to find the intersection between a line segment and a line. If the lines are parallel (even if they are
     /// overlapping) then no intersection is returned.
-    let lineSegmentAndLine (first: LineSegment2D) (second: Line2D) : Point2D option =
+    let lineSegmentAndLine (first: LineSegment2D<'Length, 'Coordinates>) (second: Line2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> option =
         let areParallel =
             let d1 = LineSegment2D.direction first
             let d2 = Line2D.direction second
@@ -32,7 +32,7 @@ module Intersection2D =
     let lineAndLineSegment line segment = lineSegmentAndLine segment line
 
     /// Get all the intersection points between a bounding box and a line
-    let boundingBoxAndLine bbox line : Point2D list =
+    let boundingBoxAndLine (bbox: BoundingBox2D<'Length, 'Coordinates>) (line: Line2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> list =
         BoundingBox2D.lineSegments bbox
         |> List.filterMap (lineAndLineSegment line)
         |> List.distinct

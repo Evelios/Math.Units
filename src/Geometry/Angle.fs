@@ -3,16 +3,10 @@ namespace Geometry
 open System
 open LanguagePrimitives
 
-[<Measure>]
-type rad
-
-[<Measure>]
-type deg
-
 [<Struct>]
 type Angle =
     private
-    | Radians of float<rad>
+    | Radians of float
 
     (* Operators *)
 
@@ -48,9 +42,9 @@ module Angle =
 
     let piOverTwo = Radians(FloatWithMeasure(Math.PI / 2.))
 
-    let radiansToDegrees: float<deg / rad> = FloatWithMeasure 180.0 / Math.PI
+    let radiansToDegrees: float = 180.0 / Math.PI
 
-    let degreesToRadians: float<rad / deg> = FloatWithMeasure Math.PI / 180.0
+    let degreesToRadians: float = Math.PI / 180.0
 
 
     (* Builders *)
@@ -62,11 +56,11 @@ module Angle =
 
     (* Accessors *)
 
-    let degrees (Radians angle: Angle) : float<deg> =
+    let degrees (Radians angle: Angle) : float =
         match angle with
         | radians -> radians * radiansToDegrees
 
-    let radians (Radians angle: Angle) : float<rad> = angle
+    let radians (Radians angle: Angle) : float = angle
 
     (* Trig *)
     let sin (Radians r) = sin (float r)

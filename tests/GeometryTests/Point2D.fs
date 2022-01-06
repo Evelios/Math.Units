@@ -19,7 +19,7 @@ let pointEqualityTestCases =
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof pointEqualityTestCases)>]
-let ``Points are equal`` (lhs: Point2D) (rhs: Point2D) =
+let ``Points are equal`` (lhs: Point2D<'Length, 'Coordinates>) (rhs: Point2D<'Length, 'Coordinates>) =
     Assert.AreEqual(lhs, rhs)
     Assert.That(lhs.Equals(rhs))
 
@@ -37,8 +37,8 @@ let pointLessThanTestCases =
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof pointLessThanTestCases)>]
-let ``Point less than`` (lhs: Point2D) (rhs: Point2D) = Assert.Less(lhs, rhs)
+let ``Point less than`` (lhs: Point2D<'Length, 'Coordinates>) (rhs: Point2D<'Length, 'Coordinates>) = Assert.Less(lhs, rhs)
 
 [<Property>]
-let ``Equality and hash code comparison with random points`` (first: Point2D) (second: Point2D) =
+let ``Equality and hash code comparison with random points`` (first: Point2D<'Length, 'Coordinates>) (second: Point2D<'Length, 'Coordinates>) =
     (first = second) = (first.GetHashCode() = second.GetHashCode())

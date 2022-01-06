@@ -7,7 +7,7 @@
         <PackageVersion>0.0.2</PackageVersion>
         <Title>Geometry</Title>
         <Authors>Thomas Waters</Authors>
-        <Company/>
+        <Company />
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Fsharp.Geometry</PackageId>
         <Description>A functional geometry library for working with 2D spatial structures.</Description>
@@ -18,30 +18,32 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Float.fs"/>
-        <Compile Include="Types.fs"/>
-        <Compile Include="Angle.fs"/>
-        <Compile Include="Direction2D.fs"/>
-        <Compile Include="Vector2D.fs"/>
-        <Compile Include="Point2D.fs"/>
-        <Compile Include="Frame2D.fs"/>
-        <Compile Include="LineSegment2D.fs"/>
-        <Compile Include="Line2D.fs"/>
-        <Compile Include="BoundingBox2D.fs"/>
-        <Compile Include="Size.fs"/>
-        <Compile Include="Circle2D.fs"/>
-        <Compile Include="Polygon2D.fs"/>
-        <Compile Include="Intersection2D.fs"/>
-        <Compile Include="Boolean2D.fs"/>
+        <Content Include="README.md" />
+        <Compile Include="Float.fs" />
+        <Compile Include="Types.fs" />
+        <Compile Include="Length.fs" />
+        <Compile Include="Angle.fs" />
+        <Compile Include="Direction2D.fs" />
+        <Compile Include="Vector2D.fs" />
+        <Compile Include="Point2D.fs" />
+        <Compile Include="Frame2D.fs" />
+        <Compile Include="LineSegment2D.fs" />
+        <Compile Include="Line2D.fs" />
+        <Compile Include="BoundingBox2D.fs" />
+        <Compile Include="Size.fs" />
+        <Compile Include="Circle2D.fs" />
+        <Compile Include="Polygon2D.fs" />
+        <Compile Include="Intersection2D.fs" />
+        <Compile Include="Boolean2D.fs" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FSharp.Json" Version="0.4.0"/>
-        <PackageReference Include="MathNet.Spatial" Version="0.6.0"/>
+        <PackageReference Include="FSharp.Json" Version="0.4.0" />
+        <PackageReference Include="MathNet.Spatial" Version="0.6.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Utilities\Utilities.fsproj"/>
+        <ProjectReference Include="..\Utilities\Utilities.fsproj" />
     </ItemGroup>
 
     <ItemGroup>
