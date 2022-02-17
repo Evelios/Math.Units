@@ -1,114 +1,112 @@
-﻿namespace Geometry
+﻿[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+module Geometry.Point2D
 
 open FSharp.Json
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
-module Point2D =
-    (* Builders *)
+(* Builders *)
 
-    let xy (x: float) (y: float) : Point2D<'Length, 'Coordinates> = { x = x; y = y }
+let xy (x: Length<'Unit>) (y: Length<'Unit>) : Point2D<'Unit, 'Coordinates> = { X = x; Y = y }
 
-    let rTheta (r: float) (theta: Angle) : Point2D<'Length, 'Coordinates> =
-        { x = r * Angle.cos theta
-          y = r * Angle.sin theta }
+let meters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = xy (Length.meters x) (Length.meters y)
 
-    let ofPolar r a = xy (r * Angle.cos a) (r * Angle.sin a)
+let rTheta (r: Length<'Unit>) (theta: Angle) : Point2D<'Unit, 'Coordinates> =
+    xy (r * Angle.cos theta) (r * Angle.sin theta)
 
-    let origin () : Point2D<'Length, 'Coordinates> = xy 0. 0.
+let ofPolar r theta = rTheta r theta
 
-    (* Modifiers *)
+let origin () : Point2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
-    let toVector (point: Point2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> = Vector2D.xy point.x point.y
+(* Modifiers *)
 
-    let scale x y (point: Point2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> =
-        { x = point.x * x; y = point.y * y }
+let toVector (point: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = Vector2D.xy point.X point.Y
 
-    let translate (v: Vector2D<'Length, 'Coordinates>) (p: Point2D<'Length, 'Coordinates>) = p + v
+let scale (x: float) (y: float) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+    xy (point.X * x) (point.Y * y)
 
-    let rotateAround
-        (reference: Point2D<'Length, 'Coordinates>)
-        (angle: Angle)
-        (point: Point2D<'Length, 'Coordinates>)
-        : Point2D<'Length, 'Coordinates> =
-        let c = Angle.cos angle
-        let s = Angle.sin angle
-        let deltaX = point.x - reference.x
-        let deltaY = point.y - reference.y
+let translate (v: Vector2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Coordinates>) = p + v
 
-        { x = reference.x + c * deltaX - s * deltaY
-          y = reference.y + s * deltaX + c * deltaY }
+let rotateAround
+    (reference: Point2D<'Unit, 'Coordinates>)
+    (angle: Angle)
+    (point: Point2D<'Unit, 'Coordinates>)
+    : Point2D<'Unit, 'Coordinates> =
+    let c = Angle.cos angle
+    let s = Angle.sin angle
+    let deltaX = point.X - reference.X
+    let deltaY = point.Y - reference.Y
 
-    let placeIn
-        (frame: Frame2D<'Length, 'Coordinates>)
-        (point: Point2D<'Length, 'Coordinates>)
-        : Point2D<'Length, 'Coordinates> =
-        let i = frame.XDirection
-        let j = frame.YDirection
+    xy (reference.X + c * deltaX - s * deltaY) (reference.Y + s * deltaX + c * deltaY)
 
-        { x = frame.Origin.x + point.X * i.X + point.Y * j.X
-          y = frame.Origin.y + point.X * i.Y + point.Y * j.Y }
+let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+    let i = frame.XDirection
+    let j = frame.YDirection
 
-    (* Queries *)
+    xy (frame.Origin.X + point.X * i.X + point.Y * j.X) (frame.Origin.Y + point.X * i.Y + point.Y * j.Y)
 
-    let distanceSquaredTo (p1: Point2D<'Length, 'Coordinates>) (p2: Point2D<'Length, 'Coordinates>) : float =
-        let dx = (p1.x - p2.x)
-        let dy = (p1.y - p2.y)
-        dx * dx + dy * dy
+(* Queries *)
 
-    let distanceTo p1 p2 : float = distanceSquaredTo p1 p2 |> sqrt
+let distanceSquaredTo (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+    let dx = (p1.X - p2.X)
+    let dy = (p1.Y - p2.Y)
+    dx * dx + dy * dy
 
-    let midpoint
-        (p1: Point2D<'Length, 'Coordinates>)
-        (p2: Point2D<'Length, 'Coordinates>)
-        : Point2D<'Length, 'Coordinates> =
-        xy ((p1.x + p2.x) / 2.) ((p1.y + p2.y) / 2.)
+let distanceTo p1 p2 : Length<'Unit> = distanceSquaredTo p1 p2 |> Length.sqrt
 
-    let round (p: Point2D<'Length, 'Coordinates>) = xy (roundFloat p.x) (roundFloat p.y)
+let midpoint (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+    xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
+
+let round (p: Point2D<'Unit, 'Coordinates>) =
+    xy (Length.round p.X) (Length.round p.Y)
 
 
-    /// Be careful with the vector arguments. This function is written with piping in mind. The first point is the
-    /// target location. The second point is the starting location
-    let vectorTo
-        (target: Point2D<'Length, 'Coordinates>)
-        (from: Point2D<'Length, 'Coordinates>)
-        : Vector2D<'Length, 'Coordinates> =
-        target - from
+/// Be careful with the vector arguments. This function is written with piping in mind. The first point is the
+/// target location. The second point is the starting location
+let vectorTo
+    (target: Point2D<'Unit, 'Coordinates>)
+    (from: Point2D<'Unit, 'Coordinates>)
+    : Vector2D<'Unit, 'Coordinates> =
+    target - from
 
 
-    (* Json *)
+(* Json *)
 
-    let fromList (list: float list) : Point2D<'Length, 'Coordinates> option =
-        match list with
-        | [ x; y ] -> Some <| xy x y
-        | _ -> None
+let fromList (list: float list) : Point2D<'Unit, 'Coordinates> option =
+    match list with
+    | [ x; y ] ->
+        Some
+        <| xy (Length<'Unit>.create x) (Length<'Unit>.create y)
+    | _ -> None
 
-    let toList (point: Point2D<'Length, 'Coordinates>) : float list = [ point.x; point.y ]
+let toList (point: Point2D<'Unit, 'Coordinates>) : float list = [ point.X.value (); point.Y.value () ]
 
-    (* Json transformations *)
+(* Json transformations *)
 
-    type Transform() =
-        interface ITypeTransform with
-            member this.targetType() = (fun _ -> typeof<float32 list>) ()
+type Transform() =
+    interface ITypeTransform with
+        member this.targetType() = (fun _ -> typeof<float32 list>) ()
 
-            member this.toTargetType value =
-                toList (value :?> Point2D<'Length, 'Coordinates>) :> obj
+        member this.toTargetType value =
+            toList (value :?> Point2D<obj, obj>) :> obj
 
-            member this.fromTargetType value =
-                value :?> float list
-                |> fromList
-                |> Option.defaultValue (xy 0. 0.)
-                :> obj
+        member this.fromTargetType value =
+            value :?> float list
+            |> fromList
+            |> Option.defaultValue (xy Length.zero Length.zero)
+            :> obj
 
-    type ListTransform() =
-        interface ITypeTransform with
-            member this.targetType() = (fun _ -> typeof<float list list>) ()
+type ListTransform() =
+    interface ITypeTransform with
+        member this.targetType() = (fun _ -> typeof<float list list>) ()
 
-            member this.toTargetType value =
-                value :?> Point2D<'Length, 'Coordinates> list
-                |> List.map toList
-                :> obj
+        member this.toTargetType value =
+            value :?> Point2D<obj, obj> list
+            |> List.map toList
+            :> obj
 
-            member this.fromTargetType value =
-                value :?> float list list
-                |> List.map (fromList >> Option.defaultValue (xy 0. 0.))
-                :> obj
+        member this.fromTargetType value =
+            value :?> float list list
+            |> List.map (
+                fromList
+                >> Option.defaultValue (xy Length.zero Length.zero)
+            )
+            :> obj

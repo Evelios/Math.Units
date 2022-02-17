@@ -1,4 +1,11 @@
+# FsDocs
+
+output/
+tmp/
+cache
+
 # Mac Files
+
 .DS_Store
 
 # Jetbrains & Dot Net Files

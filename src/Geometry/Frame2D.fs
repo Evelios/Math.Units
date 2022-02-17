@@ -1,32 +1,31 @@
-namespace Geometry
-
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
-module Frame2D =
-    (* Builders *)
-    let atOrigin : Frame2D<'Length, 'Coordinates> =
-        { Origin = { x = 0.; y = 0. }
-          XDirection = Direction2D.x
-          YDirection = Direction2D.y }
+module Geometry.Frame2D
 
-    let atPoint (point: Point2D<'Length, 'Coordinates>) : Frame2D<'Length, 'Coordinates> =
-        { Origin = point
-          XDirection = Direction2D.x
-          YDirection = Direction2D.y }
+(* Builders *)
+let atOrigin () : Frame2D<'Unit, 'Coordinates> =
+    { Origin = Point2D.origin ()
+      XDirection = Direction2D.x ()
+      YDirection = Direction2D.y () }
 
-    let withXDirection xDirection origin =
-        { Origin = origin
-          XDirection = xDirection
-          YDirection = Direction2D.rotateCounterclockwise xDirection }
+let atPoint (point: Point2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates> =
+    { Origin = point
+      XDirection = Direction2D.x ()
+      YDirection = Direction2D.y () }
 
-    let withAngle (angle: Angle) (origin: Point2D<'Length, 'Coordinates>) : Frame2D<'Length, 'Coordinates> =
-        withXDirection (Direction2D.fromAngle angle) origin
+let withXDirection xDirection origin =
+    { Origin = origin
+      XDirection = xDirection
+      YDirection = Direction2D.rotateCounterclockwise xDirection }
 
-    (* Modifiers *)
+let withAngle (angle: Angle) (origin: Point2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates> =
+    withXDirection (Direction2D.fromAngle angle) origin
 
-    let placeIn
-        (reference: Frame2D<'Length, 'Coordinates>)
-        (frame: Frame2D<'Length, 'Coordinates>)
-        : Frame2D<'Length, 'Coordinates> =
-        { Origin = Point2D.placeIn reference frame.Origin
-          XDirection = Direction2D.placeIn reference frame.XDirection
-          YDirection = Direction2D.placeIn reference frame.YDirection }
+(* Modifiers *)
+
+let placeIn
+    (reference: Frame2D<'Unit, 'Coordinates>)
+    (frame: Frame2D<'Unit, 'Coordinates>)
+    : Frame2D<'Unit, 'Coordinates> =
+    { Origin = Point2D.placeIn reference frame.Origin
+      XDirection = Direction2D.placeIn reference frame.XDirection
+      YDirection = Direction2D.placeIn reference frame.YDirection }

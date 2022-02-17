@@ -1,38 +1,143 @@
 namespace Geometry
 
 open System
+open Geometry
 
 // ---- Lengths ----
+
+type Unitless = Unitless
 
 type Pixels = Pixels
 
 type Meters = Meters
 
-type 'Unit Length = 'Unit
+[<CustomEquality>]
+[<CustomComparison>]
+[<RequireQualifiedAccess>]
+type 'Unit Length =
+    | Length of float
+
+    // Accessors
+    static member create a = Length a
+    static member value(Length a) = a
+
+    member this.value() : float = Length.value<'Unit> this
+
+    interface IComparable<Length<'Unit>> with
+        member this.CompareTo(length) = this.Comparison(length)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? (Length<'Unit>) as length -> this.Comparison(length)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    member this.LessThan(Length other: Length<'Unit>) =
+        match this with
+        | Length self -> self < other
+
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? (Length<'Unit>) as other -> this.Equals(other)
+        | _ -> false
+
+    member this.Equals(Length other: Length<'Unit>) : bool =
+        match this with
+        | Length self -> almostEqual self other
+
+    override this.GetHashCode() =
+        match this with
+        | Length self -> self.GetHashCode()
+
+    // Unitless Operations
+    static member (*)(Length length: Length<'Unit>, Length scale: Length<Unitless>) : Length<'Unit> =
+        Length(length * scale)
+
+    static member (*)(Length scale: Length<Unitless>, Length length: Length<'Unit>) : Length<'Unit> =
+        Length(scale * length)
+
+    // Generic Operations
+
+    static member (+)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit> = Length(lhs + rhs)
+
+    static member (-)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit> = Length(lhs - rhs)
+
+    static member (~-)(Length length: Length<'Unit>) : Length<'Unit> = Length(-length)
+
+    static member (*)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length * scale)
+
+    static member (*)(scale: float, Length length: Length<'Unit>) : Length<'Unit> = Length(scale * length)
+
+    static member (*)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit * 'Unit> = Length(lhs * rhs)
+
+    static member (/)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length / scale)
+
+    static member (/)(Length length: Length<'Unit>, Length scale: Length<'Unit>) : float = length / scale
+
+    static member ( ** )(Length length: Length<'Unit>, power: float) : Length<'Unit> = Length(length ** power)
+
+type Size<'Unit> =
+    { Width: Length<'Unit>
+      Height: Length<'Unit> }
 
 // ---- Geometry ----
+
+[<Struct>]
+type Angle =
+    private
+    | Radians of float
+
+    (* Operators *)
+
+    static member (+)(lhs: Angle, rhs: Angle) : Angle =
+        match lhs, rhs with
+        | Radians l, Radians r -> Radians(l + r)
+
+    static member (-)(lhs: Angle, rhs: Angle) : Angle =
+        match lhs, rhs with
+        | Radians l, Radians r -> Radians(l - r)
+
+    static member (~-)(Radians angle: Angle) : Angle = Radians -angle
+
+    static member (*)(lhs: Angle, rhs: float) : Angle =
+        match lhs with
+        | Radians l -> Radians(l * rhs)
+
+    static member (*)(lhs: float, rhs: Angle) : Angle = rhs * lhs
+
+    static member (/)(lhs: Angle, rhs: float) : Angle =
+        match lhs with
+        | Radians l -> Radians(l / rhs)
+
+    static member (/)(lhs: float, rhs: Angle) : Angle = rhs / lhs
+
+
+[<RequireQualifiedAccess>]
+type Direction2D<'Coordinates> = { X: float; Y: float }
 
 [<CustomEquality>]
 [<CustomComparison>]
 [<RequireQualifiedAccess>]
 [<Struct>]
-type Vector2D<'Length, 'Coordinates> =
-    private
-        { x: float
-          y: float }
-
-    member this.X = this.x
-    member this.Y = this.y
+type Vector2D<'Unit, 'Coordinates> =
+    { X: Length<'Unit>
+      Y: Length<'Unit> }
 
     (* Comparable interfaces *)
 
-    interface IComparable<Vector2D<'Length, 'Coordinates>> with
+    interface IComparable<Vector2D<'Unit, 'Coordinates>> with
         member this.CompareTo(vector) = this.Comparison(vector)
 
     interface IComparable with
         member this.CompareTo(obj) =
             match obj with
-            | :? Vector2D<'Length, 'Coordinates> as vector -> this.Comparison(vector)
+            | :? Vector2D<'Unit, 'Coordinates> as vector -> this.Comparison(vector)
             | _ -> failwith "incompatible comparison"
 
     member this.Comparison(other) =
@@ -40,64 +145,69 @@ type Vector2D<'Length, 'Coordinates> =
         elif this.LessThan(other) then -1
         else 1
 
-    member this.LessThan(other: Vector2D<'Length, 'Coordinates>) =
-        if almostEqual (float this.x) (float other.x) then
-            float this.y < float other.y
+    member this.LessThan(other: Vector2D<'Unit, 'Coordinates>) =
+        if this.X = other.X then
+            this.Y < other.Y
         else
-            float this.x < float other.x
+            this.X < other.X
 
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? Vector2D<'Length, 'Coordinates> as other -> this.Equals(other)
+        | :? Vector2D<'Unit, 'Coordinates> as other -> this.Equals(other)
         | _ -> false
 
-    member this.Equals(other: Vector2D<'Length, 'Coordinates>) : bool =
-        almostEqual this.x other.x
-        && almostEqual this.y other.y
+    member this.Equals(other: Vector2D<'Unit, 'Coordinates>) : bool = this.X = other.X && this.Y = other.Y
 
-    override this.GetHashCode() = HashCode.Combine(this.x, this.y)
+    override this.GetHashCode() = HashCode.Combine(this.X, this.Y)
 
-    static member (+)(lhs: Vector2D<'Length, 'Coordinates>, rhs: Vector2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> =
-        { x = lhs.x + rhs.x; y = lhs.y + rhs.y }
+    static member (+)
+        (
+            lhs: Vector2D<'Unit, 'Coordinates>,
+            rhs: Vector2D<'Unit, 'Coordinates>
+        ) : Vector2D<'Unit, 'Coordinates> =
+        { X = lhs.X + rhs.X; Y = lhs.Y + rhs.Y }
 
-    static member (-)(lhs: Vector2D<'Length, 'Coordinates>, rhs: Vector2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> =
-        { x = lhs.x + rhs.x; y = lhs.y + rhs.y }
+    static member (-)
+        (
+            lhs: Vector2D<'Unit, 'Coordinates>,
+            rhs: Vector2D<'Unit, 'Coordinates>
+        ) : Vector2D<'Unit, 'Coordinates> =
+        { X = lhs.X + rhs.X; Y = lhs.Y + rhs.Y }
 
-    static member (~-)(vector: Vector2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> = { x = vector.X; y = vector.Y }
+    static member (~-)(vector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+        { X = vector.X; Y = vector.Y }
 
-    static member (*)(vector: Vector2D<'Length, 'Coordinates>, scale: float) : Vector2D<'Length, 'Coordinates> =
-        { x = vector.x * scale
-          y = vector.y * scale }
+    static member (*)(vector: Vector2D<'Unit, 'Coordinates>, scale: float) : Vector2D<'Unit, 'Coordinates> =
+        { X = vector.X * scale
+          Y = vector.Y * scale }
 
-    static member (*)(scale: float, vector: Vector2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> = vector * scale
+    static member (*)(scale: float, vector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+        vector * scale
 
-    static member (/)(vector: Vector2D<'Length, 'Coordinates>, scale: float) : Vector2D<'Length, 'Coordinates> =
-        { x = vector.x / scale
-          y = vector.y / scale }
+    static member (/)(vector: Vector2D<'Unit, 'Coordinates>, scale: float) : Vector2D<'Unit, 'Coordinates> =
+        { X = vector.X / scale
+          Y = vector.Y / scale }
 
-    static member (/)(scale: float, vector: Vector2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> = vector / scale
+    static member (/)(scale: float, vector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+        vector / scale
 
 [<CustomEquality>]
 [<CustomComparison>]
 [<RequireQualifiedAccess>]
 [<Struct>]
-type Point2D<'Length, 'Coordinates> =
-    private
-        { x: float
-          y: float }
-
-    member this.X = this.x
-    member this.Y = this.y
+type Point2D<'Unit, 'Coordinates> =
+    { X: Length<'Unit>
+      Y: Length<'Unit> }
 
     (* Comparable interfaces *)
 
-    interface IComparable<Point2D<'Length, 'Coordinates>> with
+    interface IComparable<Point2D<'Unit, 'Coordinates>> with
         member this.CompareTo(point) = this.Comparison(point)
 
     interface IComparable with
         member this.CompareTo(obj) =
             match obj with
-            | :? Point2D<'Length, 'Coordinates> as point -> this.Comparison(point)
+            | :? Point2D<'Unit, 'Coordinates> as point -> this.Comparison(point)
             | _ -> failwith "incompatible comparison"
 
     member this.Comparison(other) =
@@ -105,48 +215,234 @@ type Point2D<'Length, 'Coordinates> =
         elif this.LessThan(other) then -1
         else 1
 
-    member this.LessThan(other: Point2D<'Length, 'Coordinates>) =
-        if almostEqual (float this.x) (float other.x) then
-            this.y < other.y
+    member this.LessThan(other: Point2D<'Unit, 'Coordinates>) =
+        if this.X = other.X then
+            this.Y < other.Y
         else
-            this.x < other.x
+            this.X < other.X
 
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? Point2D<'Length, 'Coordinates> as other -> this.Equals(other)
+        | :? Point2D<'Unit, 'Coordinates> as other -> this.Equals(other)
         | _ -> false
 
-    member this.Equals(other: Point2D<'Length, 'Coordinates>) : bool =
-        almostEqual this.x other.x
-        && almostEqual this.y other.y
+    member this.Equals(other: Point2D<'Unit, 'Coordinates>) : bool = this.X = other.X && this.Y = other.Y
 
-    override this.GetHashCode() = HashCode.Combine(this.x, this.y)
+    override this.GetHashCode() = HashCode.Combine(this.X, this.Y)
 
-    static member (-)(lhs: Point2D<'Length, 'Coordinates>, rhs: Point2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> =
-        { x = (lhs.x - rhs.x)
-          y = (lhs.y - rhs.y) }
-        
-    static member (-)(lhs: Point2D<'Length, 'Coordinates>, rhs: Vector2D<'Length, 'Coordinates>) : Vector2D<'Length, 'Coordinates> =
-        { x = (lhs.x - rhs.x)
-          y = (lhs.y - rhs.y) }
+    static member (-)
+        (
+            lhs: Point2D<'Unit, 'Coordinates>,
+            rhs: Point2D<'Unit, 'Coordinates>
+        ) : Vector2D<'Unit, 'Coordinates> =
+        { X = (lhs.X - rhs.Y)
+          Y = (lhs.Y - rhs.Y) }
 
-    static member (~-)(point: Point2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> = { x = -point.X; y = -point.Y }
+    static member (-)
+        (
+            lhs: Point2D<'Unit, 'Coordinates>,
+            rhs: Vector2D<'Unit, 'Coordinates>
+        ) : Vector2D<'Unit, 'Coordinates> =
+        { X = (lhs.X - rhs.X)
+          Y = (lhs.Y - rhs.Y) }
 
-    static member (+)(lhs: Point2D<'Length, 'Coordinates>, rhs: Vector2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> =
-        { x = lhs.x + rhs.x; y = lhs.y + rhs.y }
+    static member (~-)(point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+        { X = -point.X; Y = -point.Y }
 
-    static member (*)(lhs: Point2D<'Length, 'Coordinates>, rhs: float) : Point2D<'Length, 'Coordinates> = { x = lhs.x * rhs; y = lhs.y * rhs }
+    static member (+)
+        (
+            lhs: Point2D<'Unit, 'Coordinates>,
+            rhs: Vector2D<'Unit, 'Coordinates>
+        ) : Point2D<'Unit, 'Coordinates> =
+        { X = lhs.X + rhs.X; Y = lhs.Y + rhs.Y }
 
-    static member (*)(lhs: float, rhs: Point2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> = rhs * lhs
+    static member (*)(lhs: Point2D<'Unit, 'Coordinates>, rhs: float) : Point2D<'Unit, 'Coordinates> =
+        { X = lhs.X * rhs; Y = lhs.Y * rhs }
 
-    static member (/)(lhs: Point2D<'Length, 'Coordinates>, rhs: float) : Point2D<'Length, 'Coordinates> = { x = lhs.x / rhs; y = lhs.y / rhs }
+    static member (*)(lhs: float, rhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = rhs * lhs
 
-    static member (/)(lhs: float, rhs: Point2D<'Length, 'Coordinates>) : Point2D<'Length, 'Coordinates> = rhs / lhs
+    static member (*)
+        (
+            lhs: Point2D<'Unit, 'Coordinates>,
+            rhs: Direction2D<'Coordinates>
+        ) : Point2D<'Unit, 'Coordinates> =
+        { X = lhs.X * rhs.X; Y = lhs.Y * rhs.Y }
 
+    static member (*)
+        (
+            lhs: Direction2D<'Coordinates>,
+            rhs: Point2D<'Unit, 'Coordinates>
+        ) : Point2D<'Unit, 'Coordinates> =
+        { X = lhs.X * rhs.X; Y = lhs.Y * rhs.Y }
+
+    static member (/)(lhs: Point2D<'Unit, 'Coordinates>, rhs: float) : Point2D<'Unit, 'Coordinates> =
+        { X = lhs.X / rhs; Y = lhs.Y / rhs }
+
+    static member (/)(lhs: float, rhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = rhs / lhs
+
+[<CustomEquality>]
+[<CustomComparison>]
+[<Struct>]
+type LineSegment2D<'Unit, 'Coordinates> =
+    { Start: Point2D<'Unit, 'Coordinates>
+      Finish: Point2D<'Unit, 'Coordinates> }
+
+    interface IComparable<LineSegment2D<'Unit, 'Coordinates>> with
+        member this.CompareTo(line) = this.Comparison(line)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? LineSegment2D<'Unit, 'Coordinates> as vertex -> this.Comparison(vertex)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    member this.LessThan(other: LineSegment2D<'Unit, 'Coordinates>) =
+        let firstLower = min this.Start this.Finish
+
+        let firstGreater = max this.Start this.Finish
+
+        let secondLower = min other.Start other.Finish
+
+        let secondGreater = max other.Start other.Finish
+
+        if firstLower = secondLower then
+            firstGreater < secondGreater
+        else
+            firstLower < secondLower
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? LineSegment2D<'Unit, 'Coordinates> as other ->
+            (this.Start = other.Start
+             && this.Finish = other.Finish)
+            || (this.Start = other.Finish
+                && this.Finish = other.Start)
+        | _ -> false
+
+    static member (*)(lhs: LineSegment2D<'Unit, 'Coordinates>, rhs: float) : LineSegment2D<'Unit, 'Coordinates> =
+        { Start = lhs.Start * rhs
+          Finish = lhs.Finish * rhs }
+
+
+    static member (*)(lhs: float, rhs: LineSegment2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 'Coordinates> =
+        rhs * lhs
+
+    static member (/)(lhs: LineSegment2D<'Unit, 'Coordinates>, rhs: float) : LineSegment2D<'Unit, 'Coordinates> =
+        { Start = lhs.Start / rhs
+          Finish = lhs.Finish / rhs }
+
+
+    static member (/)(lhs: float, rhs: LineSegment2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 'Coordinates> =
+        rhs / lhs
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.Start, this.Finish)
+
+[<CustomEquality>]
+[<CustomComparison>]
+[<Struct>]
+type Line2D<'Unit, 'Coordinates> =
+    { Start: Point2D<'Unit, 'Coordinates>
+      Finish: Point2D<'Unit, 'Coordinates> }
+
+
+    interface IComparable<Line2D<'Unit, 'Coordinates>> with
+        member this.CompareTo(line) = this.Comparison(line)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? Line2D<'Unit, 'Coordinates> as vertex -> this.Comparison(vertex)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    member this.LessThan(other: Line2D<'Unit, 'Coordinates>) =
+        let firstLower = min this.Start this.Finish
+
+        let firstGreater = max this.Start this.Finish
+
+        let secondLower = min other.Start other.Finish
+
+        let secondGreater = max other.Start other.Finish
+
+        if firstLower = secondLower then
+            firstGreater < secondGreater
+        else
+            firstLower < secondLower
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Line2D<'Unit, 'Coordinates> as other ->
+            (this.Start = other.Start
+             && this.Finish = other.Finish)
+            || (this.Start = other.Finish
+                && this.Finish = other.Start)
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.Start, this.Finish)
+
+
+[<Struct>]
+type BoundingBox2D<'Unit, 'Coordinates> =
+    { MinX: Length<'Unit>
+      MaxX: Length<'Unit>
+      MaxY: Length<'Unit>
+      MinY: Length<'Unit> }
+
+    member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
+    member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
+    member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
+    member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
+
+type Circle2D<'Unit, 'Coordinates> =
+    { Center: Point2D<'Unit, 'Coordinates>
+      Radius: Length<'Unit> }
+    
+[<CustomEquality>]
+[<CustomComparison>]
 [<RequireQualifiedAccess>]
-type Direction2D = { X: float; Y: float }
+type Polygon2D<'Unit, 'Coordinates> =
+    { Points: Point2D<'Unit, 'Coordinates> list }
 
-type Frame2D<'Length, 'Coordinates> =
-    { Origin: Point2D<'Length, 'Coordinates>
-      XDirection: Direction2D
-      YDirection: Direction2D }
+    (* Comparable interfaces *)
+
+    interface IComparable<Polygon2D<'Unit, 'Coordinates>> with
+        member this.CompareTo(polygon) = this.Comparison(polygon)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? Polygon2D<'Unit, 'Coordinates> as polygon -> this.Comparison(polygon)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    // TODO
+    member this.LessThan(other: Polygon2D<'Unit, 'Coordinates>) = this.Points < other.Points
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Polygon2D<'Unit, 'Coordinates> as other -> this.Equals(other)
+        | _ -> false
+
+    member this.Equals(other: Polygon2D<'Unit, 'Coordinates>) : bool = this.Points = other.Points
+
+    override this.GetHashCode() = this.Points.GetHashCode()
+    
+type Frame2D<'Unit, 'Coordinates> =
+    { Origin: Point2D<'Unit, 'Coordinates>
+      XDirection: Direction2D<'Coordinates>
+      YDirection: Direction2D<'Coordinates> }

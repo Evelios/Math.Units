@@ -8,25 +8,32 @@ module Gen =
     open Utilities
     open Utilities.Extensions
 
+    let private epsilonLength<'Unit> () = Length<'Unit>.create Epsilon
+
     let angle =
         Gen.map (fun angle -> Angle.inRadians (angle * 1.)) (Gen.floatBetween 0. (Math.PI / 2.))
 
-    let vector2D : Gen<Vector2D<Meters, TestSpace>> = Gen.map2 Vector2D.xy Gen.float Gen.float
+    let length = Gen.map Length.create<Meters> Gen.float
 
-    let vector2DWithinRadius radius =
-        Gen.map2 Vector2D.ofPolar (Gen.floatBetween 0. radius) angle
+    let lengthBetween (a: Length<'Unit>) (b: Length<'Unit>) : Gen<Length<'Unit>> =
+        Gen.map Length.create<'Unit> (Gen.floatBetween (a.value ()) (b.value ()))
+
+    let vector2D : Gen<Vector2D<Meters, TestSpace>> = Gen.map2 Vector2D.xy length length
+
+    let vector2DWithinRadius (radius: Length<'Unit>) : Gen<Vector2D<'Unit, 'Coordinates>> =
+        Gen.map2 Vector2D.ofPolar (lengthBetween Length.zero radius) angle
 
     let twoCloseVector2D =
-        Gen.map2 (fun first offset -> (first, first + offset)) vector2D (vector2DWithinRadius Epsilon)
+        Gen.map2 (fun first offset -> (first, first + offset)) vector2D (vector2DWithinRadius (epsilonLength ()))
 
-    let point2D : Gen<Point2D<Meters, TestSpace>> = Gen.map2 Point2D.xy Gen.float Gen.float
+    let point2D : Gen<Point2D<Meters, TestSpace>> = Gen.map2 Point2D.xy length length
 
-    let point2DWithinOffset radius (point: Point2D<'Length, 'Coordinates>) =
+    let point2DWithinOffset radius (point: Point2D<'Unit, 'Coordinates>) =
         Gen.map (fun offset -> point + offset) (vector2DWithinRadius radius)
 
     /// Generate two points that are within Epsilon of each other
     let twoClosePoint2D =
-        Gen.map2 (fun first offset -> (first, first + offset)) point2D (vector2DWithinRadius Epsilon)
+        Gen.map2 (fun first offset -> (first, first + offset)) point2D (vector2DWithinRadius (epsilonLength ()))
 
     let line2D =
         Gen.map2 Tuple2.pair point2D point2D
@@ -41,10 +48,10 @@ module Gen =
     let boundingBox2D : Gen<BoundingBox2D<Meters, TestSpace>> =
         Gen.map2 BoundingBox2D.from point2D point2D
 
-    let point2DInBoundingBox2D (bbox: BoundingBox2D<'Length, 'Coordinates>) =
-        Gen.map2 Point2D.xy (Gen.floatBetween bbox.MinX bbox.MaxX) (Gen.floatBetween bbox.MinY bbox.MaxY)
+    let point2DInBoundingBox2D (bbox: BoundingBox2D<'Unit, 'Coordinates>) =
+        Gen.map2 Point2D.xy (lengthBetween bbox.MinX bbox.MaxX) (lengthBetween bbox.MinY bbox.MaxY)
 
-    let lineSegment2DInBoundingBox2D (bbox: BoundingBox2D<'Length, 'Coordinates>) =
+    let lineSegment2DInBoundingBox2D (bbox: BoundingBox2D<'Unit, 'Coordinates>) =
         Gen.two (point2DInBoundingBox2D bbox)
         |> Gen.where (fun (a, b) -> a <> b)
         |> Gen.map (Tuple2.map LineSegment2D.from)

@@ -12,10 +12,10 @@ let Setup () = Gen.ArbGeometry.Register()
 
 
 let pointEqualityTestCases =
-    [ (Point2D.xy 0. 0., Point2D.xy 0. 0.)
-      (Point2D.xy -1. -1., Point2D.xy -1. -1.)
-      (Point2D.xy 5. 5., Point2D.xy 5. 5.)
-      (Point2D.xy 1. 1., Point2D.xy (1. + Epsilon / 2.) (1. + Epsilon / 2.)) ]
+    [ (Point2D.meters 0. 0., Point2D.meters 0. 0.)
+      (Point2D.meters -1. -1., Point2D.meters -1. -1.)
+      (Point2D.meters 5. 5., Point2D.meters 5. 5.)
+      (Point2D.meters 1. 1., Point2D.meters (1. + Epsilon / 2.) (1. + Epsilon / 2.)) ]
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof pointEqualityTestCases)>]
@@ -25,16 +25,15 @@ let ``Points are equal`` (lhs: Point2D<Meters, TestSpace>) (rhs: Point2D<Meters,
 
 [<Test>]
 let ``Point from polar`` () =
-    let expected = Point2D.xy 0. 1.
-    let actual = Point2D.ofPolar 1. (Angle.pi / 2.)
+    let expected = Point2D.meters 0. 1.
+    let actual = Point2D.ofPolar (Length.meters 1.) (Angle.pi / 2.)
 
     Assert.AreEqual(expected, actual)
 
 
-
 let pointLessThanTestCases =
-    [ (Point2D.xy 0. 0., Point2D.xy 1. 1.)
-      (Point2D.xy 0. 0., Point2D.xy 0. 1.) ]
+    [ (Point2D.meters 0. 0., Point2D.meters 1. 1.)
+      (Point2D.meters 0. 0., Point2D.meters 0. 1.) ]
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof pointLessThanTestCases)>]

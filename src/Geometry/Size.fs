@@ -1,22 +1,23 @@
-namespace Geometry
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+module Geometry.Size
 
-type Size<'Length> =
-    private
-        { width: float
-          height: float }
-    member this.Width = this.width
-    member this.Height = this.height
+let empty<'Unit> () : Size<'Unit> =
+    { Width = Length.zero
+      Height = Length.zero }
 
-module Size =
+let create width height : Size<'Unit> = { Width = width; Height = height }
 
-    let empty = { width = 0.; height = 0. }
-    let create width height = { width = width; height = height }
+let scale (scale: float) (size: Size<'Unit>) : Size<'Unit> =
+    { Width = size.Width * scale
+      Height = size.Height * scale }
 
-    let scale scale (size: Size<'Length>) =
-        { width = size.Width * scale
-          height = size.Height * scale }
+let normalizeBelowOne (size: Size<'Unit>) : Size<'Unit> =
+    scale
+        (Length.create<'Unit> 1.
+         / max size.Width size.Height)
+        size
 
-    let normalizeBelowOne (size: Size<'Length>) =
-        scale (1. / max size.Width size.Height) size
-
-    let withMaxSize<'Length> size = normalizeBelowOne >> scale size
+let withMaxSize<'Unit> (maxSize: Length<'Unit>) (size: Size<'Unit>) : Size<'Unit> =
+    size
+    |> normalizeBelowOne
+    |> scale (maxSize.value ())

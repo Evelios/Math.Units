@@ -1,32 +1,27 @@
-namespace Geometry
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+module Geometry.Circle2D
 
 open System
 
-type Circle2D<'Length, 'Coordinates> =
-    { Center: Point2D<'Length, 'Coordinates>
-      Radius: float }
+(* Builders *)
+let atPoint (center: Point2D<'Unit, 'Coordinates>) (radius: Length<'Unit>) : Circle2D<'Unit, 'Coordinates> =
+    { Center = center; Radius = radius }
+
+let withRadius (radius: Length<'Unit>) (center: Point2D<'Unit, 'Coordinates>) : Circle2D<'Unit, 'Coordinates> =
+    { Center = center; Radius = radius }
+
+let atOrigin radius = atPoint (Point2D.origin ()) radius
 
 
-module Circle2D =
-    (* Builders *)
-    let atPoint (center: Point2D<'Length, 'Coordinates>) (radius: float) : Circle2D<'Length, 'Coordinates> =
-        { Center = center; Radius = radius }
+(* Accessors *)
+let diameter (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = circle.Radius * 2.
 
-    let withRadius (radius: float) (center: Point2D<'Length, 'Coordinates>) : Circle2D<'Length, 'Coordinates> =
-        { Center = center; Radius = radius }
+let area (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit*'Unit> = 2. * Math.PI * (Length.square circle.Radius)
+let circumference (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = 2. * Math.PI * circle.Radius
 
-    let atOrigin radius = atPoint (Point2D.origin ()) radius
-
-
-    (* Accessors *)
-    let diameter (circle: Circle2D<'Length, 'Coordinates>) : float = circle.Radius * 2.
-
-    let area (circle: Circle2D<'Length, 'Coordinates>) : float = 2. * Math.PI * (circle.Radius ** 2.)
-    let circumference (circle: Circle2D<'Length, 'Coordinates>) : float = 2. * Math.PI * circle.Radius
-
-    let boundingBox (circle: Circle2D<'Length, 'Coordinates>) : BoundingBox2D<'Length, 'Coordinates> =
-        BoundingBox2D.fromExtrema
-            { MinX = circle.Center.X - circle.Radius
-              MaxX = circle.Center.X + circle.Radius
-              MinY = circle.Center.Y - circle.Radius
-              MaxY = circle.Center.Y - circle.Radius }
+let boundingBox (circle: Circle2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'Coordinates> =
+    BoundingBox2D.fromExtrema
+        { MinX = circle.Center.X - circle.Radius
+          MaxX = circle.Center.X + circle.Radius
+          MinY = circle.Center.Y - circle.Radius
+          MaxY = circle.Center.Y - circle.Radius }

@@ -1,0 +1,24 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <Version>0.0.1</Version>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Product>Fsharp.Geometry</Product>
+        <Authors>Thomas Waters</Authors>
+        <Copyright>Thomas Waters</Copyright>
+        <Company/>
+        <PackageTags>geometry, fsharp, f#</PackageTags>
+        <PackageLicense>MIT</PackageLicense>
+
+        <RepositoryUrl>https://github.com/Evelios/fsharp-geometry</RepositoryUrl>
+        <PackageProjectUrl>https://www.nuget.org/packages/Fsharp.Geometry/</PackageProjectUrl>
+
+        <RepositoryType>git</RepositoryType>
+        <NeutralLanguage>en</NeutralLanguage>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <FsDocsLicenseLink>https://opensource.org/licenses/MIT</FsDocsLicenseLink>
+        <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Fsharp.Geometry/</FsDocsReleaseNotesLink>
+    </PropertyGroup>
+</Project>
