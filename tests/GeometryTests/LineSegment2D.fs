@@ -9,26 +9,26 @@ open Geometry
 [<SetUp>]
 let SetUp () = Gen.ArbGeometry.Register()
 
-let pointDistanceTestCases =
-    [ "Endpoint", (Point2D.meters 0. 5.), 0.
-      "Near start point", (Point2D.meters 5. 6.), 1.
-      "Near end point", (Point2D.meters 7. 5.), 2.
-      "Away from corner", (Point2D.meters -3. 1.), 5.
-      "Distance to segment", (Point2D.meters 3. 1.), 4. ]
+let ``Point distance test cases`` =
+    [ "Endpoint", (Point2D.meters 0. 5.), Length.meters 0.
+      "Near start point", (Point2D.meters 5. 6.), Length.meters 1.
+      "Near end point", (Point2D.meters 7. 5.), Length.meters 2.
+      "Away from corner", (Point2D.meters -3. 1.), Length.meters 5.
+      "Distance to segment", (Point2D.meters 3. 1.), Length.meters 4. ]
     |> List.map
         (fun (name, point, expected) ->
             TestCaseData(point)
                 .SetName(name)
                 .Returns(expected))
 
-[<TestCaseSource(nameof pointDistanceTestCases)>]
-let ``Distance to point`` point =
+[<TestCaseSource(nameof ``Point distance test cases``)>]
+let ``Distance to point`` (point: Point2D<Meters, 'Coordinates>) =
     let line =
         LineSegment2D.from (Point2D.meters 0. 5.) (Point2D.meters 5. 5.)
 
     LineSegment2D.distanceToPoint point line
 
-let pointClosestToTestCases =
+let ``Point closest to test cases`` =
     let line =
         LineSegment2D.from (Point2D.meters 0. 5.) (Point2D.meters 5. 5.)
 
@@ -38,8 +38,9 @@ let pointClosestToTestCases =
       (Point2D.meters -3. 6.), line, (Point2D.meters 0. 5.) ]
     |> List.map (fun (point, line, expected) -> TestCaseData(point, line).Returns(expected))
 
-[<TestCaseSource(nameof pointClosestToTestCases)>]
-let ``Point closest to line`` point line = LineSegment2D.pointClosestTo point line
+[<TestCaseSource(nameof ``Point closest to test cases``)>]
+let ``Point closest to line`` (point: Point2D<Meters, 'Coordinates>) (line: LineSegment2D<Meters, 'Coordinates>) =
+    LineSegment2D.pointClosestTo point line
 
 let pointOnLineTestCases =
     let line =
@@ -69,8 +70,8 @@ let ``Line Segment Intersection`` () =
 
 [<Property>]
 let ``Intersection lies on both line segments``
-    (l1: LineSegment2D<float, TestSpace>)
-    (l2: LineSegment2D<float, TestSpace>)
+    (l1: LineSegment2D<Meters, TestSpace>)
+    (l2: LineSegment2D<Meters, TestSpace>)
     =
     match LineSegment2D.intersect l1 l2 with
     | Some intersection ->

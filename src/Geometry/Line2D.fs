@@ -61,7 +61,7 @@ let perpThroughPoint
     (point: Point2D<'Unit, 'Coordinates>)
     (line: Line2D<'Unit, 'Coordinates>)
     : Line2D<'Unit, 'Coordinates> =
-    atPointInDirection point (Vector2D.rotateBy (Angle.inDegrees 90.) (direction line))
+    atPointInDirection point (Vector2D.rotateBy (Angle.degrees 90.) (direction line))
 
 let isPointOnLine (point: Point2D<'Unit, 'Coordinates>) (line: Line2D<'Unit, 'Coordinates>) =
     point = line.Start

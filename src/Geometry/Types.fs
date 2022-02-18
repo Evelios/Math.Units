@@ -14,7 +14,7 @@ type Meters = Meters
 [<CustomEquality>]
 [<CustomComparison>]
 [<RequireQualifiedAccess>]
-type 'Unit Length =
+type Length<'Unit> =
     | Length of float
 
     // Accessors
@@ -53,7 +53,9 @@ type 'Unit Length =
 
     override this.GetHashCode() =
         match this with
-        | Length self -> self.GetHashCode()
+        | Length self ->
+            (roundFloatTo Float.DigitPrecision self)
+                .GetHashCode()
 
     // Unitless Operations
     static member (*)(Length length: Length<'Unit>, Length scale: Length<Unitless>) : Length<'Unit> =
@@ -80,7 +82,11 @@ type 'Unit Length =
 
     static member (/)(Length length: Length<'Unit>, Length scale: Length<'Unit>) : float = length / scale
 
-    static member ( ** )(Length length: Length<'Unit>, power: float) : Length<'Unit> = Length(length ** power)
+    // Operator overloads through functions
+    
+    static member Pow(Length length: Length<'Unit>, power: float) : Length<'Unit> = Length(length ** power)
+    
+    
 
 type Size<'Unit> =
     { Width: Length<'Unit>
@@ -88,12 +94,54 @@ type Size<'Unit> =
 
 // ---- Geometry ----
 
+[<CustomEquality>]
+[<CustomComparison>]
+[<RequireQualifiedAccess>]
 [<Struct>]
 type Angle =
-    private
     | Radians of float
 
-    (* Operators *)
+    // Accessors
+    static member create a = Radians a
+    static member value(Radians a) = a
+
+    member this.value() : float = Angle.value this
+
+    interface IComparable<Angle> with
+        member this.CompareTo(angle) = this.Comparison(angle)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? Angle as angle -> this.Comparison(angle)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    member this.LessThan(Radians other: Angle) =
+        match this with
+        | Radians self -> self < other
+
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Angle as other -> this.Equals(other)
+        | _ -> false
+
+    member this.Equals(Radians other: Angle) : bool =
+        match this with
+        | Radians self -> almostEqual (self % 2. * Math.PI) (other % 2. * Math.PI)
+
+    override this.GetHashCode() =
+        match this with
+        | Radians self ->
+            (roundFloatTo Float.DigitPrecision (self % 2. * Math.PI))
+                .GetHashCode()
+
+    (* Math Operators *)
 
     static member (+)(lhs: Angle, rhs: Angle) : Angle =
         match lhs, rhs with
@@ -114,9 +162,7 @@ type Angle =
     static member (/)(lhs: Angle, rhs: float) : Angle =
         match lhs with
         | Radians l -> Radians(l / rhs)
-
-    static member (/)(lhs: float, rhs: Angle) : Angle = rhs / lhs
-
+        
 
 [<RequireQualifiedAccess>]
 type Direction2D<'Coordinates> = { X: float; Y: float }
@@ -399,15 +445,15 @@ type BoundingBox2D<'Unit, 'Coordinates> =
       MaxY: Length<'Unit>
       MinY: Length<'Unit> }
 
-    member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
-    member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
-    member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
-    member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
+    member this.TopLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
+    member this.TopRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
+    member this.BottomRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
+    member this.BottomLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
 
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
       Radius: Length<'Unit> }
-    
+
 [<CustomEquality>]
 [<CustomComparison>]
 [<RequireQualifiedAccess>]
@@ -441,7 +487,7 @@ type Polygon2D<'Unit, 'Coordinates> =
     member this.Equals(other: Polygon2D<'Unit, 'Coordinates>) : bool = this.Points = other.Points
 
     override this.GetHashCode() = this.Points.GetHashCode()
-    
+
 type Frame2D<'Unit, 'Coordinates> =
     { Origin: Point2D<'Unit, 'Coordinates>
       XDirection: Direction2D<'Coordinates>

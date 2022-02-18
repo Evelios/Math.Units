@@ -3,13 +3,16 @@ module Geometry.Angle
 
 open System
 
-(* Conversions *)
+(* Constants *)
 
-let pi = Radians(Math.PI)
+let pi = Angle.create Math.PI
 
-let twoPi = Radians(2. * Math.PI)
+let twoPi = Angle.create 2. * Math.PI
 
-let piOverTwo = Radians(Math.PI / 2.)
+let piOverTwo = Angle.create Math.PI / 2.
+
+/// Alias for `piOverTwo`
+let halfPi = piOverTwo
 
 let radiansToDegrees : float = 180.0 / Math.PI
 
@@ -18,22 +21,23 @@ let degreesToRadians : float = Math.PI / 180.0
 
 (* Builders *)
 
-let inRadians = Radians
+let radians r = Angle.create r
 
-let inDegrees degrees = degrees * degreesToRadians |> Radians
+
+let degrees d = d * degreesToRadians |> radians
 
 
 (* Accessors *)
 
-let degrees (Radians angle: Angle) : float =
+let inDegrees (angle: Angle) : float =
     match angle with
-    | radians -> radians * radiansToDegrees
+    | radians -> radians.value() * radiansToDegrees
 
-let radians (Radians angle: Angle) : float = angle
+let inRadians (angle: Angle) : float = angle.value()
 
 (* Trig *)
-let sin (Radians r) = sin r
+let sin (r: Angle) = sin (inRadians r)
 
-let cos (Radians r) = cos r
+let cos (r: Angle) = cos (inRadians r)
 
-let tan (Radians r) = tan r
+let tan (r: Angle) = tan (inRadians r)

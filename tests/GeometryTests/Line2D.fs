@@ -11,7 +11,7 @@ open Utilities.Extensions
 let Setup () =
     Gen.ArbGeometry.Register()
 
-let pointClosestToTestCases =
+let ``Point closest to test cases`` =
     let line =
         Line2D.through (Point2D.meters 0. 5.) (Point2D.meters 5. 5.)
 
@@ -20,10 +20,10 @@ let pointClosestToTestCases =
       (Point2D.meters 2. 2.), line, (Point2D.meters 2. 5.) ]
     |> List.map (fun (point, line, expected) -> TestCaseData(point, line).Returns(expected))
 
-[<TestCaseSource(nameof pointClosestToTestCases)>]
-let ``Point closest to line`` vertex line = Line2D.pointClosestTo vertex line
+[<TestCaseSource(nameof ``Point closest to test cases``)>]
+let rec ``Point closest to line`` vertex line = Line2D.pointClosestTo vertex line
 
-let pointOnLineTestCases =
+let ``Point on line test cases`` =
     let line =
         Line2D.through (Point2D.meters 0. 5.) (Point2D.meters 5. 5.)
 
@@ -33,7 +33,7 @@ let pointOnLineTestCases =
       (Point2D.meters 2.5 (5. + Epsilon / 2.), line) ]
     |> List.map TestCaseData
 
-[<TestCaseSource(nameof pointOnLineTestCases)>]
+[<TestCaseSource(nameof ``Point on line test cases``)>]
 let ``Vertex is on line`` vertex line =
     Assert.That(Line2D.isPointOnLine vertex line)
 

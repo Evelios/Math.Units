@@ -11,17 +11,16 @@ open Utilities
 let Setup () = Gen.ArbGeometry.Register()
 
 
-let pointEqualityTestCases =
+let ``Point equality test cases`` =
     [ (Point2D.meters 0. 0., Point2D.meters 0. 0.)
       (Point2D.meters -1. -1., Point2D.meters -1. -1.)
       (Point2D.meters 5. 5., Point2D.meters 5. 5.)
       (Point2D.meters 1. 1., Point2D.meters (1. + Epsilon / 2.) (1. + Epsilon / 2.)) ]
     |> List.map TestCaseData
 
-[<TestCaseSource(nameof pointEqualityTestCases)>]
-let ``Points are equal`` (lhs: Point2D<Meters, TestSpace>) (rhs: Point2D<Meters, TestSpace>) =
-//    Assert.AreEqual(lhs, rhs)
-    Assert.That(lhs.Equals(rhs))
+[<TestCaseSource(nameof ``Point equality test cases``)>]
+let ``Points are equal`` (lhs: Point2D<Meters, 'Coordiantes>) (rhs: Point2D<Meters, 'Coordinates>) =
+    Assert.AreEqual(lhs, rhs)
 
 [<Test>]
 let ``Point from polar`` () =
@@ -31,13 +30,13 @@ let ``Point from polar`` () =
     Assert.AreEqual(expected, actual)
 
 
-let pointLessThanTestCases =
+let ``Point less than test cases`` =
     [ (Point2D.meters 0. 0., Point2D.meters 1. 1.)
       (Point2D.meters 0. 0., Point2D.meters 0. 1.) ]
     |> List.map TestCaseData
 
-[<TestCaseSource(nameof pointLessThanTestCases)>]
-let ``Point less than`` (lhs: Point2D<Meters, TestSpace>) (rhs: Point2D<Meters, TestSpace>) = Assert.Less(lhs, rhs)
+[<TestCaseSource(nameof ``Point less than test cases``)>]
+let ``Point less than`` (lhs: Point2D<Meters, 'Coordinates>) (rhs: Point2D<Meters, 'Coordinates>) = Assert.Less(lhs, rhs)
 
 [<Property>]
 let ``Equality and hash code comparison with random points``

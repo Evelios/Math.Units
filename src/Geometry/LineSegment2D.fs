@@ -48,21 +48,31 @@ let areParallel (first: LineSegment2D<'Unit, 'Coordinates>) (second: LineSegment
 
     d1 = d2 || Vector2D.neg d1 = d2
 
-let pointClosestTo (point: Point2D<'Unit, 'Coordinates>) (line: LineSegment2D<'Unit, 'Coordinates>) =
+let pointClosestTo
+    (point: Point2D<'Unit, 'Coordinates>)
+    (line: LineSegment2D<'Unit, 'Coordinates>)
+    : Point2D<'Unit, 'Coordinates> =
     if point = line.Start || point = line.Finish then
         point
     else
         let v = line.Start |> Point2D.vectorTo point
         let lineLength = length line
+        let lineDirection = direction line
 
-        let dotProduct : Length<'Unit * 'Unit> =
-            match Vector2D.dotProduct v (direction line) with
+        let dotProduct: Length<'Unit * 'Unit> =
+            match Vector2D.dotProduct v lineDirection with
             | dotProduct when dotProduct < Length.zero -> Length.zero
             | dotProduct when dotProduct.value () > lineLength.value () ->
                 Length.create<'Unit * 'Unit> (lineLength.value ())
             | dotProduct -> dotProduct
 
-        let alongVector = dotProduct.value () * direction line
+        let alongVector = dotProduct.value () * lineDirection
+
+        printfn $"v: {v}"
+        printfn $"lineLength: {lineLength}"
+        printfn $"lineDirection: {lineDirection}"
+        printfn $"dotProduct: {dotProduct}"
+
         line.Start + alongVector
 
 let isPointOnLine (point: Point2D<'Unit, 'Coordinates>) (line: LineSegment2D<'Unit, 'Coordinates>) : bool =

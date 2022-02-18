@@ -1,7 +1,6 @@
 namespace GeometryTests
 
 module Gen =
-    open System
     open FsCheck
 
     open Geometry
@@ -11,9 +10,9 @@ module Gen =
     let private epsilonLength<'Unit> () = Length<'Unit>.create Epsilon
 
     let angle =
-        Gen.map (fun angle -> Angle.inRadians (angle * 1.)) (Gen.floatBetween 0. (Math.PI / 2.))
+        Gen.map  Angle.radians Gen.float
 
-    let length = Gen.map Length.create<Meters> Gen.float
+    let length = Gen.map Length.meters Gen.float
 
     let lengthBetween (a: Length<'Unit>) (b: Length<'Unit>) : Gen<Length<'Unit>> =
         Gen.map Length.create<'Unit> (Gen.floatBetween (a.value ()) (b.value ()))
@@ -21,7 +20,7 @@ module Gen =
     let vector2D : Gen<Vector2D<Meters, TestSpace>> = Gen.map2 Vector2D.xy length length
 
     let vector2DWithinRadius (radius: Length<'Unit>) : Gen<Vector2D<'Unit, 'Coordinates>> =
-        Gen.map2 Vector2D.ofPolar (lengthBetween Length.zero radius) angle
+        Gen.map2 Vector2D.polar (lengthBetween Length.zero radius) angle
 
     let twoCloseVector2D =
         Gen.map2 (fun first offset -> (first, first + offset)) vector2D (vector2DWithinRadius (epsilonLength ()))
@@ -57,6 +56,8 @@ module Gen =
         |> Gen.map (Tuple2.map LineSegment2D.from)
 
     type ArbGeometry =
+        static member Angle() = Arb.fromGen angle
+        static member Length() = Arb.fromGen length
         static member Vector2D() = Arb.fromGen vector2D
         static member Point2D() = Arb.fromGen point2D
         static member Line2D() = Arb.fromGen line2D

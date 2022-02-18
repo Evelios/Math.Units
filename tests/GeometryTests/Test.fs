@@ -8,5 +8,5 @@ module Test =
             true
         else
             printf $"Expected: {expected}"
-            printf $" But Was: {actual}"
+            printf $" But Was: {actual}\n"
             false
