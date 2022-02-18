@@ -83,10 +83,10 @@ type Length<'Unit> =
     static member (/)(Length length: Length<'Unit>, Length scale: Length<'Unit>) : float = length / scale
 
     // Operator overloads through functions
-    
+
     static member Pow(Length length: Length<'Unit>, power: float) : Length<'Unit> = Length(length ** power)
-    
-    
+
+
 
 type Size<'Unit> =
     { Width: Length<'Unit>
@@ -162,10 +162,48 @@ type Angle =
     static member (/)(lhs: Angle, rhs: float) : Angle =
         match lhs with
         | Radians l -> Radians(l / rhs)
-        
 
+
+[<CustomEquality>]
+[<CustomComparison>]
 [<RequireQualifiedAccess>]
-type Direction2D<'Coordinates> = { X: float; Y: float }
+type Direction2D<'Coordinates> =
+    { X: float
+      Y: float }
+
+    (* Comparable interfaces *)
+
+    interface IComparable<Direction2D<'Coordinates>> with
+        member this.CompareTo(direction) = this.Comparison(direction)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? (Direction2D<'Coordinates>) as direction -> this.Comparison(direction)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    member this.LessThan(other: Direction2D<'Coordinates>) =
+        if almostEqual this.X other.X then
+            this.Y < other.Y
+        else
+            this.X < other.X
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? (Direction2D<'Coordinates>) as other -> this.Equals(other)
+        | _ -> false
+
+    member this.Equals(other: Direction2D<'Coordinates>) : bool =
+        almostEqual this.X other.X
+        && almostEqual this.Y other.Y
+
+    override this.GetHashCode() =
+        HashCode.Combine((roundFloatTo Float.DigitPrecision this.X), (roundFloatTo Float.DigitPrecision this.Y))
 
 [<CustomEquality>]
 [<CustomComparison>]
@@ -445,10 +483,10 @@ type BoundingBox2D<'Unit, 'Coordinates> =
       MaxY: Length<'Unit>
       MinY: Length<'Unit> }
 
-    member this.TopLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
-    member this.TopRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
-    member this.BottomRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
-    member this.BottomLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
+    member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
+    member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
+    member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
+    member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
 
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>

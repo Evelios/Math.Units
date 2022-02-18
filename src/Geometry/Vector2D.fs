@@ -35,14 +35,14 @@ let minus (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Vector2D<'Unit, 'Coordinate
 
 let times (rhs: float) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = lhs * rhs
 
+/// Alias for `times`
+let scaleBy = times
+
 let dividedBy (rhs: float) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = lhs / rhs
 
 let neg (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = -v
 
 (* Modifiers *)
-
-/// Alias for `times`
-let scaleBy = times
 
 /// Scale a vector to a given length.
 let scaleTo (length: Length<'Unit>) (vector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
@@ -62,8 +62,15 @@ let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates>
 let round (p: Vector2D<'Unit, 'Coordinates>) =
     xy (Length.round p.X) (Length.round p.Y)
     
+/// Round the vector to a specified number of digits
+let roundTo (digits: int) (p: Vector2D<'Unit, 'Coordinates>) =
+    xy (Length.roundTo digits p.X) (Length.roundTo digits p.Y)
+    
 (* Queries *)
 
+/// Get the distance between two vectors squared. This function can be used to
+/// optimize some algorithms because you remove a square root call from the
+/// calculation which can be an expensive operation.
 let distanceSquaredTo (p1: Vector2D<'Unit, 'Coordinates>) (p2: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
     let dx = (p1.X - p2.X)
     let dy = (p1.Y - p2.Y)
@@ -71,6 +78,7 @@ let distanceSquaredTo (p1: Vector2D<'Unit, 'Coordinates>) (p2: Vector2D<'Unit, '
 
 let distanceTo p1 p2 : Length<'Unit> = distanceSquaredTo p1 p2 |> Length.sqrt
 
+/// Get the vector that is the average of two vectors.
 let midVector (p1: Vector2D<'Unit, 'Coordinates>) (p2: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
 
@@ -82,11 +90,7 @@ let crossProduct (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coo
 
 /// Get the direction the a vector is facing.
 let direction (vector: Vector2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
-    if magnitude vector = Length.zero then
-        None
-    else
-        let normalized = normalize vector
-        Some(Direction2D.xy (normalized.X.value ()) (normalized.Y.value ()))
+    Direction2D.xyLength vector.X vector.Y
 
 
 (* Json *)

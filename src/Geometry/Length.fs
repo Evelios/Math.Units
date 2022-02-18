@@ -35,3 +35,6 @@ let sqrt (l : Length<'Unit*'Unit>) : Length<'Unit> =
     
 let round (l : Length<'Unit>) : Length<'Unit> =
     apply roundFloat l
+    
+let roundTo (digits: int) (l : Length<'Unit>) : Length<'Unit> =
+    apply (roundFloatTo digits) l
