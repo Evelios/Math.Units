@@ -1,6 +1,6 @@
 ﻿module Geometry.Intersection2D
 
-open Utilities.Extensions
+open FSharp.Extensions
 
 /// Try to find the intersection between a line segment and a line. If the lines are parallel (even if they are
 /// overlapping) then no intersection is returned.

@@ -4,7 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <WarnOn>3390;$(WarnOn)</WarnOn>
-        <PackageVersion>0.0.2</PackageVersion>
+        <PackageVersion>0.0.1</PackageVersion>
         <Title>Geometry</Title>
         <Authors>Thomas Waters</Authors>
         <Company />
@@ -18,6 +18,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Extensions\TupleExtensions.fs" />
+        <Compile Include="Extensions\ListExtensions.fs" />
         <Compile Include="Float.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="Length.fs" />
@@ -38,10 +40,6 @@
 
     <ItemGroup>
         <PackageReference Include="FSharp.Json" Version="0.4.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\Utilities\Utilities.fsproj" />
     </ItemGroup>
 
 </Project>

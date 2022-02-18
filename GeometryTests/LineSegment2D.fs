@@ -3,8 +3,8 @@ module GeometryTests.LineSegment2D
 open NUnit.Framework
 open FsCheck.NUnit
 
-open Utilities.Extensions
 open Geometry
+open FSharp.Extensions
 
 [<SetUp>]
 let SetUp () = Gen.ArbGeometry.Register()

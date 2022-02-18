@@ -5,7 +5,6 @@ open FsCheck.NUnit
 open FsCheck
 
 open Geometry
-open Utilities
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()

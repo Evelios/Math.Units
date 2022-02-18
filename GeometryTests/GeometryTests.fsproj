@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Extensions\ListExtensionsTests.fs" />
         <Compile Include="Assert.fs" />
         <Compile Include="Test.fs" />
         <Compile Include="Gen.fs" />
@@ -30,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Geometry\Geometry.fsproj" />
+      <ProjectReference Include="..\Geometry\Geometry.fsproj" />
     </ItemGroup>
 
 </Project>

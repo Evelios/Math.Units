@@ -3,7 +3,7 @@ module Geometry.BoundingBox2D
 (* Builders *)
 
 // Creates an infinitely small bounding box. This can be used when growing a bounding box around objects
-let empty<'Unit, 'Coordinates> () =
+let empty () : BoundingBox2D<'Unit, 'Coordinates> =
     { MinX = Length.create<'Unit> infinity
       MaxX = Length.create<'Unit> -infinity
       MinY = Length.create<'Unit> infinity
@@ -41,7 +41,10 @@ let containingPoint (point: Point2D<'Unit, 'Coordinates>) box =
       MinY = min box.MinY point.Y
       MaxY = max box.MaxY point.Y }
 
-let containingPoints points box =
+let containingPoints
+    (points: Point2D<'Unit, 'Coordinates> list)
+    (box: BoundingBox2D<'Unit, 'Coordinates>)
+    : BoundingBox2D<'Unit, 'Coordinates> =
     Seq.fold (fun box point -> containingPoint point box) box points
 
 (* Queries *)

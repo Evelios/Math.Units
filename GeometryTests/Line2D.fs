@@ -5,7 +5,7 @@ open FsCheck.NUnit
 
 
 open Geometry
-open Utilities.Extensions
+open FSharp.Extensions
 
 [<SetUp>]
 let Setup () =

@@ -1,7 +1,7 @@
-module UtilitiesTests.Extensions.ListExtensionsTests
+module GeometryTests.Extensions.ListExtensionsTests
 
 open NUnit.Framework
-open Utilities.Extensions
+open FSharp.Extensions
 
 [<SetUp>]
 let Setup () = ()
