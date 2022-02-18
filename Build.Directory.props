@@ -11,10 +11,10 @@
         <PackageLicense>MIT</PackageLicense>
 
         <RepositoryUrl>https://github.com/Evelios/fsharp-geometry</RepositoryUrl>
-        <PackageProjectUrl>https://www.nuget.org/packages/Fsharp.Geometry/</PackageProjectUrl>
+        <PackageProjectUrl>https://evelios.github.io/fsharp-geometry/reference/index.html</PackageProjectUrl>
 
         <RepositoryType>git</RepositoryType>
-        <NeutralLanguage>en</NeutralLanguage>
+        <NeutralLanguage>en-US</NeutralLanguage>
     </PropertyGroup>
 
     <PropertyGroup>
