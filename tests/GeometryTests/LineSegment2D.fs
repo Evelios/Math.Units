@@ -59,10 +59,10 @@ let ``Point is on line`` point line =
 [<Test>]
 let ``Line Segment Intersection`` () =
     let l1 =
-        LineSegment2D.from (Point2D.meters 1. 4.) (Point2D.meters 4. 1.)
-
-    let l2 =
         LineSegment2D.from (Point2D.meters 1. 1.) (Point2D.meters 4. 4.)
+        
+    let l2 =
+        LineSegment2D.from (Point2D.meters 1. 4.) (Point2D.meters 4. 1.)
 
     let expected = Some(Point2D.meters 2.5 2.5)
     let actual = LineSegment2D.intersect l1 l2

@@ -59,7 +59,7 @@ let pointClosestTo
         let lineLength = length line
         let lineDirection = direction line
 
-        let dotProduct: Length<'Unit * 'Unit> =
+        let dotProduct : Length<'Unit * 'Unit> =
             match Vector2D.dotProduct v lineDirection with
             | dotProduct when dotProduct < Length.zero -> Length.zero
             | dotProduct when dotProduct.value () > lineLength.value () ->
@@ -67,11 +67,6 @@ let pointClosestTo
             | dotProduct -> dotProduct
 
         let alongVector = dotProduct.value () * lineDirection
-
-        printfn $"v: {v}"
-        printfn $"lineLength: {lineLength}"
-        printfn $"lineDirection: {lineDirection}"
-        printfn $"dotProduct: {dotProduct}"
 
         line.Start + alongVector
 
@@ -99,15 +94,22 @@ let intersect
         let r = lhs.Finish - lhs.Start
         let s = rhs.Finish - rhs.Start
 
-        let t =
-            Vector2D.crossProduct (q - p) s
-            / Vector2D.crossProduct r s
+        let numerator = Vector2D.crossProduct (q - p) r
+        let denominator = Vector2D.crossProduct r s
 
-        let u =
-            Vector2D.crossProduct (p - q) r
-            / Vector2D.crossProduct s r
-
-        if (0.0 <= t && t <= 1.0) && (0.0 <= u && u <= 1.0) then
-            p + (t * r) |> Some
-        else
+        // Lines are collinear
+        if numerator = Length.zero
+           && denominator = Length.zero then
             None
+        else
+            // u = (p − q) × r / (s × r)
+            let u = numerator / denominator
+
+            // t = (q − p) × s / (r × s)
+            let t =
+                (Vector2D.crossProduct (q - p) s) / denominator
+
+            if t >= 0. && t <= 1. && u >= 0. && u <= 1. then
+                p + (t * r) |> Some
+            else
+                None

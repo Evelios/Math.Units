@@ -326,7 +326,7 @@ type Point2D<'Unit, 'Coordinates> =
             lhs: Point2D<'Unit, 'Coordinates>,
             rhs: Point2D<'Unit, 'Coordinates>
         ) : Vector2D<'Unit, 'Coordinates> =
-        { X = (lhs.X - rhs.Y)
+        { X = (lhs.X - rhs.X)
           Y = (lhs.Y - rhs.Y) }
 
     static member (-)
