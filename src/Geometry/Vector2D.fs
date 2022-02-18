@@ -13,11 +13,12 @@ let meters (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = xy (Length.m
 
 /// Construct a vector using polar coordinates coordinates given a length and angle
 let rTheta (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
-    { X = r * (Angle.cos theta)
-      Y = r * (Angle.sin theta) }
+    xy (r * (Angle.cos theta)) (r * (Angle.sin theta))
 
 /// Alias for `rTheta`
 let polar r theta = rTheta r theta
+
+let zero () : Vector2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
 (* Accessors *)
 
@@ -50,22 +51,22 @@ let scaleTo (length: Length<'Unit>) (vector: Vector2D<'Unit, 'Coordinates>) : Ve
 
 /// Rotate a vector counterclockwise by a given angle.
 let rotateBy (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
-    { X = Angle.cos a * v.X - Angle.sin a * v.Y
-      Y = Angle.sin a * v.X + Angle.cos a * v.Y }
+    xy (Angle.cos a * v.X - Angle.sin a * v.Y) (Angle.sin a * v.X + Angle.cos a * v.Y)
 
 /// Rotate a vector clockwise by a given angle.
 let rotateByClockwise (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = rotateBy -a v
 
 let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = v / (magnitude v).value ()
 
-/// Round the vector to the nearest integer coordinates
-let round (p: Vector2D<'Unit, 'Coordinates>) =
-    xy (Length.round p.X) (Length.round p.Y)
-    
+/// Round the vector to the internal precision.
+/// (Default is 8 digits past the decimal point)
+let round (v: Vector2D<'Unit, 'Coordinates>) =
+    xy (Length.round v.X) (Length.round v.Y)
+
 /// Round the vector to a specified number of digits
-let roundTo (digits: int) (p: Vector2D<'Unit, 'Coordinates>) =
-    xy (Length.roundTo digits p.X) (Length.roundTo digits p.Y)
-    
+let roundTo (digits: int) (v: Vector2D<'Unit, 'Coordinates>) =
+    xy (Length.roundTo digits v.X) (Length.roundTo digits v.Y)
+
 (* Queries *)
 
 /// Get the distance between two vectors squared. This function can be used to

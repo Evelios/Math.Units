@@ -314,6 +314,13 @@ type Point2D<'Unit, 'Coordinates> =
 
     override this.GetHashCode() = HashCode.Combine(this.X, this.Y)
 
+    static member (+)
+        (
+            lhs: Point2D<'Unit, 'Coordinates>,
+            rhs: Vector2D<'Unit, 'Coordinates>
+        ) : Point2D<'Unit, 'Coordinates> =
+        { X = lhs.X + rhs.X; Y = lhs.Y + rhs.Y }
+
     static member (-)
         (
             lhs: Point2D<'Unit, 'Coordinates>,
@@ -333,36 +340,14 @@ type Point2D<'Unit, 'Coordinates> =
     static member (~-)(point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
         { X = -point.X; Y = -point.Y }
 
-    static member (+)
-        (
-            lhs: Point2D<'Unit, 'Coordinates>,
-            rhs: Vector2D<'Unit, 'Coordinates>
-        ) : Point2D<'Unit, 'Coordinates> =
-        { X = lhs.X + rhs.X; Y = lhs.Y + rhs.Y }
-
     static member (*)(lhs: Point2D<'Unit, 'Coordinates>, rhs: float) : Point2D<'Unit, 'Coordinates> =
         { X = lhs.X * rhs; Y = lhs.Y * rhs }
 
     static member (*)(lhs: float, rhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = rhs * lhs
 
-    static member (*)
-        (
-            lhs: Point2D<'Unit, 'Coordinates>,
-            rhs: Direction2D<'Coordinates>
-        ) : Point2D<'Unit, 'Coordinates> =
-        { X = lhs.X * rhs.X; Y = lhs.Y * rhs.Y }
-
-    static member (*)
-        (
-            lhs: Direction2D<'Coordinates>,
-            rhs: Point2D<'Unit, 'Coordinates>
-        ) : Point2D<'Unit, 'Coordinates> =
-        { X = lhs.X * rhs.X; Y = lhs.Y * rhs.Y }
-
     static member (/)(lhs: Point2D<'Unit, 'Coordinates>, rhs: float) : Point2D<'Unit, 'Coordinates> =
         { X = lhs.X / rhs; Y = lhs.Y / rhs }
 
-    static member (/)(lhs: float, rhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = rhs / lhs
 
 [<CustomEquality>]
 [<CustomComparison>]
