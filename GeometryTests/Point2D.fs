@@ -12,16 +12,16 @@ let Setup () = Gen.ArbGeometry.Register()
 // ---- Operators ----
 
 let ``Point equality test cases`` =
-    [ (Point2D.meters 0. 0., Point2D.meters 0. 0.)
-      (Point2D.meters -1. -1., Point2D.meters -1. -1.)
-      (Point2D.meters 5. 5., Point2D.meters 5. 5.)
-      (Point2D.meters 1. 1., Point2D.meters (1. + Epsilon / 2.) (1. + Epsilon / 2.)) ]
+    [ Point2D.meters 0. 0., Point2D.meters 0. 0.
+      Point2D.meters -1. -1., Point2D.meters -1. -1.
+      Point2D.meters 5. 5., Point2D.meters 5. 5.
+      Point2D.meters 1. 1., Point2D.meters (1. + Epsilon / 2.) (1. + Epsilon / 2.) ]
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof ``Point equality test cases``)>]
 let ``Points are equal`` (lhs: Point2D<Meters, 'Coordiantes>) (rhs: Point2D<Meters, 'Coordinates>) =
     Assert.AreEqual(lhs, rhs)
-    
+
 let ``Point less than test cases`` =
     [ (Point2D.meters 0. 0., Point2D.meters 1. 0.)
       (Point2D.meters 1. 0., Point2D.meters 1. 1.) ]
@@ -43,7 +43,9 @@ let ``Equality and hash code comparison with random points``
 [<Test>]
 let ``Point from polar`` () =
     let expected = Point2D.meters 0. 1.
-    let actual = Point2D.polar (Length.meters 1.) (Angle.pi / 2.)
+
+    let actual =
+        Point2D.polar (Length.meters 1.) (Angle.pi / 2.)
 
     Assert.AreEqual(expected, actual)
 
@@ -89,7 +91,10 @@ let ``Rotate clockwise`` () =
 [<Test>]
 let Round () =
     Float.DigitPrecision <- 8
-    let actual = Point2D.round (Point2D.meters 22.2222222222 22.2222222222)
+
+    let actual =
+        Point2D.round (Point2D.meters 22.2222222222 22.2222222222)
+
     let expected = (Point2D.meters 22.22222222 22.22222222)
     Assert.AreEqual(expected, actual)
 

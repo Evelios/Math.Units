@@ -18,6 +18,7 @@
         <Compile Include="Point2D.fs" />
         <Compile Include="LineSegment2D.fs" />
         <Compile Include="Line2D.fs" />
+        <Compile Include="Circle2D.fs" />
         <Compile Include="Intersection.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>

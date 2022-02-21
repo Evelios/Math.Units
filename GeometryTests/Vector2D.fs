@@ -27,9 +27,9 @@ let ``Vector less than test cases`` =
       (Vector2D.meters 1. 0., Vector2D.meters 1. 1.) ]
     |> List.map TestCaseData
 
-[<TestCaseSource(nameof ``Vector equality test cases``)>]
+[<TestCaseSource(nameof ``Vector less than test cases``)>]
 let ``Vectors are less than`` (lhs: Vector2D<Meters, 'Coordiantes>) (rhs: Vector2D<Meters, 'Coordinates>) =
-    Assert.AreEqual(lhs, rhs)
+    Assert.Less(lhs, rhs)
 
 [<Property>]
 let ``Equality and hash code comparison with random points``
