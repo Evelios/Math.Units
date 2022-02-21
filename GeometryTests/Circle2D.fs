@@ -32,7 +32,7 @@ let ``Circle contains point`` (point: Point2D<Meters, 'Coordinates>) =
 [<Test>]
 let ``Get bounding box`` () =
     let actual =
-        Circle2D.atOrigin (Length.meters 5)
+        Circle2D.atOrigin (Length.meters 5.)
         |> Circle2D.boundingBox
 
     let expected =
