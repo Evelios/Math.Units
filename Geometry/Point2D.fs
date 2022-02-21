@@ -10,6 +10,8 @@ let xy (x: Length<'Unit>) (y: Length<'Unit>) : Point2D<'Unit, 'Coordinates> = { 
 
 let meters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = xy (Length.meters x) (Length.meters y)
 
+let pixels (x: float) (y: float) : Point2D<Pixels, 'Coordiantes> = xy (Length.pixels x) (Length.pixels y)
+
 let rTheta (r: Length<'Unit>) (theta: Angle) : Point2D<'Unit, 'Coordinates> =
     xy (r * Angle.cos theta) (r * Angle.sin theta)
 
@@ -26,7 +28,7 @@ let plus (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Point2D<'Unit, 'Coordinates>
 
 let minus (rhs: Point2D<'Unit, 'Coordinates>) (lhs: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     lhs - rhs
-    
+
 /// Be careful with the vector arguments. This function is written with piping in mind. The first point is the
 /// target location. The second point is the starting location.
 /// This is also an alias for `minus` and is `target - from`
@@ -35,7 +37,7 @@ let vectorTo
     (from: Point2D<'Unit, 'Coordinates>)
     : Vector2D<'Unit, 'Coordinates> =
     target - from
-    
+
 let neg (v: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = -v
 
 let times (rhs: float) (lhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = lhs * rhs
@@ -60,7 +62,7 @@ let toVector (point: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinate
 /// Scale a point to a given length.
 let scaleTo (length: Length<'Unit>) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
     scaleBy (length / magnitude point) point
-    
+
 /// Rotate a point counterclockwise by a given angle.
 let rotateBy (a: Angle) (p: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
     xy (Angle.cos a * p.X - Angle.sin a * p.Y) (Angle.sin a * p.X + Angle.cos a * p.Y)
@@ -96,7 +98,7 @@ let distanceTo p1 p2 : Length<'Unit> = distanceSquaredTo p1 p2 |> Length.sqrt
 
 let midpoint (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
     xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
-    
+
 /// Get the direction the a point is facing.
 let direction (point: Point2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
     Direction2D.xyLength point.X point.Y
