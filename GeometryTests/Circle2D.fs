@@ -24,7 +24,22 @@ let ``Point inside circle test cases`` =
 
 [<TestCaseSource(nameof ``Point inside circle test cases``)>]
 let ``Circle contains point`` (point: Point2D<Meters, 'Coordinates>) =
-    let circle : Circle2D<Meters, 'Coordinates> =
+    let circle: Circle2D<Meters, 'Coordinates> =
         Circle2D.atPoint (Point2D.meters 1. 1.) (Length.meters 3.)
 
     Circle2D.containsPoint point circle
+
+[<Test>]
+let ``Get bounding box`` () =
+    let actual =
+        Circle2D.atOrigin (Length.meters 5.)
+        |> Circle2D.boundingBox
+
+    let expected =
+        BoundingBox2D.fromExtrema
+            { MinX = Length.meters -5.0
+              MaxX = Length.meters 5.0
+              MinY = Length.meters -5.0
+              MaxY = Length.meters 5.0 }
+
+    Assert.AreEqual(expected, actual)

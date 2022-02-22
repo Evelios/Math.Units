@@ -28,9 +28,10 @@ let boundingBox (circle: Circle2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, '
         { MinX = circle.Center.X - circle.Radius
           MaxX = circle.Center.X + circle.Radius
           MinY = circle.Center.Y - circle.Radius
-          MaxY = circle.Center.Y - circle.Radius }
+          MaxY = circle.Center.Y + circle.Radius }
 
 (* Queries *)
 
 let containsPoint (point: Point2D<'Unit, 'Coordinates>) (circle: Circle2D<'Unit, 'Coordinates>) : bool =
-    Point2D.distanceSquaredTo point circle.Center <= Length.square circle.Radius
+    Point2D.distanceSquaredTo point circle.Center
+    <= Length.square circle.Radius

@@ -333,7 +333,7 @@ type Point2D<'Unit, 'Coordinates> =
         (
             lhs: Point2D<'Unit, 'Coordinates>,
             rhs: Vector2D<'Unit, 'Coordinates>
-        ) : Vector2D<'Unit, 'Coordinates> =
+        ) : Point2D<'Unit, 'Coordinates> =
         { X = (lhs.X - rhs.X)
           Y = (lhs.Y - rhs.Y) }
 
@@ -468,10 +468,10 @@ type BoundingBox2D<'Unit, 'Coordinates> =
       MaxY: Length<'Unit>
       MinY: Length<'Unit> }
 
-    member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
-    member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
-    member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
-    member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
+    member this.TopLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
+    member this.TopRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
+    member this.BottomRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
+    member this.BottomLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
 
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
