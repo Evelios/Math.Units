@@ -20,4 +20,4 @@ let normalizeBelowOne (size: Size<'Unit>) : Size<'Unit> =
 let withMaxSize<'Unit> (maxSize: Length<'Unit>) (size: Size<'Unit>) : Size<'Unit> =
     size
     |> normalizeBelowOne
-    |> scale (maxSize.value ())
+    |> scale (Length.unpack maxSize)

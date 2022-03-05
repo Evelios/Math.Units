@@ -6,7 +6,7 @@ module Gen =
 
     open Geometry
     open FSharp.Extensions
-    
+
     let map7 fn a b c d e f g =
         Gen.apply (Gen.apply (Gen.apply (Gen.apply (Gen.apply (Gen.apply (Gen.map fn a) b) c) d) e) f) g
 
@@ -23,13 +23,12 @@ module Gen =
 
     let private epsilonLength<'Unit> () = Length<'Unit>.create Epsilon
 
-    let angle =
-        Gen.map  Angle.radians float
+    let angle = Gen.map Angle.radians float
 
     let length = Gen.map Length.meters float
 
     let lengthBetween (a: Length<'Unit>) (b: Length<'Unit>) : Gen<Length<'Unit>> =
-        Gen.map Length.create<'Unit> (floatBetween (a.value ()) (b.value ()))
+        Gen.map Length.create<'Unit> (floatBetween (Length.unpack a) (Length.unpack b))
 
     let vector2D : Gen<Vector2D<Meters, TestSpace>> = Gen.map2 Vector2D.xy length length
 
@@ -47,7 +46,7 @@ module Gen =
     /// Generate two points that are within Epsilon of each other
     let twoClosePoint2D =
         Gen.map2 (fun first offset -> (first, first + offset)) point2D (vector2DWithinRadius (epsilonLength ()))
-        
+
 
     let line2D =
         Gen.map2 Tuple2.pair point2D point2D

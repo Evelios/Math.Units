@@ -39,7 +39,7 @@ let pointClosestTo
     let lineDirection = direction line
 
     let alongVector =
-        (Vector2D.dotProduct v (direction line)).value ()
+        Length.unpack (Vector2D.dotProduct v (direction line))
         * lineDirection
 
     line.Start + alongVector

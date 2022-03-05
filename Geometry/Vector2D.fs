@@ -65,7 +65,7 @@ let rotateBy (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Co
 /// Rotate a vector clockwise by a given angle.
 let rotateByClockwise (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = rotateBy -a v
 
-let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = v / (magnitude v).value ()
+let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = v / Length.unpack (magnitude v)
 
 /// Round the vector to the internal precision.
 /// (Default is 8 digits past the decimal point)
@@ -114,7 +114,7 @@ let fromList (list: float list) : Vector2D<'Unit, 'Coordinates> option =
     | _ -> None
 
 let toList (vector: Vector2D<'Unit, 'Coordinates>) : float list =
-    [ vector.X.value (); vector.Y.value () ]
+    [ Length.unpack vector.X; Length.unpack vector.Y]
 
 
 // ---- Json transformations ----

@@ -22,7 +22,7 @@ let xy (x: float) (y: float) : Direction2D<'Coordinates> option =
 /// care of normalizing the x and y components into the unit direction vector.
 /// This function also checks for the edge case where the x and y components
 /// are both zero. In that case, the function returns `None`.
-let xyLength (x: Length<'Unit>) (y: Length<'Unit>) : Direction2D<'Coordinates> option = xy (x.value ()) (y.value ())
+let xyLength (Length.Length x: Length<'Unit>) (Length.Length y: Length<'Unit>) : Direction2D<'Coordinates> option = xy x y
 
 /// Create a direction vector from the x and y components. This function
 /// doesn't perform either zero magnitude checks nor does it normalize the

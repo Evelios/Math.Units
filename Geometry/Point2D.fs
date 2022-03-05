@@ -15,6 +15,7 @@ let polar r theta = rTheta r theta
 
 let origin () : Point2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
+
 // ---- Helper Builder Functions ----
 
 let private fromUnit conversion (x: float) (y: float) : Point2D<Meters, 'Coordinates> = xy (conversion x) (conversion y)
@@ -53,17 +54,19 @@ let scaleBy = times
 
 let dividedBy (rhs: float) (lhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = lhs / rhs
 
-(* Accessors *)
+
+// ---- Accessors ----
 
 let magnitude (v: Point2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Length.sqrt ((Length.square v.X) + (Length.square v.Y))
 
-(* Conversions *)
+
+// ---- Conversions ----
 
 let toVector (point: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = Vector2D.xy point.X point.Y
 
 
-(* Modifiers *)
+// ---- Modifiers ----
 
 /// Scale a point to a given length.
 let scaleTo (length: Length<'Unit>) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
@@ -93,7 +96,7 @@ let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (point: Point2D<'Unit, 'Coordi
 
     xy (frame.Origin.X + point.X * i.X + point.Y * j.X) (frame.Origin.Y + point.X * i.Y + point.Y * j.Y)
 
-(* Queries *)
+// ---- Queries ----
 
 let distanceSquaredTo (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
     let dx = (p1.X - p2.X)
@@ -104,6 +107,13 @@ let distanceTo p1 p2 : Length<'Unit> = distanceSquaredTo p1 p2 |> Length.sqrt
 
 let midpoint (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
     xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
+
+let lerp
+    (p1: Point2D<'Unit, 'Coordinates>)
+    (p2: Point2D<'Unit, 'Coordinates>)
+    (percent: Percent)
+    : Point2D<'Unit, 'Coordinates> =
+    xy ((p1.X + p2.X) * (Percent.asRatio percent)) ((p1.Y + p2.Y) * (Percent.asRatio percent))
 
 /// Get the direction the a point is facing.
 let direction (point: Point2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
@@ -119,7 +129,7 @@ let roundTo (digits: int) (p: Point2D<'Unit, 'Coordinates>) =
     xy (Length.roundTo digits p.X) (Length.roundTo digits p.Y)
 
 
-(* Json *)
+// ---- Json ----
 
 let fromList (list: float list) : Point2D<'Unit, 'Coordinates> option =
     match list with
@@ -128,9 +138,10 @@ let fromList (list: float list) : Point2D<'Unit, 'Coordinates> option =
         <| xy (Length<'Unit>.create x) (Length<'Unit>.create y)
     | _ -> None
 
-let toList (point: Point2D<'Unit, 'Coordinates>) : float list = [ point.X.value (); point.Y.value () ]
+let toList (point: Point2D<'Unit, 'Coordinates>) : float list = [ Length.unpack point.X; Length.unpack point.Y]
 
-(* Json transformations *)
+
+// ---- Json transformations ----
 
 type Transform() =
     interface ITypeTransform with

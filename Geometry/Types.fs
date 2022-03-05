@@ -11,6 +11,57 @@ type Pixels = Pixels
 
 type Meters = Meters
 
+/// A percentage value. The default range for percentages is 0 to 1 but can also be given in the range 0 to 100.
+[<CustomEquality>]
+[<CustomComparison>]
+type Percent =
+    | Percent of float
+
+    interface IComparable<Percent> with
+        member this.CompareTo(percent) = this.Comparison(percent)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? Percent as percent -> this.Comparison(percent)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    member this.LessThan(Percent other: Percent) =
+        match this with
+        | Percent self -> self < other
+
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Percent as other -> this.Equals(other)
+        | _ -> false
+
+    member this.Equals(Percent other: Percent) : bool =
+        match this with
+        | Percent self -> almostEqual self other
+
+    override this.GetHashCode() =
+        match this with
+        | Percent self ->
+            (roundFloatTo Float.DigitPrecision self)
+                .GetHashCode()
+
+
+    // Operators
+
+    static member (+)(Percent lhs: Percent, Percent rhs: Percent) : Percent = Percent(lhs + rhs)
+    static member (-)(Percent lhs: Percent, Percent rhs: Percent) : Percent = Percent(lhs - rhs)
+    static member (*)(Percent percent: Percent, scale: float) : Percent = Percent(percent * scale)
+    static member (*)(Percent percent: Percent, Percent scale: Percent) : Percent = Percent(percent * scale)
+    static member (/)(Percent percent: Percent, scale: float) : Percent = Percent(percent / scale)
+    static member (/)(Percent percent: Percent, Percent scale: Percent) : Percent = Percent(percent / scale)
+
+
 [<CustomEquality>]
 [<CustomComparison>]
 [<RequireQualifiedAccess>]
@@ -19,9 +70,6 @@ type Length<'Unit> =
 
     // Accessors
     static member create a = Length a
-    static member value(Length a) = a
-
-    member this.value() : float = Length.value<'Unit> this
 
     interface IComparable<Length<'Unit>> with
         member this.CompareTo(length) = this.Comparison(length)
@@ -67,19 +115,12 @@ type Length<'Unit> =
     // Generic Operations
 
     static member (+)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit> = Length(lhs + rhs)
-
     static member (-)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit> = Length(lhs - rhs)
-
     static member (~-)(Length length: Length<'Unit>) : Length<'Unit> = Length(-length)
-
     static member (*)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length * scale)
-
     static member (*)(scale: float, Length length: Length<'Unit>) : Length<'Unit> = Length(scale * length)
-
     static member (*)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit * 'Unit> = Length(lhs * rhs)
-
     static member (/)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length / scale)
-
     static member (/)(Length length: Length<'Unit>, Length scale: Length<'Unit>) : float = length / scale
 
     // Operator overloads through functions
@@ -141,27 +182,15 @@ type Angle =
             (roundFloatTo Float.DigitPrecision (self % 2. * Math.PI))
                 .GetHashCode()
 
-    (* Math Operators *)
+    
+    //  Math Operators
 
-    static member (+)(lhs: Angle, rhs: Angle) : Angle =
-        match lhs, rhs with
-        | Radians l, Radians r -> Radians(l + r)
-
-    static member (-)(lhs: Angle, rhs: Angle) : Angle =
-        match lhs, rhs with
-        | Radians l, Radians r -> Radians(l - r)
-
+    static member (+)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs + rhs)
+    static member (-)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs - rhs)
     static member (~-)(Radians angle: Angle) : Angle = Radians -angle
-
-    static member (*)(lhs: Angle, rhs: float) : Angle =
-        match lhs with
-        | Radians l -> Radians(l * rhs)
-
-    static member (*)(lhs: float, rhs: Angle) : Angle = rhs * lhs
-
-    static member (/)(lhs: Angle, rhs: float) : Angle =
-        match lhs with
-        | Radians l -> Radians(l / rhs)
+    static member (*)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs * rhs)
+    static member (*)(lhs: float, Radians rhs: Angle) : Angle = Radians(rhs * lhs)
+    static member (/)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs / rhs)
 
 
 [<CustomEquality>]
@@ -171,7 +200,7 @@ type Direction2D<'Coordinates> =
     { X: float
       Y: float }
 
-    (* Comparable interfaces *)
+    // Comparable interfaces
 
     interface IComparable<Direction2D<'Coordinates>> with
         member this.CompareTo(direction) = this.Comparison(direction)
@@ -213,7 +242,7 @@ type Vector2D<'Unit, 'Coordinates> =
     { X: Length<'Unit>
       Y: Length<'Unit> }
 
-    (* Comparable interfaces *)
+    // Comparable interfaces
 
     interface IComparable<Vector2D<'Unit, 'Coordinates>> with
         member this.CompareTo(vector) = this.Comparison(vector)
@@ -283,7 +312,7 @@ type Point2D<'Unit, 'Coordinates> =
     { X: Length<'Unit>
       Y: Length<'Unit> }
 
-    (* Comparable interfaces *)
+    // Comparable interfaces
 
     interface IComparable<Point2D<'Unit, 'Coordinates>> with
         member this.CompareTo(point) = this.Comparison(point)
@@ -468,10 +497,10 @@ type BoundingBox2D<'Unit, 'Coordinates> =
       MaxY: Length<'Unit>
       MinY: Length<'Unit> }
 
-    member this.TopLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
-    member this.TopRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
-    member this.BottomRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
-    member this.BottomLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
+    member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
+    member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
+    member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
+    member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
 
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
@@ -483,7 +512,7 @@ type Circle2D<'Unit, 'Coordinates> =
 type Polygon2D<'Unit, 'Coordinates> =
     { Points: Point2D<'Unit, 'Coordinates> list }
 
-    (* Comparable interfaces *)
+    // Comparable interfaces
 
     interface IComparable<Polygon2D<'Unit, 'Coordinates>> with
         member this.CompareTo(polygon) = this.Comparison(polygon)

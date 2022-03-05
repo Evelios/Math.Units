@@ -5,7 +5,7 @@ open System
 
 /// Units of length in meters
 module Constant =
-    
+
     // ---- Metric ----
 
     [<Literal>]
@@ -17,7 +17,7 @@ module Constant =
     let centimeter = 1.0e-2 * meter
     let kilometer = 1.0e3 * meter
 
-    
+
     // ---- Imperial ----
 
     let inch = 0.0254 * meter
@@ -28,11 +28,11 @@ module Constant =
 
 
     // ---- Astronomical ----
-    
+
     let astronomicalUnit = 149597870700. * meter
     let lightYear = 9460730472580800. * meter
     let parsec = (648000. / Math.PI) * astronomicalUnit
-    
+
 
     // ---- Digital Conversions ----
 
@@ -46,7 +46,7 @@ module Constant =
 let zero<'Unit> : Length<'Unit> = Length<'Unit>.create 0.
 
 let meters m : Length<Meters> = Length<Meters>.create m
-let inMeters (l: 'Unit Length) : float = Length<'Unit>.value l
+let inMeters (Length.Length l: Length<'Unit>) : float = l
 
 let private unit constant num = meters (constant * num)
 let private inUnit constant num = constant * inMeters num
@@ -139,13 +139,18 @@ let unitless l : Length<Unitless> = Length<Unitless>.create l
 
 // ---- Math ----
 
-let apply f (l: Length<'Unit>) : Length<'Unit> = Length<'Unit>.create (f (l.value ()))
+let apply f (Length.Length l: Length<'Unit>) : Length<'Unit> = Length<'Unit>.create (f l)
 
 let square (l: Length<'Unit>) : Length<'Unit * 'Unit> = l * l
 
-let sqrt (l: Length<'Unit * 'Unit>) : Length<'Unit> =
-    Length<'Unit>.create (sqrt (l.value ()))
+let sqrt (Length.Length l: Length<'Unit * 'Unit>) : Length<'Unit> = Length<'Unit>.create (sqrt l)
 
 let round (l: Length<'Unit>) : Length<'Unit> = apply roundFloat l
 
 let roundTo (digits: int) (l: Length<'Unit>) : Length<'Unit> = apply (roundFloatTo digits) l
+
+
+// ---- Unsafe ----
+
+let unpack (Length.Length l: Length<'Unit>): float =
+    l

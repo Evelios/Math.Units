@@ -62,11 +62,11 @@ let pointClosestTo
         let dotProduct : Length<'Unit * 'Unit> =
             match Vector2D.dotProduct v lineDirection with
             | dotProduct when dotProduct < Length.zero -> Length.zero
-            | dotProduct when dotProduct.value () > lineLength.value () ->
-                Length.create<'Unit * 'Unit> (lineLength.value ())
+            | dotProduct when Length.unpack dotProduct > Length.unpack lineLength ->
+                Length.create<'Unit * 'Unit> (Length.unpack lineLength)
             | dotProduct -> dotProduct
 
-        let alongVector = dotProduct.value () * lineDirection
+        let alongVector = Length.unpack dotProduct * lineDirection
 
         line.Start + alongVector
 
