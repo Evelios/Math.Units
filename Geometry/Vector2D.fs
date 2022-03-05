@@ -3,13 +3,10 @@ module Geometry.Vector2D
 
 open FSharp.Json
 
-(* Builders *)
+// ---- Builders ----
 
 /// Construct a Vector2D object from the x and y lengths.
 let xy (x: Length<'Unit>) (y: Length<'Unit>) : Vector2D<'Unit, 'Coordinates> = { X = x; Y = y }
-
-/// Construct a vector from the x and y lengths in meters using float constants.
-let meters (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = xy (Length.meters x) (Length.meters y)
 
 /// Construct a vector using polar coordinates coordinates given a length and angle
 let rTheta (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
@@ -20,12 +17,24 @@ let polar r theta = rTheta r theta
 
 let zero () : Vector2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
-(* Accessors *)
+// ---- Helper Builders ----
+
+let private fromUnit conversion (x: float) (y: float) : Vector2D<Meters, 'Coordinates> =
+    xy (conversion x) (conversion y)
+
+let meters (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.meters x y
+let pixels (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.cssPixels x y
+let millimeters (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.millimeters x y
+let centimeters (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.centimeters x y
+let inches (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.inches x y
+let feet (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.feet x y
+
+// ---- Accessors ----
 
 let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Length.sqrt ((Length.square v.X) + (Length.square v.Y))
 
-(* Operators *)
+// ---- Operators ----
 
 /// This function is designed to be used in piping operators.
 let plus (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
@@ -94,7 +103,7 @@ let direction (vector: Vector2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates
     Direction2D.xyLength vector.X vector.Y
 
 
-(* Json *)
+// ---- Json ----
 
 let fromList (list: float list) : Vector2D<'Unit, 'Coordinates> option =
     match list with
@@ -108,7 +117,7 @@ let toList (vector: Vector2D<'Unit, 'Coordinates>) : float list =
     [ vector.X.value (); vector.Y.value () ]
 
 
-(* Json transformations *)
+// ---- Json transformations ----
 
 type Transform() =
     interface ITypeTransform with

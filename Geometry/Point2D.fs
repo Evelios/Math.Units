@@ -8,16 +8,22 @@ open FSharp.Json
 
 let xy (x: Length<'Unit>) (y: Length<'Unit>) : Point2D<'Unit, 'Coordinates> = { X = x; Y = y }
 
-let meters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = xy (Length.meters x) (Length.meters y)
-
-let pixels (x: float) (y: float) : Point2D<Pixels, 'Coordiantes> = xy (Length.pixels x) (Length.pixels y)
-
 let rTheta (r: Length<'Unit>) (theta: Angle) : Point2D<'Unit, 'Coordinates> =
     xy (r * Angle.cos theta) (r * Angle.sin theta)
 
 let polar r theta = rTheta r theta
 
 let origin () : Point2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
+
+// ---- Helper Builder Functions ----
+
+let private fromUnit conversion (x: float) (y: float) : Point2D<Meters, 'Coordinates> = xy (conversion x) (conversion y)
+let meters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.meters x y
+let pixels (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.cssPixels x y
+let millimeters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.millimeters x y
+let centimeters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.centimeters x y
+let inches (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.inches x y
+let feet (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.feet x y
 
 
 // ---- Operators ----
