@@ -5,6 +5,9 @@ ProjectSection(SolutionItems) = preProject
 	README.md = README.md
 	.gitignore = .gitignore
 	Build.Directory.props = Build.Directory.props
+	.github\gitversion.yml = .github\gitversion.yml
+	.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	.gitattributes = .gitattributes
 EndProjectSection
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Geometry", "Geometry\Geometry.fsproj", "{90C0C281-8D44-438E-9914-83D91E297080}"
