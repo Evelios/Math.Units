@@ -4,21 +4,11 @@ Visit this page for the [full documentation](https://evelios.github.io/fsharp-ge
 
 2D Spatial Library for F#. This includes common 2D data structures allong with many operations that can be performed on many of them. This library is written in shuch a way as to give type safety and allow for flexible functional programming.
 
-# 2D Data Structures
+# Development
 
-* Angles
-* Direction
-* Vector
-* Point
-* Frame
-* LineSegment
-* Line
-* Bounding Box
-* Size
-* Circle
-* Polygon
-* Intersection
-
-# Algorithms
-
-* Boolean intersections
+Generating documentation
+```bash
+dotnet tool install fsdocs-tool
+dotnet fsdocs build
+dotnet fsdocs watch
+```
