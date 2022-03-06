@@ -132,9 +132,9 @@ let circumcenterHelp
     (p1: Point2D<'Unit, 'Coordinates>)
     (p2: Point2D<'Unit, 'Coordinates>)
     (p3: Point2D<'Unit, 'Coordinates>)
-    (a: Length<'Units>)
-    (b: Length<'Units>)
-    (c: Length<'Units>)
+    (a: Length<'Unit>)
+    (b: Length<'Unit>)
+    (c: Length<'Unit>)
     =
     let bc = b * c
 
@@ -148,7 +148,7 @@ let circumcenterHelp
         let cy = p1.Y - p3.Y
         let sinA = (bx * cy - by * cx) / bc
 
-        if sinA = 0 then
+        if sinA = 0. then
             None
 
         else
