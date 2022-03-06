@@ -28,6 +28,7 @@
         <Compile Include="Direction2D.fs" />
         <Compile Include="Vector2D.fs" />
         <Compile Include="Point2D.fs" />
+        <Compile Include="Axis2D.fs" />
         <Compile Include="Frame2D.fs" />
         <Compile Include="LineSegment2D.fs" />
         <Compile Include="Line2D.fs" />

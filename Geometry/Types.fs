@@ -182,8 +182,8 @@ type Angle =
             (roundFloatTo Float.DigitPrecision (self % 2. * Math.PI))
                 .GetHashCode()
 
-    
-    //  Math Operators
+
+    // Math Operators
 
     static member (+)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs + rhs)
     static member (-)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs - rhs)
@@ -211,6 +211,22 @@ type Direction2D<'Coordinates> =
             | :? (Direction2D<'Coordinates>) as direction -> this.Comparison(direction)
             | _ -> failwith "incompatible comparison"
 
+    static member xy (x: float) (y: float) : Direction2D<'Coordinates> option =
+        if x = 0. && y = 0. then
+            None
+        else
+            let magnitude = sqrt ((x * x) + (y * y))
+
+            Some
+                { Direction2D.X = x / magnitude
+                  Direction2D.Y = y / magnitude }
+
+    static member xyLength
+        (Length.Length x: Length<'Unit>)
+        (Length.Length y: Length<'Unit>)
+        : Direction2D<'Coordinates> option =
+        Direction2D.xy x y
+
     member this.Comparison(other) =
         if this.Equals(other) then 0
         elif this.LessThan(other) then -1
@@ -233,6 +249,7 @@ type Direction2D<'Coordinates> =
 
     override this.GetHashCode() =
         HashCode.Combine((roundFloatTo Float.DigitPrecision this.X), (roundFloatTo Float.DigitPrecision this.Y))
+
 
 [<CustomEquality>]
 [<CustomComparison>]
@@ -376,6 +393,24 @@ type Point2D<'Unit, 'Coordinates> =
 
     static member (/)(lhs: Point2D<'Unit, 'Coordinates>, rhs: float) : Point2D<'Unit, 'Coordinates> =
         { X = lhs.X / rhs; Y = lhs.Y / rhs }
+
+[<CustomEquality>]
+[<NoComparison>]
+[<Struct>]
+type Axis2D<'Unit, 'Coordinates> =
+    { Origin: Point2D<'Unit, 'Coordinates>
+      Direction: Direction2D<'Coordinates> }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Axis2D<'Unit, 'Coordinates> as other ->
+            this.Origin = other.Origin
+            && this.Direction = other.Direction
+
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.Origin, this.Direction)
 
 
 [<CustomEquality>]

@@ -83,6 +83,7 @@ let rotateAround
     (angle: Angle)
     (point: Point2D<'Unit, 'Coordinates>)
     : Point2D<'Unit, 'Coordinates> =
+
     let c = Angle.cos angle
     let s = Angle.sin angle
     let deltaX = point.X - reference.X
@@ -191,7 +192,9 @@ let fromList (list: float list) : Point2D<'Unit, 'Coordinates> option =
         <| xy (Length<'Unit>.create x) (Length<'Unit>.create y)
     | _ -> None
 
-let toList (point: Point2D<'Unit, 'Coordinates>) : float list = [ Length.unpack point.X; Length.unpack point.Y]
+let toList (point: Point2D<'Unit, 'Coordinates>) : float list =
+    [ Length.unpack point.X
+      Length.unpack point.Y ]
 
 
 // ---- Json transformations ----
