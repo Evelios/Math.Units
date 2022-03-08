@@ -16,9 +16,9 @@ let piOverTwo = Angle.create Math.PI / 2.
 /// Alias for `piOverTwo`
 let halfPi = piOverTwo
 
-let radiansToDegrees : float = 180.0 / Math.PI
+let radiansToDegrees: float = 180.0 / Math.PI
 
-let degreesToRadians : float = Math.PI / 180.0
+let degreesToRadians: float = Math.PI / 180.0
 
 
 // ---- Builders ----
@@ -40,7 +40,8 @@ let inRadians (Angle.Radians r: Angle) : float = r
 // ---- Trig ----
 
 let sin (r: Angle) = sin (inRadians r)
-
 let cos (r: Angle) = cos (inRadians r)
-
 let tan (r: Angle) = tan (inRadians r)
+let asin (x: float): Angle = radians (asin x)
+let acos (x: float): Angle = radians (acos x)
+let atan (x: float): Angle = radians (atan x)

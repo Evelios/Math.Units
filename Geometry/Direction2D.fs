@@ -37,14 +37,20 @@ let xyUnsafe (x: float) (y: float) : Direction2D<'Coordinates> =
 let fromAngle (angle: Angle) : Direction2D<'Coordinates> =
     xyUnsafe (Angle.cos angle) (Angle.sin angle)
 
+/// Find the counterclockwise angle from the first direction to the
+/// second. The result will be in the range -180 to 180 degrees.
+let angleFrom (d1: Direction2D<'Coordinates>) (d2: Direction2D<'Coordinates>) : Angle =
+    let relativeX = d1.X * d2.X + d1.Y * d2.Y
+    let relativeY = d1.X * d2.Y - d1.Y * d2.X
+    Angle.radians (atan2 relativeY relativeX)
 
 // ---- Constants ----
 
 let positiveX<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe 1.0 0.0
 
 let positiveY<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe 0. 1.
-let negativeX<'Coordinates>  : Direction2D<'Coordinates> = xyUnsafe -1. 0.
-let negativeY<'Coordinates>  : Direction2D<'Coordinates> = xyUnsafe 0. -1.
+let negativeX<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe -1. 0.
+let negativeY<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe 0. -1.
 let x<'Coordinates> : Direction2D<'Coordinates> = positiveX
 let y<'Coordinates> : Direction2D<'Coordinates> = positiveY
 
@@ -54,7 +60,7 @@ let y<'Coordinates> : Direction2D<'Coordinates> = positiveY
 // Rotate a direction by 90 degrees counterclockwise.
 let rotateCounterclockwise (direction: Direction2D<'Coordinates>) : Direction2D<'Coordinates> =
     xyUnsafe -direction.Y direction.X
-    
+
 let rotateClockwise (direction: Direction2D<'Coordinates>) : Direction2D<'Coordinates> =
     xyUnsafe direction.Y -direction.X
 

@@ -66,9 +66,27 @@ let scaleTo (length: Length<'Unit>) (vector: Vector2D<'Unit, 'Coordinates>) : Ve
 /// Rotate a vector counterclockwise by a given angle.
 let rotateBy (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     xy (Angle.cos a * v.X - Angle.sin a * v.Y) (Angle.sin a * v.X + Angle.cos a * v.Y)
+    
+/// Rotate a vector counterClockwise by a given angle. Alias for `rotateBy`
+let rotateByCounterClockwise = rotateBy
 
 /// Rotate a vector clockwise by a given angle.
 let rotateByClockwise (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = rotateBy -a v
+
+
+/// Rotate the given vector 90 degrees counterclockwise
+let rotateCounterclockwise (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+        xy -v.Y v.X
+
+/// Rotate the given vector 90 degrees clockwise
+let rotateClockwise (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+        xy v.Y -v.X
+
+/// Construct a vector perpendicular to the given vector, by rotating the given
+/// vector 90 degrees counterclockwise. The constructed vector will have the same
+/// length as the given vector. Alias for `Vector2D.rotateCounterclockwise`.
+let perpendicularTo (vector : Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+    rotateCounterclockwise vector
 
 let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = v / Length.unpack (magnitude v)
 

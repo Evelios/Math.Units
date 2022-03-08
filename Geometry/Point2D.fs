@@ -97,6 +97,15 @@ let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (point: Point2D<'Unit, 'Coordi
 
     xy (frame.Origin.X + point.X * i.X + point.Y * j.X) (frame.Origin.Y + point.X * i.Y + point.Y * j.Y)
 
+/// Translate a point in a given direction by a given distance.
+let translateIn
+    (d: Direction2D<'Coordinates>)
+    (distance: Length<'Unit>)
+    (p: Point2D<'Unit, 'Coordiantes>)
+    : Point2D<'Unit, 'Coordiantes> =
+    xy (p.X + distance * d.X) (p.Y + distance * d.Y)
+
+
 // ---- Queries ----
 
 let distanceSquaredTo (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
