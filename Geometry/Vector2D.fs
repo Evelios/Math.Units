@@ -8,6 +8,8 @@ open FSharp.Json
 /// Construct a Vector2D object from the x and y lengths.
 let xy (x: Length<'Unit>) (y: Length<'Unit>) : Vector2D<'Unit, 'Coordinates> = { X = x; Y = y }
 
+let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) = p2 - p1
+
 /// Construct a vector using polar coordinates coordinates given a length and angle
 let rTheta (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
     xy (r * (Angle.cos theta)) (r * (Angle.sin theta))
@@ -15,7 +17,7 @@ let rTheta (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
 /// Alias for `rTheta`
 let polar r theta = rTheta r theta
 
-let zero () : Vector2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
+let zero<'Unit, 'Coordinates> : Vector2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
 // ---- Helper Builders ----
 
@@ -33,6 +35,9 @@ let feet (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Lengt
 
 let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Length.sqrt ((Length.square v.X) + (Length.square v.Y))
+    
+/// Alias for magnitude
+let length = magnitude
 
 // ---- Operators ----
 
@@ -114,7 +119,8 @@ let fromList (list: float list) : Vector2D<'Unit, 'Coordinates> option =
     | _ -> None
 
 let toList (vector: Vector2D<'Unit, 'Coordinates>) : float list =
-    [ Length.unpack vector.X; Length.unpack vector.Y]
+    [ Length.unpack vector.X
+      Length.unpack vector.Y ]
 
 
 // ---- Json transformations ----

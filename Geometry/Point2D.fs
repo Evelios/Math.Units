@@ -13,7 +13,7 @@ let rTheta (r: Length<'Unit>) (theta: Angle) : Point2D<'Unit, 'Coordinates> =
 
 let polar r theta = rTheta r theta
 
-let origin () : Point2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
+let origin<'Unit, 'Coordinates> : Point2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
 
 // ---- Helper Builder Functions ----

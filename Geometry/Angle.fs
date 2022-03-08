@@ -3,7 +3,9 @@ module Geometry.Angle
 
 open System
 
-(* Constants *)
+// ---- Constants ----
+
+let zero = Angle.create 0.
 
 let pi = Angle.create Math.PI
 
@@ -19,23 +21,24 @@ let radiansToDegrees : float = 180.0 / Math.PI
 let degreesToRadians : float = Math.PI / 180.0
 
 
-(* Builders *)
+// ---- Builders ----
 
 let radians r = Angle.create r
-
 
 let degrees d = d * degreesToRadians |> radians
 
 
-(* Accessors *)
+// ---- Accessors ----
 
 let inDegrees (angle: Angle) : float =
     match angle with
-    | radians -> radians.value() * radiansToDegrees
+    | Angle.Radians radians -> radians * radiansToDegrees
 
-let inRadians (angle: Angle) : float = angle.value()
+let inRadians (Angle.Radians r: Angle) : float = r
 
-(* Trig *)
+
+// ---- Trig ----
+
 let sin (r: Angle) = sin (inRadians r)
 
 let cos (r: Angle) = cos (inRadians r)

@@ -28,7 +28,7 @@ let ``Vector less than test cases`` =
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof ``Vector less than test cases``)>]
-let ``Vectors are less than`` (lhs: Vector2D<Meters, 'Coordiantes>) (rhs: Vector2D<Meters, 'Coordinates>) =
+let ``Vectors are less than`` (lhs: Vector2D<Meters, 'Coordinates>) (rhs: Vector2D<Meters, 'Coordinates>) =
     Assert.Less(lhs, rhs)
 
 [<Property>]

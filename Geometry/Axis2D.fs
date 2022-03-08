@@ -11,11 +11,11 @@ let through
     { Origin = origin
       Direction = direction }
 
-let x () : Axis2D<'Unit, 'Coordinates> =
-    through (Point2D.origin ()) (Direction2D.x ())
+let x<'Unit, 'Coordinates> : Axis2D<'Unit, 'Coordinates> =
+    through Point2D.origin Direction2D.x
 
-let y () : Axis2D<'Unit, 'Coordinates> =
-    through (Point2D.origin ()) (Direction2D.y ())
+let y<'Unit, 'Coordinates> : Axis2D<'Unit, 'Coordinates> =
+    through Point2D.origin Direction2D.y
 
 let withDirection
     (direction: Direction2D<'Coordinates>)

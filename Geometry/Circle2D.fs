@@ -11,7 +11,7 @@ let atPoint (center: Point2D<'Unit, 'Coordinates>) (radius: Length<'Unit>) : Cir
 let withRadius (radius: Length<'Unit>) (center: Point2D<'Unit, 'Coordinates>) : Circle2D<'Unit, 'Coordinates> =
     { Center = center; Radius = radius }
 
-let atOrigin radius = atPoint (Point2D.origin ()) radius
+let atOrigin radius = atPoint Point2D.origin radius
 
 let throughPoints
     (p1: Point2D<'Unit, 'Coordinates>)

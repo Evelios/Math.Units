@@ -149,6 +149,7 @@ let round (l: Length<'Unit>) : Length<'Unit> = apply roundFloat l
 
 let roundTo (digits: int) (l: Length<'Unit>) : Length<'Unit> = apply (roundFloatTo digits) l
 
+let abs (Length.Length l: Length<'Unit>): Length<'Unit> = Length<'Unit>.create  (abs l)
 
 // ---- Unsafe ----
 

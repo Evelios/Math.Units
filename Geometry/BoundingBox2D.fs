@@ -65,19 +65,19 @@ let lineSegments (bbox: BoundingBox2D<'Unit, 'Coordinates>) =
       LineSegment2D.from bbox.BottomLeft bbox.TopLeft ]
 
 /// Test to see if the target bounding box is contained withing the bounding box
-let contains (target: BoundingBox2D<'Unit, 'Coordiantes>) (bbox: BoundingBox2D<'Unit, 'Coordiantes>) =
+let contains (target: BoundingBox2D<'Unit, 'Coordinates>) (bbox: BoundingBox2D<'Unit, 'Coordinates>) =
     target.MinX >= bbox.MinX
     && target.MaxX <= bbox.MaxX
     && target.MinY >= bbox.MinY
     && target.MaxY <= bbox.MaxY
 
-let intersects (first: BoundingBox2D<'Unit, 'Coordiantes>) (second: BoundingBox2D<'Unit, 'Coordiantes>) =
+let intersects (first: BoundingBox2D<'Unit, 'Coordinates>) (second: BoundingBox2D<'Unit, 'Coordinates>) =
     first.MinX <= second.MaxX
     && first.MaxX >= second.MinX
     && first.MinY <= second.MaxY
     && first.MaxY >= second.MinY
 
-let intersection (first: BoundingBox2D<'Unit, 'Coordiantes>) (second: BoundingBox2D<'Unit, 'Coordiantes>) =
+let intersection (first: BoundingBox2D<'Unit, 'Coordinates>) (second: BoundingBox2D<'Unit, 'Coordinates>) =
     if intersects first second then
         Some
             { MinX = max first.MinX second.MinX

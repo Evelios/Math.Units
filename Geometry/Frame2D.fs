@@ -3,14 +3,14 @@ module Geometry.Frame2D
 
 (* Builders *)
 let atOrigin () : Frame2D<'Unit, 'Coordinates> =
-    { Origin = Point2D.origin ()
-      XDirection = Direction2D.x ()
-      YDirection = Direction2D.y () }
+    { Origin = Point2D.origin
+      XDirection = Direction2D.x
+      YDirection = Direction2D.y }
 
 let atPoint (point: Point2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates> =
     { Origin = point
-      XDirection = Direction2D.x ()
-      YDirection = Direction2D.y () }
+      XDirection = Direction2D.x
+      YDirection = Direction2D.y }
 
 let withXDirection xDirection origin =
     { Origin = origin

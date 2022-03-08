@@ -34,19 +34,19 @@ let xyUnsafe (x: float) (y: float) : Direction2D<'Coordinates> =
     { Direction2D.X = x; Direction2D.Y = y }
 
 // Create an angle counterclockwise from the positive X direction.
-let fromAngle (angle: Angle) : Direction2D<'Coordiantes> =
+let fromAngle (angle: Angle) : Direction2D<'Coordinates> =
     xyUnsafe (Angle.cos angle) (Angle.sin angle)
 
 
 // ---- Constants ----
 
-let positiveX () : Direction2D<'Coordinates> = xyUnsafe 1.0 0.0
+let positiveX<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe 1.0 0.0
 
-let positiveY () : Direction2D<'Coordinates> = xyUnsafe 0. 1.
-let negativeX () : Direction2D<'Coordinates> = xyUnsafe -1. 0.
-let negativeY () : Direction2D<'Coordinates> = xyUnsafe 0. -1.
-let x = positiveX
-let y = positiveY
+let positiveY<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe 0. 1.
+let negativeX<'Coordinates>  : Direction2D<'Coordinates> = xyUnsafe -1. 0.
+let negativeY<'Coordinates>  : Direction2D<'Coordinates> = xyUnsafe 0. -1.
+let x<'Coordinates> : Direction2D<'Coordinates> = positiveX
+let y<'Coordinates> : Direction2D<'Coordinates> = positiveY
 
 
 // ---- Modifiers ----
@@ -54,6 +54,9 @@ let y = positiveY
 // Rotate a direction by 90 degrees counterclockwise.
 let rotateCounterclockwise (direction: Direction2D<'Coordinates>) : Direction2D<'Coordinates> =
     xyUnsafe -direction.Y direction.X
+    
+let rotateClockwise (direction: Direction2D<'Coordinates>) : Direction2D<'Coordinates> =
+    xyUnsafe direction.Y -direction.X
 
 let rotateBy (angle: Angle) (direction: Direction2D<'Coordinates>) : Direction2D<'Coordinates> =
     let c = Angle.cos angle
@@ -66,7 +69,7 @@ let rotateBy (angle: Angle) (direction: Direction2D<'Coordinates>) : Direction2D
 let placeIn
     (reference: Frame2D<'Unit, 'Coordinates>)
     (direction: Direction2D<'Coordinates>)
-    : Direction2D<'Coordiantes> =
+    : Direction2D<'Coordinates> =
     let dx = reference.XDirection
     let dy = reference.YDirection
 

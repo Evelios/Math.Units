@@ -19,7 +19,7 @@ let ``Point equality test cases`` =
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof ``Point equality test cases``)>]
-let ``Points are equal`` (lhs: Point2D<Meters, 'Coordiantes>) (rhs: Point2D<Meters, 'Coordinates>) =
+let ``Points are equal`` (lhs: Point2D<Meters, 'Coordinates>) (rhs: Point2D<Meters, 'Coordinates>) =
     Assert.AreEqual(lhs, rhs)
 
 let ``Point less than test cases`` =
@@ -28,7 +28,7 @@ let ``Point less than test cases`` =
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof ``Point equality test cases``)>]
-let ``Points are less than`` (lhs: Point2D<Meters, 'Coordiantes>) (rhs: Point2D<Meters, 'Coordinates>) =
+let ``Points are less than`` (lhs: Point2D<Meters, 'Coordinates>) (rhs: Point2D<Meters, 'Coordinates>) =
     Assert.AreEqual(lhs, rhs)
 
 [<Property>]

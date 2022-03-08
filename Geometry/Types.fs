@@ -128,10 +128,10 @@ type Length<'Unit> =
     static member Pow(Length length: Length<'Unit>, power: float) : Length<'Unit> = Length(length ** power)
 
 
-
 type Size<'Unit> =
     { Width: Length<'Unit>
       Height: Length<'Unit> }
+
 
 // ---- Geometry ----
 
@@ -191,6 +191,7 @@ type Angle =
     static member (*)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs * rhs)
     static member (*)(lhs: float, Radians rhs: Angle) : Angle = Radians(rhs * lhs)
     static member (/)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs / rhs)
+    static member (/)(Radians lhs: Angle, Radians rhs: Angle) : float = lhs / rhs
 
 
 [<CustomEquality>]
@@ -540,6 +541,26 @@ type BoundingBox2D<'Unit, 'Coordinates> =
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
       Radius: Length<'Unit> }
+
+[<CustomEquality>]
+[<NoComparison>]
+type Arc2D<'Unit, 'Coordinates> =
+    { StartPoint: Point2D<'Unit, 'Coordinates>
+      XDirection: Direction2D<'Coordinates>
+      SignedLength: Length<'Unit>
+      SweptAngle: Angle }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Arc2D<'Unit, 'Coordinates> as other ->
+            this.StartPoint = other.StartPoint
+            && this.XDirection = other.XDirection
+            && this.SignedLength = other.SignedLength
+            && this.SweptAngle = other.SweptAngle
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.StartPoint, this.XDirection, this.SignedLength, this.SweptAngle)
 
 [<CustomEquality>]
 [<CustomComparison>]
