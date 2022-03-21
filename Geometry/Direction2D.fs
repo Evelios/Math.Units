@@ -47,7 +47,7 @@ let from
     : Direction2D<'Coordinates> option =
     let v = second - first
     xyLength v.X v.Y
-
+    
 // ---- Constants ----
 
 let positiveX<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe 1.0 0.0

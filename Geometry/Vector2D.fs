@@ -114,6 +114,9 @@ let scaleTo (length: Length<'Unit>) (vector: Vector2D<'Unit, 'Coordinates>) : Ve
 /// Rotate a vector counterclockwise by a given angle.
 let rotateBy (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     xy (Angle.cos a * v.X - Angle.sin a * v.Y) (Angle.sin a * v.X + Angle.cos a * v.Y)
+    
+/// Rotate a vector counterClockwise by a given angle. Alias for `rotateBy`
+let rotateByCounterClockwise = rotateBy
 
 /// Rotate a vector clockwise by a given angle.
 let rotateByClockwise (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = rotateBy -a v

@@ -1,7 +1,9 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.LineSegment2D
 
-(* Builders *)
+open Geometry
+
+// ---- Builders ----
 
 /// Generate a line segment from two points. This doesn't perform any checks ensuring that the points are not equal.
 /// If that is the behavior that you want you should use <see cref="safeFrom"/> function.
@@ -25,7 +27,7 @@ let fromPointAndVector (start: Point2D<'Unit, 'Coordinates>) (direction: Vector2
       Finish = start + direction }
 
 
-(* Attributes *)
+// ---- Attributes ----
 
 let direction (line: LineSegment2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     Vector2D.normalize (line.Finish - line.Start)
@@ -33,14 +35,26 @@ let direction (line: LineSegment2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coor
 let length (line: LineSegment2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Point2D.distanceTo line.Start line.Finish
 
+/// Get the vector from the start point to the end point of the line segment
+let vector (line: LineSegment2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    Vector2D.from line.Start line.Finish
 
-(* Modifiers *)
+/// Get the direction perpendicular to a line segment, pointing to the left. If
+/// the line segment has zero length, returns `Nothing`.
+let perpendicularDirection (line: LineSegment2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
+    Vector2D.direction (Vector2D.perpendicularTo (vector line))
+    
+let midpoint (line: LineSegment2D<'Unit, 'Coordinates>): Point2D<'Unit, 'Coordinates> =
+    Point2D.midpoint line.Start line.Finish
+
+
+// ---- Modifiers ----
 
 let round (l: LineSegment2D<'Unit, 'Coordinates>) =
     from (Point2D.round l.Start) (Point2D.round l.Finish)
 
 
-(* Queries *)
+// ---- Queries ----
 
 let areParallel (first: LineSegment2D<'Unit, 'Coordinates>) (second: LineSegment2D<'Unit, 'Coordinates>) : bool =
     let d1 = direction first
@@ -59,7 +73,7 @@ let pointClosestTo
         let lineLength = length line
         let lineDirection = direction line
 
-        let dotProduct : Length<'Unit * 'Unit> =
+        let dotProduct: Length<'Unit * 'Unit> =
             match Vector2D.dotProduct v lineDirection with
             | dotProduct when dotProduct < Length.zero -> Length.zero
             | dotProduct when Length.unpack dotProduct > Length.unpack lineLength ->

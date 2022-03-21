@@ -94,6 +94,15 @@ let rotateAround
 let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
     Internal.Point2D.placeIn frame point
 
+/// Translate a point in a given direction by a given distance.
+let translateIn
+    (d: Direction2D<'Coordinates>)
+    (distance: Length<'Unit>)
+    (p: Point2D<'Unit, 'Coordiantes>)
+    : Point2D<'Unit, 'Coordiantes> =
+    xy (p.X + distance * d.X) (p.Y + distance * d.Y)
+
+
 // ---- Queries ----
 
 let distanceSquaredTo (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
