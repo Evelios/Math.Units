@@ -15,16 +15,20 @@ let polar r theta = rTheta r theta
 
 let origin<'Unit, 'Coordinates> : Point2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
+let unsafe<'Unit, 'Coordinates> (x: float) (y: float) : Point2D<'Unit, 'Coordinates> =
+    { X = Length.create<'Unit> x
+      Y = Length.create<'Unit> y }
 
 // ---- Helper Builder Functions ----
 
-let private fromUnit conversion (x: float) (y: float) : Point2D<Meters, 'Coordinates> = xy (conversion x) (conversion y)
+let private fromUnit conversion (x: float) (y: float) : Point2D<'Unit, 'Coordinates> = xy (conversion x) (conversion y)
 let meters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.meters x y
 let pixels (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.cssPixels x y
 let millimeters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.millimeters x y
 let centimeters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.centimeters x y
 let inches (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.inches x y
 let feet (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.feet x y
+let unitless (x: float) (y: float) : Point2D<Unitless, 'Coordinates> = fromUnit Length.unitless x y
 
 
 // ---- Operators ----
@@ -59,6 +63,85 @@ let dividedBy (rhs: float) (lhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 
 
 let magnitude (v: Point2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Length.sqrt ((Length.square v.X) + (Length.square v.Y))
+
+
+
+
+/// Find the centroid (average) of one or more points, by passing the first
+/// point and then all remaining points. This allows this function to return a
+/// `Point2d` instead of a `Maybe Point2d`. You would generally use `centroid`
+/// within a `case` expression.
+/// Alternatively, you can use [`centroidN`](#centroidN) instead.
+let centroid
+    (p0: Point2D<'Unit, 'Coordinates>)
+    (rest: Point2D<'Unit, 'Coordinates> list)
+    : Point2D<'Unit, 'Coordinates> =
+
+    let rec centroidHelp
+        (x0: Length<'Unit>)
+        (y0: Length<'Unit>)
+        (count: int)
+        (dx: Length<'Unit>)
+        (dy: Length<'Unit>)
+        (points: Point2D<'Unit, 'Coordinates> list)
+        =
+        match points with
+        | p :: remaining -> centroidHelp x0 y0 (count + 1) (dx + (p.X - x0)) (dy + (p.Y - y0)) remaining
+
+        | [] -> xy (x0 + dx / float count) (y0 + dy / float count)
+
+    centroidHelp p0.X p0.Y 1 Length.zero Length.zero rest
+
+
+/// Like `centroid`, but lets you work with any kind of data as long as a point
+/// can be extracted/constructed from it. For example, to get the centroid of a
+/// bunch of vertices.
+let centroidOf
+    (toPoint: 'a -> Point2D<'Unit, 'Coordinates>)
+    (first: 'a)
+    (rest: 'a list)
+    : Point2D<'Unit, 'Coordinates> =
+
+    let rec centroidOfHelp
+        (x0: Length<'Unit>)
+        (y0: Length<'Unit>)
+        (count: int)
+        (dx: Length<'Unit>)
+        (dy: Length<'Unit>)
+        (values: 'a list)
+        : Point2D<'Unit, 'Coordiantes> =
+
+        match values with
+        | next :: remaining ->
+            let p = toPoint next
+
+            centroidOfHelp x0 y0 (count + 1) (dx + (p.X - x0)) (dy + (p.Y - y0)) remaining
+
+        | [] -> xy (x0 + dx / float count) (y0 + dy / float count)
+
+    let p0 = toPoint first
+    centroidOfHelp p0.X p0.Y 1 Length.zero Length.zero rest
+
+/// Find the centroid of three points
+/// `Point2D.centroid3d p1 p2 p3` is equivalent to
+/// `Point2d.centroid p1 [ p2, p3 ]`
+/// but is more efficient.
+let centroid3
+    (p1: Point2D<'Unit, 'Coordinates>)
+    (p2: Point2D<'Unit, 'Coordinates>)
+    (p3: Point2D<'Unit, 'Coordinates>)
+    : Point2D<'Unit, 'Coordinates> =
+
+    xy (p1.X + (p2.X - p1.X) / 3. + (p3.X - p1.X) / 3.) (p1.Y + (p2.Y - p1.Y) / 3. + (p3.Y - p1.Y) / 3.)
+
+/// Find the centroid of a list of _N_ points. If the list is empty, returns
+/// `Nothing`. If you know you have at least one point, you can use
+/// [`centroid`](#centroid) instead to avoid the `Option`.
+
+let centroidN (points: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> option =
+    match points with
+    | first :: rest -> Some(centroid first rest)
+    | [] -> None
 
 
 // ---- Conversions ----
@@ -143,7 +226,7 @@ let circumcenterHelp
     (p1: Point2D<'Unit, 'Coordinates>)
     (p2: Point2D<'Unit, 'Coordinates>)
     (p3: Point2D<'Unit, 'Coordinates>)
-    (a: Length<'Unit>)
+    (_: Length<'Unit>)
     (b: Length<'Unit>)
     (c: Length<'Unit>)
     =
@@ -200,6 +283,27 @@ let relativeTo
     (p: Point2D<'Unit, 'Coordinates>)
     : Point2D<'Unit, 'Coordinates> =
     Internal.Point2D.relativeTo frame p
+
+// ---- Queries ----
+
+
+/// Construct a point by interpolating from the first given point to the second,
+/// based on a parameter that ranges from zero to one.
+/// You can pass values less than zero or greater than one to extrapolate.
+let interpolateFrom (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) (t: float) =
+    if t <= 0.5 then
+        xy (p1.X + t * (p2.X - p1.X)) (p1.Y + t * (p2.Y - p1.Y))
+    else
+        xy (p2.X + (1. - t) * (p1.X - p2.X)) (p2.Y + (1. - t) * (p1.Y - p2.Y))
+
+/// Construct a point along an axis at a particular distance from the axis'
+/// origin point.
+/// Positive and negative distances will be interpreted relative to the direction of
+/// the axis.
+let along (axis: Axis2D<'Unit, 'Coordinates>) (distance: Length<'Unit>) : Point2D<'Unit, 'Coordinates> =
+    let p0 = axis.Origin
+    let d = axis.Direction
+    xy (p0.X + distance * d.X) (p0.Y + distance * d.Y)
 
 
 // ---- Json ----

@@ -541,7 +541,7 @@ type BoundingBox2D<'Unit, 'Coordinates> =
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
       Radius: Length<'Unit> }
-    
+
 type SweptAngle =
     | SmallPositive
     | SmallNegative
