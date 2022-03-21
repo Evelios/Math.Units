@@ -47,7 +47,7 @@ let from
     : Direction2D<'Coordinates> option =
     let v = second - first
     xyLength v.X v.Y
-    
+
 // ---- Constants ----
 
 let positiveX<'Coordinates> : Direction2D<'Coordinates> = xyUnsafe 1.0 0.0
@@ -162,10 +162,10 @@ let componentIn (d2: Direction2D<'Coordinates>) (d1: Direction2D<'Coordinates>) 
 
 ///  Find the counterclockwise angle from the first direction to the
 /// second. The result will be in the range -180 to 180 degrees
-let angleFrom (d1: Direction2D<'Coordinates>) (d2: Direction2D<'Coordinates>) =
+let angleFrom (d1: Direction2D<'Coordinates>) (d2: Direction2D<'Coordinates>) : Angle =
     let relativeX = d1.X * d2.X + d1.Y * d2.Y
     let relativeY = d1.X * d2.Y - d1.Y * d2.X
-    atan2 relativeY relativeX
+    atan2 relativeY relativeX |> Angle.radians
 
 
 // ---- Coordinate Conversion ----
