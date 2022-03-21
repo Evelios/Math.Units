@@ -9,22 +9,31 @@ open FSharp.Json
 let xy (x: Length<'Unit>) (y: Length<'Unit>) : Vector2D<'Unit, 'Coordinates> = { X = x; Y = y }
 
 /// Construct a vector given its local components within a particular frame
-let xyIn (frame: Frame2D<'Unit, 'Coordinates>) (x: Length<'Unit>) (y: Length<'Unit>) =
+let xyIn
+    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
+    (x: Length<'Unit>)
+    (y: Length<'Unit>)
+    : Vector2D<'Unit, 'Coordinates> =
     let i = frame.XDirection
     let j = frame.YDirection
     xy (x * i.X + y * j.X) (x * i.Y + y * j.Y)
 
-let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) = p2 - p1
+let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = p2 - p1
 
 /// Construct a vector with the given length in the given direction.
-let withLength (a: Length<'Unit>) (d: Direction2D<'Coordinates>) = xy (a * d.X) (a * d.Y)
+let withLength (a: Length<'Unit>) (d: Direction2D<'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    Internal.Vector2D.withLength a d
 
 /// Construct a vector using polar coordinates coordinates given a length and angle
 let rTheta (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
     xy (r * (Angle.cos theta)) (r * (Angle.sin theta))
 
 /// Construct a vector given its local polar components within a particular
-let rThetaIn (frame: Frame2D<'Unit, 'Coordinates>) (r: Length<'Unit>) (theta: Angle) =
+let rThetaIn
+    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
+    (r: Length<'Unit>)
+    (theta: Angle)
+    : Vector2D<'Unit, 'Coordinates> =
     let i = frame.XDirection
     let j = frame.YDirection
     let cosTheta = Angle.cos theta
@@ -32,7 +41,7 @@ let rThetaIn (frame: Frame2D<'Unit, 'Coordinates>) (r: Length<'Unit>) (theta: An
     xy (r * (cosTheta * i.X + sinTheta * j.X)) (r * (cosTheta * i.Y + sinTheta * j.Y))
 
 /// Alias for `rTheta`
-let polar r theta = rTheta r theta
+let polar (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> = rTheta r theta
 
 let zero<'Unit, 'Coordinates> : Vector2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
 
@@ -114,7 +123,7 @@ let scaleTo (length: Length<'Unit>) (vector: Vector2D<'Unit, 'Coordinates>) : Ve
 /// Rotate a vector counterclockwise by a given angle.
 let rotateBy (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     xy (Angle.cos a * v.X - Angle.sin a * v.Y) (Angle.sin a * v.X + Angle.cos a * v.Y)
-    
+
 /// Rotate a vector counterClockwise by a given angle. Alias for `rotateBy`
 let rotateByCounterClockwise = rotateBy
 
@@ -190,14 +199,17 @@ let projectOnto (axis: Axis2D<'Unit, 'Coordinates>) (v: Vector2D<'Unit, 'Coordin
 
 /// Take a vector defined in global coordinates, and return it expressed in
 /// local coordinates relative to a given reference frame.
-let relativeTo (frame: Frame2D<'Unit, 'Coordinates>) (v: Vector2D<'Unit, 'Coordinates>) =
+let relativeTo (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) (v: Vector2D<'Unit, 'Coordinates>) =
     let dx = frame.XDirection
     let dy = frame.YDirection
     xy (v.X * dx.X + v.Y * dx.Y) (v.X * dy.X + v.Y * dy.Y)
 
 /// Take a vector defined in local coordinates relative to a given reference
 /// frame, and return that vector expressed in global coordinates.
-let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+let placeIn
+    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
+    (v: Vector2D<'Unit, 'Coordinates>)
+    : Vector2D<'Unit, 'Coordinates> =
     let dx = frame.XDirection
     let dy = frame.YDirection
     xy (v.X * dx.X + v.Y * dy.X) (v.X * dx.Y + v.Y * dy.Y)

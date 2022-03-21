@@ -602,7 +602,7 @@ type Polygon2D<'Unit, 'Coordinates> =
 
     override this.GetHashCode() = this.Points.GetHashCode()
 
-type Frame2D<'Unit, 'Coordinates> =
+type Frame2D<'Unit, 'Coordinates, 'Defines> =
     { Origin: Point2D<'Unit, 'Coordinates>
       XDirection: Direction2D<'Coordinates>
       YDirection: Direction2D<'Coordinates> }

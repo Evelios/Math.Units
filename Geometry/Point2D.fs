@@ -83,15 +83,12 @@ let rotateAround
     (angle: Angle)
     (point: Point2D<'Unit, 'Coordinates>)
     : Point2D<'Unit, 'Coordinates> =
+    Internal.Point2D.rotateAround reference angle point
 
-    let c = Angle.cos angle
-    let s = Angle.sin angle
-    let deltaX = point.X - reference.X
-    let deltaY = point.Y - reference.Y
-
-    xy (reference.X + c * deltaX - s * deltaY) (reference.Y + s * deltaX + c * deltaY)
-
-let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let placeIn
+    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
+    (point: Point2D<'Unit, 'Coordinates>)
+    : Point2D<'Unit, 'Coordinates> =
     Internal.Point2D.placeIn frame point
 
 /// Translate a point in a given direction by a given distance.
@@ -102,6 +99,13 @@ let translateIn
     : Point2D<'Unit, 'Coordiantes> =
     xy (p.X + distance * d.X) (p.Y + distance * d.Y)
 
+let translateBy (v: Vector2D<'Unit, 'Coordiantes>) (p: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+    Internal.Point2D.translateBy v p
+
+/// Mirror a point across an axis. The result will be the same distance from the
+/// axis but on the opposite side.
+let mirrorAcross (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Corodinates>) : Point2D<'Unit, 'Coordinates> =
+    Internal.Point2D.mirrorAcross axis p
 
 // ---- Queries ----
 
@@ -188,6 +192,15 @@ let circumcenter
 
     else
         circumcenterHelp p3 p1 p2 c a b
+
+/// Take a point defined in global coordinates, and return it expressed in local
+/// coordinates relative to a given reference frame.
+let relativeTo
+    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
+    (p: Point2D<'Unit, 'Coordinates>)
+    : Point2D<'Unit, 'Coordinates> =
+    Internal.Point2D.relativeTo frame p
+
 
 // ---- Json ----
 

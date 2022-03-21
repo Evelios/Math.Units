@@ -12,10 +12,10 @@ let through
       Direction = direction }
 
 let x<'Unit, 'Coordinates> : Axis2D<'Unit, 'Coordinates> =
-    through Point2D.origin Direction2D.x
+    through {X = Length.zero; Y = Length.zero} Direction2D.x
 
 let y<'Unit, 'Coordinates> : Axis2D<'Unit, 'Coordinates> =
-    through Point2D.origin Direction2D.y
+    through {X = Length.zero; Y = Length.zero} Direction2D.y
 
 let withDirection
     (direction: Direction2D<'Coordinates>)
@@ -56,6 +56,6 @@ let rotateAround
     (axis: Axis2D<'Unit, 'Coordinates>)
     : Axis2D<'Unit, 'Coordinates> =
 
-    let rotatePoint = Point2D.rotateAround center angle
+    let rotatePoint = Internal.Point2D.rotateAround center angle
     let rotateDirection = Direction2D.rotateBy angle
     through (rotatePoint axis.Origin) (rotateDirection axis.Direction)

@@ -21,5 +21,5 @@ let translate (amount: Vector2D<'Unit, 'Coordinates>) (polygon: Polygon2D<'Unit,
 let rotateAround (reference: Point2D<'Unit, 'Coordinates>) (angle: Angle) (polygon: Polygon2D<'Unit, 'Coordinates>) : Polygon2D<'Unit, 'Coordinates> =
     { Points = List.map (Point2D.rotateAround reference angle) polygon.Points }
 
-let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (polygon: Polygon2D<'Unit, 'Coordinates>) : Polygon2D<'Unit, 'Coordinates> =
+let placeIn (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) (polygon: Polygon2D<'Unit, 'Coordinates>) : Polygon2D<'Unit, 'Coordinates> =
     { Points = List.map (Point2D.placeIn frame) polygon.Points }
