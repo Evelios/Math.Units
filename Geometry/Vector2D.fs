@@ -151,7 +151,7 @@ let roundTo (digits: int) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, '
 
 /// Find the component of a vector in an arbitrary direction, for example
 let componentIn (d: Direction2D<'Coordinates>) (v: Vector2D<'Unit, 'Coordiantes>) : Length<'Unit> =
-    (v.X * d.X + v.Y * d.Y)
+    Internal.Vector2D.componentIn d v
 
 /// Reverse the direction of a vector, negating its components.
 let reverse (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = xy -v.X -v.Y

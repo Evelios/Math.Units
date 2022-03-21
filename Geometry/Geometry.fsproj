@@ -23,6 +23,7 @@
         <Compile Include="Float.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="Internal\Point2D.fs" />
+        <Compile Include="Internal\Vector2D.fs" />
         <Compile Include="Percent.fs" />
         <Compile Include="Length.fs" />
         <Compile Include="Angle.fs" />
