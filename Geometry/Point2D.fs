@@ -92,10 +92,7 @@ let rotateAround
     xy (reference.X + c * deltaX - s * deltaY) (reference.Y + s * deltaX + c * deltaY)
 
 let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
-    let i = frame.XDirection
-    let j = frame.YDirection
-
-    xy (frame.Origin.X + point.X * i.X + point.Y * j.X) (frame.Origin.Y + point.X * i.Y + point.Y * j.Y)
+    Internal.Point2D.placeIn frame point
 
 // ---- Queries ----
 

@@ -8,16 +8,34 @@ open FSharp.Json
 /// Construct a Vector2D object from the x and y lengths.
 let xy (x: Length<'Unit>) (y: Length<'Unit>) : Vector2D<'Unit, 'Coordinates> = { X = x; Y = y }
 
+/// Construct a vector given its local components within a particular frame
+let xyIn (frame: Frame2D<'Unit, 'Coordinates>) (x: Length<'Unit>) (y: Length<'Unit>) =
+    let i = frame.XDirection
+    let j = frame.YDirection
+    xy (x * i.X + y * j.X) (x * i.Y + y * j.Y)
+
 let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) = p2 - p1
+
+/// Construct a vector with the given length in the given direction.
+let withLength (a: Length<'Unit>) (d: Direction2D<'Coordinates>) = xy (a * d.X) (a * d.Y)
 
 /// Construct a vector using polar coordinates coordinates given a length and angle
 let rTheta (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
     xy (r * (Angle.cos theta)) (r * (Angle.sin theta))
 
+/// Construct a vector given its local polar components within a particular
+let rThetaIn (frame: Frame2D<'Unit, 'Coordinates>) (r: Length<'Unit>) (theta: Angle) =
+    let i = frame.XDirection
+    let j = frame.YDirection
+    let cosTheta = Angle.cos theta
+    let sinTheta = Angle.sin theta
+    xy (r * (cosTheta * i.X + sinTheta * j.X)) (r * (cosTheta * i.Y + sinTheta * j.Y))
+
 /// Alias for `rTheta`
 let polar r theta = rTheta r theta
 
 let zero<'Unit, 'Coordinates> : Vector2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
+
 
 // ---- Helper Builders ----
 
@@ -31,13 +49,22 @@ let centimeters (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUni
 let inches (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.inches x y
 let feet (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Length.feet x y
 
+
+
 // ---- Accessors ----
 
 let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Length.sqrt ((Length.square v.X) + (Length.square v.Y))
-    
-/// Alias for magnitude
+
+/// Alias for `Vector2D.magnitude`
 let length = magnitude
+
+/// Get the X and Y components of a vector as a tuple.
+let components (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> * Length<'Unit> = (v.X, v.Y)
+
+let x (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> = v.X
+
+let y (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> = v.Y
 
 // ---- Operators ----
 
@@ -45,19 +72,40 @@ let length = magnitude
 let plus (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     lhs + rhs
 
+/// Find the sum of a list of vectors.
+let sum (vectors: Vector2D<'Unit, 'Coordiante> list) : Vector2D<'Unit, 'Coordiantes> =
+    let rec sumHelp sumX sumY vectors =
+        match vectors with
+        | v: Vector2D<'Unit, 'Coordinate> :: rest -> sumHelp (sumX + v.X) (sumY + v.Y) rest
+        | [] -> xy sumX sumY
+
+    sumHelp Length.zero Length.zero vectors
+
+
+
 let minus (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     lhs - rhs
 
 let times (rhs: float) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = lhs * rhs
 
-/// Alias for `times`
+let cross (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+    (lhs.X * rhs.Y - lhs.Y * rhs.X)
+
+/// Alias for `Vector2D.times`
 let scaleBy = times
 
 let dividedBy (rhs: float) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = lhs / rhs
 
 let neg (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = -v
 
-(* Modifiers *)
+/// Shorthand for `Vector2D.scaleBy 2`.
+let twice (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = scaleBy 2. v
+
+/// Shorthand for `Vector2D.scaleBy 0.5`.
+let half (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = scaleBy 0.5 v
+
+
+// ---- Modifiers ----
 
 /// Scale a vector to a given length.
 let scaleTo (length: Length<'Unit>) (vector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
@@ -70,6 +118,26 @@ let rotateBy (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Co
 /// Rotate a vector clockwise by a given angle.
 let rotateByClockwise (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = rotateBy -a v
 
+/// Rotate the given vector 90 degrees counterclockwise;
+///     Vector2D.rotateCounterclockwise vector
+/// is equivalent to
+///     Vector2D.rotateBy (Angle.degrees 90) vector
+/// but is more efficient.
+let rotateClockwise (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = xy -v.Y v.X
+
+/// Rotate the given vector 90 degrees clockwise;
+///     Vector2D.rotateClockwise vector
+/// is equivalent to
+///     Vector2D.rotateBy (Angle.degrees -90) vector
+/// but is more efficient.
+let rotateCounterclockwise (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = xy v.Y -v.X
+
+/// Construct a vector perpendicular to the given vector, by rotating the given
+/// vector 90 degrees counterclockwise. The constructed vector will have the same
+/// length as the given vector. Alias for `Vector2D.rotateCounterclockwise`.
+let perpendicularTo (givenVector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    rotateCounterclockwise givenVector
+
 let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = v / Length.unpack (magnitude v)
 
 /// Round the vector to the internal precision.
@@ -78,10 +146,61 @@ let round (v: Vector2D<'Unit, 'Coordinates>) =
     xy (Length.round v.X) (Length.round v.Y)
 
 /// Round the vector to a specified number of digits
-let roundTo (digits: int) (v: Vector2D<'Unit, 'Coordinates>) =
+let roundTo (digits: int) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     xy (Length.roundTo digits v.X) (Length.roundTo digits v.Y)
 
-(* Queries *)
+/// Find the component of a vector in an arbitrary direction, for example
+let componentIn (d: Direction2D<'Coordinates>) (v: Vector2D<'Unit, 'Coordiantes>) : Length<'Unit> =
+    (v.X * d.X + v.Y * d.Y)
+
+/// Reverse the direction of a vector, negating its components.
+let reverse (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = xy -v.X -v.Y
+
+/// Alias for `Vector2D.reverse`
+let negate = reverse
+
+/// Mirror a vector across a given axis.
+/// The position of the axis doesn't matter, only its orientation:
+let mirrorAcross
+    (axis: Axis2D<'AxisUnit, 'Coordinates>)
+    (v: Vector2D<'Unit, 'Coordinates>)
+    : Vector2D<'Unit, 'Coordinates> =
+    let d = axis.Direction
+    let a = 1. - 2. * d.Y * d.Y
+    let b = 2. * d.X * d.Y
+    let c = 1. - 2. * d.X * d.X
+    xy (a * v.X + b * v.Y) (b * v.X + c * v.Y)
+
+/// Find the projection of a vector in a particular direction. Conceptually,
+/// this means splitting the original vector into a portion parallel to the given
+/// direction and a portion perpendicular to it, then returning the parallel
+/// portion.
+let projectionIn (d: Direction2D<'Coordinates>) (v: Vector2D<'Unit, 'Coordiantes>) : Vector2D<'Unit, 'Coordinates> =
+    let projectedLength = v.X * d.X + v.Y * d.Y
+    xy (projectedLength * d.X) (projectedLength * d.Y)
+
+/// Project a vector onto an axis.
+let projectOnto (axis: Axis2D<'Unit, 'Coordinates>) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    let d = axis.Direction
+    let projectedLength = v.X * d.X + v.Y * d.Y
+    xy (projectedLength * d.X) (projectedLength * d.Y)
+
+/// Take a vector defined in global coordinates, and return it expressed in
+/// local coordinates relative to a given reference frame.
+let relativeTo (frame: Frame2D<'Unit, 'Coordinates>) (v: Vector2D<'Unit, 'Coordinates>) =
+    let dx = frame.XDirection
+    let dy = frame.YDirection
+    xy (v.X * dx.X + v.Y * dx.Y) (v.X * dy.X + v.Y * dy.Y)
+
+/// Take a vector defined in local coordinates relative to a given reference
+/// frame, and return that vector expressed in global coordinates.
+let placeIn (frame: Frame2D<'Unit, 'Coordinates>) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    let dx = frame.XDirection
+    let dy = frame.YDirection
+    xy (v.X * dx.X + v.Y * dy.X) (v.X * dx.Y + v.Y * dy.Y)
+
+
+// ---- Queries ----
 
 /// Get the distance between two vectors squared. This function can be used to
 /// optimize some algorithms because you remove a square root call from the
@@ -104,9 +223,25 @@ let crossProduct (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coo
     (lhs.X * rhs.Y) - (lhs.Y * rhs.X)
 
 /// Get the direction the a vector is facing.
-let direction (vector: Vector2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
-    Direction2D.xyLength vector.X vector.Y
+let direction (v: Vector2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option = Direction2D.xyLength v.X v.Y
 
+/// Compare two vectors within a tolerance. Returns true if the difference
+/// between the two given vectors has magnitude less than the given tolerance.
+let equalWithin
+    (tolerance: Length<'Unit>)
+    (lhs: Vector2D<'Unit, 'Coordinates>)
+    (rhs: Vector2D<'Unit, 'Coordinates>)
+    : bool =
+    if tolerance > Length.zero then
+        let nx = (rhs.X - lhs.X) / tolerance
+        let ny = (rhs.Y - lhs.Y) / tolerance
+        nx * nx + ny * ny <= 1.
+
+    else if tolerance = Length.zero then
+        lhs.X = rhs.X && lhs.Y = rhs.Y
+
+    else
+        false
 
 // ---- Json ----
 

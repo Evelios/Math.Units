@@ -3,7 +3,7 @@ module Geometry.Frame2D
 
 (* Builders *)
 let atOrigin () : Frame2D<'Unit, 'Coordinates> =
-    { Origin = Point2D.origin
+    { Origin = {X = Length.zero ; Y = Length.zero}
       XDirection = Direction2D.x
       YDirection = Direction2D.y }
 
@@ -26,6 +26,6 @@ let placeIn
     (reference: Frame2D<'Unit, 'Coordinates>)
     (frame: Frame2D<'Unit, 'Coordinates>)
     : Frame2D<'Unit, 'Coordinates> =
-    { Origin = Point2D.placeIn reference frame.Origin
+    { Origin = Internal.Point2D.placeIn reference frame.Origin
       XDirection = Direction2D.placeIn reference frame.XDirection
       YDirection = Direction2D.placeIn reference frame.YDirection }
