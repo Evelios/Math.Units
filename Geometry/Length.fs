@@ -145,6 +145,10 @@ let square (l: Length<'Unit>) : Length<'Unit * 'Unit> = l * l
 
 let sqrt (Length.Length l: Length<'Unit * 'Unit>) : Length<'Unit> = Length<'Unit>.create (sqrt l)
 
+let twice (Length.Length l: Length<'Unit>) : Length<'Unit> = Length<'Unit>.create (l * 2.)
+
+let half (Length.Length l: Length<'Unit>) : Length<'Unit> = Length<'Unit>.create (l / 2.)
+
 let round (l: Length<'Unit>) : Length<'Unit> = apply roundFloat l
 
 let roundTo (digits: int) (l: Length<'Unit>) : Length<'Unit> = apply (roundFloatTo digits) l
