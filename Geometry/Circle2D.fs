@@ -32,12 +32,26 @@ let sweptAround (centerPoint: Point2D<'Units, 'Coordinates>) (point: Point2D<'Un
 
 // ---- Accessors ----
 
+let centerPoint (circle: Circle2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = circle.Center
+
+let radius (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = circle.Radius
+
 let diameter (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = circle.Radius * 2.
 
 let area (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
     2. * Math.PI * (Length.square circle.Radius)
 
 let circumference (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = 2. * Math.PI * circle.Radius
+
+let toArc (circle: Circle2D<'Unit, 'Coordinates>) : Arc2D<'Unit, 'Coordinates> =
+    let startX = circle.Center.X + circle.Radius
+    let startY = circle.Center.X
+
+    { StartPoint = Point2D.xy startX startY
+      XDirection = Direction2D.y
+      SweptAngle = Angle.radians (2. * Math.PI)
+      SignedLength = (2. * Math.PI) * circle.Radius }
+
 
 let boundingBox (circle: Circle2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'Coordinates> =
     BoundingBox2D.fromExtrema
@@ -46,8 +60,78 @@ let boundingBox (circle: Circle2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, '
           MinY = circle.Center.Y - circle.Radius
           MaxY = circle.Center.Y + circle.Radius }
 
-(* Queries *)
+//  ---- Modifiers ----
+//// Scale a circle about a given point by a given scale.
+let scaleAbout
+    (point: Point2D<'Unit, 'Coordinates>)
+    (scale: float)
+    (circle: Circle2D<'Unit, 'Coordinates>)
+    : Circle2D<'Unit, 'Coordinates> =
 
+    withRadius ((abs scale) * circle.Radius) (Point2D.scaleAbout point scale circle.Center)
+
+/// Translate a circle by a given displacement.
+let translateBy
+    (displacement: Vector2D<'Unit, 'Coordinates>)
+    (circle: Circle2D<'Unit, 'Coordinates>)
+    : Circle2D<'Unit, 'Coordinates> =
+        
+    withRadius circle.Radius (Point2D.translateBy displacement circle.Center)
+
+
+/// Translate a circle in a given direction by a given distance.
+let translateIn
+    (direction: Direction2D<'Coordinates>)
+    (distance: Length<'Unit>)
+    (circle: Circle2D<'Unit, 'Coordinates>)
+    : Circle2D<'Unit, 'Coordinates> =
+        
+    translateBy (Vector2D.withLength distance direction) circle
+
+
+/// Mirror a circle across a given axis.
+let mirrorAcross (axis: Axis2D<'Unit, 'Coordinates>) (circle: Circle2D<'Unit, 'Coordinates>) =
+    withRadius circle.Radius (Point2D.mirrorAcross axis circle.Center)
+
+
+/// Take a circle defined in global coordinates, and return it expressed in
+/// local coordinates relative to a given reference frame.
+let relativeTo
+    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
+    (circle: Circle2D<'Unit, 'Coordinates>)
+    : Circle2D<'Unit, 'Coordinates> =
+        
+    withRadius circle.Radius (Point2D.relativeTo frame circle.Center)
+
+
+/// Take a circle considered to be defined in local coordinates relative to a
+/// given reference frame, and return that circle expressed in global coordinates.
+let placeIn
+    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
+    (circle: Circle2D<'Unit, 'Coordinates>)
+    : Circle2D<'Unit, 'Coordinates> =
+        
+    withRadius circle.Radius (Point2D.placeIn frame circle.Center)
+
+// ---- Queries ----
+
+/// Test if a circle point is contained within a circle. A point is considered
+/// to be contained if the point lies on the edge of the circle.
 let containsPoint (point: Point2D<'Unit, 'Coordinates>) (circle: Circle2D<'Unit, 'Coordinates>) : bool =
     Point2D.distanceSquaredTo point circle.Center
     <= Length.square circle.Radius
+
+/// Check if a circle intersects with a given bounding box. This function will
+/// return true if the circle intersects the edges of the bounding box _or_ is fully
+/// contained within the bounding box.
+let intersectsBoundingBox (box: BoundingBox2D<'Unit, 'Coordinates>) (circle: Circle2D<'Unit, 'Coordinates>) : bool =
+    let deltaX =
+        circle.Center.X
+        - Length.max box.MinX (Length.min circle.Center.X box.MaxX)
+
+    let deltaY =
+        circle.Center.Y
+        - (Length.max box.MinY (Length.min circle.Center.Y box.MaxY))
+
+    Length.square deltaX + (Length.square deltaY)
+    <= (Length.square circle.Radius)
