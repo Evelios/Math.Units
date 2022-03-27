@@ -23,10 +23,11 @@
         <Compile Include="Float.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="Angle.fs" />
-        <Compile Include="Internal\Point2D.fs" />
-        <Compile Include="Internal\Vector2D.fs" />
         <Compile Include="Percent.fs" />
         <Compile Include="Length.fs" />
+        <Compile Include="Internal\Point2D.fs" />
+        <Compile Include="Internal\Vector2D.fs" />
+        <Compile Include="Internal\BoundingBox2D.fs" />
         <Compile Include="Direction2D.fs" />
         <Compile Include="Axis2D.fs" />
         <Compile Include="Frame2D.fs" />

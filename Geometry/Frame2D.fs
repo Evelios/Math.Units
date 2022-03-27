@@ -4,7 +4,7 @@ module Geometry.Frame2D
 
 // ---- Builders ----
 
-let atOrigin<'Unit, 'Coordinates> : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let atOrigin<'Unit, 'Coordinates, 'Defines> : Frame2D<'Unit, 'Coordinates, 'Defines> =
     { Origin = { X = Length.zero; Y = Length.zero }
       XDirection = Direction2D.x
       YDirection = Direction2D.y }

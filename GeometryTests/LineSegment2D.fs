@@ -65,7 +65,7 @@ let ``Line Segment Intersection`` () =
         LineSegment2D.from (Point2D.meters 1. 4.) (Point2D.meters 4. 1.)
 
     let expected = Some(Point2D.meters 2.5 2.5)
-    let actual = LineSegment2D.intersect l1 l2
+    let actual = LineSegment2D.intersectionPoint l1 l2
     Assert.AreEqual(expected, actual)
 
 [<Property>]
@@ -73,7 +73,7 @@ let ``Intersection lies on both line segments``
     (l1: LineSegment2D<Meters, TestSpace>)
     (l2: LineSegment2D<Meters, TestSpace>)
     =
-    match LineSegment2D.intersect l1 l2 with
+    match LineSegment2D.intersectionPoint l1 l2 with
     | Some intersection ->
         LineSegment2D.isPointOnLine intersection l1
         && LineSegment2D.isPointOnLine intersection l2

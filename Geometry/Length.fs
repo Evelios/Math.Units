@@ -149,9 +149,14 @@ let round (l: Length<'Unit>) : Length<'Unit> = apply roundFloat l
 
 let roundTo (digits: int) (l: Length<'Unit>) : Length<'Unit> = apply (roundFloatTo digits) l
 
-let abs (Length.Length l: Length<'Unit>): Length<'Unit> = Length<'Unit>.create  (abs l)
+let abs (Length.Length l: Length<'Unit>) : Length<'Unit> = Length<'Unit>.create (abs l)
+
+let min (Length.Length l1: Length<'Unit>) (Length.Length l2: Length<'Unit>) : Length<'Unit> =
+    Length<'Unit>.create (min l1 l2)
+
+let max (Length.Length l1: Length<'Unit>) (Length.Length l2: Length<'Unit>) : Length<'Unit> =
+    Length<'Unit>.create (max l1 l2)
 
 // ---- Unsafe ----
 
-let unpack (Length.Length l: Length<'Unit>): float =
-    l
+let unpack (Length.Length l: Length<'Unit>) : float = l

@@ -174,9 +174,9 @@ let rotateAround
     Internal.Point2D.rotateAround reference angle point
 
 let placeIn
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (point: Point2D<'Unit, 'Coordinates>)
-    : Point2D<'Unit, 'Coordinates> =
+    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
+    (point: Point2D<'Unit, 'GlobalCoordinates>)
+    : Point2D<'Unit, 'LocalCoordinates> =
     Internal.Point2D.placeIn frame point
 
 /// Translate a point in a given direction by a given distance.
@@ -433,9 +433,9 @@ let coordinatesIn
 /// Take a point defined in global coordinates, and return it expressed in local
 /// coordinates relative to a given reference frame.
 let relativeTo
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (p: Point2D<'Unit, 'Coordinates>)
-    : Point2D<'Unit, 'Coordinates> =
+    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
+    (p: Point2D<'Unit, 'GlobalCoordinates>)
+    : Point2D<'Unit, 'LocalCoordinates> =
     Internal.Point2D.relativeTo frame p
 
 
