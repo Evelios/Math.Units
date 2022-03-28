@@ -37,6 +37,7 @@
         <Compile Include="Line2D.fs" />
         <Compile Include="BoundingBox2D.fs" />
         <Compile Include="Circle2D.fs" />
+        <Compile Include="Ellipse2D.fs" />
         <Compile Include="Triangle2D.fs" />
         <Compile Include="Size.fs" />
         <Compile Include="SweptAngle.fs" />

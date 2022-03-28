@@ -417,6 +417,11 @@ type Axis2D<'Unit, 'Coordinates> =
     override this.GetHashCode() : int =
         HashCode.Combine(this.Origin, this.Direction)
 
+type Frame2D<'Unit, 'Coordinates, 'Defines> =
+    { Origin: Point2D<'Unit, 'Coordinates>
+      XDirection: Direction2D<'Coordinates>
+      YDirection: Direction2D<'Coordinates> }
+
 
 [<CustomEquality>]
 [<CustomComparison>]
@@ -560,9 +565,38 @@ type BoundingBox2D<'Unit, 'Coordinates> =
     member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
     member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
 
+[<CustomEquality>]
+[<NoComparison>]
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
       Radius: Length<'Unit> }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Circle2D<'Unit, 'Coordinates> as other ->
+            this.Center = other.Center
+            && this.Radius = other.Radius
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.Center, this.Radius)
+
+[<CustomEquality>]
+[<NoComparison>]
+type Ellipse2D<'Unit, 'Coordinates> =
+    { Axes: Frame2D<'Unit, 'Coordinates, unit>
+      XRadius: Length<'Unit>
+      YRadius: Length<'Unit> }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Ellipse2D<'Unit, 'Coordinates> as other ->
+            this.Axes = other.Axes
+            && this.XRadius = other.XRadius
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.Axes, this.XRadius, this.YRadius)
 
 type SweptAngle =
     | SmallPositive
@@ -631,9 +665,5 @@ type Polygon2D<'Unit, 'Coordinates> =
     override this.GetHashCode() =
         HashCode.Combine(hash this.OuterLoop, hash this.InnerLoops)
 
-type Frame2D<'Unit, 'Coordinates, 'Defines> =
-    { Origin: Point2D<'Unit, 'Coordinates>
-      XDirection: Direction2D<'Coordinates>
-      YDirection: Direction2D<'Coordinates> }
 
 type Polyline2D<'Unit, 'Coordinates> = Polyline2D of Point2D<'Unit, 'Coordinates> list

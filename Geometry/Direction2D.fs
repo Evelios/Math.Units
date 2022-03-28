@@ -172,7 +172,11 @@ let angleFrom (d1: Direction2D<'Coordinates>) (d2: Direction2D<'Coordinates>) : 
 
 /// Take a direction defined in global coordinates, and return it expressed in
 /// local coordinates relative to a given reference frame.
-let relativeTo (frame: Frame2D<'Unit, 'Coordaintes, 'Defines>) (d: Direction2D<'Coordinates>) : Direction2D<'Coordaintes> =
+let relativeTo
+    (frame: Frame2D<'Unit, 'GlobalCoordaintes, 'Defines>)
+    (d: Direction2D<'GlobalCoordinates>)
+    : Direction2D<'LocalCoordaintes> =
+
     let dx = frame.XDirection
     let dy = frame.YDirection
     xyUnsafe (d.X * dx.X + d.Y * dx.Y) (d.X * dy.X + d.Y * dy.Y)
@@ -180,9 +184,10 @@ let relativeTo (frame: Frame2D<'Unit, 'Coordaintes, 'Defines>) (d: Direction2D<'
 /// Take a direction defined in local coordinates relative to a given reference
 /// frame, and return that direction expressed in global coordinates.
 let placeIn
-    (reference: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (direction: Direction2D<'Coordinates>)
-    : Direction2D<'Coordinates> =
+    (reference: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
+    (direction: Direction2D<'GlobalCoordinates>)
+    : Direction2D<'LocalCoordinates> =
+
     let dx = reference.XDirection
     let dy = reference.YDirection
 

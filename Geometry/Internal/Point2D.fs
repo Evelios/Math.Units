@@ -2,7 +2,7 @@ module internal Geometry.Internal.Point2D
 
 open Geometry
 
-let placeIn
+let placeIn<'Unit, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
     (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
     (point: Point2D<'Unit, 'GlobalCoordinates>)
     : Point2D<'Unit, 'LocalCoordinates> =
@@ -41,7 +41,7 @@ let mirrorAcross (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Corodin
     { X = p0.X + a * deltaX + b * deltaY
       Y = p0.Y + b * deltaX + c * deltaY }
 
-let relativeTo
+let relativeTo<'Unit, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
     (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
     (p: Point2D<'Unit, 'GlobalCoordinates>)
     : Point2D<'Unit, 'LocalCoordinates> =

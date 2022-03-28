@@ -7,7 +7,7 @@ open Geometry
 // ---- Builders ----
 
 /// Creates an infinitely small bounding box. This can be used when growing a bounding box around objects
-let empty () : BoundingBox2D<'Unit, 'Coordinates> =
+let empty<'Unit, 'Coordinates> : BoundingBox2D<'Unit, 'Coordinates> =
     { MinX = Length.create<'Unit> infinity
       MaxX = Length.create<'Unit> -infinity
       MinY = Length.create<'Unit> infinity
@@ -121,7 +121,7 @@ let scaleAbout
     let scaledMinY = scaleAbout y0 scale (minY boundingBox)
     let scaledMaxY = scaleAbout y0 scale (maxY boundingBox)
 
-    if scale >= 0 then
+    if scale >= 0. then
         { MinX = scaledMinX
           MaxX = scaledMaxX
           MinY = scaledMinY
