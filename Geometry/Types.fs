@@ -529,6 +529,24 @@ type Line2D<'Unit, 'Coordinates> =
     override this.GetHashCode() : int =
         HashCode.Combine(this.Start, this.Finish)
 
+[<CustomEquality>]
+[<NoComparison>]
+[<Struct>]
+type Triangle2D<'Unit, 'Coordinates> =
+    { P1: Point2D<'Unit, 'Coordinates>
+      P2: Point2D<'Unit, 'Coordinates>
+      P3: Point2D<'Unit, 'Coordinates> }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Triangle2D<'Unit, 'Coordinates> as other ->
+            this.P1 = other.P1
+            && this.P2 = other.P2
+            && this.P3 = other.P3
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.P1, this.P2, this.P3)
 
 [<Struct>]
 type BoundingBox2D<'Unit, 'Coordinates> =
@@ -537,10 +555,10 @@ type BoundingBox2D<'Unit, 'Coordinates> =
       MaxY: Length<'Unit>
       MinY: Length<'Unit> }
 
-    member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
-    member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
-    member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
-    member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
+    member this.TopLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
+    member this.TopRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
+    member this.BottomRight: Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
+    member this.BottomLeft: Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
 
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
@@ -578,7 +596,8 @@ type Nondegenerate<'Unit, 'Coordinates> = Arc2D<'Unit, 'Coordinates>
 [<CustomComparison>]
 [<RequireQualifiedAccess>]
 type Polygon2D<'Unit, 'Coordinates> =
-    { Points: Point2D<'Unit, 'Coordinates> list }
+    { OuterLoop: Point2D<'Unit, 'Coordinates> list
+      InnerLoops: Point2D<'Unit, 'Coordinates> list list }
 
     // Comparable interfaces
 
@@ -596,17 +615,21 @@ type Polygon2D<'Unit, 'Coordinates> =
         elif this.LessThan(other) then -1
         else 1
 
-    // TODO
-    member this.LessThan(other: Polygon2D<'Unit, 'Coordinates>) = this.Points < other.Points
+    member this.LessThan(other: Polygon2D<'Unit, 'Coordinates>) =
+        this.OuterLoop < other.OuterLoop
+        && this.InnerLoops < other.InnerLoops
 
     override this.Equals(obj: obj) : bool =
         match obj with
         | :? Polygon2D<'Unit, 'Coordinates> as other -> this.Equals(other)
         | _ -> false
 
-    member this.Equals(other: Polygon2D<'Unit, 'Coordinates>) : bool = this.Points = other.Points
+    member this.Equals(other: Polygon2D<'Unit, 'Coordinates>) : bool =
+        this.OuterLoop = other.OuterLoop
+        && this.InnerLoops = this.InnerLoops
 
-    override this.GetHashCode() = this.Points.GetHashCode()
+    override this.GetHashCode() =
+        HashCode.Combine(hash this.OuterLoop, hash this.InnerLoops)
 
 type Frame2D<'Unit, 'Coordinates, 'Defines> =
     { Origin: Point2D<'Unit, 'Coordinates>
