@@ -189,9 +189,23 @@ type Length<'Unit> =
     static member Pow(Length length: Length<'Unit>, power: float) : Length<'Unit> = Length(length ** power)
 
 
-type Size<'Unit> =
+[<CustomEquality>]
+[<NoComparison>]
+[<Struct>]
+type Size2D<'Unit> =
     { Width: Length<'Unit>
       Height: Length<'Unit> }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? (Size2D<'Unit>) as other ->
+            this.Width = other.Width
+            && this.Height = other.Height
+
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.Width, this.Height)
 
 
 // ---- Geometry ----
@@ -553,17 +567,49 @@ type Triangle2D<'Unit, 'Coordinates> =
     override this.GetHashCode() : int =
         HashCode.Combine(this.P1, this.P2, this.P3)
 
+[<CustomEquality>]
+[<NoComparison>]
 [<Struct>]
 type BoundingBox2D<'Unit, 'Coordinates> =
     { MinX: Length<'Unit>
       MaxX: Length<'Unit>
-      MaxY: Length<'Unit>
-      MinY: Length<'Unit> }
+      MinY: Length<'Unit>
+      MaxY: Length<'Unit> }
 
     member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
     member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
     member this.BottomRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MinY }
     member this.BottomLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MinY }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? BoundingBox2D<'Unit, 'Coordinates> as other ->
+            this.MinX = other.MinX
+            && this.MaxX = other.MaxX
+            && this.MinY = other.MinY
+            && this.MaxY = other.MaxY
+
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.MinX, this.MaxX, this.MinY, this.MaxY)
+
+[<CustomEquality>]
+[<NoComparison>]
+[<Struct>]
+type Rectangle2D<'Unit, 'Coordinates> =
+    { Axes: Frame2D<'Unit, 'Coordinates, unit>
+      Dimensions: Size2D<'Unit> }
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Rectangle2D<'Unit, 'Coordinates> as other ->
+            this.Axes = other.Axes
+            && this.Dimensions = other.Dimensions
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        HashCode.Combine(this.Axes, this.Dimensions)
 
 [<CustomEquality>]
 [<NoComparison>]
