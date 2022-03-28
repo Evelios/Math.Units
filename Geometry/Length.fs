@@ -161,6 +161,8 @@ let min (Length.Length l1: Length<'Unit>) (Length.Length l2: Length<'Unit>) : Le
 let max (Length.Length l1: Length<'Unit>) (Length.Length l2: Length<'Unit>) : Length<'Unit> =
     Length<'Unit>.create (max l1 l2)
 
+let sum (lengths: Length<'Unit> seq) : Length<'Unit> = Seq.fold (+) zero lengths
+
 // ---- Unsafe ----
 
 let unpack (Length.Length l: Length<'Unit>) : float = l
