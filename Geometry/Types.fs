@@ -61,6 +61,64 @@ type Percent =
     static member (/)(Percent percent: Percent, scale: float) : Percent = Percent(percent / scale)
     static member (/)(Percent percent: Percent, Percent scale: Percent) : Percent = Percent(percent / scale)
 
+[<CustomEquality>]
+[<CustomComparison>]
+[<RequireQualifiedAccess>]
+[<Struct>]
+type Angle =
+    | Radians of float
+
+    // Accessors
+    static member create a = Radians a
+    static member value(Radians a) = a
+
+    member this.value() : float = Angle.value this
+
+    interface IComparable<Angle> with
+        member this.CompareTo(angle) = this.Comparison(angle)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? Angle as angle -> this.Comparison(angle)
+            | _ -> failwith "incompatible comparison"
+
+    member this.Comparison(other) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+    member this.LessThan(Radians other: Angle) =
+        match this with
+        | Radians self -> self < other
+
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Angle as other -> this.Equals(other)
+        | _ -> false
+
+    member this.Equals(Radians other: Angle) : bool =
+        match this with
+        | Radians self -> almostEqual (self % 2. * Math.PI) (other % 2. * Math.PI)
+
+    override this.GetHashCode() =
+        match this with
+        | Radians self ->
+            (roundFloatTo Float.DigitPrecision (self % 2. * Math.PI))
+                .GetHashCode()
+
+
+    // Math Operators
+
+    static member (+)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs + rhs)
+    static member (-)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs - rhs)
+    static member (~-)(Radians angle: Angle) : Angle = Radians -angle
+    static member (*)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs * rhs)
+    static member (*)(lhs: float, Radians rhs: Angle) : Angle = Radians(rhs * lhs)
+    static member (/)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs / rhs)
+    static member (/)(Radians lhs: Angle, Radians rhs: Angle) : float = lhs / rhs
+
 
 [<CustomEquality>]
 [<CustomComparison>]
@@ -119,9 +177,12 @@ type Length<'Unit> =
     static member (~-)(Length length: Length<'Unit>) : Length<'Unit> = Length(-length)
     static member (*)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length * scale)
     static member (*)(scale: float, Length length: Length<'Unit>) : Length<'Unit> = Length(scale * length)
+    static member (*)(Length length: Length<'Unit>, arc: Angle) : Length<'Unit> = Length(length * arc.value ())
+    static member (*)(arc: Angle, Length length: Length<'Unit>) : Length<'Unit> = Length(arc.value () * length)
     static member (*)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit * 'Unit> = Length(lhs * rhs)
     static member (/)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length / scale)
     static member (/)(Length length: Length<'Unit>, Length scale: Length<'Unit>) : float = length / scale
+    static member (/)(Length length: Length<'Unit>, arc: Angle) : Length<'Unit> = Length(length / arc.value ())
 
     // Operator overloads through functions
 
@@ -135,63 +196,6 @@ type Size<'Unit> =
 
 // ---- Geometry ----
 
-[<CustomEquality>]
-[<CustomComparison>]
-[<RequireQualifiedAccess>]
-[<Struct>]
-type Angle =
-    | Radians of float
-
-    // Accessors
-    static member create a = Radians a
-    static member value(Radians a) = a
-
-    member this.value() : float = Angle.value this
-
-    interface IComparable<Angle> with
-        member this.CompareTo(angle) = this.Comparison(angle)
-
-    interface IComparable with
-        member this.CompareTo(obj) =
-            match obj with
-            | :? Angle as angle -> this.Comparison(angle)
-            | _ -> failwith "incompatible comparison"
-
-    member this.Comparison(other) =
-        if this.Equals(other) then 0
-        elif this.LessThan(other) then -1
-        else 1
-
-    member this.LessThan(Radians other: Angle) =
-        match this with
-        | Radians self -> self < other
-
-
-    override this.Equals(obj: obj) : bool =
-        match obj with
-        | :? Angle as other -> this.Equals(other)
-        | _ -> false
-
-    member this.Equals(Radians other: Angle) : bool =
-        match this with
-        | Radians self -> almostEqual (self % 2. * Math.PI) (other % 2. * Math.PI)
-
-    override this.GetHashCode() =
-        match this with
-        | Radians self ->
-            (roundFloatTo Float.DigitPrecision (self % 2. * Math.PI))
-                .GetHashCode()
-
-
-    // Math Operators
-
-    static member (+)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs + rhs)
-    static member (-)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs - rhs)
-    static member (~-)(Radians angle: Angle) : Angle = Radians -angle
-    static member (*)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs * rhs)
-    static member (*)(lhs: float, Radians rhs: Angle) : Angle = Radians(rhs * lhs)
-    static member (/)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs / rhs)
-    static member (/)(Radians lhs: Angle, Radians rhs: Angle) : float = lhs / rhs
 
 
 [<CustomEquality>]
@@ -568,6 +572,8 @@ type Arc2D<'Unit, 'Coordinates> =
     override this.GetHashCode() : int =
         HashCode.Combine(this.StartPoint, this.XDirection, this.SignedLength, this.SweptAngle)
 
+type Nondegenerate<'Unit, 'Coordinates> = Arc2D<'Unit, 'Coordinates>
+
 [<CustomEquality>]
 [<CustomComparison>]
 [<RequireQualifiedAccess>]
@@ -606,3 +612,5 @@ type Frame2D<'Unit, 'Coordinates, 'Defines> =
     { Origin: Point2D<'Unit, 'Coordinates>
       XDirection: Direction2D<'Coordinates>
       YDirection: Direction2D<'Coordinates> }
+
+type Polyline2D<'Unit, 'Coordinates> = Polyline2D of Point2D<'Unit, 'Coordinates> list
