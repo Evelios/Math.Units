@@ -1,7 +1,7 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
-module Geometry.Size
+module Geometry.Size2D
 
-let empty<'Unit> () : Size2D<'Unit> =
+let empty<'Unit> : Size2D<'Unit> =
     { Width = Length.zero
       Height = Length.zero }
 

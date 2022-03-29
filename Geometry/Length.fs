@@ -163,6 +163,9 @@ let max (Length.Length l1: Length<'Unit>) (Length.Length l2: Length<'Unit>) : Le
 
 let sum (lengths: Length<'Unit> seq) : Length<'Unit> = Seq.fold (+) zero lengths
 
+let midpoint (a: Length<'Unit>) (b: Length<'Unit>) : Length<'Unit> = (a + b) / 2.
+
+
 // ---- Unsafe ----
 
 let unpack (Length.Length l: Length<'Unit>) : float = l
