@@ -49,12 +49,22 @@ let ``Vector from polar`` () =
 
     Assert.AreEqual(expected, actual)
 
-// ---- Other Tests -----
+
+// ---- Accessors -----
 
 [<Test>]
 let Magnitude () =
     let vector = Vector2D.meters 2. 2.
     Assert.AreEqual(Length.meters (2. * sqrt 2.), Vector2D.magnitude vector)
+
+[<Test>]
+let Direction () =
+    let vector = Vector2D.meters 1. 1.
+    let actual = Vector2D.direction vector
+    let expected = Direction2D.xy (sqrt 2.) (sqrt 2.)
+    Assert.AreEqual(expected, actual)
+
+// ---- Modifiers ----
 
 [<Test>]
 let Scale () =
@@ -91,8 +101,13 @@ let ``Rotate clockwise`` () =
 [<Test>]
 let Round () =
     Float.DigitPrecision <- 8
-    let actual = Vector2D.round (Vector2D.meters 22.2222222222 22.2222222222)
-    let expected = (Vector2D.meters 22.22222222 22.22222222)
+
+    let actual =
+        Vector2D.round (Vector2D.meters 22.2222222222 22.2222222222)
+
+    let expected =
+        (Vector2D.meters 22.22222222 22.22222222)
+
     Assert.AreEqual(expected, actual)
 
 [<Test>]
@@ -128,13 +143,6 @@ let ``Mid vector`` () =
     Assert.AreEqual(expected, actual)
 
 [<Test>]
-let Direction () =
-    let vector = Vector2D.meters 1. 1.
-    let actual = Vector2D.direction vector
-    let expected = Direction2D.xy (sqrt 2.) (sqrt 2.)
-    Assert.AreEqual(expected, actual)
-
-[<Test>]
 let ``From list`` () =
     let actual : Vector2D<Meters, TestSpace> option = Vector2D.fromList [ 1.; 2. ]
     let expected : Vector2D<Meters, TestSpace> option = Some(Vector2D.meters 1. 2.)
@@ -153,3 +161,23 @@ let ``Dot product of a vector with itself is the length squared`` (vector: Vecto
 [<Property>]
 let ``Normalized vector has a magnitude of one`` (vector: Vector2D<Meters, TestSpace>) =
     Test.equal (Length<Meters * Meters>.create 1.) (vector |> Vector2D.normalize |> Vector2D.magnitude)
+
+[<Property>]
+let ``Perpendicular vector is perpendicular`` (vector: Vector2D<Meters, TestSpace>) =
+    vector
+    |> Vector2D.perpendicularTo
+    |> Vector2D.dotProduct vector
+    |> Test.equal Length.zero
+
+[<Property>]
+let ``Dot product of a vector with itself is it's squared length`` (vector: Vector2D<Meters, TestSpace>) =
+    vector
+    |> Vector2D.dotProduct vector
+    |> Test.equal (Length.square (Vector2D.magnitude vector))
+
+[<Property>]
+let ``Rotate by preserves length`` (vector: Vector2D<Meters, TestSpace>) (angle: Angle) =
+    vector
+    |> Vector2D.rotateBy angle
+    |> Vector2D.magnitude
+    |> Test.equal (Vector2D.magnitude vector)
