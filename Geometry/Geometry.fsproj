@@ -22,6 +22,7 @@
         <Compile Include="Extensions\ListExtensions.fs" />
         <Compile Include="Float.fs" />
         <Compile Include="Types.fs" />
+        <Compile Include="Interval.fs" />
         <Compile Include="Angle.fs" />
         <Compile Include="Percent.fs" />
         <Compile Include="Length.fs" />

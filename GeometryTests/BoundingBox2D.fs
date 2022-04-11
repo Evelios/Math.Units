@@ -4,7 +4,6 @@ open NUnit.Framework
 open FsCheck.NUnit
 
 open Geometry
-open FSharp.Extensions
 
 
 [<SetUp>]

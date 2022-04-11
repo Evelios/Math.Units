@@ -5,6 +5,31 @@ open Geometry
 
 // ---- Lengths ----
 
+/// A finite, closed interval with a minimum and maximum number. This can
+/// represent an interval of any type.
+///
+/// For example...
+///     Interval float
+///     Interval int
+///     Interval Angle
+[<CustomEquality>]
+[<NoComparison>]
+type Interval<'T when 'T: equality> =
+    | Interval of 'T * 'T
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? (Interval<'T>) as other ->
+            match this, other with
+            | Interval (thisStart, thisFinish), Interval (otherStart, otherFinish) ->
+                thisStart = otherStart && thisFinish = otherFinish
+
+        | _ -> false
+
+    override this.GetHashCode() : int =
+        match this with
+        | Interval (start, finish) -> HashCode.Combine(start, finish)
+
 type Unitless = Unitless
 
 type Pixels = Pixels
