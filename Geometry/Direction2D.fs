@@ -18,6 +18,17 @@ let xy (x: float) (y: float) : Direction2D<'Coordinates> option =
             { Direction2D.X = x / magnitude
               Direction2D.Y = y / magnitude }
 
+let fromComponents (x: float, y: float) : Direction2D<'Coordinates> option =
+    if x = 0. && y = 0. then
+        None
+    else
+        let magnitude = sqrt ((x * x) + (y * y))
+
+        Some
+            { Direction2D.X = x / magnitude
+              Direction2D.Y = y / magnitude }
+
+
 /// Get a direction vector from the x and y length components. This function takes
 /// care of normalizing the x and y components into the unit direction vector.
 /// This function also checks for the edge case where the x and y components
@@ -69,6 +80,9 @@ let toTuple (d: Direction2D<'Coordinates>) : float * float = (d.X, d.Y)
 /// Get the X component of the direction.
 let xComponent (d: Direction2D<'Coordinates>) : float = d.X
 
+/// Get the X and Y component of the direction in a tuple.
+let components (d: Direction2D<'Coordinates>) : float * float = d.X, d.Y
+
 /// Get the Y component of the direction.
 let yComponent (d: Direction2D<'Coordinates>) : float = d.Y
 
@@ -95,7 +109,7 @@ let rotateClockwise (direction: Direction2D<'Coordinates>) : Direction2D<'Coordi
 /// given direction 90 degrees counterclockwise. This is the same
 /// `Direction2D.rotateBy (Angle.degrees 90)` but is more efficient.
 /// Alias for `rotateCounterclockwise`.
-let perpendicularTo (d: Direction2D<'Coordaintes>) : Direction2D<'Coordaintes> = { X = -d.X; Y = -d.Y }
+let perpendicularTo (d: Direction2D<'Coordaintes>) : Direction2D<'Coordaintes> = { X = -d.Y; Y = d.X }
 
 /// Rotate a direction counterclockwise by a given angle.
 let rotateBy (angle: Angle) (direction: Direction2D<'Coordinates>) : Direction2D<'Coordinates> =

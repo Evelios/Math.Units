@@ -30,6 +30,14 @@ module Gen =
     let lengthBetween (a: Length<'Unit>) (b: Length<'Unit>) : Gen<Length<'Unit>> =
         Gen.map Length.create<'Unit> (floatBetween (Length.unpack a) (Length.unpack b))
 
+    let direction2D : Gen<Direction2D<TestSpace>> =
+        Gen.two float
+        |> Gen.where (fun (x, y) -> x <> 0. || y <> 0.)
+        |> Gen.map
+            (fun (x, y) ->
+                let magnitude = sqrt ((x * x) + (y * y))
+                { X = x / magnitude; Y = y / magnitude })
+
     let vector2D : Gen<Vector2D<Meters, TestSpace>> = Gen.map2 Vector2D.xy length length
 
     let vector2DWithinRadius (radius: Length<'Unit>) : Gen<Vector2D<'Unit, 'Coordinates>> =
@@ -47,6 +55,10 @@ module Gen =
     let twoClosePoint2D =
         Gen.map2 (fun first offset -> (first, first + offset)) point2D (vector2DWithinRadius (epsilonLength ()))
 
+    let axis2D =
+        Gen.map2 Axis2D.through point2D direction2D
+
+    let frame2D : Gen<Frame2D<Meters, TestSpace, TestDefines>> = Gen.map2 Frame2D.withAngle angle point2D
 
     let line2D =
         Gen.map2 Tuple2.pair point2D point2D
@@ -72,10 +84,13 @@ module Gen =
     type ArbGeometry =
         static member Angle() = Arb.fromGen angle
         static member Length() = Arb.fromGen length
+        static member Direction2D() = Arb.fromGen direction2D
         static member Vector2D() = Arb.fromGen vector2D
         static member Point2D() = Arb.fromGen point2D
+        static member Axis2D() = Arb.fromGen axis2D
         static member Line2D() = Arb.fromGen line2D
-        static member LineSegment2D() = Arb.fromGen line2D
-        static member BoundingBox2D() = Arb.fromGen line2D
+        static member LineSegment2D() = Arb.fromGen lineSegment2D
+        static member BoundingBox2D() = Arb.fromGen boundingBox2D
+        static member Frame2D() = Arb.fromGen frame2D
 
         static member Register() = Arb.register<ArbGeometry> () |> ignore
