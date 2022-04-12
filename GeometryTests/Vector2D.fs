@@ -181,3 +181,46 @@ let ``Rotate by preserves length`` (vector: Vector2D<Meters, TestSpace>) (angle:
     |> Vector2D.rotateBy angle
     |> Vector2D.magnitude
     |> Test.equal (Vector2D.magnitude vector)
+
+[<Property>]
+let ``Rotating rotates correct angle`` (vector: Vector2D<Meters, TestSpace>) (angle: Angle) =
+    let direction = Vector2D.direction vector
+
+    let rotatedDirection =
+        Vector2D.rotateBy angle vector
+        |> Vector2D.direction
+
+    let measuredAngle =
+        Option.map2 Direction2D.angleFrom direction rotatedDirection
+        |> Option.defaultValue Angle.zero
+
+
+    Test.equal angle measuredAngle
+
+[<Property>]
+let ``Components return equal values`` (vector: Vector2D<Meters, TestSpace>) =
+    Vector2D.components vector = (Vector2D.x vector, Vector2D.y vector)
+
+[<Property>]
+let ``Accessors equal components`` (vector: Vector2D<Meters, TestSpace>) =
+    (vector.X, vector.Y) = (Vector2D.x vector, Vector2D.y vector)
+
+[<Property>]
+let ``Scaling zero length vector returns zero`` (length: Length<Meters>) =
+    Test.equal Vector2D.zero (Vector2D.scaleTo length Vector2D.zero)
+
+[<Property>]
+let ``Scale to returns consistent length`` (vector: Vector2D<Meters, TestSpace>) (scale: Length<Meters>) =
+    if vector = Vector2D.zero then
+        Test.equal Vector2D.zero (Vector2D.scaleTo scale vector)
+
+    else
+        Vector2D.scaleTo scale vector
+        |> Vector2D.length
+        |> Test.equal (Length.abs scale)
+
+[<Property>]
+let ``Normalize has a consistent length`` (vector: Vector2D<Meters, TestSpace>) =
+    Vector2D.normalize vector
+    |> Vector2D.length
+    |> Test.equal (Length.meters 1.)

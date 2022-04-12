@@ -14,6 +14,14 @@ let Setup () = Gen.ArbGeometry.Register()
 [<Test>]
 let ``Angle equality`` () =
     Assert.AreEqual(Angle.degrees 10., Angle.degrees 10.)
+    
+[<Test>]
+let ``Angle negative equality`` () =
+    Assert.AreEqual(Angle.degrees 350., Angle.degrees -10.)
+    
+[<Test>]
+let ``Angle modular equality`` () =
+    Assert.AreEqual(Angle.degrees (350. + 360.), Angle.degrees -10.)
 
 [<Test>]
 let ``Angle less than`` () =

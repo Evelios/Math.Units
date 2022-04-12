@@ -63,7 +63,22 @@ let feet (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Lengt
 // ---- Accessors ----
 
 let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> =
-    Length.sqrt ((Length.square v.X) + (Length.square v.Y))
+    let largestComponent = max (Length.abs v.X) (Length.abs v.Y)
+
+    if largestComponent = Length.zero then
+        Length.zero
+
+    else
+        let scaledX = v.X / largestComponent
+        let scaledY = v.Y / largestComponent
+
+        let scaledLength =
+            sqrt (scaledX * scaledX + scaledY * scaledY)
+            
+        printfn $"Largest Component: {largestComponent}"
+        printfn $"Scaled Length: {scaledLength}, X: {scaledX}, Y: {scaledY}"
+
+        scaledLength * largestComponent
 
 /// Alias for `Vector2D.magnitude`
 let length = magnitude
@@ -117,8 +132,20 @@ let half (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = sc
 // ---- Modifiers ----
 
 /// Scale a vector to a given length.
-let scaleTo (length: Length<'Unit>) (vector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
-    scaleBy (length / magnitude vector) vector
+let scaleTo (scale: Length<'Unit>) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    let largestComponent = max (Length.abs v.X) (Length.abs v.Y)
+    if largestComponent = Length.zero then
+        zero
+
+    else
+        let scaledX = v.X / largestComponent
+        let scaledY = v.Y / largestComponent
+
+        let scaledLength =
+            sqrt (scaledX * scaledX + scaledY * scaledY)
+
+        xy (scale * scaledX / scaledLength) (scale * scaledY / scaledLength)
+
 
 /// Rotate a vector counterclockwise by a given angle.
 let rotateBy (a: Angle) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
@@ -150,7 +177,7 @@ let rotateCounterclockwise (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 
 let perpendicularTo (givenVector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     rotateCounterclockwise givenVector
 
-let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = v / Length.unpack (magnitude v)
+let normalize (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = scaleTo (Length.create<'Unit> 1.) v
 
 /// Round the vector to the internal precision.
 /// (Default is 8 digits past the decimal point)

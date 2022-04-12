@@ -125,7 +125,18 @@ type Angle =
 
     member this.Equals(Radians other: Angle) : bool =
         match this with
-        | Radians self -> almostEqual (self % 2. * Math.PI) (other % 2. * Math.PI)
+        | Radians self ->
+            let twoPi = 2. * Math.PI
+
+            let modRadians x =
+                let modded = x % twoPi
+
+                if modded >= 0. then
+                    modded
+                else
+                    abs (modded + twoPi)
+
+            almostEqual (modRadians self) (modRadians other)
 
     override this.GetHashCode() =
         match this with
