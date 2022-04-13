@@ -94,10 +94,21 @@ type Angle =
     | Radians of float
 
     // Accessors
-    static member create a = Radians a
-    static member value(Radians a) = a
 
-    member this.value() : float = Angle.value this
+    /// Convert an arbitrary angle to the equivalent angle in the range -180 to 180
+    /// degrees (-π to π radians), by adding or subtracting some multiple of 360
+    /// degrees (2π radians) if necessary.
+    static member normalize(Radians r) =
+        let twoPi = 2. * Math.PI
+        let turns = float (int (r / twoPi))
+        let radians = r - twoPi * turns
+
+        if (radians > Math.PI) then
+            Radians(radians - twoPi)
+        else if (radians < -Math.PI) then
+            Radians(twoPi + radians)
+        else
+            Radians radians
 
     interface IComparable<Angle> with
         member this.CompareTo(angle) = this.Comparison(angle)
@@ -123,25 +134,14 @@ type Angle =
         | :? Angle as other -> this.Equals(other)
         | _ -> false
 
-    member this.Equals(Radians other: Angle) : bool =
-        match this with
-        | Radians self ->
-            let twoPi = 2. * Math.PI
-
-            let modRadians x =
-                let modded = x % twoPi
-
-                if modded >= 0. then
-                    modded
-                else
-                    abs (modded + twoPi)
-
-            almostEqual (modRadians self) (modRadians other)
+    member this.Equals(other: Angle) : bool =
+        match Angle.normalize this, Angle.normalize other with
+        | Radians lhs, Radians rhs -> almostEqual lhs rhs
 
     override this.GetHashCode() =
-        match this with
-        | Radians self ->
-            (roundFloatTo Float.DigitPrecision (self % 2. * Math.PI))
+        match Angle.normalize this with
+        | Radians radians ->
+            (roundFloatTo Float.DigitPrecision radians)
                 .GetHashCode()
 
 
@@ -213,12 +213,12 @@ type Length<'Unit> =
     static member (~-)(Length length: Length<'Unit>) : Length<'Unit> = Length(-length)
     static member (*)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length * scale)
     static member (*)(scale: float, Length length: Length<'Unit>) : Length<'Unit> = Length(scale * length)
-    static member (*)(Length length: Length<'Unit>, arc: Angle) : Length<'Unit> = Length(length * arc.value ())
-    static member (*)(arc: Angle, Length length: Length<'Unit>) : Length<'Unit> = Length(arc.value () * length)
+    static member (*)(Length length: Length<'Unit>, Angle.Radians arc: Angle) : Length<'Unit> = Length(length * arc)
+    static member (*)(Angle.Radians arc: Angle, Length length: Length<'Unit>) : Length<'Unit> = Length(arc * length)
     static member (*)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit * 'Unit> = Length(lhs * rhs)
     static member (/)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length / scale)
     static member (/)(Length length: Length<'Unit>, Length scale: Length<'Unit>) : float = length / scale
-    static member (/)(Length length: Length<'Unit>, arc: Angle) : Length<'Unit> = Length(length / arc.value ())
+    static member (/)(Length length: Length<'Unit>, Angle.Radians arc: Angle) : Length<'Unit> = Length(length / arc)
 
     // Operator overloads through functions
 

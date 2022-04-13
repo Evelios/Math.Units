@@ -75,9 +75,6 @@ let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> =
         let scaledLength =
             sqrt (scaledX * scaledX + scaledY * scaledY)
             
-        printfn $"Largest Component: {largestComponent}"
-        printfn $"Scaled Length: {scaledLength}, X: {scaledX}, Y: {scaledY}"
-
         scaledLength * largestComponent
 
 /// Alias for `Vector2D.magnitude`

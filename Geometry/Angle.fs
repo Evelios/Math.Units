@@ -5,13 +5,13 @@ open System
 
 // ---- Constants ----
 
-let zero = Angle.create 0.
+let zero = Angle.Radians 0.
 
-let pi = Angle.create Math.PI
+let pi = Angle.Radians Math.PI
 
-let twoPi = Angle.create 2. * Math.PI
+let twoPi = Angle.Radians 2. * Math.PI
 
-let piOverTwo = Angle.create Math.PI / 2.
+let piOverTwo = Angle.Radians Math.PI / 2.
 
 /// Alias for `piOverTwo`
 let halfPi = piOverTwo
@@ -23,7 +23,7 @@ let degreesToRadians : float = Math.PI / 180.0
 
 // ---- Builders ----
 
-let radians r = Angle.create r
+let radians r = Angle.Radians r
 
 let degrees d = d * degreesToRadians |> radians
 

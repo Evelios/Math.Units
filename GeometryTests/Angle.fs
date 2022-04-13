@@ -3,22 +3,49 @@ module GeometryTests.Angle
 open NUnit.Framework
 open FsCheck.NUnit
 open FsCheck
+open System
 
 open Geometry
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
 
+
+// ---- Builders and Accessors
+
+[<Property>]
+let ``From radians and back`` (angle: Angle) =
+    Test.equal angle (Angle.inRadians angle |> Angle.radians)
+
+[<Property>]
+let ``From degrees and back`` (angle: Angle) =
+    Test.equal angle (Angle.inDegrees angle |> Angle.degrees)
+
+[<Property>]
+let ``Normalized value always within -Pi to Pi`` (angle: Angle) =
+    Test.all [
+        angle
+        |> Angle.normalize
+        |> Angle.inRadians
+        |> Test.greaterThanOrEqualTo -Math.PI
+
+        angle
+        |> Angle.normalize
+        |> Angle.inRadians
+        |> Test.lessThanOrEqualTo Math.PI
+    ]
+
+
 // ---- Order Operators ----
 
 [<Test>]
 let ``Angle equality`` () =
     Assert.AreEqual(Angle.degrees 10., Angle.degrees 10.)
-    
+
 [<Test>]
 let ``Angle negative equality`` () =
     Assert.AreEqual(Angle.degrees 350., Angle.degrees -10.)
-    
+
 [<Test>]
 let ``Angle modular equality`` () =
     Assert.AreEqual(Angle.degrees (350. + 360.), Angle.degrees -10.)
@@ -40,6 +67,23 @@ let ``Angle greater than`` () =
 let ``Angle greater than or equal`` () =
     Assert.GreaterOrEqual(Angle.degrees 10., Angle.degrees 0.)
     Assert.GreaterOrEqual(Angle.degrees 10., Angle.degrees 10.)
+
+[<Test>]
+let ``Angle minimum`` () =
+    let smaller = Angle.degrees 50.
+    let bigger = Angle.degrees 290.
+    let actual = min smaller bigger
+    let expected = smaller
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Angle maximum`` () =
+    let smaller = Angle.degrees 50.
+    let bigger = Angle.degrees 290.
+    let actual = max smaller bigger
+    let expected = bigger
+    Assert.AreEqual(expected, actual)
+
 
 // ---- Math Operators ----
 
@@ -63,7 +107,13 @@ let ``Angle multiplication`` () =
 [<Test>]
 let ``Angle division`` () =
     Assert.AreEqual(Angle.degrees 10., Angle.degrees 100. / 10.)
-    
+
 [<Property>]
 let ``Equality and hash code comparison with random angles`` (first: Angle) (second: Angle) =
     (first = second) = (first.GetHashCode() = second.GetHashCode())
+
+// ---- Modifiers ----
+
+[<Property>]
+let ``Half of Twice is identity `` (angle: Angle) =
+    Test.equal angle (Angle.twice angle |> Angle.half)

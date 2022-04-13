@@ -82,6 +82,7 @@ module Gen =
         |> Gen.map (Tuple2.map LineSegment2D.from)
 
     type ArbGeometry =
+        static member Float() = Arb.fromGen float
         static member Angle() = Arb.fromGen angle
         static member Length() = Arb.fromGen length
         static member Direction2D() = Arb.fromGen direction2D
