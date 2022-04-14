@@ -23,6 +23,9 @@ let direction (line: Line2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> op
 let length (line: Line2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Point2D.distanceTo line.Start line.Finish
 
+let axis (line: Line2D<'Unit, 'Coordinates>) : Axis2D<'Unit, 'Coordinates> option =
+    Axis2D.throughPoints line.Start line.Finish
+
 
 // ---- Modifiers ----
 
@@ -32,19 +35,14 @@ let round (l: Line2D<'Unit, 'Coordinates>) =
 
 // ---- Queries ----
 
+// Get the point closest to the line. This is the point projected onto that line.
 let pointClosestTo
     (point: Point2D<'Unit, 'Coordinates>)
     (line: Line2D<'Unit, 'Coordinates>)
     : Point2D<'Unit, 'Coordinates> =
-    let v : Vector2D<'Unit, 'Coordinates> = line.Start |> Point2D.vectorTo point
-    let lineDirection = line.Finish - line.Start
-
-    let alongVector =
-        Length.unpack (Vector2D.dotProduct v lineDirection)
-        * lineDirection
-
-    line.Start + alongVector
-
+    match axis line with
+    | Some lineAxis -> Point2D.projectOnto lineAxis point
+    | None -> line.Start
 
 let distanceToPoint (point: Point2D<'Unit, 'Coordinates>) (line: Line2D<'Unit, 'Coordinates>) : Length<'Unit> =
     if line.Start = point || line.Finish = point then
@@ -58,17 +56,10 @@ let atPointInDirection
     : Line2D<'Unit, 'Coordinates> =
     through point (point + direction)
 
-// TODO: This function is not passing
-//let perpThroughPoint
-//    (point: Point2D<'Unit, 'Coordinates>)
-//    (line: Line2D<'Unit, 'Coordinates>)
-//    : Line2D<'Unit, 'Coordinates> =
-//    atPointInDirection point (Vector2D.rotateBy (Angle.degrees 90.) (direction line))
-
 let isPointOnLine (point: Point2D<'Unit, 'Coordinates>) (line: Line2D<'Unit, 'Coordinates>) =
-    point = line.Start
-    || point = line.Finish
-    || point = pointClosestTo point line
+    match axis line with
+    | None -> point = line.Start
+    | Some lineAxis -> point = Point2D.projectOnto lineAxis point
 
 let areParallel (first: Line2D<'Unit, 'Coordinates>) (second: Line2D<'Unit, 'Coordinates>) : bool =
     match direction first, direction second with

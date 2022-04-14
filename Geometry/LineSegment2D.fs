@@ -62,6 +62,8 @@ let direction (segment: LineSegment2D<'Unit, 'Coordinates>) : Direction2D<'Coord
 let length (segment: LineSegment2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Point2D.distanceTo segment.Start segment.Finish
 
+let axis (segment: LineSegment2D<'Unit, 'Coordinates>) : Axis2D<'Unit, 'Coordinates> option =
+    Axis2D.throughPoints segment.Start segment.Finish
 
 /// Get the direction perpendicular to a segment segment, pointing to the left. If
 /// the segment segment has zero length, returns `Nothing`.
@@ -155,38 +157,57 @@ let areParallel (first: LineSegment2D<'Unit, 'Coordinates>) (second: LineSegment
     | Some d1, Some d2 -> d1 = d2 || Direction2D.reverse d1 = d2
     | _ -> false
 
+let isPointOnSegment (point: Point2D<'Unit, 'Coordinates>) (segment: LineSegment2D<'Unit, 'Coordinates>) =
+    let firstDistance = Point2D.distanceTo segment.Start point
+    let secondDistance = Point2D.distanceTo segment.Finish point
+    (length segment) = (firstDistance + secondDistance)
+
+let distanceToPoint
+    (point: Point2D<'Unit, 'Coordinates>)
+    (segment: LineSegment2D<'Unit, 'Coordinates>)
+    : Length<'Unit> =
+    match axis segment with
+    | Some segmentAxis ->
+        let perpendicular = Point2D.projectOnto segmentAxis point
+
+        // Projected point is on segment
+        if isPointOnSegment perpendicular segment then
+            Point2D.distanceTo point perpendicular
+
+        // Get the smallest distance between the endpoints
+        else
+            Length.min (Point2D.distanceTo point segment.Start) (Point2D.distanceTo point segment.Finish)
+
+    // The Line Segment is in the degenerative case where the start and endpoint
+    // are the same. So the distance is just point distance.
+    | None -> Point2D.distanceTo segment.Start point
+
+/// Get the point on a line segment that is closest to the input point.
 let pointClosestTo
     (point: Point2D<'Unit, 'Coordinates>)
     (segment: LineSegment2D<'Unit, 'Coordinates>)
     : Point2D<'Unit, 'Coordinates> =
     if point = segment.Start || point = segment.Finish then
         point
+
+    else if isPointOnSegment point segment then
+        point
+
     else
-        let v = segment.Start |> Point2D.vectorTo point
-        let lineLength = length segment
-        let lineDirection = segment.Finish - segment.Start
+        match axis segment with
+        | Some segmentAxis ->
+            let perpendicular = Point2D.projectOnto segmentAxis point
 
-        let dotProduct : Length<'Unit * 'Unit> =
-            match Vector2D.dotProduct v lineDirection with
-            | dotProduct when dotProduct < Length.zero -> Length.zero
-            | dotProduct when Length.unpack dotProduct > Length.unpack lineLength ->
-                Length.create<'Unit * 'Unit> (Length.unpack lineLength)
-            | dotProduct -> dotProduct
+            // Perpendicular projection is the closest point
+            if isPointOnSegment perpendicular segment then
+                perpendicular
+            else if Point2D.distanceSquaredTo point segment.Start < Point2D.distanceSquaredTo point segment.Finish then
+                segment.Start
+            else
+                segment.Finish
 
-        let alongVector = Length.unpack dotProduct * lineDirection
-
-        segment.Start + alongVector
-
-let isPointOnLine (point: Point2D<'Unit, 'Coordinates>) (segment: LineSegment2D<'Unit, 'Coordinates>) : bool =
-    point = segment.Start
-    || point = segment.Finish
-    || point = pointClosestTo point segment
-
-let distanceToPoint
-    (point: Point2D<'Unit, 'Coordinates>)
-    (segment: LineSegment2D<'Unit, 'Coordinates>)
-    : Length<'Unit> =
-    Point2D.distanceTo point (pointClosestTo point segment)
+        // Segment endpoints are the same
+        | None -> point
 
 
 /// Try to find the intersection between two lines. If the lines are parallel (even if they are overlapping) then no
