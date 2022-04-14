@@ -52,15 +52,16 @@ let endpoints
     : Point2D<'Unit, 'Coordinates> * Point2D<'Unit, 'Coordinates> =
     (segment.Start, segment.Finish)
 
-let direction (segment: LineSegment2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
-    Vector2D.normalize (segment.Finish - segment.Start)
+/// Get the vector from the start point to the end point of the segment segment
+let vector (segment: LineSegment2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    Vector2D.from segment.Start segment.Finish
+
+let direction (segment: LineSegment2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
+    Vector2D.direction (vector segment)
 
 let length (segment: LineSegment2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Point2D.distanceTo segment.Start segment.Finish
 
-/// Get the vector from the start point to the end point of the segment segment
-let vector (segment: LineSegment2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
-    Vector2D.from segment.Start segment.Finish
 
 /// Get the direction perpendicular to a segment segment, pointing to the left. If
 /// the segment segment has zero length, returns `Nothing`.
@@ -150,10 +151,9 @@ let interpolate (segment: LineSegment2D<'Unit, 'Coordinates>) (t: float) : Point
     Point2D.interpolateFrom segment.Start segment.Finish t
 
 let areParallel (first: LineSegment2D<'Unit, 'Coordinates>) (second: LineSegment2D<'Unit, 'Coordinates>) : bool =
-    let d1 = direction first
-    let d2 = direction second
-
-    d1 = d2 || Vector2D.neg d1 = d2
+    match direction first, direction second with
+    | Some d1, Some d2 -> d1 = d2 || Direction2D.reverse d1 = d2
+    | _ -> false
 
 let pointClosestTo
     (point: Point2D<'Unit, 'Coordinates>)
@@ -164,9 +164,9 @@ let pointClosestTo
     else
         let v = segment.Start |> Point2D.vectorTo point
         let lineLength = length segment
-        let lineDirection = direction segment
+        let lineDirection = segment.Finish - segment.Start
 
-        let dotProduct: Length<'Unit * 'Unit> =
+        let dotProduct : Length<'Unit * 'Unit> =
             match Vector2D.dotProduct v lineDirection with
             | dotProduct when dotProduct < Length.zero -> Length.zero
             | dotProduct when Length.unpack dotProduct > Length.unpack lineLength ->
@@ -243,16 +243,22 @@ let intersectionWithAxis
         let t = (d1 - d2) / d1
         Point2D.interpolateFrom p1 p2 t |> Some
 
-    else if product > Length.zero then
+    else
+
+    if product > Length.zero then
         // Both points are on the same side of the axis, so no intersection
         // point exists
         None
 
-    else if d1 <> Length.zero then
+    else
+
+    if d1 <> Length.zero then
         // d2 must be zero since the product is zero, so only p2 is on the axis
         Some p2
 
-    else if d2 <> Length.zero then
+    else
+
+    if d2 <> Length.zero then
         // d1 must be zero since the product is zero, so only p1 is on the axis
         Some p1
 

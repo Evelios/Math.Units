@@ -8,6 +8,12 @@ type TestSpace = TestSpace
 type TestDefines = TestDefines
 
 module Test =
+    let isTrue failMessage assertion =
+        if not assertion then
+            printfn $"{failMessage}"
+
+        assertion
+
     let private comparison name operator lhs rhs : bool =
         if operator rhs lhs then
             true

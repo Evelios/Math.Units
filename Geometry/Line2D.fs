@@ -1,7 +1,7 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Line2D
 
-(* Builders *)
+// ---- Builders ----
 
 let through (start: Point2D<'Unit, 'Coordinates>) (finish: Point2D<'Unit, 'Coordinates>) : Line2D<'Unit, 'Coordinates> =
     { Start = start; Finish = finish }
@@ -14,32 +14,33 @@ let fromPointAndVector (start: Point2D<'Unit, 'Coordinates>) (direction: Vector2
 let private toLineSegment (line: Line2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 'Coordinates> =
     LineSegment2D.from line.Start line.Finish
 
-(* Attributes *)
 
-let direction (line: Line2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
-    Vector2D.normalize (line.Start - line.Finish)
+// ---- Attributes ----
+
+let direction (line: Line2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
+    Vector2D.direction (Vector2D.from line.Start line.Finish)
 
 let length (line: Line2D<'Unit, 'Coordinates>) : Length<'Unit> =
     Point2D.distanceTo line.Start line.Finish
 
 
-(* Modifiers *)
+// ---- Modifiers ----
 
 let round (l: Line2D<'Unit, 'Coordinates>) =
     through (Point2D.round l.Start) (Point2D.round l.Finish)
 
 
-(* Queries *)
+// ---- Queries ----
 
 let pointClosestTo
     (point: Point2D<'Unit, 'Coordinates>)
     (line: Line2D<'Unit, 'Coordinates>)
     : Point2D<'Unit, 'Coordinates> =
     let v : Vector2D<'Unit, 'Coordinates> = line.Start |> Point2D.vectorTo point
-    let lineDirection = direction line
+    let lineDirection = line.Finish - line.Start
 
     let alongVector =
-        Length.unpack (Vector2D.dotProduct v (direction line))
+        Length.unpack (Vector2D.dotProduct v lineDirection)
         * lineDirection
 
     line.Start + alongVector
@@ -70,18 +71,17 @@ let isPointOnLine (point: Point2D<'Unit, 'Coordinates>) (line: Line2D<'Unit, 'Co
     || point = pointClosestTo point line
 
 let areParallel (first: Line2D<'Unit, 'Coordinates>) (second: Line2D<'Unit, 'Coordinates>) : bool =
-    let d1 = direction first
-    let d2 = direction second
-
-    d1 = d2 || Vector2D.neg d1 = d2
+    match direction first, direction second with
+    | Some d1, Some d2 -> d1 = d2 || Direction2D.reverse d1 = d2
+    | _ -> false
 
 let arePerpendicular (first: Line2D<'Unit, 'Coordinates>) (second: Line2D<'Unit, 'Coordinates>) =
-    let d1 = (direction first)
+    match direction first, direction second with
+    | Some d1, Some d2 ->
+        let d2' = Direction2D.rotateClockwise d2
+        d1 = d2' || Direction2D.reverse d1 = d2'
 
-    let d2 =
-        Vector2D.rotateBy (Angle.pi / 2.) (direction second)
-
-    d1 = d2 || Vector2D.neg d1 = d2
+    | _ -> false
 
 let intersect
     (first: Line2D<'Unit, 'Coordinates>)
