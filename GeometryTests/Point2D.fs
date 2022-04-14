@@ -49,12 +49,69 @@ let ``Point from polar`` () =
 
     Assert.AreEqual(expected, actual)
 
-// ---- Other Tests -----
+// ---- Accessors -----
 
 [<Test>]
 let Magnitude () =
     let vector = Point2D.meters 2. 2.
     Assert.AreEqual(Length.meters (2. * sqrt 2.), Point2D.magnitude vector)
+
+
+[<Test>]
+let ``Distance squared to`` () =
+    let v1 = Point2D.meters 1. 1.
+    let v2 = Point2D.meters 3. 3.
+    let actual : Length<Meters * Meters> = Point2D.distanceSquaredTo v1 v2
+    let expected : Length<Meters * Meters> = Length<Meters * Meters>.create 8.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Distance to`` () =
+    let v1 = Point2D.meters 1. 1.
+    let v2 = Point2D.meters 3. 3.
+    let actual = Point2D.distanceTo v1 v2
+    let expected = Length.meters (2. * sqrt 2.)
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Mid vector`` () =
+    let v1 = Point2D.meters 1. 1.
+    let v2 = Point2D.meters 3. 3.
+    let actual = Point2D.midpoint v1 v2
+    let expected = Point2D.meters 2. 2.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Direction () =
+    let vector = Point2D.meters 1. 1.
+    let actual = Point2D.direction vector
+    let expected = Direction2D.xy (sqrt 2.) (sqrt 2.)
+    Assert.AreEqual(expected, actual)
+
+[<Property>]
+let ``coordinates and x/yCoordinates are consistent`` (point: Point2D<Meters, TestSpace>) =
+    let x, y = Point2D.coordinates point
+
+    Test.all [
+        Test.equal x point.X
+        Test.equal y point.Y
+        Test.equal x (Point2D.x point)
+        Test.equal y (Point2D.y point)
+    ]
+
+[<Property>]
+let ``coordinatesIn and x/yCoordinatesIn are consistent``
+    (point: Point2D<Meters, TestSpace>)
+    (frame: Frame2D<Meters, TestSpace, TestDefines>)
+    =
+    let x, y = Point2D.coordinatesIn frame point
+
+    Test.all [
+        Test.equal x (Point2D.xCoordinateIn frame point)
+        Test.equal y (Point2D.yCoordinateIn frame point)
+    ]
+
+// ---- Modifiers ----
 
 [<Test>]
 let Scale () =
@@ -106,36 +163,99 @@ let ``Round to`` () =
     let expected = (Point2D.meters 2.22 2.22)
     Assert.AreEqual(expected, actual)
 
-[<Test>]
-let ``Distance squared to`` () =
-    let v1 = Point2D.meters 1. 1.
-    let v2 = Point2D.meters 3. 3.
-    let actual : Length<Meters * Meters> = Point2D.distanceSquaredTo v1 v2
-    let expected : Length<Meters * Meters> = Length<Meters * Meters>.create 8.
-    Assert.AreEqual(expected, actual)
+[<Property>]
+let ``Rotation preserves distance``
+    (point: Point2D<Meters, TestSpace>)
+    (centerPoint: Point2D<Meters, TestSpace>)
+    (rotationAngle: Angle)
+    =
+
+    let initialDistance = Point2D.distanceTo centerPoint point
+
+    let rotatedPoint =
+        Point2D.rotateAround centerPoint rotationAngle point
+
+    let rotatedDistance =
+        Point2D.distanceTo centerPoint rotatedPoint
+
+    Test.equal initialDistance rotatedDistance
+
+[<Property>]
+let ``Project onto preserves distance`` (point: Point2D<Meters, TestSpace>) (axis: Axis2D<Meters, TestSpace>) =
+    let initialDistance = Point2D.signedDistanceAlong axis point
+    let projectedPoint = Point2D.projectOnto axis point
+
+    let projectedDistance =
+        Point2D.signedDistanceAlong axis projectedPoint
+
+    Test.equal initialDistance projectedDistance
+
+let ``translateBy and translateIn are consistent``
+    (point: Point2D<Meters, TestSpace>)
+    (direction: Direction2D<TestSpace>)
+    (distance: Length<Meters>)
+    =
+
+    let displacement = Vector2D.withLength distance direction
+
+    let translatedIn =
+        Point2D.translateIn direction distance point
+
+    let translatedBy = Point2D.translateBy displacement point
+
+    Test.equal translatedIn translatedBy
+
+
+// ---- Queries ----
+
+[<Property>]
+let ``Midpoint is equidistant`` (first: Point2D<Meters, TestSpace>) (second: Point2D<Meters, TestSpace>) =
+    let midpoint = Point2D.midpoint first second
+    Test.equal (Point2D.distanceTo midpoint first) (Point2D.distanceTo midpoint second)
+
+[<Property>]
+let ``Interpolation returns exact endpoints`` (first: Point2D<Meters, TestSpace>) (second: Point2D<Meters, TestSpace>) =
+    Test.all [
+        Test.equal first (Point2D.interpolateFrom first second 0.)
+        Test.equal second (Point2D.interpolateFrom first second 1.)
+    ]
+
+[<Property>]
+let ``Circumcenter of three points is equidistant from each point or is None``
+    (p1: Point2D<Meters, TestSpace>)
+    (p2: Point2D<Meters, TestSpace>)
+    (p3: Point2D<Meters, TestSpace>)
+    =
+    match Point2D.circumcenter p1 p2 p3 with
+    | None ->
+        Triangle2D.area (Triangle2D.from p1 p2 p3)
+        |> Test.equal Length.zero
+
+    | Some circumcenter ->
+        let r1 = Point2D.distanceTo circumcenter p1
+
+        Test.all [
+            Test.equal r1 (Point2D.distanceTo circumcenter p2)
+            Test.equal r1 (Point2D.distanceTo circumcenter p3)
+        ]
 
 [<Test>]
-let ``Distance to`` () =
-    let v1 = Point2D.meters 1. 1.
-    let v2 = Point2D.meters 3. 3.
-    let actual = Point2D.distanceTo v1 v2
-    let expected = Length.meters (2. * sqrt 2.)
+let ``Tricky circumcenter case`` () =
+    let p1 = Point2D.meters -10. 0.
+    let p2 = Point2D.meters -10. 1.0e-6
+
+    let p3 =
+        Point2D.meters -9.858773586876941 4.859985890767644
+
+    let expected =
+        Point2D.meters 73.69327796224587 5.0e-7 |> Some
+
+    let actual = Point2D.circumcenter p1 p2 p3
+
     Assert.AreEqual(expected, actual)
 
-[<Test>]
-let ``Mid vector`` () =
-    let v1 = Point2D.meters 1. 1.
-    let v2 = Point2D.meters 3. 3.
-    let actual = Point2D.midpoint v1 v2
-    let expected = Point2D.meters 2. 2.
-    Assert.AreEqual(expected, actual)
 
-[<Test>]
-let Direction () =
-    let vector = Point2D.meters 1. 1.
-    let actual = Point2D.direction vector
-    let expected = Direction2D.xy (sqrt 2.) (sqrt 2.)
-    Assert.AreEqual(expected, actual)
+// ---- Conversion ----
 
 [<Test>]
 let ``From list`` () =
