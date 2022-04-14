@@ -41,13 +41,13 @@ let withAngle (angle: Angle) (origin: Point2D<'Unit, 'Coordinates>) : Frame2D<'U
 /// is equivalent to
 /// `Frame2d.withXDirection (Axis2d.direction axis) (Axis2d.originPoint axis)`
 let fromXAxis (givenAxis: Axis2D<'Unit, 'Coordinates>) =
-    withXDirection (Axis2D.direction givenAxis) (Axis2D.originPoint givenAxis)
+    withXDirection givenAxis.Direction givenAxis.Origin
 
 /// Construct a `Frame2d` given its Y axis;
 /// `Frame2d.fromYAxis axis` is equivalent to
 /// `Frame2d.withYDirection (Axis2d.direction axis) (Axis2d.originPoint axis)`
 let fromYAxis (givenAxis: Axis2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
-    withYDirection (Axis2D.direction givenAxis) (Axis2D.originPoint givenAxis)
+    withYDirection givenAxis.Direction givenAxis.Origin
 
 
 // ---- Accessors ----
@@ -72,12 +72,14 @@ let isRightHanded (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : bool =
 /// Get the X axis of a given frame (the axis formed from the frame's origin
 /// point and X direction).
 let xAxis (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Axis2D<'Unit, 'Coordinates> =
-    Axis2D.through frame.Origin frame.XDirection
+    { Origin = frame.Origin
+      Direction = frame.XDirection }
 
 /// Get the Y axis of a given frame (the axis formed from the frame's origin
 /// point and Y direction).
 let yAxis (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Axis2D<'Unit, 'Coordinates> =
-    Axis2D.through frame.Origin frame.YDirection
+    { Origin = frame.Origin
+      Direction = frame.YDirection }
 
 
 // ---- Modifiers ----
@@ -167,7 +169,7 @@ let translateAlongOwn
     : Frame2D<'Unit, 'Coordinates, 'Defines2> =
     let frame =
         frame
-        |> translateIn (Axis2D.direction (axis frame)) distance
+        |> translateIn (axis frame).Direction distance
 
     { Origin = frame.Origin
       XDirection = frame.XDirection
@@ -216,4 +218,3 @@ let placeIn<'Unit, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
     { Origin = Internal.Point2D.placeIn reference frame.Origin
       XDirection = Direction2D.placeIn reference frame.XDirection
       YDirection = Direction2D.placeIn reference frame.YDirection }
-
