@@ -141,7 +141,7 @@ let unitless l : Length<Unitless> = Length<Unitless>.create l
 
 let apply f (Length.Length l: Length<'Unit>) : Length<'Unit> = Length<'Unit>.create (f l)
 
-let square (l: Length<'Unit>) : Length<'Unit * 'Unit> = l * l
+let squared (l: Length<'Unit>) : Length<'Unit * 'Unit> = l * l
 
 let sqrt (Length.Length l: Length<'Unit * 'Unit>) : Length<'Unit> = Length<'Unit>.create (sqrt l)
 

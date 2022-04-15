@@ -9,14 +9,18 @@ type TestDefines = TestDefines
 
 module Test =
     [<Literal>]
-    let pass =
-        true
-        
+    let pass = true
+
     let fail failMessage =
         printfn $"{failMessage}"
         false
-        
-    
+
+    let isFalse failMessage assertion =
+        if assertion then
+            printfn $"{failMessage}"
+
+        not assertion
+
     let isTrue failMessage assertion =
         if not assertion then
             printfn $"{failMessage}"
@@ -67,3 +71,11 @@ With Parallel Component: {parallelComponent}
             """
 
             false
+
+    let isValidBoundingBox2D (box: BoundingBox2D<'Unit, 'Coordinates>) =
+        if box.MinX > box.MaxX then
+            fail $"Expected bounding box with extrema to have minX <= maxX.{Environment.NewLine}{box}"
+        else if box.MinY > box.MaxY then
+            fail "Expected bounding box with extrema to have minY <= maxY.{Environment.NewLine}{box}"
+        else
+            pass
