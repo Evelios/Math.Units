@@ -8,6 +8,15 @@ type TestSpace = TestSpace
 type TestDefines = TestDefines
 
 module Test =
+    [<Literal>]
+    let pass =
+        true
+        
+    let fail failMessage =
+        printfn $"{failMessage}"
+        false
+        
+    
     let isTrue failMessage assertion =
         if not assertion then
             printfn $"{failMessage}"

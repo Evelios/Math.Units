@@ -190,7 +190,10 @@ let pointClosestTo
     if point = segment.Start || point = segment.Finish then
         point
 
-    else if isPointOnSegment point segment then
+    else
+
+    // Perpendicular projection is the closest point
+    if isPointOnSegment point segment then
         point
 
     else
@@ -213,37 +216,77 @@ let pointClosestTo
 /// Try to find the intersection between two lines. If the lines are parallel (even if they are overlapping) then no
 /// intersection is returned
 let intersectionPoint
-    (lhs: LineSegment2D<'Unit, 'Coordinates>)
-    (rhs: LineSegment2D<'Unit, 'Coordinates>)
+    (lineSegment1: LineSegment2D<'Unit, 'Coordinates>)
+    (lineSegment2: LineSegment2D<'Unit, 'Coordinates>)
     : Point2D<'Unit, 'Coordinates> option =
-    if areParallel lhs rhs then
-        None
-    else
-        // http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-segment-segments-intersect
-        let p = lhs.Start
-        let q = rhs.Start
-        let r = lhs.Finish - lhs.Start
-        let s = rhs.Finish - rhs.Start
+    // The two line segments are:
+    // p |--- r ---| p_
+    // q |--- s ---| q_
 
-        let numerator = Vector2D.crossProduct (q - p) r
-        let denominator = Vector2D.crossProduct r s
+    let p, p_ = endpoints lineSegment1
+    let q, q_ = endpoints lineSegment2
+    let r = vector lineSegment1
+    let s = vector lineSegment2
+    let pq = Vector2D.from p q
+    let pq_ = Vector2D.from p q_
+    let qp_ = Vector2D.from q p_
+    let pqXr = pq |> Vector2D.cross r
+    let pqXs = pq |> Vector2D.cross s
+    let sXqp_ = s |> Vector2D.cross qp_
+    let rXpq_ = r |> Vector2D.cross pq_
+    let tDenominator = pqXs - sXqp_
+    let uDenominator = pqXr + rXpq_
 
-        // Lines are collinear
-        if numerator = Length.zero
-           && denominator = Length.zero then
-            None
-        else
-            // u = (p − q) × r / (s × r)
-            let u = numerator / denominator
+    if tDenominator = Length.zero
+       || uDenominator = Length.zero then
+        // Segments are parallel or collinear.
+        // In collinear case, we check if there is only one intersection point.
+        if Vector2D.dotProduct s r < Length.zero then
+            if p_ = q_ then
+                // p |----- p_ | q_ -----| q
+                Some p_
 
-            // t = (q − p) × s / (r × s)
-            let t =
-                (Vector2D.crossProduct (q - p) s) / denominator
+            else if p = q then
+                // q_ |----- q | p -----| p_
+                Some p
 
-            if t >= 0. && t <= 1. && u >= 0. && u <= 1. then
-                p + (t * r) |> Some
             else
                 None
+
+        else
+
+        if p_ = q then
+            // p |----- p_ | q -----| q_
+            Some p_
+
+        else if p = q_ then
+            // q |----- q_ | p -----| p_
+            Some p
+
+        else
+            None
+    else
+        // Segments are not parallel.
+        // We search for the intersection point of the two lines.
+        let t = pqXs / tDenominator
+        let u = pqXr / uDenominator
+
+        if (0. <= t && t <= 1.) && (0. <= u && u <= 1.) then
+            // Intersection is within both segments.
+            // Ensure interpolation happens from the closest
+            // endpoint (this should be more numerically stable, and
+            // also mostly ensures that intersection is symmetric)
+            let intersection =
+                if min t (1. - t) <= min u (1. - u) then
+                    interpolate lineSegment1 t
+
+                else
+                    interpolate lineSegment2 u
+
+            Some intersection
+
+        else
+            None
 
 /// Attempt to find the unique intersection point of a line segment with an
 /// axis. If there is no such point (the line segment does not touch the axis, or
@@ -300,10 +343,9 @@ let intersectionWithAxis
 let signedDistanceAlong
     (axis: Axis2D<'Unit, 'Coordinates>)
     (segment: LineSegment2D<'Unit, 'Coordinates>)
-    : Length<'Unit> =
-    (Point2D.signedDistanceAlong axis segment.Start)
-    - (Point2D.signedDistanceAlong axis segment.Finish)
-    |> Length.abs
+    : Interval<Length<'Unit>> =
+    Interval.from (Point2D.signedDistanceAlong axis segment.Start) (Point2D.signedDistanceAlong axis segment.Finish)
+
 
 /// Measure the distance of a line segment from an axis. If the returned interval:
 ///  - is entirely positive, then the line segment is to the left of the axis
@@ -313,10 +355,8 @@ let signedDistanceAlong
 let signedDistanceFrom
     (axis: Axis2D<'Unit, 'Coordinates>)
     (segment: LineSegment2D<'Unit, 'Coordinates>)
-    : Length<'Unit> =
-    (Point2D.signedDistanceFrom axis segment.Start)
-    - (Point2D.signedDistanceFrom axis segment.Finish)
-    |> Length.abs
+    : Interval<Length<'Unit>> =
+    Interval.from (Point2D.signedDistanceFrom axis segment.Start) (Point2D.signedDistanceFrom axis segment.Finish)
 
 /// Take a line segment defined in global coordinates, and return it expressed
 /// in local coordinates relative to a given reference frame.
