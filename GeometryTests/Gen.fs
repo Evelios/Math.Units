@@ -15,6 +15,8 @@ module Gen =
         Gen.choose (0, Int32.MaxValue)
         |> Gen.map (fun x -> float x / (float Int32.MaxValue))
 
+    let intBetween low high = Gen.choose (low, high)
+
     let floatBetween low high =
         Gen.map (fun scale -> (low + (high - low)) * scale) rand
 
