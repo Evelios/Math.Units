@@ -78,9 +78,9 @@ let maxY (box: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> = box.MaxY
 let dimensions (boundingBox: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> * Length<'Unit> =
     (boundingBox.MaxX - boundingBox.MinX, boundingBox.MaxY - boundingBox.MinY)
 
-let midX (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = box.MaxX - box.MinX / 2.
+let midX (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = (box.MaxX + box.MinX) / 2.
 
-let midY (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = box.MaxY - box.MinY / 2.
+let midY (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = (box.MaxY + box.MinY) / 2.
 
 let centerPoint (box: BoundingBox2D<'Unit, 'Coordiantes>) : Point2D<'Unit, 'Coodinates> =
     Point2D.xy (midX box) (midY box)
@@ -408,20 +408,20 @@ let aggregateOfN
     match items with
     | first :: rest -> Some(aggregateOf getBoundingBox first rest)
     | [] -> None
-    
-/// Test to see if the target point is contained withing the bounding box
+
+/// Test to see if the target bounding box is contained withing the bounding box
+let isContainedIn (target: BoundingBox2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
+    target.MinX >= box.MinX
+    && target.MaxX <= box.MaxX
+    && target.MinY >= box.MinY
+    && target.MaxY <= box.MaxY
+
+/// Test to see if the target bounding box is contained withing the bounding box
 let contains (target: Point2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
     target.X >= box.MinX
     && target.X <= box.MaxX
     && target.Y >= box.MinY
     && target.Y <= box.MaxY
-
-/// Test to see if the target bounding box is contained withing the bounding box
-let containsBoundingBox (target: BoundingBox2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
-    target.MinX >= box.MinX
-    && target.MaxX <= box.MaxX
-    && target.MinY >= box.MinY
-    && target.MaxY <= box.MaxY
 
 let intersects (first: BoundingBox2D<'Unit, 'Coordinates>) (second: BoundingBox2D<'Unit, 'Coordinates>) : bool =
     first.MinX <= second.MaxX
@@ -492,18 +492,18 @@ let separatedByAtLeast
     let clampedTolerance = Length.max tolerance Length.zero
 
     let xSeparation =
-        Length.max (minX firstBox) (minX secondBox)
-        - Length.min (maxX firstBox) (maxX secondBox)
+        Length.max firstBox.MinX secondBox.MinX
+        - Length.min firstBox.MaxX secondBox.MaxX
 
     let ySeparation =
-        Length.max (minY firstBox) (minY secondBox)
-        - Length.min (maxY firstBox) (maxY secondBox)
+        Length.max firstBox.MinY secondBox.MinY
+        - Length.min firstBox.MaxY secondBox.MaxY
 
     if xSeparation > Length.zero
        && ySeparation > Length.zero then
-        Length.square xSeparation
-        + Length.square ySeparation
-        >= Length.square clampedTolerance
+
+        Length.squared xSeparation
+        + Length.squared ySeparation >= Length.squared clampedTolerance
 
     else if xSeparation > Length.zero then
         xSeparation >= clampedTolerance
@@ -511,21 +511,8 @@ let separatedByAtLeast
     else if ySeparation > Length.zero then
         ySeparation >= clampedTolerance
 
-    else if xSeparation = Length.zero
-            || ySeparation = Length.zero then
-        clampedTolerance = Length.zero
-
     else
         false
-
-/// Test if the second given bounding box is fully contained within the first
-/// (is a subset of it).
-let isContainedIn (other: BoundingBox2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordaintes>) : bool =
-    (other.MinX <= box.MinX)
-    && (box.MaxX <= other.MaxX)
-    && (other.MinY <= box.MinY)
-    && (box.MaxY <= other.MaxY)
-
 
 
 // ---- Boolean Operations ----

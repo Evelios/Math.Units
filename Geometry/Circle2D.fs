@@ -39,7 +39,7 @@ let radius (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = circle.Radi
 let diameter (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = circle.Radius * 2.
 
 let area (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
-    2. * Math.PI * (Length.square circle.Radius)
+    2. * Math.PI * (Length.squared circle.Radius)
 
 let circumference (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = 2. * Math.PI * circle.Radius
 
@@ -119,7 +119,7 @@ let placeIn
 /// to be contained if the point lies on the edge of the circle.
 let containsPoint (point: Point2D<'Unit, 'Coordinates>) (circle: Circle2D<'Unit, 'Coordinates>) : bool =
     Point2D.distanceSquaredTo point circle.Center
-    <= Length.square circle.Radius
+    <= Length.squared circle.Radius
 
 /// Check if a circle intersects with a given bounding box. This function will
 /// return true if the circle intersects the edges of the bounding box _or_ is fully
@@ -133,5 +133,5 @@ let intersectsBoundingBox (box: BoundingBox2D<'Unit, 'Coordinates>) (circle: Cir
         circle.Center.Y
         - (Length.max box.MinY (Length.min circle.Center.Y box.MaxY))
 
-    Length.square deltaX + (Length.square deltaY)
-    <= (Length.square circle.Radius)
+    Length.squared deltaX + (Length.squared deltaY)
+    <= (Length.squared circle.Radius)

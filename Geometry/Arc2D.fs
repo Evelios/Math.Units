@@ -147,12 +147,12 @@ let withRadius
     : Arc2D<'Unit, 'Coordinates> option =
 
     let chord = LineSegment2D.from startPoint endPoint
-    let squaredRadius = Length.square radius
+    let squaredRadius = Length.squared radius
 
     let squaredHalfLength =
         LineSegment2D.length chord
         |> (*) 0.5
-        |> Length.square
+        |> Length.squared
 
     if squaredRadius < squaredHalfLength then
         None

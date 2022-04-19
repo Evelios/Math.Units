@@ -66,7 +66,7 @@ let x (p: Point2D<'Unit, 'Coordinates>) : Length<'Unit> = p.X
 let y (p: Point2D<'Unit, 'Coordinates>) : Length<'Unit> = p.Y
 
 let magnitude (p: Point2D<'Unit, 'Coordinates>) : Length<'Unit> =
-    Length.sqrt ((Length.square p.X) + (Length.square p.Y))
+    Length.sqrt ((Length.squared p.X) + (Length.squared p.Y))
 
 
 
