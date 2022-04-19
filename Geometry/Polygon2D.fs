@@ -12,12 +12,13 @@ let private counterclockwiseArea (vertices_: Point2D<'Unit, 'Coordinates> list) 
 
     | [ _; _ ] -> Length.zero
 
-    | first :: second :: rest ->
+    | first :: rest ->
         let segmentArea start finish =
             Triangle2D.counterclockwiseArea (Triangle2D.from first start finish)
 
         let segmentAreas =
-            List.map2 segmentArea (second :: rest) rest
+            List.pairwise rest
+            |> List.map (fun (start, finish) -> segmentArea start finish)
 
         Length.sum segmentAreas
 
@@ -116,13 +117,17 @@ let chain (acc: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates
 /// Build the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of a list
 /// of points. This is an O(n log n) operation.
 let convexHull (points: Point2D<'Unit, 'Coordinates> list) : Polygon2D<'Unit, 'Coordinates> =
-    // See http://www.algorithmist.com/index.php/Monotone_Chain_Convex_Hull
-    // for a description of the algorithm.
-    let sorted = List.sort points
-    let lower = chain sorted
-    let upper = chain (List.rev sorted)
+    match points with
+    | [] -> singleLoop []
 
-    singleLoop (lower @ upper)
+    | _ ->
+        // See http://www.algorithmist.com/index.php/Monotone_Chain_Convex_Hull
+        // for a description of the algorithm.
+        let sorted = List.sort points
+        let lower = chain sorted
+        let upper = chain (List.rev sorted)
+
+        singleLoop (lower @ upper)
 
 
 // ---- Accessors ----

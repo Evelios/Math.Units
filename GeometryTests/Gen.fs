@@ -83,10 +83,10 @@ module Gen =
     let boundingBox2D : Gen<BoundingBox2D<Meters, TestSpace>> =
         Gen.map2 BoundingBox2D.from point2D point2D
 
-    let point2DInBoundingBox2D (bbox: BoundingBox2D<'Unit, 'Coordinates>) =
+    let point2DInBoundingBox2D (bbox: BoundingBox2D<Meters, TestSpace>) =
         Gen.map2 Point2D.xy (lengthBetween bbox.MinX bbox.MaxX) (lengthBetween bbox.MinY bbox.MaxY)
 
-    let lineSegment2DInBoundingBox2D (bbox: BoundingBox2D<'Unit, 'Coordinates>) =
+    let lineSegment2DInBoundingBox2D (bbox: BoundingBox2D<Meters, TestSpace>) =
         Gen.two (point2DInBoundingBox2D bbox)
         |> Gen.where (fun (a, b) -> a <> b)
         |> Gen.map (Tuple2.map LineSegment2D.from)
@@ -101,6 +101,26 @@ module Gen =
 
     let arc2D =
         Gen.map3 Arc2D.from point2D point2D angle
+
+    let polygon2D =
+        let boundingBox =
+            { MinX = Length.meters -10.
+              MaxX = Length.meters 10.
+              MinY = Length.meters -10.
+              MaxY = Length.meters 10. }
+
+        let genPoint2D : Gen<Point2D<Meters, TestSpace>> = point2DInBoundingBox2D boundingBox
+
+        let genPolygonPointList =
+            Gen.map3
+                (fun first second rest -> first :: second :: rest)
+                genPoint2D
+                genPoint2D
+                (Gen.nonEmptyListOf genPoint2D)
+
+        let genPointListList = Gen.listOf genPolygonPointList
+
+        Gen.map2 Polygon2D.withHoles genPointListList genPolygonPointList
 
     type ArbGeometry =
         static member Float() = Arb.fromGen float
@@ -117,5 +137,6 @@ module Gen =
         static member LineSegment2D() = Arb.fromGen lineSegment2D
         static member BoundingBox2D() = Arb.fromGen boundingBox2D
         static member Frame2D() = Arb.fromGen frame2D
+        static member Polygon2D() = Arb.fromGen polygon2D
 
         static member Register() = Arb.register<ArbGeometry> () |> ignore
