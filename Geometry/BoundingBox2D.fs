@@ -408,9 +408,16 @@ let aggregateOfN
     match items with
     | first :: rest -> Some(aggregateOf getBoundingBox first rest)
     | [] -> None
+    
+/// Test to see if the target point is contained withing the bounding box
+let contains (target: Point2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
+    target.X >= box.MinX
+    && target.X <= box.MaxX
+    && target.Y >= box.MinY
+    && target.Y <= box.MaxY
 
 /// Test to see if the target bounding box is contained withing the bounding box
-let contains (target: BoundingBox2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
+let containsBoundingBox (target: BoundingBox2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
     target.MinX >= box.MinX
     && target.MaxX <= box.MaxX
     && target.MinY >= box.MinY

@@ -16,6 +16,11 @@ module Test =
         printfn $"{failMessage}"
         false
         
+    let isFalse failMessage assertion =
+        if assertion then
+            printfn $"{failMessage}"
+
+        not assertion
     
     let isTrue failMessage assertion =
         if not assertion then

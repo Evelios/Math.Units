@@ -17,5 +17,5 @@ let ``Bounding box union contains both boxes``
     =
     let union = BoundingBox2D.union first second
 
-    BoundingBox2D.contains first union
-    && BoundingBox2D.contains second union
+    BoundingBox2D.containsBoundingBox first union
+    && BoundingBox2D.containsBoundingBox second union
