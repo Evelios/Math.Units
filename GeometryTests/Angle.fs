@@ -15,11 +15,11 @@ let Setup () = Gen.ArbGeometry.Register()
 
 [<Property>]
 let ``From radians and back`` (angle: Angle) =
-    Test.equal angle (Angle.inRadians angle |> Angle.radians)
+    angle .=. (Angle.inRadians angle |> Angle.radians)
 
 [<Property>]
 let ``From degrees and back`` (angle: Angle) =
-    Test.equal angle (Angle.inDegrees angle |> Angle.degrees)
+    angle .=.(Angle.inDegrees angle |> Angle.degrees)
 
 [<Property>]
 let ``Normalized value always within -Pi to Pi`` (angle: Angle) =

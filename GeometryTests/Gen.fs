@@ -1,5 +1,8 @@
 namespace GeometryTests
 
+type 'a Positive = Positive of 'a
+
+
 module Gen =
     open System
     open FsCheck
@@ -23,11 +26,16 @@ module Gen =
     let float =
         Arb.generate<NormalFloat> |> Gen.map float
 
+    let positiveFloat = Gen.map abs float
+
     let private epsilonLength<'Unit> () = Length<'Unit>.create Epsilon
 
     let angle = Gen.map Angle.radians float
 
     let length = Gen.map Length.meters float
+
+    let positiveLength : Gen<Length<Meters> Positive> =
+        Gen.map (Length.meters >> Positive) positiveFloat
 
     let lengthBetween (a: Length<'Unit>) (b: Length<'Unit>) : Gen<Length<'Unit>> =
         Gen.map Length.create<'Unit> (floatBetween (Length.unpack a) (Length.unpack b))
@@ -83,10 +91,24 @@ module Gen =
         |> Gen.where (fun (a, b) -> a <> b)
         |> Gen.map (Tuple2.map LineSegment2D.from)
 
+    let sweptAngle : Gen<SweptAngle> =
+        Gen.oneof [
+            Gen.constant SweptAngle.smallPositive
+            Gen.constant SweptAngle.smallNegative
+            Gen.constant SweptAngle.largePositive
+            Gen.constant SweptAngle.largeNegative
+        ]
+
+    let arc2D =
+        Gen.map3 Arc2D.from point2D point2D angle
+
     type ArbGeometry =
         static member Float() = Arb.fromGen float
         static member Angle() = Arb.fromGen angle
+        static member SweptAngle() = Arb.fromGen sweptAngle
+        static member Arc2D() = Arb.fromGen arc2D
         static member Length() = Arb.fromGen length
+        static member PositiveLength() = Arb.fromGen positiveLength
         static member Direction2D() = Arb.fromGen direction2D
         static member Vector2D() = Arb.fromGen vector2D
         static member Point2D() = Arb.fromGen point2D

@@ -27,31 +27,30 @@ module Test =
 
         assertion
 
-    let private comparison name operator lhs rhs : bool =
+    let private comparison lhs operator rhs name : bool =
         if operator rhs lhs then
             true
         else
-            printf $"{name}: {lhs}{Environment.NewLine}"
-            printf $" But Was: {rhs}{Environment.NewLine}"
+            printfn name
             false
 
     let equal expected actual : bool =
-        comparison "Expected" (=) expected actual
+        comparison expected (=) actual $"Expected: {expected}{Environment.NewLine} But Was: {actual}"
 
     let almostEqual expected actual : bool =
-        comparison "Expected" almostEqual expected actual
+        comparison expected almostEqual actual $"Expected: {expected}{Environment.NewLine} But Was: {actual}"
 
     let lessThan expected actual : bool =
-        comparison "Expected to be less than" (<) expected actual
+        comparison expected (<) actual $"Expected: {expected} < {actual}"
 
     let lessThanOrEqualTo expected actual : bool =
-        comparison "Expected to be less than or equal to" (<=) expected actual
+        comparison expected (<=) actual $"Expected: {expected} <= {actual}"
 
     let greaterThan expected actual : bool =
-        comparison "Expected to be greater than" (>) expected actual
+        comparison expected (>) actual $"Expected: {expected} > {actual}"
 
     let greaterThanOrEqualTo expected actual : bool =
-        comparison "Expected to be greater than or equal to" (>=) expected actual
+        comparison expected (>=) actual $"Expected: {expected} >= {actual}"
 
     let all tests = List.forall id tests
 
@@ -79,3 +78,12 @@ With Parallel Component: {parallelComponent}
             fail "Expected bounding box with extrema to have minY <= maxY.{Environment.NewLine}{box}"
         else
             pass
+
+
+[<AutoOpen>]
+module Operators =
+    let (.=.) lhs rhs = lhs |> Test.equal rhs
+    let (.>.) lhs rhs = lhs |> Test.greaterThan rhs
+    let (.>=.) lhs rhs = lhs |> Test.greaterThanOrEqualTo rhs
+    let (.<.) lhs rhs = lhs |> Test.lessThan rhs
+    let (.<=.) lhs rhs = lhs |> Test.lessThanOrEqualTo rhs

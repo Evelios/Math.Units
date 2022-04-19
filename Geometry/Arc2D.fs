@@ -150,9 +150,7 @@ let withRadius
     let squaredRadius = Length.squared radius
 
     let squaredHalfLength =
-        LineSegment2D.length chord
-        |> (*) 0.5
-        |> Length.squared
+        0.5 * LineSegment2D.length chord |> Length.squared
 
     if squaredRadius < squaredHalfLength then
         None
