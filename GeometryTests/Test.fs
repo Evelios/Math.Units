@@ -83,6 +83,7 @@ With Parallel Component: {parallelComponent}
 [<AutoOpen>]
 module Operators =
     let (.=.) lhs rhs = lhs |> Test.equal rhs
+    let (.==.) lhs rhs = lhs |> Test.almostEqual rhs
     let (.>.) lhs rhs = lhs |> Test.greaterThan rhs
     let (.>=.) lhs rhs = lhs |> Test.greaterThanOrEqualTo rhs
     let (.<.) lhs rhs = lhs |> Test.lessThan rhs

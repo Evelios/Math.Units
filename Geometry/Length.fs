@@ -11,11 +11,12 @@ module Constant =
     [<Literal>]
     let meter = 1.0
 
-    let nanometer = 1.0e-9 * meter
-    let micron = 1.0e-6 * meter
-    let millimeter = 1.0e-3 * meter
-    let centimeter = 1.0e-2 * meter
-    let kilometer = 1.0e3 * meter
+    let angstrom = 1.e-10 * meter
+    let nanometer = 1.e-9 * meter
+    let micron = 1.e-6 * meter
+    let millimeter = 1.e-3 * meter
+    let centimeter = 1.e-2 * meter
+    let kilometer = 1.e3 * meter
 
 
     // ---- Imperial ----
@@ -23,7 +24,7 @@ module Constant =
     let inch = 0.0254 * meter
     let foot = 12. * inch
     let yard = 3. * foot
-    let thou = 1.0e-3 * inch
+    let thou = 1.e-3 * inch
     let mile = 5280. * foot
 
 
@@ -49,10 +50,13 @@ let meters m : Length<Meters> = Length<Meters>.create m
 let inMeters (Length.Length l: Length<'Unit>) : float = l
 
 let private unit constant num = meters (constant * num)
-let private inUnit constant num = constant * inMeters num
+let private inUnit constant num = inMeters num / constant
 
 
 // ---- Metric ----
+
+let angstroms (l: float) : Length<Meters> = unit Constant.angstrom l
+let inAngstroms (l: Length<Meters>) : float = inUnit Constant.angstrom l
 
 let nanometers (l: float) : Length<Meters> = unit Constant.nanometer l
 let inNanometers (l: Length<Meters>) : float = inUnit Constant.nanometer l
