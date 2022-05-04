@@ -15,10 +15,10 @@
 
         <RepositoryType>git</RepositoryType>
         <NeutralLanguage>en-US</NeutralLanguage>
-    </PropertyGroup>
-
-    <PropertyGroup>
+        
         <FsDocsLicenseLink>https://opensource.org/licenses/MIT</FsDocsLicenseLink>
         <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Fsharp.Geometry/</FsDocsReleaseNotesLink>
+        <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>
+        <FsDocsTheme>default</FsDocsTheme>
     </PropertyGroup>
 </Project>

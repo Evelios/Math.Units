@@ -17,6 +17,20 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{8B986EA4-771E-4527-B19A-2D98FAE3FAF7}"
 ProjectSection(SolutionItems) = preProject
 	docs\index.fsx = docs\index.fsx
+	docs\vector.fsx = docs\vector.fsx
+	docs\triangle.fsx = docs\triangle.fsx
+	docs\axes.fsx = docs\axes.fsx
+	docs\arc.fsx = docs\arc.fsx
+	docs\frame.fsx = docs\frame.fsx
+	docs\direction.fsx = docs\direction.fsx
+	docs\bounding-box.fsx = docs\bounding-box.fsx
+	docs\ellipse.fsx = docs\ellipse.fsx
+	docs\point.fsx = docs\point.fsx
+	docs\size.fsx = docs\size.fsx
+	docs\polyline.fsx = docs\polyline.fsx
+	docs\circle.fsx = docs\circle.fsx
+	docs\line-segment.fsx = docs\line-segment.fsx
+	docs\polygon.fsx = docs\polygon.fsx
 EndProjectSection
 EndProject
 Global
