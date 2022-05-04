@@ -2,11 +2,11 @@
 
 This is a functional first 2D spatial geometry library heavily based on the framework [elm-geometry](https://package.elm-lang.org/packages/ianmackenzie/elm-geometry/latest/). It provides an API based on core geometry concepts and is built around the concepts of functional first design and type safety. This contains many different geometric data structures like points, vectors, arcs, polygons, and coordinate frames. It also supplies many different operations to create, transform, intersect, and perform operations on them such as intersections.
 
-### :closed_book: [API Documentation](https://evelios.github.io/fsharp-geometry/reference/index.html)
+### :closed_book: [Documentation](https://evelios.github.io/fsharp-geometry/index.html)
 
 # Overview
 
-This library provides the following data structues
+This library provides the following data structures
 
 * Vectors
 * Points
