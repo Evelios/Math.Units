@@ -373,9 +373,6 @@ type Vector2D<'Unit, 'Coordinates> =
         { X = vector.X / scale
           Y = vector.Y / scale }
 
-    static member (/)(scale: float, vector: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
-        vector / scale
-
 [<CustomEquality>]
 [<CustomComparison>]
 [<RequireQualifiedAccess>]

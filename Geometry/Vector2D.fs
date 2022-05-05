@@ -109,8 +109,6 @@ let minus (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Vector2D<'Unit, 'Coordinate
 
 let times (rhs: float) (lhs: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = lhs * rhs
 
-let cross (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
-    (lhs.X * rhs.Y - lhs.Y * rhs.X)
 
 /// Alias for `Vector2D.times`
 let scaleBy = times
@@ -260,7 +258,7 @@ let dotProduct (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coord
 
 let crossProduct (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
     (lhs.X * rhs.Y) - (lhs.Y * rhs.X)
-
+    
 /// Get the direction the a vector is facing.
 let direction (v: Vector2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option = Direction2D.xyLength v.X v.Y
 
