@@ -241,7 +241,7 @@ let intersectionPoint
        || uDenominator = Length.zero then
         // Segments are parallel or collinear.
         // In collinear case, we check if there is only one intersection point.
-        if Vector2D.dotProduct s r < Length.zero then
+        if Vector2D.dot s r < Length.zero then
             if p_ = q_ then
                 // p |----- p_ | q_ -----| q
                 Some p_

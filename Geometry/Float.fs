@@ -15,8 +15,7 @@ type Float() =
 [<AutoOpen>]
 module Float =
 
-    let Epsilon : float = 10. ** (float -Float.DigitPrecision)
-    let almostEqual (a: float) (b: float) : bool = abs (a - b) < FloatWithMeasure Epsilon
+    let almostEqual (a: float) (b: float) : bool = abs (a - b) < FloatWithMeasure Float.Epsilon
     let roundFloatTo (precision: int) (x: float) = Math.Round(x, precision)
     let roundFloat (x: float) = roundFloatTo Float.DigitPrecision x
 

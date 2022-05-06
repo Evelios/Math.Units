@@ -31,6 +31,8 @@ ProjectSection(SolutionItems) = preProject
 	docs\circle.fsx = docs\circle.fsx
 	docs\line-segment.fsx = docs\line-segment.fsx
 	docs\polygon.fsx = docs\polygon.fsx
+	docs\length.fsx = docs\length.fsx
+	docs\digit-precision.fsx = docs\digit-precision.fsx
 EndProjectSection
 EndProject
 Global

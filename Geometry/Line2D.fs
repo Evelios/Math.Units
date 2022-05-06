@@ -92,7 +92,7 @@ let intersect
             second.Start |> Point2D.vectorTo second.Finish
 
         let t =
-            Vector2D.crossProduct (q - p) s
-            / Vector2D.crossProduct r s
+            Vector2D.cross (q - p) s
+            / Vector2D.cross r s
 
         p + (t * r) |> Some

@@ -45,7 +45,7 @@ let ``orthonormalize Produces a Valid Frame Basis``
               YDirection = yDirection }
 
     | None ->
-        Vector2D.crossProduct vx vy
+        Vector2D.cross vx vy
         |> Test.equal Length.zero
 
 

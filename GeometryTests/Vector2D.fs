@@ -156,7 +156,7 @@ let ``To list`` () =
 
 [<Property>]
 let ``Dot product of a vector with itself is the length squared`` (vector: Vector2D<Meters, TestSpace>) =
-    Test.equal (Length.squared (Vector2D.magnitude vector)) (Vector2D.dotProduct vector vector)
+    Test.equal (Length.squared (Vector2D.magnitude vector)) (Vector2D.dot vector vector)
 
 [<Property>]
 let ``Normalized vector has a magnitude of one`` (vector: Vector2D<Meters, TestSpace>) =
@@ -166,13 +166,13 @@ let ``Normalized vector has a magnitude of one`` (vector: Vector2D<Meters, TestS
 let ``Perpendicular vector is perpendicular`` (vector: Vector2D<Meters, TestSpace>) =
     vector
     |> Vector2D.perpendicularTo
-    |> Vector2D.dotProduct vector
+    |> Vector2D.dot vector
     |> Test.equal Length.zero
 
 [<Property>]
 let ``Dot product of a vector with itself is it's squared length`` (vector: Vector2D<Meters, TestSpace>) =
     vector
-    |> Vector2D.dotProduct vector
+    |> Vector2D.dot vector
     |> Test.equal (Length.squared (Vector2D.magnitude vector))
 
 [<Property>]

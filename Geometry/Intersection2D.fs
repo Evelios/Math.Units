@@ -24,8 +24,8 @@ let lineSegmentAndLine
         let s = second.Finish - second.Start
 
         let t =
-            Vector2D.crossProduct (q - p) s
-            / Vector2D.crossProduct r s
+            Vector2D.cross (q - p) s
+            / Vector2D.cross r s
 
         if (0.0 <= t && t <= 1.0) then
             p + (t * r) |> Some

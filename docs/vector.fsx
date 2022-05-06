@@ -63,7 +63,7 @@ vector objects.
 | +        | Vector | Vector | Vector      | `lhs + rhs` | `Vector2D.plus` |
 | -        | Vector | Vector | Vector      | `lhs - rhs` | `Vector2D.minus` |
 | *        | Vector | float  | Vector      | `lhs * 0.5` | `Vector2D.times` & `Vector2D.scaleBy` |
-| *        | float  | Vector | Vector      | `0.5 * rhs` | None |
+| *        | float  | Vector | Vector      | `0.5 * rhs` | `None` |
 | /        | Vector | float  | Vector      | `lhs / 4.`  | `Vector2D.dividedBy` |
 
 
@@ -71,9 +71,9 @@ vector objects.
 
 *)
 
-Vector2D.crossProduct lhs rhs
+Vector2D.cross lhs rhs
 (*** include-it ***)
 
-Vector2D.dotProduct lhs rhs
+Vector2D.cross lhs rhs
 (*** include-it ***)
 

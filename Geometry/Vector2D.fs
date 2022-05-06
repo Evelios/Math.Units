@@ -253,10 +253,10 @@ let distanceTo p1 p2 : Length<'Unit> = distanceSquaredTo p1 p2 |> Length.sqrt
 let midVector (p1: Vector2D<'Unit, 'Coordinates>) (p2: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
 
-let dotProduct (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let dot (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
     ((lhs.X * rhs.X) + (lhs.Y * rhs.Y))
 
-let crossProduct (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let cross (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
     (lhs.X * rhs.Y) - (lhs.Y * rhs.X)
     
 /// Get the direction the a vector is facing.
