@@ -10,6 +10,7 @@ title: 2D Vectors
 
 #r "../Geometry/bin/Debug/net6.0/Geometry.dll"
 open Geometry
+type Cartesian = Cartesian
 (***)
 
 (**
@@ -30,6 +31,17 @@ Using a vector __direction__ you can create a vector of a given length following
 *)
 Vector2D.withLength (Length.meters 5.) (Direction2D.fromAngle Angle.halfPi)
 
+(** # Accessors *)
+
+let vec: Vector2D<Meters, Cartesian> = Vector2D.xy (Length.meters 3.) (Length.meters 4.)
+
+vec.X = Vector2D.x vec
+vec.Y = Vector2D.y vec
+
+(***)
+
+Vector2D.magnitude vec
+(*** include-it ***)
 
 (**
 # Operators
@@ -44,8 +56,6 @@ Because these functions are intended to be used in pipes the order goes like
 
 
 (*** hide ***)
-type Cartesian = Cartesian
-
 let lhs : Vector2D<Meters, Cartesian> = Vector2D.meters 3. 4.
 let rhs : Vector2D<Meters, Cartesian> = Vector2D.meters 5. 12.
 (***)
@@ -65,15 +75,14 @@ vector objects.
 | *        | Vector | float  | Vector      | `lhs * 0.5` | `Vector2D.times` & `Vector2D.scaleBy` |
 | *        | float  | Vector | Vector      | `0.5 * rhs` | `None` |
 | /        | Vector | float  | Vector      | `lhs / 4.`  | `Vector2D.dividedBy` |
-
-
-# Trigonometry
-
 *)
 
-Vector2D.cross lhs rhs
+(** # Trigonometry *)
+
+(** $$ lhs \cdot rhs $$ *)
+Vector2D.dot lhs rhs
 (*** include-it ***)
 
+(** $$ lhs \times rhs $$ *)
 Vector2D.cross lhs rhs
 (*** include-it ***)
-
