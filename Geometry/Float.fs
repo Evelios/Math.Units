@@ -1,10 +1,11 @@
 namespace Geometry
 
 open System
-open LanguagePrimitives
 
 type Float() =
     static let mutable digitPrecision = 10
+
+    static member MinNormal = 10e-38
 
     static member DigitPrecision
         with get () = digitPrecision
@@ -15,7 +16,21 @@ type Float() =
 [<AutoOpen>]
 module Float =
 
-    let almostEqual (a: float) (b: float) : bool = abs (a - b) < FloatWithMeasure Float.Epsilon
+    let almostEqual (a: float) (b: float) : bool =
+        let absA = abs a
+        let absB = abs b
+        let diff = abs (a - b)
+
+        if a = b then
+            true
+        else if (a = 0. || b = 0. || absA + absB < Float.MinNormal) then
+            diff < Float.Epsilon
+        else
+            let divisor =
+                min (absA + absB) Microsoft.FSharp.Core.float.MaxValue
+
+            diff / divisor < Float.Epsilon
+
     let roundFloatTo (precision: int) (x: float) = Math.Round(x, precision)
     let roundFloat (x: float) = roundFloatTo Float.DigitPrecision x
 
