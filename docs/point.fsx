@@ -2,6 +2,8 @@
 
 ---
 title: 2D Points
+category: Modules
+categoryindex: 2
 ---
 
 

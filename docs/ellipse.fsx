@@ -2,6 +2,8 @@
 
 ---
 title: 2D Ellipse
+category: Modules
+categoryindex: 2
 ---
 
 

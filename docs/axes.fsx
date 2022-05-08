@@ -2,6 +2,8 @@
 
 ---
 title: 2D Axes
+category: Modules
+categoryindex: 2
 ---
 
 

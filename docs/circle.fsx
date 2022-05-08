@@ -2,6 +2,8 @@
 
 ---
 title: 2D Circle
+category: Modules
+categoryindex: 2
 ---
 
 

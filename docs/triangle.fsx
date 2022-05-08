@@ -2,6 +2,8 @@
 
 ---
 title: 2D Triangle
+category: Modules
+categoryindex: 2
 ---
 
 

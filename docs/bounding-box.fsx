@@ -2,6 +2,8 @@
 
 ---
 title: 2D Bounding Box
+category: Modules
+categoryindex: 1
 ---
 
 

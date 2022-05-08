@@ -2,6 +2,9 @@
 
 ---
 title: Lengths
+category: Modules
+categoryindex: 2
+index: 1
 ---
 
 [digit precision]: digit-precision.html
