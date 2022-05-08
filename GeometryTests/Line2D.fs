@@ -30,7 +30,7 @@ let ``Point on line test cases`` =
     [ (Point2D.meters 0. 5.), line
       (Point2D.meters 5. 5.), line
       (Point2D.meters 2.5 5.), line
-      (Point2D.meters 2.5 (5. + Epsilon / 2.), line) ]
+      (Point2D.meters 2.5 (5. + Float.Epsilon / 2.), line) ]
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof ``Point on line test cases``)>]

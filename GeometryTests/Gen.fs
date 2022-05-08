@@ -28,7 +28,7 @@ module Gen =
 
     let positiveFloat = Gen.map abs float
 
-    let private epsilonLength<'Unit> () = Length<'Unit>.create Epsilon
+    let private epsilonLength<'Unit> () = Length<'Unit>.create Float.Epsilon
 
     let angle = Gen.map Angle.radians float
 

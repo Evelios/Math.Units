@@ -15,7 +15,7 @@ let ``Point equality test cases`` =
     [ Point2D.meters 0. 0., Point2D.meters 0. 0.
       Point2D.meters -1. -1., Point2D.meters -1. -1.
       Point2D.meters 5. 5., Point2D.meters 5. 5.
-      Point2D.meters 1. 1., Point2D.meters (1. + Epsilon / 2.) (1. + Epsilon / 2.) ]
+      Point2D.meters 1. 1., Point2D.meters (1. + Float.Epsilon / 2.) (1. + Float.Epsilon / 2.) ]
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof ``Point equality test cases``)>]

@@ -15,7 +15,7 @@ let ``Vector equality test cases`` =
     [ (Vector2D.meters 0. 0., Vector2D.meters 0. 0.)
       (Vector2D.meters -1. -1., Vector2D.meters -1. -1.)
       (Vector2D.meters 5. 5., Vector2D.meters 5. 5.)
-      (Vector2D.meters 1. 1., Vector2D.meters (1. + Epsilon / 2.) (1. + Epsilon / 2.)) ]
+      (Vector2D.meters 1. 1., Vector2D.meters (1. + Float.Epsilon / 2.) (1. + Float.Epsilon / 2.)) ]
     |> List.map TestCaseData
 
 [<TestCaseSource(nameof ``Vector equality test cases``)>]

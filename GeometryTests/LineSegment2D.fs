@@ -51,7 +51,7 @@ let pointOnLineTestCases =
         [ Point2D.meters 0. 5.
           Point2D.meters 5. 5.
           Point2D.meters 2.5 5.
-          Point2D.meters 2.5 (5. + Epsilon / 2.) ]
+          Point2D.meters 2.5 (5. + Float.Epsilon / 2.) ]
 
     testCases |> List.map TestCaseData
 
