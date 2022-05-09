@@ -33,6 +33,7 @@ ProjectSection(SolutionItems) = preProject
 	docs\polygon.fsx = docs\polygon.fsx
 	docs\length.fsx = docs\length.fsx
 	docs\digit-precision.fsx = docs\digit-precision.fsx
+	docs\angle.fsx = docs\angle.fsx
 EndProjectSection
 EndProject
 Global
