@@ -146,10 +146,10 @@ type Angle =
 
 
     // Math Operators
-
+    
+    static member (~-)(Radians angle: Angle) : Angle = Radians -angle
     static member (+)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs + rhs)
     static member (-)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs - rhs)
-    static member (~-)(Radians angle: Angle) : Angle = Radians -angle
     static member (*)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs * rhs)
     static member (*)(lhs: float, Radians rhs: Angle) : Angle = Radians(rhs * lhs)
     static member (/)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs / rhs)

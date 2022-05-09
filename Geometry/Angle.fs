@@ -45,6 +45,13 @@ let twice (Angle.Radians r: Angle) : Angle = radians (r / 2.)
 let min (Angle.Radians r1: Angle) (Angle.Radians r2: Angle): Angle = radians (min r1 r2)
 let max (Angle.Radians r1: Angle) (Angle.Radians r2: Angle): Angle = radians (max r1 r2)
 
+// ---- Operator ----
+
+let neg (r: Angle) : Angle = -r
+let plus (r1: Angle) (r2: Angle): Angle = r2 + r1
+let minus (r1: Angle) (r2: Angle): Angle = r2 - r1
+let times (scale: float) (r: Angle) : Angle = r * scale
+let dividedBy (amount: float) (r: Angle) : Angle = r / amount
 
 // ---- Trig ----
 

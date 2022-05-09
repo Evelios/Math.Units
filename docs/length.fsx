@@ -51,19 +51,23 @@ type Cartesian = Cartesian
 *)
 
 (**
-
 # Operators
 
+| Operator | Lhs    | Rhs    | Return Type | Example           | Function |
+|----------|--------|--------|-------------|-------------      |----------|
+| -        | Length |        | Length      | `-length`         | `Length2D.neg` |
+| +        | Length | Length | Length      | `lhs + rhs`       | `Length2D.plus` |
+| -        | Length | Length | Length      | `lhs - rhs`       | `Length2D.minus` |
+| *        | Length | float  | Length      | `lhs * 0.5`       | `Length2D.times` |
+| *        | float  | Length | Length      | `0.5 * rhs`       | None |
+| *        | Angle  | Length | Length      | `angle / length`  | None |
+| *        | Length | Angle  | Length      | `length / angle`  | None |
+| /        | Length | float  | Length      | `lhs / 4.`        | `Length2D.dividedBy` |
+| /        | Angle  | Length | Length      | `angle / length`  | None |
+| /        | Length | Angle  | Length      | `length / angle`  | None |
+*)
 
-| Operator | Lhs    | Rhs    | Return Type | Example     | Function |
-|----------|--------|--------|-------------|-------------|----------|
-| -        | Length |        | Length      | `-length`   | `Length2D.neg` |
-| +        | Length | Length | Length      | `lhs + rhs` | `Length2D.plus` |
-| -        | Length | Length | Length      | `lhs - rhs` | `Length2D.minus` |
-| *        | Length | float  | Length      | `lhs * 0.5` | `Length2D.times` |
-| *        | float  | Length | Length      | `0.5 * rhs` | None |
-| /        | Length | float  | Length      | `lhs / 4.`  | `Length2D.dividedBy` |
-
+(**
 ## Examples
 
 *)
