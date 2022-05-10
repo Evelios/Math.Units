@@ -34,6 +34,7 @@ ProjectSection(SolutionItems) = preProject
 	docs\length.fsx = docs\length.fsx
 	docs\digit-precision.fsx = docs\digit-precision.fsx
 	docs\angle.fsx = docs\angle.fsx
+	docs\interval.fsx = docs\interval.fsx
 EndProjectSection
 EndProject
 Global

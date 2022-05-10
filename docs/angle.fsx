@@ -1,13 +1,10 @@
 (**
-
 ---
 title: Angle
 category: Modules
 categoryindex: 2
-index: 2
+index: 1
 ---
-
-
 *)
 (*** hide ***)
 

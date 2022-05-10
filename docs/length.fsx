@@ -4,7 +4,7 @@
 title: Lengths
 category: Modules
 categoryindex: 2
-index: 1
+index: 2
 ---
 
 [digit precision]: digit-precision.html
