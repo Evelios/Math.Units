@@ -1,6 +1,6 @@
 module Geometry.Ellipse2D
 
-// ---- Accessors ----
+// ---- Builders ----
 
 let from
     (centerPoint: Point2D<'Unit, 'Coordinates>)
@@ -52,6 +52,8 @@ let yDirection (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Direction2D<'Coordina
 /// Get the area of an ellipse.
 let area (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
     Angle.pi * (xRadius ellipse * (yRadius ellipse))
+    
+// ---- Modifiers ----
 
 /// Scale an ellipse about a given point by a given scale.
 let scaleAbout
