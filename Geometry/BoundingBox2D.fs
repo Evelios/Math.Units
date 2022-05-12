@@ -82,7 +82,7 @@ let midX (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = (box.MaxX +
 
 let midY (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = (box.MaxY + box.MinY) / 2.
 
-let centerPoint (box: BoundingBox2D<'Unit, 'Coordiantes>) : Point2D<'Unit, 'Coodinates> =
+let centerPoint (box: BoundingBox2D<'Unit, 'Coordiantes>) : Point2D<'Unit, 'Coordinates> =
     Point2D.xy (midX box) (midY box)
 
 
