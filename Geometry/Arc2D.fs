@@ -337,7 +337,7 @@ let nondegenerate
 let fromNondegenerate (arc: Nondegenerate<'Unit, 'Coordinates>) : Arc2D<'Unit, 'Coordinates> = arc
 
 ///  Get the tangent direction to a nondegenerate arc at a given parameter
-let tangentDirection (arc: Arc2D<'Unit, 'Coordinates>) (parameterValue: float) : Direction2D<'Coordinates> =
+let tangentDirection (arc: Nondegenerate<'Unit, 'Coordinates>) (parameterValue: float) : Direction2D<'Coordinates> =
     arc.XDirection
     |> Direction2D.rotateBy (parameterValue * arc.SweptAngle)
 
@@ -348,6 +348,8 @@ let sample
     (parameterValue: float)
     : Point2D<'Unit, 'Coordinates> * Direction2D<'Coordinates> =
     (pointOn (fromNondegenerate nondegenerateArc) parameterValue, tangentDirection nondegenerateArc parameterValue)
+    
+// ---- Modifiers ----
 
 /// Reverse the direction of an arc, so that the start point becomes the end
 /// point and vice versa.
