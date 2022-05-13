@@ -81,7 +81,7 @@ let withHoles
 /// order they will be reversed.
 let singleLoop givenOuterLoop = withHoles [] givenOuterLoop
 
-let counterclockwiseAround
+let private counterclockwiseAround
     (origin: Point2D<'Unit, 'Coordinates>)
     (a: Point2D<'Unit, 'Coordinates>)
     (b: Point2D<'Unit, 'Coordinates>)
@@ -93,7 +93,7 @@ let counterclockwiseAround
 
     crossProduct >= Length.zero
 
-let chain (acc: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> list =
+let private chain (acc: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> list =
 
     let rec chainHelp
         (acc: Point2D<'Unit, 'Coordinates> list)
@@ -275,6 +275,11 @@ let centroid (polygon: Polygon2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordin
             Length.zero
 
     | _ -> None
+    
+/// Get the minimal bounding box containing a given polygon. Returns `None`
+/// if the polygon has no vertices.
+let boundingBox (polygon: Polygon2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'Coordinates> option =
+    BoundingBox2D.hullN (outerLoop polygon)
 
 
 // ---- Modifiers ----
@@ -376,10 +381,6 @@ let placeIn
 
     mapVertices (Point2D.placeIn frame) false polygon
 
-/// Get the minimal bounding box containing a given polygon. Returns `None`
-/// if the polygon has no vertices.
-let boundingBox (polygon: Polygon2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'Coordinates> option =
-    BoundingBox2D.hullN (outerLoop polygon)
 
 // ---- Queries ----
 
