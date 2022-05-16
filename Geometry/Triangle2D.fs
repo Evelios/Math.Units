@@ -59,7 +59,7 @@ let circumcircle (triangle: Triangle2D<'Unit, 'Coordinates>): Circle2D<'Unit, 'C
 /// Transform each vertex of a triangle by a given function and create a new
 /// triangle from the resulting points. Most other transformation functions can be
 /// defined in terms of `mapVertices`.
-let mapVertices
+let private mapVertices
     (f: Point2D<'UnitA, 'CoordinatesA> -> Point2D<'UnitB, 'CoordinatesB>)
     (triangle: Triangle2D<'UnitA, 'CoordinatesA>)
     : Triangle2D<'UnitB, 'CoordinatesB> =
