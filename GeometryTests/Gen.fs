@@ -2,7 +2,10 @@ namespace GeometryTests
 
 type 'a Positive = Positive of 'a
 
-
+module internal Tuple2 =
+    let pair x y = x, y
+    let map f (x, y) = f x y
+    
 module Gen =
     open System
     open FsCheck

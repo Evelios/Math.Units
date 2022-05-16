@@ -1,4 +1,4 @@
-module Geometry.Internal.BoundingBox2D
+module internal Geometry.Internal.BoundingBox2D
 
 open Geometry
 

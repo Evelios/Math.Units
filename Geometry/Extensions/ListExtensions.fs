@@ -1,4 +1,4 @@
-module FSharp.Extensions.List
+module internal FSharp.Extensions.List
 
 /// Append the first list if the condition is met
 let concatIf condition first second : 'a list =
