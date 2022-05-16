@@ -1,11 +1,15 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Size2D
 
+// ---- Builders ----
+
 let empty<'Unit> : Size2D<'Unit> =
     { Width = Length.zero
       Height = Length.zero }
 
 let create width height : Size2D<'Unit> = { Width = width; Height = height }
+
+// ---- Modifiers ----
 
 let scale (scale: float) (size: Size2D<'Unit>) : Size2D<'Unit> =
     { Width = size.Width * scale
