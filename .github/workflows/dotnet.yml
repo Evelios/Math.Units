@@ -38,13 +38,13 @@ jobs:
         run: dotnet restore
 
       - name: Build dotnet
-        run: dotnet build fsharp-geometry.sln --configuration release /p:Version=${{ steps.gitversion.outputs.AssemblySemVer }} /p:AssemblyVersion=${{ steps.gitversion.outputs.AssemblySemVer }} /p:InformationalVersion=${{ steps.gitversion.outputs.InformationalVersion }} --no-restore
+        run: dotnet build fsharp-geometry.sln --configuration Release /p:Version=${{ steps.gitversion.outputs.AssemblySemVer }} /p:AssemblyVersion=${{ steps.gitversion.outputs.AssemblySemVer }} /p:InformationalVersion=${{ steps.gitversion.outputs.InformationalVersion }} --no-restore
 
       - name: Run Tests
         run: dotnet test --configuration Release /p:Version=${{ steps.gitversion.outputs.AssemblySemVer }} --no-build --verbosity normal
 
       - name: Package nuget
-        run: dotnet pack fsharp-geometry.sln --configuration release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
+        run: dotnet pack fsharp-geometry.sln --configuration Release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
 
       - name: Push generated package to GitHub registry
         run: dotnet nuget push ./package/Fsharp.Geometry.*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }}
