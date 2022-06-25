@@ -15,6 +15,7 @@ functionality first before moving to expand into 3D objects.
 (*** hide ***)
 
 #r "../Geometry/bin/Debug/net6.0/Geometry.dll"
+#r "../Geometry/bin/Release/net6.0/Geometry.dll"
 (** *)
 
 (**

@@ -20,7 +20,6 @@ This library provides the following data structures
 * Arcs
 * Polylines
 * Polygons
-* 2D Sizes
 * Bounding Boxes
 
 # Development
