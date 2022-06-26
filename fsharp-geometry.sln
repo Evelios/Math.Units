@@ -37,6 +37,8 @@ ProjectSection(SolutionItems) = preProject
 	docs\interval.fsx = docs\interval.fsx
 EndProjectSection
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Units", "Units\Units.fsproj", "{4EA1E028-4FD7-484E-B29E-41CD28D1D806}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{DA99EA17-995B-4A49-8C77-9C26565AE5F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA99EA17-995B-4A49-8C77-9C26565AE5F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA99EA17-995B-4A49-8C77-9C26565AE5F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EA1E028-4FD7-484E-B29E-41CD28D1D806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EA1E028-4FD7-484E-B29E-41CD28D1D806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EA1E028-4FD7-484E-B29E-41CD28D1D806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EA1E028-4FD7-484E-B29E-41CD28D1D806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B986EA4-771E-4527-B19A-2D98FAE3FAF7} = {C82BBD5A-6E3A-4913-BE20-27069134AE3F}
