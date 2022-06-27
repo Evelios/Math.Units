@@ -2,6 +2,8 @@
 
 open System
 
+type Unitless = Unitless
+
 /// Represents a units type that is the square of some other units type; for
 /// example, `Meters` is one units type (the units type of a [`Length`](Length)) and
 /// `Squared Meters` is another (the units type of an [`Area`](Area)). See the
@@ -109,8 +111,15 @@ type Quantity<'Units> =
     static member inline (/)(Quantity quantity: Quantity<'Units>, scale: float) : Quantity<'Units> =
         Quantity(quantity / scale)
 
-    static member inline (/)(Quantity quantity: Quantity<'Units>, Quantity scale: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(quantity / scale)
+    static member inline (/)(Quantity quantity: Quantity<'Units>, Quantity scale: Quantity<'Units>) : float =
+        quantity / scale
+
+    static member inline (/)
+        (
+            Quantity dependent: Quantity<'Dependent>,
+            Quantity independent: Quantity<'Independent>
+        ) : Quantity<Rate<'Dependent, 'Independent>> =
+        Quantity(dependent / independent)
 
     static member inline (%)(Quantity value: Quantity<'Units>, Quantity modulus: Quantity<'Units>) : Quantity<'Units> =
         Quantity(value % modulus)
@@ -132,9 +141,9 @@ type Quantity<'Units> =
 /// A special units type representing 'no units'. A `Quantity Int Unitless`
 /// value is interchangeable with a simple `Int`, and a `Quantity Float Unitless`
 /// value is interchangeable with a simple `Float`.
-type Unitless = Unitless
 
 type Pixels = Pixels
+
 type Meters = Meters
 
 /// A finite, closed interval with a minimum and maximum number. This can

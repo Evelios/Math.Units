@@ -276,9 +276,7 @@ let timesUnitless (Quantity y: Quantity<Unitless>) (Quantity x: Quantity<Unitles
 ///     --> Acceleration.metersPerSecondSquared 2
 /// Note that there are [other forms of division](/#multiplication-and-division)!
 ///
-/// over : Quantity Float units1 -> Quantity Float (Product units1 units2) -> Quantity Float units2
-/// over (Quantity y) (Quantity x) =
-///     Quantity (x / y)
+let over (Quantity y: Quantity<'U1>) (Quantity x: Quantity<Product<'U1, 'U2>>) : Quantity<'U2> = Quantity(x / y)
 
 
 /// Just like `over` but divide by a quantity in `units2`, resulting in another
@@ -288,7 +286,7 @@ let timesUnitless (Quantity y: Quantity<Unitless>) (Quantity x: Quantity<Unitles
 ///         |> Quantity.over_
 ///             (Acceleration.metersPerSecondSquared 5)
 ///     --> Mass.kilograms 20
-let over_ (y: Quantity<'Units>) (x: Quantity<'Units>) = x / y
+let over_ (Quantity y: Quantity<'U2>) (Quantity x: Quantity<Product<'U1, 'U2>>) : Quantity<'U1> = Quantity(x / y)
 
 
 /// Similar to [`timesUnitless`](#timesUnitless), `overUnitless` lets you
@@ -299,27 +297,27 @@ let over_ (y: Quantity<'Units>) (x: Quantity<'Units>) = x / y
 ///     quantity
 ///         |> Quantity.divideBy
 ///             (Quantity.toFloat unitlessQuantity)
-let overUnitless (y: Quantity<'Units>) (x: Quantity<'Units>) = x / y
+let overUnitless (Quantity y: Quantity<Unitless>) (Quantity x: Quantity<Unitless>) : Quantity<Unitless> = Quantity(x / y)
 
 
 /// Find the ratio of two quantities with the same units.
 //    Quantity.ratio (Length.miles 1) (Length.yards 1)
 //    --> 1760
-let ratio (x: Quantity<'Units>) (y: Quantity<'Units>) = x / y
+let ratio (Quantity x: Quantity<'Units>) (Quantity y: Quantity<'Units>) : float = x / y
 
 
 /// Scale a `Quantity` by a `number`.
 ///     Quantity.multiplyBy 1.5 (Duration.hours 1)
 ///     --> Duration.minutes 90
 /// Note that there are [other forms of multiplication](/#multiplication-and-division)!
-let multiplyBy scale (Quantity value) = Quantity(scale * value)
+let multiplyBy (scale: float) (Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(scale * value)
 
 
 /// Divide a `Quantity` by a `Float`.
 ///     Quantity.divideBy 2 (Duration.hours 1)
 ///     --> Duration.minutes 30
 /// Note that there are [other forms of division](/#multiplication-and-division)!
-let divideBy divisor (Quantity value) = Quantity(value / divisor)
+let divideBy (divisor: float) (Quantity value: Quantity<'Units>): Quantity<'Units> = Quantity(value / divisor)
 
 
 /// Convenient shorthand for `Quantity.multiplyBy 2`.
@@ -347,12 +345,11 @@ let half (value: Quantity<'Units>) : Quantity<'Units> = 0.5 * value
 ///     --> Angle.degrees 30
 ///     Quantity.clamp lowerBound upperBound (Angle.turns -0.5)
 ///     --> Angle.degrees -30
-//let clamp (Quantity lower) (Quantity upper) (Quantity value) =
-//    if lower <= upper then
-//        Quantity (Math.Clamp(lower,upper,value))
-//
-//    else
-//        Quantity ((Math.Clamp(upper,lower,value))
+let clamp (Quantity lower: Quantity<'Units>) (Quantity upper: Quantity<'Units>) (Quantity value: Quantity<'Units>) =
+    if lower <= upper then
+        Quantity(Math.Clamp(lower,upper,value))
+    else
+        Quantity(Math.Clamp(upper,lower,value))
 
 
 // TODO: Get rid of NaN
