@@ -6,23 +6,28 @@ open System
 /// A generic zero value. This can be treated as either an `Int` or `Float`
 /// quantity in any units type, similar to how `Nothing` can be treated as any kind
 /// of `Maybe` type and `[]` can be treated as any kind of `List`.
-let zero: Quantity<'Units> =
-    Quantity LanguagePrimitives.GenericZero
+let zero<'Units> : Quantity<'Units> = Quantity LanguagePrimitives.GenericZero
 
 
 /// A generic positive infinity value.
-let positiveInfinity:  Quantity<'Units> =
-    Quantity System.Double.PositiveInfinity
-        
-        
+let positiveInfinity : Quantity<'Units> = Quantity Double.PositiveInfinity
+
+
 /// Alias for `positiveInfinity`.
-let infinity : Quantity<'Units> =
-    positiveInfinity
+let infinity : Quantity<'Units> = positiveInfinity
 
 
 /// A generic negative infinity value.
-let negativeInfinity:  Quantity<'Units> =
-    Quantity System.Double.NegativeInfinity
+let negativeInfinity : Quantity<'Units> = Quantity Double.NegativeInfinity
+
+// ---- Unsafe Operations ------------------------------------------------------
+
+///
+let unsafe value = Quantity value
+
+
+///
+let unwrap (Quantity value) = value
 
 
 
@@ -44,8 +49,7 @@ let negativeInfinity:  Quantity<'Units> =
 ///        , Length.lightYears 1
 ///        ]
 ///    --> [ Length.feet 1, Length.yards 1 ]
-let lessThan (y:Quantity<'Units> ) (x: Quantity<'Units> ):  bool =
-    x < y
+let lessThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x < y
 
 
 /// Check if one quantity is greater than another. Note the [argument order](/#argument-order)!
@@ -63,39 +67,36 @@ let lessThan (y:Quantity<'Units> ) (x: Quantity<'Units> ):  bool =
 ///        , Length.lightYears 1
 ///        ]
 ///    --> [ Length.parsecs 1, Length.lightYears 1 ]
-let greaterThan (y: Quantity<'Units>) (x: Quantity<'Units>): bool =
-    x > y
+let greaterThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x > y
 
 
 /// Check if one quantity is less than or equal to another. Note the [argument
 /// order](/#argument-order)!
-let lessThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>): bool =
-    x <= y
+let lessThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x <= y
 
 
 /// Check if one quantity is greater than or equal to another. Note the
 /// [argument order](/#argument-order)!
-let greaterThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>): bool =
-    x >= y
+let greaterThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x >= y
 
 
 /// Short form for `Quantity.lessThan Quantity.zero`.
-let lessThanZero (x: Quantity<'Units>): bool =
+let lessThanZero (x: Quantity<'Units>) : bool =
     x < Quantity LanguagePrimitives.GenericZero
 
 
 /// Short form for `Quantity.greaterThan Quantity.zero`.
-let greaterThanZero (x: Quantity<'Units>): bool =
+let greaterThanZero (x: Quantity<'Units>) : bool =
     x > Quantity LanguagePrimitives.GenericZero
 
 
 /// Short form for `Quantity.lessThanOrEqualTo Quantity.zero`.
-let lessThanOrEqualToZero (x: Quantity<'Units>): bool =
+let lessThanOrEqualToZero (x: Quantity<'Units>) : bool =
     x <= Quantity LanguagePrimitives.GenericZero
 
 
 /// Short form for `Quantity.greaterThanOrEqualTo Quantity.zero`.
-let greaterThanOrEqualToZero (x: Quantity<'Units>): bool =
+let greaterThanOrEqualToZero (x: Quantity<'Units>) : bool =
     x >= Quantity LanguagePrimitives.GenericZero
 
 
@@ -110,9 +111,8 @@ let greaterThanOrEqualToZero (x: Quantity<'Units>): bool =
 ///         (Duration.minutes 60)
 ///         (Duration.hours 1)
 ///     --> EQ
-let compare (x: Quantity<'Units>) (y: Quantity<'Units>): int =
-    x.Comparison(y)
-    
+let compare (x: Quantity<'Units>) (y: Quantity<'Units>) : int = x.Comparison(y)
+
 /// Get the absolute value of a quantity.
 ///    Quantity.abs (Duration.milliseconds -10)
 ///    --> Duration.milliseconds 10
@@ -121,11 +121,11 @@ let compare (x: Quantity<'Units>) (y: Quantity<'Units>): int =
 ///    // Using the default globally included function
 ///    Microsoft.FSharp.Core.Operators.abs quantity
 ///    abs quantity  // This function is included by default in F#
-/// 
+///
 ///    open Units
 ///    Units.abs quantity
-///    
-let abs (quantity: Quantity<'Units>): Quantity<'Units> = abs quantity
+///
+let abs (quantity: Quantity<'Units>) : Quantity<'Units> = abs quantity
 
 
 /// Check if two quantities are equal within a given absolute tolerance. The
@@ -140,21 +140,21 @@ let abs (quantity: Quantity<'Units>): Quantity<'Units> = abs quantity
 ///         (Length.meters 1)
 ///         (Length.feet 3)
 ///     --> False
-let equalWithin (tolerance: Quantity<'Units>) (x: Quantity<'Units>) (y: Quantity<'Units>): bool =
+let equalWithin (tolerance: Quantity<'Units>) (x: Quantity<'Units>) (y: Quantity<'Units>) : bool =
     abs (x - y) <= tolerance
 
 
 /// Find the maximum of two quantities.
 ///    Quantity.max (Duration.hours 2) (Duration.minutes 100)
 ///    --> Duration.hours 2
-let max (x: Quantity<'Units>) (y: Quantity<'Units>): Quantity<'Units> = max x y
-    
+let max (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = max x y
+
 
 
 /// Find the minimum of two quantities.
 ///    Quantity.min (Duration.hours 2) (Duration.minutes 100)
 ///    --> Duration.minutes 100
-let min (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units>= min x y
+let min (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = min x y
 
 
 /// Check if a quantity is positive or negative infinity.
@@ -165,8 +165,7 @@ let min (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units>= min x y
 ///    --> True
 ///    Quantity.isInfinite Quantity.negativeInfinity
 ///    --> True
-let isInfinite (Quantity value: Quantity<'Units>): bool =
-    System.Double.IsInfinity value
+let isInfinite (Quantity value: Quantity<'Units>) : bool = Double.IsInfinity value
 
 
 /// Check if a quantity's underlying value is NaN (not-a-number).
@@ -174,8 +173,7 @@ let isInfinite (Quantity value: Quantity<'Units>): bool =
 ///    --> True
 ///    Quantity.isNan (Quantity.sqrt (Area.squareMeters 4))
 ///    --> False
-let isNaN (Quantity value: Quantity<'Units>): bool =
-    System.Double.IsNaN value
+let isNaN (Quantity value: Quantity<'Units>) : bool = Double.IsNaN value
 
 
 
@@ -185,15 +183,13 @@ let isNaN (Quantity value: Quantity<'Units>): bool =
 /// Negate a quantity!
 //    Quantity.negate (Length.millimeters 10)
 //    --> Length.millimeters -10
-let negate (value: Quantity<'Units>): Quantity<'Units> =
-    -value
+let negate (value: Quantity<'Units>) : Quantity<'Units> = -value
 
 
 /// Add two quantities.
 ///    Length.meters 1 |> Quantity.plus (Length.centimeters 5)
 ///    --> Length.centimeters 105
-let plus (y: Quantity<'Units>) (x: Quantity<'Units>): Quantity<'Units>  =
-    x + y
+let plus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x + y
 
 
 /// Subtract one quantity from another.
@@ -201,8 +197,7 @@ let plus (y: Quantity<'Units>) (x: Quantity<'Units>): Quantity<'Units>  =
 ///        (Duration.hours 1)
 ///        (Duration.minutes 15)
 ///    --> Duration.minutes 45
-let difference (x: Quantity<'Units>) (y: Quantity<'Units>): Quantity<'Units> =
-    x - y
+let difference (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x - y
 
 
 /// An 'infix' version of [`difference`](#difference), intended to be used in
@@ -221,8 +216,7 @@ let difference (x: Quantity<'Units>) (y: Quantity<'Units>): Quantity<'Units> =
 ///     --> , Duration.minutes 105
 ///     --> , Duration.minutes 15
 ///     --> ]
-let minus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units>=
-    x - y
+let minus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x - y
 
 
 /// Multiply two quantities with units types `units1` and `units2` together,
@@ -237,12 +231,11 @@ let minus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units>=
 /// We can also multiply an `Area` by a `Length` to get a `Volume`:
 ///     Quantity.product
 ///         (Area.squareMeters 1)
-///         (Length.centimers 1)
+///         (Length.centimeters 1)
 ///     --> Volume.liters 10
 /// Note that there are [other forms of multiplication](/#multiplication-and-division)!
 
-let product (x: Quantity<'Units>) (y: Quantity<'Units>) =
-    x * y
+let product (x: Quantity<'Units>) (y: Quantity<'Units>) = x * y
 
 
 /// An 'infix' version of [`product`](#product), intended to be used in pipeline
@@ -250,8 +243,7 @@ let product (x: Quantity<'Units>) (y: Quantity<'Units>) =
 ///     Quantity.product a b
 /// can be written as
 ///     a |> Quantity.times b
-let times (y: Quantity<'Units>) (x: Quantity<'Units>) =
-    x * y
+let times (y: Quantity<'Units>) (x: Quantity<'Units>) = x * y
 
 
 /// If you use [`times`](#times) or [`product`](#product) to multiply one
@@ -269,8 +261,8 @@ let times (y: Quantity<'Units>) (x: Quantity<'Units>) =
 ///     quantity
 ///         |> Quantity.multiplyBy
 ///             (Quantity.toFloat unitlessQuantity)
-let timesUnitless (Quantity y: Quantity<Unitless>) (Quantity x: Quantity<Unitless>): Quantity<Unitless> =
-    Quantity (x * y)
+let timesUnitless (Quantity y: Quantity<Unitless>) (Quantity x: Quantity<Unitless>) : Quantity<Unitless> =
+    Quantity(x * y)
 
 
 /// Divide a quantity in `Product units1 units2` by a quantity in `units1`,
@@ -283,7 +275,7 @@ let timesUnitless (Quantity y: Quantity<Unitless>) (Quantity x: Quantity<Unitles
 ///             (Mass.kilograms 50)
 ///     --> Acceleration.metersPerSecondSquared 2
 /// Note that there are [other forms of division](/#multiplication-and-division)!
-/// 
+///
 /// over : Quantity Float units1 -> Quantity Float (Product units1 units2) -> Quantity Float units2
 /// over (Quantity y) (Quantity x) =
 ///     Quantity (x / y)
@@ -296,8 +288,7 @@ let timesUnitless (Quantity y: Quantity<Unitless>) (Quantity x: Quantity<Unitles
 ///         |> Quantity.over_
 ///             (Acceleration.metersPerSecondSquared 5)
 ///     --> Mass.kilograms 20
-let over_ (y: Quantity<'Units>) (x: Quantity<'Units>) =
-    x / y
+let over_ (y: Quantity<'Units>) (x: Quantity<'Units>) = x / y
 
 
 /// Similar to [`timesUnitless`](#timesUnitless), `overUnitless` lets you
@@ -308,45 +299,39 @@ let over_ (y: Quantity<'Units>) (x: Quantity<'Units>) =
 ///     quantity
 ///         |> Quantity.divideBy
 ///             (Quantity.toFloat unitlessQuantity)
-let overUnitless (y: Quantity<'Units>) (x: Quantity<'Units>) =
-    x / y
+let overUnitless (y: Quantity<'Units>) (x: Quantity<'Units>) = x / y
 
 
 /// Find the ratio of two quantities with the same units.
 //    Quantity.ratio (Length.miles 1) (Length.yards 1)
 //    --> 1760
-let ratio (x: Quantity<'Units>) (y: Quantity<'Units>) =
-    x / y
+let ratio (x: Quantity<'Units>) (y: Quantity<'Units>) = x / y
 
 
 /// Scale a `Quantity` by a `number`.
 ///     Quantity.multiplyBy 1.5 (Duration.hours 1)
 ///     --> Duration.minutes 90
 /// Note that there are [other forms of multiplication](/#multiplication-and-division)!
-let multiplyBy scale (Quantity value) =
-    Quantity (scale * value)
+let multiplyBy scale (Quantity value) = Quantity(scale * value)
 
 
 /// Divide a `Quantity` by a `Float`.
 ///     Quantity.divideBy 2 (Duration.hours 1)
 ///     --> Duration.minutes 30
 /// Note that there are [other forms of division](/#multiplication-and-division)!
-let divideBy divisor (Quantity value) =
-    Quantity (value / divisor)
+let divideBy divisor (Quantity value) = Quantity(value / divisor)
 
 
 /// Convenient shorthand for `Quantity.multiplyBy 2`.
 ///    Quantity.twice (Duration.minutes 30)
 ///    --> Duration.hours 1
-let twice (value: Quantity<'Units>): Quantity<'Units> =
-    2. * value
+let twice (value: Quantity<'Units>) : Quantity<'Units> = 2. * value
 
 
 /// Convenient shorthand for `Quantity.multiplyBy 0.5`.
 ///    Quantity.half (Length.meters 1)
 ///    --> Length.centimeters 50
-let half (value: Quantity<'Units>): Quantity<'Units> =
-    0.5 * value
+let half (value: Quantity<'Units>) : Quantity<'Units> = 0.5 * value
 
 
 /// Given a lower and upper bound, clamp a given quantity to within those
@@ -383,11 +368,13 @@ let half (value: Quantity<'Units>): Quantity<'Units> =
 ///     --> 1
 ///     Quantity.sign (Length.meters (0 / 0))
 ///     --> NaN
-let sign (value: Quantity<'Units>): int =
+let sign (value: Quantity<'Units>) : int =
     if greaterThanZero value then
         1
 
-    else if lessThanZero value then
+    else
+
+    if lessThanZero value then
         -1
 
     else if isNaN value then
@@ -402,18 +389,15 @@ let sign (value: Quantity<'Units>): int =
 ///     Quantity.squared (Length.meters 5)
 ///     --> Area.squareMeters 25
 /// See also [`squaredUnitless`](#squaredUnitless).
-let squared (value: Quantity<'Units>): Quantity<'Units Squared> =
-    value * value
+let squared (value: Quantity<'Units>) : Quantity<'Units Squared> = value * value
 
 
-/// 
-let squaredUnitless (Quantity value: Quantity<Unitless>): Quantity<Unitless> =
-    Quantity (value * value)
+///
+let squaredUnitless (Quantity value: Quantity<Unitless>) : Quantity<Unitless> = Quantity(value * value)
 
-/// 
-let sqrtUnitless (Quantity value: Quantity<Unitless>): Quantity<Unitless> =
-    Quantity (sqrt value)
-    
+///
+let sqrtUnitless (Quantity value: Quantity<Unitless>) : Quantity<Unitless> = Quantity(sqrt value)
+
 /// Take a quantity in `Squared units` and return the square root of that
 /// quantity in plain `units`:
 ///     Quantity.sqrt (Area.hectares 1)
@@ -437,7 +421,7 @@ let sqrtUnitless (Quantity value: Quantity<Unitless>): Quantity<Unitless> =
 ///   - And calling `sqrt` on something in `Squared units` returns a value back in
 ///     `units`
 /// See also [`sqrtUnitless`](#sqrtUnitless).
-let sqrt (Quantity value : Quantity<'Units Squared>) = Quantity(sqrt value)
+let sqrt (Quantity value: Quantity<'Units Squared>) = Quantity(sqrt value)
 
 
 /// Cube a quantity with some `units`, resulting in a new quantity in
@@ -445,18 +429,16 @@ let sqrt (Quantity value : Quantity<'Units Squared>) = Quantity(sqrt value)
 ///     Quantity.cubed (Length.meters 5)
 ///     --> Volume.cubicMeters 125
 /// See also [`cubedUnitless`](#cubedUnitless).
-let cubed (Quantity value: Quantity<'Units>): Quantity<'Units Cubed> =
-    Quantity (value * value * value)
+let cubed (Quantity value: Quantity<'Units>) : Quantity<'Units Cubed> = Quantity(value * value * value)
 
 
-/// 
-let cubedUnitless (Quantity value: Quantity<Unitless>): Quantity<Unitless> =
-    Quantity (value * value * value)
+///
+let cubedUnitless (Quantity value: Quantity<Unitless>) : Quantity<Unitless> = Quantity(value * value * value)
 
 
-let unsafeCbrt (Quantity value: Quantity<'Units>): Quantity<'Units> =
+let unsafeCbrt (Quantity value: Quantity<'Units>) : Quantity<'Units> =
     if value >= 0. then
-        Quantity (Math.Pow(value, (1. / 3.)))
+        Quantity(Math.Pow(value, (1. / 3.)))
 
     else
         Quantity -(Math.Pow(-value, (1. / 3.)))
@@ -467,42 +449,37 @@ let unsafeCbrt (Quantity value: Quantity<'Units>): Quantity<'Units> =
 ///     Quantity.cbrt (Volume.liters 1)
 ///     --> Length.centimeters 10
 /// See also [`cbrtUnitless`](#cbrtUnitless).
-let cbrt quantity =
-    unsafeCbrt quantity
+let cbrt quantity = unsafeCbrt quantity
 
 
-/// 
-let cbrtUnitless quantity =
-    unsafeCbrt quantity
+///
+let cbrtUnitless quantity = unsafeCbrt quantity
 
 
 /// Find the inverse of a unitless value.
 ///    Quantity.reciprocal (Quantity.float 5)
 ///    --> Quantity.float 0.2
-let reciprocal (Quantity value: Quantity<'Units>): Quantity<'Units> =
-    Quantity (1. / value)
+let reciprocal (Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(1. / value)
 
 
 // TODO: may be incorrect
-/// 
-let modBy (modulus: Quantity<'Units>) (value: Quantity<'Units>): Quantity<'Units> =
-    value % modulus
+///
+let modBy (modulus: Quantity<'Units>) (value: Quantity<'Units>) : Quantity<'Units> = value % modulus
 
 
-/// 
+///
 let fractionalModBy (Quantity modulus) (Quantity value) =
-    Quantity (value - modulus * floor (value / modulus))
+    Quantity(value - modulus * floor (value / modulus))
 
 
 // TODO: may be incorrect
-/// 
-let remainderBy (modulus: Quantity<'Units>) (value: Quantity<'Units>): Quantity<'Units> =
-    value % modulus
+///
+let remainderBy (modulus: Quantity<'Units>) (value: Quantity<'Units>) : Quantity<'Units> = value % modulus
 
 
-/// 
+///
 let fractionalRemainderBy (Quantity modulus) (Quantity value) =
-    Quantity (value - modulus * floor (value / modulus))
+    Quantity(value - modulus * floor (value / modulus))
 
 
 /// Interpolate from the first quantity to the second, based on a parameter that
@@ -528,19 +505,22 @@ let fractionalRemainderBy (Quantity modulus) (Quantity value) =
 ///     --> Length.meters 2.5
 ///     Quantity.interpolateFrom tenMeters fiveMeters -0.2
 ///     --> Length.meters 11
-let interpolateFrom (Quantity start: Quantity<'Units>) (Quantity finish: Quantity<'Units>) (Quantity parameter: Quantity<'Units>): Quantity<'Units> =
+let interpolateFrom
+    (Quantity start: Quantity<'Units>)
+    (Quantity finish: Quantity<'Units>)
+    (Quantity parameter: Quantity<'Units>)
+    : Quantity<'Units> =
     if parameter <= 0.5 then
-        Quantity (start + parameter * (finish - start))
+        Quantity(start + parameter * (finish - start))
 
     else
-        Quantity (finish + (1. - parameter) * (start - finish))
+        Quantity(finish + (1. - parameter) * (start - finish))
 
 
 /// Find the midpoint between two quantities.
 ///    Quantity.midpoint (Length.meters 5) (Length.meters 10)
 ///    --> Length.meters 7.5
-let midpoint (x: Quantity<'Units>) (y: Quantity<'Units>): Quantity<'Units> =
-    x + 0.5 * (y - x)
+let midpoint (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x + 0.5 * (y - x)
 
 
 /// Construct a range of evenly-spaced values given a `start` value, an `end`
@@ -599,20 +579,25 @@ let midpoint (x: Quantity<'Units>) (y: Quantity<'Units>): Quantity<'Units> =
 ///     --> , Length.centimeters 250
 ///     --> , Length.centimeters 275
 ///     --> ]
-let range (start: Quantity<'Units>) (finish: Quantity<'Units>) (steps: int): Quantity<'Units> list  =
-    let rec rangeHelp start finish (i: int) (steps: float) (accumulatedValues: Quantity<'Units> list): Quantity<'Units> list =
+let range (start: Quantity<'Units>) (finish: Quantity<'Units>) (steps: int) : Quantity<'Units> list =
+    let rec rangeHelp
+        start
+        finish
+        (i: int)
+        (steps: float)
+        (accumulatedValues: Quantity<'Units> list)
+        : Quantity<'Units> list =
         let value =
-                interpolateFrom start finish (Quantity( float i / steps))
+            interpolateFrom start finish (Quantity(float i / steps))
 
-        let updatedValues =
-                value :: accumulatedValues
-                
+        let updatedValues = value :: accumulatedValues
+
         if i = 0 then
             updatedValues
 
         else
             rangeHelp start finish (i - 1) steps updatedValues
-            
+
     if steps > 0 then
         rangeHelp start finish steps (float steps) []
 
@@ -643,8 +628,7 @@ let range (start: Quantity<'Units>) (finish: Quantity<'Units>) (steps: int): Qua
 ///     Quantity.in_ someUnits someQuantity
 /// is simply implemented as
 ///     Quantity.ratio someQuantity (someUnits 1)
-let in_ units quantity =
-    ratio quantity (units 1)
+let in_ units quantity = ratio quantity (units 1)
 
 
 // ---- INT/FLOAT CONVERSIONS --------------------------------------------------
@@ -654,7 +638,7 @@ let in_ units quantity =
 /// not do what you expect](#-int-float-conversion).
 ///     Quantity.round (Pixels.pixels 3.5)
 ///     --> Pixels.pixels 4
-let round (value: Quantity<'Units>): Quantity<'Units> = round value
+let round (value: Quantity<'Units>) : Quantity<'Units> = round value
 
 
 /// Round a `Float`-valued quantity down to the nearest `Int`. Note that [this
@@ -663,7 +647,7 @@ let round (value: Quantity<'Units>): Quantity<'Units> = round value
 ///     --> Pixels.pixels 2
 ///     Quantity.floor (Pixels.pixels -2.1)
 ///     --> Pixels.pixels -3
-let floor (value: Quantity<'Units>): Quantity<'Units> = floor value
+let floor (value: Quantity<'Units>) : Quantity<'Units> = floor value
 
 
 /// Round a `Float`-valued quantity up to the nearest `Int`. Note that [this may
@@ -672,23 +656,21 @@ let floor (value: Quantity<'Units>): Quantity<'Units> = floor value
 ///     --> Pixels.pixels 2
 ///     Quantity.ceiling (Pixels.pixels -2.1)
 ///     --> Pixels.pixels -2
-let ceil (value: Quantity<'Units>): Quantity<'Units> = ceil value
+let ceil (value: Quantity<'Units>) : Quantity<'Units> = ceil value
 
 
 /// Round a `Float`-valued quantity towards zero. Note that [this may not do
 /// what you expect](#-int-float-conversion).
 ///     Quantity.truncate (Pixels.pixels -2.8)
 ///     --> Pixels.pixels -2
-let truncate (Quantity value) =
-    Quantity (Basics.truncate value)
+let truncate (value: Quantity<'Units>) : Quantity<'Units> = truncate value
 
 
 // TODO: need `Quantity<Int, 'Units>`
 /// Convert a `Quantity Int units` to a `Quantity Float units` with the same
 /// value. Useful when you have an `Int`-valued quantity and want to divide it by
 /// something, multiply it by a fractional value etc.
-let toFloatQuantity (Quantity value: Quantity<'Units>): Quantity<'Units> =
-    Quantity (float value)
+let toFloatQuantity (Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(float value)
 
 
 // ---- LIST FUNCTIONS ---------------------------------------------------------
@@ -703,8 +685,7 @@ let toFloatQuantity (Quantity value: Quantity<'Units>): Quantity<'Units> =
 ///    --> Length.meters 1.023
 ///    Quantity.sum []
 ///    --> Quantity.zero
-let sum quantities =
-    List.foldl plus zero quantities
+let sum (quantities: Quantity<'Units> list) : Quantity<'Units> = List.fold plus zero quantities
 
 
 /// Find the minimum value in a list of quantities. Returns `Nothing` if the
@@ -715,13 +696,11 @@ let sum quantities =
 ///        , Mass.tonnes 3
 ///        ]
 ///    --> Just (Mass.pounds 2)
-let minimum quantities =
-    case quantities of
-        [] ->
-            Nothing
+let minimum (quantities: Quantity<'Units> list) : Quantity<'Units> option =
+    match quantities with
+    | [] -> None
 
-        first :: rest ->
-            Just (List.foldl min first rest)
+    | first :: rest -> Some(List.fold min first rest)
 
 
 /// Find the maximum value in a list of quantities. Returns `Nothing` if the
@@ -732,13 +711,11 @@ let minimum quantities =
 ///         , Mass.tonnes 3
 ///         ]
 ///     --> Just (Mass.tonnes 3)
-let maximum quantities =
-    case quantities of
-        [] ->
-            Nothing
+let maximum (quantities: Quantity<'Units> list) : Quantity<'Units> option =
+    match quantities with
+    | [] -> None
 
-        first :: rest ->
-            Just (List.foldl max first rest)
+    | first :: rest -> Some(List.fold max first rest)
 
 
 /// Find the 'minimum' item in a list as measured by some derived `Quantity`:
@@ -751,33 +728,26 @@ let maximum quantities =
 ///     --> Just { name = "Bob", height = Length.meters 1.6 }
 /// If the list is empty, returns `Nothing`. If multiple items in the list are tied,
 /// then the first one is returned.
-let minimumBy toQuantity quantities =
-    let minimumByHelp toQuantity currentItem currentValue quantities =
-        case quantities of
-            [] ->
-                currentItem
+let minimumBy (toQuantity: 'a -> Quantity<'Units>) (quantities: 'a list) : 'a option =
+    let rec minimumByHelp currentItem currentValue (currentQuantities: 'a list) =
+        match currentQuantities with
+        | [] -> currentItem
 
-            item :: rest ->
-                let
-                    (Quantity value) =
-                        toQuantity item
-                in
-                if value < currentValue then
-                    minimumByHelp toQuantity item value rest
+        | item :: rest ->
+            let (Quantity value) = toQuantity item
 
-                else
-                    minimumByHelp toQuantity currentItem currentValue rest
-    
-    case quantities of
-        [] ->
-            Nothing
+            if value < currentValue then
+                minimumByHelp item value rest
 
-        firstItem :: rest ->
-            let
-                (Quantity firstValue) =
-                    toQuantity firstItem
-            in
-            Just (minimumByHelp toQuantity firstItem firstValue rest)
+            else
+                minimumByHelp currentItem currentValue rest
+
+    match quantities with
+    | [] -> None
+
+    | firstItem :: rest ->
+        let (Quantity firstValue) = toQuantity firstItem
+        Some(minimumByHelp firstItem firstValue rest)
 
 
 
@@ -792,34 +762,26 @@ let minimumBy toQuantity quantities =
 ///     --> Just { name = "Charlie", height = Length.meters 2.0 }
 /// If the list is empty, returns `Nothing`. If multiple items in the list are tied,
 /// then the first one is returned.
-let maximumBy toQuantity quantities =
-    let maximumByHelp toQuantity currentItem currentValue quantities =
-        case quantities of
-            [] ->
-                currentItem
+let maximumBy (toQuantity: 'a -> Quantity<'Units>) (quantities: 'a list) : 'a option =
+    let rec maximumByHelp currentItem currentValue (currentQuantities: 'a list) =
+        match currentQuantities with
+        | [] -> currentItem
 
-            item :: rest ->
-                let
-                    (Quantity value) =
-                        toQuantity item
-                in
-                if value > currentValue then
-                    maximumByHelp toQuantity item value rest
+        | item :: rest ->
+            let (Quantity value) = toQuantity item
 
-                else
-                    maximumByHelp toQuantity currentItem currentValue rest
-                    
-    case quantities of
-        [] ->
-            Nothing
+            if value < currentValue then
+                maximumByHelp item value rest
 
-        firstItem :: rest ->
-            let
-                (Quantity firstValue) =
-                    toQuantity firstItem
-            in
-            Just (maximumByHelp toQuantity firstItem firstValue rest)
+            else
+                maximumByHelp currentItem currentValue rest
 
+    match quantities with
+    | [] -> None
+
+    | firstItem :: rest ->
+        let (Quantity firstValue) = toQuantity firstItem
+        Some(maximumByHelp firstItem firstValue rest)
 
 
 
@@ -833,8 +795,7 @@ let maximumBy toQuantity quantities =
 ///    --> , Mass.kilograms 1
 ///    --> , Mass.tonnes 3
 ///    --> ]
-let sort quantities =
-    List.sortBy unwrap quantities
+let sort (quantities: Quantity<'Units> list) : Quantity<'Units> list = List.sortBy unwrap quantities
 
 
 /// Sort an arbitrary list of values by a derived `Quantity`. If you had
@@ -855,16 +816,15 @@ let sort quantities =
 ///     --> , { name = "Alice", height = Length.meters 1.8 }
 ///     --> , { name = "Charlie", height = Length.meters 2.0 }
 ///     --> ]
-let sortBy toQuantity list =
-    let
-        comparator first second =
-            compare (toQuantity first) (toQuantity second)
-    in
+let sortBy (toQuantity: 'a -> Quantity<'Units>) (list: 'a list) : 'a list =
+    let comparator first second =
+        compare (toQuantity first) (toQuantity second)
+
     List.sortWith comparator list
 
 
 
-// ---- WORKING WITH RATES -----------------------------------------------------
+// ---- Working With Rates -----------------------------------------------------
 
 
 /// Construct a rate of change by dividing a dependent quantity (numerator) by
@@ -884,18 +844,23 @@ let sortBy toQuantity list =
 ///   - `Resistance` is `Voltage` per `Current`
 ///   - `Voltage` is `Power` per `Current`
 /// Note that there are [other forms of division](/#multiplication-and-division)!
-/// 
-let rate (Quantity dependentValue) (Quantity independentValue) =
-    Quantity (dependentValue / independentValue)
-    
+let rate
+    (Quantity dependentValue: Quantity<'Dependent>)
+    (Quantity independentValue: Quantity<'Independent>)
+    : Quantity<Rate<'Dependent, 'Independent>> =
+    Quantity(dependentValue / independentValue)
+
 /// 'Infix' version of [`rate`](#rate), meant to be used in pipeline form;
 ///     Quantity.rate distance time
 /// can be written as
 ///     distance |> Quantity.per time
-/// 
-let per (Quantity independentValue) (Quantity dependentValue) =
- Quantity (dependentValue / independentValue)
- 
+let per
+    (Quantity independentValue: Quantity<'Independent>)
+    (Quantity dependentValue: Quantity<'Dependent>)
+    : Quantity<Rate<'Dependent, 'Independent>> =
+    Quantity(dependentValue / independentValue)
+
+
 /// Multiply a rate of change by an independent quantity (the denominator in
 /// the rate) to get a total value:
 ///     Duration.minutes 30
@@ -918,10 +883,13 @@ let per (Quantity independentValue) (Quantity dependentValue) =
 ///     lengthToPixels =
 ///         Quantity.at pixelDensity
 /// Note that there are [other forms of multiplication](/#multiplication-and-division)!
-/// 
-let at (Quantity rateOfChange) (Quantity independentValue) =
- Quantity (rateOfChange * independentValue)
- 
+let at
+    (Quantity rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
+    (Quantity independentValue: Quantity<'Independent>)
+    : Quantity<'Dependent> =
+    Quantity(rateOfChange * independentValue)
+
+
 /// Given a rate and a _dependent_ quantity (total value), determine the
 /// necessary amount of the _independent_ quantity:
 ///     Length.kilometers 75
@@ -940,8 +908,14 @@ let at (Quantity rateOfChange) (Quantity independentValue) =
 ///         Quantity.at_ pixelDensity pixels
 ///     pixelsToLength (Pixels.pixels 48)
 ///     --> Length.inches 0.5
-let at_ (Quantity rateOfChange) (Quantity dependentValue) =
-    Quantity (dependentValue / rateOfChange)
+///     Quantity Float (Rate dependentUnits independentUnits)
+//    -> Quantity Float dependentUnits
+//    -> Quantity Float independentUnits
+let at_
+    (Quantity rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
+    (Quantity dependentValue: Quantity<'Depenent>)
+    : Quantity<'Independent> =
+    Quantity(dependentValue / rateOfChange)
 
 
 /// Same as `at` but with the argument order flipped, which may read better
@@ -950,8 +924,11 @@ let at_ (Quantity rateOfChange) (Quantity dependentValue) =
 ///         |> Quantity.for
 ///             (Duration.minutes 30)
 ///     --> Length.kilometers 50
-let for_ (Quantity independentValue) (Quantity rateOfChange) =
-    Quantity (rateOfChange * independentValue)
+let for_
+    (Quantity independentValue: Quantity<'Independent>)
+    (Quantity rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
+    : Quantity<'Dependent> =
+    Quantity(rateOfChange * independentValue)
 
 
 /// Find the inverse of a given rate. May be useful if you are using a rate to
@@ -959,8 +936,10 @@ let for_ (Quantity independentValue) (Quantity rateOfChange) =
 ///     Quantity.at (Quantity.inverse rate)
 /// is equivalent to
 ///     Quantity.at_ rate
-let inverse (Quantity rateOfChange) =
-     Quantity (1 / rateOfChange)
+let inverse
+    (Quantity rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
+    : Quantity<Rate<'Independent, 'Dependent>> =
+    Quantity(1. / rateOfChange)
 
 
 /// Multiply two rates of change that 'cancel out' together, resulting in a new
@@ -972,7 +951,7 @@ let inverse (Quantity rateOfChange) =
 ///         Pixels.float 96 |> Quantity.per Length.inch
 ///     Quantity.rateProduct realWorldSpeed resolution
 ///     --> Pixels.pixelsPerSecond 377.95
-/// That is, "length per duration" multiplyed by "pixels per length" gives you
+/// That is, "length per duration" multiplied by "pixels per length" gives you
 /// "pixels per duration".
 /// Sometimes you can't directly multiply two rates to get what you want, in which
 /// case you may need to use [`inverse`](#inverse) in combination with
@@ -985,40 +964,33 @@ let inverse (Quantity rateOfChange) =
 ///     Quantity.rateProduct pixelSpeed
 ///         (Quantity.inverse resolution)
 ///     --> Speed.metersPerSecond 0.1323
-let rateProduct (Quantity firstRate) (Quantity secondRate) =
-    Quantity (firstRate * secondRate)
+/// rateProduct :
+//    Quantity Float (Rate units2 units1)
+//    -> Quantity Float (Rate units3 units2)
+//    -> Quantity Float (Rate units3 units1)
+let rateProduct
+    (Quantity firstRate: Quantity<Rate<'U1, 'U2>>)
+    (Quantity secondRate: Quantity<Rate<'U3, 'U2>>)
+    : Quantity<Rate<'U3, 'U1>> =
+    Quantity(firstRate * secondRate)
 
 
 
 /// ---- UNITLESS QUANTITIES ---------------------------------------------------
+// TODO:: Int Quantity
 /// Convert a plain `Int` into a `Quantity Int Unitless` value.
-let int value =
-    Quantity value
+//let int value = Quantity value
 
 
 /// Convert a `Quantity Int Unitless` value into a plain `Int`.
-let toInt (Quantity value) =
-    value
+//let toInt (Quantity value) = value
 
 
 /// Convert a plain `Float` into a `Quantity Float Unitless` value.
-let float value =
-    Quantity value
+//let float value = Quantity value
 
 
 /// Convert a `Quantity Float Unitless` value into a plain `Float`.
 /// If you're looking for a function to convert a `Quantity Int units` to `Quantity
 /// Float units`, check out [`toFloatQuantity`](#toFloatQuantity).
-let toFloat (Quantity value) =
-    value
-
-
-/// 
-let unsafe value =
-    Quantity value
-
-
-/// 
-let unwrap (Quantity value) =
-    value
-
+//let toFloat (Quantity value) = value

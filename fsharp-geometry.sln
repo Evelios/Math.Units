@@ -35,6 +35,7 @@ ProjectSection(SolutionItems) = preProject
 	docs\digit-precision.fsx = docs\digit-precision.fsx
 	docs\angle.fsx = docs\angle.fsx
 	docs\interval.fsx = docs\interval.fsx
+	docs\quantity.fsx = docs\quantity.fsx
 EndProjectSection
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Units", "Units\Units.fsproj", "{4EA1E028-4FD7-484E-B29E-41CD28D1D806}"

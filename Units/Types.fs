@@ -80,8 +80,9 @@ type Quantity<'Units> =
     static member inline Floor(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(floor value)
 
     static member inline Ceiling(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(ceil value)
-    
+
     static member inline Round(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(round value)
+    static member inline Truncate(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(truncate value)
 
 
     static member inline (+)(Quantity lhs: Quantity<'Units>, Quantity rhs: Quantity<'Units>) : Quantity<'Units> =
