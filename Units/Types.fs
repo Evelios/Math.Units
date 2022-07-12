@@ -40,11 +40,7 @@ type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'Indep
 /// is an `Int` number of `Pixels`. When compiling with `elm make --optimize` the
 /// `Quantity` wrapper type will be compiled away, so the runtime performance should
 /// be comparable to using a raw `Float` or `Int`.
-[<CustomEquality>]
-[<CustomComparison>]
-type Quantity<'Units> =
-    | Quantity of float
-
+type Quantity<'Units>(quantity: float) =
     interface IComparable<Quantity<'Units>> with
         member this.CompareTo(percent) = this.Comparison(percent)
 
@@ -54,86 +50,75 @@ type Quantity<'Units> =
             | :? (Quantity<'Units>) as quantity -> this.Comparison(quantity)
             | _ -> failwith "incompatible comparison"
 
-    member inline this.Equals(Quantity other: Quantity<'Units>) : bool =
-        match this with
-        | Quantity self -> almostEqual self other
+    member inline this.Value = quantity
 
     member inline this.Comparison(other: Quantity<'Units>) =
         if this.Equals(other) then 0
         elif this.LessThan(other) then -1
         else 1
 
-    member inline this.LessThan(Quantity other: Quantity<'Units>) =
-        match this with
-        | Quantity self -> self < other
+    member inline this.Equals(other: Quantity<'Units>) : bool = almostEqual this.Value other.Value
+
+    member inline this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
+
+    override this.GetHashCode() =
+        this.Value
+        |> roundFloatTo Float.DigitPrecision
+        |> hash
 
 
     // Operators
-    static member inline Abs(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(abs value)
+    static member inline Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity(abs q.Value)
 
-    static member inline Min(Quantity lhs: Quantity<'Units>, Quantity rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(min lhs rhs)
+    static member inline Min(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
+        Quantity(min lhs.Value rhs.Value)
 
-    static member inline Max(Quantity lhs: Quantity<'Units>, Quantity rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(max lhs rhs)
+    static member inline Max(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
+        Quantity(max lhs.Value rhs.Value)
 
-    static member inline Sqrt(Quantity value: Quantity<'Units Squared>) : Quantity<'Units> = Quantity(sqrt value)
+    static member inline Sqrt(value: Quantity<'Units Squared>) : Quantity<'Units> = Quantity(sqrt value.Value)
 
-    static member inline Floor(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(floor value)
+    static member inline Floor(value: Quantity<'Units>) : Quantity<'Units> = Quantity(floor value.Value)
 
-    static member inline Ceiling(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(ceil value)
+    static member inline Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity(ceil q.Value)
 
-    static member inline Round(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(round value)
-    static member inline Truncate(Quantity value: Quantity<'Units>) : Quantity<'Units> = Quantity(truncate value)
+    static member inline Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity(round q.Value)
+    static member inline Truncate(q: Quantity<'Units>) : Quantity<'Units> = Quantity(truncate q.Value)
 
 
-    static member inline (+)(Quantity lhs: Quantity<'Units>, Quantity rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(lhs + rhs)
+    static member inline (+)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
+        Quantity(lhs.Value + rhs.Value)
 
-    static member inline (-)(Quantity lhs: Quantity<'Units>, Quantity rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(lhs - rhs)
+    static member inline (-)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
+        Quantity(lhs.Value - rhs.Value)
 
-    static member inline (~-)(Quantity quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(-quantity)
+    static member inline (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity(-q.Value)
 
-    static member inline (*)(Quantity quantity: Quantity<'Units>, scale: float) : Quantity<'Units> =
-        Quantity(quantity * scale)
+    static member inline (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity(q.Value * scale)
 
-    static member inline (*)(scale: float, Quantity quantity: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(quantity * scale)
+    static member inline (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity(q.Value * scale)
 
-    static member inline (*)
-        (
-            Quantity lhs: Quantity<'Units>,
-            Quantity rhs: Quantity<'Units>
-        ) : Quantity<'Units Squared> =
-        Quantity(lhs * rhs)
+    static member inline (*)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units Squared> =
+        Quantity(lhs.Value * rhs.Value)
 
-    static member inline (/)(Quantity quantity: Quantity<'Units>, scale: float) : Quantity<'Units> =
-        Quantity(quantity / scale)
+    static member inline (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity(q.Value / scale)
 
-    static member inline (/)(Quantity quantity: Quantity<'Units>, Quantity scale: Quantity<'Units>) : float =
-        quantity / scale
+    static member inline (/)(q: Quantity<'Units>, scale: Quantity<'Units>) : float = q.Value / scale.Value
 
     static member inline (/)
         (
-            Quantity dependent: Quantity<'Dependent>,
-            Quantity independent: Quantity<'Independent>
+            dependent: Quantity<'Dependent>,
+            independent: Quantity<'Independent>
         ) : Quantity<Rate<'Dependent, 'Independent>> =
-        Quantity(dependent / independent)
+        Quantity(dependent.Value / independent.Value)
 
-    static member inline (%)(Quantity value: Quantity<'Units>, Quantity modulus: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(value % modulus)
+    static member inline (%)(q: Quantity<'Units>, modulus: Quantity<'Units>) : Quantity<'Units> =
+        Quantity(q.Value % modulus.Value)
 
     override this.Equals(obj: obj) : bool =
         match obj with
         | :? (Quantity<'Units>) as other -> this.Equals(other)
         | _ -> false
-
-    override this.GetHashCode() =
-        match this with
-        | Quantity self -> roundFloatTo Float.DigitPrecision self |> hash
-
-
 
 
 // ---- Lengths ----
@@ -223,140 +208,34 @@ type Percent =
     static member (/)(Percent percent: Percent, scale: float) : Percent = Percent(percent / scale)
     static member (/)(Percent percent: Percent, Percent scale: Percent) : Percent = Percent(percent / scale)
 
-[<CustomEquality>]
-[<CustomComparison>]
-[<RequireQualifiedAccess>]
-[<Struct>]
-type Angle =
-    | Radians of float
+type Radians = Radians
+
+type Angle(radians: float) =
+    inherit Quantity<Radians>(radians)
 
     // Accessors
 
     /// Convert an arbitrary angle to the equivalent angle in the range -180 to 180
     /// degrees (-π to π radians), by adding or subtracting some multiple of 360
     /// degrees (2π radians) if necessary.
-    static member normalize(Radians r) =
+    static member normalize(r) =
         let twoPi = 2. * Math.PI
         let turns = float (int (r / twoPi))
         let radians = r - twoPi * turns
 
         if (radians > Math.PI) then
-            Radians(radians - twoPi)
+            Angle(radians - twoPi)
         else if (radians < -Math.PI) then
-            Radians(twoPi + radians)
+            Angle(twoPi + radians)
         else
-            Radians radians
-
-    interface IComparable<Angle> with
-        member this.CompareTo(angle) = this.Comparison(angle)
-
-    interface IComparable with
-        member this.CompareTo(obj) =
-            match obj with
-            | :? Angle as angle -> this.Comparison(angle)
-            | _ -> failwith "incompatible comparison"
-
-    member this.Comparison(other) =
-        if this.Equals(other) then 0
-        elif this.LessThan(other) then -1
-        else 1
-
-    member this.LessThan(Radians other: Angle) =
-        match this with
-        | Radians self -> self < other
+            Angle(radians)
 
 
-    override this.Equals(obj: obj) : bool =
-        match obj with
-        | :? Angle as other -> this.Equals(other)
-        | _ -> false
+type Length(length: float) =
+    inherit Quantity<Meters>(length)
 
-    member this.Equals(other: Angle) : bool =
-        match Angle.normalize this, Angle.normalize other with
-        | Radians lhs, Radians rhs -> almostEqual lhs rhs
+    // Operators With Angles
 
-    override this.GetHashCode() =
-        match Angle.normalize this with
-        | Radians radians ->
-            (roundFloatTo Float.DigitPrecision radians)
-                .GetHashCode()
-
-
-    // Math Operators
-
-    static member (~-)(Radians angle: Angle) : Angle = Radians -angle
-    static member (+)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs + rhs)
-    static member (-)(Radians lhs: Angle, Radians rhs: Angle) : Angle = Radians(lhs - rhs)
-    static member (*)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs * rhs)
-    static member (*)(lhs: float, Radians rhs: Angle) : Angle = Radians(rhs * lhs)
-    static member (/)(Radians lhs: Angle, rhs: float) : Angle = Radians(lhs / rhs)
-    static member (/)(Radians lhs: Angle, Radians rhs: Angle) : float = lhs / rhs
-
-
-[<CustomEquality>]
-[<CustomComparison>]
-[<RequireQualifiedAccess>]
-type Length<'Unit> =
-    | Length of float
-
-    // Accessors
-    static member create a = Length a
-
-    interface IComparable<Length<'Unit>> with
-        member this.CompareTo(length) = this.Comparison(length)
-
-    interface IComparable with
-        member this.CompareTo(obj) =
-            match obj with
-            | :? (Length<'Unit>) as length -> this.Comparison(length)
-            | _ -> failwith "incompatible comparison"
-
-    member this.Comparison(other) =
-        if this.Equals(other) then 0
-        elif this.LessThan(other) then -1
-        else 1
-
-    member this.LessThan(Length other: Length<'Unit>) =
-        match this with
-        | Length self -> self < other
-
-
-    override this.Equals(obj: obj) : bool =
-        match obj with
-        | :? (Length<'Unit>) as other -> this.Equals(other)
-        | _ -> false
-
-    member this.Equals(Length other: Length<'Unit>) : bool =
-        match this with
-        | Length self -> almostEqual self other
-
-    override this.GetHashCode() =
-        match this with
-        | Length self ->
-            (roundFloatTo Float.DigitPrecision self)
-                .GetHashCode()
-
-    // Unitless Operations
-    static member (*)(Length length: Length<'Unit>, Length scale: Length<Unitless>) : Length<'Unit> =
-        Length(length * scale)
-
-    static member (*)(Length scale: Length<Unitless>, Length length: Length<'Unit>) : Length<'Unit> =
-        Length(scale * length)
-
-    // Generic Operations
-
-    static member (+)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit> = Length(lhs + rhs)
-    static member (-)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit> = Length(lhs - rhs)
-    static member (~-)(Length length: Length<'Unit>) : Length<'Unit> = Length(-length)
-    static member (*)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length * scale)
-    static member (*)(scale: float, Length length: Length<'Unit>) : Length<'Unit> = Length(scale * length)
-    static member (*)(Length length: Length<'Unit>, Angle.Radians arc: Angle) : Length<'Unit> = Length(length * arc)
-    static member (*)(Angle.Radians arc: Angle, Length length: Length<'Unit>) : Length<'Unit> = Length(arc * length)
-    static member (*)(Length lhs: Length<'Unit>, Length rhs: Length<'Unit>) : Length<'Unit * 'Unit> = Length(lhs * rhs)
-    static member (/)(Length length: Length<'Unit>, scale: float) : Length<'Unit> = Length(length / scale)
-    static member (/)(Length length: Length<'Unit>, Length scale: Length<'Unit>) : float = length / scale
-    static member (/)(Length length: Length<'Unit>, Angle.Radians arc: Angle) : Length<'Unit> = Length(length / arc)
-
-    // Operator overloads through functions
-
-    static member Pow(Length length: Length<'Unit>, power: float) : Length<'Unit> = Length(length ** power)
+    static member (*)(length: Length, arc: Angle) : Length = Length(length.Value * arc.Value)
+    static member (*)(arc: Angle, length: Length) : Length = Length(arc.Value * length.Value)
+    static member (/)(length: Length, arc: Angle) : Length = Length(length.Value / arc.Value)
