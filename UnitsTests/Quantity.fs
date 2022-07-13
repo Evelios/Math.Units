@@ -1,4 +1,4 @@
-module UnitsTests
+module UnitsTests.Quantity
 
 open NUnit.Framework
 open FsCheck.NUnit
@@ -7,8 +7,7 @@ open FsCheck
 open Units
 
 [<SetUp>]
-let Setup () = ()
-
+let Setup () = Gen.ArbGeometry.Register()
 
 //---- Comparison --------------------------------------------------------------
 
@@ -175,11 +174,85 @@ let Modulus () =
     let actual = quantity % modulus
     let expected = Quantity 1.5
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let ``Negative Modulus`` () =
     let quantity = Quantity -13.5
     let modulus = Quantity 4.
     let actual = quantity % modulus
     let expected = Quantity -1.5
+    Assert.AreEqual(expected, actual)
+
+[<Property>]
+let Clamp (first: Quantity<Meters>)(second: Quantity<Meters>)(quantity: Quantity<Meters>) =
+    let lower = min first second
+    let upper = max first second
+    let clamped = Quantity.clamp lower upper quantity
+    
+    clamped >= lower && clamped <= upper
+    
+    
+[<Test>]
+let Squared () =
+    let actual : Quantity<Meters Squared> = Quantity.squared (Quantity 3.)
+    let expected : Quantity<Meters Squared> = Quantity 9.
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let ``Squared Unitless`` () =
+    let actual : Quantity<Unitless> = Quantity.squaredUnitless (Quantity 3.)
+    let expected : Quantity<Unitless> = Quantity 9.
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let ``Square Root Unitless`` () =
+    let actual : Quantity<Unitless> = Quantity.sqrtUnitless (Quantity 9.)
+    let expected : Quantity<Unitless> = Quantity 3.
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let Cubed () =
+    let actual : Quantity<Meters Cubed> = Quantity.cubed (Quantity 3.)
+    let expected : Quantity<Meters Cubed> = Quantity 27.
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let ``Cube Root`` () =
+    let input: Quantity<Meters Cubed> = Quantity 27.
+    let actual : Quantity<Meters> = Quantity.cbrt input
+    let expected : Quantity<Meters> = Quantity 3.
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let ``Cubed Unitless`` () =
+    let actual : Quantity<Unitless> = Quantity.cubedUnitless (Quantity 3.)
+    let expected : Quantity<Unitless> = Quantity 27.
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let ``Cube Root Unitless`` () =
+    let actual : Quantity<Unitless> = Quantity.cbrtUnitless (Quantity 27.)
+    let expected : Quantity<Unitless> = Quantity 3.
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let Reciprocal () =
+    let actual = Quantity.reciprocal (Quantity 2.)
+    let expected = Quantity 0.5
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let Remainder () =
+    let quantity = Quantity 13.5
+    let modulus = Quantity 4.
+    let actual = Quantity.remainderBy modulus quantity
+    let expected = Quantity 1.5
+    Assert.AreEqual(expected, actual)
+    
+[<Test>]
+let ``Negative Remainder`` () =
+    let quantity = Quantity -13.5
+    let modulus = Quantity 4.
+    let actual = Quantity.remainderBy modulus quantity
+    let expected = Quantity 1.5
     Assert.AreEqual(expected, actual)

@@ -34,7 +34,7 @@ type Quantity<'Units> with
 
 
 
-    // --- COMPARISON --------------------------------------------------------------
+    // --- Comparison --------------------------------------------------------------
 
 
     /// Check if one quantity is less than another. Note the [argument order](/#argument-order)!
@@ -180,7 +180,7 @@ type Quantity<'Units> with
 
 
 
-    // ---- ARITHMETIC -------------------------------------------------------------
+    // ---- Arithmetic -------------------------------------------------------------
 
 
     /// Negate a quantity!
@@ -352,10 +352,18 @@ type Quantity<'Units> with
     ///     Quantity.clamp lowerBound upperBound (Angle.turns -0.5)
     ///     --> Angle.degrees -30
     static member clamp (lower: Quantity<'Units>) (upper: Quantity<'Units>) (quantity: Quantity<'Units>) =
+        let clampHelper l u =
+            if quantity.Value < lower.Value then
+                l
+            else if quantity.Value > upper.Value then
+                u
+            else
+                quantity
+        
         if lower <= upper then
-            Quantity(Math.Clamp(lower.Value, upper.Value, quantity.Value))
+            clampHelper lower upper
         else
-            Quantity(Math.Clamp(upper.Value, lower.Value, quantity.Value))
+            clampHelper upper lower
 
 
     /// Get the sign of a quantity. This will return 1, -1, 0 or NaN if the given
@@ -441,7 +449,7 @@ type Quantity<'Units> with
         Quantity(quantity.Value * quantity.Value * quantity.Value)
 
 
-    static member unsafeCbrt(quantity: Quantity<'Units>) : Quantity<'Units> =
+    static member unsafeCbrt(quantity: Quantity<'Units1>) : Quantity<'Units2> =
         if quantity.Value >= 0. then
             Quantity(Math.Pow(quantity.Value, (1. / 3.)))
 
@@ -454,11 +462,11 @@ type Quantity<'Units> with
     ///     Quantity.cbrt (Volume.liters 1)
     ///     --> Length.centimeters 10
     /// See also [`cbrtUnitless`](#cbrtUnitless).
-    static member cbrt quantity = Quantity.unsafeCbrt quantity
+    static member cbrt (quantity:Quantity<'Units Cubed>): Quantity<'Units> = Quantity.unsafeCbrt quantity
 
 
     ///
-    static member cbrtUnitless quantity = Quantity.unsafeCbrt quantity
+    static member cbrtUnitless (quantity:Quantity<Unitless>): Quantity<Unitless> = Quantity.unsafeCbrt quantity
 
 
     /// Find the inverse of a unitless quantity.
@@ -467,8 +475,8 @@ type Quantity<'Units> with
     static member reciprocal(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(1. / quantity.Value)
 
 
-    // TODO: may be incorrect
-    ///
+    /// Returns the remainder of the modulus operation.
+    /// Note: This returns negative results for remainders on negative numbers.
     static member modBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) : Quantity<'Units> = quantity % modulus
 
 
@@ -481,10 +489,10 @@ type Quantity<'Units> with
         )
 
 
-    // TODO: may be incorrect
-    ///
+    /// Returns the remainder of the modulus operation.
+    /// Note: This returns positive results for remainders on negative numbers.
     static member remainderBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) : Quantity<'Units> =
-        quantity % modulus
+        abs (quantity % modulus)
 
 
     ///

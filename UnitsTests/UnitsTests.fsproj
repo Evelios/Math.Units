@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Gen.fs" />
         <Compile Include="Quantity.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
