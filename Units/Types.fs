@@ -50,75 +50,75 @@ type Quantity<'Units>(quantity: float) =
             | :? (Quantity<'Units>) as quantity -> this.Comparison(quantity)
             | _ -> failwith "incompatible comparison"
 
-    member inline this.Value = quantity
+    member this.Value = quantity
 
-    member inline this.Comparison(other: Quantity<'Units>) =
+    member this.Comparison(other: Quantity<'Units>) =
         if this.Equals(other) then 0
         elif this.LessThan(other) then -1
         else 1
 
-    member inline this.Equals(other: Quantity<'Units>) : bool = almostEqual this.Value other.Value
+    member this.Equals(other: Quantity<'Units>) : bool = almostEqual this.Value other.Value
 
-    member inline this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
+    member this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
+
+    override this.ToString() = string quantity
 
     override this.GetHashCode() =
         this.Value
         |> roundFloatTo Float.DigitPrecision
         |> hash
 
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? (Quantity<'Units>) as other -> this.Equals(other)
+        | _ -> false
 
     // Operators
-    static member inline Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity(abs q.Value)
+    static member Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity(abs q.Value)
 
-    static member inline Min(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
+    static member Min(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
         Quantity(min lhs.Value rhs.Value)
 
-    static member inline Max(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
+    static member Max(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
         Quantity(max lhs.Value rhs.Value)
 
-    static member inline Sqrt(value: Quantity<'Units Squared>) : Quantity<'Units> = Quantity(sqrt value.Value)
+    static member Sqrt(value: Quantity<'Units Squared>) : Quantity<'Units> = Quantity(sqrt value.Value)
 
-    static member inline Floor(value: Quantity<'Units>) : Quantity<'Units> = Quantity(floor value.Value)
+    static member Floor(value: Quantity<'Units>) : Quantity<'Units> = Quantity(floor value.Value)
 
-    static member inline Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity(ceil q.Value)
+    static member Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity(ceil q.Value)
 
-    static member inline Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity(round q.Value)
-    static member inline Truncate(q: Quantity<'Units>) : Quantity<'Units> = Quantity(truncate q.Value)
+    static member Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity(round q.Value)
+    static member Truncate(q: Quantity<'Units>) : Quantity<'Units> = Quantity(truncate q.Value)
 
 
-    static member inline (+)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(lhs.Value + rhs.Value)
+    static member (+)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> = Quantity(lhs.Value + rhs.Value)
 
-    static member inline (-)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(lhs.Value - rhs.Value)
+    static member (-)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> = Quantity(lhs.Value - rhs.Value)
 
-    static member inline (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity(-q.Value)
+    static member (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity(-q.Value)
 
-    static member inline (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity(q.Value * scale)
+    static member (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity(q.Value * scale)
 
-    static member inline (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity(q.Value * scale)
+    static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity(q.Value * scale)
 
-    static member inline (*)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units Squared> =
+    static member (*)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units Squared> =
         Quantity(lhs.Value * rhs.Value)
 
-    static member inline (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity(q.Value / scale)
+    static member (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity(q.Value / scale)
 
-    static member inline (/)(q: Quantity<'Units>, scale: Quantity<'Units>) : float = q.Value / scale.Value
+    static member (/)(q: Quantity<'Units>, scale: Quantity<'Units>) : float = q.Value / scale.Value
 
-    static member inline (/)
+    static member (/)
         (
             dependent: Quantity<'Dependent>,
             independent: Quantity<'Independent>
         ) : Quantity<Rate<'Dependent, 'Independent>> =
         Quantity(dependent.Value / independent.Value)
 
-    static member inline (%)(q: Quantity<'Units>, modulus: Quantity<'Units>) : Quantity<'Units> =
+    static member (%)(q: Quantity<'Units>, modulus: Quantity<'Units>) : Quantity<'Units> =
         Quantity(q.Value % modulus.Value)
 
-    override this.Equals(obj: obj) : bool =
-        match obj with
-        | :? (Quantity<'Units>) as other -> this.Equals(other)
-        | _ -> false
 
 
 // ---- Lengths ----
