@@ -1,16 +1,18 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Polygon2D
 
+open Units
+
 
 // ---- Builders ----
 
-let private counterclockwiseArea (vertices_: Point2D<'Unit, 'Coordinates> list) : Length<'Unit * 'Unit> =
+let private counterclockwiseArea (vertices_: Point2D<'Unit, 'Coordinates> list) : Quantity<'Unit Squared> =
     match vertices_ with
-    | [] -> Length.zero
+    | [] -> Quantity.zero
 
-    | [ _ ] -> Length.zero
+    | [ _ ] -> Quantity.zero
 
-    | [ _; _ ] -> Length.zero
+    | [ _; _ ] -> Quantity.zero
 
     | first :: rest ->
         let segmentArea start finish =
@@ -23,14 +25,14 @@ let private counterclockwiseArea (vertices_: Point2D<'Unit, 'Coordinates> list) 
         Length.sum segmentAreas
 
 let private makeOuterLoop (vertices_: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> list =
-    if counterclockwiseArea vertices_ >= Length.zero then
+    if counterclockwiseArea vertices_ >= Quantity.zero then
         vertices_
     else
         List.rev vertices_
 
 
 let private makeInnerLoop (vertices_: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> list =
-    if counterclockwiseArea vertices_ <= Length.zero then
+    if counterclockwiseArea vertices_ <= Quantity.zero then
         vertices_
     else
         List.rev vertices_
@@ -91,7 +93,7 @@ let private counterclockwiseAround
         Vector2D.from origin a
         |> Vector2D.cross (Vector2D.from origin b)
 
-    crossProduct >= Length.zero
+    crossProduct >= Quantity.zero
 
 let private chain (acc: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> list =
 
@@ -161,25 +163,25 @@ let edges (polygon: Polygon2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 'Coor
 
 /// Get the perimeter of a polygon (the sum of the lengths of its edges). This
 /// includes the outer perimeter and the perimeter of any holes.
-let perimeter (polygon: Polygon2D<'Unit, 'Coordinates>) : Length<'Unit> =
+let perimeter (polygon: Polygon2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     edges polygon
     |> List.map LineSegment2D.length
     |> Length.sum
 
 /// Get the area of a polygon. This value will never be negative.
-let area (polygon: Polygon2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let area (polygon: Polygon2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     counterclockwiseArea (outerLoop polygon)
     + (Length.sum (List.map counterclockwiseArea (innerLoops polygon)))
 
 let rec private centroidHelp
-    (x0: Length<'Unit>)
-    (y0: Length<'Unit>)
+    (x0: Quantity<'Unit>)
+    (y0: Quantity<'Unit>)
     (firstPoint: Point2D<'Unit, 'Coordinates>)
     (currentLoop: Point2D<'Unit, 'Coordinates> list)
     (remainingLoops: Point2D<'Unit, 'Coordinates> list list)
-    (xSum: Length<'Unit>)
-    (ySum: Length<'Unit>)
-    (areaSum: Length<'Unit * 'Unit>)
+    (xSum: Quantity<'Unit>)
+    (ySum: Quantity<'Unit>)
+    (areaSum: Quantity<'Unit Squared>)
     : Point2D<'Unit, 'Coordinates> option =
 
     match currentLoop with
@@ -196,14 +198,14 @@ let rec private centroidHelp
                 centroidHelp x0 y0 firstPoint [] newRemainingLoops xSum ySum areaSum
 
         | [] ->
-            if areaSum > Length.zero then
+            if areaSum > Quantity.zero then
                 Some
                     { X =
                           xSum
-                          / ((Length.unpack areaSum * 3.) + Length.unpack x0)
+                          / ((areaSum * 3.).Value + x0.Value)
                       Y =
                           ySum
-                          / ((Length.unpack areaSum * 3.) + Length.unpack y0) }
+                          / ((areaSum * 3.).Value + y0.Value) }
 
 
             else
@@ -219,8 +221,8 @@ let rec private centroidHelp
             let p2x = p2.X - x0
             let p2y = p2.Y - y0
             let a = p1x * p2y - p2x * p1y
-            let newXSum = xSum + (p1x + p2x) * Length.unpack a
-            let newYSum = ySum + (p1y + p2y) * Length.unpack a
+            let newXSum = xSum + (p1x + p2x) * a.Value
+            let newYSum = ySum + (p1y + p2y) * a.Value
             let newAreaSum = areaSum + a
             centroidHelp x0 y0 firstPoint currentLoopRest remainingLoops newXSum newYSum newAreaSum
 
@@ -232,8 +234,8 @@ let rec private centroidHelp
             let p2x = p2.X - x0
             let p2y = p2.Y - y0
             let a = p1x * p2y - p2x * p1y
-            let newXSum = xSum + (p1x + p2x) * Length.unpack a
-            let newYSum = ySum + (p1y + p2y) * Length.unpack a
+            let newXSum = xSum + (p1x + p2x) * a.Value
+            let newYSum = ySum + (p1y + p2y) * a.Value
             let newAreaSum = areaSum + a
 
             match remainingLoops with
@@ -248,10 +250,10 @@ let rec private centroidHelp
                     centroidHelp x0 y0 firstPoint [] newRemainingLoops newXSum newYSum newAreaSum
 
             | [] ->
-                if newAreaSum > Length.zero then
+                if newAreaSum > Quantity.zero then
                     Some(
-                        { X = newXSum / (Length.unpack newAreaSum * 3.) + x0
-                          Y = newYSum / (Length.unpack newAreaSum * 3.) + y0 }
+                        { X = newXSum / (newAreaSum.Value * 3.) + x0
+                          Y = newYSum / (newAreaSum.Value * 3.) + y0 }
                     )
 
                 else
@@ -270,9 +272,9 @@ let centroid (polygon: Polygon2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordin
             first
             (outerLoop polygon)
             (innerLoops polygon)
-            Length.zero
-            Length.zero
-            Length.zero
+            Quantity.zero
+            Quantity.zero
+            Quantity.zero
 
     | _ -> None
     
@@ -335,7 +337,7 @@ let translateBy
 /// Translate a polygon in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (polygon: Polygon2D<'Unit, 'Coordinates>)
     : Polygon2D<'Unit, 'Coordinates> =
     translateBy (Vector2D.withLength distance direction) polygon
@@ -386,8 +388,8 @@ let placeIn
 
 let rec private containsPointHelp
     (edgeList: LineSegment2D<'Unit, 'Coordinates> list)
-    (xp: Length<'Unit>)
-    (yp: Length<'Unit>)
+    (xp: Quantity<'Unit>)
+    (yp: Quantity<'Unit>)
     (k: int)
     : bool =
     // Based on Hao, J.; Sun, J.; Chen, Y.; Cai, Q.; Tan, L. Optimal Reliable Point-in-Polygon Test and
@@ -404,8 +406,8 @@ let rec private containsPointHelp
         let v1 = yi - yp
         let v2 = yi1 - yp
 
-        if (v1 < Length.zero && v2 < Length.zero)
-           || (v1 > Length.zero && v2 > Length.zero) then
+        if (v1 < Quantity.zero && v2 < Quantity.zero)
+           || (v1 > Quantity.zero && v2 > Quantity.zero) then
             // case 11 or 26
             containsPointHelp rest xp yp k
 
@@ -413,10 +415,10 @@ let rec private containsPointHelp
             let u1 = xi - xp
             let u2 = xi1 - xp
 
-            if v2 > Length.zero && v1 <= Length.zero then
+            if v2 > Quantity.zero && v1 <= Quantity.zero then
                 let f = u1 * v2 - u2 * v1
 
-                if f > Length.zero then
+                if f > Quantity.zero then
                     // case 3 or 9
                     containsPointHelp rest xp yp (k + 1)
 

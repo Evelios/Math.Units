@@ -3,12 +3,14 @@ module Geometry.Circle2D
 
 open System
 
+open Units
+
 // ---- Builders ----
 
-let atPoint (center: Point2D<'Unit, 'Coordinates>) (radius: Length<'Unit>) : Circle2D<'Unit, 'Coordinates> =
+let atPoint (center: Point2D<'Unit, 'Coordinates>) (radius: Quantity<'Unit>) : Circle2D<'Unit, 'Coordinates> =
     { Center = center; Radius = radius }
 
-let withRadius (radius: Length<'Unit>) (center: Point2D<'Unit, 'Coordinates>) : Circle2D<'Unit, 'Coordinates> =
+let withRadius (radius: Quantity<'Unit>) (center: Point2D<'Unit, 'Coordinates>) : Circle2D<'Unit, 'Coordinates> =
     { Center = center; Radius = radius }
 
 let atOrigin radius = atPoint Point2D.origin radius
@@ -34,14 +36,14 @@ let sweptAround (centerPoint: Point2D<'Units, 'Coordinates>) (point: Point2D<'Un
 
 let centerPoint (circle: Circle2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = circle.Center
 
-let radius (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = circle.Radius
+let radius (circle: Circle2D<'Unit, 'Coordinates>) : Quantity<'Unit> = circle.Radius
 
-let diameter (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = circle.Radius * 2.
+let diameter (circle: Circle2D<'Unit, 'Coordinates>) : Quantity<'Unit> = circle.Radius * 2.
 
-let area (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let area (circle: Circle2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     2. * Math.PI * (Length.squared circle.Radius)
 
-let circumference (circle: Circle2D<'Unit, 'Coordinates>) : Length<'Unit> = 2. * Math.PI * circle.Radius
+let circumference (circle: Circle2D<'Unit, 'Coordinates>) : Quantity<'Unit> = 2. * Math.PI * circle.Radius
 
 let toArc (circle: Circle2D<'Unit, 'Coordinates>) : Arc2D<'Unit, 'Coordinates> =
     let startX = circle.Center.X + circle.Radius
@@ -82,7 +84,7 @@ let translateBy
 /// Translate a circle in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (circle: Circle2D<'Unit, 'Coordinates>)
     : Circle2D<'Unit, 'Coordinates> =
         

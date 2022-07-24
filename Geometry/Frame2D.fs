@@ -1,11 +1,13 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Frame2D
 
+open Units
+
 
 // ---- Builders ----
 
 let atOrigin<'Unit, 'Coordinates, 'Defines> : Frame2D<'Unit, 'Coordinates, 'Defines> =
-    { Origin = { X = Length.zero; Y = Length.zero }
+    { Origin = { X = Quantity.zero; Y = Quantity.zero }
       XDirection = Direction2D.x
       YDirection = Direction2D.y }
 
@@ -152,10 +154,10 @@ let translateBy
 /// Translate a frame in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
     : Frame2D<'Unit, 'Coordinates, 'Defines> =
-    translateBy (Internal.Vector2D.withLength distance direction) frame
+    translateBy (Internal.Vector2D.withQuantity distance direction) frame
 
 /// Translate a frame along one of its own axes by a given distance.
 /// The first argument is a function that returns the axis to translate along, given
@@ -164,7 +166,7 @@ let translateIn
 /// translate along the given axis.
 let translateAlongOwn
     (axis: Frame2D<'Unit, 'Coordinates, 'Defines1> -> Axis2D<'Unit, 'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (frame: Frame2D<'Unit, 'Coordinates, 'Defines1>)
     : Frame2D<'Unit, 'Coordinates, 'Defines2> =
     let frame =

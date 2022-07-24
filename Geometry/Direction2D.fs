@@ -1,6 +1,8 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Direction2D
 
+open Units
+
 
 // ---- Builders ----
 
@@ -33,8 +35,8 @@ let fromComponents (x: float, y: float) : Direction2D<'Coordinates> option =
 /// care of normalizing the x and y components into the unit direction vector.
 /// This function also checks for the edge case where the x and y components
 /// are both zero. In that case, the function returns `None`.
-let xyLength (Length.Length x: Length<'Unit>) (Length.Length y: Length<'Unit>) : Direction2D<'Coordinates> option =
-    xy x y
+let xyQuantity ( x: Quantity<'Unit>) ( y: Quantity<'Unit>) : Direction2D<'Coordinates> option =
+    xy x.Value y.Value
 
 /// Create a direction vector from the x and y components. This function
 /// doesn't perform either zero magnitude checks nor does it normalize the
@@ -57,7 +59,7 @@ let from
     (second: Point2D<'Unit, 'Coordinates>)
     : Direction2D<'Coordinates> option =
     let v = second - first
-    xyLength v.X v.Y
+    xyQuantity v.X v.Y
 
 // ---- Constants ----
 
@@ -88,8 +90,8 @@ let yComponent (d: Direction2D<'Coordinates>) : float = d.Y
 
 /// Convert a direction to a unitless vector of length 1.
 let toVector (d: Direction2D<'Coordiantes>) : Vector2D<Unitless, 'Coordinates> =
-    { X = Length.unitless d.X
-      Y = Length.unitless d.Y }
+    { X = Quantity<Unitless> d.X
+      Y = Quantity<Unitless> d.Y }
 
 
 // ---- Modifiers ----
@@ -137,15 +139,15 @@ let orthonormalize
     (xVector: Vector2D<'Unit, 'Coordinates>)
     (xyVector: Vector2D<'Unit, 'Coordinatres>)
     : (Direction2D<'Coordinates> * Direction2D<'Coordinates>) option =
-    let xDirectionOption = xyLength xVector.X xVector.Y
+    let xDirectionOption = xyQuantity xVector.X xVector.Y
 
     match xDirectionOption with
     | Some xDirection ->
         let yDirection = perpendicularTo xDirection
 
         match Internal.Vector2D.componentIn yDirection xyVector with
-        | p when p > Length.zero -> Some(xDirection, yDirection)
-        | p when p < Length.zero -> Some(xDirection, reverse yDirection)
+        | p when p > Quantity.zero -> Some(xDirection, yDirection)
+        | p when p < Quantity.zero -> Some(xDirection, reverse yDirection)
         | _ -> None
 
     | None -> None

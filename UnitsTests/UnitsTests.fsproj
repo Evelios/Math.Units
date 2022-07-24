@@ -9,7 +9,9 @@
 
     <ItemGroup>
         <Compile Include="Gen.fs" />
+        <Compile Include="Test.fs" />
         <Compile Include="Quantity.fs" />
+        <Compile Include="Angle.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 

@@ -137,5 +137,4 @@ Length.sum [ Length.meters 1.; Length.meters 2. ]
 # Unsafe Operations
 *)
 
-Length.unpack (Length.meters 5.)
 (*** include-it ***)

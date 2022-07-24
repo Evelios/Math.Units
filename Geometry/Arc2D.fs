@@ -1,6 +1,7 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Arc2D
 
+open Units
 
 // ---- Builders ----
 
@@ -42,13 +43,13 @@ let from
         { StartPoint = givenStartPoint
           SweptAngle = givenSweptAngle
           XDirection = Direction2D.x
-          SignedLength = Length.zero }
+          SignedLength = Quantity.zero }
 
 
 /// Construct an arc with the given center point, radius, start angle and swept
 let withCenterPoint
     (centerPoint: Point2D<'Unit, 'Coordinates>)
-    (radius: Length<'Unit>)
+    (radius: Quantity<'Unit>)
     (startAngle: Angle)
     (sweptAngle: Angle)
     : Arc2D<'Unit, 'Coordinates> =
@@ -99,7 +100,7 @@ let sweptAround
         { StartPoint = givenStartPoint
           XDirection = Direction2D.x
           SweptAngle = givenSweptAngle
-          SignedLength = Length.zero }
+          SignedLength = Quantity.zero }
 
 /// Attempt to construct an arc that starts at the first given point, passes
 /// through the second given point and ends at the third given point:
@@ -140,7 +141,7 @@ let throughPoints
         | _ -> None
 
 let withRadius
-    (radius: Length<'Unit>)
+    (radius: Quantity<'Unit>)
     (sweptAngle: SweptAngle)
     (startPoint: Point2D<'Unit, 'Coordinates>)
     (endPoint: Point2D<'Unit, 'Coordinates>)
@@ -190,7 +191,7 @@ let withRadius
 /// Construct an arc with the given center point, radius, start angle and swept
 let withSweptAngle
     (center: Point2D<'Unit, 'Coordinates>)
-    (radius: Length<'Unit>)
+    (radius: Quantity<'Unit>)
     (startAngle: Angle)
     (sweptAngle: Angle)
     : Arc2D<'Unit, 'Coordinates> =
@@ -223,7 +224,7 @@ let centerPoint (arc: Arc2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinate
     Point2D.xy cx cy
 
 /// Get the radius of an arc.
-let radius (arc: Arc2D<'Unit, 'Coordinates>) : Length<'Unit> = arc.SignedLength / arc.SweptAngle
+let radius (arc: Arc2D<'Unit, 'Coordinates>) : Quantity<'Unit> = arc.SignedLength / arc.SweptAngle
 
 /// Get the swept angle of an arc. The result will be positive for a
 let sweptAngle (arc: Arc2D<'Unit, 'Coordinates>) : Angle = arc.SweptAngle
@@ -327,7 +328,7 @@ let nondegenerate
     (arc: Arc2D<'Unit, 'Coordinates>)
     : Result<Nondegenerate<'Unit, 'Coordinates>, Point2D<'Unit, 'Coordinates>> =
 
-    if arc.SignedLength = Length.zero then
+    if arc.SignedLength = Quantity.zero then
         Error(startPoint arc)
 
     else
@@ -406,7 +407,7 @@ let translateBy
 /// Translate an arc in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (arc: Arc2D<'Unit, 'Coordinates>)
     : Arc2D<'Unit, 'Coordinates> =
 

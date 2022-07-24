@@ -35,14 +35,14 @@ let ``Length greater than or equal to`` () =
 
 
 [<Property>]
-let ``Equality and hash code comparison with random lengths`` (first: Length<Meters>) (second: Length<Meters>) =
+let ``Equality and hash code comparison with random lengths`` (first: Length) (second: Length) =
     (first = second) = (first.GetHashCode() = second.GetHashCode())
 
 // ---- Builders ----
 
 [<Test>]
 let ``Length in units equals zero`` () =
-    let zero : Length<Unitless> = Length.zero
+    let zero : Length = Length.zero
     Assert.AreEqual(Length.unitless 0., zero)
 
 
@@ -93,7 +93,7 @@ let ``Conversion to Length and back`` (length: float) =
 // ---- Math Operators ----
 
 [<Property>]
-let ``Absolute value is always greater or equal to zero `` (l: Length<Meters>) = Length.abs l >= Length.zero
+let ``Absolute value is always greater or equal to zero `` (l: Length) = Length.abs l >= Length.zero
 
 
 [<Test>]

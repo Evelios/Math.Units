@@ -1,11 +1,11 @@
-module GeometryTests.Angle
+module UnitsTests.Angle
 
 open NUnit.Framework
 open FsCheck.NUnit
 open FsCheck
 open System
 
-open Geometry
+open Units
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()

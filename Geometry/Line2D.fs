@@ -1,6 +1,8 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Line2D
 
+open Units
+
 // ---- Builders ----
 
 let through (start: Point2D<'Unit, 'Coordinates>) (finish: Point2D<'Unit, 'Coordinates>) : Line2D<'Unit, 'Coordinates> =
@@ -20,7 +22,7 @@ let private toLineSegment (line: Line2D<'Unit, 'Coordinates>) : LineSegment2D<'U
 let direction (line: Line2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
     Vector2D.direction (Vector2D.from line.Start line.Finish)
 
-let length (line: Line2D<'Unit, 'Coordinates>) : Length<'Unit> =
+let length (line: Line2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     Point2D.distanceTo line.Start line.Finish
 
 let axis (line: Line2D<'Unit, 'Coordinates>) : Axis2D<'Unit, 'Coordinates> option =
@@ -44,9 +46,9 @@ let pointClosestTo
     | Some lineAxis -> Point2D.projectOnto lineAxis point
     | None -> line.Start
 
-let distanceToPoint (point: Point2D<'Unit, 'Coordinates>) (line: Line2D<'Unit, 'Coordinates>) : Length<'Unit> =
+let distanceToPoint (point: Point2D<'Unit, 'Coordinates>) (line: Line2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     if line.Start = point || line.Finish = point then
-        Length.zero
+        Quantity.zero
     else
         Point2D.distanceTo point (pointClosestTo point line)
 

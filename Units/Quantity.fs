@@ -6,6 +6,8 @@ open System
 
 type Quantity<'Units> with
 
+    static member unitless value: Quantity<Unitless> = Quantity value
+
     /// A generic zero value. This can be treated as either an `Int` or `Float`
     /// quantity in any units type, similar to how `Nothing` can be treated as any kind
     /// of `Maybe` type and `[]` can be treated as any kind of `List`.
@@ -668,6 +670,9 @@ type Quantity<'Units> with
     ///     Quantity.round (Pixels.pixels 3.5)
     ///     --> Pixels.pixels 4
     static member round(quantity: Quantity<'Units>) : Quantity<'Units> = round quantity
+    
+    /// TODO
+    static member roundTo (digits: int) (quantity: Quantity<'Units>)  : Quantity<'Units> = round quantity
 
 
     /// Round a `Float`-valued quantity down to the nearest `Int`. Note that [this
@@ -985,7 +990,7 @@ type Quantity<'Units> with
     ///     resolution =
     ///         Pixels.float 96 |> Quantity.per Length.inch
     ///     Quantity.rateProduct pixelSpeed
-    ///         (Quantity.inverse resolution)
+    ///         (Quantity.inverse resolution).Value
     ///     --> Speed.metersPerSecond 0.1323
     /// rateProduct :
     //    Float (Rate units2 units1)

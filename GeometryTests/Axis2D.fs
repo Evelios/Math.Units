@@ -125,6 +125,6 @@ let throughPoints (p1: Point2D<Meters, TestSpace>) (p2: Point2D<Meters, TestSpac
     | Some axis ->
         Test.all [
             Test.equal p1 axis.Origin
-            Test.equal Length.zero (Point2D.signedDistanceFrom axis p2)
+            Test.equal Quantity.zero (Point2D.signedDistanceFrom axis p2)
         ]
     | None -> Test.equal p1 p2

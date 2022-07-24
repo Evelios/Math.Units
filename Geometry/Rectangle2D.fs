@@ -1,11 +1,13 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Rectangle2D
 
+open Units
+
 let private axisAligned
-    (x1: Length<'Unit>)
-    (y1: Length<'Unit>)
-    (x2: Length<'Unit>)
-    (y2: Length<'Unit>)
+    (x1: Quantity<'Unit>)
+    (y1: Quantity<'Unit>)
+    (x2: Quantity<'Unit>)
+    (y2: Quantity<'Unit>)
     : Rectangle2D<'Unit, 'Coordinates> =
 
     let computedCenterPoint =
@@ -51,10 +53,10 @@ let private axisAligned
 /// equal to `Direction2D.negativeY`.
 /// -}
 let from
-    (x1: Length<'Unit>)
-    (y1: Length<'Unit>)
-    (x2: Length<'Unit>)
-    (y2: Length<'Unit>)
+    (x1: Quantity<'Unit>)
+    (y1: Quantity<'Unit>)
+    (x2: Quantity<'Unit>)
+    (y2: Quantity<'Unit>)
     : Rectangle2D<'Unit, 'Coordinates> =
     axisAligned x1 y1 x2 y2
 
@@ -185,7 +187,7 @@ let dimensions (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Size2D<'Unit> = r
 
 
 /// Get the area of a rectangle.
-let area (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let area (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     rectangle.Dimensions.Width
     * rectangle.Dimensions.Height
 
@@ -339,7 +341,7 @@ let translateBy
 /// Translate a rectangle in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (rectangle: Rectangle2D<'Unit, 'Coordinates>)
     : Rectangle2D<'Unit, 'Coordinates> =
 

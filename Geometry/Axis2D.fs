@@ -1,6 +1,8 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Axis2D
 
+open Units
+
 
 // ---- Builders ----
 
@@ -12,10 +14,10 @@ let through
       Direction = direction }
 
 let x<'Unit, 'Coordinates> : Axis2D<'Unit, 'Coordinates> =
-    through { X = Length.zero; Y = Length.zero } Direction2D.x
+    through { X = Quantity.zero; Y = Quantity.zero } Direction2D.x
 
 let y<'Unit, 'Coordinates> : Axis2D<'Unit, 'Coordinates> =
-    through { X = Length.zero; Y = Length.zero } Direction2D.y
+    through { X = Quantity.zero; Y = Quantity.zero } Direction2D.y
 
 let withDirection
     (direction: Direction2D<'Coordinates>)
@@ -31,7 +33,7 @@ let throughPoints
 
     let vector = (second - first)
 
-    Direction2D<'Coordinates>.xyLength vector.X vector.Y
+    Direction2D.xyQuantity vector.X vector.Y
     |> Option.map (through first)
 
 
@@ -86,7 +88,7 @@ let translateBy
 /// Translate an axis in a given direction by a given distance.
 let translateIn
     (translationDirection: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (axis: Axis2D<'Unit, 'Coordinates>)
     : Axis2D<'Unit, 'Coordinates> =
     translateBy (Vector2D.withLength distance translationDirection) axis

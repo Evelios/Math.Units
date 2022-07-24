@@ -85,7 +85,7 @@ let translateBy (vector: Vector2D<'Unit, 'Coordinates>)  (triangle: Triangle2D<'
     mapVertices (Point2D.translateBy vector) triangle
 
 /// Translate a triangle in a given direction by a given distance.
-let translateIn (direction: Direction2D<'Coordinates>) (distance: Length<'Unit>) (triangle: Triangle2D<'Unit, 'Coordinates>): Triangle2D<'Unit, 'Coordinates> =
+let translateIn (direction: Direction2D<'Coordinates>) (distance: Quantity<'Unit>) (triangle: Triangle2D<'Unit, 'Coordinates>): Triangle2D<'Unit, 'Coordinates> =
     translateBy (Vector2D.withLength distance direction) triangle
 
 /// Mirror a triangle across a given axis. Note that mirroring a triangle will
@@ -120,27 +120,27 @@ let contains (point: Point2D<'Unit, 'Coordinates>) (triangle: Triangle2D<'Unit, 
     let secondProduct = crossProduct triangle.P2 triangle.P3
     let thirdProduct = crossProduct triangle.P3 triangle.P1
 
-    ((firstProduct >= Length.zero)
-     && (secondProduct >= Length.zero)
-     && (thirdProduct >= Length.zero))
-    || ((firstProduct <= Length.zero)
-        && (secondProduct <= Length.zero)
-        && (thirdProduct <= Length.zero))
+    ((firstProduct >= Quantity.zero)
+     && (secondProduct >= Quantity.zero)
+     && (thirdProduct >= Quantity.zero))
+    || ((firstProduct <= Quantity.zero)
+        && (secondProduct <= Quantity.zero)
+        && (thirdProduct <= Quantity.zero))
 
 /// Get the signed area of a triangle, returning a positive value if the
 /// triangle's vertices are in counterclockwise order and a negative value
 /// otherwise.
-let counterclockwiseArea (triangle: Triangle2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let counterclockwiseArea (triangle: Triangle2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     let firstVector = Vector2D.from triangle.P1 triangle.P2
     let secondVector = Vector2D.from triangle.P1 triangle.P3
     0.5 * (firstVector |> Vector2D.cross secondVector)
 
 /// Get the signed area of a triangle, returning a positive value if the
 /// triangle's vertices are in clockwise order and a negative value otherwise.
-let clockwiseArea (triangle: Triangle2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> = -(counterclockwiseArea triangle)
+let clockwiseArea (triangle: Triangle2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> = -(counterclockwiseArea triangle)
 
 /// Get the area of a triangle. The result will always be positive regardless of
 /// whether the triangle's vertices are in clockwise or counterclockwise order.
-let area (triangle: Triangle2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let area (triangle: Triangle2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     counterclockwiseArea triangle |> Length.abs
 

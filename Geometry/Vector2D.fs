@@ -3,16 +3,18 @@ module Geometry.Vector2D
 
 open FSharp.Json
 
+open Units
+
 // ---- Builders ----
 
 /// Construct a Vector2D object from the x and y lengths.
-let xy (x: Length<'Unit>) (y: Length<'Unit>) : Vector2D<'Unit, 'Coordinates> = { X = x; Y = y }
+let xy (x: Quantity<'Unit>) (y: Quantity<'Unit>) : Vector2D<'Unit, 'Coordinates> = { X = x; Y = y }
 
 /// Construct a vector given its local components within a particular frame
 let xyIn
     (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (x: Length<'Unit>)
-    (y: Length<'Unit>)
+    (x: Quantity<'Unit>)
+    (y: Quantity<'Unit>)
     : Vector2D<'Unit, 'Coordinates> =
     let i = frame.XDirection
     let j = frame.YDirection
@@ -21,17 +23,17 @@ let xyIn
 let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = p2 - p1
 
 /// Construct a vector with the given length in the given direction.
-let withLength (a: Length<'Unit>) (d: Direction2D<'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
-    Internal.Vector2D.withLength a d
+let withLength (a: Quantity<'Unit>) (d: Direction2D<'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+    Internal.Vector2D.withQuantity a d
 
 /// Construct a vector using polar coordinates coordinates given a length and angle
-let rTheta (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
+let rTheta (r: Quantity<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> =
     xy (r * (Angle.cos theta)) (r * (Angle.sin theta))
 
 /// Construct a vector given its local polar components within a particular
 let rThetaIn
     (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (r: Length<'Unit>)
+    (r: Quantity<'Unit>)
     (theta: Angle)
     : Vector2D<'Unit, 'Coordinates> =
     let i = frame.XDirection
@@ -41,9 +43,9 @@ let rThetaIn
     xy (r * (cosTheta * i.X + sinTheta * j.X)) (r * (cosTheta * i.Y + sinTheta * j.Y))
 
 /// Alias for `rTheta`
-let polar (r: Length<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> = rTheta r theta
+let polar (r: Quantity<'Unit>) (theta: Angle) : Vector2D<'Unit, 'Coordinates> = rTheta r theta
 
-let zero<'Unit, 'Coordinates> : Vector2D<'Unit, 'Coordinates> = xy Length.zero Length.zero
+let zero<'Unit, 'Coordinates> : Vector2D<'Unit, 'Coordinates> = xy Quantity.zero Quantity.zero
 
 
 // ---- Helper Builders ----
@@ -62,11 +64,11 @@ let feet (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Lengt
 
 // ---- Accessors ----
 
-let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> =
+let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     let largestComponent = max (Length.abs v.X) (Length.abs v.Y)
 
-    if largestComponent = Length.zero then
-        Length.zero
+    if largestComponent = Quantity.zero then
+        Quantity.zero
 
     else
         let scaledX = v.X / largestComponent
@@ -81,11 +83,11 @@ let magnitude (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> =
 let length = magnitude
 
 /// Get the X and Y components of a vector as a tuple.
-let components (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> * Length<'Unit> = (v.X, v.Y)
+let components (v: Vector2D<'Unit, 'Coordinates>) : Quantity<'Unit> * Quantity<'Unit> = (v.X, v.Y)
 
-let x (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> = v.X
+let x (v: Vector2D<'Unit, 'Coordinates>) : Quantity<'Unit> = v.X
 
-let y (v: Vector2D<'Unit, 'Coordinates>) : Length<'Unit> = v.Y
+let y (v: Vector2D<'Unit, 'Coordinates>) : Quantity<'Unit> = v.Y
 
 // ---- Operators ----
 
@@ -100,7 +102,7 @@ let sum (vectors: Vector2D<'Unit, 'Coordiante> list) : Vector2D<'Unit, 'Coordian
         | v: Vector2D<'Unit, 'Coordinate> :: rest -> sumHelp (sumX + v.X) (sumY + v.Y) rest
         | [] -> xy sumX sumY
 
-    sumHelp Length.zero Length.zero vectors
+    sumHelp Quantity.zero Quantity.zero vectors
 
 
 
@@ -127,9 +129,9 @@ let half (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = sc
 // ---- Modifiers ----
 
 /// Scale a vector to a given length.
-let scaleTo (scale: Length<'Unit>) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+let scaleTo (scale: Quantity<'Unit>) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     let largestComponent = max (Length.abs v.X) (Length.abs v.Y)
-    if largestComponent = Length.zero then
+    if largestComponent = Quantity.zero then
         zero
 
     else
@@ -184,7 +186,7 @@ let roundTo (digits: int) (v: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, '
     xy (Length.roundTo digits v.X) (Length.roundTo digits v.Y)
 
 /// Find the component of a vector in an arbitrary direction, for example
-let componentIn (d: Direction2D<'Coordinates>) (v: Vector2D<'Unit, 'Coordiantes>) : Length<'Unit> =
+let componentIn (d: Direction2D<'Coordinates>) (v: Vector2D<'Unit, 'Coordiantes>) : Quantity<'Unit> =
     Internal.Vector2D.componentIn d v
 
 /// Reverse the direction of a vector, negating its components.
@@ -242,39 +244,39 @@ let placeIn
 /// Get the distance between two vectors squared. This function can be used to
 /// optimize some algorithms because you remove a square root call from the
 /// calculation which can be an expensive operation.
-let distanceSquaredTo (p1: Vector2D<'Unit, 'Coordinates>) (p2: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let distanceSquaredTo (p1: Vector2D<'Unit, 'Coordinates>) (p2: Vector2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     let dx = (p1.X - p2.X)
     let dy = (p1.Y - p2.Y)
     dx * dx + dy * dy
 
-let distanceTo p1 p2 : Length<'Unit> = distanceSquaredTo p1 p2 |> Length.sqrt
+let distanceTo p1 p2 : Quantity<'Unit> = distanceSquaredTo p1 p2 |> Length.sqrt
 
 /// Get the vector that is the average of two vectors.
 let midVector (p1: Vector2D<'Unit, 'Coordinates>) (p2: Vector2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
     xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
 
-let dot (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let dot (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     ((lhs.X * rhs.X) + (lhs.Y * rhs.Y))
 
-let cross (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
+let cross (lhs: Vector2D<'Unit, 'Coordinates>) (rhs: Vector2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     (lhs.X * rhs.Y) - (lhs.Y * rhs.X)
     
 /// Get the direction the a vector is facing.
-let direction (v: Vector2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option = Direction2D.xyLength v.X v.Y
+let direction (v: Vector2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option = Direction2D.xyQuantity v.X v.Y
 
 /// Compare two vectors within a tolerance. Returns true if the difference
 /// between the two given vectors has magnitude less than the given tolerance.
 let equalWithin
-    (tolerance: Length<'Unit>)
+    (tolerance: Quantity<'Unit>)
     (lhs: Vector2D<'Unit, 'Coordinates>)
     (rhs: Vector2D<'Unit, 'Coordinates>)
     : bool =
-    if tolerance > Length.zero then
+    if tolerance > Quantity.zero then
         let nx = (rhs.X - lhs.X) / tolerance
         let ny = (rhs.Y - lhs.Y) / tolerance
         nx * nx + ny * ny <= 1.
 
-    else if tolerance = Length.zero then
+    else if tolerance = Quantity.zero then
         lhs.X = rhs.X && lhs.Y = rhs.Y
 
     else
@@ -285,14 +287,14 @@ let equalWithin
 let fromList (list: float list) : Vector2D<'Unit, 'Coordinates> option =
     match list with
     | [ x; y ] ->
-        xy (Length<'Unit>.create x) (Length<'Unit>.create y)
+        xy (Quantity<'Unit>.create x) (Quantity<'Unit>.create y)
         |> Some
 
     | _ -> None
 
 let toList (vector: Vector2D<'Unit, 'Coordinates>) : float list =
-    [ Length.unpack vector.X
-      Length.unpack vector.Y ]
+    [ vector.X.Value
+      vector.Y.Value ]
 
 
 // ---- Json transformations ----
@@ -307,7 +309,7 @@ type Transform() =
         member this.fromTargetType value =
             value :?> float list
             |> fromList
-            |> Option.defaultValue (xy Length.zero Length.zero)
+            |> Option.defaultValue (xy Quantity.zero Quantity.zero)
             :> obj
 
 type ListTransform() =
@@ -323,6 +325,6 @@ type ListTransform() =
             value :?> float list list
             |> List.map (
                 fromList
-                >> Option.defaultValue (xy Length.zero Length.zero)
+                >> Option.defaultValue (xy Quantity.zero Quantity.zero)
             )
             :> obj

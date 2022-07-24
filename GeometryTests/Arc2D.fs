@@ -79,7 +79,7 @@ let ``Arc2D.withRadius produces the expected endpoint``
     | None ->
         let distance = Point2D.distanceTo startPoint endPoint
 
-        if distance = Length.zero then
+        if distance = Quantity.zero then
             Test.pass
         else
             distance .>=. 2. * radius

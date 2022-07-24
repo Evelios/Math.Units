@@ -1,12 +1,14 @@
 module Geometry.Ellipse2D
 
+open Units
+
 // ---- Builders ----
 
 let from
     (centerPoint: Point2D<'Unit, 'Coordinates>)
     (xDirection: Direction2D<'Coordinates>)
-    (xRadius: Length<'Unit>)
-    (yRadius: Length<'Unit>)
+    (xRadius: Quantity<'Unit>)
+    (yRadius: Quantity<'Unit>)
     : Ellipse2D<'Unit, 'Coordinates> =
 
     { Axes = Frame2D.withXDirection xDirection centerPoint
@@ -33,12 +35,12 @@ let yAxis (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Axis2D<'Unit, 'Coordinates
 
 /// Get the radius of an ellipse along its X axis. This may be either the
 /// minimum or maximum radius.
-let xRadius (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Length<'Unit> = ellipse.XRadius
+let xRadius (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Quantity<'Unit> = ellipse.XRadius
 
 
 /// Get the radius of an ellipse along its Y axis. This may be either the
 /// minimum or maximum radius.
-let yRadius (ellipse: Ellipse2D<'Unit, 'Coordiantes>) : Length<'Unit> = ellipse.YRadius
+let yRadius (ellipse: Ellipse2D<'Unit, 'Coordiantes>) : Quantity<'Unit> = ellipse.YRadius
 
 
 /// Get the direction of the ellipse's X axis.
@@ -50,8 +52,8 @@ let yDirection (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Direction2D<'Coordina
 
 
 /// Get the area of an ellipse.
-let area (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Length<'Unit * 'Unit> =
-    Angle.pi * (xRadius ellipse * (yRadius ellipse))
+let area (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
+    Angle.pi * (xRadius ellipse * yRadius ellipse)
     
 // ---- Modifiers ----
 
@@ -109,7 +111,7 @@ let translateBy
 /// Translate an ellipse in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (ellipse: Ellipse2D<'Unit, 'Coordinates>)
     =
     translateBy (Vector2D.withLength distance direction) ellipse

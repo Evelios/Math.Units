@@ -3,6 +3,8 @@ module Geometry.LineSegment2D
 
 open Geometry
 
+open Units
+
 // ---- Builders ----
 
 /// Generate a segment segment from two points. This doesn't perform any checks ensuring that the points are not equal.
@@ -36,8 +38,8 @@ let fromPointAndVector (start: Point2D<'Unit, 'Coordinates>) (direction: Vector2
 /// given distances from the axis' origin point.
 let along
     (axis: Axis2D<'Unit, 'Coordinates>)
-    (start: Length<'Unit>)
-    (finish: Length<'Unit>)
+    (start: Quantity<'Unit>)
+    (finish: Quantity<'Unit>)
     : LineSegment2D<'Unit, 'Coordinates> =
     from (Point2D.along axis start) (Point2D.along axis finish)
 
@@ -59,7 +61,7 @@ let vector (segment: LineSegment2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coor
 let direction (segment: LineSegment2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
     Vector2D.direction (vector segment)
 
-let length (segment: LineSegment2D<'Unit, 'Coordinates>) : Length<'Unit> =
+let length (segment: LineSegment2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     Point2D.distanceTo segment.Start segment.Finish
 
 let axis (segment: LineSegment2D<'Unit, 'Coordinates>) : Axis2D<'Unit, 'Coordinates> option =
@@ -117,7 +119,7 @@ let translateBy
 /// Translate a line segment in a given direction by a given distance.
 let translateIn
     (translationDirection: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (lineSegment: LineSegment2D<'Unit, 'Coordinates>)
     : LineSegment2D<'Unit, 'Coordinates> =
     translateBy (Vector2D.withLength distance translationDirection) lineSegment
@@ -165,7 +167,7 @@ let isPointOnSegment (point: Point2D<'Unit, 'Coordinates>) (segment: LineSegment
 let distanceToPoint
     (point: Point2D<'Unit, 'Coordinates>)
     (segment: LineSegment2D<'Unit, 'Coordinates>)
-    : Length<'Unit> =
+    : Quantity<'Unit> =
     match axis segment with
     | Some segmentAxis ->
         let perpendicular = Point2D.projectOnto segmentAxis point
@@ -237,11 +239,11 @@ let intersectionPoint
     let tDenominator = pqXs - sXqp_
     let uDenominator = pqXr + rXpq_
 
-    if tDenominator = Length.zero
-       || uDenominator = Length.zero then
+    if tDenominator = Quantity.zero
+       || uDenominator = Quantity.zero then
         // Segments are parallel or collinear.
         // In collinear case, we check if there is only one intersection point.
-        if Vector2D.dot s r < Length.zero then
+        if Vector2D.dot s r < Quantity.zero then
             if p_ = q_ then
                 // p |----- p_ | q_ -----| q
                 Some p_
@@ -301,7 +303,7 @@ let intersectionWithAxis
     let d2 = Point2D.signedDistanceFrom axis p2
     let product = d1 * d2
 
-    if product < Length.zero then
+    if product < Quantity.zero then
         // The two points are on opposite sides of the axis, so there is a
         // unique intersection point in between them
         let t = (d1 - d2) / d1
@@ -309,20 +311,20 @@ let intersectionWithAxis
 
     else
 
-    if product > Length.zero then
+    if product > Quantity.zero then
         // Both points are on the same side of the axis, so no intersection
         // point exists
         None
 
     else
 
-    if d1 <> Length.zero then
+    if d1 <> Quantity.zero then
         // d2 must be zero since the product is zero, so only p2 is on the axis
         Some p2
 
     else
 
-    if d2 <> Length.zero then
+    if d2 <> Quantity.zero then
         // d1 must be zero since the product is zero, so only p1 is on the axis
         Some p1
 
@@ -343,7 +345,7 @@ let intersectionWithAxis
 let signedDistanceAlong
     (axis: Axis2D<'Unit, 'Coordinates>)
     (segment: LineSegment2D<'Unit, 'Coordinates>)
-    : Interval<Length<'Unit>> =
+    : Interval<Quantity<'Unit>> =
     Interval.from (Point2D.signedDistanceAlong axis segment.Start) (Point2D.signedDistanceAlong axis segment.Finish)
 
 
@@ -355,7 +357,7 @@ let signedDistanceAlong
 let signedDistanceFrom
     (axis: Axis2D<'Unit, 'Coordinates>)
     (segment: LineSegment2D<'Unit, 'Coordinates>)
-    : Interval<Length<'Unit>> =
+    : Interval<Quantity<'Unit>> =
     Interval.from (Point2D.signedDistanceFrom axis segment.Start) (Point2D.signedDistanceFrom axis segment.Finish)
 
 /// Take a line segment defined in global coordinates, and return it expressed

@@ -1,6 +1,7 @@
 module Geometry.Interval
 
 open System
+open Units
 
 let inline unit<'T when 'T: equality and 'T: (static member Zero : 'T) and 'T: (static member One : 'T)> : Interval<'T> =
     Interval(LanguagePrimitives.GenericZero, LanguagePrimitives.GenericOne)

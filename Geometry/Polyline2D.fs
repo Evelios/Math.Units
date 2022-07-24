@@ -12,7 +12,7 @@ let segments (polyline: Polyline2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 
     |> List.pairwise
     |> List.map LineSegment2D.fromEndpoints
 
-let length (polyline: Polyline2D<'Unit, 'Coordinates>) : Length<'Unit> =
+let length (polyline: Polyline2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     segments polyline
     |> List.map LineSegment2D.length
     |> Length.sum
@@ -52,7 +52,7 @@ let translateBy
 // Translate a polyline in a given direction by a distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (polyline: Polyline2D<'Unit, 'Coordinates>)
     : Polyline2D<'Unit, 'Coordinates> =
     mapVertices (Point2D.translateIn direction distance) polyline
@@ -94,7 +94,7 @@ let boundingBox (polyline: Polyline2D<'Unit, 'Coordinates>) : BoundingBox2D<'Uni
     BoundingBox2D.hullN (vertices polyline)
 
 let private refineBySegment
-    (polylineLength: Length<'Unit>)
+    (polylineLength: Quantity<'Unit>)
     (roughCentroid: Point2D<'Unit, 'Coordinates>)
     (currentCentroid: Point2D<'Unit, 'Coordinates>)
     (segment: LineSegment2D<'Unit, 'Coordinates>)
@@ -118,7 +118,7 @@ let centroid (polyline: Polyline2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coord
     | first :: _, Some box ->
         let polylineLength = length polyline
 
-        if polylineLength = Length.zero then
+        if polylineLength = Quantity.zero then
             Some first
 
         else

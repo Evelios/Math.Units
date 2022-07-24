@@ -8,8 +8,8 @@ open Units
 [<NoComparison>]
 [<Struct>]
 type Size2D<'Unit> =
-    { Width: Length<'Unit>
-      Height: Length<'Unit> }
+    { Width: Quantity<'Unit>
+      Height: Quantity<'Unit> }
 
     override this.Equals(obj: obj) : bool =
         match obj with
@@ -55,11 +55,6 @@ type Direction2D<'Coordinates> =
                 { Direction2D.X = x / magnitude
                   Direction2D.Y = y / magnitude }
 
-    static member xyLength
-        (Length.Length x: Length<'Unit>)
-        (Length.Length y: Length<'Unit>)
-        : Direction2D<'Coordinates> option =
-        Direction2D.xy x y
 
     member this.Comparison(other) =
         if this.Equals(other) then 0
@@ -90,8 +85,8 @@ type Direction2D<'Coordinates> =
 [<RequireQualifiedAccess>]
 [<Struct>]
 type Vector2D<'Unit, 'Coordinates> =
-    { X: Length<'Unit>
-      Y: Length<'Unit> }
+    { X: Quantity<'Unit>
+      Y: Quantity<'Unit> }
 
     // Comparable interfaces
 
@@ -157,8 +152,8 @@ type Vector2D<'Unit, 'Coordinates> =
 [<RequireQualifiedAccess>]
 [<Struct>]
 type Point2D<'Unit, 'Coordinates> =
-    { X: Length<'Unit>
-      Y: Length<'Unit> }
+    { X: Quantity<'Unit>
+      Y: Quantity<'Unit> }
 
     // Comparable interfaces
 
@@ -383,10 +378,10 @@ type Triangle2D<'Unit, 'Coordinates> =
 [<NoComparison>]
 [<Struct>]
 type BoundingBox2D<'Unit, 'Coordinates> =
-    { MinX: Length<'Unit>
-      MaxX: Length<'Unit>
-      MinY: Length<'Unit>
-      MaxY: Length<'Unit> }
+    { MinX: Quantity<'Unit>
+      MaxX: Quantity<'Unit>
+      MinY: Quantity<'Unit>
+      MaxY: Quantity<'Unit> }
 
     member this.TopLeft : Point2D<'Unit, 'Coordinates> = { X = this.MinX; Y = this.MaxY }
     member this.TopRight : Point2D<'Unit, 'Coordinates> = { X = this.MaxX; Y = this.MaxY }
@@ -427,7 +422,7 @@ type Rectangle2D<'Unit, 'Coordinates> =
 [<NoComparison>]
 type Circle2D<'Unit, 'Coordinates> =
     { Center: Point2D<'Unit, 'Coordinates>
-      Radius: Length<'Unit> }
+      Radius: Quantity<'Unit> }
 
     override this.Equals(obj: obj) : bool =
         match obj with
@@ -443,12 +438,12 @@ type Circle2D<'Unit, 'Coordinates> =
 [<NoComparison>]
 type Ellipse2D<'Unit, 'Coordinates> =
     { Axes: Frame2D<'Unit, 'Coordinates, unit>
-      XRadius: Length<'Unit>
-      YRadius: Length<'Unit> }
+      XRadius: Quantity<'Unit>
+      YRadius: Quantity<'Unit> }
 
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? Ellipse2D<'Unit, 'Coordinates> as other ->
+        | :? (Ellipse2D<'Unit, 'Coordinates>) as other ->
             this.Axes = other.Axes
             && this.XRadius = other.XRadius
         | _ -> false
@@ -467,7 +462,7 @@ type SweptAngle =
 type Arc2D<'Unit, 'Coordinates> =
     { StartPoint: Point2D<'Unit, 'Coordinates>
       XDirection: Direction2D<'Coordinates>
-      SignedLength: Length<'Unit>
+      SignedLength: Quantity<'Unit>
       SweptAngle: Angle }
 
     override this.Equals(obj: obj) : bool =

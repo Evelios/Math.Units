@@ -21,10 +21,6 @@
         <Compile Include="Extensions\TupleExtensions.fs" />
         <Compile Include="Extensions\ListExtensions.fs" />
         <Compile Include="Types.fs" />
-        <Compile Include="Interval.fs" />
-        <Compile Include="Angle.fs" />
-        <Compile Include="Percent.fs" />
-        <Compile Include="Length.fs" />
         <Compile Include="Internal\Point2D.fs" />
         <Compile Include="Internal\Vector2D.fs" />
         <Compile Include="Internal\BoundingBox2D.fs" />
@@ -51,6 +47,10 @@
 
     <ItemGroup>
         <PackageReference Include="FSharp.Json" Version="0.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Units\Units.fsproj" />
     </ItemGroup>
 
 </Project>

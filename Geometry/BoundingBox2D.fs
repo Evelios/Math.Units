@@ -3,15 +3,17 @@ module Geometry.BoundingBox2D
 
 open Geometry
 
+open Units
+
 
 // ---- Builders ----
 
 /// Creates an infinitely small bounding box. This can be used when growing a bounding box around objects
 let empty<'Unit, 'Coordinates> : BoundingBox2D<'Unit, 'Coordinates> =
-    { MinX = Length.create<'Unit> infinity
-      MaxX = Length.create<'Unit> -infinity
-      MinY = Length.create<'Unit> infinity
-      MaxY = Length.create<'Unit> -infinity }
+    { MinX = Quantity.create<'Unit> infinity
+      MaxX = Quantity.create<'Unit> -infinity
+      MinY = Quantity.create<'Unit> infinity
+      MaxY = Quantity.create<'Unit> -infinity }
 
 /// Create a bounding box that contains the two points
 let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) =
@@ -37,7 +39,7 @@ let fromExtrema given : BoundingBox2D<'Unit, 'Coordinates> =
 // /Construct a bounding box given its overall dimensions (width and height)
 // /and center point.
 let withDimensions
-    (givenWidth: Length<'Unit>, givenHeight: Length<'Unit>)
+    (givenWidth: Quantity<'Unit>, givenHeight: Quantity<'Unit>)
     (givenCenterPoint: Point2D<'Unit, 'Coordinates>)
     : BoundingBox2D<'Unit, 'Coordinates> =
 
@@ -62,25 +64,25 @@ let corners (box: BoundingBox2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordina
       box.BottomRight
       box.BottomLeft ]
 
-let width (box: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> = box.MaxX - box.MinX
+let width (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxX - box.MinX
 
-let height (box: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> = box.MaxY - box.MinY
+let height (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxY - box.MinY
 
-let minX (box: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> = box.MinX
+let minX (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MinX
 
-let maxX (box: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> = box.MaxX
+let maxX (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxX
 
-let minY (box: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> = box.MinY
+let minY (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MinY
 
-let maxY (box: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> = box.MaxY
+let maxY (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxY
 
 /// Get the X and Y dimensions (width and height) of a bounding box.
-let dimensions (boundingBox: BoundingBox2D<'Unit, 'Coordinates>) : Length<'Unit> * Length<'Unit> =
+let dimensions (boundingBox: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> * Quantity<'Unit> =
     (boundingBox.MaxX - boundingBox.MinX, boundingBox.MaxY - boundingBox.MinY)
 
-let midX (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = (box.MaxX + box.MinX) / 2.
+let midX (box: BoundingBox2D<'Unit, 'Coordiantes>) : Quantity<'Unit> = (box.MaxX + box.MinX) / 2.
 
-let midY (box: BoundingBox2D<'Unit, 'Coordiantes>) : Length<'Unit> = (box.MaxY + box.MinY) / 2.
+let midY (box: BoundingBox2D<'Unit, 'Coordiantes>) : Quantity<'Unit> = (box.MaxY + box.MinY) / 2.
 
 let centerPoint (box: BoundingBox2D<'Unit, 'Coordiantes>) : Point2D<'Unit, 'Coordinates> =
     Point2D.xy (midX box) (midY box)
@@ -151,7 +153,7 @@ let translateBy
 /// Translate a bounding box in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Length<'Unit>)
+    (distance: Quantity<'Unit>)
     (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
     : BoundingBox2D<'Unit, 'Coordinates> =
 
@@ -160,7 +162,7 @@ let translateIn
 /// Offsets boundingBox irrespective of the resulting bounding box is valid or
 /// not.
 let unsafeOffsetBy
-    (amount: Length<'Unit>)
+    (amount: Quantity<'Unit>)
     (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
     : BoundingBox2D<'Unit, 'Coordinates> =
 
@@ -178,7 +180,7 @@ let unsafeOffsetBy
 /// If you only want to expand a bounding box, you can use
 /// [`expandBy`](BoundingBox2d#expandBy) instead (which does not return an `Option`).
 let offsetBy
-    (amount: Length<'Unit>)
+    (amount: Quantity<'Unit>)
     (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
     : BoundingBox2D<'Unit, 'Coordinates> option =
 
@@ -196,7 +198,7 @@ let offsetBy
 /// need to be able to contract a bounding box, use
 /// [`offsetBy`](BoundingBox2d#offsetBy) instead.
 let expandBy
-    (amount: Length<'Unit>)
+    (amount: Quantity<'Unit>)
     (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
     : BoundingBox2D<'Unit, 'Coordinates> =
 
@@ -223,10 +225,10 @@ let hull
     : BoundingBox2D<'Unit, 'Coordinates> =
 
     let rec hullHelp
-        (currentMinX: Length<'Unit>)
-        (currentMaxX: Length<'Unit>)
-        (currentMinY: Length<'Unit>)
-        (currentMaxY: Length<'Unit>)
+        (currentMinX: Quantity<'Unit>)
+        (currentMaxX: Quantity<'Unit>)
+        (currentMinY: Quantity<'Unit>)
+        (currentMaxY: Quantity<'Unit>)
         (points: Point2D<'Unit, 'Coordinates> list)
         : BoundingBox2D<'Unit, 'Coordinates> =
 
@@ -258,10 +260,10 @@ let hullOf
     : BoundingBox2D<'Unit, 'Coordinates> =
 
     let rec hullOfHelp
-        (currentMinX: Length<'Unit>)
-        (currentMaxX: Length<'Unit>)
-        (currentMinY: Length<'Unit>)
-        (currentMaxY: Length<'Unit>)
+        (currentMinX: Quantity<'Unit>)
+        (currentMaxX: Quantity<'Unit>)
+        (currentMinY: Quantity<'Unit>)
+        (currentMaxY: Quantity<'Unit>)
         (list: 'a list)
         : BoundingBox2D<'Unit, 'Coordinates> =
 
@@ -457,7 +459,7 @@ let intersection
 /// it did not touch the other. Boxes that just touch are considered to have an
 /// overlap of zero.
 let overlappingByAtLeast
-    (tolerance: Length<'Unit>)
+    (tolerance: Quantity<'Unit>)
     (firstBox: BoundingBox2D<'Unit, 'Coordinates>)
     (secondBox: BoundingBox2D<'Unit, 'Coordinates>)
     : bool =
@@ -470,7 +472,7 @@ let overlappingByAtLeast
         Length.min (maxY firstBox) (maxY secondBox)
         - Length.max (minY firstBox) (minY secondBox)
 
-    let clampedTolerance = Length.max tolerance Length.zero
+    let clampedTolerance = Length.max tolerance Quantity.zero
 
     xOverlap >= clampedTolerance
     && yOverlap >= clampedTolerance
@@ -484,12 +486,12 @@ let overlappingByAtLeast
 /// corners.) Boxes that just touch are considered to have a separation of zero.
 /// will return true even if the two boxes just touch each other.
 let separatedByAtLeast
-    (tolerance: Length<'Unit>)
+    (tolerance: Quantity<'Unit>)
     (firstBox: BoundingBox2D<'Unit, 'Coordinates>)
     (secondBox: BoundingBox2D<'Unit, 'Coordinates>)
     : bool =
 
-    let clampedTolerance = Length.max tolerance Length.zero
+    let clampedTolerance = Length.max tolerance Quantity.zero
 
     let xSeparation =
         Length.max firstBox.MinX secondBox.MinX
@@ -499,16 +501,16 @@ let separatedByAtLeast
         Length.max firstBox.MinY secondBox.MinY
         - Length.min firstBox.MaxY secondBox.MaxY
 
-    if xSeparation > Length.zero
-       && ySeparation > Length.zero then
+    if xSeparation > Quantity.zero
+       && ySeparation > Quantity.zero then
 
         Length.squared xSeparation
         + Length.squared ySeparation >= Length.squared clampedTolerance
 
-    else if xSeparation > Length.zero then
+    else if xSeparation > Quantity.zero then
         xSeparation >= clampedTolerance
 
-    else if ySeparation > Length.zero then
+    else if ySeparation > Quantity.zero then
         ySeparation >= clampedTolerance
 
     else

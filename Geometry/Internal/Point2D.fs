@@ -2,6 +2,8 @@ module internal Geometry.Internal.Point2D
 
 open Geometry
 
+open Units
+
 let placeIn<'Unit, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
     (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
     (point: Point2D<'Unit, 'GlobalCoordinates>)

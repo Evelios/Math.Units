@@ -1,11 +1,13 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Size2D
 
+open Units
+
 // ---- Builders ----
 
 let empty<'Unit> : Size2D<'Unit> =
-    { Width = Length.zero
-      Height = Length.zero }
+    { Width = Quantity.zero
+      Height = Quantity.zero }
 
 let create width height : Size2D<'Unit> = { Width = width; Height = height }
 
@@ -21,7 +23,7 @@ let normalizeBelowOne (size: Size2D<'Unit>) : Size2D<'Unit> =
          / max size.Width size.Height)
         size
 
-let withMaxSize<'Unit> (maxSize: Length<'Unit>) (size: Size2D<'Unit>) : Size2D<'Unit> =
+let withMaxSize<'Unit> (maxSize: Length) (size: Size2D<'Unit>) : Size2D<'Unit> =
     size
     |> normalizeBelowOne
-    |> scale (Length.unpack maxSize)
+    |> scale (maxSize.Value)

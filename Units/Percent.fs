@@ -1,5 +1,5 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
-module Geometry.Percent
+module Units.Percent
 
 
 // ---- Builders ----
@@ -14,7 +14,7 @@ let natural (p: float) : Percent = Percent(p * 100.)
 // ---- Accessors
 
 /// Get a percentage from a ratio of numbers, a number in the range 0 to 1.
-let asRatio (Percent p: Percent) : float = p
+let asRatio (p: Percent) : float = p.Value
 
 /// Get a percentage within  the natural range of percentages, from 0 to 100
-let asNatural (Percent p: Percent) : float = p * 100.
+let asNatural (p: Percent) : float = p.Value * 100.
