@@ -6,24 +6,28 @@ open System
 
 type Quantity<'Units> with
 
-    static member unitless value: Quantity<Unitless> = Quantity value
+    static member unitless value : Quantity<Unitless> = Quantity value
 
     /// A generic zero value. This can be treated as either an `Int` or `Float`
     /// quantity in any units type, similar to how `Nothing` can be treated as any kind
     /// of `Maybe` type and `[]` can be treated as any kind of `List`.
-    static member zero : Quantity<'Units> = Quantity LanguagePrimitives.GenericZero
+    static member zero: Quantity<'Units> =
+        Quantity LanguagePrimitives.GenericZero
 
 
     /// A generic positive infinity value.
-    static member positiveInfinity : Quantity<'Units> = Quantity Double.PositiveInfinity
+    static member positiveInfinity: Quantity<'Units> =
+        Quantity Double.PositiveInfinity
 
 
     /// Alias for `positiveInfinity`.
-    static member infinity : Quantity<'Units> = Quantity.positiveInfinity
+    static member infinity: Quantity<'Units> =
+        Quantity.positiveInfinity
 
 
     /// A generic negative infinity value.
-    static member negativeInfinity : Quantity<'Units> = Quantity Double.NegativeInfinity
+    static member negativeInfinity: Quantity<'Units> =
+        Quantity Double.NegativeInfinity
 
     // ---- Unsafe Operations ------------------------------------------------------
 
@@ -361,7 +365,7 @@ type Quantity<'Units> with
                 u
             else
                 quantity
-        
+
         if lower <= upper then
             clampHelper lower upper
         else
@@ -464,11 +468,11 @@ type Quantity<'Units> with
     ///     Quantity.cbrt (Volume.liters 1)
     ///     --> Length.centimeters 10
     /// See also [`cbrtUnitless`](#cbrtUnitless).
-    static member cbrt (quantity:Quantity<'Units Cubed>): Quantity<'Units> = Quantity.unsafeCbrt quantity
+    static member cbrt(quantity: Quantity<'Units Cubed>) : Quantity<'Units> = Quantity.unsafeCbrt quantity
 
 
     ///
-    static member cbrtUnitless (quantity:Quantity<Unitless>): Quantity<Unitless> = Quantity.unsafeCbrt quantity
+    static member cbrtUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> = Quantity.unsafeCbrt quantity
 
 
     /// Find the inverse of a unitless quantity.
@@ -621,7 +625,8 @@ type Quantity<'Units> with
             let quantity =
                 Quantity.interpolateFrom start finish (Quantity(float i / steps))
 
-            let updatedValues = quantity :: accumulatedValues
+            let updatedValues =
+                quantity :: accumulatedValues
 
             if i = 0 then
                 updatedValues
@@ -662,17 +667,17 @@ type Quantity<'Units> with
     static member in_ units quantity = Quantity.ratio quantity (units 1)
 
 
-    // ---- INT/FLOAT CONVERSIONS --------------------------------------------------
+    // ---- Float Conversions ------------------------------------------------------------------------------------------
 
+    static member roundTo (digits: int) (quantity: Quantity<'Units>) : Quantity<'Units> =
+        Quantity(roundFloatTo digits quantity.Value)
 
     /// Round a `Float`-valued quantity to the nearest `Int`. Note that [this may
     /// not do what you expect](#-int-float-conversion).
     ///     Quantity.round (Pixels.pixels 3.5)
     ///     --> Pixels.pixels 4
-    static member round(quantity: Quantity<'Units>) : Quantity<'Units> = round quantity
-    
-    /// TODO
-    static member roundTo (digits: int) (quantity: Quantity<'Units>)  : Quantity<'Units> = round quantity
+    static member round(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(roundFloat quantity.Value)
+
 
 
     /// Round a `Float`-valued quantity down to the nearest `Int`. Note that [this
