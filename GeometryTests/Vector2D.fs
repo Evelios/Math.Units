@@ -212,8 +212,7 @@ let ``Rotating rotates correct angle`` (vector: Vector2D<Meters, TestSpace>) (an
         Option.map2 Direction2D.angleFrom direction rotatedDirection
         |> Option.defaultValue Angle.zero
 
-
-    Test.equal angle measuredAngle
+    Test.equal (Angle.normalize angle) (Angle.normalize measuredAngle)
 
 [<Property>]
 let ``Components return equal values`` (vector: Vector2D<Meters, TestSpace>) =

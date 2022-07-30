@@ -25,12 +25,10 @@ let ``From degrees and back`` (angle: Angle) =
 let ``Normalized value always within -Pi to Pi`` (angle: Angle) =
     Test.all [
         angle
-        |> Angle.normalize
         |> Angle.inRadians
         |> Test.greaterThanOrEqualTo -Math.PI
 
         angle
-        |> Angle.normalize
         |> Angle.inRadians
         |> Test.lessThanOrEqualTo Math.PI
     ]
@@ -49,7 +47,7 @@ let ``Angle negative equality`` () =
 
     let rhs =
         Angle.degrees -10. |> Angle.normalize
-    
+
     Assert.AreEqual(lhs, rhs)
 
 [<Test>]
