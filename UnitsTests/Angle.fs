@@ -19,7 +19,7 @@ let ``From radians and back`` (angle: Angle) =
 
 [<Property>]
 let ``From degrees and back`` (angle: Angle) =
-    angle .=.(Angle.inDegrees angle |> Angle.degrees)
+    angle .=. (Angle.inDegrees angle |> Angle.degrees)
 
 [<Property>]
 let ``Normalized value always within -Pi to Pi`` (angle: Angle) =
@@ -44,11 +44,23 @@ let ``Angle equality`` () =
 
 [<Test>]
 let ``Angle negative equality`` () =
-    Assert.AreEqual(Angle.degrees 350., Angle.degrees -10.)
+    let lhs =
+        Angle.degrees 350. |> Angle.normalize
+
+    let rhs =
+        Angle.degrees -10. |> Angle.normalize
+    
+    Assert.AreEqual(lhs, rhs)
 
 [<Test>]
 let ``Angle modular equality`` () =
-    Assert.AreEqual(Angle.degrees (350. + 360.), Angle.degrees -10.)
+    let lhs =
+        Angle.degrees (350. + 360.) |> Angle.normalize
+
+    let rhs =
+        Angle.degrees -10. |> Angle.normalize
+
+    Assert.AreEqual(lhs, rhs)
 
 [<Test>]
 let ``Angle less than`` () =

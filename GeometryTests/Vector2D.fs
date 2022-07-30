@@ -140,9 +140,9 @@ let ``Distance squared to`` () =
 
 [<Test>]
 let ``Distance to`` () =
-    let v1 = Vector2D.meters 1. 1.
+    let v1: Vector2D<Meters, TestSpace> = Vector2D.meters 1. 1.
     let v2 = Vector2D.meters 3. 3.
-    let actual = Vector2D.distanceTo v1 v2
+    let actual: Length = Vector2D.distanceTo v1 v2
     let expected = Length.meters (2. * sqrt 2.)
     Assert.AreEqual(expected, actual)
 
