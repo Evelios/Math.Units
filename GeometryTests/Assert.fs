@@ -2,7 +2,7 @@ module GeometryTests.Assert
 
 open NUnit.Framework
 
-open Geometry
+open Units
 
 let AlmostEqual expected actual : unit =
     if Float.almostEqual expected actual then

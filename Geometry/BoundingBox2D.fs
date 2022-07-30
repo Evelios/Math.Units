@@ -10,10 +10,10 @@ open Units
 
 /// Creates an infinitely small bounding box. This can be used when growing a bounding box around objects
 let empty<'Unit, 'Coordinates> : BoundingBox2D<'Unit, 'Coordinates> =
-    { MinX = Quantity.create<'Unit> infinity
-      MaxX = Quantity.create<'Unit> -infinity
-      MinY = Quantity.create<'Unit> infinity
-      MaxY = Quantity.create<'Unit> -infinity }
+    { MinX = Quantity<'Unit> infinity
+      MaxX = Quantity<'Unit> -infinity
+      MinY = Quantity<'Unit> infinity
+      MaxY = Quantity<'Unit> -infinity }
 
 /// Create a bounding box that contains the two points
 let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) =

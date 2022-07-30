@@ -1,10 +1,11 @@
 module GeometryTests.Polyline2D
 
-open NUnit.Framework
 open FsCheck.NUnit
 open FsCheck
 
 open Geometry
+open Units
+open UnitsTests
 
 [<Property>]
 let ``Centriod is None if polyline is empty`` =
@@ -42,7 +43,7 @@ let ``Centroid of single line segment is middle of endpoints``
 
 
 [<Property>]
-let ``Centroid of a right angle is between the two sides`` (armLength: Length<Meters>) =
+let ``Centroid of a right angle is between the two sides`` (armLength: Length) =
     let angle =
         Polyline2D.fromVertices [
             Point2D.xy Length.zero Length.zero
@@ -58,7 +59,7 @@ let ``Centroid of a right angle is between the two sides`` (armLength: Length<Me
 
 
 [<Property>]
-let ``Centroid of a step shape is halfway up the step`` (armLength: Length<Meters>) =
+let ``Centroid of a step shape is halfway up the step`` (armLength: Length) =
 
     let angle =
         Polyline2D.fromVertices [
@@ -75,7 +76,7 @@ let ``Centroid of a step shape is halfway up the step`` (armLength: Length<Meter
 
 
 [<Property>]
-let ``Centroid of an open square is skewed to closed side`` (sideLength: Length<Meters>) =
+let ``Centroid of an open square is skewed to closed side`` (sideLength: Length) =
     let squareLine =
         Polyline2D.fromVertices [
             Point2D.xy Length.zero Length.zero
@@ -92,7 +93,7 @@ let ``Centroid of an open square is skewed to closed side`` (sideLength: Length<
 
 
 [<Property>]
-let ``Centroid of a closed square is mid-point`` (sideLength: Length<Meters>) =
+let ``Centroid of a closed square is mid-point`` (sideLength: Length) =
     let squareLine =
         Polyline2D.fromVertices [
             Point2D.xy Length.zero Length.zero

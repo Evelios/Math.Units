@@ -22,7 +22,7 @@ let private counterclockwiseArea (vertices_: Point2D<'Unit, 'Coordinates> list) 
             List.pairwise rest
             |> List.map (fun (start, finish) -> segmentArea start finish)
 
-        Length.sum segmentAreas
+        Quantity.sum segmentAreas
 
 let private makeOuterLoop (vertices_: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> list =
     if counterclockwiseArea vertices_ >= Quantity.zero then
@@ -166,12 +166,12 @@ let edges (polygon: Polygon2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 'Coor
 let perimeter (polygon: Polygon2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     edges polygon
     |> List.map LineSegment2D.length
-    |> Length.sum
+    |> Quantity.sum
 
 /// Get the area of a polygon. This value will never be negative.
 let area (polygon: Polygon2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
     counterclockwiseArea (outerLoop polygon)
-    + (Length.sum (List.map counterclockwiseArea (innerLoops polygon)))
+    + (Quantity.sum (List.map counterclockwiseArea (innerLoops polygon)))
 
 let rec private centroidHelp
     (x0: Quantity<'Unit>)
@@ -422,7 +422,7 @@ let rec private containsPointHelp
                     // case 3 or 9
                     containsPointHelp rest xp yp (k + 1)
 
-                else if f = Length.zero then
+                else if f = Quantity.zero then
                     // case 16 or 21
                     true
 
@@ -432,14 +432,14 @@ let rec private containsPointHelp
 
             else
 
-            if v1 > Length.zero && v2 <= Length.zero then
+            if v1 > Quantity.zero && v2 <= Quantity.zero then
                 let f = u1 * v2 - u2 * v1
 
-                if f < Length.zero then
+                if f < Quantity.zero then
                     // case 4 or 10
                     containsPointHelp rest xp yp (k + 1)
 
-                else if f = Length.zero then
+                else if f = Quantity.zero then
                     // case 19 or 20
                     true
 
@@ -449,10 +449,10 @@ let rec private containsPointHelp
 
             else
 
-            if v2 = Length.zero && v1 < Length.zero then
+            if v2 = Quantity.zero && v1 < Quantity.zero then
                 let f = u1 * v2 - u2 * v1
 
-                if f = Length.zero then
+                if f = Quantity.zero then
                     // case 17
                     true
 
@@ -462,10 +462,10 @@ let rec private containsPointHelp
 
             else
 
-            if v1 = Length.zero && v2 < Length.zero then
+            if v1 = Quantity.zero && v2 < Quantity.zero then
                 let f = u1 * v2 - u2 * v1
 
-                if f = Length.zero then
+                if f = Quantity.zero then
                     // case 18
                     true
 
@@ -475,12 +475,12 @@ let rec private containsPointHelp
 
             else
 
-            if v1 = Length.zero && v2 = Length.zero then
-                if u2 <= Length.zero && u1 >= Length.zero then
+            if v1 = Quantity.zero && v2 = Quantity.zero then
+                if u2 <= Quantity.zero && u1 >= Quantity.zero then
                     // case 1
                     true
 
-                else if u1 <= Length.zero && u2 >= Length.zero then
+                else if u1 <= Quantity.zero && u2 >= Quantity.zero then
                     // case 2
                     true
 

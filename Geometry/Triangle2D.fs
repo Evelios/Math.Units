@@ -3,6 +3,7 @@ module Geometry.Triangle2D
 
 open FSharp.Extensions
 open Geometry
+open Units
 
 // ---- Builders ----
 

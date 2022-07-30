@@ -5,7 +5,8 @@ open FsCheck.NUnit
 open FsCheck
 
 open Geometry
-open FSharp.Extensions
+open Units
+open UnitsTests
 
 
 [<SetUp>]

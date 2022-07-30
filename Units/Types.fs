@@ -10,7 +10,7 @@ open System
 /// A generic number that doesn't undergo any type mutation.
 /// Eg.
 ///     Unitless: Unitless 1. * Unitless 1. = Unitless 1.
-///     Meters  : Meters 1. * Meters 1. = (Meters * Meters) 1.
+///     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.
 type Unitless = Unitless
 
 type Pixels = Pixels
@@ -70,8 +70,8 @@ type Quantity<'Units>(quantity: float) =
             match obj with
             | :? (Quantity<'Units>) as quantity -> this.Comparison(quantity)
             | _ -> failwith "incompatible comparison"
-            
-    
+
+
 
     member this.Value = quantity
     static member create(newQuantity: float) : Quantity<'a> = Quantity(newQuantity)
@@ -98,46 +98,46 @@ type Quantity<'Units>(quantity: float) =
         | _ -> false
 
     // Operators
-    static member Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity.create<'Units> (abs q.Value)
+    static member Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (abs q.Value)
 
     static member Min(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity.create<'Units> (min lhs.Value rhs.Value)
+        Quantity<'Units> (min lhs.Value rhs.Value)
 
     static member Max(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity.create<'Units> (max lhs.Value rhs.Value)
+        Quantity<'Units> (max lhs.Value rhs.Value)
 
     static member Sqrt(value: Quantity<'Units Squared>) : Quantity<'Units> =
-        Quantity.create<'Units> (sqrt value.Value)
+        Quantity<'Units> (sqrt value.Value)
 
     static member Floor(value: Quantity<'Units>) : Quantity<'Units> =
-        Quantity.create<'Units> (floor value.Value)
+        Quantity<'Units> (floor value.Value)
 
-    static member Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity.create<'Units> (ceil q.Value)
+    static member Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (ceil q.Value)
 
-    static member Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity.create<'Units> (round q.Value)
+    static member Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (round q.Value)
 
     static member Truncate(q: Quantity<'Units>) : Quantity<'Units> =
-        Quantity.create<'Units> (truncate q.Value)
+        Quantity<'Units> (truncate q.Value)
 
     static member (+)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity.create<'Units> (lhs.Value + rhs.Value)
+        Quantity<'Units> (lhs.Value + rhs.Value)
 
     static member (-)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity.create<'Units> (lhs.Value - rhs.Value)
+        Quantity<'Units> (lhs.Value - rhs.Value)
 
-    static member (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity.create<'Units> (-q.Value)
+    static member (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (-q.Value)
 
     static member (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> =
-        Quantity.create<'Units> (q.Value * scale)
+        Quantity<'Units> (q.Value * scale)
 
     static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> =
-        Quantity.create<'Units> (q.Value * scale)
+        Quantity<'Units> (q.Value * scale)
 
     static member (*)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units Squared> =
-        Quantity.create<'Units Squared> (lhs.Value * rhs.Value)
+        Quantity<'Units Squared> (lhs.Value * rhs.Value)
 
     static member (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> =
-        Quantity.create<'Units> (q.Value / scale)
+        Quantity<'Units> (q.Value / scale)
 
     static member (/)(q: Quantity<'Units>, scale: Quantity<'Units>) : float = q.Value / scale.Value
 
@@ -151,18 +151,18 @@ type Quantity<'Units>(quantity: float) =
     static member (%)(q: Quantity<'Units>, modulus: Quantity<'Units>) : Quantity<'Units> =
         Quantity(q.Value % modulus.Value)
 
-    
-    // ---- Angle Specific ----
-    
-    static member (*)(arc: Quantity<Radians>, length: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units>(arc.Value * length.Value)
 
-    static member (*)(length: Quantity<'Units>, arc: Quantity<Radians>) : Quantity<'Units> =
-        Quantity<'Units>(length.Value * arc.Value)
+// ---- Unit Space Aliases ------------------------------------------------------
 
-    static member (/)(length: Quantity<'Units>, arc: Quantity<Radians>) : Quantity<'Units> =
-        Quantity<'Units>(length.Value / arc.Value)
 
+/// A percentage value. The default range for percentages is 0 to 1 but can also be given in the range 0 to 100.
+type Percent = Quantity<Percentage>
+
+type Angle = Quantity<Radians>
+
+type Length = Quantity<Meters>
+
+type Area = Quantity<Meters Squared>
 
 
 // ---- Interval ---------------------------------------------------------------
@@ -192,16 +192,3 @@ type Interval<'T when 'T: equality> =
     override this.GetHashCode() : int =
         match this with
         | Interval (start, finish) -> HashCode.Combine(start, finish)
-
-
-// ---- Unit Space Aliases ------------------------------------------------------
-
-
-/// A percentage value. The default range for percentages is 0 to 1 but can also be given in the range 0 to 100.
-type Percent = Quantity<Percentage>
-
-type Angle = Quantity<Radians>
-
-type Length = Quantity<Meters>
-
-type Area = Quantity<Meters Squared>

@@ -5,6 +5,8 @@ open FsCheck.NUnit
 open FsCheck
 
 open Geometry
+open Units
+open UnitsTests
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
@@ -66,7 +68,7 @@ let ``Arc2D.from produces the expected endpoint``
 [<Property>]
 [<Ignore("I need to figure this out")>]
 let ``Arc2D.withRadius produces the expected endpoint``
-    (Positive radius: Length<Meters> Positive)
+    (Positive radius: Length Positive)
     (sweptAngle: SweptAngle)
     (startPoint: Point2D<Meters, TestSpace>)
     (endPoint: Point2D<Meters, TestSpace>)

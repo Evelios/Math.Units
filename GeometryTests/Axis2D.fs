@@ -5,6 +5,8 @@ open FsCheck.NUnit
 open FsCheck
 
 open Geometry
+open Units
+open UnitsTests
 
 
 [<SetUp>]

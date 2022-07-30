@@ -1,6 +1,8 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Geometry.Polyline2D
 
+open Units
+
 let fromVertices (vertices: Point2D<'Unit, 'Coordinates> list) : Polyline2D<'Unit, 'Coordinates> = Polyline2D vertices
 
 let vertices (polyline: Polyline2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> list =
@@ -15,7 +17,7 @@ let segments (polyline: Polyline2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 
 let length (polyline: Polyline2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
     segments polyline
     |> List.map LineSegment2D.length
-    |> Length.sum
+    |> Quantity.sum
 
 // Transform each vertex of a polyline by the given function. All other
 // transformations can be defined in terms of `mapVertices`; for example,

@@ -10,9 +10,7 @@
     <ItemGroup>
         <Compile Include="Assert.fs" />
         <Compile Include="Gen.fs" />
-        <Compile Include="Float.fs" />
-        <Compile Include="Length.fs" />
-        <Compile Include="Interval.fs" />
+        <Compile Include="Test.fs" />
         <Compile Include="Direction2D.fs" />
         <Compile Include="Vector2D.fs" />
         <Compile Include="Point2D.fs" />
@@ -44,6 +42,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Geometry\Geometry.fsproj" />
+      <ProjectReference Include="..\UnitsTests\UnitsTests.fsproj" />
     </ItemGroup>
 
 </Project>

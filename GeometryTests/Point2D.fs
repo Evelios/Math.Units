@@ -5,6 +5,8 @@ open FsCheck.NUnit
 open FsCheck
 
 open Geometry
+open Units
+open UnitsTests
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
@@ -61,8 +63,8 @@ let Magnitude () =
 let ``Distance squared to`` () =
     let v1 = Point2D.meters 1. 1.
     let v2 = Point2D.meters 3. 3.
-    let actual : Length<Meters * Meters> = Point2D.distanceSquaredTo v1 v2
-    let expected : Length<Meters * Meters> = Length<Meters * Meters>.create 8.
+    let actual : Area = Point2D.distanceSquaredTo v1 v2
+    let expected : Area = Area.create 8.
     Assert.AreEqual(expected, actual)
 
 [<Test>]
@@ -193,7 +195,7 @@ let ``Project onto preserves distance`` (point: Point2D<Meters, TestSpace>) (axi
 let ``translateBy and translateIn are consistent``
     (point: Point2D<Meters, TestSpace>)
     (direction: Direction2D<TestSpace>)
-    (distance: Length<Meters>)
+    (distance: Length)
     =
 
     let displacement = Vector2D.withLength distance direction
@@ -229,7 +231,7 @@ let ``Circumcenter of three points is equidistant from each point or is None``
     match Point2D.circumcenter p1 p2 p3 with
     | None ->
         Triangle2D.area (Triangle2D.from p1 p2 p3)
-        |> Test.equal Length.zero
+        |> Test.equal Quantity.zero
 
     | Some circumcenter ->
         let r1 = Point2D.distanceTo circumcenter p1

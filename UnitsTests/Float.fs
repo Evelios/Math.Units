@@ -1,10 +1,10 @@
-module GeometryTests.Float
+module UnitsTests.Float
 
 open NUnit.Framework
 open FsCheck.NUnit
 open FsCheck
 
-open Geometry
+open Units
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()

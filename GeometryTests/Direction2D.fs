@@ -4,7 +4,9 @@ open NUnit.Framework
 open FsCheck.NUnit
 open FsCheck
 
+open UnitsTests
 open Geometry
+open Units
 
 
 [<SetUp>]
@@ -46,7 +48,7 @@ let ``orthonormalize Produces a Valid Frame Basis``
 
     | None ->
         Vector2D.cross vx vy
-        |> Test.equal Length.zero
+        |> Test.equal Quantity.zero
 
 
 [<Property>]

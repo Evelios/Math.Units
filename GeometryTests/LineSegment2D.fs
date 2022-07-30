@@ -5,7 +5,8 @@ open NUnit.Framework
 open FsCheck.NUnit
 
 open Geometry
-open FSharp.Extensions
+open Units
+open UnitsTests
 
 [<SetUp>]
 let SetUp () = Gen.ArbGeometry.Register()
@@ -14,7 +15,7 @@ let distanceToTestSegment : LineSegment2D<Meters, TestSpace> =
     LineSegment2D.from (Point2D.meters 0. 5.) (Point2D.meters 5. 5.)
 
 let ``Point distance test cases`` =
-    let testCases : (string * Point2D<Meters, TestSpace> * Length<Meters>) list =
+    let testCases : (string * Point2D<Meters, TestSpace> * Length) list =
         [ "Endpoint", (Point2D.meters 0. 5.), Length.meters 0.
           "Near start point", (Point2D.meters 5. 6.), Length.meters 1.
           "Near end point", (Point2D.meters 7. 5.), Length.meters 2.
@@ -102,7 +103,7 @@ let ``Intersection of two line segments returns a point that is on both segments
                 Triangle2D.from segment.Start segment.Finish point
                 |> Triangle2D.area
 
-            Test.equal Length.zero area
+            Test.equal Quantity.zero area
 
         // Check that point is actually between the two
         // endpoints (almost enough of a check by itself, but
@@ -180,7 +181,7 @@ let ``Intersection of two segments with a shared endpoint returns that endpoint`
         LineSegment2D.intersectionPoint firstSegment secondSegment
 
     if Vector2D.cross firstVector secondVector
-       <> Length.zero then
+       <> Quantity.zero then
         Test.equal (Some sharedFinish) intersection
 
     else
@@ -283,10 +284,10 @@ let ``A shared endpoint on a third segment induces an intersection between the t
     let v3Xv1 = Vector2D.cross v1 v3
     let v3Xv2 = Vector2D.cross v2 v3
 
-    if v3Xv1 = Length.zero || v3Xv2 = Length.zero then
+    if v3Xv1 = Quantity.zero || v3Xv2 = Quantity.zero then
         Test.pass
 
-    else if v3Xv1 * v3Xv2 > Length.zero then
+    else if v3Xv1 * v3Xv2 > Quantity.zero then
         match intersections with
         | None, None -> Test.pass
 
@@ -306,7 +307,7 @@ let ``A shared endpoint on a third segment induces an intersection between the t
         | Some p1, None ->
             Test.all [
                 Test.equal p1 sharedPoint
-                Test.equal v3Xv2 Length.zero
+                Test.equal v3Xv2 Quantity.zero
             ]
 
         // If an intersection point is found for only segment2,
@@ -316,7 +317,7 @@ let ``A shared endpoint on a third segment induces an intersection between the t
         | None, Some p2 ->
             Test.all [
                 Test.equal p2 sharedPoint
-                Test.equal v3Xv1 Length.zero
+                Test.equal v3Xv1 Quantity.zero
             ]
 
     else

@@ -5,6 +5,8 @@ open FsCheck.NUnit
 open FsCheck
 
 open Geometry
+open Units
+open UnitsTests
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
@@ -26,7 +28,7 @@ let ``The convex hull of a list of points is actually convex`` (points: Point2D<
         let crossProducts =
             List.map2 (fun v1 v2 -> v1 |> Vector2D.cross v2) (first :: rest) (rest @ [ first ])
 
-        Test.isTrue "Edges should always turn counterclockwise" (List.forall ((>=) Length.zero) crossProducts)
+        Test.isTrue "Edges should always turn counterclockwise" (List.forall ((>=) Quantity.zero) crossProducts)
 
 
 [<Property>]
@@ -39,7 +41,7 @@ let ``The convex hull of a list of points contains all of those points`` (points
         let triangle = Triangle2D.from point p1 p2
 
         Triangle2D.counterclockwiseArea triangle
-        >= Length.zero
+        >= Quantity.zero
 
     let isContained point =
         List.forall (isNonNegativeArea point) edges

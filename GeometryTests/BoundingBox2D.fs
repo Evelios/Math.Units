@@ -4,6 +4,8 @@ open NUnit.Framework
 open FsCheck.NUnit
 
 open Geometry
+open Units
+open UnitsTests
 
 
 [<SetUp>]
@@ -136,7 +138,7 @@ let ``Separation test cases`` =
                 .Returns(expected))
 
 [<TestCaseSource(nameof ``Separation test cases``)>]
-let ``separation is determined correctly for horizontally displaced boxes`` (separation: Length<Unitless>) =
+let ``separation is determined correctly for horizontally displaced boxes`` (separation: Length) =
     let firstBox =
         { MinX = Length.unitless 0.
           MinY = Length.unitless 0.
@@ -153,7 +155,7 @@ let ``separation is determined correctly for horizontally displaced boxes`` (sep
 
 
 [<TestCaseSource(nameof ``Separation test cases``)>]
-let ``separation is determined correctly for vertically displaced boxes`` (separation: Length<Unitless>) =
+let ``separation is determined correctly for vertically displaced boxes`` (separation: Length) =
     let firstBox =
         { MinX = Length.unitless 0.
           MinY = Length.unitless 0.
@@ -182,7 +184,7 @@ let ``Diagonal separation test cases`` =
                 .Returns(expected))
 
 [<TestCaseSource(nameof ``Diagonal separation test cases``)>]
-let ``separation is determined correctly for diagonally displaced boxes`` (separation: Length<Unitless>) =
+let ``separation is determined correctly for diagonally displaced boxes`` (separation: Length) =
     let firstBox =
         { MinX = Length.unitless 0.
           MinY = Length.unitless 0.
@@ -200,7 +202,7 @@ let ``separation is determined correctly for diagonally displaced boxes`` (separ
 [<Property>]
 let ``offsetBy returns either Nothing or Just a valid box``
     (boundingBox: BoundingBox2D<Meters, TestSpace>)
-    (offset: Length<Meters>)
+    (offset: Length)
     =
     match BoundingBox2D.offsetBy offset boundingBox with
     | None -> Test.pass

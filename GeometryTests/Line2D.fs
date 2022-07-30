@@ -1,11 +1,9 @@
 module GeometryTests.Line2D
 
 open NUnit.Framework
-open FsCheck.NUnit
-
 
 open Geometry
-open FSharp.Extensions
+open Units
 
 [<SetUp>]
 let Setup () =

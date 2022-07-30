@@ -41,8 +41,8 @@ let inRadians (r: Angle) : float = r.Value
 /// degrees (-π to π radians), by adding or subtracting some multiple of 360
 /// degrees (2π radians) if necessary.
 let normalize (r: Angle) : Angle =
-    let turns = float (int (r / twoPi))
-    let angleRadians = r - twoPi * turns
+    let turns = (r / twoPi.Value)
+    let angleRadians = r - twoPi.Value * turns
 
     if (angleRadians.Value > Math.PI) then
         angleRadians - twoPi

@@ -53,7 +53,7 @@ let yDirection (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Direction2D<'Coordina
 
 /// Get the area of an ellipse.
 let area (ellipse: Ellipse2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
-    Angle.pi * (xRadius ellipse * yRadius ellipse)
+    Angle.pi.Value * (xRadius ellipse * yRadius ellipse)
     
 // ---- Modifiers ----
 
