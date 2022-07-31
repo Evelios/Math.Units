@@ -123,16 +123,20 @@ type Quantity<'Units> with
     static member compare (x: Quantity<'Units>) (y: Quantity<'Units>) : int = x.Comparison(y)
 
     /// Get the absolute value of a quantity.
-    ///    Quantity.abs (Duration.milliseconds -10)
-    ///    --> Duration.milliseconds 10
+    ///
+    ///       Quantity.abs (Duration.milliseconds -10)
+    ///       --> Duration.milliseconds 10
     ///
     /// This function can be called from the global function or the module function
+    ///
+    /// ```
     ///    // Using the default globally included function
     ///    Microsoft.FSharp.Core.Operators.abs quantity
     ///    abs quantity  // This function is included by default in F#
     ///
     ///    open Units
     ///    Units.abs quantity
+    /// ```
     ///
     static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = abs quantity
 

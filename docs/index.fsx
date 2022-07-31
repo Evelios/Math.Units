@@ -16,12 +16,17 @@ functionality first before moving to expand into 3D objects.
 
 #r "../Geometry/bin/Debug/net6.0/Geometry.dll"
 #r "../Geometry/bin/Release/net6.0/Geometry.dll"
+
+#r "../Units/bin/Debug/net6.0/Units.dll"
+#r "../Units/bin/Release/net6.0/Units.dll"
+
 (** *)
 
 (**
 To use this framework you include the package through the namespace
 *)
 open Geometry
+open Units
 
 (**
 You can then create a variety of geometric objects like points, vectors, angles, ...
