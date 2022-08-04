@@ -35,13 +35,9 @@ module Gen =
     let positiveFloat: Gen<float> =
         Gen.map abs float
 
-    /// Generate a random `Angle` value.
-    let angle: Gen<Angle> =
-        Gen.map Angle.radians float
-
-    /// Generate a random `Length` values.
-    let length: Gen<Length> =
-        Gen.map Length.meters float
+    /// Generate a random `Quantity` value.
+    let quantity<'Units> : Gen<Quantity<'Units>> =
+        Gen.map Quantity float
 
     /// Generate a `Positive<Length>` values. This is a type safe way of
     /// generating and enforcing positive `Length` values.
@@ -55,9 +51,11 @@ module Gen =
         : Gen<Quantity<'Units>> =
 
         Gen.map Quantity (floatBetween low.Value high.Value)
+        
+    let interval : Gen<Interval<'Units>> =
+        Gen.map2 Interval.from quantity<'Units> quantity<'Units>
 
     type ArbGeometry =
         static member Float() = Arb.fromGen float
         static member Register() = Arb.register<ArbGeometry> () |> ignore
-        static member Angle() = Arb.fromGen angle
-        static member Length() = Arb.fromGen length
+        static member Quantity() = Arb.fromGen quantity

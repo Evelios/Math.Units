@@ -265,12 +265,12 @@ type Resistance = Quantity<Ohms>
 ///     Interval Angle
 [<CustomEquality>]
 [<NoComparison>]
-type Interval<'T when 'T: equality> =
-    | Interval of 'T * 'T
+type Interval<'Unit> =
+    | Interval of Quantity<'Unit> * Quantity<'Unit>
 
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? (Interval<'T>) as other ->
+        | :? (Interval<'Unit>) as other ->
             match this, other with
             | Interval (thisStart, thisFinish), Interval (otherStart, otherFinish) ->
                 thisStart = otherStart && thisFinish = otherFinish
