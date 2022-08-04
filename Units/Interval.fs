@@ -415,10 +415,10 @@ let isContainedIn (Interval (a1, b1): Interval<'Unit>) (Interval (a2, b2): Inter
 ///    Interval.hull 5 [ 3, 2, 4 ]
 ///    --> Interval.from 2 5
 /// See also [`hullN`](#hullN).
-let hull (first: 'Unit) (rest: 'Unit list) : Interval<'Unit> =
+let hull (first: Quantity<'Unit>) (rest: Quantity<'Unit> list) : Interval<'Unit> =
     let rec hullHelp a b values =
         match values with
-        | value :: rest -> hullHelp (min a value) (max b value) rest
+        | value :: rest -> hullHelp (Quantity.min a value) (Quantity.max b value) rest
 
         | [] -> Interval(a, b)
 
@@ -442,7 +442,7 @@ let hull3 (a: 'Unit) (b: 'Unit) (c: 'Unit) : Interval<'Unit> =
 ///     --> Just (Interval.singleton -3)
 ///     Interval.hullN []
 ///     --> Nothing
-let hullN (values: 'Unit list) : Interval<'Unit> option =
+let hullN (values: Quantity<'Unit> list) : Interval<'Unit> option =
     match values with
     | first :: rest -> Some(hull first rest)
     | [] -> None

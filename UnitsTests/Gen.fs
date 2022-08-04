@@ -45,14 +45,11 @@ module Gen =
         Gen.map (Quantity >> Positive) positiveFloat
 
     /// Generate a random quantity value within a given range.
-    let quantityBetween
-        (low: Quantity<'Units>)
-        (high: Quantity<'Units>)
-        : Gen<Quantity<'Units>> =
+    let quantityBetween (low: Quantity<'Units>) (high: Quantity<'Units>) : Gen<Quantity<'Units>> =
 
         Gen.map Quantity (floatBetween low.Value high.Value)
-        
-    let interval : Gen<Interval<'Units>> =
+
+    let interval<'Units> : Gen<Interval<'Units>> =
         Gen.map2 Interval.from quantity<'Units> quantity<'Units>
 
     type ArbGeometry =

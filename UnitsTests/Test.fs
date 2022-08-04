@@ -26,6 +26,16 @@ module Test =
             printfn $"{failMessage}"
 
         assertion
+        
+    let forAll (message: 'a -> string) (test: 'a -> bool) (values : 'a list): bool =
+        let mutable testPasses = true
+        
+        for value in values do
+            if not <| test value then
+                printfn $"{message value}"
+                testPasses <- false
+                
+        testPasses
 
     let private comparison lhs operator rhs name : bool =
         if operator rhs lhs then

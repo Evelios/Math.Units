@@ -40,13 +40,14 @@ type Float() =
         with get () = digitPrecision
         and set v = digitPrecision <- v
 
-    static member Epsilon = 10. ** (float -Float.DigitPrecision)
+    static member Epsilon =
+        10. ** (float -Float.DigitPrecision)
 
 [<AutoOpen>]
 module Float =
 
     open System
-    
+
     /// Compare two floating point values for equality. Equality testing is done
     /// based on a tolerance vale specified by `Float.Epsilon`.
     let almostEqual (a: float) (b: float) : bool =
@@ -57,23 +58,18 @@ module Float =
         if a = b then
             true
         else if (a = 0. || b = 0. || absA + absB < Float.MinNormal) then
-            printfn "Difference is reallllly small"
-            
             diff < Float.Epsilon
         else
-            
+
             let divisor =
                 min (absA + absB) Microsoft.FSharp.Core.float.MaxValue
-                
-            printfn $"diff / divisor = {diff} / {divisor} = {diff / divisor}"
-            printfn $"{Float.Epsilon}"
 
             diff / divisor <= (Float.Epsilon * 1.5)
 
     /// Round a floating point number to a specified number of digits.
     let roundFloatTo (digits: int) (x: float) = Math.Round(x, digits)
-    
-    
+
+
     /// Round a floating point number to the number of digits specified by
     /// `Float.DigitPrecision`. By default, this rounds a floating point value
     /// to 10 digits.
@@ -84,22 +80,22 @@ module Float =
     /// that ranges from zero to one. Passing a parameter value of zero will
     /// return the start value and passing a parameter value of one will return
     /// the end value.
-    /// 
+    ///
     ///     Float.interpolateFrom 5 10 0
     ///     --> 5
     ///     Float.interpolateFrom 5 10 1
     ///     --> 10
     ///     Float.interpolateFrom 5 10 0.6
     ///     --> 8
-    /// 
+    ///
     /// The end value can be less than the start value:
-    /// 
+    ///
     ///     Float.interpolateFrom 10 5 0.1
     ///     --> 9.5
-    /// 
+    ///
     /// Parameter values less than zero or greater than one can be used to
     /// extrapolate:
-    /// 
+    ///
     ///     Float.interpolateFrom 5 10 1.5
     ///     --> 12.5
     ///     Float.interpolateFrom 5 10 -0.5
