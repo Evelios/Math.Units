@@ -157,3 +157,12 @@ let metricHorsepower: float =
 
 let pascal: float = newton / (meter * meter)
 let atmosphere: float = 101325. * pascal
+
+
+// ---- Angles -----------------------------------------------------------------
+    
+let radiansToDegrees: float =
+    180. / Math.PI
+
+let degreesToRadians: float =
+    Math.PI / 180.
