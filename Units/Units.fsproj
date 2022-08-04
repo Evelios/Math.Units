@@ -15,6 +15,7 @@
         <Compile Include="Percent.fs" />
         <Compile Include="Length.fs" />
         <Compile Include="Area.fs" />
+        <Compile Include="Volume.fs" />
         <Compile Include="Angle.fs" />
         <Folder Include="Testing" />
     </ItemGroup>
