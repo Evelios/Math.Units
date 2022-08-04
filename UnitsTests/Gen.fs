@@ -1,6 +1,7 @@
 namespace UnitsTests
 
 type 'a Positive = Positive of 'a
+type 'a ZeroToOne = ZeroToOne of 'a
 
 module Gen =
 
@@ -23,6 +24,9 @@ module Gen =
     /// both the lower and upper limit.
     let floatBetween (low: float) (high: float) : Gen<float> =
         Gen.map (fun scale -> (low + (high - low)) * scale) rand
+
+    let zeroToOneFloat: Gen<float ZeroToOne> =
+        Gen.map ZeroToOne (floatBetween 0. 1.)
 
     /// Generates a normal floating point number. This function excludes certain
     /// values from being generated as a float. The following are not included
@@ -56,3 +60,5 @@ module Gen =
         static member Float() = Arb.fromGen float
         static member Register() = Arb.register<ArbGeometry> () |> ignore
         static member Quantity() = Arb.fromGen quantity
+        static member Interval() = Arb.fromGen interval
+        static member ZeroToOneFloat() = Arb.fromGen zeroToOneFloat

@@ -266,7 +266,7 @@ type Resistance = Quantity<Ohms>
 [<CustomEquality>]
 [<NoComparison>]
 type Interval<'Unit> =
-    | Interval of Quantity<'Unit> * Quantity<'Unit>
+    | Interval of Start: Quantity<'Unit> * Finish: Quantity<'Unit>
 
     override this.Equals(obj: obj) : bool =
         match obj with
