@@ -7,14 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Float.fs"/>
-        <Compile Include="Types.fs"/>
-        <Compile Include="Quantity.fs"/>
-        <Compile Include="Interval.fs"/>
-        <Compile Include="Percent.fs"/>
-        <Compile Include="Length.fs"/>
-        <Compile Include="Angle.fs"/>
-        <Folder Include="Testing"/>
+        <Compile Include="Float.fs" />
+        <Compile Include="Types.fs" />
+        <Compile Include="Quantity.fs" />
+        <Compile Include="Constants.fs" />
+        <Compile Include="Interval.fs" />
+        <Compile Include="Percent.fs" />
+        <Compile Include="Length.fs" />
+        <Compile Include="Angle.fs" />
+        <Folder Include="Testing" />
     </ItemGroup>
 
 </Project>

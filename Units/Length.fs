@@ -1,47 +1,6 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Units.Length
 
-open System
-
-/// Units of length in meters
-module Constant =
-
-    // ---- Metric ----
-
-    [<Literal>]
-    let meter = 1.0
-
-    let angstrom = 1.e-10 * meter
-    let nanometer = 1.e-9 * meter
-    let micron = 1.e-6 * meter
-    let millimeter = 1.e-3 * meter
-    let centimeter = 1.e-2 * meter
-    let kilometer = 1.e3 * meter
-
-
-    // ---- Imperial ----
-
-    let inch = 0.0254 * meter
-    let foot = 12. * inch
-    let yard = 3. * foot
-    let thou = 1.e-3 * inch
-    let mile = 5280. * foot
-
-
-    // ---- Astronomical ----
-
-    let astronomicalUnit = 149597870700. * meter
-    let lightYear = 9460730472580800. * meter
-    let parsec = (648000. / Math.PI) * astronomicalUnit
-
-
-    // ---- Digital Conversions ----
-
-    let cssPixel = inch / 96.
-    let point = inch / 72.
-    let pica = inch / 6.
-
-
 // ---- Generic ----
 
 let zero<'Unit> : Length = Length 0.
@@ -55,65 +14,65 @@ let private inUnit constant num = inMeters num / constant
 
 // ---- Metric ----
 
-let angstroms (l: float) : Length = unit Constant.angstrom l
-let inAngstroms (l: Length) : float = inUnit Constant.angstrom l
+let angstroms (l: float) : Length = unit Constants.angstrom l
+let inAngstroms (l: Length) : float = inUnit Constants.angstrom l
 
-let nanometers (l: float) : Length = unit Constant.nanometer l
-let inNanometers (l: Length) : float = inUnit Constant.nanometer l
+let nanometers (l: float) : Length = unit Constants.nanometer l
+let inNanometers (l: Length) : float = inUnit Constants.nanometer l
 
-let microns (l: float) : Length = unit Constant.micron l
-let inMicrons (l: Length) : float = inUnit Constant.micron l
+let microns (l: float) : Length = unit Constants.micron l
+let inMicrons (l: Length) : float = inUnit Constants.micron l
 
-let millimeters (l: float) : Length = unit Constant.millimeter l
-let inMillimeters (l: Length) : float = inUnit Constant.millimeter l
+let millimeters (l: float) : Length = unit Constants.millimeter l
+let inMillimeters (l: Length) : float = inUnit Constants.millimeter l
 
-let centimeters (l: float) : Length = unit Constant.centimeter l
-let inCentimeters (l: Length) : float = inUnit Constant.centimeter l
+let centimeters (l: float) : Length = unit Constants.centimeter l
+let inCentimeters (l: Length) : float = inUnit Constants.centimeter l
 
-let kilometers (l: float) : Length = unit Constant.kilometer l
-let inKilometers (l: Length) : float = inUnit Constant.kilometer l
+let kilometers (l: float) : Length = unit Constants.kilometer l
+let inKilometers (l: Length) : float = inUnit Constants.kilometer l
 
 
 // ---- Imperial ----
 
-let thou (l: float) : Length = unit Constant.thou l
-let inThou (l: Length) : float = inUnit Constant.thou l
+let thou (l: float) : Length = unit Constants.thou l
+let inThou (l: Length) : float = inUnit Constants.thou l
 
-let inches (l: float) : Length = unit Constant.inch l
-let inInches (l: Length) : float = inUnit Constant.inch l
+let inches (l: float) : Length = unit Constants.inch l
+let inInches (l: Length) : float = inUnit Constants.inch l
 
-let feet (l: float) : Length = unit Constant.foot l
-let inFeet (l: Length) : float = inUnit Constant.foot l
+let feet (l: float) : Length = unit Constants.foot l
+let inFeet (l: Length) : float = inUnit Constants.foot l
 
-let yards (l: float) : Length = unit Constant.yard l
-let inYards (l: Length) : float = inUnit Constant.yard l
+let yards (l: float) : Length = unit Constants.yard l
+let inYards (l: Length) : float = inUnit Constants.yard l
 
-let miles (l: float) : Length = unit Constant.mile l
-let inMiles (l: Length) : float = inUnit Constant.mile l
+let miles (l: float) : Length = unit Constants.mile l
+let inMiles (l: Length) : float = inUnit Constants.mile l
 
 
 // ---- Astronomical ----
 
-let astronomicalUnits (l: float) : Length = unit Constant.astronomicalUnit l
-let inAstronomicalUnits (l: Length) : float = inUnit Constant.astronomicalUnit l
+let astronomicalUnits (l: float) : Length = unit Constants.astronomicalUnit l
+let inAstronomicalUnits (l: Length) : float = inUnit Constants.astronomicalUnit l
 
-let parsecs (l: float) : Length = unit Constant.parsec l
-let inParsecs (l: Length) : float = inUnit Constant.parsec l
+let parsecs (l: float) : Length = unit Constants.parsec l
+let inParsecs (l: Length) : float = inUnit Constants.parsec l
 
-let lightYears (l: float) : Length = unit Constant.lightYear l
-let inLightYears (l: Length) : float = inUnit Constant.lightYear l
+let lightYears (l: float) : Length = unit Constants.lightYear l
+let inLightYears (l: Length) : float = inUnit Constants.lightYear l
 
 
 // ---- Digital ----
 
-let cssPixels (l: float) : Length = unit Constant.cssPixel l
-let inCssPixels (l: Length) : float = inUnit Constant.cssPixel l
+let cssPixels (l: float) : Length = unit Constants.cssPixel l
+let inCssPixels (l: Length) : float = inUnit Constants.cssPixel l
 
-let points (l: float) : Length = unit Constant.point l
-let inPoints (l: Length) : float = inUnit Constant.point l
+let points (l: float) : Length = unit Constants.point l
+let inPoints (l: Length) : float = inUnit Constants.point l
 
-let picas (l: float) : Length = unit Constant.pica l
-let inPicas (l: Length) : float = inUnit Constant.pica l
+let picas (l: float) : Length = unit Constants.pica l
+let inPicas (l: Length) : float = inUnit Constants.pica l
 
 
 // ---- Constants ----

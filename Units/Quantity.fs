@@ -4,6 +4,13 @@ module Units.Quantity
 
 open System
 
+/// Quantity of any floating point value. This structure is represented as a
+/// class so that all these functions can be inherited by the type alias.
+/// This allows easy access to all of the base quantity functionality without
+/// having to write any wrapper functions. This is achieved by creating a type alias,
+/// in this example using a length or distance represented in meters `type
+/// Length = Quantity<Meters>`. If you would like to extend the `Length` type you can
+/// just create a `Length` module and add any extension functions there.
 type Quantity<'Units> with
 
     static member unitless value : Quantity<Unitless> = Quantity value
