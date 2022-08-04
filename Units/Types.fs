@@ -1,6 +1,7 @@
 ﻿namespace Units
 
 open System
+open Units
 
 // ---- Unit Systems -----------------------------------------------------------
 
@@ -14,12 +15,17 @@ open System
 type Unitless = Unitless
 
 type Pixels = Pixels
-
 type Meters = Meters
-
-type Percentage = Percentage
-
+type Kilograms = Kilograms
 type Radians = Radians
+type Seconds = Seconds
+type Coulombs = Coulombs
+type Percentage = Percentage
+type Lumens = Lumens
+type Steradians = Steradians
+type Moles = Moles
+type CelsiusDegrees = CelsiusDegrees
+
 
 // ---- Unit Ratios ------------------------------------------------------------
 
@@ -51,7 +57,55 @@ type Cubed<'Units> = Cubed of Product<'Units, 'Units> * 'Units
 /// rates](#working-with-rates) for details.
 type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'IndependentUnits
 
-// ---- Quantity Values --------------------------------------------------------
+
+// ---- Unit Aliases -----------------------------------------------------------
+
+// ---- Angular
+type RadiansPerSecond = Rate<Meters, Seconds>
+type RadiansPerSecondSquared = Rate<RadiansPerSecond, Seconds>
+
+
+// ---- Distance
+type MetersPerSecond = Rate<Meters, Seconds>
+type MetersPerSecondSquared = Rate<MetersPerSecond, Seconds>
+type SquareMeters = Squared<Meters>
+type CubicMeters = Cubed<Meters>
+
+
+// ---- Mass
+type Newtons = Product<Kilograms, MetersPerSecondSquared>
+type Pascals = Rate<Newtons, SquareMeters>
+type KilogramsPerCubicMeter = Rate<Kilograms, CubicMeters>
+type Joules = Product<Newtons, Meters>
+
+
+// ---- Light
+type Candelas = Rate<Lumens, Steradians>
+type Lux = Rate<Lumens, SquareMeters>
+type Nits = Rate<Candelas, SquareMeters>
+
+
+// ---- Atomic
+type MolesPerCubicMeter = Rate<Moles, CubicMeters>
+
+
+// ---- Electrical
+type Watts = Rate<Joules, Seconds>
+type Amperes = Rate<Coulombs, Seconds>
+type Volts = Rate<Watts, Amperes>
+type Farads = Rate<Coulombs, Volts>
+type Henries = Rate<Volts, Rate<Amperes, Seconds>>
+type Ohms = Rate<Volts, Amperes>
+
+
+// ---- Pixels
+type PixelsPerSecond = Rate<Pixels, Seconds>
+type PixelsPerSecondSquared = Rate<PixelsPerSecond, Seconds>
+type SquarePixels = Squared<Pixels>
+
+
+
+// ---- Quantity Declaration ---------------------------------------------------
 
 /// A `Quantity` is effectively a `number` (an `Int` or `Float`) tagged with a
 /// `units` type. So a
@@ -98,46 +152,40 @@ type Quantity<'Units>(quantity: float) =
         | _ -> false
 
     // Operators
-    static member Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (abs q.Value)
+    static member Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(abs q.Value)
 
     static member Min(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units> (min lhs.Value rhs.Value)
+        Quantity<'Units>(min lhs.Value rhs.Value)
 
     static member Max(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units> (max lhs.Value rhs.Value)
+        Quantity<'Units>(max lhs.Value rhs.Value)
 
-    static member Sqrt(value: Quantity<'Units Squared>) : Quantity<'Units> =
-        Quantity<'Units> (sqrt value.Value)
+    static member Sqrt(value: Quantity<'Units Squared>) : Quantity<'Units> = Quantity<'Units>(sqrt value.Value)
 
-    static member Floor(value: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units> (floor value.Value)
+    static member Floor(value: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(floor value.Value)
 
-    static member Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (ceil q.Value)
+    static member Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(ceil q.Value)
 
-    static member Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (round q.Value)
+    static member Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(round q.Value)
 
-    static member Truncate(q: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units> (truncate q.Value)
+    static member Truncate(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(truncate q.Value)
 
     static member (+)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units> (lhs.Value + rhs.Value)
+        Quantity<'Units>(lhs.Value + rhs.Value)
 
     static member (-)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units> (lhs.Value - rhs.Value)
+        Quantity<'Units>(lhs.Value - rhs.Value)
 
-    static member (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units> (-q.Value)
+    static member (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(-q.Value)
 
-    static member (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> =
-        Quantity<'Units> (q.Value * scale)
+    static member (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
 
-    static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units> (q.Value * scale)
+    static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
 
     static member (*)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units Squared> =
-        Quantity<'Units Squared> (lhs.Value * rhs.Value)
+        Quantity<'Units Squared>(lhs.Value * rhs.Value)
 
-    static member (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> =
-        Quantity<'Units> (q.Value / scale)
+    static member (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity<'Units>(q.Value / scale)
 
     static member (/)(q: Quantity<'Units>, scale: Quantity<'Units>) : float = q.Value / scale.Value
 
@@ -152,17 +200,57 @@ type Quantity<'Units>(quantity: float) =
         Quantity(q.Value % modulus.Value)
 
 
-// ---- Unit Space Aliases ------------------------------------------------------
+// ---- Quantity Types ---------------------------------------------------------
 
 
 /// A percentage value. The default range for percentages is 0 to 1 but can also be given in the range 0 to 100.
 type Percent = Quantity<Percentage>
 
-type Angle = Quantity<Radians>
+type Duration = Quantity<Seconds>
+type Temperature = Quantity<CelsiusDegrees>
 
+
+// ---- Distance
 type Length = Quantity<Meters>
+type Area = Quantity<SquareMeters>
+type Volume = Quantity<CubicMeters>
 
-type Area = Quantity<Meters Squared>
+type Speed = Quantity<MetersPerSecond>
+type Acceleration = Quantity<MetersPerSecondSquared>
+
+
+// ---- Angular
+type Angle = Quantity<Radians>
+type AngularSpeed = Quantity<RadiansPerSecond>
+type AngularAcceleration = Quantity<RadiansPerSecondSquared>
+type SolidAngle = Quantity<Steradians>
+
+
+// ---- Mass
+type Mass = Quantity<Kilograms>
+type Density = Quantity<KilogramsPerCubicMeter>
+type Force = Quantity<Newtons>
+type Energy = Quantity<Joules>
+type Pressure = Quantity<Pascals>
+
+// ---- Light
+type LuminousFlux = Quantity<Lumens>
+type LuminousIntensity = Quantity<Candelas>
+type Illuminance = Quantity<Lux>
+type Luminance = Quantity<Nits>
+
+// ---- Atomic
+type SubstanceAmount = Quantity<Moles>
+type Molarity = Quantity<MolesPerCubicMeter>
+
+// ---- Electrical
+type Charge = Quantity<Coulombs>
+type Current = Quantity<Amperes>
+type Capacitance = Quantity<Farads>
+type Inductance = Quantity<Henries>
+type Power = Quantity<Watts>
+type Resistance = Quantity<Ohms>
+
 
 
 // ---- Interval ---------------------------------------------------------------
