@@ -18,8 +18,14 @@ let Equality () =
 
     Assert.AreEqual(first, second)
 
+[<Property>]
+let ``Equal with self`` (x: float) =
+    let quantity = Quantity x
+
+    Assert.AreEqual(quantity, quantity)
+
 [<Test>]
-let FuzzyEquality () =
+let ``Approximate equality`` () =
     let first = Quantity 1.
     let second = Quantity 1.00000000001
     let notEqual = Quantity 1.000000001
@@ -71,9 +77,13 @@ let Max () =
 
 [<Test>]
 let Sqrt () =
-    let initial : Quantity<Meters Squared> = Quantity 4.
-    let actual : Quantity<Meters> = Quantity.sqrt initial
-    let expected : Quantity<Meters> = Quantity 2.
+    let initial: Quantity<Meters Squared> =
+        Quantity 4.
+
+    let actual: Quantity<Meters> =
+        Quantity.sqrt initial
+
+    let expected: Quantity<Meters> = Quantity 2.
     Assert.AreEqual(expected, actual)
 
 [<Test>]
@@ -138,8 +148,12 @@ let ``Multiplication by float`` () =
 let Multiplication () =
     let lhs = Quantity 3.
     let rhs = Quantity 4.
-    let actual : Quantity<Meters Squared> = lhs * rhs
-    let expected : Quantity<Meters Squared> = Quantity 12.
+
+    let actual: Quantity<Meters Squared> =
+        lhs * rhs
+
+    let expected: Quantity<Meters Squared> =
+        Quantity 12.
 
     Assert.AreEqual(expected, actual)
 
@@ -161,10 +175,15 @@ let Division () =
 
 [<Test>]
 let ``Unit Division`` () =
-    let lhs : Quantity<Meters> = Quantity 12.
-    let rhs : Quantity<Pixels> = Quantity 3.
-    let actual : Quantity<Rate<Meters, Pixels>> = lhs / rhs
-    let expected : Quantity<Rate<Meters, Pixels>> = Quantity 4.
+    let lhs: Quantity<Meters> = Quantity 12.
+    let rhs: Quantity<Pixels> = Quantity 3.
+
+    let actual: Quantity<Rate<Meters, Pixels>> =
+        lhs / rhs
+
+    let expected: Quantity<Rate<Meters, Pixels>> =
+        Quantity 4.
+
     Assert.AreEqual(expected, actual)
 
 [<Test>]
@@ -184,75 +203,113 @@ let ``Negative Modulus`` () =
     Assert.AreEqual(expected, actual)
 
 [<Property>]
-let Clamp (first: Quantity<Meters>)(second: Quantity<Meters>)(quantity: Quantity<Meters>) =
+let Clamp (first: Quantity<Meters>) (second: Quantity<Meters>) (quantity: Quantity<Meters>) =
     let lower = min first second
     let upper = max first second
-    let clamped = Quantity.clamp lower upper quantity
-    
+
+    let clamped =
+        Quantity.clamp lower upper quantity
+
     clamped >= lower && clamped <= upper
-    
-    
+
+
 [<Test>]
 let Squared () =
-    let actual : Quantity<Meters Squared> = Quantity.squared (Quantity 3.)
-    let expected : Quantity<Meters Squared> = Quantity 9.
+    let actual: Quantity<Meters Squared> =
+        Quantity.squared (Quantity 3.)
+
+    let expected: Quantity<Meters Squared> =
+        Quantity 9.
+
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let ``Squared Unitless`` () =
-    let actual : Quantity<Unitless> = Quantity.squaredUnitless (Quantity 3.)
-    let expected : Quantity<Unitless> = Quantity 9.
+    let actual: Quantity<Unitless> =
+        Quantity.squaredUnitless (Quantity 3.)
+
+    let expected: Quantity<Unitless> =
+        Quantity 9.
+
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let ``Square Root Unitless`` () =
-    let actual : Quantity<Unitless> = Quantity.sqrtUnitless (Quantity 9.)
-    let expected : Quantity<Unitless> = Quantity 3.
+    let actual: Quantity<Unitless> =
+        Quantity.sqrtUnitless (Quantity 9.)
+
+    let expected: Quantity<Unitless> =
+        Quantity 3.
+
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let Cubed () =
-    let actual : Quantity<Meters Cubed> = Quantity.cubed (Quantity 3.)
-    let expected : Quantity<Meters Cubed> = Quantity 27.
+    let actual: Quantity<Meters Cubed> =
+        Quantity.cubed (Quantity 3.)
+
+    let expected: Quantity<Meters Cubed> =
+        Quantity 27.
+
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let ``Cube Root`` () =
-    let input: Quantity<Meters Cubed> = Quantity 27.
-    let actual : Quantity<Meters> = Quantity.cbrt input
-    let expected : Quantity<Meters> = Quantity 3.
+    let input: Quantity<Meters Cubed> =
+        Quantity 27.
+
+    let actual: Quantity<Meters> =
+        Quantity.cbrt input
+
+    let expected: Quantity<Meters> = Quantity 3.
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let ``Cubed Unitless`` () =
-    let actual : Quantity<Unitless> = Quantity.cubedUnitless (Quantity 3.)
-    let expected : Quantity<Unitless> = Quantity 27.
+    let actual: Quantity<Unitless> =
+        Quantity.cubedUnitless (Quantity 3.)
+
+    let expected: Quantity<Unitless> =
+        Quantity 27.
+
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let ``Cube Root Unitless`` () =
-    let actual : Quantity<Unitless> = Quantity.cbrtUnitless (Quantity 27.)
-    let expected : Quantity<Unitless> = Quantity 3.
+    let actual: Quantity<Unitless> =
+        Quantity.cbrtUnitless (Quantity 27.)
+
+    let expected: Quantity<Unitless> =
+        Quantity 3.
+
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let Reciprocal () =
-    let actual = Quantity.reciprocal (Quantity 2.)
+    let actual =
+        Quantity.reciprocal (Quantity 2.)
+
     let expected = Quantity 0.5
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let Remainder () =
     let quantity = Quantity 13.5
     let modulus = Quantity 4.
-    let actual = Quantity.remainderBy modulus quantity
+
+    let actual =
+        Quantity.remainderBy modulus quantity
+
     let expected = Quantity 1.5
     Assert.AreEqual(expected, actual)
-    
+
 [<Test>]
 let ``Negative Remainder`` () =
     let quantity = Quantity -13.5
     let modulus = Quantity 4.
-    let actual = Quantity.remainderBy modulus quantity
+
+    let actual =
+        Quantity.remainderBy modulus quantity
+
     let expected = Quantity 1.5
     Assert.AreEqual(expected, actual)

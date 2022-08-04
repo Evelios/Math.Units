@@ -12,6 +12,7 @@
         <Compile Include="Test.fs" />
         <Compile Include="Float.fs" />
         <Compile Include="Quantity.fs" />
+        <Compile Include="UnitConversions.fs" />
         <Compile Include="Length.fs" />
         <Compile Include="Interval.fs" />
         <Compile Include="Angle.fs" />
