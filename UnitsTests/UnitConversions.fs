@@ -9,10 +9,10 @@ open Units
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
 
-let equalityTest (title: string) (unit: string) (first: Quantity<'Unit>, second: Quantity<'Unit>) : unit =
+let equalityTest (title: string) (unit: string) (first: Quantity<'Units>, second: Quantity<'Units>) : unit =
     Assert.AreEqual(first, second, $"{title}: {first}{unit} and {second}{unit} should be equal.")
 
-let equalPairs (title: string) (unit: string) (pairs: (Quantity<'Unit> * Quantity<'Unit>) list) =
+let equalPairs (title: string) (unit: string) (pairs: (Quantity<'Units> * Quantity<'Units>) list) =
     let unitTest = equalityTest title unit
 
     List.iter unitTest pairs

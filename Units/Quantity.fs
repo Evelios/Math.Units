@@ -43,7 +43,7 @@ type Quantity<'Units> with
 
 
     ///
-    static member unwrap(quantity: Quantity<'Unit>) = quantity.Value
+    static member unwrap(quantity: Quantity<'Units>) = quantity.Value
 
 
 

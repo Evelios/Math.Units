@@ -8,8 +8,8 @@ open Units
 /// Construct an arc with from the first given point to the second, with the
 // given swept angle.
 let from
-    (givenStartPoint: Point2D<'Unit, 'Coordinates>)
-    (givenEndPoint: Point2D<'Unit, 'Coordinates>)
+    (givenStartPoint: Point2D<'Units, 'Coordinates>)
+    (givenEndPoint: Point2D<'Units, 'Coordinates>)
     (givenSweptAngle: Angle)
     =
     let displacement =
@@ -51,11 +51,11 @@ let from
 
 /// Construct an arc with the given center point, radius, start angle and swept
 let withCenterPoint
-    (centerPoint: Point2D<'Unit, 'Coordinates>)
-    (radius: Quantity<'Unit>)
+    (centerPoint: Point2D<'Units, 'Coordinates>)
+    (radius: Quantity<'Units>)
     (startAngle: Angle)
     (sweptAngle: Angle)
-    : Arc2D<'Unit, 'Coordinates> =
+    : Arc2D<'Units, 'Coordinates> =
     let x0 = centerPoint.X
     let y0 = centerPoint.Y
     let givenRadius = radius
@@ -83,10 +83,10 @@ let withCenterPoint
 /// counterclockwise around the center point. A negative swept angle results in
 /// a clockwise arc instead.
 let sweptAround
-    (givenCenterPoint: Point2D<'Unit, 'Coordinates>)
+    (givenCenterPoint: Point2D<'Units, 'Coordinates>)
     (givenSweptAngle: Angle)
-    (givenStartPoint: Point2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> =
+    (givenStartPoint: Point2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> =
     let displacement =
         Vector2D.from givenStartPoint givenCenterPoint
 
@@ -109,10 +109,10 @@ let sweptAround
 /// Attempt to construct an arc that starts at the first given point, passes
 /// through the second given point and ends at the third given point:
 let throughPoints
-    (first: Point2D<'Unit, 'Coordinates>)
-    (second: Point2D<'Unit, 'Coordinates>)
-    (third: Point2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> option =
+    (first: Point2D<'Units, 'Coordinates>)
+    (second: Point2D<'Units, 'Coordinates>)
+    (third: Point2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> option =
     match Point2D.circumcenter first second third with
     | None -> None
     | Some circumcenter ->
@@ -150,11 +150,11 @@ let throughPoints
         | _ -> None
 
 let withRadius
-    (radius: Quantity<'Unit>)
+    (radius: Quantity<'Units>)
     (sweptAngle: SweptAngle)
-    (startPoint: Point2D<'Unit, 'Coordinates>)
-    (endPoint: Point2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> option =
+    (startPoint: Point2D<'Units, 'Coordinates>)
+    (endPoint: Point2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> option =
 
     let chord =
         LineSegment2D.from startPoint endPoint
@@ -204,11 +204,11 @@ let withRadius
 
 /// Construct an arc with the given center point, radius, start angle and swept
 let withSweptAngle
-    (center: Point2D<'Unit, 'Coordinates>)
-    (radius: Quantity<'Unit>)
+    (center: Point2D<'Units, 'Coordinates>)
+    (radius: Quantity<'Units>)
     (startAngle: Angle)
     (sweptAngle: Angle)
-    : Arc2D<'Unit, 'Coordinates> =
+    : Arc2D<'Units, 'Coordinates> =
     let x0 = center.X
     let y0 = center.Y
 
@@ -242,13 +242,13 @@ let centerPoint (arc: Arc2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinate
     Point2D.xy cx cy
 
 /// Get the radius of an arc.
-let radius (arc: Arc2D<'Unit, 'Coordinates>) : Quantity<'Unit> = arc.SignedLength / arc.SweptAngle.Value
+let radius (arc: Arc2D<'Units, 'Coordinates>) : Quantity<'Units> = arc.SignedLength / arc.SweptAngle.Value
 
 /// Get the swept angle of an arc. The result will be positive for a
-let sweptAngle (arc: Arc2D<'Unit, 'Coordinates>) : Angle = arc.SweptAngle
+let sweptAngle (arc: Arc2D<'Units, 'Coordinates>) : Angle = arc.SweptAngle
 
 /// Get the point along an arc at a given parameter value.
-let pointOn (arc: Arc2D<'Unit, 'Coordinates>) (parameterValue: float) : Point2D<'Unit, 'Coordinates> =
+let pointOn (arc: Arc2D<'Units, 'Coordinates>) (parameterValue: float) : Point2D<'Units, 'Coordinates> =
     let x0 = arc.StartPoint.X
     let y0 = arc.StartPoint.Y
     let dx = arc.XDirection.X
@@ -285,14 +285,14 @@ let pointOn (arc: Arc2D<'Unit, 'Coordinates>) (parameterValue: float) : Point2D<
         Point2D.xy px py
 
 /// Get the start point of an arc.
-let startPoint (arc: Arc2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = arc.StartPoint
+let startPoint (arc: Arc2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> = arc.StartPoint
 
-let midpoint (arc: Arc2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = pointOn arc 0.5
+let midpoint (arc: Arc2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> = pointOn arc 0.5
 
-let endPoint (arc: Arc2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = pointOn arc 1.0
+let endPoint (arc: Arc2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> = pointOn arc 1.0
 
 /// Get a bounding box for a given arc.
-let boundingBox (givenArc: Arc2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'Coordinates> =
+let boundingBox (givenArc: Arc2D<'Units, 'Coordinates>) : BoundingBox2D<'Units, 'Coordinates> =
     let xDirection = givenArc.XDirection
     let theta = sweptAngle givenArc
 
@@ -334,7 +334,7 @@ let boundingBox (givenArc: Arc2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'C
           MaxY = y0 + (r * sinMax) }
 
 /// Get the first derivative of an arc at a given parameter value.
-let firstDerivative (arc: Arc2D<'Unit, 'Coordinates>) (parameterValue: float) : Vector2D<'Unit, 'Coordinates> =
+let firstDerivative (arc: Arc2D<'Units, 'Coordinates>) (parameterValue: float) : Vector2D<'Units, 'Coordinates> =
     let startDerivative =
         Vector2D.withLength arc.SignedLength arc.XDirection
 
@@ -348,8 +348,8 @@ let firstDerivative (arc: Arc2D<'Unit, 'Coordinates>) (parameterValue: float) : 
 /// is in fact degenerate (consists of a single point), returns an `Err` with that
 /// point.
 let nondegenerate
-    (arc: Arc2D<'Unit, 'Coordinates>)
-    : Result<Nondegenerate<'Unit, 'Coordinates>, Point2D<'Unit, 'Coordinates>> =
+    (arc: Arc2D<'Units, 'Coordinates>)
+    : Result<Nondegenerate<'Units, 'Coordinates>, Point2D<'Units, 'Coordinates>> =
 
     if arc.SignedLength = Quantity.zero then
         Error(startPoint arc)
@@ -358,26 +358,26 @@ let nondegenerate
         Ok arc
 
 /// Convert a nondegenerate arc back to a general `Arc2d`.
-let fromNondegenerate (arc: Nondegenerate<'Unit, 'Coordinates>) : Arc2D<'Unit, 'Coordinates> = arc
+let fromNondegenerate (arc: Nondegenerate<'Units, 'Coordinates>) : Arc2D<'Units, 'Coordinates> = arc
 
 ///  Get the tangent direction to a nondegenerate arc at a given parameter
-let tangentDirection (arc: Nondegenerate<'Unit, 'Coordinates>) (parameterValue: float) : Direction2D<'Coordinates> =
+let tangentDirection (arc: Nondegenerate<'Units, 'Coordinates>) (parameterValue: float) : Direction2D<'Coordinates> =
     arc.XDirection
     |> Direction2D.rotateBy (parameterValue * arc.SweptAngle)
 
 /// Get both the point and tangent direction of a nondegenerate arc at a given
 /// parameter value.
 let sample
-    (nondegenerateArc: Nondegenerate<'Unit, 'Coordinates>)
+    (nondegenerateArc: Nondegenerate<'Units, 'Coordinates>)
     (parameterValue: float)
-    : Point2D<'Unit, 'Coordinates> * Direction2D<'Coordinates> =
+    : Point2D<'Units, 'Coordinates> * Direction2D<'Coordinates> =
     (pointOn (fromNondegenerate nondegenerateArc) parameterValue, tangentDirection nondegenerateArc parameterValue)
 
 // ---- Modifiers ----
 
 /// Reverse the direction of an arc, so that the start point becomes the end
 /// point and vice versa.
-let reverse (arc: Arc2D<'Unit, 'Coordinates>) : Arc2D<'Unit, 'Coordinates> =
+let reverse (arc: Arc2D<'Units, 'Coordinates>) : Arc2D<'Units, 'Coordinates> =
     { StartPoint = endPoint arc
       SweptAngle = -arc.SweptAngle
       SignedLength = -arc.SignedLength
@@ -387,10 +387,10 @@ let reverse (arc: Arc2D<'Unit, 'Coordinates>) : Arc2D<'Unit, 'Coordinates> =
 
 /// Scale an arc about a given point by a given scale.
 let scaleAbout
-    (point: Point2D<'Unit, 'Coordinates>)
+    (point: Point2D<'Units, 'Coordinates>)
     (scale: float)
-    (arc: Arc2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> =
+    (arc: Arc2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> =
 
     { StartPoint = Point2D.scaleAbout point scale arc.StartPoint
       SweptAngle = arc.SweptAngle
@@ -404,10 +404,10 @@ let scaleAbout
 
 /// Rotate an arc around a given point by a given angle.
 let rotateAround
-    (point: Point2D<'Unit, 'Coordinates>)
+    (point: Point2D<'Units, 'Coordinates>)
     (angle: Angle)
-    (arc: Arc2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> =
+    (arc: Arc2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> =
 
     { StartPoint = Point2D.rotateAround point angle arc.StartPoint
       SweptAngle = arc.SweptAngle
@@ -417,9 +417,9 @@ let rotateAround
 
 /// Translate an arc by a given displacement.
 let translateBy
-    (displacement: Vector2D<'Unit, 'Coordinates>)
-    (arc: Arc2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> =
+    (displacement: Vector2D<'Units, 'Coordinates>)
+    (arc: Arc2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> =
 
     { StartPoint = Point2D.translateBy displacement arc.StartPoint
       SweptAngle = arc.SweptAngle
@@ -430,16 +430,16 @@ let translateBy
 /// Translate an arc in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Quantity<'Unit>)
-    (arc: Arc2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> =
+    (distance: Quantity<'Units>)
+    (arc: Arc2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> =
 
     translateBy (Vector2D.withLength distance direction) arc
 
 
 /// Mirror an arc across a given axis. This negates the sign of the arc's
 /// swept angle.
-let mirrorAcross (axis: Axis2D<'Unit, 'Coordinates>) (arc: Arc2D<'Unit, 'Coordinates>) : Arc2D<'Unit, 'Coordinates> =
+let mirrorAcross (axis: Axis2D<'Units, 'Coordinates>) (arc: Arc2D<'Units, 'Coordinates>) : Arc2D<'Units, 'Coordinates> =
     { StartPoint = Point2D.mirrorAcross axis arc.StartPoint
       SweptAngle = -arc.SweptAngle
       SignedLength = -arc.SignedLength
@@ -449,9 +449,9 @@ let mirrorAcross (axis: Axis2D<'Unit, 'Coordinates>) (arc: Arc2D<'Unit, 'Coordin
 /// Take an arc defined in global coordinates, and return it expressed in local
 /// coordinates relative to a given reference frame.
 let relativeTo
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (arc: Arc2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> =
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    (arc: Arc2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> =
 
     if Frame2D.isRightHanded frame then
         { StartPoint = Point2D.relativeTo frame arc.StartPoint
@@ -469,9 +469,9 @@ let relativeTo
 /// Take an arc considered to be defined in local coordinates relative to a
 /// given reference frame, and return that arc expressed in global coordinates.
 let placeIn
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (arc: Arc2D<'Unit, 'Coordinates>)
-    : Arc2D<'Unit, 'Coordinates> =
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    (arc: Arc2D<'Units, 'Coordinates>)
+    : Arc2D<'Units, 'Coordinates> =
 
     if Frame2D.isRightHanded frame then
         { StartPoint = Point2D.placeIn frame arc.StartPoint

@@ -8,22 +8,22 @@ open Units
 
 // ---- Builders ----
 
-let xy (x: Quantity<'Unit>) (y: Quantity<'Unit>) : Point2D<'Unit, 'Coordinates> = { X = x; Y = y }
+let xy (x: Quantity<'Units>) (y: Quantity<'Units>) : Point2D<'Units, 'Coordinates> = { X = x; Y = y }
 
-let rTheta (r: Quantity<'Unit>) (theta: Angle) : Point2D<'Unit, 'Coordinates> =
+let rTheta (r: Quantity<'Units>) (theta: Angle) : Point2D<'Units, 'Coordinates> =
     xy (r * Angle.cos theta) (r * Angle.sin theta)
 
 let polar r theta = rTheta r theta
 
-let origin<'Unit, 'Coordinates> : Point2D<'Unit, 'Coordinates> = xy Quantity.zero Quantity.zero
+let origin<'Units, 'Coordinates> : Point2D<'Units, 'Coordinates> = xy Quantity.zero Quantity.zero
 
-let unsafe<'Unit, 'Coordinates> (x: float) (y: float) : Point2D<'Unit, 'Coordinates> =
-    { X = Length.create<'Unit> x
-      Y = Length.create<'Unit> y }
+let unsafe<'Units, 'Coordinates> (x: float) (y: float) : Point2D<'Units, 'Coordinates> =
+    { X = Length.create<'Units> x
+      Y = Length.create<'Units> y }
 
 // ---- Helper Builder Functions ----
 
-let private fromUnit conversion (x: float) (y: float) : Point2D<'Unit, 'Coordinates> = xy (conversion x) (conversion y)
+let private fromUnit conversion (x: float) (y: float) : Point2D<'Units, 'Coordinates> = xy (conversion x) (conversion y)
 let meters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.meters x y
 let pixels (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.cssPixels x y
 let millimeters (x: float) (y: float) : Point2D<Meters, 'Coordinates> = fromUnit Length.millimeters x y
@@ -36,38 +36,38 @@ let unitless (x: float) (y: float) : Point2D<Unitless, 'Coordinates> = fromUnit 
 // ---- Operators ----
 
 /// This function is designed to be used in piping operators.
-let plus (rhs: Vector2D<'Unit, 'Coordinates>) (lhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let plus (rhs: Vector2D<'Units, 'Coordinates>) (lhs: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
     lhs + rhs
 
-let minus (rhs: Point2D<'Unit, 'Coordinates>) (lhs: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> =
+let minus (rhs: Point2D<'Units, 'Coordinates>) (lhs: Point2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
     lhs - rhs
 
 /// Be careful with the vector arguments. This function is written with piping in mind. The first point is the
 /// target location. The second point is the starting location.
 /// This is also an alias for `minus` and is `target - from`
 let vectorTo
-    (target: Point2D<'Unit, 'Coordinates>)
-    (from: Point2D<'Unit, 'Coordinates>)
-    : Vector2D<'Unit, 'Coordinates> =
+    (target: Point2D<'Units, 'Coordinates>)
+    (from: Point2D<'Units, 'Coordinates>)
+    : Vector2D<'Units, 'Coordinates> =
     target - from
 
-let neg (v: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = -v
+let neg (v: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> = -v
 
-let times (rhs: float) (lhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = lhs * rhs
+let times (rhs: float) (lhs: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> = lhs * rhs
 
 /// Alias for `times`
 let scaleBy = times
 
-let dividedBy (rhs: float) (lhs: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> = lhs / rhs
+let dividedBy (rhs: float) (lhs: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> = lhs / rhs
 
 
 // ---- Accessors ----
 
-let x (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> = p.X
+let x (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> = p.X
 
-let y (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> = p.Y
+let y (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> = p.Y
 
-let magnitude (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
+let magnitude (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
     Length.sqrt ((Length.squared p.X) + (Length.squared p.Y))
 
 
@@ -79,17 +79,17 @@ let magnitude (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
 /// within a `case` expression.
 /// Alternatively, you can use [`centroidN`](#centroidN) instead.
 let centroid
-    (p0: Point2D<'Unit, 'Coordinates>)
-    (rest: Point2D<'Unit, 'Coordinates> list)
-    : Point2D<'Unit, 'Coordinates> =
+    (p0: Point2D<'Units, 'Coordinates>)
+    (rest: Point2D<'Units, 'Coordinates> list)
+    : Point2D<'Units, 'Coordinates> =
 
     let rec centroidHelp
-        (x0: Quantity<'Unit>)
-        (y0: Quantity<'Unit>)
+        (x0: Quantity<'Units>)
+        (y0: Quantity<'Units>)
         (count: int)
-        (dx: Quantity<'Unit>)
-        (dy: Quantity<'Unit>)
-        (points: Point2D<'Unit, 'Coordinates> list)
+        (dx: Quantity<'Units>)
+        (dy: Quantity<'Units>)
+        (points: Point2D<'Units, 'Coordinates> list)
         =
 
         match points with
@@ -104,19 +104,19 @@ let centroid
 /// can be extracted/constructed from it. For example, to get the centroid of a
 /// bunch of vertices.
 let centroidOf
-    (toPoint: 'a -> Point2D<'Unit, 'Coordinates>)
+    (toPoint: 'a -> Point2D<'Units, 'Coordinates>)
     (first: 'a)
     (rest: 'a list)
-    : Point2D<'Unit, 'Coordinates> =
+    : Point2D<'Units, 'Coordinates> =
 
     let rec centroidOfHelp
-        (x0: Quantity<'Unit>)
-        (y0: Quantity<'Unit>)
+        (x0: Quantity<'Units>)
+        (y0: Quantity<'Units>)
         (count: int)
-        (dx: Quantity<'Unit>)
-        (dy: Quantity<'Unit>)
+        (dx: Quantity<'Units>)
+        (dy: Quantity<'Units>)
         (values: 'a list)
-        : Point2D<'Unit, 'Coordiantes> =
+        : Point2D<'Units, 'Coordiantes> =
 
         match values with
         | next :: remaining ->
@@ -134,10 +134,10 @@ let centroidOf
 /// `Point2d.centroid p1 [ p2, p3 ]`
 /// but is more efficient.
 let centroid3
-    (p1: Point2D<'Unit, 'Coordinates>)
-    (p2: Point2D<'Unit, 'Coordinates>)
-    (p3: Point2D<'Unit, 'Coordinates>)
-    : Point2D<'Unit, 'Coordinates> =
+    (p1: Point2D<'Units, 'Coordinates>)
+    (p2: Point2D<'Units, 'Coordinates>)
+    (p3: Point2D<'Units, 'Coordinates>)
+    : Point2D<'Units, 'Coordinates> =
 
     xy (p1.X + (p2.X - p1.X) / 3. + (p3.X - p1.X) / 3.) (p1.Y + (p2.Y - p1.Y) / 3. + (p3.Y - p1.Y) / 3.)
 
@@ -145,7 +145,7 @@ let centroid3
 /// `Nothing`. If you know you have at least one point, you can use
 /// [`centroid`](#centroid) instead to avoid the `Option`.
 
-let centroidN (points: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coordinates> option =
+let centroidN (points: Point2D<'Units, 'Coordinates> list) : Point2D<'Units, 'Coordinates> option =
     match points with
     | first :: rest -> Some(centroid first rest)
     | [] -> None
@@ -153,55 +153,55 @@ let centroidN (points: Point2D<'Unit, 'Coordinates> list) : Point2D<'Unit, 'Coor
 
 // ---- Conversions ----
 
-let toVector (point: Point2D<'Unit, 'Coordinates>) : Vector2D<'Unit, 'Coordinates> = Vector2D.xy point.X point.Y
+let toVector (point: Point2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> = Vector2D.xy point.X point.Y
 
 
 // ---- Modifiers ----
 
 /// Scale a point to a given length.
-let scaleTo (length: Quantity<'Unit>) (point: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let scaleTo (length: Quantity<'Units>) (point: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
     scaleBy (length / magnitude point) point
 
 /// Rotate a point counterclockwise by a given angle.
-let rotateBy (a: Angle) (p: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let rotateBy (a: Angle) (p: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
     xy (Angle.cos a * p.X - Angle.sin a * p.Y) (Angle.sin a * p.X + Angle.cos a * p.Y)
 
-let translate (v: Vector2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Coordinates>) = p + v
+let translate (v: Vector2D<'Units, 'Coordinates>) (p: Point2D<'Units, 'Coordinates>) = p + v
 
 let rotateAround
-    (reference: Point2D<'Unit, 'Coordinates>)
+    (reference: Point2D<'Units, 'Coordinates>)
     (angle: Angle)
-    (point: Point2D<'Unit, 'Coordinates>)
-    : Point2D<'Unit, 'Coordinates> =
+    (point: Point2D<'Units, 'Coordinates>)
+    : Point2D<'Units, 'Coordinates> =
     Internal.Point2D.rotateAround reference angle point
 
 let placeIn
-    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    (point: Point2D<'Unit, 'GlobalCoordinates>)
-    : Point2D<'Unit, 'LocalCoordinates> =
+    (frame: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    (point: Point2D<'Units, 'GlobalCoordinates>)
+    : Point2D<'Units, 'LocalCoordinates> =
     Internal.Point2D.placeIn frame point
 
 /// Translate a point in a given direction by a given distance.
 let translateIn
     (d: Direction2D<'Coordinates>)
-    (distance: Quantity<'Unit>)
-    (p: Point2D<'Unit, 'Coordiantes>)
-    : Point2D<'Unit, 'Coordiantes> =
+    (distance: Quantity<'Units>)
+    (p: Point2D<'Units, 'Coordiantes>)
+    : Point2D<'Units, 'Coordiantes> =
     xy (p.X + distance * d.X) (p.Y + distance * d.Y)
 
-let translateBy (v: Vector2D<'Unit, 'Coordiantes>) (p: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let translateBy (v: Vector2D<'Units, 'Coordiantes>) (p: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
     Internal.Point2D.translateBy v p
 
 /// Mirror a point across an axis. The result will be the same distance from the
 /// axis but on the opposite side.
-let mirrorAcross (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Corodinates>) : Point2D<'Unit, 'Coordinates> =
+let mirrorAcross (axis: Axis2D<'Units, 'Coordinates>) (p: Point2D<'Units, 'Corodinates>) : Point2D<'Units, 'Coordinates> =
     Internal.Point2D.mirrorAcross axis p
 
 // ---- Queries ----
 
 /// Compare two points within a tolerance. Returns true if the distance
 /// between the two given points is less than the given tolerance.
-let equalWithin (eps: Quantity<'Unit>) (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : bool =
+let equalWithin (eps: Quantity<'Units>) (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) : bool =
     if eps > Quantity.zero then
         let nx = (p2.X - p1.X) / eps
         let ny = (p2.Y - p1.Y) / eps
@@ -214,13 +214,13 @@ let equalWithin (eps: Quantity<'Unit>) (p1: Point2D<'Unit, 'Coordinates>) (p2: P
         false
 
 /// Find the squared distance from the first point to the second.
-let distanceSquaredTo (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
+let distanceSquaredTo (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) : Quantity<'Units Squared> =
     let dx = (p1.X - p2.X)
     let dy = (p1.Y - p2.Y)
     dx * dx + dy * dy
 
 /// Find the distance from the first point to the second.
-let distanceTo (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
+let distanceTo (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
     let deltaX = p2.X - p1.X
     let deltaY = p2.Y - p1.Y
 
@@ -239,40 +239,40 @@ let distanceTo (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinat
 
         scaledLength * largestComponent
 
-let midpoint (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let midpoint (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
     xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
 
 let lerp
-    (p1: Point2D<'Unit, 'Coordinates>)
-    (p2: Point2D<'Unit, 'Coordinates>)
+    (p1: Point2D<'Units, 'Coordinates>)
+    (p2: Point2D<'Units, 'Coordinates>)
     (percent: Percent)
-    : Point2D<'Unit, 'Coordinates> =
+    : Point2D<'Units, 'Coordinates> =
     xy ((p1.X + p2.X) * (Percent.asRatio percent)) ((p1.Y + p2.Y) * (Percent.asRatio percent))
 
 /// Get the direction the a point is facing.
-let direction (point: Point2D<'Unit, 'Coordinates>) : Direction2D<'Coordinates> option =
+let direction (point: Point2D<'Units, 'Coordinates>) : Direction2D<'Coordinates> option =
     Direction2D.xyQuantity point.X point.Y
 
 /// Round the point to the internal precision.
 /// (Default is 8 digits past the decimal point)
-let round (p: Point2D<'Unit, 'Coordinates>) =
+let round (p: Point2D<'Units, 'Coordinates>) =
     xy (Length.round p.X) (Length.round p.Y)
 
 /// Round the point to a specified number of digits
-let roundTo (digits: int) (p: Point2D<'Unit, 'Coordinates>) =
+let roundTo (digits: int) (p: Point2D<'Units, 'Coordinates>) =
     xy (Length.roundTo digits p.X) (Length.roundTo digits p.Y)
 
 let private circumcenterHelp
-    (p1: Point2D<'Unit, 'Coordinates>)
-    (p2: Point2D<'Unit, 'Coordinates>)
-    (p3: Point2D<'Unit, 'Coordinates>)
-    (_: Quantity<'Unit>)
-    (b: Quantity<'Unit>)
-    (c: Quantity<'Unit>)
+    (p1: Point2D<'Units, 'Coordinates>)
+    (p2: Point2D<'Units, 'Coordinates>)
+    (p3: Point2D<'Units, 'Coordinates>)
+    (_: Quantity<'Units>)
+    (b: Quantity<'Units>)
+    (c: Quantity<'Units>)
     =
     let bc = b * c
 
-    if bc = Quantity<'Unit Squared>.create 0. then
+    if bc = Quantity<'Units Squared>.create 0. then
         None
 
     else
@@ -295,9 +295,9 @@ let private circumcenterHelp
             |> Some
 
 let circumcenter
-    (p1: Point2D<'Unit, 'Coordinates>)
-    (p2: Point2D<'Unit, 'Coordinates>)
-    (p3: Point2D<'Unit, 'Coordinates>)
+    (p1: Point2D<'Units, 'Coordinates>)
+    (p2: Point2D<'Units, 'Coordinates>)
+    (p3: Point2D<'Units, 'Coordinates>)
     =
     let a = distanceTo p1 p2
     let b = distanceTo p2 p3
@@ -318,7 +318,7 @@ let circumcenter
 
 /// Project a point perpendicularly onto an axis.
 /// The axis does not have to pass through the origin:
-let projectOnto (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let projectOnto (axis: Axis2D<'Units, 'Coordinates>) (p: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
     let p0 = axis.Origin
     let d = axis.Direction
     let distance = (p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y
@@ -331,7 +331,7 @@ let projectOnto (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Coordina
 /// Construct a point by interpolating from the first given point to the second,
 /// based on a parameter that ranges from zero to one.
 /// You can pass values less than zero or greater than one to extrapolate.
-let interpolateFrom (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) (t: float) =
+let interpolateFrom (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) (t: float) =
     if t <= 0.5 then
         xy (p1.X + t * (p2.X - p1.X)) (p1.Y + t * (p2.Y - p1.Y))
     else
@@ -341,7 +341,7 @@ let interpolateFrom (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coor
 /// origin point.
 /// Positive and negative distances will be interpreted relative to the direction of
 /// the axis.
-let along (axis: Axis2D<'Unit, 'Coordinates>) (distance: Quantity<'Unit>) : Point2D<'Unit, 'Coordinates> =
+let along (axis: Axis2D<'Units, 'Coordinates>) (distance: Quantity<'Units>) : Point2D<'Units, 'Coordinates> =
     let p0 = axis.Origin
     let d = axis.Direction
     xy (p0.X + distance * d.X) (p0.Y + distance * d.Y)
@@ -351,7 +351,7 @@ let along (axis: Axis2D<'Unit, 'Coordinates>) (distance: Quantity<'Unit>) : Poin
 /// projected point from the axis' origin point is measured. The result will be
 /// positive if the projected point is ahead the axis' origin point and negative if
 /// it is behind, with 'ahead' and 'behind' defined by the direction of the axis.
-let signedDistanceAlong (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
+let signedDistanceAlong (axis: Axis2D<'Units, 'Coordinates>) (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
     let p0 = axis.Origin
     let d = axis.Direction
     ((p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y)
@@ -359,7 +359,7 @@ let signedDistanceAlong (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, '
 /// Find the perpendicular distance of a point from an axis. The result
 /// will be positive if the point is to the left of the axis and negative if it is
 /// to the right, with the forwards direction defined by the direction of the axis.
-let signedDistanceFrom (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
+let signedDistanceFrom (axis: Axis2D<'Units, 'Coordinates>) (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
     let p0 = axis.Origin
     let d = axis.Direction
     ((p.Y - p0.Y) * d.X - (p.X - p0.X) * d.Y)
@@ -372,10 +372,10 @@ let signedDistanceFrom (axis: Axis2D<'Unit, 'Coordinates>) (p: Point2D<'Unit, 'C
 /// you want it is confusing and error prone. Try a combination of mirror and/or
 /// rotation operations instead.
 let scaleAbout
-    (p0: Point2D<'Unit, 'Coordinates>)
+    (p0: Point2D<'Units, 'Coordinates>)
     (k: float)
-    (p: Point2D<'Unit, 'Coordinates>)
-    : Point2D<'Unit, 'Coordinates> =
+    (p: Point2D<'Units, 'Coordinates>)
+    : Point2D<'Units, 'Coordinates> =
     xy (p0.X + k * (p.X - p0.X)) (p0.Y + k * (p.Y - p0.Y))
 
 
@@ -383,10 +383,10 @@ let scaleAbout
 
 /// Construct a point given its local coordinates within a particular frame:
 let xyIn
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (x: Quantity<'Unit>)
-    (y: Quantity<'Unit>)
-    : Point2D<'Unit, 'Coordinates> =
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    (x: Quantity<'Units>)
+    (y: Quantity<'Units>)
+    : Point2D<'Units, 'Coordinates> =
     let p0 = frame.Origin
     let i = frame.XDirection
     let j = frame.YDirection
@@ -394,7 +394,7 @@ let xyIn
 
 /// Construct a point given its local polar coordinates within a particular
 /// frame.
-let rThetaIn (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) (r: Quantity<'Unit>) (theta: Angle) =
+let rThetaIn (frame: Frame2D<'Units, 'Coordinates, 'Defines>) (r: Quantity<'Units>) (theta: Angle) =
     let p0 = frame.Origin
     let i = frame.XDirection
     let j = frame.YDirection
@@ -403,28 +403,28 @@ let rThetaIn (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) (r: Quantity<'Unit>
     xy (p0.X + x * i.X + y * j.X) (p0.Y + x * i.Y + y * j.Y)
 
 /// Find the X coordinate of a point relative to a given frame.
-let xCoordinateIn (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
+let xCoordinateIn (frame: Frame2D<'Units, 'Coordinates, 'Defines>) (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
     let p0 = frame.Origin
     let d = frame.XDirection
     ((p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y)
 
 /// Find the Y coordinate of a point relative to a given frame.
-let yCoordinateIn (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> =
+let yCoordinateIn (frame: Frame2D<'Units, 'Coordinates, 'Defines>) (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
     let p0 = frame.Origin
     let d = frame.YDirection
     ((p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y)
 
 /// Get the X and Y coordinates of a point as a tuple.
 /// Point2d.coordinates (Point2d.meters 2 3)
-let coordinates (p: Point2D<'Unit, 'Coordinates>) : Quantity<'Unit> * Quantity<'Unit> = (p.X, p.Y)
+let coordinates (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> * Quantity<'Units> = (p.X, p.Y)
 
 /// Get the X and Y coordinates of a point relative to a given frame, as a
 /// tuple; these are the coordinates the point would have as viewed by an observer
 /// in that frame.
 let coordinatesIn
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (p: Point2D<'Unit, 'Coordinates>)
-    : Quantity<'Unit> * Quantity<'Unit> =
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    (p: Point2D<'Units, 'Coordinates>)
+    : Quantity<'Units> * Quantity<'Units> =
     let p0 = frame.Origin
     let dx = frame.XDirection
     let dy = frame.YDirection
@@ -435,22 +435,22 @@ let coordinatesIn
 /// Take a point defined in global coordinates, and return it expressed in local
 /// coordinates relative to a given reference frame.
 let relativeTo
-    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    (p: Point2D<'Unit, 'GlobalCoordinates>)
-    : Point2D<'Unit, 'LocalCoordinates> =
+    (frame: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    (p: Point2D<'Units, 'GlobalCoordinates>)
+    : Point2D<'Units, 'LocalCoordinates> =
     Internal.Point2D.relativeTo frame p
 
 
 // ---- Json ----
 
-let fromList (list: float list) : Point2D<'Unit, 'Coordinates> option =
+let fromList (list: float list) : Point2D<'Units, 'Coordinates> option =
     match list with
     | [ x; y ] ->
         Some
-        <| xy (Quantity<'Unit>.create x) (Quantity<'Unit>.create y)
+        <| xy (Quantity<'Units>.create x) (Quantity<'Units>.create y)
     | _ -> None
 
-let toList (point: Point2D<'Unit, 'Coordinates>) : float list =
+let toList (point: Point2D<'Units, 'Coordinates>) : float list =
     [ point.X.Value
       point.Y.Value ]
 

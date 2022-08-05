@@ -6,7 +6,7 @@ open Geometry
 open Units
 open UnitsTests
 
-let validFrame2D (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : bool =
+let validFrame2D (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : bool =
     let parallelComponent =
         Direction2D.componentIn frame.XDirection frame.YDirection
 
@@ -23,7 +23,7 @@ With Parallel Component: {parallelComponent}
 
         false
 
-let isValidBoundingBox2D (box: BoundingBox2D<'Unit, 'Coordinates>) =
+let isValidBoundingBox2D (box: BoundingBox2D<'Units, 'Coordinates>) =
     if box.MinX > box.MaxX then
         Test.fail $"Expected bounding box with extrema to have minX <= maxX.{Environment.NewLine}{box}"
     else if box.MinY > box.MaxY then

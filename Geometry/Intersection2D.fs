@@ -5,9 +5,9 @@ open FSharp.Extensions
 /// Try to find the intersection between a line segment and a line. If the lines are parallel (even if they are
 /// overlapping) then no intersection is returned.
 let lineSegmentAndLine
-    (first: LineSegment2D<'Unit, 'Coordinates>)
-    (second: Line2D<'Unit, 'Coordinates>)
-    : Point2D<'Unit, 'Coordinates> option =
+    (first: LineSegment2D<'Units, 'Coordinates>)
+    (second: Line2D<'Units, 'Coordinates>)
+    : Point2D<'Units, 'Coordinates> option =
 
     let areParallel =
         match LineSegment2D.direction first, Line2D.direction second with
@@ -36,9 +36,9 @@ let lineAndLineSegment line segment = lineSegmentAndLine segment line
 
 /// Get all the intersection points between a bounding box and a line
 let boundingBoxAndLine
-    (bbox: BoundingBox2D<'Unit, 'Coordinates>)
-    (line: Line2D<'Unit, 'Coordinates>)
-    : Point2D<'Unit, 'Coordinates> list =
+    (bbox: BoundingBox2D<'Units, 'Coordinates>)
+    (line: Line2D<'Units, 'Coordinates>)
+    : Point2D<'Units, 'Coordinates> list =
     BoundingBox2D.lineSegments bbox
     |> List.filterMap (lineAndLineSegment line)
     |> List.distinct

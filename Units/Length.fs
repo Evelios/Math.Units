@@ -3,7 +3,7 @@ module Units.Length
 
 // ---- Generic ----
 
-let zero<'Unit> : Length = Length 0.
+let zero<'Units> : Length = Length 0.
 
 let meters m : Length = Length m
 let inMeters (l: Length) : float = l.Value

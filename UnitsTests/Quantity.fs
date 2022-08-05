@@ -146,14 +146,14 @@ let ``Multiplication by float`` () =
 
 [<Test>]
 let Multiplication () =
-    let lhs = Quantity 3.
-    let rhs = Quantity 4.
+    let lhs = Length.meters 3.
+    let rhs = Length.meters  4.
 
-    let actual: Quantity<Meters Squared> =
+    let actual =
         lhs * rhs
 
-    let expected: Quantity<Meters Squared> =
-        Quantity 12.
+    let expected =
+        Area.squareMeters 12.
 
     Assert.AreEqual(expected, actual)
 

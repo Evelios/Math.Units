@@ -137,6 +137,7 @@ type Quantity<'Units>(quantity: float) =
 
     member this.Equals(other: Quantity<'Units>) : bool = almostEqual this.Value other.Value
 
+
     member this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
 
     override this.ToString() = string quantity
@@ -182,12 +183,12 @@ type Quantity<'Units>(quantity: float) =
 
     static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
 
-    static member (*)(lhs: Quantity<Unitless>, rhs: Quantity<'Units>) : Quantity<'Units> =
-        Quantity<'Units>(lhs.Value * rhs.Value)
+    static member (*)(lhs: Quantity<Unitless>, rhs: Quantity<'Units>) : Quantity<Unitless> =
+        Quantity<Unitless>(lhs.Value * rhs.Value)
 
-    static member (*)(lhs: Quantity<'Units>, rhs: Quantity<Unitless>) : Quantity<'Units> =
-        Quantity<'Units>(lhs.Value * rhs.Value)
-        
+    static member (*)(lhs: Quantity<'Units>, rhs: Quantity<Unitless>) : Quantity<Unitless> =
+        Quantity<Unitless>(lhs.Value * rhs.Value)
+
     static member (*)(lhs: Quantity<'UnitA>, rhs: Quantity<'UnitB>) : Quantity<Product<'UnitA, 'UnitB>> =
         Quantity<Product<'UnitA, 'UnitB>>(lhs.Value * rhs.Value)
 
@@ -271,12 +272,12 @@ type Resistance = Quantity<Ohms>
 ///     Interval Angle
 [<CustomEquality>]
 [<NoComparison>]
-type Interval<'Unit> =
-    | Interval of Start: Quantity<'Unit> * Finish: Quantity<'Unit>
+type Interval<'Units> =
+    | Interval of Start: Quantity<'Units> * Finish: Quantity<'Units>
 
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? (Interval<'Unit>) as other ->
+        | :? (Interval<'Units>) as other ->
             match this, other with
             | Interval (thisStart, thisFinish), Interval (otherStart, otherFinish) ->
                 thisStart = otherStart && thisFinish = otherFinish

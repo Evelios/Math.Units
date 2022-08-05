@@ -9,14 +9,14 @@ open Units
 // ---- Builders ----
 
 /// Creates an infinitely small bounding box. This can be used when growing a bounding box around objects
-let empty<'Unit, 'Coordinates> : BoundingBox2D<'Unit, 'Coordinates> =
-    { MinX = Quantity<'Unit> infinity
-      MaxX = Quantity<'Unit> -infinity
-      MinY = Quantity<'Unit> infinity
-      MaxY = Quantity<'Unit> -infinity }
+let empty<'Units, 'Coordinates> : BoundingBox2D<'Units, 'Coordinates> =
+    { MinX = Quantity<'Units> infinity
+      MaxX = Quantity<'Units> -infinity
+      MinY = Quantity<'Units> infinity
+      MaxY = Quantity<'Units> -infinity }
 
 /// Create a bounding box that contains the two points
-let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) =
+let from (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) =
     { MinX = min p1.X p2.X
       MaxX = max p1.X p2.X
       MinY = min p1.Y p2.Y
@@ -25,7 +25,7 @@ let from (p1: Point2D<'Unit, 'Coordinates>) (p2: Point2D<'Unit, 'Coordinates>) =
 /// If the minimum and maximum values are provided in the wrong order (for example
 /// if `minX` is greater than `maxX`), then they will be swapped so that the
 /// resulting bounding box is valid.
-let fromExtrema given : BoundingBox2D<'Unit, 'Coordinates> =
+let fromExtrema given : BoundingBox2D<'Units, 'Coordinates> =
     if (given.MinX <= given.MaxX)
        && (given.MinY <= given.MaxY) then
         given
@@ -39,9 +39,9 @@ let fromExtrema given : BoundingBox2D<'Unit, 'Coordinates> =
 // /Construct a bounding box given its overall dimensions (width and height)
 // /and center point.
 let withDimensions
-    (givenWidth: Quantity<'Unit>, givenHeight: Quantity<'Unit>)
-    (givenCenterPoint: Point2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (givenWidth: Quantity<'Units>, givenHeight: Quantity<'Units>)
+    (givenCenterPoint: Point2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     let x0, y0 = Point2D.coordinates givenCenterPoint
     let halfWidth = Length.half (Length.abs givenWidth)
@@ -52,39 +52,39 @@ let withDimensions
       MinY = y0 - halfHeight
       MaxY = y0 + halfHeight }
 
-let singleton (p: Point2D<'Unit, 'Coordinastes>) : BoundingBox2D<'Unit, 'Coordinates> = from p p
+let singleton (p: Point2D<'Units, 'Coordinastes>) : BoundingBox2D<'Units, 'Coordinates> = from p p
 
 
 // ---- Accessors ----
 
 /// Returned in clockwise order from top left rotating around clockwise
-let corners (box: BoundingBox2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> list =
+let corners (box: BoundingBox2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> list =
     [ box.TopLeft
       box.TopRight
       box.BottomRight
       box.BottomLeft ]
 
-let width (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxX - box.MinX
+let width (box: BoundingBox2D<'Units, 'Coordinates>) : Quantity<'Units> = box.MaxX - box.MinX
 
-let height (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxY - box.MinY
+let height (box: BoundingBox2D<'Units, 'Coordinates>) : Quantity<'Units> = box.MaxY - box.MinY
 
-let minX (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MinX
+let minX (box: BoundingBox2D<'Units, 'Coordinates>) : Quantity<'Units> = box.MinX
 
-let maxX (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxX
+let maxX (box: BoundingBox2D<'Units, 'Coordinates>) : Quantity<'Units> = box.MaxX
 
-let minY (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MinY
+let minY (box: BoundingBox2D<'Units, 'Coordinates>) : Quantity<'Units> = box.MinY
 
-let maxY (box: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> = box.MaxY
+let maxY (box: BoundingBox2D<'Units, 'Coordinates>) : Quantity<'Units> = box.MaxY
 
 /// Get the X and Y dimensions (width and height) of a bounding box.
-let dimensions (boundingBox: BoundingBox2D<'Unit, 'Coordinates>) : Quantity<'Unit> * Quantity<'Unit> =
+let dimensions (boundingBox: BoundingBox2D<'Units, 'Coordinates>) : Quantity<'Units> * Quantity<'Units> =
     (boundingBox.MaxX - boundingBox.MinX, boundingBox.MaxY - boundingBox.MinY)
 
-let midX (box: BoundingBox2D<'Unit, 'Coordiantes>) : Quantity<'Unit> = (box.MaxX + box.MinX) / 2.
+let midX (box: BoundingBox2D<'Units, 'Coordiantes>) : Quantity<'Units> = (box.MaxX + box.MinX) / 2.
 
-let midY (box: BoundingBox2D<'Unit, 'Coordiantes>) : Quantity<'Unit> = (box.MaxY + box.MinY) / 2.
+let midY (box: BoundingBox2D<'Units, 'Coordiantes>) : Quantity<'Units> = (box.MaxY + box.MinY) / 2.
 
-let centerPoint (box: BoundingBox2D<'Unit, 'Coordiantes>) : Point2D<'Unit, 'Coordinates> =
+let centerPoint (box: BoundingBox2D<'Units, 'Coordiantes>) : Point2D<'Units, 'Coordinates> =
     Point2D.xy (midX box) (midY box)
 
 
@@ -93,26 +93,26 @@ let centerPoint (box: BoundingBox2D<'Unit, 'Coordiantes>) : Point2D<'Unit, 'Coor
 /// Get a bounding box that contains the new point. If the box does not contain the new point, the box will grow
 /// to fit the new point. If the point is within the box, the same bounding box is returned.
 let containingPoint
-    (point: Point2D<'Unit, 'Coordinates>)
-    (box: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (point: Point2D<'Units, 'Coordinates>)
+    (box: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
     { MinX = min box.MinX point.X
       MaxX = max box.MaxX point.X
       MinY = min box.MinY point.Y
       MaxY = max box.MaxY point.Y }
 
 let containingPoints
-    (points: Point2D<'Unit, 'Coordinates> list)
-    (box: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (points: Point2D<'Units, 'Coordinates> list)
+    (box: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
     Seq.fold (fun box point -> containingPoint point box) box points
 
 /// Scale a bounding box about a given point by a given scale.
 let scaleAbout
-    (point: Point2D<'Unit, 'Coordinates>)
+    (point: Point2D<'Units, 'Coordinates>)
     (scale: float)
-    (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (boundingBox: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     let scaleAbout x0 scale x = x0 + scale * (x - x0)
 
@@ -137,9 +137,9 @@ let scaleAbout
 
 /// Translate a bounding box by a given displacement.
 let translateBy
-    (displacement: Vector2D<'Unit, 'Coordinates>)
-    (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (displacement: Vector2D<'Units, 'Coordinates>)
+    (boundingBox: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     let dx = displacement.X
     let dy = displacement.Y
@@ -153,18 +153,18 @@ let translateBy
 /// Translate a bounding box in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Quantity<'Unit>)
-    (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (distance: Quantity<'Units>)
+    (boundingBox: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     translateBy (Vector2D.withLength distance direction) boundingBox
 
 /// Offsets boundingBox irrespective of the resulting bounding box is valid or
 /// not.
 let unsafeOffsetBy
-    (amount: Quantity<'Unit>)
-    (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (amount: Quantity<'Units>)
+    (boundingBox: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     { MinX = boundingBox.MinX - amount
       MinY = boundingBox.MinY - amount
@@ -180,9 +180,9 @@ let unsafeOffsetBy
 /// If you only want to expand a bounding box, you can use
 /// [`expandBy`](BoundingBox2d#expandBy) instead (which does not return an `Option`).
 let offsetBy
-    (amount: Quantity<'Unit>)
-    (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> option =
+    (amount: Quantity<'Units>)
+    (boundingBox: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> option =
 
     let width, height = dimensions boundingBox
     let minValidOffset = (Length.min width height) * -0.5
@@ -198,9 +198,9 @@ let offsetBy
 /// need to be able to contract a bounding box, use
 /// [`offsetBy`](BoundingBox2d#offsetBy) instead.
 let expandBy
-    (amount: Quantity<'Unit>)
-    (boundingBox: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (amount: Quantity<'Units>)
+    (boundingBox: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     unsafeOffsetBy (Length.abs amount) boundingBox
 
@@ -210,7 +210,7 @@ let expandBy
 
 /// Get the four line segments surrounding the bounding box. The lines are created from the top left point, creating
 /// line segments around the bounding box clockwise.
-let lineSegments (box: BoundingBox2D<'Unit, 'Coordinates>) =
+let lineSegments (box: BoundingBox2D<'Units, 'Coordinates>) =
     [ LineSegment2D.from box.TopLeft box.TopRight
       LineSegment2D.from box.TopRight box.BottomRight
       LineSegment2D.from box.BottomRight box.BottomLeft
@@ -220,17 +220,17 @@ let lineSegments (box: BoundingBox2D<'Unit, 'Coordinates>) =
 /// Often ends up being used within a match expression.
 /// See also [`hullN`](#hullN).
 let hull
-    (first: Point2D<'Unit, 'Coordinates>)
-    (rest: Point2D<'Unit, 'Coordinates> list)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (first: Point2D<'Units, 'Coordinates>)
+    (rest: Point2D<'Units, 'Coordinates> list)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     let rec hullHelp
-        (currentMinX: Quantity<'Unit>)
-        (currentMaxX: Quantity<'Unit>)
-        (currentMinY: Quantity<'Unit>)
-        (currentMaxY: Quantity<'Unit>)
-        (points: Point2D<'Unit, 'Coordinates> list)
-        : BoundingBox2D<'Unit, 'Coordinates> =
+        (currentMinX: Quantity<'Units>)
+        (currentMaxX: Quantity<'Units>)
+        (currentMinY: Quantity<'Units>)
+        (currentMaxY: Quantity<'Units>)
+        (points: Point2D<'Units, 'Coordinates> list)
+        : BoundingBox2D<'Units, 'Coordinates> =
 
         match points with
         | next :: rest ->
@@ -254,18 +254,18 @@ let hull
 /// Like [`hull`](#hull), but lets you work on any kind of item as long as a
 /// point can be extracted from it. For example, if you had
 let hullOf
-    (getPoint: 'a -> Point2D<'Unit, 'Coordinates>)
+    (getPoint: 'a -> Point2D<'Units, 'Coordinates>)
     (first: 'a)
     (rest: 'a list)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     let rec hullOfHelp
-        (currentMinX: Quantity<'Unit>)
-        (currentMaxX: Quantity<'Unit>)
-        (currentMinY: Quantity<'Unit>)
-        (currentMaxY: Quantity<'Unit>)
+        (currentMinX: Quantity<'Units>)
+        (currentMaxX: Quantity<'Units>)
+        (currentMinY: Quantity<'Units>)
+        (currentMaxY: Quantity<'Units>)
         (list: 'a list)
-        : BoundingBox2D<'Unit, 'Coordinates> =
+        : BoundingBox2D<'Units, 'Coordinates> =
 
         match list with
         | next :: rest ->
@@ -287,10 +287,10 @@ let hullOf
 /// Build a bounding box that contains all three of the given points.
 /// This is equivalent to calling `hull` on three points but is more efficient.
 let hull3
-    (firstPoint: Point2D<'Unit, 'Coordiantes>)
-    (secondPoint: Point2D<'Unit, 'Coordinates>)
-    (thirdPoint: Point2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (firstPoint: Point2D<'Units, 'Coordiantes>)
+    (secondPoint: Point2D<'Units, 'Coordinates>)
+    (thirdPoint: Point2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     let x1 = firstPoint.X
     let y1 = firstPoint.Y
@@ -308,16 +308,16 @@ let hull3
 /// Construct a bounding box containing all _N_ points in the given list. If the
 /// list is empty, returns `Nothing`. If you know you have at least one point, you
 /// can use [`hull`](#hull) instead.
-let hullN (points: Point2D<'Unit, 'Coordinates> list) : BoundingBox2D<'Unit, 'Coordinates> option =
+let hullN (points: Point2D<'Units, 'Coordinates> list) : BoundingBox2D<'Units, 'Coordinates> option =
     match points with
     | first :: rest -> Some(hull first rest)
     | [] -> None
 
 /// Combination of [`hullOf`](#hullOf) and [`hullN`](#hullN).
 let hullOfN
-    (getBoundingBox: 'a -> Point2D<'Unit, 'Coordinates>)
+    (getBoundingBox: 'a -> Point2D<'Units, 'Coordinates>)
     (items: 'a list)
-    : BoundingBox2D<'Unit, 'Coordinates> option =
+    : BoundingBox2D<'Units, 'Coordinates> option =
     match items with
     | first :: rest -> Some(hullOf getBoundingBox first rest)
     | [] -> None
@@ -325,9 +325,9 @@ let hullOfN
 /// Find the bounding box containing one or more input boxes; works much like
 /// [`hull`](#hull). See also [`aggregateN`](#aggregateN).
 let aggregate
-    (first: BoundingBox2D<'Unit, 'Coordinates>)
-    (rest: BoundingBox2D<'Unit, 'Coordinates> list)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (first: BoundingBox2D<'Units, 'Coordinates>)
+    (rest: BoundingBox2D<'Units, 'Coordinates> list)
+    : BoundingBox2D<'Units, 'Coordinates> =
 
     let rec aggregateHelp currentMinX currentMaxX currentMinY currentMaxY boxes =
         match boxes with
@@ -350,10 +350,10 @@ let aggregate
 /// Like [`aggregate`](#aggregate), but lets you work on any kind of item as
 /// long as a bounding box can be extracted from it.
 let aggregateOf
-    (getBoundingBox: 'a -> BoundingBox2D<'Unit, 'Coordinates>)
+    (getBoundingBox: 'a -> BoundingBox2D<'Units, 'Coordinates>)
     (first: 'a)
     (rest: 'a list)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    : BoundingBox2D<'Units, 'Coordinates> =
     let rec aggregateOfHelp currentMinX currentMaxX currentMinY currentMaxY getBoundingBox items =
 
         match items with
@@ -382,10 +382,10 @@ let aggregateOf
 /// This is equivalent to running `aggregate` with three points but is more
 /// efficient.
 let aggregate3
-    (b1: BoundingBox2D<'Unit, 'Coordinates>)
-    (b2: BoundingBox2D<'Unit, 'Coordinates>)
-    (b3: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (b1: BoundingBox2D<'Units, 'Coordinates>)
+    (b2: BoundingBox2D<'Units, 'Coordinates>)
+    (b3: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
     { MinX = Length.min b1.MinX (Length.min b2.MinX b3.MinX)
       MaxX = Length.max b1.MaxX (Length.max b2.MaxX b3.MaxX)
       MinY = Length.min b1.MinY (Length.min b2.MinY b3.MinY)
@@ -395,7 +395,7 @@ let aggregate3
 /// Construct a bounding box containing all bounding boxes in the given list. If
 /// the list is empty, returns `Nothing`. If you know you have at least one bounding
 /// box, you can use [`aggregate`](#aggregate) instead.
-let aggregateN (boxes: BoundingBox2D<'Unit, 'Coordinates> list) : BoundingBox2D<'Unit, 'Coordinates> option =
+let aggregateN (boxes: BoundingBox2D<'Units, 'Coordinates> list) : BoundingBox2D<'Units, 'Coordinates> option =
     match boxes with
     | first :: rest -> Some(aggregate first rest)
     | [] -> None
@@ -403,29 +403,29 @@ let aggregateN (boxes: BoundingBox2D<'Unit, 'Coordinates> list) : BoundingBox2D<
 
 /// Combination of [`aggregateOf`](#aggregateOf) and [`aggregateN`](#aggregateN).
 let aggregateOfN
-    (getBoundingBox: 'a -> BoundingBox2D<'Unit, 'Coordinates>)
+    (getBoundingBox: 'a -> BoundingBox2D<'Units, 'Coordinates>)
     (items: 'a list)
-    : BoundingBox2D<'Unit, 'Coordinates> option =
+    : BoundingBox2D<'Units, 'Coordinates> option =
 
     match items with
     | first :: rest -> Some(aggregateOf getBoundingBox first rest)
     | [] -> None
 
 /// Test to see if the target bounding box is contained withing the bounding box
-let isContainedIn (target: BoundingBox2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
+let isContainedIn (target: BoundingBox2D<'Units, 'Coordinates>) (box: BoundingBox2D<'Units, 'Coordinates>) : bool =
     target.MinX >= box.MinX
     && target.MaxX <= box.MaxX
     && target.MinY >= box.MinY
     && target.MaxY <= box.MaxY
 
 /// Test to see if the target bounding box is contained withing the bounding box
-let contains (target: Point2D<'Unit, 'Coordinates>) (box: BoundingBox2D<'Unit, 'Coordinates>) : bool =
+let contains (target: Point2D<'Units, 'Coordinates>) (box: BoundingBox2D<'Units, 'Coordinates>) : bool =
     target.X >= box.MinX
     && target.X <= box.MaxX
     && target.Y >= box.MinY
     && target.Y <= box.MaxY
 
-let intersects (first: BoundingBox2D<'Unit, 'Coordinates>) (second: BoundingBox2D<'Unit, 'Coordinates>) : bool =
+let intersects (first: BoundingBox2D<'Units, 'Coordinates>) (second: BoundingBox2D<'Units, 'Coordinates>) : bool =
     first.MinX <= second.MaxX
     && first.MaxX >= second.MinX
     && first.MinY <= second.MaxY
@@ -437,9 +437,9 @@ let intersects (first: BoundingBox2D<'Unit, 'Coordinates>) (second: BoundingBox2
 /// to have an intersection, even though that intersection will have zero area (at
 /// least one of its dimensions will be zero).
 let intersection
-    (first: BoundingBox2D<'Unit, 'Coordinates>)
-    (second: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> option =
+    (first: BoundingBox2D<'Units, 'Coordinates>)
+    (second: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> option =
 
     if intersects first second then
         Some
@@ -459,9 +459,9 @@ let intersection
 /// it did not touch the other. Boxes that just touch are considered to have an
 /// overlap of zero.
 let overlappingByAtLeast
-    (tolerance: Quantity<'Unit>)
-    (firstBox: BoundingBox2D<'Unit, 'Coordinates>)
-    (secondBox: BoundingBox2D<'Unit, 'Coordinates>)
+    (tolerance: Quantity<'Units>)
+    (firstBox: BoundingBox2D<'Units, 'Coordinates>)
+    (secondBox: BoundingBox2D<'Units, 'Coordinates>)
     : bool =
 
     let xOverlap =
@@ -486,9 +486,9 @@ let overlappingByAtLeast
 /// corners.) Boxes that just touch are considered to have a separation of zero.
 /// will return true even if the two boxes just touch each other.
 let separatedByAtLeast
-    (tolerance: Quantity<'Unit>)
-    (firstBox: BoundingBox2D<'Unit, 'Coordinates>)
-    (secondBox: BoundingBox2D<'Unit, 'Coordinates>)
+    (tolerance: Quantity<'Units>)
+    (firstBox: BoundingBox2D<'Units, 'Coordinates>)
+    (secondBox: BoundingBox2D<'Units, 'Coordinates>)
     : bool =
 
     let clampedTolerance = Length.max tolerance Quantity.zero
@@ -521,9 +521,9 @@ let separatedByAtLeast
 
 /// Create a bounding box that contains both bounding boxes.
 let union
-    (first: BoundingBox2D<'Unit, 'Coordinates>)
-    (second: BoundingBox2D<'Unit, 'Coordinates>)
-    : BoundingBox2D<'Unit, 'Coordinates> =
+    (first: BoundingBox2D<'Units, 'Coordinates>)
+    (second: BoundingBox2D<'Units, 'Coordinates>)
+    : BoundingBox2D<'Units, 'Coordinates> =
     { MinX = min first.MinX second.MinX
       MaxX = max first.MaxX second.MaxX
       MinY = min first.MinY second.MinY

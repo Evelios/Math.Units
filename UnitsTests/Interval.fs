@@ -248,5 +248,13 @@ let Squared () =
     testUnaryOperation Quantity.squared Interval.squared
 
 [<Property>]
+let ``Squared Unitless`` () =
+    testUnaryOperation Quantity.squaredUnitless Interval.squaredUnitless
+
+[<Property>]
 let Cubed () =
     testUnaryOperation Quantity.cubed Interval.cubed
+
+[<Property>]
+let ``Cubed Unitless`` () =
+    testUnaryOperation Quantity.cubedUnitless Interval.cubedUnitless

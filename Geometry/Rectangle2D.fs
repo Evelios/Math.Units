@@ -4,11 +4,11 @@ module Geometry.Rectangle2D
 open Units
 
 let private axisAligned
-    (x1: Quantity<'Unit>)
-    (y1: Quantity<'Unit>)
-    (x2: Quantity<'Unit>)
-    (y2: Quantity<'Unit>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (x1: Quantity<'Units>)
+    (y1: Quantity<'Units>)
+    (x2: Quantity<'Units>)
+    (y2: Quantity<'Units>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     let computedCenterPoint =
         Point2D.xy (Length.midpoint x1 x2) (Length.midpoint y1 y2)
@@ -53,11 +53,11 @@ let private axisAligned
 /// equal to `Direction2D.negativeY`.
 /// -}
 let from
-    (x1: Quantity<'Unit>)
-    (y1: Quantity<'Unit>)
-    (x2: Quantity<'Unit>)
-    (y2: Quantity<'Unit>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (x1: Quantity<'Units>)
+    (y1: Quantity<'Units>)
+    (x2: Quantity<'Units>)
+    (y2: Quantity<'Units>)
+    : Rectangle2D<'Units, 'Coordinates> =
     axisAligned x1 y1 x2 y2
 
 /// Construct an axis-aligned rectangle stretching from one point to another;
@@ -72,9 +72,9 @@ let from
 ///     Rectangle2D.from upperLeftPoint lowerRightPoint
 /// would have a positive X direction but a negative Y direction.
 let fromPoints
-    (p1: Point2D<'Unit, 'Coordinates>)
-    (p2: Point2D<'Unit, 'Coordinates>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (p1: Point2D<'Units, 'Coordinates>)
+    (p2: Point2D<'Units, 'Coordinates>)
+    : Rectangle2D<'Units, 'Coordinates> =
     axisAligned p1.X p1.Y p2.X p2.Y
 
 // Construct a rectangle with the given overall dimensions (width/height) and
@@ -106,10 +106,10 @@ let fromPoints
 //     --> , Point2D.meters -1.4142 0
 //     --> ]
 let withDimensions
-    (size: Size2D<'Unit>)
+    (size: Size2D<'Units>)
     (angle: Angle)
-    (center: Point2D<'Unit, 'Coordinates>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (center: Point2D<'Units, 'Coordinates>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     { Axes = Frame2D.withAngle angle center
       Dimensions = size }
@@ -122,26 +122,26 @@ let withDimensions
 ///         (Frame2D.withAngle angle centerPoint)
 ///         dimensions
 let centeredOn
-    (givenAxes: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    (dimensions: Size2D<'Unit>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (givenAxes: Frame2D<'Units, 'Coordinates, 'Defines>)
+    (dimensions: Size2D<'Units>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     { Axes = Frame2D.copy givenAxes
       Dimensions = dimensions }
 
 /// Construct a rectangle with the given X axis and overall dimensions. The
 /// rectangle will be centered on the axis' origin point.
-let withXAxis (axis: Axis2D<'Unit, 'Coordinates>) (dimensions: Size2D<'Unit>) : Rectangle2D<'Unit, 'Coordinates> =
+let withXAxis (axis: Axis2D<'Units, 'Coordinates>) (dimensions: Size2D<'Units>) : Rectangle2D<'Units, 'Coordinates> =
     centeredOn (Frame2D.fromXAxis axis) dimensions
 
 
 /// Construct a rectangle with the given Y axis and overall dimensions. The
 /// rectangle will be centered on the axis' origin point.
-let withYAxis (axis: Axis2D<'Unit, 'Coordinates>) (dimensions: Size2D<'Unit>) : Rectangle2D<'Unit, 'Coordinates> =
+let withYAxis (axis: Axis2D<'Units, 'Coordinates>) (dimensions: Size2D<'Units>) : Rectangle2D<'Units, 'Coordinates> =
     centeredOn (Frame2D.fromYAxis axis) dimensions
 
 /// Convert a `BoundingBox2D` to the equivalent axis-aligned `Rectangle2D`.
-let fromBoundingBox (box: BoundingBox2D<'Unit, 'Coordinates>) : Rectangle2D<'Unit, 'Coordinates> =
+let fromBoundingBox (box: BoundingBox2D<'Units, 'Coordinates>) : Rectangle2D<'Units, 'Coordinates> =
     axisAligned box.MinX box.MinY box.MaxX box.MaxY
 
 
@@ -157,19 +157,19 @@ let fromBoundingBox (box: BoundingBox2D<'Unit, 'Coordinates>) : Rectangle2D<'Uni
 ///     Rectangle2D.axes rectangle
 ///     --> Frame2D.atPoint (Point2D.meters 3.5 2)
 /// The origin point of the frame will be the center point of the rectangle.
-let axes (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let axes (rectangle: Rectangle2D<'Units, 'Coordinates>) : Frame2D<'Units, 'Coordinates, 'Defines> =
     Frame2D.copy rectangle.Axes
 
 
 /// Get the X axis of a rectangle.
-let xAxis (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Axis2D<'Unit, 'Coordinates> = Frame2D.xAxis (axes rectangle)
+let xAxis (rectangle: Rectangle2D<'Units, 'Coordinates>) : Axis2D<'Units, 'Coordinates> = Frame2D.xAxis (axes rectangle)
 
 
 /// Get the Y axis of a rectangle.
-let yAxis (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Axis2D<'Unit, 'Coordinates> = Frame2D.yAxis (axes rectangle)
+let yAxis (rectangle: Rectangle2D<'Units, 'Coordinates>) : Axis2D<'Units, 'Coordinates> = Frame2D.yAxis (axes rectangle)
 
 /// Get the center point of a rectangle.
-let centerPoint (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> =
+let centerPoint (rectangle: Rectangle2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
     Frame2D.originPoint (axes rectangle)
 
 
@@ -183,18 +183,18 @@ let centerPoint (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Point2D<'Unit, '
 ///             }
 ///     Rectangle2D.dimensions rectangle
 ///     --> ( Length.meters 3, Length.meters 2 )
-let dimensions (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Size2D<'Unit> = rectangle.Dimensions
+let dimensions (rectangle: Rectangle2D<'Units, 'Coordinates>) : Size2D<'Units> = rectangle.Dimensions
 
 
 /// Get the area of a rectangle.
-let area (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Quantity<'Unit Squared> =
+let area (rectangle: Rectangle2D<'Units, 'Coordinates>) : Quantity<'Units Squared> =
     rectangle.Dimensions.Width
     * rectangle.Dimensions.Height
 
 /// Get the vertices of a rectangle as a list. The vertices will be returned
 /// in counterclockwise order if the rectangle's axes are right-handed, and
 /// clockwise order if the axes are left-handed.
-let vertices (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coordinates> list =
+let vertices (rectangle: Rectangle2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> list =
     let localFrame = axes rectangle
     let x = Length.half rectangle.Dimensions.Width
     let y = Length.half rectangle.Dimensions.Width
@@ -206,13 +206,13 @@ let vertices (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Point2D<'Unit, 'Coo
 
 
 /// Convert a rectangle to a [`Polygon2D`](Polygon2D#Polygon2D).
-let toPolygon (rectangle: Rectangle2D<'Unit, 'Coordinates>) : Polygon2D<'Unit, 'Coordinates> =
+let toPolygon (rectangle: Rectangle2D<'Units, 'Coordinates>) : Polygon2D<'Units, 'Coordinates> =
     { OuterLoop = (vertices rectangle)
       InnerLoops = [] }
 
 
 /// Check if a rectangle contains a given point.
-let contains (point: Point2D<'Unit, 'Coordinates>) (rectangle: Rectangle2D<'Unit, 'Coordinates>) : bool =
+let contains (point: Point2D<'Units, 'Coordinates>) (rectangle: Rectangle2D<'Units, 'Coordinates>) : bool =
     let localFrame = axes rectangle
     let x = Point2D.xCoordinateIn localFrame point
     let y = Point2D.yCoordinateIn localFrame point
@@ -225,7 +225,7 @@ let contains (point: Point2D<'Unit, 'Coordinates>) (rectangle: Rectangle2D<'Unit
 /// Get the edges of a rectangle as a list. The edges will be returned
 /// in counterclockwise order if the rectangle's axes are right-handed, and
 /// clockwise order if the axes are left-handed.
-let edges (rectangle: Rectangle2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, 'Coordinates> list =
+let edges (rectangle: Rectangle2D<'Units, 'Coordinates>) : LineSegment2D<'Units, 'Coordinates> list =
     let localFrame = axes rectangle
     let x = Length.half rectangle.Dimensions.Width
     let y = Length.half rectangle.Dimensions.Height
@@ -258,7 +258,7 @@ let edges (rectangle: Rectangle2D<'Unit, 'Coordinates>) : LineSegment2D<'Unit, '
 ///     --> BoundingBox2D.from
 ///     -->     (Point2D.meters -0.7071 0)
 ///     -->     (Point2D.meters 0.7071 1.4142)
-let boundingBox (rectangle: Rectangle2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'Coordinates> =
+let boundingBox (rectangle: Rectangle2D<'Units, 'Coordinates>) : BoundingBox2D<'Units, 'Coordinates> =
     let frame = axes rectangle
     let p0 = Frame2D.originPoint frame
     let i = Frame2D.xDirection frame
@@ -287,10 +287,10 @@ let boundingBox (rectangle: Rectangle2D<'Unit, 'Coordinates>) : BoundingBox2D<'U
 /// the order/direction of results from `Rectangle2D.vertices` and
 /// `Rectangle2D.edges` will change.
 let scaleAbout
-    (point: Point2D<'Unit, 'Coordinates>)
+    (point: Point2D<'Units, 'Coordinates>)
     (scale: float)
-    (rectangle: Rectangle2D<'Unit, 'Coordinates>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (rectangle: Rectangle2D<'Units, 'Coordinates>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     let currentFrame = axes rectangle
     let currentXDirection = Frame2D.xDirection currentFrame
@@ -321,19 +321,19 @@ let scaleAbout
 
 /// Rotate a rectangle around a given point by a given angle.
 let rotateAround
-    (point: Point2D<'Unit, 'Coordinates>)
+    (point: Point2D<'Units, 'Coordinates>)
     (angle: Angle)
-    (rectangle: Rectangle2D<'Unit, 'Coordinates>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (rectangle: Rectangle2D<'Units, 'Coordinates>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     { Axes = Frame2D.rotateAround point angle (axes rectangle)
       Dimensions = dimensions rectangle }
 
 /// Translate a rectangle by a given displacement.
 let translateBy
-    (displacement: Vector2D<'Unit, 'Coordinates>)
-    (rectangle: Rectangle2D<'Unit, 'Coordinates>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (displacement: Vector2D<'Units, 'Coordinates>)
+    (rectangle: Rectangle2D<'Units, 'Coordinates>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     { Axes = Frame2D.translateBy displacement (axes rectangle)
       Dimensions = dimensions rectangle }
@@ -341,9 +341,9 @@ let translateBy
 /// Translate a rectangle in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Quantity<'Unit>)
-    (rectangle: Rectangle2D<'Unit, 'Coordinates>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (distance: Quantity<'Units>)
+    (rectangle: Rectangle2D<'Units, 'Coordinates>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     translateBy (Vector2D.withLength distance direction) rectangle
 
@@ -351,9 +351,9 @@ let translateIn
 /// handedness of the rectangle's axes, and therefore the order/direction of results
 /// from `Rectangle2D.vertices` and `Rectangle2D.edges` will change.
 let mirrorAcross
-    (axis: Axis2D<'Unit, 'Coordinates>)
-    (rectangle: Rectangle2D<'Unit, 'Coordinates>)
-    : Rectangle2D<'Unit, 'Coordinates> =
+    (axis: Axis2D<'Units, 'Coordinates>)
+    (rectangle: Rectangle2D<'Units, 'Coordinates>)
+    : Rectangle2D<'Units, 'Coordinates> =
 
     { Axes = Frame2D.mirrorAcross axis (axes rectangle)
       Dimensions = dimensions rectangle }
@@ -362,9 +362,9 @@ let mirrorAcross
 /// given reference frame, and return that rectangle expressed in global
 /// coordinates.
 let placeIn
-    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    (rectangle: Rectangle2D<'Unit, 'GlobalCoordinates>)
-    : Rectangle2D<'Unit, 'LocalCoordinates> =
+    (frame: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    (rectangle: Rectangle2D<'Units, 'GlobalCoordinates>)
+    : Rectangle2D<'Units, 'LocalCoordinates> =
 
     { Axes = Frame2D.placeIn frame (axes rectangle)
       Dimensions = dimensions rectangle }
@@ -372,9 +372,9 @@ let placeIn
 /// Take a rectangle defined in global coordinates, and return it expressed
 /// in local coordinates relative to a given reference frame.
 let relativeTo
-    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    (rectangle: Rectangle2D<'Unit, 'GlobalCoordinates>)
-    : Rectangle2D<'Unit, 'LocalCoordinates> =
+    (frame: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    (rectangle: Rectangle2D<'Units, 'GlobalCoordinates>)
+    : Rectangle2D<'Units, 'LocalCoordinates> =
 
     { Axes = Frame2D.relativeTo frame (axes rectangle)
       Dimensions = dimensions rectangle }
@@ -388,5 +388,5 @@ let relativeTo
 ///     ]
 /// and its center point is
 ///     Rectangle2D.interpolate rectangle 0.5 0.5
-let interpolate (rectangle: Rectangle2D<'Unit, 'Coordinates>) (u: float) (v: float) : Point2D<'Unit, 'Coordinates> =
+let interpolate (rectangle: Rectangle2D<'Units, 'Coordinates>) (u: float) (v: float) : Point2D<'Units, 'Coordinates> =
     Point2D.xyIn (axes rectangle) ((u - 0.5) * rectangle.Dimensions.Width) ((v - 0.5) * rectangle.Dimensions.Height)

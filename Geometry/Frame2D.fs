@@ -6,12 +6,12 @@ open Units
 
 // ---- Builders ----
 
-let atOrigin<'Unit, 'Coordinates, 'Defines> : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let atOrigin<'Units, 'Coordinates, 'Defines> : Frame2D<'Units, 'Coordinates, 'Defines> =
     { Origin = { X = Quantity.zero; Y = Quantity.zero }
       XDirection = Direction2D.x
       YDirection = Direction2D.y }
 
-let atPoint (point: Point2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let atPoint (point: Point2D<'Units, 'Coordinates>) : Frame2D<'Units, 'Coordinates, 'Defines> =
     { Origin = point
       XDirection = Direction2D.x
       YDirection = Direction2D.y }
@@ -29,42 +29,42 @@ let withXDirection xDirection origin =
 /// direction 90 degrees clockwise.
 let withYDirection
     (givenDirection: Direction2D<'Coordinates>)
-    (givenOrigin: Point2D<'Unit, 'Coordinates>)
-    : Frame2D<'Unit, 'Coordinates, 'Defines> =
+    (givenOrigin: Point2D<'Units, 'Coordinates>)
+    : Frame2D<'Units, 'Coordinates, 'Defines> =
     { Origin = givenOrigin
       XDirection = givenDirection |> Direction2D.rotateClockwise
       YDirection = givenDirection }
 
-let withAngle (angle: Angle) (origin: Point2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let withAngle (angle: Angle) (origin: Point2D<'Units, 'Coordinates>) : Frame2D<'Units, 'Coordinates, 'Defines> =
     withXDirection (Direction2D.fromAngle angle) origin
 
 /// Construct a `Frame2d` given its X axis
 /// `Frame2d.fromXAxis axis`
 /// is equivalent to
 /// `Frame2d.withXDirection (Axis2d.direction axis) (Axis2d.originPoint axis)`
-let fromXAxis (givenAxis: Axis2D<'Unit, 'Coordinates>) =
+let fromXAxis (givenAxis: Axis2D<'Units, 'Coordinates>) =
     withXDirection givenAxis.Direction givenAxis.Origin
 
 /// Construct a `Frame2d` given its Y axis;
 /// `Frame2d.fromYAxis axis` is equivalent to
 /// `Frame2d.withYDirection (Axis2d.direction axis) (Axis2d.originPoint axis)`
-let fromYAxis (givenAxis: Axis2D<'Unit, 'Coordinates>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let fromYAxis (givenAxis: Axis2D<'Units, 'Coordinates>) : Frame2D<'Units, 'Coordinates, 'Defines> =
     withYDirection givenAxis.Direction givenAxis.Origin
 
 
 // ---- Accessors ----
 
-let originPoint (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Point2D<'Unit, 'Coordinates> = frame.Origin
+let originPoint (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Point2D<'Units, 'Coordinates> = frame.Origin
 
-let xDirection (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Direction2D<'Coordinates> = frame.XDirection
+let xDirection (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Direction2D<'Coordinates> = frame.XDirection
 
-let yDirection (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Direction2D<'Coordinates> = frame.YDirection
+let yDirection (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Direction2D<'Coordinates> = frame.YDirection
 
 /// Check if a frame is [right-handed](https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Orientation_and_handedness).
 /// All predefined frames are right-handed, and most operations on frames preserve
 /// handedness, so about the only ways to end up with a left-handed frame are by
 /// constructing one explicitly with `unsafe` or by mirroring a right-handed frame.
-let isRightHanded (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : bool =
+let isRightHanded (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : bool =
     let x1 = Direction2D.xComponent frame.XDirection
     let y1 = Direction2D.yComponent frame.XDirection
     let x2 = Direction2D.xComponent frame.YDirection
@@ -73,13 +73,13 @@ let isRightHanded (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : bool =
 
 /// Get the X axis of a given frame (the axis formed from the frame's origin
 /// point and X direction).
-let xAxis (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Axis2D<'Unit, 'Coordinates> =
+let xAxis (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Axis2D<'Units, 'Coordinates> =
     { Origin = frame.Origin
       Direction = frame.XDirection }
 
 /// Get the Y axis of a given frame (the axis formed from the frame's origin
 /// point and Y direction).
-let yAxis (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Axis2D<'Unit, 'Coordinates> =
+let yAxis (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Axis2D<'Units, 'Coordinates> =
     { Origin = frame.Origin
       Direction = frame.YDirection }
 
@@ -90,7 +90,7 @@ let yAxis (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Axis2D<'Unit, 'Coord
 /// the same. Note that this will switch the
 /// [handedness](https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Orientation_and_handedness)
 /// of the frame.
-let reverseX (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let reverseX (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Frame2D<'Units, 'Coordinates, 'Defines> =
     { Origin = originPoint frame
       XDirection = Direction2D.reverse (xDirection frame)
       YDirection = yDirection frame }
@@ -99,16 +99,16 @@ let reverseX (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Frame2D<'Unit, 'C
 /// the same. Note that this will switch the
 /// [handedness](https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Orientation_and_handedness)
 /// of the frame.
-let reverseY (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let reverseY (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Frame2D<'Units, 'Coordinates, 'Defines> =
     { Origin = originPoint frame
       XDirection = (xDirection frame)
       YDirection = Direction2D.reverse (yDirection frame) }
 
 /// Move a frame so that it has the given origin point.
 let moveTo
-    (newOrigin: Point2D<'Unit, 'Coordinates>)
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    : Frame2D<'Unit, 'Coordinates, 'Defines> =
+    (newOrigin: Point2D<'Units, 'Coordinates>)
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    : Frame2D<'Units, 'Coordinates, 'Defines> =
     { Origin = newOrigin
       XDirection = xDirection frame
       YDirection = yDirection frame }
@@ -116,7 +116,7 @@ let moveTo
 /// Rotate a frame counterclockwise by a given angle around the frame's own
 /// origin point. The resulting frame will have the same origin point, and its X and
 /// Y directions will be rotated by the given angle.
-let rotateBy (angle: Angle) (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Frame2D<'Unit, 'Coordinates, 'Defines> =
+let rotateBy (angle: Angle) (frame: Frame2D<'Units, 'Coordinates, 'Defines>) : Frame2D<'Units, 'Coordinates, 'Defines> =
     let rotateDirection = Direction2D.rotateBy angle
 
     { Origin = originPoint frame
@@ -128,10 +128,10 @@ let rotateBy (angle: Angle) (frame: Frame2D<'Unit, 'Coordinates, 'Defines>) : Fr
 /// frame's origin point will be rotated around the given point by the given angle,
 /// and its X and Y basis directions will be rotated by the given angle.
 let rotateAround
-    (centerPoint: Point2D<'Unit, 'Coordinates>)
+    (centerPoint: Point2D<'Units, 'Coordinates>)
     (angle: Angle)
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    : Frame2D<'Unit, 'Coordinates, 'Defines> =
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    : Frame2D<'Units, 'Coordinates, 'Defines> =
     let rotatePoint =
         Internal.Point2D.rotateAround centerPoint angle
 
@@ -144,9 +144,9 @@ let rotateAround
 
 /// Translate a frame by a given displacement.
 let translateBy
-    (vector: Vector2D<'Unit, 'Coordinates>)
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    : Frame2D<'Unit, 'Coordinates, 'Defines> =
+    (vector: Vector2D<'Units, 'Coordinates>)
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    : Frame2D<'Units, 'Coordinates, 'Defines> =
     { Origin = Internal.Point2D.translateBy vector (originPoint frame)
       XDirection = xDirection frame
       YDirection = yDirection frame }
@@ -154,9 +154,9 @@ let translateBy
 /// Translate a frame in a given direction by a given distance.
 let translateIn
     (direction: Direction2D<'Coordinates>)
-    (distance: Quantity<'Unit>)
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    : Frame2D<'Unit, 'Coordinates, 'Defines> =
+    (distance: Quantity<'Units>)
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    : Frame2D<'Units, 'Coordinates, 'Defines> =
     translateBy (Internal.Vector2D.withQuantity distance direction) frame
 
 /// Translate a frame along one of its own axes by a given distance.
@@ -165,10 +165,10 @@ let translateIn
 /// `Frame2d.xAxis` or `Frame2d.yAxis`. The second argument is the distance to
 /// translate along the given axis.
 let translateAlongOwn
-    (axis: Frame2D<'Unit, 'Coordinates, 'Defines1> -> Axis2D<'Unit, 'Coordinates>)
-    (distance: Quantity<'Unit>)
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines1>)
-    : Frame2D<'Unit, 'Coordinates, 'Defines2> =
+    (axis: Frame2D<'Units, 'Coordinates, 'Defines1> -> Axis2D<'Units, 'Coordinates>)
+    (distance: Quantity<'Units>)
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines1>)
+    : Frame2D<'Units, 'Coordinates, 'Defines2> =
     let frame =
         frame
         |> translateIn (axis frame).Direction distance
@@ -181,9 +181,9 @@ let translateAlongOwn
 /// Note that this will switch the [handedness](https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Orientation_and_handedness)
 /// of the frame.
 let mirrorAcross
-    (axis: Axis2D<'Unit, 'Coordinates>)
-    (frame: Frame2D<'Unit, 'Coordinates, 'Defines>)
-    : Frame2D<'Unit, 'Coordinates, 'Defines> =
+    (axis: Axis2D<'Units, 'Coordinates>)
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    : Frame2D<'Units, 'Coordinates, 'Defines> =
     let mirrorPoint = Internal.Point2D.mirrorAcross axis
     let mirrorDirection = Direction2D.mirrorAcross axis
 
@@ -195,17 +195,17 @@ let mirrorAcross
 /// directions, but that can be used to define a different local coordinate system.
 /// Sometimes useful in generic/library code. Despite the name, this is efficient:
 /// it really just returns the value you passed in, but with a different type.
-let copy (properties: Frame2D<'Unit, 'Coordinates, 'Defines1>) : Frame2D<'Unit, 'Coordinates, 'Defines2> =
+let copy (properties: Frame2D<'Units, 'Coordinates, 'Defines1>) : Frame2D<'Units, 'Coordinates, 'Defines2> =
     { Origin = properties.Origin
       XDirection = properties.XDirection
       YDirection = properties.YDirection }
 
 /// Take two frames defined in global coordinates, and return the second one
 /// expressed in local coordinates relative to the first.
-let relativeTo<'Unit, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
-    (otherFrame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    : Frame2D<'Unit, 'LocalCoordinates, 'Defines> =
+let relativeTo<'Units, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
+    (otherFrame: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    (frame: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    : Frame2D<'Units, 'LocalCoordinates, 'Defines> =
     { Origin = Internal.Point2D.relativeTo otherFrame (originPoint frame)
       XDirection = Direction2D.relativeTo otherFrame (xDirection frame)
       YDirection = Direction2D.relativeTo otherFrame (yDirection frame) }
@@ -213,10 +213,10 @@ let relativeTo<'Unit, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
 /// Take one frame defined in global coordinates and a second frame defined
 /// in local coordinates relative to the first frame, and return the second frame
 /// expressed in global coordinates.
-let placeIn<'Unit, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
-    (reference: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    (frame: Frame2D<'Unit, 'GlobalCoordinates, 'Defines>)
-    : Frame2D<'Unit, 'LocalCoordinates, 'Defines> =
+let placeIn<'Units, 'GlobalCoordinates, 'Defines, 'LocalCoordinates>
+    (reference: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    (frame: Frame2D<'Units, 'GlobalCoordinates, 'Defines>)
+    : Frame2D<'Units, 'LocalCoordinates, 'Defines> =
     { Origin = Internal.Point2D.placeIn reference frame.Origin
       XDirection = Direction2D.placeIn reference frame.XDirection
       YDirection = Direction2D.placeIn reference frame.YDirection }

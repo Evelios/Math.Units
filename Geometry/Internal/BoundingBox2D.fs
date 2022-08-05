@@ -4,7 +4,7 @@ open Geometry
 
 open Units
 
-let from (firstPoint: Point2D<'Unit, 'Coordinates>) (secondPoint: Point2D<'Unit, 'Coordinates>) : BoundingBox2D<'Unit, 'Coordinates> =
+let from (firstPoint: Point2D<'Units, 'Coordinates>) (secondPoint: Point2D<'Units, 'Coordinates>) : BoundingBox2D<'Units, 'Coordinates> =
     let x1 = firstPoint.X
     let y1 = firstPoint.Y
     let x2 = secondPoint.X

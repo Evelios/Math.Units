@@ -46,7 +46,7 @@ type Cartesian = Cartesian
 | abs      | Quantity  | Quantity    | `-length`        | `Quantity.abs` |
 | min      | Quantity  | Quantity    | `lhs + rhs`      | `Quantity.min` |
 | max      | Quantity  | Quantity    | `lhs - rhs`      | `Quantity.max` |
-| sqrt     | Quantity<'Unit>  | Quantity<'Unit Squared>  | `lhs * 0.5`      | `Quantity.sqrt` |
+| sqrt     | Quantity<'Units>  | Quantity<'Units Squared>  | `lhs * 0.5`      | `Quantity.sqrt` |
 | floor    | Quantity  | Quantity    | `0.5 * rhs`      | `Quantity.floor` |
 | ceil     | Quantity  | Length      | `angle / length` | `Quantity.ceil` |
 | round    | Quantity  | Quantity      | `length / angle` | `Quantity.round` |
