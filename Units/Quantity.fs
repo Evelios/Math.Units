@@ -145,7 +145,7 @@ type Quantity<'Units> with
     ///    Units.abs quantity
     /// ```
     ///
-    static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = abs quantity
+    static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity.Abs quantity
 
 
     /// Check if two quantities are equal within a given absolute tolerance. The
@@ -161,7 +161,7 @@ type Quantity<'Units> with
     ///         (Length.feet 3)
     ///     --> False
     static member equalWithin (tolerance: Quantity<'Units>) (x: Quantity<'Units>) (y: Quantity<'Units>) : bool =
-        abs (x - y) <= tolerance
+        abs (x - y) <= abs tolerance
 
 
     /// Find the maximum of two quantities.
@@ -547,19 +547,18 @@ type Quantity<'Units> with
     static member interpolateFrom
         (start: Quantity<'Units>)
         (finish: Quantity<'Units>)
-        (parameter: Quantity<'Units>)
+        (parameter: float)
         : Quantity<'Units> =
-        if parameter.Value <= 0.5 then
+        if parameter <= 0.5 then
             Quantity(
                 start.Value
-                + parameter.Value * (finish.Value - start.Value)
+                + parameter * (finish.Value - start.Value)
             )
 
         else
             Quantity(
                 finish.Value
-                + (1. - parameter.Value)
-                  * (start.Value - finish.Value)
+                + (1. - parameter) * (start.Value - finish.Value)
             )
 
 
@@ -634,7 +633,7 @@ type Quantity<'Units> with
             (accumulatedValues: Quantity<'Units> list)
             : Quantity<'Units> list =
             let quantity =
-                Quantity.interpolateFrom start finish (Quantity(float i / steps))
+                Quantity.interpolateFrom start finish (float i / steps)
 
             let updatedValues =
                 quantity :: accumulatedValues

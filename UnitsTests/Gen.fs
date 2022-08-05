@@ -64,7 +64,6 @@ module Gen =
         static member ZeroToOneFloat() = Arb.fromGen zeroToOneFloat
 
 module Arb =
-    open System
     open FsCheck
 
     open Units

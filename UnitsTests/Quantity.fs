@@ -5,11 +5,57 @@ open FsCheck.NUnit
 open FsCheck
 
 open Units
+open FSharp.Extensions
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
 
-//---- Comparison --------------------------------------------------------------
+//---- Basics ------------------------------------------------------------------
+
+[<Test>]
+let ``Unitless initialization`` () =
+    let expected: Quantity<Unitless> =
+        Quantity 1.
+
+    let actual: Quantity<Unitless> =
+        Quantity.unitless 1.
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Unsafe construction`` () =
+    let expected: Quantity<Unitless> =
+        Quantity.unsafe 1.
+
+    let actual: Quantity<Unitless> = Quantity 1.
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Unwrap () =
+    let given: Quantity<Unitless> = Quantity 1.
+    let expected: float = 1.
+    let actual: float = Quantity.unwrap given
+
+    Assert.AreEqual(expected, actual)
+
+
+[<Test>]
+let Infinity () =
+    let expected = Quantity.infinity
+    let actual = Quantity 1. / 0.
+
+    Assert.AreEqual(expected, actual)
+
+
+[<Test>]
+let ``Negative Infinity`` () =
+    let expected = Quantity.negativeInfinity
+    let actual = Quantity -1. / 0.
+
+    Assert.AreEqual(expected, actual)
+
+// ---- Operators ----
 
 [<Test>]
 let Equality () =
@@ -50,12 +96,27 @@ let Comparison () =
     Assert.AreEqual(lower.Comparison(higher), -1)
     Assert.AreEqual(higher.Comparison(lower), 1)
 
+    Assert.AreEqual(lower.Comparison(lower), Quantity.compare lower lower)
+    Assert.AreEqual(lower.Comparison(higher), Quantity.compare lower higher)
+    Assert.AreEqual(higher.Comparison(lower), Quantity.compare higher lower)
+
+[<Property>]
+let ``Equal Within`` (quantity: Quantity<Unitless>) (tolerance: Quantity<Unitless>) (ZeroToOne offset) =
+    let offsetQuantity: Quantity<Unitless> =
+        Quantity.interpolateFrom -tolerance tolerance offset
+        |> Quantity.plus quantity
+
+    Test.isTrue
+        $"Quantities should be within each other under a tolerance of {tolerance} when offset by {offsetQuantity}"
+        (Quantity.equalWithin tolerance quantity offsetQuantity)
+
+
 
 //---- Built-in Functions ------------------------------------------------------
 
 [<Test>]
 let Abs () =
-    let actual = abs (Quantity -1.)
+    let actual = Quantity.abs (Quantity -1.)
     let expected = Quantity 1.
     Assert.AreEqual(expected, actual)
 
@@ -147,13 +208,11 @@ let ``Multiplication by float`` () =
 [<Test>]
 let Multiplication () =
     let lhs = Length.meters 3.
-    let rhs = Length.meters  4.
+    let rhs = Length.meters 4.
 
-    let actual =
-        lhs * rhs
+    let actual = lhs * rhs
 
-    let expected =
-        Area.squareMeters 12.
+    let expected = Area.squareMeters 12.
 
     Assert.AreEqual(expected, actual)
 
@@ -313,3 +372,118 @@ let ``Negative Remainder`` () =
 
     let expected = Quantity 1.5
     Assert.AreEqual(expected, actual)
+
+/// ---- Operator Comparison Testing ----
+
+[<Test>]
+let ``Less Than Zero`` () =
+    Assert.IsTrue(Quantity.unitless -1. |> Quantity.lessThanZero)
+
+[<Test>]
+let ``Less Than Or Equal To Zero`` () =
+    Assert.IsTrue(
+        Quantity.unitless 0.
+        |> Quantity.lessThanOrEqualToZero
+    )
+
+    Assert.IsTrue(
+        Quantity.unitless -1.
+        |> Quantity.lessThanOrEqualToZero
+    )
+
+[<Test>]
+let ``Greater Than Zero`` () =
+    Assert.IsTrue(Quantity.unitless 1. |> Quantity.greaterThanZero)
+
+[<Test>]
+let ``Greater Than Or Equal To Zero`` () =
+    Assert.IsTrue(
+        Quantity.unitless 0.
+        |> Quantity.greaterThanOrEqualToZero
+    )
+
+    Assert.IsTrue(
+        Quantity.unitless 1.
+        |> Quantity.greaterThanOrEqualToZero
+    )
+
+// ---- Operator Comparison ----
+
+let testUnaryOperator (fn: Quantity<'Unit> -> 'a) (op: Quantity<'Unit> -> 'a) : Property =
+    Prop.forAll Arb.quantity (fun q -> Test.equal (fn q) (op q))
+
+
+let testBinaryOperator
+    (fn: Quantity<'Unit> -> Quantity<'Unit> -> 'a)
+    (op: Quantity<'Unit> -> Quantity<'Unit> -> 'a)
+    : Property =
+
+    let arb =
+        Gen.map2 Tuple2.pair Gen.quantity Gen.quantity
+        |> Arb.fromGen
+
+    Prop.forAll arb (fun (a, b) -> Test.equal (fn a b) (a |> op b))
+
+// ---- Unary Comparison ---
+
+[<Property>]
+let ``Abs Comparison`` () =
+    testUnaryOperator Quantity.abs Quantity.Abs
+
+[<Property>]
+let ``Negate Comparison`` () =
+    testUnaryOperator Quantity.negate (fun a -> -a)
+
+// ---- Binary Comparison ----
+
+[<Property>]
+let ``Max Comparison`` () =
+    testBinaryOperator Quantity.max (fun a b -> Quantity.Max(a, b))
+
+[<Property>]
+let ``Min Comparison`` () =
+    testBinaryOperator Quantity.min (fun a b -> Quantity.Min(a, b))
+
+[<Property>]
+let ``Less Than`` () =
+    testBinaryOperator Quantity.lessThan (<)
+
+[<Property>]
+let ``Less Than Or Equal`` () =
+    testBinaryOperator Quantity.lessThanOrEqualTo (<=)
+
+[<Property>]
+let ``Greater Than `` () =
+    testBinaryOperator Quantity.greaterThan (>)
+
+[<Property>]
+let ``Greater Than Or Equal`` () =
+    testBinaryOperator Quantity.greaterThanOrEqualTo (>=)
+
+[<Property>]
+let Minus () = testBinaryOperator Quantity.minus (-)
+
+[<Property>]
+let Difference () =
+    testBinaryOperator (fun y x -> Quantity.difference x y) (-)
+
+[<Property>]
+let ``Difference And Minus`` () =
+    testBinaryOperator Quantity.difference Quantity.minus
+
+[<Property>]
+let ``Product and Times`` () =
+    testBinaryOperator Quantity.product Quantity.times
+
+
+// ----  Accessors -------------------------------------------------------------
+
+[<Property>]
+let ``Is Infinite`` () =
+    Assert.IsTrue(Quantity.isInfinite Quantity.positiveInfinity)
+    Assert.IsTrue(Quantity.isInfinite Quantity.negativeInfinity)
+    Assert.IsTrue(Quantity.isInfinite Quantity.infinity)
+
+[<Property>]
+let ``Is NaN`` () =
+    Assert.IsTrue(Quantity.isNaN (Quantity nan))

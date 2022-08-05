@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Extensions\TupleExtensions.fs" />
+        <Compile Include="Extensions\ListExtensions.fs" />
         <Compile Include="Float.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="Quantity.fs" />
