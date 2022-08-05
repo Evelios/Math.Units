@@ -1,6 +1,6 @@
 namespace FSharp.Extensions
 
-module internal Tuple2 =
+module Tuple2 =
     let pair x y = x, y
 
     let replicate x = x, x
@@ -34,5 +34,5 @@ module internal Tuple2 =
 
     let toList (x, y) = [ x; y ]
 
-module internal Tuple3 =
+module Tuple3 =
     let map f (x, y, z) = f x y z

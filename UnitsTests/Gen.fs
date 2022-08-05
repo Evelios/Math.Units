@@ -62,3 +62,18 @@ module Gen =
         static member Quantity() = Arb.fromGen quantity
         static member Interval() = Arb.fromGen interval
         static member ZeroToOneFloat() = Arb.fromGen zeroToOneFloat
+
+module Arb =
+    open System
+    open FsCheck
+
+    open Units
+
+    let floatBetween start finish : Arbitrary<float> =
+        Gen.floatBetween start finish |> Arb.fromGen
+
+    let quantity<'Units> : Arbitrary<Quantity<'Units>> =
+        Gen.quantity |> Arb.fromGen
+
+    let interval<'Units> : Arbitrary<Interval<'Units>> =
+        Gen.interval |> Arb.fromGen

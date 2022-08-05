@@ -122,28 +122,30 @@ let intersection (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Unit> optio
 /// Negate an interval. Note that this will flip the order of the endpoints.
 ///    Interval.negate (Interval.from 2 3)
 ///    --> Interval.from -3 -2
-let inline negate<'Unit when 'Unit: equality and 'Unit: (static member (~-): 'Unit -> 'Unit)>
-    (Interval (a, b): Interval<'Unit>)
-    : Interval<'Unit> =
-    Interval(-b, -a)
+let inline negate (Interval (a, b): Interval<'Unit>) : Interval<'Unit> = Interval(-b, -a)
 
 
 /// Add the given amount to an interval.
 ///    Interval.from -1 5 |> Interval.add 3
 ///    --> Interval.from 2 8
-let inline add (delta: Quantity<'Unit>) (Interval (a, b): Interval<'Unit>) : Interval<'Unit> =
+let inline plus (delta: Quantity<'Unit>) (Interval (a, b): Interval<'Unit>) : Interval<'Unit> =
     Interval(delta + a, delta + b)
 
 
 /// Subtract the given amount from an interval.
 ///    Interval.from -1 5 |> Interval.subtract 3
 ///    --> Interval.from -4 2
-let inline subtract
-    (delta: Quantity<'Unit>)
-    (Interval (a: Quantity<'Unit>, b: Quantity<'Unit>): Interval<'Unit>)
-    : Interval<'Unit> =
+let inline minus (delta: Quantity<'Unit>) (Interval (a, b): Interval<'Unit>) : Interval<'Unit> =
     Interval(a - delta, b - delta)
 
+/// Subtract an interval from the given amount. So if you wanted to compute
+/// `interval - quantity` you would write
+///     interval |> Interval.minus quantity
+/// but if you wanted to compute `quantity - interval` then you would write
+///     Interval.difference quantity interval
+let difference (x: Quantity<'Units>) (interval: Interval<'Units>) =
+    let (Interval (a, b)) = interval
+    Interval(x - b, x - a)
 
 ///  Multiply an interval by a given value. Note that this will flip the order
 /// of the interval's endpoints if the given value is negative.
@@ -157,6 +159,20 @@ let multiplyBy (scale: float) (Interval (a, b): Interval<'Unit>) : Interval<'Uni
 
     else
         Interval(b * scale, a * scale)
+
+/// Multiply an `Interval` by a `Quantity`, for example
+///     Interval.product quantity interval
+/// Note that unlike [`times`](#times), the units of the result will be `Product
+/// quantityUnits intervalUnits`, not `Product intervalUnits quantityUnits`.
+let product
+    (x: Quantity<'QuantityUnits>)
+    (Interval (a, b): Interval<'IntervalUnits>)
+    : Interval<Product<'QuantityUnits, 'IntervalUnits>> =
+    if x >= Quantity.zero then
+        Interval(x * a, x * b)
+
+    else
+        Interval(x * b, x * a)
 
 
 /// Divide an interval by a given value. Note that this will flip the order
@@ -187,7 +203,7 @@ let twice (Interval (a, b): Interval<'Unit>) : Interval<'Unit> = Interval(2. * a
 ///     Interval.from 5 10
 ///         |> Interval.plus (Interval.from 2 3)
 ///     --> Interval.from 7 13
-let plus (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 + b1)
+let plusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 + b1)
 
 
 /// Subtract the first interval from the second. This means that `minus` makes
@@ -199,23 +215,150 @@ let plus (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 + b1)
 ///     Interval.minus (Interval.from 2 3)
 ///         (Interval.from 5 10)
 ///     --> Interval.from 2 8
-let minus (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a1 - b2, b1 - a2)
+let minusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a1 - b2, b1 - a2)
 
+/// Multiply an `Interval` by a `Quantity`, for example
+///     interval |> Interval.times quantity
+let times
+    (x: Quantity<'QuantityUnits>)
+    (interval: Interval<'IntervalUnits>)
+    : Interval<Product<'IntervalUnits, 'QuantityUnits>> =
+    let (Interval (a, b)) = interval
+
+    if x >= Quantity.zero then
+        Interval(a * x, b * x)
+
+    else
+        Interval(b * x, a * x)
+
+/// Multiply an `Interval` by a unitless `Quantity`. See the documentation for
+/// [`Quantity.timesUnitless`](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest/Quantity#timesUnitless)
+/// for more details.
+let timesUnitless (x: Quantity<Unitless>) (interval: Interval<Unitless>) : Interval<Unitless> =
+    let (Interval (a, b)) = interval
+
+    if x >= Quantity.zero then
+        Interval(a * x.Value, b * x.Value)
+
+    else
+        Interval(b * x.Value, a * x.Value)
 
 /// Multiply the two given intervals.
 ///     Interval.from 10 12
 ///         |> Interval.times
 ///             (Interval.from 5 6)
 ///     --> Interval.from 50 72
-let times (Interval (a2, b2)) (Interval (a1, b1)) =
+let timesInterval
+    (Interval (a2, b2): Interval<'UnitsA>)
+    (Interval (a1, b1): Interval<'UnitsB>)
+    : Interval<Product<'UnitsB, 'UnitsA>> =
     let aa = a1 * a2
-
     let ab = a1 * b2
-
     let ba = b1 * a2
-
     let bb = b1 * b2
+
     Interval(min (min (min aa ab) ba) bb, max (max (max aa ab) ba) bb)
+
+/// Combination of [`timesInterval`](#timesInterval) and [`timesUnitless`](#timesUnitless)
+/// for when one of the intervals in a product is unitless.
+let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Interval<'Units>) : Interval<'Units> =
+    let (Interval (a2, b2)) = unitlessInterval
+    let (Interval (a1, b1)) = interval
+    let aa = a1 * a2
+    let ab = a1 * b2
+    let ba = b1 * a2
+    let bb = b1 * b2
+
+    Interval(min (min (min aa ab) ba) bb, max (max (max aa ab) ba) bb)
+
+/// Find the inverse of a unitless interval:
+///     Interval.reciprocal <|
+///         Interval.fromEndpoints
+///             ( Quantity.float 2
+///             , Quantity.float 3
+///             )
+///     --> Interval.fromEndpoints
+///     -->     ( Quantity.float 0.333
+///     -->     , Quantity.flaot 0.500
+///     -->     )
+/// Avoid using this function whenever possible, since it's very easy to get
+/// infinite intervals as a result:
+///     Interval.reciprocal <|
+///         Interval.fromEndpoints
+///             ( Quantity.float -1
+///             , Quantity.float 2
+///             )
+///     --> Interval.fromEndpoints
+///     -->     ( Quantity.negativeInfinity
+///     -->     , Quantity.negativeInfinity
+///     -->     )
+/// Since zero is contained in the above interval, the range of possible reciprocals
+/// ranges from negative to positive infinity!
+let reciprocal (Interval (a, b): Interval<Unitless>) : Interval<Unitless> =
+    if a > Quantity.zero || b < Quantity.zero then
+        Interval(Quantity(1. / b.Value), Quantity(1. / a.Value))
+
+    else if a < Quantity.zero && b > Quantity.zero then
+        Interval(Quantity.negativeInfinity, Quantity.positiveInfinity)
+
+    else if a < Quantity.zero then
+        Interval(Quantity.negativeInfinity, Quantity(1. / a.Value))
+
+    else if b > Quantity.zero then
+        Interval(Quantity(1. / b.Value), Quantity.positiveInfinity)
+
+    else
+        Interval(Quantity(Quantity.zero / Quantity.zero), Quantity(Quantity.zero / Quantity.zero))
+
+/// Get the absolute value of an interval.
+///     Interval.abs <|
+///         Interval.fromEndpoints
+///             ( Length.meters -3  Length.meters 2 )
+///     --> Interval.fromEndpoints
+///     -->     (Length.meters 0) (Length.meters 3)
+let abs (Interval (a, b) as interval: Interval<'Units>) : Interval<'Units> =
+    if a >= Quantity.zero then
+        interval
+
+    else if b <= Quantity.zero then
+        negate interval
+
+    else
+        Interval(Quantity.zero, max -a b)
+
+
+let unsafeSquared (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
+    if a >= Quantity.zero then
+        Interval(Quantity(a.Value * a.Value), Quantity(b.Value * b.Value))
+
+    else if b <= Quantity.zero then
+        Interval(Quantity(b.Value * b.Value), Quantity(a.Value * a.Value))
+
+    else if -a < b then
+        Interval(Quantity.zero, Quantity(b.Value * b.Value))
+
+    else
+        Interval(Quantity.zero, Quantity(a.Value * a.Value))
+
+
+/// Get the square of an interval.
+let squared (interval: Interval<'Units>) : Interval<Squared<'Units>> = unsafeSquared interval
+
+
+/// Specialized version of `squared` for unitless intervals.
+let squaredUnitless (interval: Interval<Unitless>) : Interval<Unitless> = unsafeSquared interval
+
+
+let unsafeCubed (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
+    Interval(Quantity(a.Value * a.Value * a.Value), Quantity(b.Value * b.Value * b.Value))
+
+
+/// Get the cube of an interval.
+let cubed (interval: Interval<'Units>) : Interval<Cubed<'Units>> = unsafeCubed interval
+
+
+/// Specialized version of `cubed` for unitless intervals.
+let cubedUnitless (interval: Interval<Unitless>) : Interval<Unitless> = unsafeCubed interval
 
 /// The maximum of cos(x) is x = 2 pi \* k for every integer k.
 /// If `minValue` and `maxValue` are in different branches
@@ -231,7 +374,7 @@ let cosIncludesMax (Interval (a, b)) : bool =
 /// that means cos(interval) includes the minimum.
 let cosIncludesMinMax (interval: Interval<'Unit>) : bool * bool =
     (interval
-     |> add (Quantity Math.PI)
+     |> plus (Quantity Math.PI)
      |> cosIncludesMax,
      interval |> cosIncludesMax)
 
@@ -242,7 +385,7 @@ let sinIncludesMinMax (interval: Interval<'Unit>) : bool * bool =
     let halfPi = Math.PI / 2.
 
     interval
-    |> subtract (Quantity halfPi)
+    |> minus (Quantity halfPi)
     |> cosIncludesMinMax
 
 
@@ -430,7 +573,7 @@ let hull (first: Quantity<'Unit>) (rest: Quantity<'Unit> list) : Interval<'Unit>
 ///     Interval.hull a [ b, c ]
 /// but is more efficient. (If you're looking for a `hull2` function, [`from`](#from)
 /// should do what you want.)
-let hull3 (a: 'Unit) (b: 'Unit) (c: 'Unit) : Interval<'Unit> =
+let hull3 (a: Quantity<'Unit>) (b: Quantity<'Unit>) (c: Quantity<'Unit>) : Interval<'Unit> =
     Interval(min a (min b c), max a (max b c))
 
 /// Attempt to construct an interval containing all _N_ values in the given

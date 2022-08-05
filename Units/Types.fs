@@ -29,12 +29,6 @@ type CelsiusDegrees = CelsiusDegrees
 
 // ---- Unit Ratios ------------------------------------------------------------
 
-/// Represents a units type that is the square of some other units type; for
-/// example, `Meters` is one units type (the units type of a [`Length`](Length)) and
-/// `Squared Meters` is another (the units type of an [`Area`](Area)). See the
-/// [`squared`](#squared) and [`sqrt`](#sqrt) functions for examples of use.
-/// This is a special case of the `Product` units type.
-type Squared<'Units> = Product of 'Units * 'Units
 
 
 /// Represents a units type that is the product of two other units types. This
@@ -42,6 +36,12 @@ type Squared<'Units> = Product of 'Units * 'Units
 /// [`times`](#times), [`over`](#over) and [`over_`](#over_) for how it can be used.
 type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 
+/// Represents a units type that is the square of some other units type; for
+/// example, `Meters` is one units type (the units type of a [`Length`](Length)) and
+/// `Squared Meters` is another (the units type of an [`Area`](Area)). See the
+/// [`squared`](#squared) and [`sqrt`](#sqrt) functions for examples of use.
+/// This is a special case of the `Product` units type.
+type Squared<'Units> = Product<'Units, 'Units>
 
 /// Represents a units type that is the cube of some other units type; for
 /// example, `Meters` is one units type (the units type of a [`Length`](Length)) and
@@ -49,7 +49,7 @@ type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 /// [`cubed`](Quantity#cubed) and [`cbrt`](Quantity#cbrt) functions for examples of
 /// use.
 /// This is a special case of the `Product` units type.
-type Cubed<'Units> = Cubed of Product<'Units, 'Units> * 'Units
+type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 
 
 /// Represents the units type of a rate or quotient such as a speed (`Rate
@@ -182,8 +182,14 @@ type Quantity<'Units>(quantity: float) =
 
     static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
 
-    static member (*)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units Squared> =
-        Quantity<'Units Squared>(lhs.Value * rhs.Value)
+    static member (*)(lhs: Quantity<Unitless>, rhs: Quantity<'Units>) : Quantity<'Units> =
+        Quantity<'Units>(lhs.Value * rhs.Value)
+
+    static member (*)(lhs: Quantity<'Units>, rhs: Quantity<Unitless>) : Quantity<'Units> =
+        Quantity<'Units>(lhs.Value * rhs.Value)
+        
+    static member (*)(lhs: Quantity<'UnitA>, rhs: Quantity<'UnitB>) : Quantity<Product<'UnitA, 'UnitB>> =
+        Quantity<Product<'UnitA, 'UnitB>>(lhs.Value * rhs.Value)
 
     static member (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity<'Units>(q.Value / scale)
 
