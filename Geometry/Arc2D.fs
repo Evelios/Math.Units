@@ -336,7 +336,7 @@ let boundingBox (givenArc: Arc2D<'Units, 'Coordinates>) : BoundingBox2D<'Units, 
 /// Get the first derivative of an arc at a given parameter value.
 let firstDerivative (arc: Arc2D<'Units, 'Coordinates>) (parameterValue: float) : Vector2D<'Units, 'Coordinates> =
     let startDerivative =
-        Vector2D.withLength arc.SignedLength arc.XDirection
+        Vector2D.withQuantity arc.SignedLength arc.XDirection
 
     startDerivative
     |> Vector2D.rotateBy (parameterValue * arc.SweptAngle)
@@ -434,7 +434,7 @@ let translateIn
     (arc: Arc2D<'Units, 'Coordinates>)
     : Arc2D<'Units, 'Coordinates> =
 
-    translateBy (Vector2D.withLength distance direction) arc
+    translateBy (Vector2D.withQuantity distance direction) arc
 
 
 /// Mirror an arc across a given axis. This negates the sign of the arc's

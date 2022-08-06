@@ -62,7 +62,7 @@ type Direction2D<'Coordinates> =
         else 1
 
     member this.LessThan(other: Direction2D<'Coordinates>) =
-        if almostEqual this.X other.X then
+        if Float.almostEqual this.X other.X then
             this.Y < other.Y
         else
             this.X < other.X
@@ -73,11 +73,11 @@ type Direction2D<'Coordinates> =
         | _ -> false
 
     member this.Equals(other: Direction2D<'Coordinates>) : bool =
-        almostEqual this.X other.X
-        && almostEqual this.Y other.Y
+        Float.almostEqual this.X other.X
+        && Float.almostEqual this.Y other.Y
 
     override this.GetHashCode() =
-        HashCode.Combine((roundFloatTo Float.DigitPrecision this.X), (roundFloatTo Float.DigitPrecision this.Y))
+        HashCode.Combine((Float.roundFloatTo Float.DigitPrecision this.X), (Float.roundFloatTo Float.DigitPrecision this.Y))
 
 
 [<CustomEquality>]

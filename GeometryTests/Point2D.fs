@@ -152,7 +152,7 @@ let Round () =
     Float.DigitPrecision <- 8
 
     let actual =
-        Point2D.round (Point2D.meters 22.2222222222 22.2222222222)
+        Point2D.roundTo Float.DigitPrecision (Point2D.meters 22.2222222222 22.2222222222)
 
     let expected = (Point2D.meters 22.22222222 22.22222222)
     Assert.AreEqual(expected, actual)
@@ -198,7 +198,7 @@ let ``translateBy and translateIn are consistent``
     (distance: Length)
     =
 
-    let displacement = Vector2D.withLength distance direction
+    let displacement = Vector2D.withQuantity distance direction
 
     let translatedIn =
         Point2D.translateIn direction distance point

@@ -1,5 +1,7 @@
 namespace Units
 
+open System
+
 /// A static class providing added features to the floating point number class.
 /// The main features of this class allow for better floating point equality
 /// testing. Generally, floating points always have small variations in their
@@ -43,28 +45,26 @@ type Float() =
     static member Epsilon =
         10. ** (float -Float.DigitPrecision)
 
-[<AutoOpen>]
 module Float =
-
-    open System
 
     /// Compare two floating point values for equality. Equality testing is done
     /// based on a tolerance vale specified by `Float.Epsilon`.
     let almostEqual (a: float) (b: float) : bool =
-        let absA = abs a
-        let absB = abs b
-        let diff = abs (a - b)
-
-        if a = b then
+        if a = b || Double.IsNaN a && Double.IsNaN b then
             true
-        else if (a = 0. || b = 0. || absA + absB < Float.MinNormal) then
-            diff < Float.Epsilon
         else
+            let absA = abs a
+            let absB = abs b
+            let diff = abs (a - b)
 
-            let divisor =
-                min (absA + absB) Microsoft.FSharp.Core.float.MaxValue
+            if (a = 0. || b = 0. || absA + absB < Float.MinNormal) then
+                diff < Float.Epsilon
+            else
 
-            diff / divisor <= (Float.Epsilon * 1.5)
+                let divisor =
+                    min (absA + absB) Microsoft.FSharp.Core.float.MaxValue
+
+                diff / divisor <= (Float.Epsilon * 1.5)
 
     /// Round a floating point number to a specified number of digits.
     let roundFloatTo (digits: int) (x: float) = Math.Round(x, digits)

@@ -55,7 +55,7 @@ let ``Negative Infinity`` () =
 
     Assert.AreEqual(expected, actual)
 
-// ---- Operators ----
+// ---- Operators --------------------------------------------------------------
 
 [<Test>]
 let Equality () =
@@ -78,6 +78,7 @@ let ``Approximate equality`` () =
 
     Assert.AreEqual(first, second)
     Assert.AreNotEqual(first, notEqual)
+
 
 [<Test>]
 let ``Comparison Operators`` () =
@@ -164,8 +165,15 @@ let Ceiling () =
 [<Test>]
 let Round () =
     let initial = Quantity 1.5
-    let actual = round initial
+    let actual = Quantity.round initial
     let expected = Quantity 2.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Round To`` () =
+    let initial = Quantity 0.123456
+    let actual = Quantity.roundTo 3 initial
+    let expected = Quantity 0.123
     Assert.AreEqual(expected, actual)
 
 [<Test>]
@@ -267,7 +275,7 @@ let Clamp (first: Quantity<Meters>) (second: Quantity<Meters>) (quantity: Quanti
     let upper = max first second
 
     let clamped =
-        Quantity.clamp lower upper quantity
+        Quantity.clamp first second quantity
 
     clamped >= lower && clamped <= upper
 
@@ -324,6 +332,19 @@ let ``Cube Root`` () =
     Assert.AreEqual(expected, actual)
 
 [<Test>]
+let ``Negative Cube Root`` () =
+    let input: Quantity<Meters Cubed> =
+        Quantity -27.
+
+    let actual: Quantity<Meters> =
+        Quantity.cbrt input
+
+    let expected: Quantity<Meters> =
+        Quantity -3.
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
 let ``Cubed Unitless`` () =
     let actual: Quantity<Unitless> =
         Quantity.cubedUnitless (Quantity 3.)
@@ -352,6 +373,82 @@ let Reciprocal () =
     Assert.AreEqual(expected, actual)
 
 [<Test>]
+let ``Modulus By`` () =
+    let actual =
+        Quantity.unitless 5.5
+        |> Quantity.modBy (Quantity.unitless 2.5)
+
+    let expected = Quantity.unitless 0.5
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Negative Modulus By`` () =
+    let actual =
+        Quantity.unitless -5.5
+        |> Quantity.modBy (Quantity.unitless 2.5)
+
+    let expected = Quantity.unitless -0.5
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Remainder By`` () =
+    let actual =
+        Quantity.unitless -5.5
+        |> Quantity.remainderBy (Quantity.unitless 2.5)
+
+    let expected = Quantity.unitless 0.5
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Midpoint () =
+    let actual =
+        Quantity.midpoint (Quantity.unitless 10.) (Quantity.unitless 5)
+
+    let expected = Quantity.unitless 7.5
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Range () =
+    let actual =
+        Quantity.range Quantity.zero (Quantity.unitless 10) 4
+
+    let expected =
+        [ Quantity.unitless 0.
+          Quantity.unitless 2.5
+          Quantity.unitless 5.
+          Quantity.unitless 7.5
+          Quantity.unitless 10 ]
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Range Edge Case`` () =
+    let actual: Quantity<Unitless> list =
+        Quantity.range Quantity.zero (Quantity.unitless 10) -1
+
+    let expected : Quantity<Unitless> list = []
+    
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Sum`` () =
+    let actual =
+        Quantity.sum [
+            Quantity.unitless 1.
+            Quantity.unitless 2.
+            Quantity.unitless 3.
+        ]
+
+    let expected = Quantity.unitless 6.
+
+    Assert.AreEqual(expected, actual)
+
+
+[<Test>]
 let Remainder () =
     let quantity = Quantity 13.5
     let modulus = Quantity 4.
@@ -371,6 +468,49 @@ let ``Negative Remainder`` () =
         Quantity.remainderBy modulus quantity
 
     let expected = Quantity 1.5
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Over () =
+    let area = Quantity<SquareMeters> 24.
+    let length = Quantity<Meters> 4.
+
+    let actual: Quantity<Meters> =
+        area |> Quantity.over length
+
+    let expected = Quantity<Meters> 6.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Over_ () =
+    let force = Quantity<Newtons> 24.
+
+    let acceleration =
+        Quantity<MetersPerSecondSquared> 4.
+
+    let actual: Quantity<Kilograms> =
+        force |> Quantity.over_ acceleration
+
+    let expected = Quantity<Kilograms> 6.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Over Unitless`` () =
+    let actual =
+        Quantity.unitless 30.
+        |> Quantity.overUnitless (Quantity.unitless 6.)
+
+    let expected = Quantity.unitless 5.
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Ratio () =
+    let actual =
+        Quantity.ratio (Length.miles 1.) (Length.yards 1.)
+
+    let expected = 1760.
+
     Assert.AreEqual(expected, actual)
 
 /// ---- Operator Comparison Testing ----
@@ -431,8 +571,32 @@ let ``Abs Comparison`` () =
     testUnaryOperator Quantity.abs Quantity.Abs
 
 [<Property>]
+let ``Sqrt Comparison`` () =
+    testUnaryOperator Quantity.sqrt Quantity.Sqrt
+
+[<Property>]
+let ``Floor Comparison`` () =
+    testUnaryOperator Quantity.floor Quantity.Floor
+
+[<Property>]
+let ``Round Comparison`` () =
+    testUnaryOperator Quantity.round Quantity.Round
+
+[<Property>]
+let ``Ceiling Comparison`` () =
+    testUnaryOperator Quantity.ceil Quantity.Ceiling
+
+[<Property>]
+let ``Truncate Comparison`` () =
+    testUnaryOperator Quantity.truncate Quantity.Truncate
+
+[<Property>]
 let ``Negate Comparison`` () =
     testUnaryOperator Quantity.negate (fun a -> -a)
+
+[<Property>]
+let ``Hash Comparison`` () =
+    testUnaryOperator hash (fun q -> q.GetHashCode())
 
 // ---- Binary Comparison ----
 
@@ -461,6 +625,9 @@ let ``Greater Than Or Equal`` () =
     testBinaryOperator Quantity.greaterThanOrEqualTo (>=)
 
 [<Property>]
+let Plus () = testBinaryOperator Quantity.plus (+)
+
+[<Property>]
 let Minus () = testBinaryOperator Quantity.minus (-)
 
 [<Property>]
@@ -487,3 +654,31 @@ let ``Is Infinite`` () =
 [<Property>]
 let ``Is NaN`` () =
     Assert.IsTrue(Quantity.isNaN (Quantity nan))
+
+[<Property>]
+let ``Minimum quantity of list is the smallest`` (quantities: Quantity<Unitless> list) =
+    let maybeMinimum =
+        Quantity.minimum quantities
+
+    match maybeMinimum with
+    | Some minimum ->
+        Test.forAll (fun q -> $"The quantity {q} is not the smallest in the list") (fun q -> q >= minimum) quantities
+
+    | None ->
+        Test.isTrue
+            "Minimum should only be an empty list when the list of quantities is also an empty list."
+            (quantities = [])
+
+[<Property>]
+let ``Maximum quantity of list is the smallest`` (quantities: Quantity<Unitless> list) =
+    let maybeMaximum =
+        Quantity.maximum quantities
+
+    match maybeMaximum with
+    | Some maximum ->
+        Test.forAll (fun q -> $"The quantity {q} is not the smallest in the list") (fun q -> q <= maximum) quantities
+
+    | None ->
+        Test.isTrue
+            "Maximum should only be an empty list when the list of quantities is also an empty list."
+            (quantities = [])

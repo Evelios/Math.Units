@@ -345,7 +345,7 @@ let translateIn
     (rectangle: Rectangle2D<'Units, 'Coordinates>)
     : Rectangle2D<'Units, 'Coordinates> =
 
-    translateBy (Vector2D.withLength distance direction) rectangle
+    translateBy (Vector2D.withQuantity distance direction) rectangle
 
 /// Mirror a rectangle across a given axis. Note that this will flip the
 /// handedness of the rectangle's axes, and therefore the order/direction of results

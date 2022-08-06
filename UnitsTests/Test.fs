@@ -48,7 +48,7 @@ module Test =
         comparison expected (=) actual $"Expected: {expected}{Environment.NewLine} But Was: {actual}"
 
     let almostEqual expected actual : bool =
-        comparison expected almostEqual actual $"Expected: {expected}{Environment.NewLine} But Was: {actual}"
+        comparison expected Float.almostEqual actual $"Expected: {expected}{Environment.NewLine} But Was: {actual}"
 
     let lessThan expected actual : bool =
         comparison expected (<) actual $"Expected: {expected} < {actual}"

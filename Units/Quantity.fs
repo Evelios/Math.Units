@@ -382,35 +382,6 @@ type Quantity<'Units> with
         else
             clampHelper upper lower
 
-
-    /// Get the sign of a quantity. This will return 1, -1, 0 or NaN if the given
-    /// quantity is positive, negative, zero or NaN respectively.
-    ///     Quantity.sign (Length.meters 3)
-    ///     --> 1
-    ///     Quantity.sign (Length.meters -3)
-    ///     --> -1
-    ///     Quantity.sign (Length.meters 0)
-    ///     --> 0
-    ///     Quantity.sign Quantity.positiveInfinity
-    ///     --> 1
-    ///     Quantity.sign (Length.meters (0 / 0))
-    ///     --> NaN
-    static member sign(quantity: Quantity<'Units>) : int =
-        if Quantity.greaterThanZero quantity then
-            1
-
-        else
-
-        if Quantity.lessThanZero quantity then
-            -1
-
-        else if Quantity.isNaN quantity then
-            0
-
-        else
-            0
-
-
     /// Square a quantity with some `units`, resulting in a new quantity in
     /// `Squared units`:
     ///     Quantity.squared (Length.meters 5)
@@ -497,28 +468,10 @@ type Quantity<'Units> with
     static member modBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) : Quantity<'Units> = quantity % modulus
 
 
-    ///
-    static member fractionalModBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) =
-        Quantity(
-            quantity.Value
-            - modulus.Value
-              * floor (quantity.Value / modulus.Value)
-        )
-
-
     /// Returns the remainder of the modulus operation.
     /// Note: This returns positive results for remainders on negative numbers.
     static member remainderBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) : Quantity<'Units> =
         abs (quantity % modulus)
-
-
-    ///
-    static member fractionalRemainderBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) =
-        Quantity(
-            quantity.Value
-            - modulus.Value
-              * floor (quantity.Value / modulus.Value)
-        )
 
 
     /// Interpolate from the first quantity to the second, based on a parameter that
@@ -674,19 +627,19 @@ type Quantity<'Units> with
     ///     Quantity.in_ someUnits someQuantity
     /// is simply implemented as
     ///     Quantity.ratio some(someUnits 1)
-    static member in_ units quantity = Quantity.ratio quantity (units 1)
+    static member in_ units quantity = Quantity.ratio quantity (units 1.)
 
 
     // ---- Float Conversions ------------------------------------------------------------------------------------------
 
     static member roundTo (digits: int) (quantity: Quantity<'Units>) : Quantity<'Units> =
-        Quantity(roundFloatTo digits quantity.Value)
+        Quantity(Float.roundFloatTo digits quantity.Value)
 
     /// Round a `Float`-valued quantity to the nearest `Int`. Note that [this may
     /// not do what you expect](#-int-float-conversion).
     ///     Quantity.round (Pixels.pixels 3.5)
     ///     --> Pixels.pixels 4
-    static member round(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(roundFloat quantity.Value)
+    static member round(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(round quantity.Value)
 
 
 

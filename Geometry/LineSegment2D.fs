@@ -122,7 +122,7 @@ let translateIn
     (distance: Quantity<'Units>)
     (lineSegment: LineSegment2D<'Units, 'Coordinates>)
     : LineSegment2D<'Units, 'Coordinates> =
-    translateBy (Vector2D.withLength distance translationDirection) lineSegment
+    translateBy (Vector2D.withQuantity distance translationDirection) lineSegment
 
 
 /// Mirror a line segment across an axis. Note that the endpoints of a mirrored

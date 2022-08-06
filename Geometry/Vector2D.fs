@@ -20,10 +20,11 @@ let xyIn
     let j = frame.YDirection
     xy (x * i.X + y * j.X) (x * i.Y + y * j.Y)
 
-let from (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> = p2 - p1
+let from (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+    p2 - p1
 
 /// Construct a vector with the given length in the given direction.
-let withLength (a: Quantity<'Units>) (d: Direction2D<'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+let withQuantity (a: Quantity<'Units>) (d: Direction2D<'Coordinates>) : Vector2D<'Units, 'Coordinates> =
     Internal.Vector2D.withQuantity a d
 
 /// Construct a vector using polar coordinates coordinates given a length and angle
@@ -45,7 +46,8 @@ let rThetaIn
 /// Alias for `rTheta`
 let polar (r: Quantity<'Units>) (theta: Angle) : Vector2D<'Units, 'Coordinates> = rTheta r theta
 
-let zero<'Units, 'Coordinates> : Vector2D<'Units, 'Coordinates> = xy Quantity.zero Quantity.zero
+let zero<'Units, 'Coordinates> : Vector2D<'Units, 'Coordinates> =
+    xy Quantity.zero Quantity.zero
 
 
 // ---- Helper Builders ----
@@ -65,7 +67,8 @@ let feet (x: float) (y: float) : Vector2D<Meters, 'Coordinates> = fromUnit Lengt
 // ---- Accessors ----
 
 let magnitude (v: Vector2D<'Units, 'Coordinates>) : Quantity<'Units> =
-    let largestComponent = max (Length.abs v.X) (Length.abs v.Y)
+    let largestComponent =
+        max (Quantity.abs v.X) (Quantity.abs v.Y)
 
     if largestComponent = Quantity.zero then
         Quantity.zero
@@ -74,10 +77,10 @@ let magnitude (v: Vector2D<'Units, 'Coordinates>) : Quantity<'Units> =
         let scaledX = v.X / largestComponent
         let scaledY = v.Y / largestComponent
 
-        let scaledLength =
+        let scaledQuantity =
             sqrt (scaledX * scaledX + scaledY * scaledY)
-            
-        scaledLength * largestComponent
+
+        scaledQuantity * largestComponent
 
 /// Alias for `Vector2D.magnitude`
 let length = magnitude
@@ -130,7 +133,9 @@ let half (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> = 
 
 /// Scale a vector to a given length.
 let scaleTo (scale: Quantity<'Units>) (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
-    let largestComponent = max (Length.abs v.X) (Length.abs v.Y)
+    let largestComponent =
+        max (Quantity.abs v.X) (Quantity.abs v.Y)
+
     if largestComponent = Quantity.zero then
         zero
 
@@ -138,10 +143,10 @@ let scaleTo (scale: Quantity<'Units>) (v: Vector2D<'Units, 'Coordinates>) : Vect
         let scaledX = v.X / largestComponent
         let scaledY = v.Y / largestComponent
 
-        let scaledLength =
+        let scaledQuantity =
             sqrt (scaledX * scaledX + scaledY * scaledY)
 
-        xy (scale * scaledX / scaledLength) (scale * scaledY / scaledLength)
+        xy (scale * scaledX / scaledQuantity) (scale * scaledY / scaledQuantity)
 
 
 /// Rotate a vector counterclockwise by a given angle.
@@ -174,16 +179,17 @@ let rotateCounterclockwise (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units
 let perpendicularTo (givenVector: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
     rotateCounterclockwise givenVector
 
-let normalize (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> = scaleTo (Length.create<'Units> 1.) v
+let normalize (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+    scaleTo (Quantity.create<'Units> 1.) v
 
 /// Round the vector to the internal precision.
 /// (Default is 8 digits past the decimal point)
 let round (v: Vector2D<'Units, 'Coordinates>) =
-    xy (Length.round v.X) (Length.round v.Y)
+    xy (Quantity.round v.X) (Quantity.round v.Y)
 
 /// Round the vector to a specified number of digits
 let roundTo (digits: int) (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
-    xy (Length.roundTo digits v.X) (Length.roundTo digits v.Y)
+    xy (Quantity.roundTo digits v.X) (Quantity.roundTo digits v.Y)
 
 /// Find the component of a vector in an arbitrary direction, for example
 let componentIn (d: Direction2D<'Coordinates>) (v: Vector2D<'Units, 'Coordiantes>) : Quantity<'Units> =
@@ -212,14 +218,22 @@ let mirrorAcross
 /// direction and a portion perpendicular to it, then returning the parallel
 /// portion.
 let projectionIn (d: Direction2D<'Coordinates>) (v: Vector2D<'Units, 'Coordiantes>) : Vector2D<'Units, 'Coordinates> =
-    let projectedLength = v.X * d.X + v.Y * d.Y
-    xy (projectedLength * d.X) (projectedLength * d.Y)
+    let projectedQuantity =
+        v.X * d.X + v.Y * d.Y
+
+    xy (projectedQuantity * d.X) (projectedQuantity * d.Y)
 
 /// Project a vector onto an axis.
-let projectOnto (axis: Axis2D<'Units, 'Coordinates>) (v: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+let projectOnto
+    (axis: Axis2D<'Units, 'Coordinates>)
+    (v: Vector2D<'Units, 'Coordinates>)
+    : Vector2D<'Units, 'Coordinates> =
     let d = axis.Direction
-    let projectedLength = v.X * d.X + v.Y * d.Y
-    xy (projectedLength * d.X) (projectedLength * d.Y)
+
+    let projectedQuantity =
+        v.X * d.X + v.Y * d.Y
+
+    xy (projectedQuantity * d.X) (projectedQuantity * d.Y)
 
 /// Take a vector defined in global coordinates, and return it expressed in
 /// local coordinates relative to a given reference frame.
@@ -244,15 +258,22 @@ let placeIn
 /// Get the distance between two vectors squared. This function can be used to
 /// optimize some algorithms because you remove a square root call from the
 /// calculation which can be an expensive operation.
-let distanceSquaredTo (p1: Vector2D<'Units, 'Coordinates>) (p2: Vector2D<'Units, 'Coordinates>) : Quantity<'Units Squared> =
+let distanceSquaredTo
+    (p1: Vector2D<'Units, 'Coordinates>)
+    (p2: Vector2D<'Units, 'Coordinates>)
+    : Quantity<'Units Squared> =
     let dx = (p1.X - p2.X)
     let dy = (p1.Y - p2.Y)
     dx * dx + dy * dy
 
-let distanceTo p1 p2 : Quantity<'Units> = distanceSquaredTo p1 p2 |> Length.sqrt
+let distanceTo p1 p2 : Quantity<'Units> =
+    distanceSquaredTo p1 p2 |> Quantity.sqrt
 
 /// Get the vector that is the average of two vectors.
-let midVector (p1: Vector2D<'Units, 'Coordinates>) (p2: Vector2D<'Units, 'Coordinates>) : Vector2D<'Units, 'Coordinates> =
+let midVector
+    (p1: Vector2D<'Units, 'Coordinates>)
+    (p2: Vector2D<'Units, 'Coordinates>)
+    : Vector2D<'Units, 'Coordinates> =
     xy ((p1.X + p2.X) / 2.) ((p1.Y + p2.Y) / 2.)
 
 let dot (lhs: Vector2D<'Units, 'Coordinates>) (rhs: Vector2D<'Units, 'Coordinates>) : Quantity<'Units Squared> =
@@ -260,7 +281,7 @@ let dot (lhs: Vector2D<'Units, 'Coordinates>) (rhs: Vector2D<'Units, 'Coordinate
 
 let cross (lhs: Vector2D<'Units, 'Coordinates>) (rhs: Vector2D<'Units, 'Coordinates>) : Quantity<'Units Squared> =
     (lhs.X * rhs.Y) - (lhs.Y * rhs.X)
-    
+
 /// Get the direction the a vector is facing.
 let direction (v: Vector2D<'Units, 'Coordinates>) : Direction2D<'Coordinates> option = Direction2D.xyQuantity v.X v.Y
 
@@ -292,9 +313,7 @@ let fromList (list: float list) : Vector2D<'Units, 'Coordinates> option =
 
     | _ -> None
 
-let toList (vector: Vector2D<'Units, 'Coordinates>) : float list =
-    [ vector.X.Value
-      vector.Y.Value ]
+let toList (vector: Vector2D<'Units, 'Coordinates>) : float list = [ vector.X.Value; vector.Y.Value ]
 
 
 // ---- Json transformations ----

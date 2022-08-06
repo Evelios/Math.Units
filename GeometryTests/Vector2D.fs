@@ -110,7 +110,7 @@ let Round () =
     Float.DigitPrecision <- 8
 
     let actual =
-        Vector2D.round (Vector2D.meters 22.2222222222 22.2222222222)
+        Vector2D.roundTo Float.DigitPrecision (Vector2D.meters 22.2222222222 22.2222222222)
 
     let expected =
         (Vector2D.meters 22.22222222 22.22222222)

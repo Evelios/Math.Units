@@ -91,7 +91,7 @@ let translateIn
     (distance: Quantity<'Units>)
     (axis: Axis2D<'Units, 'Coordinates>)
     : Axis2D<'Units, 'Coordinates> =
-    translateBy (Vector2D.withLength distance translationDirection) axis
+    translateBy (Vector2D.withQuantity distance translationDirection) axis
 
 
 /// Mirror one axis across another. The axis to mirror across is given first and

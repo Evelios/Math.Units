@@ -120,7 +120,7 @@ let translateIn
     (distance: Quantity<'Units>)
     (ellipse: Ellipse2D<'Units, 'Coordinates>)
     =
-    translateBy (Vector2D.withLength distance direction) ellipse
+    translateBy (Vector2D.withQuantity distance direction) ellipse
 
 
 ///  Mirror an ellipse across a given axis. Note that if the axes of the original

@@ -39,7 +39,7 @@ Vector2D.rTheta (Length.meters 5.) Angle.halfPi
 (**
 Using a vector __direction__ you can create a vector of a given length following that direction.
 *)
-Vector2D.withLength (Length.meters 5.) (Direction2D.fromAngle Angle.halfPi)
+Vector2D.withQuantity (Length.meters 5.) (Direction2D.fromAngle Angle.halfPi)
 
 (** # Accessors *)
 

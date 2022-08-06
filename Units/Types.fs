@@ -117,7 +117,7 @@ type SquarePixels = Squared<Pixels>
 /// be comparable to using a raw `Float` or `Int`.
 type Quantity<'Units>(quantity: float) =
     interface IComparable<Quantity<'Units>> with
-        member this.CompareTo(percent) = this.Comparison(percent)
+        member this.CompareTo(quantity: Quantity<'Units>) : int = this.Comparison(quantity)
 
     interface IComparable with
         member this.CompareTo(obj) =
@@ -135,7 +135,7 @@ type Quantity<'Units>(quantity: float) =
         elif this.LessThan(other) then -1
         else 1
 
-    member this.Equals(other: Quantity<'Units>) : bool = almostEqual this.Value other.Value
+    member this.Equals(other: Quantity<'Units>) : bool = Float.almostEqual this.Value other.Value
 
 
     member this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
@@ -144,7 +144,7 @@ type Quantity<'Units>(quantity: float) =
 
     override this.GetHashCode() =
         this.Value
-        |> roundFloatTo Float.DigitPrecision
+        |> Float.roundFloatTo Float.DigitPrecision
         |> hash
 
     override this.Equals(obj: obj) : bool =

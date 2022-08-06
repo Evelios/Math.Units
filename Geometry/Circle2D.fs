@@ -88,7 +88,7 @@ let translateIn
     (circle: Circle2D<'Units, 'Coordinates>)
     : Circle2D<'Units, 'Coordinates> =
         
-    translateBy (Vector2D.withLength distance direction) circle
+    translateBy (Vector2D.withQuantity distance direction) circle
 
 
 /// Mirror a circle across a given axis.

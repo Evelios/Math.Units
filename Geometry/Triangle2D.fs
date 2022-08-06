@@ -87,7 +87,7 @@ let translateBy (vector: Vector2D<'Units, 'Coordinates>)  (triangle: Triangle2D<
 
 /// Translate a triangle in a given direction by a given distance.
 let translateIn (direction: Direction2D<'Coordinates>) (distance: Quantity<'Units>) (triangle: Triangle2D<'Units, 'Coordinates>): Triangle2D<'Units, 'Coordinates> =
-    translateBy (Vector2D.withLength distance direction) triangle
+    translateBy (Vector2D.withQuantity distance direction) triangle
 
 /// Mirror a triangle across a given axis. Note that mirroring a triangle will
 /// result in its 'winding direction' being flipped - if the triangle's vertices

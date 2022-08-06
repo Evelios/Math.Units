@@ -157,7 +157,7 @@ let translateIn
     (boundingBox: BoundingBox2D<'Units, 'Coordinates>)
     : BoundingBox2D<'Units, 'Coordinates> =
 
-    translateBy (Vector2D.withLength distance direction) boundingBox
+    translateBy (Vector2D.withQuantity distance direction) boundingBox
 
 /// Offsets boundingBox irrespective of the resulting bounding box is valid or
 /// not.

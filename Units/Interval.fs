@@ -479,7 +479,7 @@ let cos (interval: Interval<Radians>) : Interval<Unitless> =
 /// [`Float.Extra.interpolateFrom`](https://package.elm-lang.org/packages/ianmackenzie/elm-float-extra/latest/Float-Extra#interpolateFrom)
 /// from the `elm-float-extra` package.
 let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units> =
-    interpolateFrom a.Value b.Value t |> Quantity
+    Float.interpolateFrom a.Value b.Value t |> Quantity
 
 
 /// Given an interval and a given value, determine the corresponding

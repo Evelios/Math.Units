@@ -340,7 +340,7 @@ let translateIn
     (distance: Quantity<'Units>)
     (polygon: Polygon2D<'Units, 'Coordinates>)
     : Polygon2D<'Units, 'Coordinates> =
-    translateBy (Vector2D.withLength distance direction) polygon
+    translateBy (Vector2D.withQuantity distance direction) polygon
 
 
 /// Mirror a polygon across the given axis. The order of the polygon's vertices
