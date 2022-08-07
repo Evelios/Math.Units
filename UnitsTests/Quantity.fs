@@ -254,6 +254,77 @@ let ``Unit Division`` () =
     Assert.AreEqual(expected, actual)
 
 [<Test>]
+let Rate () =
+    let actual =
+        Quantity.rate (Quantity<Meters> 20.) (Quantity<Seconds> 2.)
+
+    let expected = Quantity<MetersPerSecond> 10.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Rate Per`` () =
+    let actual =
+        (Quantity<Meters> 20.)
+        |> Quantity.per (Quantity<Seconds> 2.)
+
+    let expected = Quantity<MetersPerSecond> 10.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Rate of change at`` () =
+    let actual =
+        (Quantity<Seconds> 100.)
+        |> Quantity.at (Quantity<MetersPerSecond> 2.)
+
+    let expected = Quantity<Meters> 200.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Rate of change at inverse`` () =
+    let actual =
+        (Quantity<Meters> 50.)
+        |> Quantity.at_ (Quantity<MetersPerSecond> 2.)
+
+    let expected = Quantity<Seconds> 25.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Rate of change for amount`` () =
+    let actual =
+        (Quantity<MetersPerSecond> 2.)
+        |> Quantity.for_ (Quantity<Seconds> 100.)
+
+    let expected = Quantity<Meters> 200.
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let Inverse () =
+    let actual =
+        Quantity.inverse (Quantity<MetersPerSecond> 100.)
+
+    let expected =
+        Quantity<Rate<Seconds, Meters>> 1. / 100.
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
+let ``Rate product`` () =
+    let pixelSpeed =
+        Quantity<Rate<Pixels, Seconds>> 100.
+
+    let resolution =
+        Quantity<Rate<Pixels, Meters>> 1000.
+        |> Quantity.inverse
+
+    let pixelSpeedInMeters =
+        Quantity.rateProduct pixelSpeed resolution
+
+    let expected =
+        Quantity<Rate<Meters, Seconds>> 0.1
+
+    Assert.AreEqual(expected, pixelSpeedInMeters)
+
+[<Test>]
 let Modulus () =
     let quantity = Quantity 13.5
     let modulus = Quantity 4.
@@ -426,16 +497,25 @@ let Range () =
     Assert.AreEqual(expected, actual)
 
 [<Test>]
+let ``In particular unit scheme`` () =
+    let actual =
+        Length.feet 10. |> Quantity.in_ Length.inches
+
+    let expected = 120.
+
+    Assert.AreEqual(expected, actual, Float.Epsilon)
+
+[<Test>]
 let ``Range Edge Case`` () =
     let actual: Quantity<Unitless> list =
         Quantity.range Quantity.zero (Quantity.unitless 10) -1
 
-    let expected : Quantity<Unitless> list = []
-    
+    let expected: Quantity<Unitless> list = []
+
     Assert.AreEqual(expected, actual)
 
 [<Test>]
-let ``Sum`` () =
+let Sum () =
     let actual =
         Quantity.sum [
             Quantity.unitless 1.
@@ -670,6 +750,20 @@ let ``Minimum quantity of list is the smallest`` (quantities: Quantity<Unitless>
             (quantities = [])
 
 [<Property>]
+let ``MinimumBy quantity of list is the smallest`` (quantities: (Quantity<Unitless> * unit) list) =
+    let maybeMinimum =
+        Quantity.minimumBy fst quantities
+
+    match maybeMinimum with
+    | Some minimum ->
+        Test.forAll (fun q -> $"The quantity {q} is not the smallest in the list") (fun q -> q >= minimum) quantities
+
+    | None ->
+        Test.isTrue
+            "Minimum should only be an empty list when the list of quantities is also an empty list."
+            (quantities = [])
+
+[<Property>]
 let ``Maximum quantity of list is the smallest`` (quantities: Quantity<Unitless> list) =
     let maybeMaximum =
         Quantity.maximum quantities
@@ -682,3 +776,31 @@ let ``Maximum quantity of list is the smallest`` (quantities: Quantity<Unitless>
         Test.isTrue
             "Maximum should only be an empty list when the list of quantities is also an empty list."
             (quantities = [])
+
+[<Property>]
+let ``MaximumBy quantity of list is the smallest`` (quantities: (Quantity<Unitless> * unit) list) =
+    let maybeMaximum =
+        Quantity.maximumBy fst quantities
+
+    match maybeMaximum with
+    | Some maximum ->
+        Test.forAll (fun q -> $"The quantity {q} is not the smallest in the list") (fun q -> q >= maximum) quantities
+
+    | None ->
+        Test.isTrue
+            "Minimum should only be an empty list when the list of quantities is also an empty list."
+            (quantities = [])
+
+[<Property>]
+let Sort (quantities: Quantity<Unitless> list) =
+    let sorted = Quantity.sort quantities
+
+    List.pairwise sorted
+    |> List.fold (fun wellSorted (first, second) -> first <= second && wellSorted) true
+
+[<Property>]
+let SortBy (quantities: (Quantity<Unitless> * unit) list) =
+    let sorted = Quantity.sortBy fst quantities
+
+    List.pairwise sorted
+    |> List.fold (fun wellSorted (first, second) -> first <= second && wellSorted) true

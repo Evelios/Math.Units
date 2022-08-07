@@ -38,12 +38,14 @@ type Quantity<'Units> with
 
     // ---- Unsafe Operations ------------------------------------------------------
 
-    ///
-    static member unsafe value = Quantity value
+    /// This function allows you to create a quantity of any value and type.
+    /// This should only try to use in library functions.
+    static member unsafe<'Units> value : Quantity<'Units> = Quantity value
 
 
-    ///
-    static member unwrap(quantity: Quantity<'Units>) = quantity.Value
+    /// This function provides access to the floating point value represented by
+    /// the quantity. This should only try to use in library functions.
+    static member unwrap(quantity: Quantity<'Units>) : float = quantity.Value
 
 
 
@@ -627,7 +629,7 @@ type Quantity<'Units> with
     ///     Quantity.in_ someUnits someQuantity
     /// is simply implemented as
     ///     Quantity.ratio some(someUnits 1)
-    static member in_ units quantity = Quantity.ratio quantity (units 1.)
+    static member in_ (units: float -> 'a) (quantity: Quantity<'Units>) : float = Quantity.ratio quantity (units 1.)
 
 
     // ---- Float Conversions ------------------------------------------------------------------------------------------
@@ -960,12 +962,8 @@ type Quantity<'Units> with
     ///     Quantity.rateProduct pixelSpeed
     ///         (Quantity.inverse resolution).Value
     ///     --> Speed.metersPerSecond 0.1323
-    /// rateProduct :
-    //    Float (Rate units2 units1)
-    //    -> Float (Rate units3 units2)
-    //    -> Float (Rate units3 units1)
     static member rateProduct
-        (firstRate: Quantity<Rate<'U1, 'U2>>)
+        (firstRate: Quantity<Rate<'U2, 'U1>>)
         (secondRate: Quantity<Rate<'U3, 'U2>>)
         : Quantity<Rate<'U3, 'U1>> =
         Quantity(firstRate.Value * secondRate.Value)
