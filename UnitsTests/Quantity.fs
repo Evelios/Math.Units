@@ -23,9 +23,18 @@ let ``Unitless initialization`` () =
     Assert.AreEqual(expected, actual)
 
 [<Test>]
+let ``Quantity string representation`` () =
+    let expected = "1 Meters"
+
+    let actual =
+        (Quantity<Meters> 1.).ToString()
+
+    Assert.AreEqual(expected, actual)
+
+[<Test>]
 let ``Unsafe construction`` () =
     let expected: Quantity<Unitless> =
-        Quantity.unsafe 1.
+        Quantity.create 1.
 
     let actual: Quantity<Unitless> = Quantity 1.
 
@@ -63,6 +72,20 @@ let Equality () =
     let second = Quantity 1.
 
     Assert.AreEqual(first, second)
+
+[<Test>]
+let Inequality () =
+    let first = Quantity 1.
+    let second = Quantity -1.
+
+    Assert.AreNotEqual(first, second)
+
+[<Test>]
+let ``Inequality with other object`` () =
+    let first = Quantity 1.
+    let second = obj
+
+    Assert.AreNotEqual(first, second)
 
 [<Property>]
 let ``Equal with self`` (x: float) =
@@ -207,9 +230,9 @@ let Subtraction () =
 
 [<Test>]
 let ``Multiplication by float`` () =
-    let quantity = Quantity 1.
+    let quantity = Quantity<Unitless> 2.
     let scale = 3.
-    let expected = Quantity 3.
+    let expected = Quantity<Unitless> 6.
     Assert.AreEqual(expected, quantity * scale)
     Assert.AreEqual(expected, scale * quantity)
 
@@ -677,6 +700,10 @@ let ``Negate Comparison`` () =
 [<Property>]
 let ``Hash Comparison`` () =
     testUnaryOperator hash (fun q -> q.GetHashCode())
+
+[<Property>]
+let ``Equality and Hash should be equal`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
+    (first = second) = (first.GetHashCode() = second.GetHashCode())
 
 // ---- Binary Comparison ----
 

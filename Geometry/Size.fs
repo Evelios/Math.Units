@@ -18,12 +18,7 @@ let scale (scale: float) (size: Size2D<'Units>) : Size2D<'Units> =
       Height = size.Height * scale }
 
 let normalizeBelowOne (size: Size2D<'Units>) : Size2D<'Units> =
-    scale
-        (Length.create<'Units> 1.
-         / max size.Width size.Height)
-        size
+    scale (Quantity.create 1. / max size.Width size.Height) size
 
 let withMaxSize<'Units> (maxSize: Length) (size: Size2D<'Units>) : Size2D<'Units> =
-    size
-    |> normalizeBelowOne
-    |> scale (maxSize.Value)
+    size |> normalizeBelowOne |> scale maxSize.Value

@@ -40,7 +40,7 @@ type Quantity<'Units> with
 
     /// This function allows you to create a quantity of any value and type.
     /// This should only try to use in library functions.
-    static member unsafe<'Units> value : Quantity<'Units> = Quantity value
+    static member create<'Units> value : Quantity<'Units> = Quantity value
 
 
     /// This function provides access to the floating point value represented by

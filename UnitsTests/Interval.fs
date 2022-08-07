@@ -10,6 +10,29 @@ open Units
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
 
+[<Test>]
+let ``Test inequality with other object type`` () =
+    let interval =
+        Interval.from (Quantity.unitless 1.) (Quantity.unitless 1.)
+
+    let other = obj
+
+    Assert.AreNotEqual(interval, other)
+
+[<Test>]
+let ``Interval string`` () =
+    let interval =
+        Interval.from (Length.meters 1.5) (Length.meters 2.)
+
+    let expected =
+        "Interval [ 1.5 Meters -> 2 Meters ]"
+
+    Assert.AreEqual(expected, interval.ToString())
+
+
+[<Property>]
+let ``Equality and Hash should be equal`` (first: Interval<Unitless>) (second: Interval<Unitless>) =
+    (first = second) = (first.GetHashCode() = second.GetHashCode())
 
 
 [<Property>]

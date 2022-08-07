@@ -122,37 +122,46 @@ type Quantity<'Units>(quantity: float) =
     interface IComparable with
         member this.CompareTo(obj) =
             match obj with
-            | :? (Quantity<'Units>) as quantity -> this.Comparison(quantity)
-            | _ -> failwith "incompatible comparison"
+            | :? Quantity<'Units> as quantity -> this.Comparison(quantity)
+            | _ -> -1
 
 
+    // ---- Base Properties & Functions ----
 
     member this.Value = quantity
-    static member create(newQuantity: float) : Quantity<'a> = Quantity(newQuantity)
+
+    override this.ToString() = $"{quantity} {typeof<'Units>.Name}"
+
+
+    // ---- IComparable Implementation ----
 
     member this.Comparison(other: Quantity<'Units>) =
         if this.Equals(other) then 0
         elif this.LessThan(other) then -1
         else 1
 
-    member this.Equals(other: Quantity<'Units>) : bool = Float.almostEqual this.Value other.Value
+
+    member this.Equals(other: Quantity<'Units>) : bool =
+        Float.almostEqual this.Value other.Value
 
 
     member this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
 
-    override this.ToString() = string quantity
 
     override this.GetHashCode() =
         this.Value
         |> Float.roundFloatTo Float.DigitPrecision
         |> hash
 
+
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? (Quantity<'Units>) as other -> this.Equals(other)
+        | :? Quantity<'Units> as other -> this.Equals(other)
         | _ -> false
 
-    // Operators
+
+    // ---- Built In Functions ----
+
     static member Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(abs q.Value)
 
     static member Min(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
@@ -171,6 +180,9 @@ type Quantity<'Units>(quantity: float) =
 
     static member Truncate(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(truncate q.Value)
 
+
+    // ---- Operators ----
+
     static member (+)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
         Quantity<'Units>(lhs.Value + rhs.Value)
 
@@ -182,12 +194,6 @@ type Quantity<'Units>(quantity: float) =
     static member (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
 
     static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
-
-    static member (*)(lhs: Quantity<Unitless>, rhs: Quantity<'Units>) : Quantity<Unitless> =
-        Quantity<Unitless>(lhs.Value * rhs.Value)
-
-    static member (*)(lhs: Quantity<'Units>, rhs: Quantity<Unitless>) : Quantity<Unitless> =
-        Quantity<Unitless>(lhs.Value * rhs.Value)
 
     static member (*)(lhs: Quantity<'UnitA>, rhs: Quantity<'UnitB>) : Quantity<Product<'UnitA, 'UnitB>> =
         Quantity<Product<'UnitA, 'UnitB>>(lhs.Value * rhs.Value)
@@ -270,19 +276,22 @@ type Resistance = Quantity<Ohms>
 ///     Interval float
 ///     Interval int
 ///     Interval Angle
-[<CustomEquality>]
-[<NoComparison>]
+[<CustomEquality; NoComparison>]
 type Interval<'Units> =
     | Interval of Start: Quantity<'Units> * Finish: Quantity<'Units>
 
     override this.Equals(obj: obj) : bool =
         match obj with
-        | :? (Interval<'Units>) as other ->
+        | :? Interval<'Units> as other ->
             match this, other with
             | Interval (thisStart, thisFinish), Interval (otherStart, otherFinish) ->
                 thisStart = otherStart && thisFinish = otherFinish
 
         | _ -> false
+
+    override this.ToString() =
+        match this with
+        | Interval (start, finish) -> $"Interval [ {start} -> {finish} ]"
 
     override this.GetHashCode() : int =
         match this with

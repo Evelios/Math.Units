@@ -15,11 +15,12 @@ let rTheta (r: Quantity<'Units>) (theta: Angle) : Point2D<'Units, 'Coordinates> 
 
 let polar r theta = rTheta r theta
 
-let origin<'Units, 'Coordinates> : Point2D<'Units, 'Coordinates> = xy Quantity.zero Quantity.zero
+let origin<'Units, 'Coordinates> : Point2D<'Units, 'Coordinates> =
+    xy Quantity.zero Quantity.zero
 
 let unsafe<'Units, 'Coordinates> (x: float) (y: float) : Point2D<'Units, 'Coordinates> =
-    { X = Length.create<'Units> x
-      Y = Length.create<'Units> y }
+    { X = Quantity.create x
+      Y = Quantity.create y }
 
 // ---- Helper Builder Functions ----
 
@@ -194,7 +195,10 @@ let translateBy (v: Vector2D<'Units, 'Coordiantes>) (p: Point2D<'Units, 'Coordin
 
 /// Mirror a point across an axis. The result will be the same distance from the
 /// axis but on the opposite side.
-let mirrorAcross (axis: Axis2D<'Units, 'Coordinates>) (p: Point2D<'Units, 'Corodinates>) : Point2D<'Units, 'Coordinates> =
+let mirrorAcross
+    (axis: Axis2D<'Units, 'Coordinates>)
+    (p: Point2D<'Units, 'Corodinates>)
+    : Point2D<'Units, 'Coordinates> =
     Internal.Point2D.mirrorAcross axis p
 
 // ---- Queries ----
@@ -214,7 +218,10 @@ let equalWithin (eps: Quantity<'Units>) (p1: Point2D<'Units, 'Coordinates>) (p2:
         false
 
 /// Find the squared distance from the first point to the second.
-let distanceSquaredTo (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinates>) : Quantity<'Units Squared> =
+let distanceSquaredTo
+    (p1: Point2D<'Units, 'Coordinates>)
+    (p2: Point2D<'Units, 'Coordinates>)
+    : Quantity<'Units Squared> =
     let dx = (p1.X - p2.X)
     let dy = (p1.Y - p2.Y)
     dx * dx + dy * dy
@@ -318,10 +325,16 @@ let circumcenter
 
 /// Project a point perpendicularly onto an axis.
 /// The axis does not have to pass through the origin:
-let projectOnto (axis: Axis2D<'Units, 'Coordinates>) (p: Point2D<'Units, 'Coordinates>) : Point2D<'Units, 'Coordinates> =
+let projectOnto
+    (axis: Axis2D<'Units, 'Coordinates>)
+    (p: Point2D<'Units, 'Coordinates>)
+    : Point2D<'Units, 'Coordinates> =
     let p0 = axis.Origin
     let d = axis.Direction
-    let distance = (p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y
+
+    let distance =
+        (p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y
+
     xy (p0.X + distance * d.X) (p0.Y + distance * d.Y)
 
 
@@ -403,13 +416,19 @@ let rThetaIn (frame: Frame2D<'Units, 'Coordinates, 'Defines>) (r: Quantity<'Unit
     xy (p0.X + x * i.X + y * j.X) (p0.Y + x * i.Y + y * j.Y)
 
 /// Find the X coordinate of a point relative to a given frame.
-let xCoordinateIn (frame: Frame2D<'Units, 'Coordinates, 'Defines>) (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
+let xCoordinateIn
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    (p: Point2D<'Units, 'Coordinates>)
+    : Quantity<'Units> =
     let p0 = frame.Origin
     let d = frame.XDirection
     ((p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y)
 
 /// Find the Y coordinate of a point relative to a given frame.
-let yCoordinateIn (frame: Frame2D<'Units, 'Coordinates, 'Defines>) (p: Point2D<'Units, 'Coordinates>) : Quantity<'Units> =
+let yCoordinateIn
+    (frame: Frame2D<'Units, 'Coordinates, 'Defines>)
+    (p: Point2D<'Units, 'Coordinates>)
+    : Quantity<'Units> =
     let p0 = frame.Origin
     let d = frame.YDirection
     ((p.X - p0.X) * d.X + (p.Y - p0.Y) * d.Y)
@@ -450,9 +469,7 @@ let fromList (list: float list) : Point2D<'Units, 'Coordinates> option =
         <| xy (Quantity<'Units>.create x) (Quantity<'Units>.create y)
     | _ -> None
 
-let toList (point: Point2D<'Units, 'Coordinates>) : float list =
-    [ point.X.Value
-      point.Y.Value ]
+let toList (point: Point2D<'Units, 'Coordinates>) : float list = [ point.X.Value; point.Y.Value ]
 
 
 // ---- Json transformations ----
