@@ -68,6 +68,9 @@ module Arb =
 
     open Units
 
+    let float: Arbitrary<float> =
+        Arb.fromGen Gen.float
+
     let floatBetween start finish : Arbitrary<float> =
         Gen.floatBetween start finish |> Arb.fromGen
 

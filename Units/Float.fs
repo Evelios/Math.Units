@@ -26,8 +26,6 @@ open System
 ///
 /// In general the rules followed by this extension are from [The Floating Point
 /// Guide on Comparison](https://floating-point-gui.de/errors/comparison/).
-///
-
 type Float() =
     static let mutable digitPrecision = 10
 

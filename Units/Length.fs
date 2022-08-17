@@ -95,14 +95,8 @@ let point = points 1.
 let pica = picas 1.
 
 
-// ---- Unitless ----
-
-let unitless l : Length = Length l
-
-
 // ---- Math ----
 
-let apply f (l: Length) : Length = Length (f l)
+let apply f (l: Length) : Length = Length(f l)
 
-// Type conversion issue
-//let midpoint (a: Length) (b: Length) : Length = (a + b) / 2.
+let midpoint (a: Length) (b: Length) : Length = (a + b) / 2.

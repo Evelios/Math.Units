@@ -42,28 +42,11 @@ let ``Equality and hash code comparison with random lengths`` (first: Length) (s
 
 [<Test>]
 let ``Length in units equals zero`` () =
-    let zero : Length = Length.zero
+    let zero: Length = Length.zero
     Assert.AreEqual(Length.unitless 0., zero)
 
 
 // ---- Length Correlations -----
-
-let ``Length Equality Comparisons`` =
-    [ (Length.inches 1., Length.centimeters 2.54)
-      (Length.feet 3., Length.yards 1.)
-      (Length.miles 1., Length.feet 5280.)
-      (Length.meters 1., Length.microns 1.0e6)
-      (Length.angstroms 2.0e10, Length.meters 2.)
-      (Length.nanometers 1., Length.angstroms 10.)
-      (Length.cssPixels 1., Length.inches (1. / 96.))
-      (Length.points 1., Length.inches (1. / 72.))
-      (Length.picas 1., Length.inches (1. / 6.)) ]
-    |> List.map TestCaseData
-
-[<Test>]
-[<TestCaseSource(nameof ``Length Equality Comparisons``)>]
-let ``Different length units are equal`` first second = Assert.AreEqual(first, second)
-
 
 [<Property>]
 let ``Conversion to Length and back`` (length: float) =
@@ -81,11 +64,14 @@ let ``Conversion to Length and back`` (length: float) =
           Length.astronomicalUnits, Length.inAstronomicalUnits
           Length.parsecs, Length.inParsecs
           Length.lightYears, Length.inLightYears
+          Length.angstroms, Length.inAngstroms
+          Length.nanometers, Length.inNanometers
           Length.cssPixels, Length.inCssPixels
           Length.points, Length.inPoints
           Length.picas, Length.inPicas ]
 
-    let conversionTest (toLength, fromLength) = fromLength (toLength length) .==. length
+    let conversionTest (toLength, fromLength) =
+        fromLength (toLength length) .==. length
 
     List.map conversionTest testCases |> Test.all
 

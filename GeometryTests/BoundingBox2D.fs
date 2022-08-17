@@ -146,14 +146,14 @@ let ``Separation test cases`` =
             .Returns(expected))
 
 [<TestCaseSource(nameof ``Separation test cases``)>]
-let ``separation is determined correctly for horizontally displaced boxes`` (separation: Length) =
-    let firstBox =
+let ``separation is determined correctly for horizontally displaced boxes`` (separation: Quantity<Unitless>) =
+    let firstBox: BoundingBox2D<Unitless, TestSpace> =
         { MinX = Length.unitless 0.
           MinY = Length.unitless 0.
           MaxX = Length.unitless 1.
           MaxY = Length.unitless 1. }
 
-    let secondBox =
+    let secondBox: BoundingBox2D<Unitless, TestSpace> =
         { MinX = Length.unitless 2.
           MinY = Length.unitless 0.
           MaxX = Length.unitless 3.
@@ -163,7 +163,7 @@ let ``separation is determined correctly for horizontally displaced boxes`` (sep
 
 
 [<TestCaseSource(nameof ``Separation test cases``)>]
-let ``separation is determined correctly for vertically displaced boxes`` (separation: Length) =
+let ``separation is determined correctly for vertically displaced boxes`` (separation: Quantity<Unitless>) =
     let firstBox =
         { MinX = Length.unitless 0.
           MinY = Length.unitless 0.
@@ -191,7 +191,7 @@ let ``Diagonal separation test cases`` =
             .Returns(expected))
 
 [<TestCaseSource(nameof ``Diagonal separation test cases``)>]
-let ``separation is determined correctly for diagonally displaced boxes`` (separation: Length) =
+let ``separation is determined correctly for diagonally displaced boxes`` (separation: Quantity<Unitless>) =
     let firstBox =
         { MinX = Length.unitless 0.
           MinY = Length.unitless 0.

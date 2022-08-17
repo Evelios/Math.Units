@@ -14,7 +14,7 @@ open Units
 ///     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.
 type Unitless = Unitless
 
-type Pixels = Pixels
+type Pixel = Pixel
 type Meters = Meters
 type Kilograms = Kilograms
 type Radians = Radians
@@ -99,10 +99,9 @@ type Ohms = Rate<Volts, Amperes>
 
 
 // ---- Pixels
-type PixelsPerSecond = Rate<Pixels, Seconds>
+type PixelsPerSecond = Rate<Pixel, Seconds>
 type PixelsPerSecondSquared = Rate<PixelsPerSecond, Seconds>
-type SquarePixels = Squared<Pixels>
-
+type SquarePixels = Squared<Pixel>
 
 
 // ---- Quantity Declaration ---------------------------------------------------
@@ -227,7 +226,7 @@ type Temperature = Quantity<CelsiusDegrees>
 type Length = Quantity<Meters>
 type Area = Quantity<SquareMeters>
 type Volume = Quantity<CubicMeters>
-
+type Pixels = Quantity<Pixel>
 type Speed = Quantity<MetersPerSecond>
 type Acceleration = Quantity<MetersPerSecondSquared>
 
@@ -263,7 +262,7 @@ type Capacitance = Quantity<Farads>
 type Inductance = Quantity<Henries>
 type Power = Quantity<Watts>
 type Resistance = Quantity<Ohms>
-
+type Voltage = Quantity<Volts>
 
 
 // ---- Interval ---------------------------------------------------------------
