@@ -36,6 +36,66 @@ let ``Equality and Hash should be equal`` (first: Interval<Unitless>) (second: I
 
 
 [<Property>]
+let ``from is equal to fromEndpoints`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
+    Test.equal (Interval.from first second) (Interval.fromEndpoints (first, second))
+
+
+[<Property>]
+let ``Endpoints are equal to input endpoints`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
+    let lower = min first second
+    let upper = max first second
+    let endpoints = lower, upper
+
+    Interval.fromEndpoints endpoints
+    |> Interval.endpoints
+    |> Test.equal endpoints
+
+[<Property>]
+let ``Min value of interval`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
+    let lower = min first second
+
+    Interval.fromEndpoints (first, second)
+    |> Interval.minValue
+    |> Test.equal lower
+
+[<Property>]
+let ``Max value of interval`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
+    let upper = max first second
+
+    Interval.fromEndpoints (first, second)
+    |> Interval.maxValue
+    |> Test.equal upper
+
+[<Property>]
+let ``Midpoint is equidistant from endpoints`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
+    let midpoint =
+        Interval.fromEndpoints (first, second)
+        |> Interval.midpoint
+
+    let firstWidth =
+        Interval.fromEndpoints (first, midpoint)
+        |> Interval.width
+
+    let secondWidth =
+        Interval.fromEndpoints (second, midpoint)
+        |> Interval.width
+
+    Test.equal firstWidth secondWidth
+
+
+[<Property>]
+let ``Singleton creates a zero width interval`` (quantity: Quantity<Unitless>) =
+    let interval = Interval.singleton quantity
+
+    Test.all [
+        Interval.width interval
+        |> Test.equal Quantity.zero
+
+        Interval.isSingleton interval
+    ]
+
+
+[<Property>]
 let union (first: Interval<Unitless>) (second: Interval<Unitless>) (ZeroToOne range: float ZeroToOne) =
     let union = Interval.union first second
 
@@ -96,6 +156,17 @@ let hull3 (a: Quantity<Unitless>) (b: Quantity<Unitless>) (c: Quantity<Unitless>
     Test.equal (Interval.hull3 a b c) (Interval.hull a [ b; c ])
 
 [<Property>]
+let hullOfN (values: Quantity<Unitless> list) =
+    match Interval.hullOfN id values with
+    | Some interval ->
+        Test.forAll
+            (fun value -> $"The value: {value} should be contained with the interval {interval}")
+            (fun value -> Interval.contains value interval)
+            values
+
+    | None -> Test.equal values []
+
+[<Property>]
 let aggregateN (intervals: Interval<Unitless> list) =
     match Interval.aggregateN intervals with
     | Some aggregateInterval ->
@@ -109,6 +180,17 @@ let aggregateN (intervals: Interval<Unitless> list) =
 [<Property>]
 let aggregate3 (a: Interval<Unitless>) (b: Interval<Unitless>) (c: Interval<Unitless>) =
     Test.equal (Interval.aggregate3 a b c) (Interval.aggregate a [ b; c ])
+
+[<Property>]
+let aggregateOfN (intervals: Interval<Unitless> list) =
+    match Interval.aggregateOfN id intervals with
+    | Some aggregateInterval ->
+        Test.forAll
+            (fun interval -> $"The interval {interval} must be contained in the aggregate interval {aggregateInterval}")
+            (Interval.isContainedIn aggregateInterval)
+            intervals
+
+    | None -> Test.equal [] intervals
 
 [<Property>]
 let ``Intersection and intersects are consistent`` (first: Interval<Unitless>, second: Interval<Unitless>) =

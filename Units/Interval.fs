@@ -479,7 +479,8 @@ let cos (interval: Interval<Radians>) : Interval<Unitless> =
 /// [`Float.Extra.interpolateFrom`](https://package.elm-lang.org/packages/ianmackenzie/elm-float-extra/latest/Float-Extra#interpolateFrom)
 /// from the `elm-float-extra` package.
 let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units> =
-    Float.interpolateFrom a.Value b.Value t |> Quantity
+    Float.interpolateFrom a.Value b.Value t
+    |> Quantity
 
 
 /// Given an interval and a given value, determine the corresponding
@@ -607,7 +608,7 @@ let hullN (values: Quantity<'Units> list) : Interval<'Units> option =
 ///         , fourthPerson
 ///         ]
 /// See also [`hullOfN`](#hullOfN).
-let hullOf (getValue: 'a -> 'Units) (first: 'a) (rest: 'a list) : Interval<'Units> =
+let hullOf (getValue: 'a -> Quantity<'Units>) (first: 'a) (rest: 'a list) : Interval<'Units> =
     let rec hullOfHelp a b getValue list =
         match list with
         | first :: rest ->
@@ -620,7 +621,7 @@ let hullOf (getValue: 'a -> 'Units) (first: 'a) (rest: 'a list) : Interval<'Unit
     hullOfHelp firstValue firstValue getValue rest
 
 /// Combination of [`hullOf`](#hullOf) and [`hullN`](#hullN).
-let hullOfN (getValue: 'a -> 'Units) (items: 'a list) : Interval<'Units> option =
+let hullOfN (getValue: 'a -> Quantity<'Units>) (items: 'a list) : Interval<'Units> option =
     match items with
     | first :: rest -> Some(hullOf getValue first rest)
     | [] -> None

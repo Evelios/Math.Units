@@ -42,7 +42,7 @@ let ``Equality and hash code comparison with random lengths`` (first: Length) (s
 
 [<Test>]
 let ``Length in units equals zero`` () =
-    let zero: Length = Length.zero
+    let zero: Quantity<Unitless> = Quantity.zero
     Assert.AreEqual(Length.unitless 0., zero)
 
 
