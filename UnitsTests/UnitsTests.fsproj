@@ -16,6 +16,7 @@
         <Compile Include="Length.fs" />
         <Compile Include="Interval.fs" />
         <Compile Include="Angle.fs" />
+        <Compile Include="Temperature.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 

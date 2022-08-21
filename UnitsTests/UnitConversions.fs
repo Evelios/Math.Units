@@ -9,15 +9,15 @@ open Units
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
 
-let equalityTest (title: string) (unit: string) (first: Quantity<'Units>, second: Quantity<'Units>) : unit =
+let equalityTest (title: string) (unit: string) (first: 'a, second: 'a) : unit =
     Assert.AreEqual(first, second, $"{title}: {first}{unit} and {second}{unit} should be equal.")
 
-let equalPairs (title: string) (unit: string) (pairs: (Quantity<'Units> * Quantity<'Units>) list) =
+let equalPairs (title: string) (unit: string) (pairs: ('a * 'a) list) =
     let unitTest = equalityTest title unit
 
     List.iter unitTest pairs
 
-let conversionTests (num: float) (pairs: ((float -> Quantity<'Units>) * (Quantity<'Units> -> float)) list) : bool =
+let conversionTests (num: float) (pairs: ((float -> 'a) * ('a -> float)) list) : bool =
     List.forall
         (fun (intoQuantity, fromQuantity) ->
             let quantity = intoQuantity num
@@ -26,7 +26,7 @@ let conversionTests (num: float) (pairs: ((float -> Quantity<'Units>) * (Quantit
         pairs
 
 [<Property>]
-let ``angle Conversions`` (angle: float) =
+let ``Angle Conversions`` (angle: float) =
     conversionTests
         angle
         [ Angle.degrees, Angle.inDegrees
@@ -34,6 +34,21 @@ let ``angle Conversions`` (angle: float) =
           Angle.turns, Angle.inTurns
           Angle.minutes, Angle.inMinutes
           Angle.seconds, Angle.inSeconds ]
+
+[<Property>]
+let ``Temperature Conversions`` (temp: float) =
+    conversionTests
+        temp
+        [ Temperature.kelvins, Temperature.inKelvins
+          Temperature.degreesCelsius, Temperature.inDegreesCelsius
+          Temperature.degreesFahrenheit, Temperature.inDegreesFahrenheit ]
+
+[<Property>]
+let ``Temperature Delta Conversions`` (temp: float) =
+    conversionTests
+        temp
+        [ Temperature.celsiusDegrees, Temperature.inCelsiusDegrees
+          Temperature.fahrenheitDegrees, Temperature.inFahrenheitDegrees ]
 
 [<Test>]
 let Lengths () =

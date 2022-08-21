@@ -219,7 +219,6 @@ type Quantity<'Units>(quantity: float) =
 type Percent = Quantity<Percentage>
 
 type Duration = Quantity<Seconds>
-type Temperature = Quantity<CelsiusDegrees>
 
 
 // ---- Distance
@@ -263,6 +262,83 @@ type Inductance = Quantity<Henries>
 type Power = Quantity<Watts>
 type Resistance = Quantity<Ohms>
 type Voltage = Quantity<Volts>
+
+// ---- Temperature ------------------------------------------------------------
+
+
+type Delta = Quantity<CelsiusDegrees>
+
+type Temperature(kelvin: float) =
+    interface IComparable<Temperature> with
+        member this.CompareTo(temp: Temperature) : int = this.Comparison(temp)
+
+    interface IComparable with
+        member this.CompareTo(obj) =
+            match obj with
+            | :? Temperature as temp -> this.Comparison(temp)
+            | _ -> -1
+
+
+    // ---- Base Properties & Functions ----
+
+    member this.Value = kelvin
+
+    override this.ToString() = $"{kelvin}K"
+
+
+    // ---- IComparable Implementation ----
+
+    member this.Comparison(other: Temperature) =
+        if this.Equals(other) then 0
+        elif this.LessThan(other) then -1
+        else 1
+
+
+    member this.Equals(other: Temperature) : bool =
+        Float.almostEqual this.Value other.Value
+
+
+    member this.LessThan(other: Temperature) = this.Value < other.Value
+
+
+    override this.GetHashCode() =
+        this.Value
+        |> Float.roundFloatTo Float.DigitPrecision
+        |> hash
+
+
+    override this.Equals(obj: obj) : bool =
+        match obj with
+        | :? Temperature as other -> this.Equals(other)
+        | _ -> false
+
+
+    // ---- Built In Functions ----
+
+    static member Abs(q: Temperature) : Temperature = Temperature(abs q.Value)
+
+    static member Min(lhs: Temperature, rhs: Temperature) : Temperature = Temperature(min lhs.Value rhs.Value)
+
+    static member Max(lhs: Temperature, rhs: Temperature) : Temperature = Temperature(max lhs.Value rhs.Value)
+
+    static member Sqrt(value: Quantity<'Units Squared>) : Temperature = Temperature(sqrt value.Value)
+
+    static member Floor(value: Temperature) : Temperature = Temperature(floor value.Value)
+
+    static member Ceiling(q: Temperature) : Temperature = Temperature(ceil q.Value)
+
+    static member Round(q: Temperature) : Temperature = Temperature(round q.Value)
+
+    static member Truncate(q: Temperature) : Temperature = Temperature(truncate q.Value)
+
+
+    // ---- Operators ----
+
+    static member (+)(lhs: Temperature, rhs: Delta) : Temperature = Temperature(lhs.Value + rhs.Value)
+
+    static member (+)(lhs: Delta, rhs: Temperature) : Temperature = Temperature(lhs.Value + rhs.Value)
+
+    static member (-)(lhs: Temperature, rhs: Temperature) : Delta = Delta(lhs.Value - rhs.Value)
 
 
 // ---- Interval ---------------------------------------------------------------
