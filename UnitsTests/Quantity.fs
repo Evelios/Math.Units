@@ -5,7 +5,6 @@ open FsCheck.NUnit
 open FsCheck
 
 open Units
-open FSharp.Extensions
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
@@ -652,54 +651,40 @@ let ``Greater Than Or Equal To Zero`` () =
 
 // ---- Operator Comparison ----
 
-let testUnaryOperator (fn: Quantity<'Unit> -> 'a) (op: Quantity<'Unit> -> 'a) : Property =
-    Prop.forAll Arb.quantity (fun q -> Test.equal (fn q) (op q))
-
-
-let testBinaryOperator
-    (fn: Quantity<'Unit> -> Quantity<'Unit> -> 'a)
-    (op: Quantity<'Unit> -> Quantity<'Unit> -> 'a)
-    : Property =
-
-    let arb =
-        Gen.map2 Tuple2.pair Gen.quantity Gen.quantity
-        |> Arb.fromGen
-
-    Prop.forAll arb (fun (a, b) -> Test.equal (fn a b) (a |> op b))
 
 // ---- Unary Comparison ---
 
 [<Property>]
 let ``Abs Comparison`` () =
-    testUnaryOperator Quantity.abs Quantity.Abs
+    Test.unaryOperator Arb.quantity Quantity.abs Quantity.Abs
 
 [<Property>]
 let ``Sqrt Comparison`` () =
-    testUnaryOperator Quantity.sqrt Quantity.Sqrt
+    Test.unaryOperator Arb.quantity Quantity.sqrt Quantity.Sqrt
 
 [<Property>]
 let ``Floor Comparison`` () =
-    testUnaryOperator Quantity.floor Quantity.Floor
+    Test.unaryOperator Arb.quantity Quantity.floor Quantity.Floor
 
 [<Property>]
 let ``Round Comparison`` () =
-    testUnaryOperator Quantity.round Quantity.Round
+    Test.unaryOperator Arb.quantity Quantity.round Quantity.Round
 
 [<Property>]
 let ``Ceiling Comparison`` () =
-    testUnaryOperator Quantity.ceil Quantity.Ceiling
+    Test.unaryOperator Arb.quantity Quantity.ceil Quantity.Ceiling
 
 [<Property>]
 let ``Truncate Comparison`` () =
-    testUnaryOperator Quantity.truncate Quantity.Truncate
+    Test.unaryOperator Arb.quantity Quantity.truncate Quantity.Truncate
 
 [<Property>]
 let ``Negate Comparison`` () =
-    testUnaryOperator Quantity.negate (fun a -> -a)
+    Test.unaryOperator Arb.quantity Quantity.negate (fun a -> -a)
 
 [<Property>]
 let ``Hash Comparison`` () =
-    testUnaryOperator hash (fun q -> q.GetHashCode())
+    Test.unaryOperator Arb.quantity hash (fun q -> q.GetHashCode())
 
 [<Property>]
 let ``Equality and Hash should be equal`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
@@ -709,45 +694,47 @@ let ``Equality and Hash should be equal`` (first: Quantity<Unitless>) (second: Q
 
 [<Property>]
 let ``Max Comparison`` () =
-    testBinaryOperator Quantity.max (fun a b -> Quantity.Max(a, b))
+    Test.binaryOperator Gen.quantity Quantity.max (fun a b -> Quantity.Max(a, b))
 
 [<Property>]
 let ``Min Comparison`` () =
-    testBinaryOperator Quantity.min (fun a b -> Quantity.Min(a, b))
+    Test.binaryOperator Gen.quantity Quantity.min (fun a b -> Quantity.Min(a, b))
 
 [<Property>]
 let ``Less Than`` () =
-    testBinaryOperator Quantity.lessThan (<)
+    Test.binaryOperator Gen.quantity Quantity.lessThan (<)
 
 [<Property>]
 let ``Less Than Or Equal`` () =
-    testBinaryOperator Quantity.lessThanOrEqualTo (<=)
+    Test.binaryOperator Gen.quantity Quantity.lessThanOrEqualTo (<=)
 
 [<Property>]
 let ``Greater Than `` () =
-    testBinaryOperator Quantity.greaterThan (>)
+    Test.binaryOperator Gen.quantity Quantity.greaterThan (>)
 
 [<Property>]
 let ``Greater Than Or Equal`` () =
-    testBinaryOperator Quantity.greaterThanOrEqualTo (>=)
+    Test.binaryOperator Gen.quantity Quantity.greaterThanOrEqualTo (>=)
 
 [<Property>]
-let Plus () = testBinaryOperator Quantity.plus (+)
+let Plus () =
+    Test.binaryOperator Gen.quantity Quantity.plus (+)
 
 [<Property>]
-let Minus () = testBinaryOperator Quantity.minus (-)
+let Minus () =
+    Test.binaryOperator Gen.quantity Quantity.minus (-)
 
 [<Property>]
 let Difference () =
-    testBinaryOperator (fun y x -> Quantity.difference x y) (-)
+    Test.binaryOperator Gen.quantity (fun y x -> Quantity.difference x y) (-)
 
 [<Property>]
 let ``Difference And Minus`` () =
-    testBinaryOperator Quantity.difference Quantity.minus
+    Test.binaryOperator Gen.quantity Quantity.difference Quantity.minus
 
 [<Property>]
 let ``Product and Times`` () =
-    testBinaryOperator Quantity.product Quantity.times
+    Test.binaryOperator Gen.quantity Quantity.product Quantity.times
 
 
 // ----  Accessors -------------------------------------------------------------

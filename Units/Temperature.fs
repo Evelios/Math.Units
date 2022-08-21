@@ -50,6 +50,7 @@
 module Units.Temperature
 
 
+
 /// Construct a temperature from a number of [kelvins][kelvin].
 ///     Temperature.kelvins 300
 ///     --> Temperature.degreesCelsius 26.85
@@ -106,6 +107,41 @@ let inFahrenheitDegrees (quantity: Delta) : float = inCelsiusDegrees quantity * 
 let celsiusDegree = celsiusDegrees 1
 let fahrenheitDegree = fahrenheitDegrees 1
 
+// ---- Operators --------------------------------------------------------------
+
+// This is meant to be used with pipe operators.
+//     Temperature.inDegreesCelsius 10.
+//     |> Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
+//
+let lessThan (rhs: Temperature) (lhs: Temperature) : bool = lhs < rhs
+
+// This is meant to be used with pipe operators.
+//     Temperature.inDegreesCelsius 10.
+//     |> Temperature.greaterThanOrEqualTo (Temperature.inDegreesCelsius 15.)
+//
+let lessThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs <= rhs
+
+// This is meant to be used with pipe operators.
+//     Temperature.inDegreesCelsius 30.
+//     |> Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
+//
+let greaterThan (rhs: Temperature) (lhs: Temperature) : bool = lhs > rhs
+
+// This is meant to be used with pipe operators.
+//     Temperature.inDegreesCelsius 30.
+//     |> Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
+//
+let greaterThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs >= rhs
+
+
+// This is meant to be used with pipe operators.
+//     Temperature.inDegreesCelsius 20.
+//     |> Temperature.plus (Temperature.celsiusDegrees 35.)
+//
+//     ---- Temperature.inDegreesCelsius 55.
+//
+let plus (rhs: Delta) (lhs: Temperature) : Temperature = lhs + rhs
+
 
 // ---- Functions --------------------------------------------------------------
 
@@ -130,6 +166,14 @@ let clamp (lower: Temperature) (upper: Temperature) (temperature: Temperature) :
     |> min upper.Value
     |> Temperature
 
+let round (temp: Temperature) : Temperature = round temp
+
+let abs (temp: Temperature) = abs temp
+
+let min (first: Temperature) (second: Temperature) : Temperature = min first second
+
+let max (first: Temperature) (second: Temperature) : Temperature = max first second
+
 // ---- List Functions ---------------------------------------------------------
 
 /// Find the minimum of a list of temperatures. Returns `Nothing` if the list
@@ -143,7 +187,6 @@ let clamp (lower: Temperature) (upper: Temperature) (temperature: Temperature) :
 let minimum (temperatures: Temperature list) : Temperature option =
     match temperatures with
     | first :: rest -> Some(List.fold min first rest)
-
     | [] -> None
 
 

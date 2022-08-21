@@ -1,13 +1,16 @@
 namespace UnitsTests
 
-open System
-
-open Units
 
 type TestSpace = TestSpace
 type TestDefines = TestDefines
 
 module Test =
+    open System
+    open FsCheck
+
+    open Units
+    open FSharp.Extensions
+
     [<Literal>]
     let pass = true
 
@@ -26,15 +29,15 @@ module Test =
             printfn $"{failMessage}"
 
         assertion
-        
-    let forAll (message: 'a -> string) (test: 'a -> bool) (values : 'a list): bool =
+
+    let forAll (message: 'a -> string) (test: 'a -> bool) (values: 'a list) : bool =
         let mutable testPasses = true
-        
+
         for value in values do
             if not <| test value then
                 printfn $"{message value}"
                 testPasses <- false
-                
+
         testPasses
 
     let private comparison lhs operator rhs name : bool =
@@ -64,6 +67,15 @@ module Test =
 
     let all tests = List.forall id tests
 
+    let unaryOperator (arb: Arbitrary<'a>) (fn: 'a -> 'b) (op: 'a -> 'b) : Property =
+        Prop.forAll arb (fun q -> equal (fn q) (op q))
+
+
+    let binaryOperator (arb: Gen<'a>) (fn: 'a -> 'a -> 'b) (op: 'a -> 'a -> 'b) : Property =
+        let arb =
+            Gen.map2 Tuple2.pair arb arb |> Arb.fromGen
+
+        Prop.forAll arb (fun (a, b) -> equal (fn a b) (a |> op b))
 
 
 [<AutoOpen>]

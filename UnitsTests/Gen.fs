@@ -43,6 +43,9 @@ module Gen =
     let quantity<'Units> : Gen<Quantity<'Units>> =
         Gen.map Quantity float
 
+    let temperature: Gen<Temperature> =
+        Gen.map Temperature.kelvins positiveFloat
+
     /// Generate a `Positive<Length>` values. This is a type safe way of
     /// generating and enforcing positive `Length` values.
     let positiveQuantity<'Units> : Gen<Positive<Quantity<'Units>>> =
@@ -60,6 +63,7 @@ module Gen =
         static member Float() = Arb.fromGen float
         static member Register() = Arb.register<ArbGeometry> () |> ignore
         static member Quantity() = Arb.fromGen quantity
+        static member Temperature() = Arb.fromGen temperature
         static member Interval() = Arb.fromGen interval
         static member ZeroToOneFloat() = Arb.fromGen zeroToOneFloat
 
@@ -76,6 +80,9 @@ module Arb =
 
     let quantity<'Units> : Arbitrary<Quantity<'Units>> =
         Gen.quantity |> Arb.fromGen
+
+    let temperature: Arbitrary<Temperature> =
+        Gen.temperature |> Arb.fromGen
 
     let interval<'Units> : Arbitrary<Interval<'Units>> =
         Gen.interval |> Arb.fromGen
