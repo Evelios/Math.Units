@@ -25,6 +25,11 @@ let ``Floating numbers close to each other are almost equal to each other`` (num
 let ``Floating point rounding`` () =
     Assert.AreEqual(2.0, Float.roundFloatTo 10 2.00000000003)
 
+[<Property>]
+let ``Round to float`` (f: float) =
+    Float.roundFloatTo Float.DigitPrecision f
+    |> Float.almostEqual (Float.roundFloat f)
+
 
 [<Property>]
 let ``Interpolation gives start point`` (start: float) (finish: float) =

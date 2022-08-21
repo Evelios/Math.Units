@@ -26,7 +26,8 @@ open System
 ///
 /// In general the rules followed by this extension are from [The Floating Point
 /// Guide on Comparison](https://floating-point-gui.de/errors/comparison/).
-type Float() =
+[<AbstractClass; Sealed>]
+type Float private () =
     static let mutable digitPrecision = 10
 
     /// The smallest number that a 64-bit floating point number can accurately

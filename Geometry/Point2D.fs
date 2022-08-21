@@ -252,9 +252,9 @@ let midpoint (p1: Point2D<'Units, 'Coordinates>) (p2: Point2D<'Units, 'Coordinat
 let lerp
     (p1: Point2D<'Units, 'Coordinates>)
     (p2: Point2D<'Units, 'Coordinates>)
-    (percent: Percent)
+    (t: float)
     : Point2D<'Units, 'Coordinates> =
-    xy ((p1.X + p2.X) * (Percent.asRatio percent)) ((p1.Y + p2.Y) * (Percent.asRatio percent))
+    xy ((p1.X + p2.X) * t) ((p1.Y + p2.Y) * t)
 
 /// Get the direction the a point is facing.
 let direction (point: Point2D<'Units, 'Coordinates>) : Direction2D<'Coordinates> option =

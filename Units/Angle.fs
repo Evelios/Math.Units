@@ -23,7 +23,7 @@ let inDegrees (angle: Angle) : float =
     angle.Value * Constants.radiansToDegrees
 
 let turns (numTurns: float) : Angle = twoPi * numTurns
-let inTurns (angle: Angle) : float = inRadians angle / 2. * Math.PI
+let inTurns (angle: Angle) : float = inRadians (angle / twoPi.Value)
 
 let minutes (numMinutes: float) : Angle = degrees (numMinutes / 60.)
 let inMinutes (angle: Angle) : float = 60. * inDegrees angle

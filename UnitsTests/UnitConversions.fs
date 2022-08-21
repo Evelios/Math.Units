@@ -25,6 +25,15 @@ let conversionTests (num: float) (pairs: ((float -> Quantity<'Units>) * (Quantit
             Test.almostEqual num converted)
         pairs
 
+[<Property>]
+let ``angle Conversions`` (angle: float) =
+    conversionTests
+        angle
+        [ Angle.degrees, Angle.inDegrees
+          Angle.radians, Angle.inRadians
+          Angle.turns, Angle.inTurns
+          Angle.minutes, Angle.inMinutes
+          Angle.seconds, Angle.inSeconds ]
 
 [<Test>]
 let Lengths () =
@@ -305,6 +314,7 @@ let ``Substance Amount`` () =
           (SubstanceAmount.megamoles 1000., SubstanceAmount.gigamoles 1.) ]
 
 
+[<Property>]
 let ``Substance Amount Conversions`` (substanceAmount: float) =
     conversionTests
         substanceAmount

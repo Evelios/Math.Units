@@ -14,7 +14,7 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Geometry", "Geometry\Geomet
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GeometryTests", "GeometryTests\GeometryTests.fsproj", "{DA99EA17-995B-4A49-8C77-9C26565AE5F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{8B986EA4-771E-4527-B19A-2D98FAE3FAF7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Geometry Docs", "Geometry Docs", "{8B986EA4-771E-4527-B19A-2D98FAE3FAF7}"
 ProjectSection(SolutionItems) = preProject
 	docs\index.fsx = docs\index.fsx
 	docs\vector.fsx = docs\vector.fsx
@@ -66,6 +66,5 @@ Global
 		{1F51E443-D97F-4DF8-9D77-6972E3445FFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8B986EA4-771E-4527-B19A-2D98FAE3FAF7} = {C82BBD5A-6E3A-4913-BE20-27069134AE3F}
 	EndGlobalSection
 EndGlobal
