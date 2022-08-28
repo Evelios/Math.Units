@@ -8,6 +8,10 @@ ProjectSection(SolutionItems) = preProject
 	.github\gitversion.yml = .github\gitversion.yml
 	.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 	.gitattributes = .gitattributes
+	LICENSE.md = LICENSE.md
+	Math.Units.sln.DotSettings = Math.Units.sln.DotSettings
+	RELEASE_NOTES.md = RELEASE_NOTES.md
+	.config\dotnet-tools.json = .config\dotnet-tools.json
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8B986EA4-771E-4527-B19A-2D98FAE3FAF7}"
