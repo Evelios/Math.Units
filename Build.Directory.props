@@ -3,11 +3,11 @@
     <PropertyGroup>
         <Version>0.0.1</Version>
         <PackageVersion>0.0.1</PackageVersion>
-        <Product>Fsharp.Geometry</Product>
+        <Product>Math.Units</Product>
         <Authors>Thomas Waters</Authors>
         <Copyright>Thomas Waters</Copyright>
         <Company/>
-        <PackageTags>geometry, fsharp, f#</PackageTags>
+        <PackageTags>units, fsharp, f#</PackageTags>
         <PackageLicense>MIT</PackageLicense>
 
         <RepositoryUrl>https://github.com/Evelios/fsharp-geometry</RepositoryUrl>
@@ -17,7 +17,7 @@
         <NeutralLanguage>en-US</NeutralLanguage>
         
         <FsDocsLicenseLink>https://opensource.org/licenses/MIT</FsDocsLicenseLink>
-        <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Fsharp.Geometry/</FsDocsReleaseNotesLink>
+        <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Math.Units/</FsDocsReleaseNotesLink>
         <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>
         <FsDocsTheme>default</FsDocsTheme>
     </PropertyGroup>

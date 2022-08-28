@@ -1,26 +1,13 @@
-# Fsharp-Geometry
+# Math.Units
 
-This is a functional first 2D spatial geometry library heavily based on the framework [elm-geometry](https://package.elm-lang.org/packages/ianmackenzie/elm-geometry/latest/). It provides an API based on core geometry concepts and is built around the concepts of functional first design and type safety. This contains many different geometric data structures like points, vectors, arcs, polygons, and coordinate frames. It also supplies many different operations to create, transform, intersect, and perform operations on them such as intersections.
+This is an F# functional first units library ported from [elm-units](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest/). It provides an API based on core units concepts and is built around the concepts of functional first design and type safety. From this philosophy, this library provides a way of maintaining unit conversions and manipulations which allows you to focus on the hard work without being burdened with the though of having a unit discrepancy.
 
-### :closed_book: [Documentation](https://evelios.github.io/fsharp-geometry/index.html)
+### :closed_book: [Documentation](https://evelios.github.io/Math.Units/index.html)
 
 # Overview
 
-This library provides the following data structures
+This library provides access to a variety of units to work with.
 
-* Vectors
-* Points
-* Directions
-* Frames
-* Axes
-* Line Segments
-* Triangles
-* Circles
-* Ellipses
-* Arcs
-* Polylines
-* Polygons
-* Bounding Boxes
 
 # Development
 
@@ -35,4 +22,4 @@ dotnet fsdocs watch --eval
 
 # Attribution
 
-Thanks to Ian Mackenzie and all it's [contributors](https://github.com/ianmackenzie/elm-geometry/graphs/contributors) for creating the [elm-geometry](https://package.elm-lang.org/packages/ianmackenzie/elm-geometry/latest/).
+Thanks to Ian Mackenzie and all it's [contributors](https://github.com/ianmackenzie/elm-units/graphs/contributors) for creating the [elm-units](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest/).
