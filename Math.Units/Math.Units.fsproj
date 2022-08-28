@@ -5,9 +5,31 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <UsesMarkdownComments>true</UsesMarkdownComments>
         <RootNamespace>Units</RootNamespace>
+        
+        <Version>0.0.1</Version>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Product>Math.Units</Product>
+        <Authors>Thomas Waters</Authors>
+        <Copyright>Thomas Waters</Copyright>
+        <Company/>
+        <PackageTags>units, fsharp, f#</PackageTags>
+        <PackageLicense>MIT</PackageLicense>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+
+        <RepositoryUrl>https://github.com/Evelios/Math.Units</RepositoryUrl>
+        <PackageProjectUrl>https://evelios.github.io/Math.Units/</PackageProjectUrl>
+
+        <RepositoryType>git</RepositoryType>
+        <NeutralLanguage>en-US</NeutralLanguage>
+
+        <FsDocsLicenseLink>https://opensource.org/licenses/MIT</FsDocsLicenseLink>
+        <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Math.Units/</FsDocsReleaseNotesLink>
+        <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>
+        <FsDocsTheme>default</FsDocsTheme>
     </PropertyGroup>
 
     <ItemGroup>
+        <None Include="../LICENSE.md" Pack="true" PackagePath=""/>
         <Compile Include="Extensions\TupleExtensions.fs" />
         <Compile Include="Float.fs" />
         <Compile Include="Types.fs" />
