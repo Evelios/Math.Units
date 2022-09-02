@@ -322,7 +322,7 @@
 
 <span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="id">squared</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">length</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>100 Product`2</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="id">lengthSquared</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="id">meters</span> <span class="n">3.</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs5', 14)" onmouseover="showTip(event, 'fs5', 14)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="id">meters</span> <span class="n">12.</span>
 
 <span onmouseout="hideTip(event, 'fs5', 16)" onmouseover="showTip(event, 'fs5', 16)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="id">sqrt</span> <span onmouseout="hideTip(event, 'fs8', 18)" onmouseover="showTip(event, 'fs8', 18)" class="id">lengthSquared</span>
@@ -336,40 +336,40 @@
 <p>Round to the nearest 10th digit. You can read more about <a href="digit-precision.html">digit precision</a></p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 31)" onmouseover="showTip(event, 'fs5', 31)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 32)" onmouseover="showTip(event, 'fs12', 32)" class="id">round</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 33)" onmouseover="showTip(event, 'fs5', 33)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 34)" onmouseover="showTip(event, 'fs6', 34)" class="id">meters</span> <span class="n">0.123456789123456789</span><span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>0 Meters</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 35)" onmouseover="showTip(event, 'fs5', 35)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 36)" onmouseover="showTip(event, 'fs13', 36)" class="id">roundTo</span> <span class="n">3</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 37)" onmouseover="showTip(event, 'fs5', 37)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 38)" onmouseover="showTip(event, 'fs6', 38)" class="id">meters</span> <span class="n">0.11111</span><span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>0.111 Meters</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 39)" onmouseover="showTip(event, 'fs5', 39)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 40)" onmouseover="showTip(event, 'fs14', 40)" class="id">min</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 41)" onmouseover="showTip(event, 'fs5', 41)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 42)" onmouseover="showTip(event, 'fs6', 42)" class="id">meters</span> <span class="n">3.</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 43)" onmouseover="showTip(event, 'fs5', 43)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 44)" onmouseover="showTip(event, 'fs6', 44)" class="id">meters</span> <span class="n">4.</span><span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>3 Meters</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 45)" onmouseover="showTip(event, 'fs5', 45)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 46)" onmouseover="showTip(event, 'fs15', 46)" class="id">max</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 47)" onmouseover="showTip(event, 'fs5', 47)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 48)" onmouseover="showTip(event, 'fs6', 48)" class="id">meters</span> <span class="n">3.</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs5', 49)" onmouseover="showTip(event, 'fs5', 49)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 50)" onmouseover="showTip(event, 'fs6', 50)" class="id">meters</span> <span class="n">4.</span><span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>4 Meters</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 51)" onmouseover="showTip(event, 'fs5', 51)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 52)" onmouseover="showTip(event, 'fs16', 52)" class="id">sum</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs5', 53)" onmouseover="showTip(event, 'fs5', 53)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 54)" onmouseover="showTip(event, 'fs6', 54)" class="id">meters</span> <span class="n">1.</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs5', 55)" onmouseover="showTip(event, 'fs5', 55)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 56)" onmouseover="showTip(event, 'fs6', 56)" class="id">meters</span> <span class="n">2.</span> <span class="pn">]</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>3 Meters</code></pre></td></tr></table>
 <h1><a name="Unsafe-Operations" class="anchor" href="#Unsafe-Operations">Unsafe Operations</a></h1>
 <table class="pre"><tr><td><pre><code>Could not find reference ''</code></pre></td></tr></table>
 
             <div class="fsdocs-tip" id="fs1">namespace Math</div>
 <div class="fsdocs-tip" id="fs2">namespace Math.Units</div>
 <div class="fsdocs-tip" id="fs3">Multiple items<br />union case Cartesian.Cartesian: Cartesian<br /><br />--------------------<br />type Cartesian = | Cartesian</div>
-<div class="fsdocs-tip" id="fs4">val length : Length</div>
+<div class="fsdocs-tip" id="fs4">val length: Length</div>
 <div class="fsdocs-tip" id="fs5">Multiple items<br />module Length
 
 from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;</div>
-<div class="fsdocs-tip" id="fs6">val meters : m:float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs7">static member Quantity.squared : quantity:Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Squared&lt;&#39;Units&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs8">val lengthSquared : Quantity&lt;Product&lt;Meters,Meters&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs9">static member Quantity.sqrt : quantity:Quantity&lt;Squared&lt;&#39;Units&gt;&gt; -&gt; Quantity&lt;&#39;a&gt;</div>
-<div class="fsdocs-tip" id="fs10">static member Quantity.twice : quantity:Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs11">static member Quantity.half : quantity:Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs12">static member Quantity.round : quantity:Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs13">static member Quantity.roundTo : digits:int -&gt; quantity:Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs14">static member Quantity.min : x:Quantity&lt;&#39;Units&gt; -&gt; y:Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs15">static member Quantity.max : x:Quantity&lt;&#39;Units&gt; -&gt; y:Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs16">static member Quantity.sum : quantities:Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs6">val meters: m: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs7">static member Quantity.squared: quantity: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Squared&lt;&#39;Units&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs8">val lengthSquared: Quantity&lt;Product&lt;Meters,Meters&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs9">static member Quantity.sqrt: quantity: Quantity&lt;Squared&lt;&#39;Units&gt;&gt; -&gt; Quantity&lt;&#39;a&gt;</div>
+<div class="fsdocs-tip" id="fs10">static member Quantity.twice: quantity: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs11">static member Quantity.half: quantity: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs12">static member Quantity.round: quantity: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs13">static member Quantity.roundTo: digits: int -&gt; quantity: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs14">static member Quantity.min: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs15">static member Quantity.max: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs16">static member Quantity.sum: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt;</div>
 
         </div>
 

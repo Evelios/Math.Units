@@ -131,7 +131,7 @@ approximate equality comparison on floating point numbers and data structures
 like points and vectors.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="m">Float</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="id">almostEqual</span> <span class="n">1.</span> <span class="pn">(</span><span class="pn">(</span><span class="n">0.3</span> <span class="o">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span><span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>true</code></pre></td></tr></table>
 <p>You can change the precision that floating point operations are performed at. The
 default precision is a digit precision of 10. If we were looking a higher level
 of precision, you can change the digit precision to be something more fitting of
@@ -142,7 +142,7 @@ the precision we are requiring for this operation.</p>
 
 <span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="m">Float</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="id">almostEqual</span> <span class="n">1.</span> <span class="pn">(</span><span class="pn">(</span><span class="n">0.3</span> <span class="o">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span><span class="pn">)</span>
 </code></pre>
-<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
+<table class="pre"><tr><td><pre><code>false</code></pre></td></tr></table>
 
             <div class="fsdocs-tip" id="fs1">namespace Math</div>
 <div class="fsdocs-tip" id="fs2">namespace Math.Units</div>
@@ -150,10 +150,9 @@ the precision we are requiring for this operation.</p>
 <div class="fsdocs-tip" id="fs4">Multiple items<br />module Float
 
 from Math.Units<br /><br />--------------------<br />type Float =
-  private new : unit -&gt; Float
-  static member DigitPrecision : int
-  static member Epsilon : float
-  static member MinNormal : float<br /><em>&lt;summary&gt;
+  static member DigitPrecision: int
+  static member Epsilon: float
+  static member MinNormal: float<br /><em>&lt;summary&gt;
  A static class providing added features to the floating point number class.
  The main features of this class allow for better floating point equality
  testing. Generally, floating points always have small variations in their
@@ -179,7 +178,7 @@ from Math.Units<br /><br />--------------------<br />type Float =
  In general the rules followed by this extension are from [The Floating Point
  Guide on Comparison](https://floating-point-gui.de/errors/comparison/).
 &lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs5">val almostEqual : a:float -&gt; b:float -&gt; bool<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs5">val almostEqual: a: float -&gt; b: float -&gt; bool<br /><em>&lt;summary&gt;
  Compare two floating point values for equality. Equality testing is done
  based on a tolerance vale specified by `Float.Epsilon`.
 &lt;/summary&gt;</em></div>
