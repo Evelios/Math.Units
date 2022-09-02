@@ -12,13 +12,9 @@ index: 1
 
 *)
 (*** hide ***)
-#r "../Geometry/bin/Debug/net6.0/Geometry.dll"
-#r "../Geometry/bin/Release/net6.0/Geometry.dll"
-
 #r "../Math.Units/bin/Debug/net6.0/Math.Units.dll"
 #r "../Math.Units/bin/Release/net6.0/Math.Units.dll"
 
-open Geometry
 open Math.Units
 
 type Cartesian = Cartesian
@@ -78,11 +74,4 @@ the precision we are requiring for this operation.
 Float.DigitPrecision <- 17
 
 Float.almostEqual 1. ((0.3 * 3.) + 0.1)
-(*** include-it ***)
-
-(**
-# Examples
-*)
-
-Point2D.meters 1. 5. = Point2D.meters 1. (5. + 1.e-20)
 (*** include-it ***)

@@ -12,13 +12,9 @@ index: 2
 *)
 (*** hide ***)
 
-#r "../Geometry/bin/Debug/net6.0/Geometry.dll"
-#r "../Geometry/bin/Release/net6.0/Geometry.dll"
-
 #r "../Math.Units/bin/Debug/net6.0/Math.Units.dll"
 #r "../Math.Units/bin/Release/net6.0/Math.Units.dll"
 
-open Geometry
 open Math.Units
 
 
@@ -73,34 +69,6 @@ type Cartesian = Cartesian
 | /        | Angle  | Length | Length      | `angle / length`  | None |
 | /        | Length | Angle  | Length      | `length / angle`  | None |
 *)
-
-(**
-## Examples
-
-*)
-
-let vec1 : Vector2D<Meters, Cartesian> = Vector2D.meters 10. 20.
-
-let vec2 : Vector2D<Meters, Cartesian> = Vector2D.meters 30. 40.
-
-(***)
-
--vec1
-(*** include-it ***)
-
-vec1 + vec2
-(*** include-it ***)
-
-vec1 - vec2
-(*** include-it ***)
-
-vec1 * 2.
-// Or
-2. * vec1
-(*** include-it ***)
-
-vec1 / 2.
-(*** include-it ***)
 
 (**
 # Math
