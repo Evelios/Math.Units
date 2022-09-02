@@ -113,42 +113,77 @@ slightly different than you would expect.</p>
 <p>We can show this with an example. We would expect the following to be true</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="n">1.</span> <span class="o">=</span> <span class="pn">(</span><span class="n">0.3</span> <span class="o">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span>
 </code></pre>
-Warning: Output, it-value and value references require --eval
+<table class="pre"><tr><td><pre><code>false</code></pre></td></tr></table>
 <p>Checking the returned value from the right hand side we see that we are getting
 the value <code>1.0</code>. So what's going on?</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">(</span><span class="n">0.3</span> <span class="o">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span>
 </code></pre>
-Warning: Output, it-value and value references require --eval
+<table class="pre"><tr><td><pre><code>1.0</code></pre></td></tr></table>
 <p>Well, with a little investigation, we can see that we aren't getting exactly
 <code>1.0</code>. We are getting ever so slightly less than <code>1.0</code>.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">(</span><span class="pn">(</span><span class="n">0.3</span> <span class="o">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span><span class="pn">)</span> <span class="o">-</span> <span class="n">1.</span>
 </code></pre>
-Warning: Output, it-value and value references require --eval
+<table class="pre"><tr><td><pre><code>-1.110223025e-16</code></pre></td></tr></table>
 <p>Comparing datastructures that use floating point numbers can sometimes be a sign
 of bad code code design, but this is not always the case. So when you are
 looking to do equality comparison, this library provides the ability to do
 approximate equality comparison on floating point numbers and data structures
 like points and vectors.</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">Float</span><span class="pn">.</span><span class="id">almostEqual</span> <span class="n">1.</span> <span class="pn">(</span><span class="pn">(</span><span class="n">0.3</span> <span class="pn">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span><span class="pn">)</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="m">Float</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="id">almostEqual</span> <span class="n">1.</span> <span class="pn">(</span><span class="pn">(</span><span class="n">0.3</span> <span class="o">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span><span class="pn">)</span>
 </code></pre>
-Warning: Output, it-value and value references require --eval
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 <p>You can change the precision that floating point operations are performed at. The
 default precision is a digit precision of 10. If we were looking a higher level
 of precision, you can change the digit precision to be something more fitting of
 your needs. In this example, we can make that equality check fail by increasing
 the precision we are requiring for this operation.</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Increasing the equality precision to make this check fail</span>
-<span class="id">Float</span><span class="pn">.</span><span class="id">DigitPrecision</span> <span class="k">&lt;-</span> <span class="n">17</span>
+<span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="m">Float</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="id">DigitPrecision</span> <span class="k">&lt;-</span> <span class="n">17</span>
 
-<span class="id">Float</span><span class="pn">.</span><span class="id">almostEqual</span> <span class="n">1.</span> <span class="pn">(</span><span class="pn">(</span><span class="n">0.3</span> <span class="pn">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs4', 9)" onmouseover="showTip(event, 'fs4', 9)" class="m">Float</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="id">almostEqual</span> <span class="n">1.</span> <span class="pn">(</span><span class="pn">(</span><span class="n">0.3</span> <span class="o">*</span> <span class="n">3.</span><span class="pn">)</span> <span class="o">+</span> <span class="n">0.1</span><span class="pn">)</span>
 </code></pre>
-Warning: Output, it-value and value references require --eval
-<h1><a name="Examples" class="anchor" href="#Examples">Examples</a></h1>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">Point2D</span><span class="pn">.</span><span class="id">meters</span> <span class="n">1.</span> <span class="n">5.</span> <span class="o">=</span> <span class="id">Point2D</span><span class="pn">.</span><span class="id">meters</span> <span class="n">1.</span> <span class="pn">(</span><span class="n">5.</span> <span class="o">+</span> <span class="n">1.e-20</span><span class="pn">)</span>
-</code></pre>
-Warning: Output, it-value and value references require --eval
+<table class="pre"><tr><td><pre><code>No value returned by any evaluator</code></pre></td></tr></table>
 
-            <div class="fsdocs-tip" id="fs1">Multiple items<br />union case Cartesian.Cartesian: Cartesian<br /><br />--------------------<br />type Cartesian = | Cartesian</div>
+            <div class="fsdocs-tip" id="fs1">namespace Math</div>
+<div class="fsdocs-tip" id="fs2">namespace Math.Units</div>
+<div class="fsdocs-tip" id="fs3">Multiple items<br />union case Cartesian.Cartesian: Cartesian<br /><br />--------------------<br />type Cartesian = | Cartesian</div>
+<div class="fsdocs-tip" id="fs4">Multiple items<br />module Float
+
+from Math.Units<br /><br />--------------------<br />type Float =
+  private new : unit -&gt; Float
+  static member DigitPrecision : int
+  static member Epsilon : float
+  static member MinNormal : float<br /><em>&lt;summary&gt;
+ A static class providing added features to the floating point number class.
+ The main features of this class allow for better floating point equality
+ testing. Generally, floating points always have small variations in their
+ values because the way that floating point numbers are encoded. It is often
+ useful to do equality comparison checks between floating point numbers in a
+ variety of contexts. There are two main ways of doing this type of
+ comparison. The first is to use a percentage tolerance between two numbers,
+ eg. Two floating point numbers are equal if they are within 0.01% of each
+ other. Another is to compare if the two numbers are within an absolute range
+ from each other, eg. Two floating point numbers are equal if they are within
+ 0.0001 units of each other.
+
+ This library does comparison by absolute value comparison through digit
+ precision. Numbers are considered equal if they are equal when rounded to
+ the number of digits as specified by `Float.DigitPrecision`. The default is
+ 10 digits, so by default `2.0 = 2.00000000003` (the 11th digit is a 3).
+
+ `Float.Epsilon` is a derived value from the number of digits and represents
+ the maximum difference between two numbers that is considered equal. This
+ number is `10^-DigitPrecision` which by default is `10^(-10)`, or
+ `0.000000001`.
+
+ In general the rules followed by this extension are from [The Floating Point
+ Guide on Comparison](https://floating-point-gui.de/errors/comparison/).
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs5">val almostEqual : a:float -&gt; b:float -&gt; bool<br /><em>&lt;summary&gt;
+ Compare two floating point values for equality. Equality testing is done
+ based on a tolerance vale specified by `Float.Epsilon`.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs6">property Float.DigitPrecision: int with get, set</div>
 
         </div>
 

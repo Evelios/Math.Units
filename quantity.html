@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Moles (Math.Units)</title>
+    <title>Quantity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Thomas Waters">
 
@@ -102,107 +102,162 @@
         </div>
         <hr />
         <div class="container" id="fsdocs-content">
-            <div>
-  <h2>
-    Moles Type
-  </h2>
-  <dl class="fsdocs-metadata">
-    <dt>
-      Namespace: 
-      <a href="https://evelios.github.io/Math.Units/reference/math-units.html">
-        Math.Units
-      </a>
-    </dt>
-    <dt>
-      Assembly: Math.Units.dll
-    </dt>
-    <dt>
-      Base Type: 
-      <code>obj</code>
-    </dt>
-    <dt>
-      All Interfaces: 
-      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://evelios.github.io/Math.Units/reference/math-units-moles.html">Moles</a>&gt;</span></code>
-      , 
-      <code><a href="https://docs.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
-      , 
-      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a href="https://evelios.github.io/Math.Units/reference/math-units-moles.html">Moles</a>&gt;</span></code>
-      , 
-      <code><a href="https://docs.microsoft.com/dotnet/api/system.icomparable">IComparable</a></code>
-      , 
-      <code><a href="https://docs.microsoft.com/dotnet/api/system.collections.istructuralcomparable">IStructuralComparable</a></code>
-    </dt>
-  </dl>
-  <div class="fsdocs-xmldoc">
-    <div>
-      <p class="fsdocs-summary">
-        
-      </p>
-    </div>
-  </div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div>
-    <h3>
-      Union cases
-    </h3>
-    <table class="table outer-list fsdocs-member-list">
-      <thead>
-        <tr>
-          <td class="fsdocs-member-list-header">
-            Union case
-          </td>
-          <td class="fsdocs-member-list-header">
-            Description
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '641', 641)" onmouseover="showTip(event, '641', 641)">
-                <p>
-                  <a id="Moles">
-                    <a href="#Moles">
-                      <code><span>Moles</span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="641">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>Moles</span></code>
-                  <br/>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <a href="" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
             
+<h1><a name="Operators" class="anchor" href="#Operators">Operators</a></h1>
+<table>
+<thead>
+<tr class="header">
+<th><p>Operator</p></th>
+<th><p>Lhs</p></th>
+<th><p>Rhs</p></th>
+<th><p>Return Type</p></th>
+<th><p>Example</p></th>
+<th><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>-</p></td>
+<td><p>Quantity</p></td>
+<td></td>
+<td><p>Quantity</p></td>
+<td><p><code>-quantity</code></p></td>
+<td><p><code>Quantity.negate</code></p></td>
+</tr>
+<tr class="even">
+<td><p>+</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs + rhs</code></p></td>
+<td><p><code>Quantity.plus</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>-</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs - rhs</code></p></td>
+<td><p><code>Quantity.difference</code></p></td>
+</tr>
+<tr class="even">
+<td><p>*</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs * rhs</code></p></td>
+<td><p><code>Quantity.product</code> &amp; <code>Quantity.times</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>*</p></td>
+<td><p>Quantity</p></td>
+<td><p>float</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs * 0.5</code></p></td>
+<td><p><code>Quantity.multiplyBy</code></p></td>
+</tr>
+<tr class="even">
+<td><p>*</p></td>
+<td><p>float</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>0.5 * rhs</code></p></td>
+<td><p><code>Quantity.multiplyBy</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>/</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p>float</p></td>
+<td><p><code>lhs / rhs</code></p></td>
+<td><p><code>Quantity.ratio</code></p></td>
+</tr>
+<tr class="even">
+<td><p>/</p></td>
+<td><p>Quantity</p></td>
+<td><p>float</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs / 4.</code></p></td>
+<td><p><code>Quantity.dividedBy</code></p></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr class="header">
+<th><p>Operator</p></th>
+<th><p>Lhs</p></th>
+<th><p>Return Type</p></th>
+<th><p>Example</p></th>
+<th><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>abs</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>-length</code></p></td>
+<td><p><code>Quantity.abs</code></p></td>
+</tr>
+<tr class="even">
+<td><p>min</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs + rhs</code></p></td>
+<td><p><code>Quantity.min</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>max</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs - rhs</code></p></td>
+<td><p><code>Quantity.max</code></p></td>
+</tr>
+<tr class="even">
+<td><p>sqrt</p></td>
+<td><p>Quantity<'Units></p></td>
+<td><p>Quantity<'Units Squared></p></td>
+<td><p><code>lhs * 0.5</code></p></td>
+<td><p><code>Quantity.sqrt</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>floor</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>0.5 * rhs</code></p></td>
+<td><p><code>Quantity.floor</code></p></td>
+</tr>
+<tr class="even">
+<td><p>ceil</p></td>
+<td><p>Quantity</p></td>
+<td><p>Length</p></td>
+<td><p><code>angle / length</code></p></td>
+<td><p><code>Quantity.ceil</code></p></td>
+</tr>
+<tr class="odd">
+<td><p>round</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>length / angle</code></p></td>
+<td><p><code>Quantity.round</code></p></td>
+</tr>
+<tr class="even">
+<td><p>truncate</p></td>
+<td><p>Quantity</p></td>
+<td><p>Quantity</p></td>
+<td><p><code>lhs / 4.</code></p></td>
+<td><p><code>Quantity.truncate</code></p></td>
+</tr>
+</tbody>
+</table>
+
+
+            <div class="fsdocs-tip" id="fs1">namespace Math</div>
+<div class="fsdocs-tip" id="fs2">namespace Math.Units</div>
+<div class="fsdocs-tip" id="fs3">Multiple items<br />union case Cartesian.Cartesian: Cartesian<br /><br />--------------------<br />type Cartesian = | Cartesian</div>
+
         </div>
 
         <!-- BEGIN SEARCH BOX: this adds support for the search box -->
