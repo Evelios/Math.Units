@@ -5,6 +5,7 @@ open FsCheck.NUnit
 open FsCheck
 
 open Math.Units
+open Math.Units.Test
 
 
 [<SetUp>]

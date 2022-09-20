@@ -9,8 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Gen.fs" />
-        <Compile Include="Test.fs" />
         <Compile Include="Float.fs" />
         <Compile Include="Quantity.fs" />
         <Compile Include="UnitConversions.fs" />

@@ -1,4 +1,4 @@
-namespace Math.Units.Tests
+namespace Math.Units.Test
 
 type 'a Positive = Positive of 'a
 type 'a ZeroToOne = ZeroToOne of 'a

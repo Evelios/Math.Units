@@ -11,7 +11,7 @@
         <Product>Math.Units</Product>
         <Authors>Thomas Waters</Authors>
         <Copyright>Thomas Waters</Copyright>
-        <Company/>
+        <Company />
         <PackageTags>units, fsharp, f#</PackageTags>
         <PackageLicense>MIT</PackageLicense>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -29,7 +29,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../LICENSE.md" Pack="true" PackagePath=""/>
+        <None Include="../LICENSE.md" Pack="true" PackagePath="" />
         <Compile Include="Extensions\TupleExtensions.fs" />
         <Compile Include="Float.fs" />
         <Compile Include="Types.fs" />
@@ -66,6 +66,13 @@
         <Compile Include="Resistance.fs" />
         <Compile Include="Voltage.fs" />
         <Compile Include="Temperature.fs" />
+        <Compile Include="Test\Gen.fs" />
+        <Compile Include="Test\Test.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FsCheck.NUnit" Version="2.16.5" />
+      <PackageReference Include="NUnit" Version="3.13.3" />
     </ItemGroup>
 
 </Project>

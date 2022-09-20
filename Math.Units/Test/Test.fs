@@ -1,4 +1,4 @@
-namespace Math.Units.Tests
+namespace Math.Units.Test
 
 
 type TestSpace = TestSpace
