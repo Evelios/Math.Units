@@ -61,7 +61,7 @@ type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'Indep
 // ---- Unit Aliases -----------------------------------------------------------
 
 // ---- Angular
-type RadiansPerSecond = Rate<Meters, Seconds>
+type RadiansPerSecond = Rate<Radians, Seconds>
 type RadiansPerSecondSquared = Rate<RadiansPerSecond, Seconds>
 
 
