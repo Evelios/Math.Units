@@ -14,16 +14,27 @@ open Math.Units
 ///     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.
 type Unitless = Unitless
 
+/// <category index=1>Unit Space</category>
 type Pixel = Pixel
+/// <category>Unit Space</category>
 type Meters = Meters
+/// <category>Unit Space</category>
 type Kilograms = Kilograms
+/// <category>Unit Space</category>
 type Radians = Radians
+/// <category>Unit Space</category>
 type Seconds = Seconds
+/// <category>Unit Space</category>
 type Coulombs = Coulombs
+/// <category>Unit Space</category>
 type Percentage = Percentage
+/// <category>Unit Space</category>
 type Lumens = Lumens
+/// <category>Unit Space</category>
 type Steradians = Steradians
+/// <category>Unit Space</category>
 type Moles = Moles
+/// <category>Unit Space</category>
 type CelsiusDegrees = CelsiusDegrees
 
 
@@ -34,6 +45,8 @@ type CelsiusDegrees = CelsiusDegrees
 /// Represents a units type that is the product of two other units types. This
 /// is a more general form of `Squared` or `Cubed`. See [`product`](#product),
 /// [`times`](#times), [`over`](#over) and [`over_`](#over_) for how it can be used.
+/// 
+/// <category index=3>Unit Relation</category>
 type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 
 /// Represents a units type that is the square of some other units type; for
@@ -41,6 +54,8 @@ type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 /// `Squared Meters` is another (the units type of an [`Area`](Area)). See the
 /// [`squared`](#squared) and [`sqrt`](#sqrt) functions for examples of use.
 /// This is a special case of the `Product` units type.
+/// 
+/// <category index=3>Unit Relation</category>
 type Squared<'Units> = Product<'Units, 'Units>
 
 /// Represents a units type that is the cube of some other units type; for
@@ -49,58 +64,93 @@ type Squared<'Units> = Product<'Units, 'Units>
 /// [`cubed`](Quantity#cubed) and [`cbrt`](Quantity#cbrt) functions for examples of
 /// use.
 /// This is a special case of the `Product` units type.
+/// 
+/// <category index=3>Unit Relation</category>
 type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 
 
 /// Represents the units type of a rate or quotient such as a speed (`Rate
 /// Meters Seconds`) or a pressure (`Rate Newtons SquareMeters`). See [Working with
 /// rates](#working-with-rates) for details.
+/// 
+/// <category index=3>Unit Relation</category>
 type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'IndependentUnits
 
 
 // ---- Unit Aliases -----------------------------------------------------------
 
 // ---- Angular
+
+/// <category>Unit Space</category>
 type RadiansPerSecond = Rate<Meters, Seconds>
+/// <category>Unit Space</category>
 type RadiansPerSecondSquared = Rate<RadiansPerSecond, Seconds>
 
 
 // ---- Distance
+
+/// <category>Unit Space</category>
 type MetersPerSecond = Rate<Meters, Seconds>
+/// <category>Unit Space</category>
 type MetersPerSecondSquared = Rate<MetersPerSecond, Seconds>
+/// <category>Unit Space</category>
 type SquareMeters = Squared<Meters>
+/// <category>Unit Space</category>
 type CubicMeters = Cubed<Meters>
 
 
 // ---- Mass
+
+/// <category>Unit Space</category>
 type Newtons = Product<Kilograms, MetersPerSecondSquared>
+/// <category>Unit Space</category>
 type Pascals = Rate<Newtons, SquareMeters>
+/// <category>Unit Space</category>
 type KilogramsPerCubicMeter = Rate<Kilograms, CubicMeters>
+/// <category>Unit Space</category>
 type Joules = Product<Newtons, Meters>
 
 
 // ---- Light
+
+/// <category>Unit Space</category>
 type Candelas = Rate<Lumens, Steradians>
+/// <category>Unit Space</category>
 type Lux = Rate<Lumens, SquareMeters>
+/// <category>Unit Space</category>
 type Nits = Rate<Candelas, SquareMeters>
 
 
 // ---- Atomic
+
+/// <category>Unit Space</category>
 type MolesPerCubicMeter = Rate<Moles, CubicMeters>
 
 
 // ---- Electrical
+
+/// <category>Unit Space</category>
 type Watts = Rate<Joules, Seconds>
+/// <category>Unit Space</category>
 type Amperes = Rate<Coulombs, Seconds>
+/// <category>Unit Space</category>
 type Volts = Rate<Watts, Amperes>
+/// <category>Unit Space</category>
 type Farads = Rate<Coulombs, Volts>
+/// <category>Unit Space</category>
 type Henries = Rate<Volts, Rate<Amperes, Seconds>>
+/// <category>Unit Space</category>
 type Ohms = Rate<Volts, Amperes>
 
 
 // ---- Pixels
+
+
+/// <category>Unit Space</category>
 type PixelsPerSecond = Rate<Pixel, Seconds>
+/// <category>Unit Space</category>
 type PixelsPerSecondSquared = Rate<PixelsPerSecond, Seconds>
+/// <category>Unit Space</category>
 type SquarePixels = Squared<Pixel>
 
 
@@ -114,6 +164,8 @@ type SquarePixels = Squared<Pixel>
 /// is an `Int` number of `Pixels`. When compiling with `elm make --optimize` the
 /// `Quantity` wrapper type will be compiled away, so the runtime performance should
 /// be comparable to using a raw `Float` or `Int`.
+///
+/// <category index=2>Unit Type</category>
 type Quantity<'Units>(quantity: float) =
     interface IComparable<Quantity<'Units>> with
         member this.CompareTo(quantity: Quantity<'Units>) : int = this.Comparison(quantity)
@@ -216,58 +268,102 @@ type Quantity<'Units>(quantity: float) =
 
 
 /// A percentage value. The default range for percentages is 0 to 1 but can also be given in the range 0 to 100.
+///
+/// <category>Unit Type</category>
 type Percent = Quantity<Percentage>
 
+/// <category>Unit Type</category>
 type Duration = Quantity<Seconds>
 
 
 // ---- Distance
+
+/// <category>Unit Type</category>
 type Length = Quantity<Meters>
+/// <category>Unit Type</category>
 type Area = Quantity<SquareMeters>
+/// <category>Unit Type</category>
 type Volume = Quantity<CubicMeters>
+/// <category>Unit Type</category>
 type Pixels = Quantity<Pixel>
+/// <category>Unit Type</category>
 type Speed = Quantity<MetersPerSecond>
+/// <category>Unit Type</category>
 type Acceleration = Quantity<MetersPerSecondSquared>
 
 
 // ---- Angular
+
+
+/// <category>Unit Type</category>
 type Angle = Quantity<Radians>
+/// <category>Unit Type</category>
 type AngularSpeed = Quantity<RadiansPerSecond>
+/// <category>Unit Type</category>
 type AngularAcceleration = Quantity<RadiansPerSecondSquared>
+/// <category>Unit Type</category>
 type SolidAngle = Quantity<Steradians>
 
 
 // ---- Mass
+
+
+/// <category>Unit Type</category>
 type Mass = Quantity<Kilograms>
+/// <category>Unit Type</category>
 type Density = Quantity<KilogramsPerCubicMeter>
+/// <category>Unit Type</category>
 type Force = Quantity<Newtons>
+/// <category>Unit Type</category>
 type Energy = Quantity<Joules>
+/// <category>Unit Type</category>
 type Pressure = Quantity<Pascals>
 
 // ---- Light
+
+
+/// <category>Unit Type</category>
 type LuminousFlux = Quantity<Lumens>
+/// <category>Unit Type</category>
 type LuminousIntensity = Quantity<Candelas>
+/// <category>Unit Type</category>
 type Illuminance = Quantity<Lux>
+/// <category>Unit Type</category>
 type Luminance = Quantity<Nits>
 
 // ---- Atomic
+
+
+/// <category>Unit Type</category>
 type SubstanceAmount = Quantity<Moles>
+/// <category>Unit Type</category>
 type Molarity = Quantity<MolesPerCubicMeter>
 
 // ---- Electrical
+
+
+/// <category>Unit Type</category>
 type Charge = Quantity<Coulombs>
+/// <category>Unit Type</category>
 type Current = Quantity<Amperes>
+/// <category>Unit Type</category>
 type Capacitance = Quantity<Farads>
+/// <category>Unit Type</category>
 type Inductance = Quantity<Henries>
+/// <category>Unit Type</category>
 type Power = Quantity<Watts>
+/// <category>Unit Type</category>
 type Resistance = Quantity<Ohms>
+/// <category>Unit Type</category>
 type Voltage = Quantity<Volts>
 
 // ---- Temperature ------------------------------------------------------------
 
 
+/// <category>Unit Type</category>
 type Delta = Quantity<CelsiusDegrees>
 
+/// <category>Unit Type</category>
 type Temperature(kelvin: float) =
     interface IComparable<Temperature> with
         member this.CompareTo(temp: Temperature) : int = this.Comparison(temp)
@@ -351,6 +447,8 @@ type Temperature(kelvin: float) =
 ///     Interval float
 ///     Interval int
 ///     Interval Angle
+/// 
+/// <category index=4>Advanced Types</category>
 [<CustomEquality; NoComparison>]
 type Interval<'Units> =
     | Interval of Start: Quantity<'Units> * Finish: Quantity<'Units>

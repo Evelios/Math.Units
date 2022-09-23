@@ -1,4 +1,5 @@
 namespace FSharp.Extensions
 
-module Tuple2 =
+ /// </exclude>
+ module internal Tuple2 =
     let pair x y = x, y

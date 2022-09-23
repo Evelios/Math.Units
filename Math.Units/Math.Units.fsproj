@@ -2,8 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <UsesMarkdownComments>true</UsesMarkdownComments>
         <RootNamespace>Units</RootNamespace>
         
         <Version>0.0.1</Version>
@@ -24,7 +22,9 @@
 
         <FsDocsLicenseLink>https://opensource.org/licenses/MIT</FsDocsLicenseLink>
         <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Math.Units/</FsDocsReleaseNotesLink>
-        <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+<!--        <UsesMarkdownComments>true</UsesMarkdownComments>-->
+<!--        <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>-->
         <FsDocsTheme>default</FsDocsTheme>
     </PropertyGroup>
 

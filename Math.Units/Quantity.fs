@@ -13,10 +13,13 @@ open System
 /// just create a `Length` module and add any extension functions there.
 type Quantity<'Units> with
 
+    /// Create a unitless quantity. Unitless quantities must use the unitless
+    /// functions in this module to avoid accumulating unit ratios. Using
+    /// the functions within this module maintains the `Unitless` type.
     static member unitless value : Quantity<Unitless> = Quantity value
 
-    /// A generic zero value. This can be treated as either an `Int` or `Float`
-    /// quantity in any units type, similar to how `Nothing` can be treated as any kind
+    /// A generic zero value. This can be treated as a quantity in any
+    /// units type, similar to how `Nothing` can be treated as any kind
     /// of `Maybe` type and `[]` can be treated as any kind of `List`.
     static member zero: Quantity<'Units> =
         Quantity LanguagePrimitives.GenericZero
@@ -39,7 +42,9 @@ type Quantity<'Units> with
     // ---- Unsafe Operations ------------------------------------------------------
 
     /// This function allows you to create a quantity of any value and type.
-    /// This should only try to use in library functions.
+    /// This should only try to use in library functions. This does however
+    /// let you create units of generic types and types that are compiler
+    /// defined instead of user defined.
     static member create<'Units> value : Quantity<'Units> = Quantity value
 
 
@@ -53,20 +58,24 @@ type Quantity<'Units> with
 
 
     /// Check if one quantity is less than another. Note the [argument order](/#argument-order)!
-    ///    oneMeter =
-    ///        Length.meters 1
-    ///    Length.feet 1 |> Quantity.lessThan oneMeter
-    ///    --> True
-    ///    -- Same as:
-    ///    Quantity.lessThan oneMeter (Length.feet 1)
-    ///    --> True
-    ///    List.filter (Quantity.lessThan oneMeter)
-    ///        [ Length.feet 1
-    ///        , Length.parsecs 1
-    ///        , Length.yards 1
-    ///        , Length.lightYears 1
-    ///        ]
-    ///    --> [ Length.feet 1, Length.yards 1 ]
+    ///
+    ///     let oneMeter =
+    ///         Length.meters 1
+    /// 
+    ///     Length.feet 1 |> Quantity.lessThan oneMeter
+    ///     --> True
+    /// 
+    ///     // Same as:
+    ///     Quantity.lessThan oneMeter (Length.feet 1)
+    ///     --> True
+    /// 
+    ///     List.filter (Quantity.lessThan oneMeter)
+    ///         [ Length.feet 1
+    ///         , Length.parsecs 1
+    ///         , Length.yards 1
+    ///         , Length.lightYears 1
+    ///         ]
+    ///     --> [ Length.feet 1, Length.yards 1 ]
     static member lessThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x < y
 
 
@@ -131,22 +140,25 @@ type Quantity<'Units> with
     ///     --> EQ
     static member compare (x: Quantity<'Units>) (y: Quantity<'Units>) : int = x.Comparison(y)
 
-    /// Get the absolute value of a quantity.
+    /// <summary>
+    ///     Get the absolute value of a quantity.
+    /// <summary>
     ///
-    ///       Quantity.abs (Duration.milliseconds -10)
-    ///       --> Duration.milliseconds 10
+    /// <example>
+    ///   <code>
+    ///     Quantity.abs (Duration.milliseconds -10)
+    ///     Duration.milliseconds 10
+    ///   </code>
+    /// </example>
     ///
-    /// This function can be called from the global function or the module function
-    ///
-    /// ```
-    ///    // Using the default globally included function
-    ///    Microsoft.FSharp.Core.Operators.abs quantity
-    ///    abs quantity  // This function is included by default in F#
-    ///
-    ///    open Math.Units
-    ///    Units.abs quantity
-    /// ```
-    ///
+    /// <example>
+    ///   This function can be called from the global function or the module
+    ///   function. They both return the same result
+    ///   <code>
+    ///     abs quantity
+    ///     Units.abs quantity
+    ///   </code>
+    /// </example>
     static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity.Abs quantity
 
 
@@ -861,25 +873,33 @@ type Quantity<'Units> with
 
     /// Multiply a rate of change by an independent quantity (the denominator in
     /// the rate) to get a total quantity:
-    ///     Duration.minutes 30
-    ///         |> Quantity.at
-    ///             (Speed.kilometersPerHour 100)
-    ///     --> Length.kilometers 50
+    ///
+    ///       Duration.minutes 30
+    ///           |> Quantity.at
+    ///               (Speed.kilometersPerHour 100)
+    ///       --> Length.kilometers 50
+    ///
     /// Can be useful to define conversion functions from one unit to another, since
     /// if you define a `rate` then `Quantity.at rate` will give you a conversion
     /// function:
-    ///     pixelDensity : Float (Rate Pixels Meters)
-    ///     pixelDensity =
-    ///         Pixels.pixels 96 |> Quantity.per (Length.inches 1)
-    ///     lengthToPixels : Length -> Float Pixels
-    ///     lengthToPixels length =
-    ///         Quantity.at pixelDensity length
-    ///     lengthToPixels (Length.inches 3)
-    ///     --> Pixels.pixels 288
+    ///
+    ///```fsharp
+    ///       pixelDensity : Float (Rate Pixels Meters)
+    ///       pixelDensity =
+    ///           Pixels.pixels 96 |> Quantity.per (Length.inches 1)
+    ///       lengthToPixels : Length -> Float Pixels
+    ///       lengthToPixels length =
+    ///           Quantity.at pixelDensity length
+    ///       lengthToPixels (Length.inches 3)
+    ///       --> Pixels.pixels 288
+    ///```
+    ///
     /// Eagle-eyed readers will note that using partial application you could also
     /// simply write
+    ///
     ///     lengthToPixels =
     ///         Quantity.at pixelDensity
+    ///
     /// Note that there are [other forms of multiplication](/#multiplication-and-division)!
     static member at
         (rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
