@@ -6,6 +6,7 @@ open FsCheck
 open System
 
 open Math.Units
+open Math.Units.Test
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()

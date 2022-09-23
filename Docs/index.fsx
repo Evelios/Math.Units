@@ -5,15 +5,14 @@ title: FSharp Geometry Package
 ---
 
 This package is a port and extension of the framework [elm-units](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest/).
-It focuses on providing as many interfaces for geometric objects an manipulation in a way that is type safe and
-convenient.
+Huge thanks to [@ianmackenzie](https://github.com/ianmackenzie) for creating the original package and writing much of
+the original documentation.
 
 Note: This framework is currently in __alpha__ development.
 
 *)
 (*** hide ***)
 
-#r "../Math.Units/bin/Debug/net6.0/Math.Units.dll"
 #r "../Math.Units/bin/Release/net6.0/Math.Units.dll"
 
 open System
@@ -21,7 +20,7 @@ open System
 (** *)
 
 (**
-To use this framework you include-it the package through the namespace
+To use this framework you include the package through the namespace
 *)
 
 open Math.Units
@@ -31,7 +30,7 @@ open Math.Units
 
 _Release notes for 2.0 are [here](https://github.com/ianmackenzie/elm-units/releases/tag/2.0.0)._
 
-`elm-units` is useful if you want to store, pass around, convert between,
+[Math.Units](./reference/math-units.html) is useful if you want to store, pass around, convert between,
 compare, or do arithmetic on:
 
 - Durations (seconds, milliseconds, hours...)
@@ -95,10 +94,13 @@ unit conversions:
 
 Duration.hours 3. |> Duration.inSeconds
 (*** include-it ***)
+
 Length.feet 10. |> Length.inMeters
 (*** include-it ***)
+
 Speed.milesPerHour 60. |> Speed.inMetersPerSecond
 (*** include-it ***)
+
 Temperature.degreesCelsius 30.
 |> Temperature.inDegreesFahrenheit
 (*** include-it ***)
@@ -126,11 +128,9 @@ Length.centimeters 60.
 |> Quantity.times (Length.centimeters 80.)
 (*** include-it ***)
 
-Quantity.sort [
-    Angle.radians 1.
-    Angle.degrees 10.
-    Angle.turns 0.5
-]
+Quantity.sort [ Angle.radians 1.
+                Angle.degrees 10.
+                Angle.turns 0.5 ]
 (*** include-it ***)
 
 (**
@@ -171,8 +171,8 @@ the final result in whatever units you want.
 
 ## Installation
 
-Assuming you have [installed Elm](https://guide.elm-lang.org/install.html) and
-started a new project, you can install `elm-units` by running
+Assuming you have [installed dotnet](https://dotnet.microsoft.com/en-us/download) and
+started a new project, you can install `Math.Units` by running
 
     [Lang=sh]
     dotnet add package Math.Units
@@ -183,15 +183,15 @@ in a command prompt inside your project directory.
 
 ### Fundamentals
 
-To take code that currently uses raw `Float` values and convert it to using
-`elm-units` types, there are three basic steps:
+To take code that currently uses raw `float` values and convert it to using
+`Math.Units` types, there are three basic steps:
 
-- Wherever you store a `Float`, such as in your model or in a message, switch
+- Wherever you store a `float`, such as in your model or in a message, switch
   to storing a `Duration` or `Angle` or `Temperature` etc. value instead.
 - Whenever you _have_ a `Float` (from an external package, JSON decoder etc.),
   use a function such as `Duration.seconds`, `Angle.degrees` or
   `Temperature.degreesFahrenheit` to turn it into a type-safe value.
-- Whenever you _need_ a `Float` (to pass to an external package, encode as
+- Whenever you _need_ a `float` (to pass to an external package, encode as
   JSON etc.), use a function such as `Duration.inMilliseconds`,
   `Angle.inRadians` or `Temperature.inDegreesCelsius` to extract the value in
   whatever units you want.
@@ -199,7 +199,7 @@ To take code that currently uses raw `Float` values and convert it to using
   like `Quantity.plus` or `Quantity.greaterThan`. If this becomes impractical,
   there are [other approaches](#custom-functions).
 
-### The `Quantity` type
+### The Quantity type
 
 All values produced by this package (with the exception of `Temperature`, which
 is a bit of a special case) are actually values of type `Quantity`, roughly
@@ -215,7 +215,7 @@ type Meters = Meters
 type Length = Quantity<Meters>
 
 (**
-This means that a `Length` is internally stored as a `Float` number of `Meters`,
+This means that a `Length` is internally stored as a `float` number of `Meters`,
 but the choice of internal units can mostly be treated as an implementation
 detail.
 
@@ -231,7 +231,6 @@ You can do basic math with `Quantity` values:
 Length.feet 6.
 |> Quantity.plus (Length.inches 3.)
 |> Length.inMeters
-
 (*** include-it ***)
 
 Duration.hours 1.
@@ -240,7 +239,8 @@ Duration.hours 1.
 (*** include-it ***)
 
 // pi radians plus 45 degrees is 5/8 of a full turn
-Quantity.sum [ Angle.radians Math.PI; Angle.degrees 45. ]
+Quantity.sum [ Angle.radians Math.PI
+               Angle.degrees 45. ]
 |> Angle.inTurns
 (*** include-it ***)
 
@@ -257,10 +257,12 @@ Quantity.compare (Length.meters 1.) (Length.feet 3.)
 Quantity.max (Length.meters 1.) (Length.feet 3.)
 (*** include-it ***)
 
-Quantity.maximum [ Length.meters 1.; Length.feet 3. ]
+Quantity.maximum [ Length.meters 1.
+                   Length.feet 3. ]
 (*** include-it ***)
 
-Quantity.sort [ Length.meters 1.; Length.feet 3. ]
+Quantity.sort [ Length.meters 1.
+                Length.feet 3. ]
 (*** include-it ***)
 
 
@@ -423,7 +425,7 @@ but "`a` minus `b`" (and so `a |> Quantity.minus b`).
 ### Custom Functions
 
 Some calculations cannot be expressed using the built-in `Quantity` functions.
-Take kinetic energy `E_k = 1/2 * m * v^2`, for example - the `elm-units` type
+Take kinetic energy `E_k = 1/2 * m * v^2`, for example - the `Math.Units` type
 system is not sophisticated enough to work out the units properly. Instead,
 you'd need to create a custom function like
 
@@ -435,10 +437,11 @@ let kineticEnergy (m: Mass) (v: Speed) : Energy =
 (**
 In the _implementation_ of `kineticEnergy`, you're working with raw `Float`
 values so you need to be careful to make sure the units actually do work out.
-(The values will be in [SI units][6] - meters, seconds etc.) Once the function
-has been implemented, though, it can be used in a completely type-safe way -
-callers can supply arguments using whatever units they have, and extract results
-in whatever units they want:
+(The values will be in [SI units][https://en.wikipedia.org/wiki/International_System_of_Units]
+- meters, seconds etc.) Once the function has been implemented, though, it 
+can be used in a completely type-safe way - callers can supply arguments 
+using whatever units they have, and extract results in whatever units they want:
+[6]: 
 *)
 
 kineticEnergy (Mass.shortTons 1.5) (Speed.milesPerHour 60.)
@@ -448,8 +451,8 @@ kineticEnergy (Mass.shortTons 1.5) (Speed.milesPerHour 60.)
 (**
 ### Custom Units
 
-`elm-units` defines many standard unit types, but you can easily define your
-own! See [CustomUnits][1] for an example.
+`Math.Units` defines many standard unit types, but you can easily define your
+own! See [CustomUnits][#CustomUnits] for an example.
 
 ### Understanding quantity types
 
@@ -465,7 +468,7 @@ Quantity<Meters Cubed>
 
 (** which expands further to *)
 
-Quantity< Product< Product<Meters,Meters>, Meters> >
+Quantity<Product<Product<Meters, Meters>, Meters>>
 
 (** which could also be written as *)
 
@@ -478,17 +481,15 @@ Quantity<Product<SquareMeters, Meters>>
 (**
 and you may see any one of these forms pop up in compiler error messages.
 
-## Getting Help
-
-For general questions about using `elm-units`, try asking in the [Elm Slack][3]
-or posting on the [Elm Discourse forums][4] or the [Elm subreddit][5]. I'm
-**@ianmackenzie** on all three =)
-
 ## API
 
-[Full API documentation][10] is available.
+[Full API documentation][reference/math-units.html] is available.
 
 ## Climate action
+
+This is a message from Ian Mackenzie but as the maintainer of this package I
+believe in this mantra and will follow through with his wishes on giving
+priority to issues regarding climate action.
 
 I would like for the projects I work on to be as helpful as possible in
 addressing the climate crisis. If
@@ -500,36 +501,24 @@ addressing the climate crisis. If
 - there is a new feature you would find helpful for that work (or a bug you need
   fixed) in any of my open-source projects, then
 
-please [open a new issue](https://github.com/ianmackenzie/elm-units/issues),
+please [open a new issue](https://github.com/evelios/Math.Units/issues),
 describe briefly what you're working on and I will treat that issue as high
 priority.
 
 ## Contributing
 
 Yes please! One of the best ways to contribute is to add a module for a new
-quantity type; see [issue #6][7] for details. I'll add a proper CONTRIBUTING.md
-at some point, but some brief guidelines in the meantime:
+quantity type; I'll add a proper CONTRIBUTING.md at some point, but some
+brief guidelines in the meantime:
 
 - Open a pull request by forking this repository, creating a new branch in
   your fork, making all changes in that branch, then opening a pull request
   from that branch.
-- Format code with [`elm-format`][8] 0.8.1.
 - Git commit messages should follow [the seven rules of a great Git commit
-  message][9], although I'm not strict about the 50 or 72 character rules.
+  message][https://chris.beams.io/posts/git-commit/#seven-rules], although I'm not strict about the 50 or 72 character rules.
 
 ## License
 
-[BSD-3-Clause © Ian Mackenzie][2]
-
-[1]: https://github.com/ianmackenzie/elm-units/blob/master/doc/CustomUnits.md
-[2]: https://github.com/ianmackenzie/elm-units/blob/master/LICENSE
-[3]: http://elmlang.herokuapp.com/
-[4]: https://discourse.elm-lang.org/
-[5]: https://www.reddit.com/r/elm/
-[6]: https://en.wikipedia.org/wiki/International_System_of_Units
-[7]: https://github.com/ianmackenzie/elm-units/issues/6
-[8]: https://github.com/avh4/elm-format
-[9]: https://chris.beams.io/posts/git-commit/#seven-rules
-[10]: https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest
-
+[elm-units BSD-3-Clause © Ian Mackenzie][https://github.com/ianmackenzie/elm-units/blob/master/LICENSE]
+[Math.Units BSD-3-Clause © Thomas Waters][https://github.com/evelios/Math.Unitsrblob/master/LICENSE]
 *)

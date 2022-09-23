@@ -80,9 +80,8 @@ type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'Indep
 // ---- Unit Aliases -----------------------------------------------------------
 
 // ---- Angular
-
 /// <category>Unit Space</category>
-type RadiansPerSecond = Rate<Meters, Seconds>
+type RadiansPerSecond = Rate<Radians, Seconds>
 /// <category>Unit Space</category>
 type RadiansPerSecondSquared = Rate<RadiansPerSecond, Seconds>
 
