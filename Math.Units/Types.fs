@@ -14,7 +14,7 @@ open Math.Units
 ///     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.
 type Unitless = Unitless
 
-/// <category index=1>Unit Space</category>
+/// <category>Unit Space</category>
 type Pixel = Pixel
 /// <category>Unit Space</category>
 type Meters = Meters
@@ -45,7 +45,7 @@ type CelsiusDegrees = CelsiusDegrees
 /// Represents a units type that is the product of two other units types. This
 /// is a more general form of `Squared` or `Cubed`. See [`product`](#product),
 /// [`times`](#times), [`over`](#over) and [`over_`](#over_) for how it can be used.
-/// 
+///
 /// <category index=3>Unit Relation</category>
 type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 
@@ -54,7 +54,7 @@ type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 /// `Squared Meters` is another (the units type of an [`Area`](Area)). See the
 /// [`squared`](#squared) and [`sqrt`](#sqrt) functions for examples of use.
 /// This is a special case of the `Product` units type.
-/// 
+///
 /// <category index=3>Unit Relation</category>
 type Squared<'Units> = Product<'Units, 'Units>
 
@@ -64,7 +64,7 @@ type Squared<'Units> = Product<'Units, 'Units>
 /// [`cubed`](Quantity#cubed) and [`cbrt`](Quantity#cbrt) functions for examples of
 /// use.
 /// This is a special case of the `Product` units type.
-/// 
+///
 /// <category index=3>Unit Relation</category>
 type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 
@@ -72,7 +72,7 @@ type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 /// Represents the units type of a rate or quotient such as a speed (`Rate
 /// Meters Seconds`) or a pressure (`Rate Newtons SquareMeters`). See [Working with
 /// rates](#working-with-rates) for details.
-/// 
+///
 /// <category index=3>Unit Relation</category>
 type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'IndependentUnits
 
@@ -446,7 +446,7 @@ type Temperature(kelvin: float) =
 ///     Interval float
 ///     Interval int
 ///     Interval Angle
-/// 
+///
 /// <category index=4>Advanced Types</category>
 [<CustomEquality; NoComparison>]
 type Interval<'Units> =

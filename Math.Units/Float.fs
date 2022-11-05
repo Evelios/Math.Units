@@ -2,6 +2,10 @@ namespace Math.Units
 
 open System
 
+/// A module that allows for approximate comparison of floating point
+/// values. This works by limiting the amount of precision that is used
+/// when comparing two floating point values for comparison.
+/// 
 /// A static class providing added features to the floating point number class.
 /// The main features of this class allow for better floating point equality
 /// testing. Generally, floating points always have small variations in their

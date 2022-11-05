@@ -142,7 +142,7 @@ type Quantity<'Units> with
 
     /// <summary>
     ///     Get the absolute value of a quantity.
-    /// <summary>
+    /// </summary>
     ///
     /// <example>
     ///   <code>

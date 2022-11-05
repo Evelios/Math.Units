@@ -46,8 +46,10 @@ module Gen =
     let temperature: Gen<Temperature> =
         Gen.map Temperature.kelvins positiveFloat
 
-    /// Generate a `Positive<Length>` values. This is a type safe way of
-    /// generating and enforcing positive `Length` values.
+    /// <summary>
+    /// Generate a <c>Positive&lt;Length&gt;</c> values. This is a type safe way of
+    /// generating and enforcing positive <c>Length</c> values.
+    /// </summary>
     let positiveQuantity<'Units> : Gen<Positive<Quantity<'Units>>> =
         Gen.map (Quantity >> Positive) positiveFloat
 
