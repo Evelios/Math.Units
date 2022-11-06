@@ -13,7 +13,7 @@ let inRadians (r: Angle) : float = r.Value
 let pi: Angle = radians Math.PI
 let twoPi: Angle = radians 2. * Math.PI
 let piOverTwo: Angle = radians Math.PI / 2.
-/// Alias for `piOverTwo`
+/// Alias for <c>1</c
 let halfPi: Angle = piOverTwo
 
 let degrees (d: float) : Angle =

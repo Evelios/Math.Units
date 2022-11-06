@@ -36,16 +36,16 @@ let inTurnsPerMinute (angularSpeed: AngularSpeed) : float =
 
 // ---- Function Aliases -------------------------------------------------------
 
-/// Alias for `turnsPerSecond`.
+/// Alias for <c>1</c.
 let revolutionsPerSecond = turnsPerSecond
 
-/// Alias for `inTurnsPerSecond`.
+/// Alias for <c>1</c.
 let inRevolutionsPerSecond =
     inTurnsPerSecond
 
-/// Alias for `turnsPerMinute`.
+/// Alias for <c>1</c>.
 let revolutionsPerMinute = turnsPerMinute
 
-/// Alias for `inTurnsPerMinute`.
+/// Alias for <c>inTurnsPerMinute</c>.
 let inRevolutionsPerMinute =
     inTurnsPerMinute

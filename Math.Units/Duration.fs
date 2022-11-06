@@ -9,16 +9,16 @@ module Math.Units.Duration
 //     milliseconds (toFloat numMilliseconds)
 
 
-/// Construct a `Duration` from a given number of seconds.
+/// Construct a <c>1</c from a given number of seconds.
 let seconds (numSeconds: float) : Duration = Quantity numSeconds
 
 
-/// Convert a `Duration` to a value in seconds.
+/// Convert a <c>1</c> to a value in seconds.
 ///    Duration.milliseconds 10 |> Duration.inSeconds
 ///    --> 0.01
 let inSeconds (numSeconds: Duration) : float = numSeconds.Value
 
-/// Construct a `Duration` from a given number of milliseconds.
+/// Construct a <c>Duration</c> from a given number of milliseconds.
 ///    Duration.milliseconds 5000
 ///    --> Duration.seconds 5
 let milliseconds (numMilliseconds: float) : Duration = seconds (0.001 * numMilliseconds)

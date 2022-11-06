@@ -30,16 +30,16 @@ module Gen =
 
     /// Generates a normal floating point number. This function excludes certain
     /// values from being generated as a float. The following are not included
-    /// when generating a float: `-infinity`, `infinity`, and `NaN`.
+    /// when generating a float: <c>-infinity</c>, <c>infinity</c>, and <c>NaN</c>.
     let float: Gen<float> =
         Arb.generate<NormalFloat> |> Gen.map float
 
     /// Generate a floating point number int the range [0, infinity). This
-    /// generates `0.` values and other positive floating point numbers.
+    /// generates <c>0.</c> values and other positive floating point numbers.
     let positiveFloat: Gen<float> =
         Gen.map abs float
 
-    /// Generate a random `Quantity` value.
+    /// Generate a random <c>Quantity</c> value.
     let quantity<'Units> : Gen<Quantity<'Units>> =
         Gen.map Quantity float
 

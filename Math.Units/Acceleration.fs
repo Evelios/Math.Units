@@ -1,21 +1,26 @@
-/// An `Acceleration` represents an acceleration in meters per second squared,
-/// feet per second squared or [gees][1]. It is stored as a number of meters per
-/// second squared.
-/// Note that since `MetersPerSecondSquared` is defined as `Rate MetersPerSecond
-/// Seconds` (change in speed per unit time), you can construct an `Acceleration`
-/// value using `Quantity.per`:
-///     acceleration =
+/// <summary>
+/// An <c>Acceleration</c> represents an acceleration in meters per second squared,
+/// feet per second squared or
+/// <a href="https://en.wikipedia.org/wiki/G-force#Unit_and_measurement">gees</a>.
+/// It is stored as a number of meters per second squared.
+/// Note that since <c>MetersPerSecondSquared</c> is defined as <c>Rate MetersPerSecond Seconds</c>
+/// (change in speed per unit time), you can construct an <c>Acceleration</c>
+/// value using <c>Quantity.per</c>:
+/// <code>
+///     let acceleration =
 ///         changeInSpeed |> Quantity.per duration
-/// You can also do rate-related calculations with `Acceleration` values to compute
-/// `Speed` or `Duration`:
-///     changeInSpeed =
+/// </code>
+/// You can also do rate-related calculations with <c>Acceleration</c> values to compute
+/// <c>Speed</c> or <c>Duration</c>:
+/// <code>
+///     let changeInSpeed =
 ///         acceleration |> Quantity.for duration
-///     alsoChangeInSpeed =
+///     let alsoChangeInSpeed =
 ///         duration |> Quantity.at acceleration
-///     duration =
+///     let duration =
 ///         changeInSpeed |> Quantity.at_ acceleration
-///
-/// [1]: https://en.wikipedia.org/wiki/G-force#Unit_and_measurement
+/// </code>
+/// </summary>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Acceleration
 
@@ -34,11 +39,15 @@ let inFeetPerSecondSquared (acceleration: Acceleration) : float =
     inMetersPerSecondSquared acceleration
     / Constants.foot
 
-/// Construct an acceleration from a number of [gees][1]. One gee is equal to
-/// 9.80665 meters per second squared (the standard acceleration due to gravity).
-///     Acceleration.gees 1
-///     --> Acceleration.metersPerSecondSquared 9.80665
-/// [1]: https://en.wikipedia.org/wiki/G-force#Unit_and_measurement
+/// <summary>
+/// Construct an acceleration from a number of
+/// <a href="https://en.wikipedia.org/wiki/G-force#Unit_and_measurement">gees</a>.
+/// One gee is equal to 9.80665 meters per second squared (the
+/// standard acceleration due to gravity).
+/// <code>
+///     Acceleration.gees 1 = Acceleration.metersPerSecondSquared 9.80665
+/// </code>
+/// </summary>
 let gees (numGees: float) : Acceleration =
     metersPerSecondSquared (Constants.gee * numGees)
 

@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8B986EA4-7
 		Docs\length.fsx = Docs\length.fsx
 		Docs\digit-precision.fsx = Docs\digit-precision.fsx
 		Docs\angle.fsx = Docs\angle.fsx
+		Docs\_template.html = Docs\_template.html
+		Docs\fsdocs-default.css = Docs\fsdocs-default.css
 	EndProjectSection
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Math.Units", "Math.Units\Math.Units.fsproj", "{4EA1E028-4FD7-484E-B29E-41CD28D1D806}"

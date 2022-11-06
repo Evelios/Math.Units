@@ -24,7 +24,7 @@ type Cartesian = Cartesian
 
 # Unit types
 
-The `Squared`, `Cubed`, `Product` and `Rate` units types allow you to build up
+The <c>Squared</c>, <c>Cubed</c>, `Product` and `Rate` units types allow you to build up
 and work with composite units in a fairly flexible way.
 
 @docs Squared, Cubed, Product, Rate

@@ -2,10 +2,11 @@ namespace Math.Units
 
 open System
 
+/// <summary>
 /// A module that allows for approximate comparison of floating point
 /// values. This works by limiting the amount of precision that is used
 /// when comparing two floating point values for comparison.
-/// 
+///
 /// A static class providing added features to the floating point number class.
 /// The main features of this class allow for better floating point equality
 /// testing. Generally, floating points always have small variations in their
@@ -20,16 +21,17 @@ open System
 ///
 /// This library does comparison by absolute value comparison through digit
 /// precision. Numbers are considered equal if they are equal when rounded to
-/// the number of digits as specified by `Float.DigitPrecision`. The default is
-/// 10 digits, so by default `2.0 = 2.00000000003` (the 11th digit is a 3).
+/// the number of digits as specified by <c>Float.DigitPrecision</c>. The default is
+/// 10 digits, so by default <c>2.0 = 2.00000000003</c> (the 11th digit is a 3).
 ///
-/// `Float.Epsilon` is a derived value from the number of digits and represents
+/// <c>Float.Epsilon</c> is a derived value from the number of digits and represents
 /// the maximum difference between two numbers that is considered equal. This
-/// number is `10^-DigitPrecision` which by default is `10^(-10)`, or
-/// `0.000000001`.
+/// number is <c>10^-DigitPrecision</c> which by default is <c>10^(-10)</c>, or
+/// <c>0.000000001</c>.
 ///
-/// In general the rules followed by this extension are from [The Floating Point
-/// Guide on Comparison](https://floating-point-gui.de/errors/comparison/).
+/// In general the rules followed by this extension are from
+/// <a href="https://floating-point-gui.de/errors/comparison">The Floating Point Guide on Comparison</a>
+/// </summary>
 [<AbstractClass; Sealed>]
 type Float private () =
     static let mutable digitPrecision = 10
@@ -40,7 +42,7 @@ type Float private () =
     /// trying to compare two numbers that are really close to zero.
     static member MinNormal = 10e-38
 
-    ///
+    /// The number of digits (in base 10) that are used for approximate equality tests.
     static member DigitPrecision
         with get () = digitPrecision
         and set v = digitPrecision <- v
@@ -51,7 +53,7 @@ type Float private () =
 module Float =
 
     /// Compare two floating point values for equality. Equality testing is done
-    /// based on a tolerance vale specified by `Float.Epsilon`.
+    /// based on a tolerance vale specified by <c>Float.Epsilon</c>.
     let almostEqual (a: float) (b: float) : bool =
         if a = b || Double.IsNaN a && Double.IsNaN b then
             true
@@ -74,38 +76,47 @@ module Float =
 
 
     /// Round a floating point number to the number of digits specified by
-    /// `Float.DigitPrecision`. By default, this rounds a floating point value
+    /// <c>Float.DigitPrecision</c>. By default, this rounds a floating point value
     /// to 10 digits.
     let roundFloat (x: float) = roundFloatTo Float.DigitPrecision x
 
 
+    /// <summary>
     /// Interpolate from the first value to the second, based on a parameter
     /// that ranges from zero to one. Passing a parameter value of zero will
     /// return the start value and passing a parameter value of one will return
     /// the end value.
     ///
+    /// <example><code>
     ///     Float.interpolateFrom 5 10 0
-    ///     --> 5
+    ///     // 5
     ///     Float.interpolateFrom 5 10 1
-    ///     --> 10
+    ///     // 10
     ///     Float.interpolateFrom 5 10 0.6
-    ///     --> 8
+    ///     // 8
+    /// </code></example>
     ///
+    /// <example>
     /// The end value can be less than the start value:
-    ///
+    /// <code>
     ///     Float.interpolateFrom 10 5 0.1
-    ///     --> 9.5
+    ///     // 9.5
+    /// </code>
+    /// </example>
     ///
+    /// <example>
     /// Parameter values less than zero or greater than one can be used to
     /// extrapolate:
-    ///
+    /// <code>
     ///     Float.interpolateFrom 5 10 1.5
-    ///     --> 12.5
+    ///     // 12.5
     ///     Float.interpolateFrom 5 10 -0.5
-    ///     --> 2.5
+    ///     // 2.5
     ///     Float.interpolateFrom 10 5 -0.2
-    ///     --> 11
-    ///
+    ///     // 11
+    /// </code>
+    /// </example>
+    /// </summary>
     let interpolateFrom (start: float) (finish: float) (parameter: float) : float =
         if parameter <= 0.5 then
             start + parameter * (finish - start)

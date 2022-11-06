@@ -5,13 +5,17 @@ open Math.Units
 
 // ---- Unit Systems -----------------------------------------------------------
 
-/// A special units type representing 'no units'. A `Quantity Int Unitless`
-/// value is interchangeable with a simple `Int`, and a `Quantity Float Unitless`
-/// value is interchangeable with a simple `Float`.
+/// <category>Unit Space</category>
+/// <summary>
+/// A special units type representing 'no units'. A <c>Quantity Unitless</c>
+/// value is interchangeable with a simple <c>float</c>.
 /// A generic number that doesn't undergo any type mutation.
 /// Eg.
+/// <code>
 ///     Unitless: Unitless 1. * Unitless 1. = Unitless 1.
 ///     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.
+/// </code>
+/// </summary>
 type Unitless = Unitless
 
 /// <category>Unit Space</category>
@@ -42,38 +46,46 @@ type CelsiusDegrees = CelsiusDegrees
 
 
 
+/// <category>Unit Relation</category>
+/// <summary>
 /// Represents a units type that is the product of two other units types. This
-/// is a more general form of `Squared` or `Cubed`. See [`product`](#product),
-/// [`times`](#times), [`over`](#over) and [`over_`](#over_) for how it can be used.
-///
-/// <category index=3>Unit Relation</category>
+/// is a more general form of <c>Squared</c> or <c>Cubed</c>. See
+/// <see cref="M:Math.Units.Quantity.product">Quantity.product</see>,
+/// <see cref="M:Math.Units.Quantity.times">Quantity.times</see>,
+/// <see cref="M:Math.Units.Quantity.over">Quantity.over</see> and
+/// <see cref="M:Math.Units.Quantity.over_">Quantity.over_</see> for how it can be used.
+/// </summary>
 type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 
+/// <category>Unit Relation</category>
+/// <summary>
 /// Represents a units type that is the square of some other units type; for
-/// example, `Meters` is one units type (the units type of a [`Length`](Length)) and
-/// `Squared Meters` is another (the units type of an [`Area`](Area)). See the
-/// [`squared`](#squared) and [`sqrt`](#sqrt) functions for examples of use.
-/// This is a special case of the `Product` units type.
-///
-/// <category index=3>Unit Relation</category>
+/// example, <c>Meters</c> is one units type (the units type of a <c>Length</c>) and
+/// <c>Squared Meters</c> is another (the units type of an <c>Area<c>). See the
+/// <see cref="Math.Units.Quantity.squared">Quantity.squared</see> and [`sqrt`](#sqrt)
+/// <see cref="Math.Units.Quantity.sqrt">Quantity.sqrt</see>
+/// functions for examples of use. This is a special case of the `Product` units type.
+/// </summary>
 type Squared<'Units> = Product<'Units, 'Units>
 
+/// <category>Unit Relation</category>
+/// <summary>
 /// Represents a units type that is the cube of some other units type; for
 /// example, `Meters` is one units type (the units type of a [`Length`](Length)) and
 /// `Cubed Meters` is another (the units type of an [`Volume`](Volume)). See the
 /// [`cubed`](Quantity#cubed) and [`cbrt`](Quantity#cbrt) functions for examples of
 /// use.
 /// This is a special case of the `Product` units type.
-///
-/// <category index=3>Unit Relation</category>
+/// </summary>
 type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 
 
+/// <category>Unit Relation</category>
+/// <summary>
 /// Represents the units type of a rate or quotient such as a speed (`Rate
 /// Meters Seconds`) or a pressure (`Rate Newtons SquareMeters`). See [Working with
 /// rates](#working-with-rates) for details.
-///
-/// <category index=3>Unit Relation</category>
+/// </summary>
 type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'IndependentUnits
 
 
@@ -155,6 +167,8 @@ type SquarePixels = Squared<Pixel>
 
 // ---- Quantity Declaration ---------------------------------------------------
 
+/// <category>Unit Type</category>
+/// <summary>
 /// A `Quantity` is effectively a `number` (an `Int` or `Float`) tagged with a
 /// `units` type. So a
 ///     Quantity Float Meters
@@ -164,7 +178,6 @@ type SquarePixels = Squared<Pixel>
 /// `Quantity` wrapper type will be compiled away, so the runtime performance should
 /// be comparable to using a raw `Float` or `Int`.
 ///
-/// <category index=2>Unit Type</category>
 type Quantity<'Units>(quantity: float) =
     interface IComparable<Quantity<'Units>> with
         member this.CompareTo(quantity: Quantity<'Units>) : int = this.Comparison(quantity)
