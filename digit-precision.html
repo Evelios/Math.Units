@@ -13,7 +13,7 @@
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="https://evelios.github.io/Math.Units/img/favicon.ico">
     <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-custom.css" />
@@ -152,36 +152,8 @@ the precision we are requiring for this operation.</p>
 from Math.Units<br /><br />--------------------<br />type Float =
   static member DigitPrecision: int
   static member Epsilon: float
-  static member MinNormal: float<br /><em>&lt;summary&gt;
- A static class providing added features to the floating point number class.
- The main features of this class allow for better floating point equality
- testing. Generally, floating points always have small variations in their
- values because the way that floating point numbers are encoded. It is often
- useful to do equality comparison checks between floating point numbers in a
- variety of contexts. There are two main ways of doing this type of
- comparison. The first is to use a percentage tolerance between two numbers,
- eg. Two floating point numbers are equal if they are within 0.01% of each
- other. Another is to compare if the two numbers are within an absolute range
- from each other, eg. Two floating point numbers are equal if they are within
- 0.0001 units of each other.
-
- This library does comparison by absolute value comparison through digit
- precision. Numbers are considered equal if they are equal when rounded to
- the number of digits as specified by `Float.DigitPrecision`. The default is
- 10 digits, so by default `2.0 = 2.00000000003` (the 11th digit is a 3).
-
- `Float.Epsilon` is a derived value from the number of digits and represents
- the maximum difference between two numbers that is considered equal. This
- number is `10^-DigitPrecision` which by default is `10^(-10)`, or
- `0.000000001`.
-
- In general the rules followed by this extension are from [The Floating Point
- Guide on Comparison](https://floating-point-gui.de/errors/comparison/).
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs5">val almostEqual: a: float -&gt; b: float -&gt; bool<br /><em>&lt;summary&gt;
- Compare two floating point values for equality. Equality testing is done
- based on a tolerance vale specified by `Float.Epsilon`.
-&lt;/summary&gt;</em></div>
+  static member MinNormal: float</div>
+<div class="fsdocs-tip" id="fs5">val almostEqual: a: float -&gt; b: float -&gt; bool</div>
 <div class="fsdocs-tip" id="fs6">property Float.DigitPrecision: int with get, set</div>
 
         </div>

@@ -13,7 +13,7 @@
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="https://evelios.github.io/Math.Units/img/favicon.ico">
     <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/navbar-fixed-left.css" />
     <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-default.css" />
     <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-custom.css" />
@@ -103,6 +103,79 @@
         <hr />
         <div class="container" id="fsdocs-content">
             
+<p>@docs Quantity</p>
+<h1><a name="Unit-types" class="anchor" href="#Unit-types">Unit types</a></h1>
+<p>The <c>Squared</c>, <c>Cubed</c>, <code>Product</code> and <code>Rate</code> units types allow you to build up
+and work with composite units in a fairly flexible way.</p>
+<p>@docs Squared, Cubed, Product, Rate</p>
+<h1><a name="Constants" class="anchor" href="#Constants">Constants</a></h1>
+<p>@docs zero, infinity, positiveInfinity, negativeInfinity</p>
+<h1><a name="Comparison" class="anchor" href="#Comparison">Comparison</a></h1>
+<p>@docs lessThan, greaterThan, lessThanOrEqualTo, greaterThanOrEqualTo
+@docs lessThanZero, greaterThanZero, lessThanOrEqualToZero, greaterThanOrEqualToZero
+@docs compare, equalWithin, max, min, isNaN, isInfinite</p>
+<h1><a name="Arithmetic" class="anchor" href="#Arithmetic">Arithmetic</a></h1>
+<p>@docs negate, abs, plus, difference, minus, multiplyBy, divideBy, twice, half, ratio, squared, sqrt, cubed, cbrt</p>
+<h2><a name="Unitless-quantities" class="anchor" href="#Unitless-quantities">Unitless quantities</a></h2>
+<p>Some specialized arithmetic functions for working with <a href="#Unitless">unitless</a>
+quantities. <code>squaredUnitless</code>, <code>sqrtUnitless</code>, <code>cubedUnitless</code> and
+<code>cbrtUnitless</code> all behave just like their non-<code>Unitless</code> versions but return a
+<code>Unitless</code> result (instead of for example something meaningless like <code>Squared
+Unitless</code>).</p>
+<p>@docs squaredUnitless, sqrtUnitless, cubedUnitless, cbrtUnitless, reciprocal</p>
+<h2><a name="Working-with-products" class="anchor" href="#Working-with-products">Working with products</a></h2>
+<p>@docs product, times, timesUnitless, over, over_, overUnitless</p>
+<h2><a name="Working-with-rates" class="anchor" href="#Working-with-rates">Working with rates</a></h2>
+<p>@docs rate, per, at, at_, for, inverse, rateProduct</p>
+<h2><a name="Modular-arithmetic" class="anchor" href="#Modular-arithmetic">Modular arithmetic</a></h2>
+<p><code>modBy</code> and <code>remainderBy</code> behave just like the <a href="https://package.elm-lang.org/packages/elm/core/latest/Basics#modBy"><code>modBy</code></a>
+and <a href="https://package.elm-lang.org/packages/elm/core/latest/Basics#remainderBy"><code>remainderBy</code></a>
+functions from Elm's built-in <code>Basics</code> module, but work on <code>Quantity</code> values
+instead of raw <code>Int</code>s. <code>fractionalModBy</code> and <code>fractionalRemainderBy</code> have the
+same behaviour but extended to <code>Float</code>-valued quantities.
+import Pixels exposing (pixels)
+import Length exposing (meters, centimeters)
+Quantity.modBy (pixels 4) (pixels 11)
+--&gt; pixels 3
+Quantity.fractionalModBy (meters 0.5)
+(centimeters 162.3)
+--&gt; centimeters 12.3</p>
+<p>@docs modBy, fractionalModBy, remainderBy, fractionalRemainderBy</p>
+<h2><a name="Miscellaneous" class="anchor" href="#Miscellaneous">Miscellaneous</a></h2>
+<p>@docs clamp, interpolateFrom, midpoint, range, in_</p>
+<h1><a name="conversion" class="anchor" href="#conversion"><code>Int</code>/<code>Float</code> conversion</a></h1>
+<p>These functions only really make sense for quantities in units like pixels,
+cents or game tiles where an <code>Int</code> number of units is meaningful. For quantities
+like <code>Length</code> or <code>Duration</code>, it doesn't really make sense to round to an <code>Int</code>
+value since the underyling base unit is pretty arbitrary - should <code>round</code>ing a
+<code>Duration</code> give you an <code>Int</code> number of seconds, milliseconds, or something else?
+(The actual behavior is that quantities will generally get rounded to the
+nearest SI base unit, since that is how they are stored internally - for
+example, <code>Length</code> values will get rounded to the nearest meter regardless of
+whether they were constructed from a number of meters, centimeters, inches or
+light years.)</p>
+<p>@docs round, floor, ceiling, truncate, toFloatQuantity</p>
+<h1><a name="List-functions" class="anchor" href="#List-functions">List functions</a></h1>
+<p>These functions act just like the corresponding functions in the built-in <code>List</code>
+module (or, int the case of <code>minimumBy</code> and <code>maximumBy</code>, the <code>List.Extra</code> module
+from <code>elm-community/list-extra</code>). They're necessary because the built-in
+<code>List.sum</code> only supports <code>List Int</code> and <code>List Float</code>, and the remaining
+functions only support built-in <code>comparable</code> types like <code>Int</code>, <code>Float</code>, <code>String</code>
+and tuples.</p>
+<p>@docs sum, minimum, maximum, minimumBy, maximumBy, sort, sortBy</p>
+<h1><a name="Unitless-quantities-1" class="anchor" href="#Unitless-quantities-1">Unitless quantities</a></h1>
+<p>It is sometimes useful to be able to represent <em>unitless</em> quantities, especially
+when working with generic code (in most other cases, it is likely simpler and
+easier to just use <code>Int</code> or <code>Float</code> values directly). All the conversions in
+this section simply wrap or unwrap a <code>Float</code> or <code>Int</code> value into a <code>Quantity</code>
+value, and so should get compiled away entirely when using <code>elm make
+--optimize</code>.</p>
+<p>@docs Unitless, int, toInt, float, toFloat</p>
+<h1><a name="Unsafe-conversions" class="anchor" href="#Unsafe-conversions">Unsafe conversions</a></h1>
+<p>These functions are equivalent to directly constructing or unwrapping <code>Quantity</code>
+values, and generally shouldn't be used outside of some specialized situations
+that can come up when authoring packages that use <code>elm-units</code>.
+@docs unsafe, unwrap</p>
 <h1><a name="Operators" class="anchor" href="#Operators">Operators</a></h1>
 <table>
 <thead>
@@ -122,7 +195,7 @@
 <td></td>
 <td><p>Quantity</p></td>
 <td><p><code>-quantity</code></p></td>
-<td><p><code>Quantity.negate</code></p></td>
+<td><p><a href="../reference/math-units-quantitymodule.html#negate">Quantity.negate</a></p></td>
 </tr>
 <tr class="even">
 <td><p>+</p></td>
