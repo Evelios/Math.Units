@@ -1,4 +1,4 @@
-/// A `Molarity` value represents a concentration of substance in moles per
+/// A <c>Molarity</c> value represents a concentration of substance in moles per
 /// cubic meter, moles per liter, millimoles per liter etc. It is stored as a number
 /// of moles per cubic meter.
 /// Note that the [NIST Guide to the
@@ -6,13 +6,13 @@
 /// states that the term "molarity" is considered obsolete, but it appears to still
 /// be in common use and is far less verbose than the alternative NIST suggestion of
 /// "amount-of-substance concentration".
-/// Since the units of `Molarity` are defined to be `Rate Moles CubicMeters` (amount
-/// of substance per unit volume), you can construct a `Molarity` value using
-/// `Quantity.per`:
+/// Since the units of <c>Molarity</c> are defined to be <c>Rate Moles CubicMeters</c> (amount
+/// of substance per unit volume), you can construct a <c>Molarity</c> value using
+/// <c>Quantity.per</c>:
 ///     molarity =
 ///         substanceAmount |> Quantity.per volume
-/// You can also do rate-related calculations with `Molarity` values to compute
-/// `SubstanceAmount` or `Volume`:
+/// You can also do rate-related calculations with <c>Molarity</c> values to compute
+/// <c>SubstanceAmount</c> or <c>Volume</c>:
 ///     substanceAmount =
 ///         volume |> Quantity.at molarity
 ///     volume =

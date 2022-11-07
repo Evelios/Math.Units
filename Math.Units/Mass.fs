@@ -1,4 +1,4 @@
-/// A `Mass` represents a mass in kilograms, pounds, metric or imperial tons
+/// A <c>Mass</c> represents a mass in kilograms, pounds, metric or imperial tons
 /// etc. It is stored as a number of kilograms.
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Mass

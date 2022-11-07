@@ -1,10 +1,10 @@
-/// A `Resistance` value represents an electrical resistance in ohms.
-/// Note that since `Ohms` is defined as `Rate Volts Amperes` (voltage per unit
-/// current), you can construct a `Resistance` value using `Quantity.per`:
+/// A <c>Resistance</c> value represents an electrical resistance in ohms.
+/// Note that since <c>Ohms</c> is defined as <c>Rate Volts Amperes</c> (voltage per unit
+/// current), you can construct a <c>Resistance</c> value using <c>Quantity.per</c>:
 ///     resistance =
 ///         voltage |> Quantity.per current
-/// You can also do rate-related calculations with `Resistance` values to compute
-/// `Voltage` or `Current`:
+/// You can also do rate-related calculations with <c>Resistance</c> values to compute
+/// <c>Voltage</c> or <c>Current</c>:
 ///     voltage =
 ///         current |> Quantity.at resistance
 ///     current =

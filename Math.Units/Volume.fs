@@ -1,4 +1,4 @@
-/// A `Volume` represents a volume in cubic meters, cubic feet, liters, US
+/// A <c>Volume</c> represents a volume in cubic meters, cubic feet, liters, US
 /// liquid gallons, imperial fluid ounces etc. It is stored as a number of cubic
 /// meters.
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
@@ -41,11 +41,11 @@ let milliliters (numMilliliters: float) : Volume = cubicMeters (1.0e-6 * numMill
 let inMilliliters (volume: Volume) : float = 1.0e6 * inCubicMeters volume
 
 /// Construct a volume from a number of cubic centimeters.
-/// Alias for `milliliters`.
+/// Alias for <c>milliliters</c>.
 let cubicCentimeters (numCubicCentimeters: float) : Volume = milliliters numCubicCentimeters
 
 /// Convert a volume to a number of cubic centimeters.
-/// Alias for `inMilliliters`.
+/// Alias for <c>inMilliliters</c>.
 let inCubicCentimeters (volume: Volume) : float = inMilliliters volume
 
 /// Construct a volume from a number of liters.

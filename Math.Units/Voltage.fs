@@ -1,16 +1,16 @@
-/// A `Voltage` value represents a voltage (electric potential difference, if
+/// A <c>Voltage</c> value represents a voltage (electric potential difference, if
 /// we're being picky) in volts.
-/// Note that since `Volts` is defined as `Rate Watts Amperes` (power per unit
-/// current), you can do rate-related calculations with `Voltage` values to compute
-/// `Power` or `Current`:
+/// Note that since <c>Volts</c> is defined as <c>Rate Watts Amperes</c> (power per unit
+/// current), you can do rate-related calculations with <c>Voltage</c> values to compute
+/// <c>Power</c> or <c>Current</c>:
 ///     -- elm-units version of 'P = V * I'
 ///     power =
 ///         current |> Quantity.at voltage
 ///     -- I = P / V
 ///     current =
 ///         power |> Quantity.at_ voltage
-/// Just for fun, note that since you can also [express `Voltage` in terms of
-/// `Current` and `Resistance`](Resistance), you could rewrite the second example
+/// Just for fun, note that since you can also [express <c>Voltage</c> in terms of
+/// <c>Current</c> and <c>Resistance</c>](Resistance), you could rewrite the second example
 /// above as
 ///     -- P = I^2 * R
 ///     power =

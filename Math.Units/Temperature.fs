@@ -1,17 +1,17 @@
-/// Unlike other modules in `elm-units`, this module contains two different
+/// Unlike other modules in <c>elm-units</c>, this module contains two different
 /// primary types:
-///   - `Temperature`, which is not actually a `Quantity` since temperatures don't
+///   - <c>Temperature</c>, which is not actually a <c>Quantity</c> since temperatures don't
 ///     really act like normal quantities. For example, it doesn't make sense to
 ///     add two temperatures or find the ratio between them.
-///   - `Delta`, which represents the difference between two temperatures. A `Delta`
-///     _is_ a `Quantity` since it does make sense to add two deltas to get a net
+///   - <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c>
+///     _is_ a <c>Quantity</c> since it does make sense to add two deltas to get a net
 ///     delta, find the ratio between two deltas (one rise in temperature might be
 ///     twice as much as another rise in temperature), etc.
-/// Since a `Temperature` value is not a `Quantity`, this module exposes specialized
-/// functions for doing the operations on `Temperature` values that _do_ make sense,
+/// Since a <c>Temperature</c> value is not a <c>Quantity</c>, this module exposes specialized
+/// functions for doing the operations on <c>Temperature</c> values that _do_ make sense,
 /// such as comparing two temperatures or sorting a list of temperatures. It's also
-/// possible to find the delta from one temperature to another using [`minus`](Temperature#minus),
-/// and then add a `Delta` to a `Temperature` using [`plus`](Temperature#plus).
+/// possible to find the delta from one temperature to another using [<c>minus</c>](Temperature#minus),
+/// and then add a <c>Delta</c> to a <c>Temperature</c> using [<c>plus</c>](Temperature#plus).
 ///
 /// @docs Temperature, Delta, CelsiusDegrees
 ///
@@ -22,16 +22,16 @@
 /// # Deltas
 ///
 /// Following the suggestion mentioned [here](https://en.wikipedia.org/wiki/Celsius#Temperatures_and_intervals),
-/// this module uses (for example) `celsiusDegrees` to indicate a temperature delta
-/// (change in temperature), in contrast to `degreesCelsius` which indicates an
+/// this module uses (for example) <c>celsiusDegrees</c> to indicate a temperature delta
+/// (change in temperature), in contrast to <c>degreesCelsius</c> which indicates an
 /// actual temperature.
 ///
 /// @docs celsiusDegrees, inCelsiusDegrees, fahrenheitDegrees, inFahrenheitDegrees
 ///
 /// ## Constants
 ///
-/// Shorthand for `Temperature.celsiusDegrees 1` and `Temperature.fahrenheitDegrees
-/// 1`. Can be convenient to use with [`Quantity.per`](Quantity#per).
+/// Shorthand for <c>Temperature.celsiusDegrees 1</c> and `Temperature.fahrenheitDegrees
+/// 1<c>. Can be convenient to use with [</c>Quantity.per`](Quantity#per).
 ///
 /// @docs celsiusDegree, fahrenheitDegree
 ///
@@ -176,7 +176,7 @@ let max (first: Temperature) (second: Temperature) : Temperature = max first sec
 
 // ---- List Functions ---------------------------------------------------------
 
-/// Find the minimum of a list of temperatures. Returns `Nothing` if the list
+/// Find the minimum of a list of temperatures. Returns <c>Nothing</c> if the list
 /// is empty.
 ///     Temperature.minimum
 ///         [ Temperature.degreesCelsius 20
@@ -190,7 +190,7 @@ let minimum (temperatures: Temperature list) : Temperature option =
     | [] -> None
 
 
-/// Find the maximum of a list of temperatures. Returns `Nothing` if the list
+/// Find the maximum of a list of temperatures. Returns <c>Nothing</c> if the list
 /// is empty.
 ///     Temperature.maximum
 ///         [ Temperature.degreesCelsius 20
@@ -218,7 +218,7 @@ let maximum (temperatures: Temperature list) : Temperature option =
 let sort (temperatures: Temperature list) : Temperature list = List.sortBy inKelvins temperatures
 
 
-/// Sort an arbitrary list of values by a derived `Temperature`. If you had
+/// Sort an arbitrary list of values by a derived <c>Temperature</c>. If you had
 ///     rooms =
 ///         [ ( "Lobby", Temperature.degreesCelsius 21 )
 ///         , ( "Locker room", Temperature.degreesCelsius 17 )

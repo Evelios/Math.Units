@@ -7,13 +7,17 @@ open Math.Units
 let inline unit<'Units> : Interval<'Units> =
     Interval(Quantity LanguagePrimitives.GenericZero, Quantity LanguagePrimitives.GenericOne)
 
+/// <summary>
 /// Construct an interval from two given values.
 ///
 /// The values should be given in order, but will be swapped if needed to
 /// ensure a valid interval is created.
 ///
+/// <code>
 ///     Interval.from (3, 2)
-///     // Interval (2, 3)
+///     --> Interval (2, 3)
+/// </code>
+/// </summary>
 let from (first: Quantity<'Units>) (second: Quantity<'Units>) : Interval<'Units> =
     if first <= second then
         Interval(first, second)
@@ -26,8 +30,11 @@ let from (first: Quantity<'Units>) (second: Quantity<'Units>) : Interval<'Units>
 /// The values should be given in order, but will be swapped if needed to
 /// ensure a valid interval is created.
 ///
+/// <code>
 ///     Interval.fromEndpoints (3, 2)
-///     // Interval (2, 3)
+///     --> Interval (2, 3)
+/// </code>
+/// </summary>
 let fromEndpoints (first, second) : Interval<'Units> = from first second
 
 /// Construct a zero width interval containing a single value
@@ -36,80 +43,124 @@ let singleton n : Interval<'Units> = Interval(n, n)
 
 // ---- Accessors ---
 
+/// <summary>
 /// Get the endpoints of an interval (its minimum and maximum values) as a
 /// tuple. The first value will always be less than or equal to the second.
-///     ( minValue, maxValue ) =
+/// <code>
+///     let ( minValue, maxValue ) =
 ///         Interval.endpoints someInterval
+/// </code>
 /// For any interval,
+/// <code>
 ///     Interval.endpoints interval
+/// </code>
 /// is equivalent to (but more efficient than)
+/// <code>
 ///     ( Interval.minValue interval
 ///     , Interval.maxValue interval
 ///     )
+/// </code>
+/// </summary>
 let endpoints (Interval.Interval (a, b): Interval<'Units>) : Quantity<'Units> * Quantity<'Units> = (a, b)
 
 
+/// <summary>
+/// <code>
 /// Get the minimum value of an interval.
 ///     Interval.minValue (Interval.from 1 3)
 ///     --> 1
+/// </code>
+/// </summary>
 let minValue (Interval (a, _): Interval<'Units>) : Quantity<'Units> = a
 
 
+/// <summary>
 /// Get the maximum value of an interval.
+/// <code>
 ///     Interval.maxValue (Interval.from 1 3)
 ///     --> 3
+/// </code>
+/// </summary>
 let maxValue (Interval (_, b): Interval<'Units>) : Quantity<'Units> = b
 
 
+/// <summary>
 /// Get the midpoint of an interval.
+/// <code>
 ///     Interval.midpoint (Interval.from 1 4)
 ///     --> 2.5
+/// </code>
+/// </summary>
 let inline midpoint (Interval (a, b): Interval<'Units>) : Quantity<'Units> = a + 0.5 * (b - a)
 
+/// <summary>
 /// Get the width of an interval.
+/// <code>
 ///     Interval.width (Interval.from 1 5)
 ///     --> 4
+/// </code>
+/// </summary>
 let inline width (Interval (a, b)) : Quantity<'Units> = b - a
 
+/// <summary>
 /// Check if the interval is a singleton (the minimum and maximum values are the
 /// same).
+/// <code>
 ///     Interval.isSingleton (Interval.from 2 2)
 ///     --> True
 ///     Interval.isSingleton (Interval.from 2 3)
 ///     --> False
+/// </code>
+/// </summary>
 let isSingleton (Interval (a, b): Interval<'Units>) : bool = a = b
 
 
 // ---- Math Operations ----
 
+/// <summary>
 /// Construct an interval containing both of the given intervals.
-///     firstInterval =
+/// <code>
+///     let firstInterval =
 ///         Interval.from 1 2
-///     secondInterval =
+///     let secondInterval =
 ///         Interval.from 3 6
-///     Interval.union firstInterval secondInterval
+///     let Interval.union firstInterval secondInterval
 ///     --> Interval.from 1 6
-/// (Note that this is not strictly speaking a 'union' in the precise mathematical
+/// </code>
+/// </summary>
+///
+/// <note>
+/// This is not strictly speaking a 'union' in the precise mathematical
 /// sense, since the result will contain values that are _in between_ the two given
 /// intervals and not actually _in_ either of them if those two intervals do not
-/// overlap.)
+/// overlap.
+/// </note>
 let union (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> = Interval(min a1 a2, max b1 b2)
 
+/// <summary>
 /// Attempt to construct an interval containing all the values common to both
-/// given intervals. If the intervals do not intersect, returns `Nothing`.
+/// given intervals.
+///
+/// If the intervals do not intersect, returns <c>Nothing</c>.
+/// <code>
 ///     Interval.intersection
 ///         (Interval.from 1 3)
 ///         (Interval.from 2 5)
-///     --> Just (Interval.from 2 3)
+///     --> Some (Interval.from 2 3)
 ///     Interval.intersection
 ///         (Interval.from 1 3)
 ///         (Interval.from 4 7)
-///     --> Nothing
+///     --> None
+/// </code>
+///
 /// If the two intervals just touch, a singleton interval will be returned:
+/// <code>
 ///     Interval.intersection
 ///         (Interval.from 1 3)
 ///         (Interval.from 3 5)
-///     --> Just (Interval.singleton 3)
+///     --> Some (Interval.singleton 3)
+/// </code>
+/// </summary>
 let intersection (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> option =
     let maxA = max a1 a2
     let minB = min b1 b2
@@ -119,40 +170,62 @@ let intersection (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> opti
     else
         None
 
+/// <summary>
 /// Negate an interval. Note that this will flip the order of the endpoints.
+/// <code>
 ///    Interval.negate (Interval.from 2 3)
 ///    --> Interval.from -3 -2
+/// </code>
+/// </summary>
 let inline negate (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(-b, -a)
 
 
+/// <summary>
 /// Add the given amount to an interval.
+/// <code>
 ///    Interval.from -1 5 |> Interval.add 3
 ///    --> Interval.from 2 8
+/// </code>
+/// </summary>
 let inline plus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
     Interval(delta + a, delta + b)
 
 
+/// <summary>
 /// Subtract the given amount from an interval.
+/// <code>
 ///    Interval.from -1 5 |> Interval.subtract 3
 ///    --> Interval.from -4 2
+/// </code>
+/// < /summary>
 let inline minus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
     Interval(a - delta, b - delta)
 
+/// <summary>
 /// Subtract an interval from the given amount. So if you wanted to compute
-/// `interval - quantity` you would write
+/// <c>interval - quantity</c> you would write
+/// <code>
 ///     interval |> Interval.minus quantity
-/// but if you wanted to compute `quantity - interval` then you would write
+/// </code>
+/// but if you wanted to compute <c>quantity - interval</c> then you would write
+/// <code>
 ///     Interval.difference quantity interval
+/// </code>
+/// </summary>
 let difference (x: Quantity<'Units>) (interval: Interval<'Units>) =
     let (Interval (a, b)) = interval
     Interval(x - b, x - a)
 
-///  Multiply an interval by a given value. Note that this will flip the order
+/// <summary>
+/// Multiply an interval by a given value. Note that this will flip the order
 /// of the interval's endpoints if the given value is negative.
+/// <code>
 ///     Interval.multiplyBy 5 (Interval.from 2 3)
 ///     --> Interval.from 10 15
 ///     Interval.multiplyBy -2 (Interval.from 2 3)
 ///     --> Interval.from -6 -4
+/// </code>
+/// </summary>
 let multiplyBy (scale: float) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
     if scale >= 0 then
         Interval(a * scale, b * scale)
@@ -160,10 +233,16 @@ let multiplyBy (scale: float) (Interval (a, b): Interval<'Units>) : Interval<'Un
     else
         Interval(b * scale, a * scale)
 
-/// Multiply an `Interval` by a `Quantity`, for example
+/// <summary>
+/// Multiply an <c>Interval</c> by a <c>Quantity</c>, for example
 ///     Interval.product quantity interval
-/// Note that unlike [`times`](#times), the units of the result will be `Product
-/// quantityUnits intervalUnits`, not `Product intervalUnits quantityUnits`.
+/// </summary>
+///
+/// <note>
+/// Unlike <c>Quantity.times</c>, the units of the result will be
+/// <c>Product&lt;QuantityUnits, IntervalUnits&gt;</c>,
+/// not <c>Product&lt;IntervalUnits, QuantityUnits&gt;</c>.
+/// </note>
 let product
     (x: Quantity<'QuantityUnits>)
     (Interval (a, b): Interval<'IntervalUnits>)
@@ -175,12 +254,16 @@ let product
         Interval(x * b, x * a)
 
 
+/// <summary>
 /// Divide an interval by a given value. Note that this will flip the order
 /// of the interval's endpoints if the given value is negative.
+/// <code>
 ///     Interval.divideBy 2 (Interval.from 2 3)
 ///     --> Interval.from 1 1.5
 ///     Interval.divideBy -2 (Interval.from 2 3)
 ///     --> Interval.from -1.5 -1
+/// </code>
+/// </summary>
 let divideBy (divisor: float) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
     if divisor = 0. then
         Interval(Quantity(-1. / 0.), Quantity(1. / 0.))
@@ -192,33 +275,51 @@ let divideBy (divisor: float) (Interval (a, b): Interval<'Units>) : Interval<'Un
         Interval(b / divisor, a / divisor)
 
 
-/// Shorthand for `multiplyBy 0.5`.
+/// <summary>
+/// Shorthand for <c>multiplyBy 0.5</c>.
+/// </summary>
 let half (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(0.5 * a, 0.5 * b)
 
 
-/// Shorthand for `multiplyBy 2`.
+/// <summary>
+/// Shorthand for <c>multiplyBy 2</c>.
+/// </summary>
 let twice (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(2. * a, 2. * b)
 
+/// <summary>
 /// Add two intervals together.
+/// <code>
 ///     Interval.from 5 10
 ///         |> Interval.plus (Interval.from 2 3)
 ///     --> Interval.from 7 13
+/// </code>
+/// </summary>
 let plusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 + b1)
 
 
-/// Subtract the first interval from the second. This means that `minus` makes
-/// the most sense when using `|>`:
+/// <summary>
+/// Subtract the first interval from the second. This means that <c>minus</c> makes
+/// the most sense when using <c>|&gt;</c>:
+/// <code>
 ///     Interval.from 5 10
 ///         |> Interval.minus (Interval.from 2 3)
 ///     --> Interval.from 2 8
+/// </code>
 /// Without the pipe operator, the above would be written as:
+/// <code>
 ///     Interval.minus (Interval.from 2 3)
 ///         (Interval.from 5 10)
 ///     --> Interval.from 2 8
+/// </code>
+/// </summary>
 let minusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a1 - b2, b1 - a2)
 
-/// Multiply an `Interval` by a `Quantity`, for example
+/// <summary>
+/// Multiply an <c>Interval</c> by a <c>Quantity</c>, for example
+/// <code>
 ///     interval |> Interval.times quantity
+/// </code>
+/// </summary>
 let times
     (x: Quantity<'QuantityUnits>)
     (interval: Interval<'IntervalUnits>)
@@ -231,9 +332,10 @@ let times
     else
         Interval(b * x, a * x)
 
-/// Multiply an `Interval` by a unitless `Quantity`. See the documentation for
-/// [`Quantity.timesUnitless`](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest/Quantity#timesUnitless)
-/// for more details.
+/// <summary>
+/// Multiply an <c>Interval</c> by a unitless <c>Quantity</c>. See the documentation for
+/// <c>Quantity.timesUnitless</c> for more details.
+/// </summary>
 let timesUnitless (x: Quantity<Unitless>) (interval: Interval<Unitless>) : Interval<Unitless> =
     let (Interval (a, b)) = interval
 
@@ -243,11 +345,15 @@ let timesUnitless (x: Quantity<Unitless>) (interval: Interval<Unitless>) : Inter
     else
         Interval(b * x.Value, a * x.Value)
 
+/// <summary>
 /// Multiply the two given intervals.
+/// <code>
 ///     Interval.from 10 12
 ///         |> Interval.times
 ///             (Interval.from 5 6)
 ///     --> Interval.from 50 72
+/// </code>
+/// </summary>
 let timesInterval
     (Interval (a2, b2): Interval<'UnitsA>)
     (Interval (a1, b1): Interval<'UnitsB>)
@@ -259,8 +365,10 @@ let timesInterval
 
     Interval(min (min (min aa ab) ba) bb, max (max (max aa ab) ba) bb)
 
-/// Combination of [`timesInterval`](#timesInterval) and [`timesUnitless`](#timesUnitless)
+/// <summary>
+/// Combination of <c>Quantity.timesInterval</c> and <c>Quantity.timesUnitless</c>
 /// for when one of the intervals in a product is unitless.
+/// </summary>
 let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Interval<'Units>) : Interval<'Units> =
     let (Interval (a2, b2)) = unitlessInterval
     let (Interval (a1, b1)) = interval
@@ -273,8 +381,10 @@ let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Inte
 
     Interval(Quantity start.Value, Quantity finish.Value)
 
+/// <summary>
 /// Find the inverse of a unitless interval:
-///     Interval.reciprocal <|
+/// <code>
+///     Interval.reciprocal &lt;|
 ///         Interval.fromEndpoints
 ///             ( Quantity.float 2
 ///             , Quantity.float 3
@@ -283,9 +393,12 @@ let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Inte
 ///     -->     ( Quantity.float 0.333
 ///     -->     , Quantity.float 0.500
 ///     -->     )
+/// </code>
+///
 /// Avoid using this function whenever possible, since it's very easy to get
 /// infinite intervals as a result:
-///     Interval.reciprocal <|
+/// <code>
+///     Interval.reciprocal &lt;|
 ///         Interval.fromEndpoints
 ///             ( Quantity.float -1
 ///             , Quantity.float 2
@@ -294,8 +407,11 @@ let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Inte
 ///     -->     ( Quantity.negativeInfinity
 ///     -->     , Quantity.negativeInfinity
 ///     -->     )
+/// </code>
+///
 /// Since zero is contained in the above interval, the range of possible reciprocals
 /// ranges from negative to positive infinity!
+/// </summary>
 let reciprocal (Interval (a, b): Interval<Unitless>) : Interval<Unitless> =
     if a > Quantity.zero || b < Quantity.zero then
         Interval(Quantity(1. / b.Value), Quantity(1. / a.Value))
@@ -312,12 +428,16 @@ let reciprocal (Interval (a, b): Interval<Unitless>) : Interval<Unitless> =
     else
         Interval(Quantity(Quantity.zero / Quantity.zero), Quantity(Quantity.zero / Quantity.zero))
 
+/// <summary>
 /// Get the absolute value of an interval.
-///     Interval.abs <|
+/// <code>
+///     Interval.abs &lt;|
 ///         Interval.fromEndpoints
 ///             ( Length.meters -3  Length.meters 2 )
 ///     --> Interval.fromEndpoints
 ///     -->     (Length.meters 0) (Length.meters 3)
+/// </code>
+/// </summary>
 let abs (Interval (a, b) as interval: Interval<'Units>) : Interval<'Units> =
     if a >= Quantity.zero then
         interval
@@ -329,6 +449,7 @@ let abs (Interval (a, b) as interval: Interval<'Units>) : Interval<'Units> =
         Interval(Quantity.zero, max -a b)
 
 
+///
 let unsafeSquared (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
     if a >= Quantity.zero then
         Interval(Quantity(a.Value * a.Value), Quantity(b.Value * b.Value))
@@ -347,10 +468,13 @@ let unsafeSquared (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
 let squared (interval: Interval<'Units>) : Interval<Squared<'Units>> = unsafeSquared interval
 
 
-/// Specialized version of `squared` for unitless intervals.
+/// <summary>
+/// Specialized version of <c>squared</c> for unitless intervals.
+/// </summary>
 let squaredUnitless (interval: Interval<Unitless>) : Interval<Unitless> = unsafeSquared interval
 
 
+///
 let unsafeCubed (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
     Interval(Quantity(a.Value * a.Value * a.Value), Quantity(b.Value * b.Value * b.Value))
 
@@ -359,30 +483,38 @@ let unsafeCubed (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
 let cubed (interval: Interval<'Units>) : Interval<Cubed<'Units>> = unsafeCubed interval
 
 
-/// Specialized version of `cubed` for unitless intervals.
+/// <summary>
+/// Specialized version of <c>cubed</c> for unitless intervals.
+/// </summary>
 let cubedUnitless (interval: Interval<Unitless>) : Interval<Unitless> = unsafeCubed interval
 
-/// The maximum of cos(x) is x = 2 pi \* k for every integer k.
-/// If `minValue` and `maxValue` are in different branches
+/// <summary>
+/// The maximum of <c>cos(x) is x = 2 pi \* k</c> for every integer k.
+/// If <c>minValue</c> and <c>maxValue</c> are in different branches
 /// (meaning different values of k), then the interval must pass through
-/// 2 pi \* k, which means the interval must include the maximum value.
+/// <c>2 pi \* k</c>, which means the interval must include the maximum value.
+/// <summary>
 let cosIncludesMax (Interval (a, b)) : bool =
     let minBranch = floor (a / (2. * Math.PI))
 
     let maxBranch = floor (b / (2. * Math.PI))
     minBranch <> maxBranch
 
-/// cos(x + pi) = -cos(x), therefore if cos(interval + pi) includes the maximum,
-/// that means cos(interval) includes the minimum.
+/// <summary>
+/// <c>cos(x + pi) = -cos(x)</c>, therefore if <c>cos(interval + pi)</c> includes the maximum,
+/// that means <c>cos(interval)</c> includes the minimum.
+/// </summary>
 let cosIncludesMinMax (interval: Interval<'Units>) : bool * bool =
     (interval
      |> plus (Quantity Math.PI)
      |> cosIncludesMax,
      interval |> cosIncludesMax)
 
-/// cos(x - pi/2) = sin(x), therefore if cos(interval - pi/2) includes
-/// the maximum/minimum, that means sin(interval) includes the maximum/minimum
+/// <summary>
+/// <c>cos(x - pi/2) = sin(x)</c>, therefore if <c>cos(interval - pi/2)</c> includes
+/// the maximum/minimum, that means <c>sin(interval)</c> includes the maximum/minimum
 /// accordingly.
+/// </summary>
 let sinIncludesMinMax (interval: Interval<'Units>) : bool * bool =
     let halfPi = Math.PI / 2.
 
@@ -391,11 +523,15 @@ let sinIncludesMinMax (interval: Interval<'Units>) : bool * bool =
     |> cosIncludesMinMax
 
 
-/// Get the image of sin(x) applied on the interval.
+/// <summary>
+/// Get the image of <c>sin(x)</c> applied on the interval.
+/// <code>
 ///     Interval.sin (Interval.from 0 (degrees 45))
 ///     --> Interval.from 0 0.7071
 ///     Interval.sin (Interval.from 0 pi)
 ///     --> Interval.from 0 1
+/// </code>
+/// </summary>
 let sin (interval: Interval<Radians>) : Interval<Unitless> =
     if isSingleton interval then
         singleton (Angle.sin (minValue interval) |> Quantity)
@@ -423,11 +559,15 @@ let sin (interval: Interval<Radians>) : Interval<Unitless> =
         fromEndpoints (Quantity newMin, Quantity newMax)
 
 
-///  Get the image of cos(x) applied on the interval.
+/// <summary>
+///  Get the image of <c>cos(x)</c> applied on the interval.
+/// <code>
 ///     Interval.cos (Interval.from 0 (degrees 45))
 ///     --> Interval.from 0.7071 1
 ///     Interval.cos (Interval.from 0 pi)
 ///     --> Interval.from -1 1
+/// </code>
+/// </summary>
 let cos (interval: Interval<Radians>) : Interval<Unitless> =
     if isSingleton interval then
         singleton (Angle.cos (minValue interval) |> Quantity)
@@ -457,41 +597,51 @@ let cos (interval: Interval<Radians>) : Interval<Unitless> =
 
 // ---- Queries ----
 
+/// <summary>
 /// Interpolate between an interval's endpoints based on a parameter value that
 /// will generally be between 0.0 and 1.0. A value of 0.0 corresponds to the minimum
 /// value of the interval, a value of 0.5 corresponds to its midpoint and a value of
 /// 1.0 corresponds to its maximum value:
+/// <code>
 ///     Interval.interpolate (Interval.from 1 5) 0
 ///     --> 1
 ///     Interval.interpolate (Interval.from 1 5) 0.75
 ///     --> 4
+/// </code>
 /// Values less than 0.0 or greater than 1.0 can be used to extrapolate:
+/// <code>
 ///     Interval.interpolate (Interval.from 1 5) 1.5
 ///     --> 7
-/// Note that because of how [`Interval.from`](#from) works, the interpolation is in
+/// </code>
+/// Note that because of how <c>Interval.from</c> works, the interpolation is in
 /// fact from the minimum value to the maximum, _not_ "from the first
-/// `Interval.from` argument to the second":
+/// <c>Interval.from</c> argument to the second":
+/// <code>
 ///     Interval.interpolate (Interval.from 0 10) 0.2
 ///     --> 2
 ///     Interval.interpolate (Interval.from 10 0) 0.2
-///     --> 2 -- not 8!
-/// If you want the interpolate from one number down to another, you can use
-/// [`Float.Extra.interpolateFrom`](https://package.elm-lang.org/packages/ianmackenzie/elm-float-extra/latest/Float-Extra#interpolateFrom)
-/// from the `elm-float-extra` package.
+///     --> 2 // not 8!
+/// </code>
+/// </summary>
 let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units> =
     Float.interpolateFrom a.Value b.Value t
     |> Quantity
 
 
+/// <summary>
 /// Given an interval and a given value, determine the corresponding
-/// interpolation parameter (the parameter that you would pass to [`interpolate`](#interpolate)
+/// interpolation parameter (the parameter that you would pass to [<c>interpolate</c>](#interpolate)
 /// to get the given value):
+/// <code>
 ///     Interval.interpolationParameter
 ///         (Interval.from 10 15)
 ///         12
 ///     --> 0.4
+/// </code>
+///
 /// The result will be between 0 and 1 if (and only if) the given value is within
 /// the given interval:
+/// <code>
 ///     Interval.interpolationParameter
 ///         (Interval.from 10 15)
 ///         18
@@ -500,10 +650,15 @@ let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units
 ///         (Interval.from 10 15)
 ///         9
 ///     --> -0.2
-/// This is the inverse of `interpolate`; for any non-zero-width `interval`,
+/// </code>
+///
+/// This is the inverse of <c>interpolate</c>; for any non-zero-width <c>interval</c>,
+/// <code>
 ///     Interval.interpolationParameter interval value
 ///         |> Interval.interpolate interval
-/// should be equal to the original `value` (within numerical round off).
+/// </code>
+/// should be equal to the original <c>value</c> (within numerical round off).
+/// </summary>
 let interpolationParameter (Interval (a, b): Interval<'Units>) (value: Quantity<'Units>) : float =
     if a < b then
         (value - a) / (b - a)
@@ -524,43 +679,60 @@ let interpolationParameter (Interval (a, b): Interval<'Units>) (value: Quantity<
 let contains (value: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : bool = a <= value && value <= b
 
 
+/// <summary>
 /// Check if two intervals touch or overlap (have any values in common).
+/// <code>
 ///     Interval.from -5 5
 ///         |> Interval.intersects (Interval.from 0 10)
 ///     --> True
 ///     Interval.from -5 5
 ///         |> Interval.intersects (Interval.from 10 20)
 ///     --> False
+/// </code>j
+///
 /// Intervals that just touch each other are considered to intersect (this is
-/// consistent with `intersection` which will return a zero-width interval for the
+/// consistent with <c>intersection</c> which will return a zero-width interval for the
 /// intersection of two just-touching intervals):
+/// <code>
 ///     Interval.from -5 5
 ///         |> Interval.intersects (Interval.from 5 10)
 ///     --> True
+/// </code>
+/// </summary>
 let intersects (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interval<'Units>) : bool = a1 <= b2 && b1 >= a2
 
 
+/// <summary>
 /// Check if the second interval is fully contained in the first.
+/// <code>
 ///     Interval.from -5 5
 ///         |> Interval.isContainedIn (Interval.from 0 10)
 ///     --> False
 ///     Interval.from -5 5
 ///         |> Interval.isContainedIn (Interval.from -10 10)
 ///     --> True
-/// Be careful with the argument order! If not using the `|>` operator, the second
+/// </code>
+///
+/// Be careful with the argument order! If not using the <c>|></c> operator, the second
 /// example would be written as:
+/// <code>
 ///     Interval.isContainedIn (Interval.from -10 10)
 ///         (Interval.from -5 5)
 ///     --> True
+/// </code>
+/// </summary>
 let isContainedIn (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interval<'Units>) : bool =
     a1 <= a2 && b2 <= b1
 
 
-
+/// <summary>
 /// Find the interval containing one or more input values:
-///    Interval.hull 5 [ 3, 2, 4 ]
+/// <code>
+///    Interval.hull 5 [ 3; 2; 4 ]
 ///    --> Interval.from 2 5
-/// See also [`hullN`](#hullN).
+/// </code>
+/// See also <c>Interval.hullN</c>
+/// </summary>
 let hull (first: Quantity<'Units>) (rest: Quantity<'Units> list) : Interval<'Units> =
     let rec hullHelp a b values =
         match values with
@@ -570,44 +742,62 @@ let hull (first: Quantity<'Units>) (rest: Quantity<'Units> list) : Interval<'Uni
 
     hullHelp first first rest
 
+/// <summary>
 /// Construct an interval containing the three given values;
+/// <code>
 ///     Interval.hull3 a b c
+/// </code>
 /// is equivalent to
-///     Interval.hull a [ b, c ]
-/// but is more efficient. (If you're looking for a `hull2` function, [`from`](#from)
+/// <code>
+///     Interval.hull a [ b; c ]
+/// </code>
+/// but is more efficient. (If you're looking for a <c>Interval.hull2</c> function, <c>Interval.from</c>
 /// should do what you want.)
+/// </summary>
 let hull3 (a: Quantity<'Units>) (b: Quantity<'Units>) (c: Quantity<'Units>) : Interval<'Units> =
     Interval(min a (min b c), max a (max b c))
 
+/// <summary>
 /// Attempt to construct an interval containing all _N_ values in the given
-/// list. If the list is empty, returns `Nothing`. If you know you have at least one
-/// value, you can use [`hull`](#hull) instead.
-///     Interval.hullN [ 2, 1, 3 ]
+/// list. If the list is empty, returns <c>Nothing</c>. If you know you have at least one
+/// value, you can use <c>Interval.hull</c> instead.
+/// <code>
+///     Interval.hullN [ 2; 1; 3 ]
 ///     --> Just (Interval.from 1 3)
 ///     Interval.hullN [ -3 ]
 ///     --> Just (Interval.singleton -3)
 ///     Interval.hullN []
 ///     --> Nothing
+/// </code>
+/// </summary>
 let hullN (values: Quantity<'Units> list) : Interval<'Units> option =
     match values with
     | first :: rest -> Some(hull first rest)
     | [] -> None
 
-/// Like [`hull`](#hull), but lets you work on any kind of item as long as a
+/// <summary>
+/// Like <c>Quantity.hull</c>, but lets you work on any kind of item as long as a
 /// number can be extracted from it. For example, if you had
-///     type alias Person =
-///         { name : String
-///         , age : Float
+/// <code>
+///     type Person =
+///         { Name : string
+///           Age : float
 ///         }
-/// then given some people you could find their range of ages as an `Interval`
+/// </code>
+///
+/// then given some people you could find their range of ages as an <c>Interval</c>
 /// using
-///     Interval.hullOf .age
+/// <code>
+///     Interval.hullOf (fun person -> person.Age)
 ///         firstPerson
 ///         [ secondPerson
-///         , thirdPerson
-///         , fourthPerson
+///           thirdPerson
+///           fourthPerson
 ///         ]
-/// See also [`hullOfN`](#hullOfN).
+/// </code>
+///
+/// See also <c>Interval.hullOfN</c>.
+/// <summary>
 let hullOf (getValue: 'a -> Quantity<'Units>) (first: 'a) (rest: 'a list) : Interval<'Units> =
     let rec hullOfHelp a b getValue list =
         match list with
@@ -620,20 +810,27 @@ let hullOf (getValue: 'a -> Quantity<'Units>) (first: 'a) (rest: 'a list) : Inte
     let firstValue = getValue first
     hullOfHelp firstValue firstValue getValue rest
 
-/// Combination of [`hullOf`](#hullOf) and [`hullN`](#hullN).
+/// <summary>
+/// Combination of <c>Interval.hullOf</c> and <c>Interval.hullN</c>.
+/// </summary>
 let hullOfN (getValue: 'a -> Quantity<'Units>) (items: 'a list) : Interval<'Units> option =
     match items with
     | first :: rest -> Some(hullOf getValue first rest)
     | [] -> None
 
+/// <summary>
 /// Construct an interval containing one or more given intervals:
+/// <code>
 ///     Interval.aggregate
 ///         (Interval.singleton 2)
 ///         [ Interval.singleton 4
 ///         , Interval.singleton 3
 ///         ]
 ///     --> Interval.from 2 4
-/// Works much like [`hull`](#hull). See also [`aggregateN`](#aggregateN).
+/// </code>
+///
+/// Works much like <c>Interval.hull</c>. See also <c>Interval.aggregateN</c>.
+/// </summary>
 let aggregate (Interval (a, b)) (rest: Interval<'Units> list) : Interval<'Units> =
     let rec aggregateHelp a b intervals =
         match intervals with
@@ -643,25 +840,35 @@ let aggregate (Interval (a, b)) (rest: Interval<'Units> list) : Interval<'Units>
 
     aggregateHelp a b rest
 
-/// Special case of [`aggregate`](#aggregate) for the case of three intervals;
+/// <summary>
+/// Special case of <c>Interval.aggregate</c> for the case of three intervals;
+/// <code>
 ///     Interval.aggregate3 first second third
+/// </code>
 /// is equivalent to
-///     Interval.aggregate first [ second, third ]
-/// but is more efficient. (If you're looking for an `aggregate2` function,
-/// [`union`](#union) should do what you want.)
+/// <code>
+///     Interval.aggregate first [ second; third ]
+/// </code>
+/// but is more efficient. (If you're looking for an <c>Interval.aggregate2</c> function,
+/// <c>Interval.union</c> should do what you want.)
+/// </summary>
 let aggregate3 (Interval (a1, b1)) (Interval (a2, b2)) (Interval (a3, b3)) : Interval<'Units> =
     Interval(min a1 (min a2 a3), max b1 (max b2 b3))
 
+/// <summary>
 ///  Attempt to construct an interval containing all of the intervals in the given
-/// list. If the list is empty, returns `Nothing`. If you know you have at least one
-/// interval, you can use [`aggregate`](#aggregate) instead.
+/// list. If the list is empty, returns <c>None</c>. If you know you have at least one
+/// interval, you can use <c>Interval.aggregate</c> instead.
+/// </summary>
 let aggregateN intervals : Interval<'Units> option =
     match intervals with
     | first :: rest -> Some(aggregate first rest)
     | [] -> None
 
-/// Like [`aggregate`](#aggregate), but lets you work on any kind of item as
-/// long as an interval can be generated from it (similar to [`hullOf`](#hullOf)).
+/// <summary>
+/// Like <c>Interval.aggregate</c>], but lets you work on any kind of item as
+/// long as an interval can be generated from it similar to <c>Interval.hullOf</c>.
+/// </summary>
 let aggregateOf (getInterval: 'a -> Interval<'Units>) (first: 'a) (rest: 'a list) : Interval<'Units> =
     let rec aggregateOfHelp a b getInterval items =
         match items with
@@ -674,7 +881,9 @@ let aggregateOf (getInterval: 'a -> Interval<'Units>) (first: 'a) (rest: 'a list
     let (Interval (a, b)) = getInterval first
     aggregateOfHelp a b getInterval rest
 
-/// Combination of [`aggregateOf`](#aggregateOf) and [`aggregateN`](#aggregateN).
+/// <summary>
+/// Combination of <c>Interval.aggregateOf</c> and <c>Interval.aggregateN</c>.
+/// </summary>
 let aggregateOfN (getInterval: 'a -> Interval<'Units>) (items: 'a list) : Interval<'Units> option =
     match items with
     | first :: rest -> Some(aggregateOf getInterval first rest)

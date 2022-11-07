@@ -1,12 +1,12 @@
-/// Although most of the focus of `elm-units` is on physical/scientific units,
+/// Although most of the focus of <c>elm-units</c> is on physical/scientific units,
 /// it's often useful to be able to safely convert back and forth between (for
-/// example) [`Length`](Length) values in the real world and on-screen lengths in
+/// example) [<c>Length</c>](Length) values in the real world and on-screen lengths in
 /// pixels.
-/// This module provides a standard `Pixels` units type and basic functions for
-/// constructing/converting values of type `Quantity Int Pixels` or
-/// `Quantity Float Pixels`, which allows you to do things like represent
+/// This module provides a standard <c>Pixels</c> units type and basic functions for
+/// constructing/converting values of type <c>Quantity Int Pixels</c> or
+/// <c>Quantity Float Pixels</c>, which allows you to do things like represent
 /// conversions between real-world and on-screen lengths as [rates of change][1].
-/// This in turn means that all the normal [`Quantity`](Quantity) functions can be
+/// This in turn means that all the normal [<c>Quantity</c>](Quantity) functions can be
 /// used to convert between pixels and other units, or even do type-safe math
 /// directly on pixel values.
 /// [1]: Quantity#working-with-rates
@@ -19,7 +19,7 @@ module Math.Units.Pixels
 ///         Pixels.float 1.5
 let float (numPixels: float) : Pixels = Quantity numPixels
 
-/// Convert a floating-point number of pixels back into a plain `Float`:
+/// Convert a floating-point number of pixels back into a plain <c>Float</c>:
 ///    pixelDensity =
 ///        Pixels.float 96 |> Quantity.per (Length.inches 1)
 ///    Length.centimeters 1
@@ -28,8 +28,8 @@ let float (numPixels: float) : Pixels = Quantity numPixels
 ///    --> 37.795275590551185
 let toFloat (numPixels: Pixels) : float = numPixels.Value
 
-/// Shorthand for `Pixels.float 1.`. Can be convenient to use with
-/// [`Quantity.per`](Quantity#per).
+/// Shorthand for <c>Pixels.float 1.</c>. Can be convenient to use with
+/// [<c>Quantity.per</c>](Quantity#per).
 let pixel = float 1.
 
 /// Construct an on-screen speed from a number of pixels per second.

@@ -1,4 +1,4 @@
-/// A `SubstanceAmount` value represents a substance amount in [moles][1].
+/// A <c>SubstanceAmount</c> value represents a substance amount in [moles][1].
 /// [1]: https://en.wikipedia.org/wiki/Mole_(unit)
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.SubstanceAmount

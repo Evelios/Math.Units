@@ -24,35 +24,35 @@ let inSeconds (numSeconds: Duration) : float = numSeconds.Value
 let milliseconds (numMilliseconds: float) : Duration = seconds (0.001 * numMilliseconds)
 
 
-/// Convert a `Duration` to a value in milliseconds.
+/// Convert a <c>Duration</c> to a value in milliseconds.
 ///    Duration.seconds 0.5 |> Duration.inMilliseconds
 ///    --> 500
 let inMilliseconds (duration: Duration) : float = inSeconds duration * 1000.
 
 
-/// Construct a `Duration` from a given number of minutes.
+/// Construct a <c>Duration</c> from a given number of minutes.
 ///    Duration.minutes 3
 ///    --> Duration.seconds 180
 let minutes (numMinutes: float) : Duration = seconds (60. * numMinutes)
 
 
-/// Convert a `Duration` to a value in minutes.
+/// Convert a <c>Duration</c> to a value in minutes.
 ///    Duration.seconds 90 |> Duration.inMinutes
 ///    --> 1.5
 let inMinutes (duration: Duration) : float = inSeconds duration / 60.
 
-/// Construct a `Duration` from a given number of hours.
+/// Construct a <c>Duration</c> from a given number of hours.
 ///    Duration.hours 1
 ///    --> Duration.seconds 3600
 let hours (numHours: float) : Duration = seconds (Constants.hour * numHours)
 
 
-/// Convert a `Duration` to a value in hours.
+/// Convert a <c>Duration</c> to a value in hours.
 ///    Duration.minutes 120 |> Duration.inHours
 ///    --> 2
 let inHours (duration: Duration) : float = inSeconds duration / Constants.hour
 
-/// Construct a `Duration` from a given number of days. A day is defined as
+/// Construct a <c>Duration</c> from a given number of days. A day is defined as
 /// exactly 24 hours or 86400 seconds. Therefore, it is only equal to the length of
 /// a given calendar day if that calendar day does not include either a leap second
 /// or any added/removed daylight savings hours.
@@ -60,22 +60,22 @@ let inHours (duration: Duration) : float = inSeconds duration / Constants.hour
 ///     --> Duration.hours 24
 let days (numDays: float) : Duration = seconds (Constants.day * numDays)
 
-/// Convert a `Duration` to a value in days.
+/// Convert a <c>Duration</c> to a value in days.
 ///    Duration.hours 72 |> Duration.inDays
 ///    --> 3
 let inDays (duration: Duration) : float = inSeconds duration / Constants.day
 
-/// Construct a `Duration` from a given number of weeks.
+/// Construct a <c>Duration</c> from a given number of weeks.
 ///    Duration.weeks 1
 ///    --> Duration.days 7
 let weeks (numWeeks: float) : Duration = seconds (Constants.week * numWeeks)
 
-/// Convert a `Duration` to a value in weeks.
+/// Convert a <c>Duration</c> to a value in weeks.
 ///    Duration.days 28 |> Duration.inWeeks
 ///    --> 4
 let inWeeks (duration: Duration) : float = inSeconds duration / Constants.week
 
-/// Construct a `Duration` from a given number of [Julian years][julian_year].
+/// Construct a <c>Duration</c> from a given number of [Julian years][julian_year].
 /// A Julian year is defined as exactly 365.25 days, the average length of a year in
 /// the historical Julian calendar. This is 10 minutes and 48 seconds longer than
 /// a Gregorian year (365.2425 days), which is the average length of a year in the
@@ -88,7 +88,7 @@ let inWeeks (duration: Duration) : float = inSeconds duration / Constants.week
 let julianYears (numJulianYears: float) : Duration =
     seconds (Constants.julianYear * numJulianYears)
 
-/// Convert a `Duration` to a value in Julian years.
+/// Convert a <c>Duration</c> to a value in Julian years.
 ///    Duration.hours 10000 |> Duration.inJulianYears
 ///    --> 1.1407711613050422
 let inJulianYears (duration: Duration) : float =

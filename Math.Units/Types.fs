@@ -62,20 +62,20 @@ type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 /// Represents a units type that is the square of some other units type; for
 /// example, <c>Meters</c> is one units type (the units type of a <c>Length</c>) and
 /// <c>Squared Meters</c> is another (the units type of an <c>Area<c>). See the
-/// <see cref="Math.Units.Quantity.squared">Quantity.squared</see> and [`sqrt`](#sqrt)
+/// <see cref="Math.Units.Quantity.squared">Quantity.squared</see> and [<c>sqrt</c>](#sqrt)
 /// <see cref="Math.Units.Quantity.sqrt">Quantity.sqrt</see>
-/// functions for examples of use. This is a special case of the `Product` units type.
+/// functions for examples of use. This is a special case of the <c>Product</c> units type.
 /// </summary>
 type Squared<'Units> = Product<'Units, 'Units>
 
 /// <category>Unit Relation</category>
 /// <summary>
 /// Represents a units type that is the cube of some other units type; for
-/// example, `Meters` is one units type (the units type of a [`Length`](Length)) and
-/// `Cubed Meters` is another (the units type of an [`Volume`](Volume)). See the
-/// [`cubed`](Quantity#cubed) and [`cbrt`](Quantity#cbrt) functions for examples of
+/// example, <c>Meters</c> is one units type (the units type of a [<c>Length</c>](Length)) and
+/// <c>Cubed Meters</c> is another (the units type of an [<c>Volume</c>](Volume)). See the
+/// [<c>cubed</c>](Quantity#cubed) and [<c>cbrt</c>](Quantity#cbrt) functions for examples of
 /// use.
-/// This is a special case of the `Product` units type.
+/// This is a special case of the <c>Product</c> units type.
 /// </summary>
 type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 
@@ -83,7 +83,7 @@ type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 /// <category>Unit Relation</category>
 /// <summary>
 /// Represents the units type of a rate or quotient such as a speed (`Rate
-/// Meters Seconds`) or a pressure (`Rate Newtons SquareMeters`). See [Working with
+/// Meters Seconds<c>) or a pressure (</c>Rate Newtons SquareMeters`). See [Working with
 /// rates](#working-with-rates) for details.
 /// </summary>
 type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'IndependentUnits
@@ -169,14 +169,14 @@ type SquarePixels = Squared<Pixel>
 
 /// <category>Unit Type</category>
 /// <summary>
-/// A `Quantity` is effectively a `number` (an `Int` or `Float`) tagged with a
-/// `units` type. So a
+/// A <c>Quantity</c> is effectively a <c>number</c> (an <c>Int</c> or <c>Float</c>) tagged with a
+/// <c>units</c> type. So a
 ///     Quantity Float Meters
-/// is a `Float` number of `Meters` and a
+/// is a <c>Float</c> number of <c>Meters</c> and a
 ///     Quantity Int Pixels
-/// is an `Int` number of `Pixels`. When compiling with `elm make --optimize` the
-/// `Quantity` wrapper type will be compiled away, so the runtime performance should
-/// be comparable to using a raw `Float` or `Int`.
+/// is an <c>Int</c> number of <c>Pixels</c>. When compiling with <c>elm make --optimize</c> the
+/// <c>Quantity</c> wrapper type will be compiled away, so the runtime performance should
+/// be comparable to using a raw <c>Float</c> or <c>Int</c>.
 ///
 type Quantity<'Units>(quantity: float) =
     interface IComparable<Quantity<'Units>> with

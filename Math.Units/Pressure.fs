@@ -1,11 +1,11 @@
-/// A `Pressure` value represents a pressure in kilopascals, pounds per square
+/// A <c>Pressure</c> value represents a pressure in kilopascals, pounds per square
 /// inch, [atmospheres][1] etc. It is stored as a number of pascals.
-/// Note that since `Pascals` is defined as `Rate Newtons SquareMeters` (force per
-/// unit area), you can construct a `Pressure` value using `Quantity.per`:
+/// Note that since <c>Pascals</c> is defined as <c>Rate Newtons SquareMeters</c> (force per
+/// unit area), you can construct a <c>Pressure</c> value using <c>Quantity.per</c>:
 ///     pressure =
 ///         force |> Quantity.per area
-/// You can also do rate-related calculations with `Pressure` values to compute
-/// `Force` or `Area`:
+/// You can also do rate-related calculations with <c>Pressure</c> values to compute
+/// <c>Force</c> or <c>Area</c>:
 ///     force =
 ///         area |> Quantity.at pressure
 ///     area =

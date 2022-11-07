@@ -1,6 +1,8 @@
-/// All conversion factors sourced from [National Institute of Standards and Technology (NIST)][1]
+/// <summary>
+/// All conversion factors sourced from 
+/// <a href="https://www.nist.gov/pml/weights-and-measures/publications/nist-handbooks/handbook-44">National Institute of Standards and Technology</a>
 /// unless otherwise specified.
-/// [1]: https://www.nist.gov/pml/weights-and-measures/publications/nist-handbooks/handbook-44
+/// </summary>
 module Math.Units.Constants
 
 open System
@@ -63,9 +65,11 @@ let cubicMeter: float =
 
 let liter: float = 0.001 * cubicMeter
 
-/// Sourced from [UK Weights and Measures Act][1]. One imperial gallon is equal to
+/// <summary>
+/// Sourced from <a href="https://www.nist.gov/pml/weights-and-measures/publications/nist-handbooks/handbook-44">UK Weights and Measures Act</a>. One imperial gallon is equal to
 /// 4.54609 cubic decimeters (formerly defined as the volume of one kilogram
 /// of pure water under standard conditions, now equal to 1 liter).
+/// </summary>
 let imperialGallon: float = 4.54609 * liter
 
 let imperialQuart: float =
