@@ -17,6 +17,8 @@ To generate the API documentation you need to run the following commands.
 dotnet tool install fsdocs-tool
 dotnet fsdocs build --input Docs --eval
 dotnet fsdocs watch --input Docs --eval
+
+dotnet fsdocs watch --projects Math.Units --input Docs --eval --properties Configuration=Releas
 ```
 
 

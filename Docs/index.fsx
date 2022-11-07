@@ -1,7 +1,7 @@
 (**
 
 ---
-title: FSharp Geometry Package
+title: Math.Units Package
 ---
 
 This package is a port and extension of the framework [elm-units](https://package.elm-lang.org/packages/ianmackenzie/elm-units/latest/).
