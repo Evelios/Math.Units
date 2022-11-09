@@ -11,7 +11,7 @@ open Math.Units
 /// value is interchangeable with a simple <c>float</c>.
 /// A generic number that doesn't undergo any type mutation.
 /// Eg.
-/// <code>
+/// <code lang="fsharp">
 ///     Unitless: Unitless 1. * Unitless 1. = Unitless 1.
 ///     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.
 /// </code>

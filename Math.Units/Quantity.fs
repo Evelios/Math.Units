@@ -71,7 +71,7 @@ type Quantity<'Units> with
     /// Check if one quantity is less than another. Note the <b>argument order!</b>
     ///
     /// <example>
-    /// <code>
+    /// <code lang="fsharp">
     ///     let oneMeter =
     ///         Length.meters 1
     ///
@@ -86,7 +86,7 @@ type Quantity<'Units> with
     /// </example>
     ///
     /// <example>
-    /// <code>
+    /// <code lang="fsharp">
     ///     List.filter (Quantity.lessThan oneMeter)
     ///         [ Length.feet 1
     ///           Length.parsecs 1
@@ -102,7 +102,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Check if one quantity is greater than another. Note the <b>argument order!</b>
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    oneMeter =
     ///        Length.meters 1
     ///    Length.feet 1 |> Quantity.greaterThan oneMeter
@@ -171,7 +171,7 @@ type Quantity<'Units> with
     /// Greater than = 1, Less than = -1, Equal to = 0
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///     Quantity.compare
     ///         (Duration.minutes 90)
     ///         (Duration.hours 1)
@@ -191,7 +191,7 @@ type Quantity<'Units> with
     ///     Get the absolute value of a quantity.
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///     Quantity.abs (Duration.milliseconds -10)
     ///     Duration.milliseconds 10
     /// </code></example>
@@ -199,7 +199,7 @@ type Quantity<'Units> with
     /// <example>
     ///   This function can be called from the global function or the module
     ///   function. They both return the same result
-    ///   <code>
+    ///   <code lang="fsharp">
     ///     abs quantity
     ///     Units.abs quantity
     ///   </code>
@@ -213,7 +213,7 @@ type Quantity<'Units> with
     /// the result will always be false.
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///     // 3 feet is 91.44 centimeters or 0.9144 meters
     ///     Quantity.equalWithin (Length.centimeters 10)
     ///         (Length.meters 1)
@@ -232,7 +232,7 @@ type Quantity<'Units> with
     /// Find the maximum of two quantities.
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    Quantity.max (Duration.hours 2) (Duration.minutes 100)
     ///    --> Duration.hours 2
     /// </code></example>
@@ -243,7 +243,7 @@ type Quantity<'Units> with
     /// Find the minimum of two quantities.
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    Quantity.min (Duration.hours 2) (Duration.minutes 100)
     ///    --> Duration.minutes 100
     /// </code></example>
@@ -254,7 +254,7 @@ type Quantity<'Units> with
     /// Check if a quantity is positive or negative infinity.
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    Quantity.isInfinite
     ///        (Length.meters 1
     ///            |> Quantity.per (Duration.seconds 0)
@@ -270,7 +270,7 @@ type Quantity<'Units> with
     /// Check if a quantity's underlying value is NaN (not-a-number).
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    Quantity.isNan (Quantity.sqrt (Area.squareMeters -4))
     ///    --> True
     ///    Quantity.isNan (Quantity.sqrt (Area.squareMeters 4))
@@ -287,7 +287,7 @@ type Quantity<'Units> with
     /// Negate a quantity
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    Quantity.negate (Length.millimeters 10)
     ///    --> Length.millimeters -10
     /// </code></example>
@@ -298,7 +298,7 @@ type Quantity<'Units> with
     /// Add two quantities.
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    Length.meters 1 |> Quantity.plus (Length.centimeters 5)
     ///    --> Length.centimeters 105
     /// </code></example>
@@ -309,7 +309,7 @@ type Quantity<'Units> with
     /// Subtract one quantity from another.
     /// </summary>
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///    Quantity.difference
     ///        (Duration.hours 1)
     ///        (Duration.minutes 15)
@@ -321,11 +321,11 @@ type Quantity<'Units> with
     /// <summary>
     /// An 'infix' version of <c>difference</c>, intended to be used in
     /// pipeline form;
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.difference x y
     /// </code>
     /// can be written as
-    /// <code>
+    /// <code lang="fsharp">
     ///     x |> Quantity.minus y
     /// </code>
     /// </summary>
@@ -333,7 +333,7 @@ type Quantity<'Units> with
     /// <note>
     /// Note that unlike <c>difference</c>, this also means that partial application will 'do
     /// the right thing':
-    /// <code>
+    /// <code lang="fsharp">
     ///     List.map (Quantity.minus fifteenMinutes)
     ///         [ Duration.hours 1
     ///         , Duration.hours 2
@@ -355,13 +355,13 @@ type Quantity<'Units> with
     /// The units type of an [<c>Area</c>](Area) is <c>SquareMeters</c>, which is a type alias for
     /// <c>Squared Meters</c>, which in turn expands to <c>Product Meters Meters</c>. This means
     /// that the product of two <c>Length</c>s does in fact give you an <c>Area</c>:
-    /// <code>
+    /// <code lang="fsharp">
     ///     // This is the definition of an acre, I kid you not 😈
     ///     Quantity.product (Length.feet 66) (Length.feet 660)
     ///     --> Area.acres 1
     /// </code>
     /// We can also multiply an <c>Area</c> by a <c>Length</c> to get a <c>Volume</c>:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.product
     ///         (Area.squareMeters 1)
     ///         (Length.centimeters 1)
@@ -377,11 +377,11 @@ type Quantity<'Units> with
     /// <summary>
     /// An 'infix' version of <c>product</c>, intended to be used in pipeline
     /// form;
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.product a b
     /// </code>
     /// can be written as
-    /// <code>
+    /// <code lang="fsharp">
     ///     a |> Quantity.times b
     /// </code>
     /// </summary>
@@ -391,7 +391,7 @@ type Quantity<'Units> with
     /// <summary>
     /// If you use <c>times</c>) or product to multiply one
     /// quantity by another <c>Unitless</c> quantity, for example
-    /// <code>
+    /// <code lang="fsharp">
     ///     quantity |> Quantity.times unitlessQuantity
     /// </code>
     /// then the result you'll get will have units type <c>Product units Unitless</c>. But
@@ -401,11 +401,11 @@ type Quantity<'Units> with
     /// leaves the units alone.
     /// You can think of <c>timesUnitless</c> as shorthand for <c>toFloat</c> and <c>multiplyBy</c>;
     /// for <c>Float</c>-valued quantities,
-    /// <code>
+    /// <code lang="fsharp">
     ///     quantity |> Quantity.timesUnitless unitlessQuantity
     /// </code>
     /// is equivalent to
-    /// <code>
+    /// <code lang="fsharp">
     ///     quantity
     ///         |> Quantity.multiplyBy
     ///             (Quantity.toFloat unitlessQuantity)
@@ -421,7 +421,7 @@ type Quantity<'Units> with
     /// <c>Force</c> is <c>Product Kilograms MetersPerSecondSquared</c> (mass times acceleration),
     /// so we could divide a force by a given mass to determine how fast that mass would
     /// be accelerated by the given force:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Force.newtons 100
     ///         |> Quantity.over
     ///             (Mass.kilograms 50)
@@ -436,7 +436,7 @@ type Quantity<'Units> with
     /// Just like <c>over</c> but divide by a quantity in <c>units2</c>, resulting in another
     /// quantity in <c>units1</c>. For example, we could divide a force by a desired
     /// acceleration to determine how much mass could be accelerated at that rate:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Force.newtons 100
     ///         |> Quantity.over_
     ///             (Acceleration.metersPerSecondSquared 5)
@@ -451,11 +451,11 @@ type Quantity<'Units> with
     /// Similar to [<c>timesUnitless</c>](#timesUnitless), <c>overUnitless</c> lets you
     /// divide one quantity by a second [unitless](#Unitless) quantity without affecting
     /// the units;
-    /// <code>
+    /// <code lang="fsharp">
     ///     quantity |> Quantity.overUnitless unitlessQuantity
     /// </code>
     /// is equivalent to
-    /// <code>
+    /// <code lang="fsharp">
     ///     quantity
     ///         |> Quantity.divideBy
     ///             (Quantity.toFloat unitlessQuantity)
@@ -466,7 +466,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Find the ratio of two quantities with the same units.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.ratio (Length.miles 1) (Length.yards 1)
     ///    --> 1760
     /// </code>
@@ -476,7 +476,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Scale a <c>Quantity</c> by a <c>number</c>.
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.multiplyBy 1.5 (Duration.hours 1)
     ///     --> Duration.minutes 90
     /// </code>
@@ -489,7 +489,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Divide a <c>Quantity</c> by a <c>Float</c>.
     /// </summary>
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.divideBy 2 (Duration.hours 1)
     ///     --> Duration.minutes 30
     /// </code>
@@ -500,7 +500,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Convenient shorthand for <c>Quantity.multiplyBy 2</c>.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.twice (Duration.minutes 30)
     ///    --> Duration.hours 1
     /// </code>
@@ -510,7 +510,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Convenient shorthand for <c>Quantity.multiplyBy 0.5</c>.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.half (Length.meters 1)
     ///    --> Length.centimeters 50
     /// </code>
@@ -520,7 +520,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Given a lower and upper bound, clamp a given quantity to within those
     /// bounds. Say you wanted to clamp an angle to be between +/-30 degrees:
-    /// <code>
+    /// <code lang="fsharp">
     ///     let lowerBound =
     ///         Angle.degrees -30
     ///     let upperBound =
@@ -551,7 +551,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Square a quantity with some <c>units</c>, resulting in a new quantity in
     /// <c>Squared units</c>:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.squared (Length.meters 5)
     ///     --> Area.squareMeters 25
     /// See also <c>Quantity.squaredUnitless</c>.
@@ -570,13 +570,13 @@ type Quantity<'Units> with
     /// <summary>
     /// Take a quantity in <c>Squared units</c> and return the square root of that
     /// quantity in plain <c>units</c>:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.sqrt (Area.hectares 1)
     ///     --> Length.meters 100
     /// </code>
     /// Getting fancier, you could write a 2D hypotenuse (magnitude) function that
     /// worked on <b>any</b> quantity type (length, speed, force...) as
-    /// <code>
+    /// <code lang="fsharp">
     ///     hypotenuse :
     ///         Quantity Float units
     ///         -> Quantity Float units
@@ -602,7 +602,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Cube a quantity with some <c>units</c>, resulting in a new quantity in
     /// <c>Cubed units</c>.
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.cubed (Length.meters 5)
     ///     --> Volume.cubicMeters 125
     /// </code>
@@ -628,7 +628,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Take a quantity in <c>Cubed units</c> and return the cube root of that
     /// quantity in plain <c>units</c>.
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.cbrt (Volume.liters 1)
     ///     --> Length.centimeters 10
     /// </code>
@@ -643,7 +643,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Find the inverse of a unitless quantity.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.reciprocal (Quantity.float 5)
     ///    --> Quantity.float 0.2
     /// </code>
@@ -671,7 +671,7 @@ type Quantity<'Units> with
     /// Interpolate from the first quantity to the second, based on a parameter that
     /// ranges from zero to one. Passing a parameter quantity of zero will return the start
     /// quantity and passing a parameter quantity of one will return the end quantity.
-    /// <code>
+    /// <code lang="fsharp">
     ///     fiveMeters =
     ///         Length.meters 5
     ///     tenMeters =
@@ -684,12 +684,12 @@ type Quantity<'Units> with
     ///     --> Length.meters 8
     /// </code>
     /// The end quantity can be less than the start quantity:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.interpolateFrom tenMeters fiveMeters 0.1
     ///     --> Length.meters 9.5
     /// </code>
     /// Parameter quantitys less than zero or greater than one can be used to extrapolate:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.interpolateFrom fiveMeters tenMeters 1.5
     ///     --> Length.meters 12.5
     ///     Quantity.interpolateFrom fiveMeters tenMeters -0.5
@@ -718,7 +718,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Find the midpoint between two quantities.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.midpoint (Length.meters 5) (Length.meters 10)
     ///    --> Length.meters 7.5
     /// </code>
@@ -734,7 +734,7 @@ type Quantity<'Units> with
     /// the number of steps!
     /// </summary>
     ///
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.range
     ///         { start = Length.meters 2
     ///         , end = Length.meters 3
@@ -751,7 +751,7 @@ type Quantity<'Units> with
     ///
     /// The start and end quantitys can be in either order:
     /// 
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.range
     ///         { start = Duration.hours 1
     ///         , end = Quantity.zero
@@ -771,7 +771,7 @@ type Quantity<'Units> with
     /// <c>interpolateFrom</c> with the various functions in the
     /// For example:
     /// 
-    /// <code>
+    /// <code lang="fsharp">
     ///     // Same as using Quantity.range
     ///     Parameter1d.steps 4 
     ///         ( Quantity.interpolateFrom
@@ -827,20 +827,20 @@ type Quantity<'Units> with
     /// units not directly supported by <c>elm-units</c>. The first argument is a function
     /// that constructs a quantity of the desired unit type, and the second is the quantity
     /// to convert. For example,
-    /// <code>
+    /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
     ///         |> Speed.inFeetPerSecond
     ///     --> 16.4042
     /// </code>
     /// is equivalent to
-    /// <code>
+    /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
     ///         |> Quantity.in_ Speed.feetPerSecond
     ///     --> 16.4042
     /// </code>
     /// More interestingly, if you wanted to get speed in some weirder unit like
     /// millimeters per minute (not directly supported by <c>elm-units</c>), you could do
-    /// <code>
+    /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
     ///         |> Quantity.in_
     ///             (Length.millimeters
@@ -849,11 +849,11 @@ type Quantity<'Units> with
     ///     --> 300000
     /// </code>
     /// Internally,
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.in_ someUnits someQuantity
     /// </code>
     /// is simply implemented as
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.ratio some(someUnits 1)
     /// </code>
     /// </summary>
@@ -868,7 +868,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Round a <c>Float</c>-valued quantity to the nearest <c>Int</c>. Note that [this may
     /// not do what you expect](#-int-float-conversion).
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.round (Pixels.pixels 3.5)
     ///     --> Pixels.pixels 4
     /// </code>
@@ -879,7 +879,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Round a <c>Float</c>-valued quantity down to the nearest <c>Int</c>. Note that [this
     /// may not do what you expect](#-int-float-conversion).
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.floor (Pixels.pixels 2.9)
     ///     --> Pixels.pixels 2
     ///     Quantity.floor (Pixels.pixels -2.1)
@@ -891,7 +891,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Round a <c>Float</c>-valued quantity up to the nearest <c>Int</c>.
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.ceiling (Pixels.pixels 1.2)
     ///     --> Pixels.pixels 2
     ///     Quantity.ceiling (Pixels.pixels -2.1)
@@ -903,7 +903,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Round a <c>Float</c>-valued quantity towards zero.
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.truncate (Pixels.pixels -2.8)
     ///     --> Pixels.pixels -2
     /// </code>
@@ -915,7 +915,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Find the sum of a list of quantities.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.sum
     ///        [ Length.meters 1
     ///        , Length.centimeters 2
@@ -932,7 +932,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Find the minimum quantity in a list of quantities. Returns <c>None</c> if the
     /// list is empty.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.minimum
     ///        [ Mass.kilograms 1
     ///        , Mass.pounds 2
@@ -951,7 +951,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Find the maximum quantity in a list of quantities. Returns <c>None</c> if the
     /// list is empty.
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.maximum
     ///         [ Mass.kilograms 1
     ///         , Mass.pounds 2
@@ -969,7 +969,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Find the 'minimum' item in a list as measured by some derived <c>Quantity</c>:
-    /// <code>
+    /// <code lang="fsharp">
     ///     let people =
     ///         [ { Name = "Bob", Height = Length.meters 1.6 }
     ///           { Name = "Charlie", Height = Length.meters 2.0 }
@@ -1007,7 +1007,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Find the 'maximum' item in a list as measured by some derived <c>Quantity</c>:
-    /// <code>
+    /// <code lang="fsharp">
     ///     let people =
     ///         [ { Name = "Bob", Height = Length.meters 1.6 }
     ///           { Name = "Charlie", Height = Length.meters 2.0 }
@@ -1044,7 +1044,7 @@ type Quantity<'Units> with
 
     /// <summary>
     /// Sort a list of quantities.
-    /// <code>
+    /// <code lang="fsharp">
     ///    Quantity.sort
     ///        [ Mass.kilograms 1
     ///          Mass.pounds 2
@@ -1066,7 +1066,7 @@ type Quantity<'Units> with
     ///
     /// <example>
     /// If you had
-    /// <code>
+    /// <code lang="fsharp">
     ///     let people =
     ///         [ { Name = "Bob"; Height = Length.meters 1.6 }
     ///           { Name = "Charlie"; Height = Length.meters 2.0 }
@@ -1074,7 +1074,7 @@ type Quantity<'Units> with
     ///         ]
     /// </code>
     /// then you could sort by Name with
-    /// <code>
+    /// <code lang="fsharp">
     ///     List.sortBy (fun person -> person.Name) people
     ///     --> [ { Name = "Alice"; Height = Length.meters 1.8 }
     ///     -->   { Name = "Bob"; Height = Length.meters 1.6 }
@@ -1082,7 +1082,7 @@ type Quantity<'Units> with
     ///     --> ]
     /// </code>
     /// (nothing new there!), and sort by Height with
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.sortBy (fun person -> person.Height) people
     ///     --> [ { Name = "Bob"; Height = Length.meters 1.6 }
     ///     -->   { Name = "Alice"; Height = Length.meters 1.8 }
@@ -1104,7 +1104,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Construct a rate of change by dividing a dependent quantity (numerator) by
     /// an independent quantity (denominator):
-    /// <code>
+    /// <code lang="fsharp">
     ///     let speed =
     ///         Quantity.rate (Length.miles 1) Duration.minute
     /// 
@@ -1134,11 +1134,11 @@ type Quantity<'Units> with
 
     /// <summary>
     /// 'Infix' version of [<c>rate</c>](#rate), meant to be used in pipeline form;
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.rate distance time
     /// </code>
     /// can be written as
-    /// <code>
+    /// <code lang="fsharp">
     ///     distance |> Quantity.per time
     /// </code>
     /// </summary>
@@ -1153,7 +1153,7 @@ type Quantity<'Units> with
     /// Multiply a rate of change by an independent quantity (the denominator in
     /// the rate) to get a total quantity:
     ///
-    /// <code>
+    /// <code lang="fsharp">
     ///       Duration.minutes 30
     ///           |> Quantity.at
     ///               (Speed.kilometersPerHour 100)
@@ -1164,7 +1164,7 @@ type Quantity<'Units> with
     /// if you define a <c>rate</c> then <c>Quantity.at rate</c> will give you a conversion
     /// function:
     ///
-    /// <code>
+    /// <code lang="fsharp">
     ///       let pixelDensity : Rate&lt;Pixels, Meters&gt; =
     ///           Pixels.pixels 96 |> Quantity.per (Length.inches 1)
     ///       let lengthToPixels : Length -> Pixels =
@@ -1177,7 +1177,7 @@ type Quantity<'Units> with
     /// Eagle-eyed readers will note that using partial application you could also
     /// simply write
     ///
-    /// <code>
+    /// <code lang="fsharp">
     ///     let lengthToPixels =
     ///         Quantity.at pixelDensity
     /// </code>
@@ -1194,7 +1194,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Given a rate and a <b>Dependent</b> quantity (total quantity), determine the
     /// necessary amount of the <b>Independent</b> quantity:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Length.kilometers 75
     ///         |> Quantity.at_
     ///             (Speed.kilometersPerHour 100)
@@ -1205,7 +1205,7 @@ type Quantity<'Units> with
     /// speed by a duration to get a distance, but you divide a distance by a speed to
     /// get a duration.
     /// Similar to <c>at</c>, <c>at_</c> can be used to define an _inverse_ conversion function:
-    /// <code>
+    /// <code lang="fsharp">
     ///     let pixelDensity : Rate&lt;Pixels, Meters&gt;
     ///         Pixels.pixels 96 |> Quantity.per (Length.inches 1)
     /// 
@@ -1230,7 +1230,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Same as <c>at</c> but with the argument order flipped, which may read better
     /// in some cases:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Speed.kilometersPerHour 100
     ///         |> Quantity.for
     ///             (Duration.minutes 30)
@@ -1247,11 +1247,11 @@ type Quantity<'Units> with
     /// <summary>
     /// Find the inverse of a given rate. May be useful if you are using a rate to
     /// define a conversion, and want to convert the other way;
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.at (Quantity.inverse rate)
     /// </code>
     /// is equivalent to
-    /// <code>
+    /// <code lang="fsharp">
     ///     Quantity.at_ rate
     /// </code>
     /// </summary>
@@ -1265,7 +1265,7 @@ type Quantity<'Units> with
     /// Multiply two rates of change that 'cancel out' together, resulting in a new
     /// rate. For example, if you know the real-world speed of an on-screen object and
     /// the display resolution, then you can get the speed in pixels per second:
-    /// <code>
+    /// <code lang="fsharp">
     ///     let realWorldSpeed =
     ///         Speed.metersPerSecond 0.1
     ///     let resolution =
@@ -1282,7 +1282,7 @@ type Quantity<'Units> with
     /// <c>rateProduct</c>. For example, if you know the on-screen speed of some object and
     /// the display resolution, then you can use those to get the real-world speed:
     ///
-    /// <code>
+    /// <code lang="fsharp">
     ///     let pixelSpeed =
     ///         Pixels.pixelsPerSecond 500
     ///     let resolution =

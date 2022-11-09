@@ -87,7 +87,7 @@ module Float =
     /// return the start value and passing a parameter value of one will return
     /// the end value.
     ///
-    /// <example><code>
+    /// <example><code lang="fsharp">
     ///     Float.interpolateFrom 5 10 0
     ///     // 5
     ///     Float.interpolateFrom 5 10 1
@@ -98,7 +98,7 @@ module Float =
     ///
     /// <example>
     /// The end value can be less than the start value:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Float.interpolateFrom 10 5 0.1
     ///     // 9.5
     /// </code>
@@ -107,7 +107,7 @@ module Float =
     /// <example>
     /// Parameter values less than zero or greater than one can be used to
     /// extrapolate:
-    /// <code>
+    /// <code lang="fsharp">
     ///     Float.interpolateFrom 5 10 1.5
     ///     // 12.5
     ///     Float.interpolateFrom 5 10 -0.5

@@ -5,19 +5,19 @@
         <Product>Math.Units</Product>
         <Authors>Thomas Waters</Authors>
         <Copyright>Thomas Waters</Copyright>
+        <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+        <Company/>
+
+        <PackageTags>units, fsharp, f#</PackageTags>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <PackageLicense>MIT</PackageLicense>
+        <RepositoryType>git</RepositoryType>
+        <NeutralLanguage>en-US</NeutralLanguage>
         
         <PackageProjectUrl>https://evelios.github.io/Math.Units/</PackageProjectUrl>
-        <RepositoryUrl>https://evelios.github.io/Math.Units/</RepositoryUrl>
-        <!--        <PackageIconUrl></PackageIconUrl>-->
-        <PackageLicense>MIT</PackageLicense>
-        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-        <PackageTags>units, fsharp, f#</PackageTags>
-        <PackageReleaseNotes>Initial release</PackageReleaseNotes>
-        
-<!--        <FsDocsLogoLink></FsDocsLogoLink>-->
+        <RepositoryUrl>https://evelios.github.io/Math.Units/index.html</RepositoryUrl>
         <FsDocsLicenseLink>https://opensource.org/licenses/MIT</FsDocsLicenseLink>
         <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Math.Units/</FsDocsReleaseNotesLink>
-        <FsDocsNavbarPosition>fixed-right</FsDocsNavbarPosition>
         <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>
         <FsDocsTheme>default</FsDocsTheme>
     </PropertyGroup>
