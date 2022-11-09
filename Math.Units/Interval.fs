@@ -197,7 +197,7 @@ let inline plus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : 
 ///    Interval.from -1 5 |> Interval.subtract 3
 ///    --> Interval.from -4 2
 /// </code>
-/// < /summary>
+/// </summary>
 let inline minus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
     Interval(a - delta, b - delta)
 
@@ -493,7 +493,7 @@ let cubedUnitless (interval: Interval<Unitless>) : Interval<Unitless> = unsafeCu
 /// If <c>minValue</c> and <c>maxValue</c> are in different branches
 /// (meaning different values of k), then the interval must pass through
 /// <c>2 pi \* k</c>, which means the interval must include the maximum value.
-/// <summary>
+/// </summary>
 let cosIncludesMax (Interval (a, b)) : bool =
     let minBranch = floor (a / (2. * Math.PI))
 
@@ -797,7 +797,7 @@ let hullN (values: Quantity<'Units> list) : Interval<'Units> option =
 /// </code>
 ///
 /// See also <c>Interval.hullOfN</c>.
-/// <summary>
+/// </summary>
 let hullOf (getValue: 'a -> Quantity<'Units>) (first: 'a) (rest: 'a list) : Interval<'Units> =
     let rec hullOfHelp a b getValue list =
         match list with

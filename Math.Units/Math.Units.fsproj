@@ -15,6 +15,7 @@
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <RepositoryUrl>https://github.com/Evelios/Math.Units</RepositoryUrl>
         <PackageProjectUrl>https://evelios.github.io/Math.Units/</PackageProjectUrl>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
         <RepositoryType>git</RepositoryType>
         <NeutralLanguage>en-US</NeutralLanguage>

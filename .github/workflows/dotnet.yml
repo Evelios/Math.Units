@@ -56,7 +56,7 @@ jobs:
         run: dotnet tool restore
         
       - name: Build documentation
-        run: dotnet fsdocs build --eval --input Docs 
+        run: dotnet fsdocs build --strict --eval --input Docs --properties Configuration=Release
       - name: Push documentation
         uses: s0/git-publish-subdir-action@develop
         env:

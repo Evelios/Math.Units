@@ -329,6 +329,7 @@ type Quantity<'Units> with
     ///     x |> Quantity.minus y
     /// </code>
     /// </summary>
+    /// 
     /// <note>
     /// Note that unlike <c>difference</c>, this also means that partial application will 'do
     /// the right thing':
@@ -574,7 +575,7 @@ type Quantity<'Units> with
     ///     --> Length.meters 100
     /// </code>
     /// Getting fancier, you could write a 2D hypotenuse (magnitude) function that
-    /// worked on _any_ quantity type (length, speed, force...) as
+    /// worked on <b>any</b> quantity type (length, speed, force...) as
     /// <code>
     ///     hypotenuse :
     ///         Quantity Float units
@@ -855,7 +856,7 @@ type Quantity<'Units> with
     /// <code>
     ///     Quantity.ratio some(someUnits 1)
     /// </code>
-    /// <summary>
+    /// </summary>
     static member in_ (units: float -> 'a) (quantity: Quantity<'Units>) : float = Quantity.ratio quantity (units 1.)
 
 
@@ -1164,7 +1165,7 @@ type Quantity<'Units> with
     /// function:
     ///
     /// <code>
-    ///       let pixelDensity : Rate<Pixels, Meters> =
+    ///       let pixelDensity : Rate&lt;Pixels, Meters&gt; =
     ///           Pixels.pixels 96 |> Quantity.per (Length.inches 1)
     ///       let lengthToPixels : Length -> Pixels =
     ///           Quantity.at pixelDensity length
@@ -1205,7 +1206,7 @@ type Quantity<'Units> with
     /// get a duration.
     /// Similar to <c>at</c>, <c>at_</c> can be used to define an _inverse_ conversion function:
     /// <code>
-    ///     let pixelDensity : Rate<Pixels, Meters>
+    ///     let pixelDensity : Rate&lt;Pixels, Meters&gt;
     ///         Pixels.pixels 96 |> Quantity.per (Length.inches 1)
     /// 
     ///     let pixelsToLength (pixels: Pixels): Length =
@@ -1214,7 +1215,7 @@ type Quantity<'Units> with
     ///     pixelsToLength (Pixels.pixels 48)
     ///     --> Length.inches 0.5
     /// 
-    ///     Rate<DependentUnits, IndependentUnits)
+    ///     Rate&lt;DependentUnits, IndependentUnits&gt;
     ///     --> Quantity DependentUnits
     ///     --> Quantity IndependentUnits
     /// </code>

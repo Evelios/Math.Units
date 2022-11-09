@@ -61,7 +61,7 @@ type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
 /// <summary>
 /// Represents a units type that is the square of some other units type; for
 /// example, <c>Meters</c> is one units type (the units type of a <c>Length</c>) and
-/// <c>Squared Meters</c> is another (the units type of an <c>Area<c>). See the
+/// <c>Squared Meters</c> is another (the units type of an <c>Area</c>). See the
 /// <see cref="Math.Units.Quantity.squared">Quantity.squared</see> and [<c>sqrt</c>](#sqrt)
 /// <see cref="Math.Units.Quantity.sqrt">Quantity.sqrt</see>
 /// functions for examples of use. This is a special case of the <c>Product</c> units type.
@@ -177,7 +177,7 @@ type SquarePixels = Squared<Pixel>
 /// is an <c>Int</c> number of <c>Pixels</c>. When compiling with <c>elm make --optimize</c> the
 /// <c>Quantity</c> wrapper type will be compiled away, so the runtime performance should
 /// be comparable to using a raw <c>Float</c> or <c>Int</c>.
-///
+/// </summary>
 type Quantity<'Units>(quantity: float) =
     interface IComparable<Quantity<'Units>> with
         member this.CompareTo(quantity: Quantity<'Units>) : int = this.Comparison(quantity)
