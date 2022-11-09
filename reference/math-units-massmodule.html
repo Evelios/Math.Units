@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mass (Math.Units)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Thomas Waters">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://evelios.github.io/Math.Units/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="https://evelios.github.io/Math.Units/"><img id="fsdocs-logo" src="https://evelios.github.io/Math.Units/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/LICENSE.md">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/">Source Repository</a></li>
+                <li class="nav-header">
+  Tutorials
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/digit-precision.html">
+    Digit Precision
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/quantity.html">
+    Quantity
+  </a>
+</li>             
+<li class="nav-header">
+  Modules
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/angle.html">
+    Angle
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/length.html">
+    Lengths
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/interval.html">
+    Interval
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="https://evelios.github.io/Math.Units/">Math.Units</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    Mass Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://evelios.github.io/Math.Units/reference/math-units.html">
+        Math.Units
+      </a>
+    </dt>
+    <dt>
+      Assembly: Math.Units.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ A <c>Mass</c> represents a mass in kilograms, pounds, metric or imperial tons
+ etc. It is stored as a number of kilograms.
+
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '346', 346)" onmouseover="showTip(event, '346', 346)">
+                <p>
+                  <a id="gram">
+                    <a href="#gram">
+                      <code><span>gram&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="346">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>gram&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.MassModule.gram`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.MassModule.gram\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '347', 347)" onmouseover="showTip(event, '347', 347)">
+                <p>
+                  <a id="grams">
+                    <a href="#grams">
+                      <code><span>grams&#32;<span>numGrams</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="347">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>grams&#32;<span>numGrams</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numGrams
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.grams`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.grams\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a mass from a number of grams.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numGrams
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '348', 348)" onmouseover="showTip(event, '348', 348)">
+                <p>
+                  <a id="inGrams">
+                    <a href="#inGrams">
+                      <code><span>inGrams&#32;<span>mass</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="348">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inGrams&#32;<span>mass</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mass
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.inGrams`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.inGrams\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a mass to a number of grams.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mass
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '349', 349)" onmouseover="showTip(event, '349', 349)">
+                <p>
+                  <a id="inKilograms">
+                    <a href="#inKilograms">
+                      <code><span>inKilograms&#32;<span>numKilograms</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="349">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inKilograms&#32;<span>numKilograms</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numKilograms
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.inKilograms`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.inKilograms\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a mass to a number of kilograms.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numKilograms
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '350', 350)" onmouseover="showTip(event, '350', 350)">
+                <p>
+                  <a id="inLongTons">
+                    <a href="#inLongTons">
+                      <code><span>inLongTons&#32;<span>mass</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="350">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inLongTons&#32;<span>mass</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mass
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.inLongTons`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.inLongTons\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a mass to a number of long tons.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mass
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '351', 351)" onmouseover="showTip(event, '351', 351)">
+                <p>
+                  <a id="inMetricTons">
+                    <a href="#inMetricTons">
+                      <code><span>inMetricTons&#32;<span>mass</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="351">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inMetricTons&#32;<span>mass</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mass
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.inMetricTons`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.inMetricTons\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a mass to a number of metric tons.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mass
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '352', 352)" onmouseover="showTip(event, '352', 352)">
+                <p>
+                  <a id="inOunces">
+                    <a href="#inOunces">
+                      <code><span>inOunces&#32;<span>mass</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="352">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inOunces&#32;<span>mass</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mass
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.inOunces`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.inOunces\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L30-30" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a mass to a number of ounces.
+    Mass.pounds 1 |> Mass.inOunces
+    --> 16
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mass
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '353', 353)" onmouseover="showTip(event, '353', 353)">
+                <p>
+                  <a id="inPounds">
+                    <a href="#inPounds">
+                      <code><span>inPounds&#32;<span>mass</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="353">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inPounds&#32;<span>mass</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mass
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.inPounds`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.inPounds\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a mass to a number of pounds.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mass
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '354', 354)" onmouseover="showTip(event, '354', 354)">
+                <p>
+                  <a id="inShortTons">
+                    <a href="#inShortTons">
+                      <code><span>inShortTons&#32;<span>mass</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="354">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inShortTons&#32;<span>mass</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mass
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.inShortTons`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.inShortTons\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a mass to a number of short tons.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mass
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '355', 355)" onmouseover="showTip(event, '355', 355)">
+                <p>
+                  <a id="kilogram">
+                    <a href="#kilogram">
+                      <code><span>kilogram&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="355">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>kilogram&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.MassModule.kilogram`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.MassModule.kilogram\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '356', 356)" onmouseover="showTip(event, '356', 356)">
+                <p>
+                  <a id="kilograms">
+                    <a href="#kilograms">
+                      <code><span>kilograms&#32;<span>numKilograms</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="356">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>kilograms&#32;<span>numKilograms</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numKilograms
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.kilograms`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.kilograms\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L7-7" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a mass from a number of kilograms.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numKilograms
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '357', 357)" onmouseover="showTip(event, '357', 357)">
+                <p>
+                  <a id="longTon">
+                    <a href="#longTon">
+                      <code><span>longTon&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="357">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>longTon&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.MassModule.longTon`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.MassModule.longTon\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '358', 358)" onmouseover="showTip(event, '358', 358)">
+                <p>
+                  <a id="longTons">
+                    <a href="#longTons">
+                      <code><span>longTons&#32;<span>numLongTons</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="358">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>longTons&#32;<span>numLongTons</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numLongTons
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.longTons`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.longTons\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a mass from a number of [long tons][1]. This is the 'ton' commonly
+ used in the United Kingdom and British Commonwealth.
+     Mass.longTons 1
+     --> Mass.pounds 2240
+ [1]: https://en.wikipedia.org/wiki/Long_ton
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numLongTons
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '359', 359)" onmouseover="showTip(event, '359', 359)">
+                <p>
+                  <a id="metricTon">
+                    <a href="#metricTon">
+                      <code><span>metricTon&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="359">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>metricTon&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.MassModule.metricTon`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.MassModule.metricTon\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '360', 360)" onmouseover="showTip(event, '360', 360)">
+                <p>
+                  <a id="metricTons">
+                    <a href="#metricTons">
+                      <code><span>metricTons&#32;<span>numTonnes</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="360">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>metricTons&#32;<span>numTonnes</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numTonnes
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.metricTons`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.metricTons\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L36-36" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a mass from a number of [metric tons][1].
+    Mass.metricTons 1
+    --> Mass.kilograms 1000
+ [1]: https://en.wikipedia.org/wiki/Tonne
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numTonnes
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '361', 361)" onmouseover="showTip(event, '361', 361)">
+                <p>
+                  <a id="ounce">
+                    <a href="#ounce">
+                      <code><span>ounce&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="361">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ounce&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.MassModule.ounce`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.MassModule.ounce\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '362', 362)" onmouseover="showTip(event, '362', 362)">
+                <p>
+                  <a id="ounces">
+                    <a href="#ounces">
+                      <code><span>ounces&#32;<span>numOunces</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="362">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ounces&#32;<span>numOunces</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numOunces
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.ounces`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.ounces\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a mass from a number of ounces.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numOunces
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '363', 363)" onmouseover="showTip(event, '363', 363)">
+                <p>
+                  <a id="pound">
+                    <a href="#pound">
+                      <code><span>pound&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="363">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>pound&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.MassModule.pound`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.MassModule.pound\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L66-66" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '364', 364)" onmouseover="showTip(event, '364', 364)">
+                <p>
+                  <a id="pounds">
+                    <a href="#pounds">
+                      <code><span>pounds&#32;<span>numPounds</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="364">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>pounds&#32;<span>numPounds</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numPounds
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.pounds`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.pounds\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a mass from a number of pounds.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numPounds
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '365', 365)" onmouseover="showTip(event, '365', 365)">
+                <p>
+                  <a id="shortTon">
+                    <a href="#shortTon">
+                      <code><span>shortTon&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="365">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>shortTon&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.MassModule.shortTon`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.MassModule.shortTon\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '366', 366)" onmouseover="showTip(event, '366', 366)">
+                <p>
+                  <a id="shortTons">
+                    <a href="#shortTons">
+                      <code><span>shortTons&#32;<span>numShortTons</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="366">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>shortTons&#32;<span>numShortTons</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numShortTons
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.MassModule.shortTons`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.MassModule.shortTons\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a mass from a number of [short tons][1]. This is the 'ton'
+ commonly used in the United States.
+     Mass.shortTons 1
+     --> Mass.pounds 2000
+ [1]: https://en.wikipedia.org/wiki/Short_ton
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numShortTons
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">Mass</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://evelios.github.io/Math.Units/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

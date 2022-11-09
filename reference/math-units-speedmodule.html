@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Speed (Math.Units)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Thomas Waters">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://evelios.github.io/Math.Units/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="https://evelios.github.io/Math.Units/"><img id="fsdocs-logo" src="https://evelios.github.io/Math.Units/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/LICENSE.md">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/">Source Repository</a></li>
+                <li class="nav-header">
+  Tutorials
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/digit-precision.html">
+    Digit Precision
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/quantity.html">
+    Quantity
+  </a>
+</li>             
+<li class="nav-header">
+  Modules
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/angle.html">
+    Angle
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/length.html">
+    Lengths
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/interval.html">
+    Interval
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="https://evelios.github.io/Math.Units/">Math.Units</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    Speed Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://evelios.github.io/Math.Units/reference/math-units.html">
+        Math.Units
+      </a>
+    </dt>
+    <dt>
+      Assembly: Math.Units.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ A <c>Speed</c> value represents a speed in meters per second, miles per hour etc.
+ It is stored as a number of meters per second.
+ Note that since <c>MetersPerSecond</c> is defined as <c>Rate Meters Seconds</c> (length
+ per unit time), you can construct a <c>Speed</c> value using <c>Quantity.per</c>:
+     speed =
+         length |> Quantity.per duration
+ You can also do rate-related calculations with <c>Speed</c> values to compute
+ <c>Length</c> or <c>Duration</c>:
+     length =
+         speed |> Quantity.for duration
+     alsoLength =
+         duration |> Quantity.at speed
+     duration =
+         length |> Quantity.at_ speed
+
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '499', 499)" onmouseover="showTip(event, '499', 499)">
+                <p>
+                  <a id="feetPerSecond">
+                    <a href="#feetPerSecond">
+                      <code><span>feetPerSecond&#32;<span>numFeetPerSecond</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="499">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>feetPerSecond&#32;<span>numFeetPerSecond</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numFeetPerSecond
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.feetPerSecond`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.feetPerSecond\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a speed from a number of feet per second.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numFeetPerSecond
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '500', 500)" onmouseover="showTip(event, '500', 500)">
+                <p>
+                  <a id="inFeetPerSecond">
+                    <a href="#inFeetPerSecond">
+                      <code><span>inFeetPerSecond&#32;<span>speed</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="500">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inFeetPerSecond&#32;<span>speed</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        speed
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.inFeetPerSecond`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.inFeetPerSecond\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a speed to a number of feet per second.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  speed
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '501', 501)" onmouseover="showTip(event, '501', 501)">
+                <p>
+                  <a id="inKilometersPerHour">
+                    <a href="#inKilometersPerHour">
+                      <code><span>inKilometersPerHour&#32;<span>speed</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="501">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inKilometersPerHour&#32;<span>speed</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        speed
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.inKilometersPerHour`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.inKilometersPerHour\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a speed to a number of kilometers per hour.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  speed
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '502', 502)" onmouseover="showTip(event, '502', 502)">
+                <p>
+                  <a id="inMetersPerSecond">
+                    <a href="#inMetersPerSecond">
+                      <code><span>inMetersPerSecond&#32;<span>numMetersPerSecond</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="502">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inMetersPerSecond&#32;<span>numMetersPerSecond</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numMetersPerSecond
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.inMetersPerSecond`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.inMetersPerSecond\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a speed to a number of meters per second.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numMetersPerSecond
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '503', 503)" onmouseover="showTip(event, '503', 503)">
+                <p>
+                  <a id="inMilesPerHour">
+                    <a href="#inMilesPerHour">
+                      <code><span>inMilesPerHour&#32;<span>speed</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="503">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inMilesPerHour&#32;<span>speed</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        speed
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.inMilesPerHour`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.inMilesPerHour\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L45-45" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a speed to a number of miles per hour.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  speed
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '504', 504)" onmouseover="showTip(event, '504', 504)">
+                <p>
+                  <a id="kilometersPerHour">
+                    <a href="#kilometersPerHour">
+                      <code><span>kilometersPerHour&#32;<span>numKilometersPerHour</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="504">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>kilometersPerHour&#32;<span>numKilometersPerHour</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numKilometersPerHour
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.kilometersPerHour`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.kilometersPerHour\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a speed from a number of kilometers per hour.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numKilometersPerHour
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '505', 505)" onmouseover="showTip(event, '505', 505)">
+                <p>
+                  <a id="metersPerSecond">
+                    <a href="#metersPerSecond">
+                      <code><span>metersPerSecond&#32;<span>numMetersPerSecond</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="505">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>metersPerSecond&#32;<span>numMetersPerSecond</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numMetersPerSecond
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.metersPerSecond`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.metersPerSecond\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a speed from a number of meters per second.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numMetersPerSecond
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '506', 506)" onmouseover="showTip(event, '506', 506)">
+                <p>
+                  <a id="milesPerHour">
+                    <a href="#milesPerHour">
+                      <code><span>milesPerHour&#32;<span>numMilesPerHour</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="506">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>milesPerHour&#32;<span>numMilesPerHour</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numMilesPerHour
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.SpeedModule.milesPerHour`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.SpeedModule.milesPerHour\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a speed from a number of miles per hour.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numMilesPerHour
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">Speed</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://evelios.github.io/Math.Units/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

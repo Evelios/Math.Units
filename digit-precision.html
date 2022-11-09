@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Digit Precision</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="">
+    <meta name="author" content="Thomas Waters">
 
     <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -13,11 +13,11 @@
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-    <link rel="shortcut icon" type="image/x-icon" href="/Math.Units/img/favicon.ico">
-    <link type="text/css" rel="stylesheet" href="/Math.Units/content/navbar-fixed-left.css" />
-    <link type="text/css" rel="stylesheet" href="/Math.Units/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="/Math.Units/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="/Math.Units/content/fsdocs-tips.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://evelios.github.io/Math.Units/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,7 +34,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
-            <a href="/Math.Units/"><img id="fsdocs-logo" src="/Math.Units/img/logo.png" /></a>
+            <a href="https://evelios.github.io/Math.Units/"><img id="fsdocs-logo" src="https://evelios.github.io/Math.Units/img/logo.png" /></a>
             <!-- BEGIN SEARCH BOX: this adds support for the search box -->
             <div id="header">
                 <div class="searchbox" id="fsdocs-searchbox">
@@ -51,19 +51,19 @@
             <!-- END SEARCH BOX: this adds support for the search box -->
             <ul class="navbar-nav">
                 <li class="nav-header">Links</li>
-                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="{{fsdocs-license-link}}">License</a></li>
-                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
-                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="{{fsdocs-repository-link}}">Source Repository</a></li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/LICENSE.md">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/">Source Repository</a></li>
                 <li class="nav-header">
   Tutorials
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/digit-precision.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/digit-precision.html">
     Digit Precision
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/quantity.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/quantity.html">
     Quantity
   </a>
 </li>             
@@ -71,27 +71,34 @@
   Modules
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/angle.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/angle.html">
     Angle
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/length.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/length.html">
     Lengths
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/interval.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/interval.html">
     Interval
   </a>
 </li>
-                {{fsdocs-list-of-namespaces}}
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/reference/index.html">
+    All Namespaces
+  </a>
+</li>
             </ul>
         </div>
     </nav>
     <div class="container">
         <div class="masthead">
-            <h3 class="muted"><a href="/Math.Units/">Math.Units</a></h3>
+            <h3 class="muted"><a href="https://evelios.github.io/Math.Units/">Math.Units</a></h3>
         </div>
         <hr />
         <div class="container" id="fsdocs-content">
@@ -145,18 +152,51 @@ the precision we are requiring for this operation.</p>
 from Math.Units<br /><br />--------------------<br />type Float =
   static member DigitPrecision: int
   static member Epsilon: float
-  static member MinNormal: float</div>
-<div class="fsdocs-tip" id="fs5">val almostEqual: a: float -&gt; b: float -&gt; bool</div>
-<div class="fsdocs-tip" id="fs6">property Float.DigitPrecision: int with get, set</div>
+  static member MinNormal: float<br /><em>&lt;summary&gt;
+ A module that allows for approximate comparison of floating point
+ values. This works by limiting the amount of precision that is used
+ when comparing two floating point values for comparison.
+
+ A static class providing added features to the floating point number class.
+ The main features of this class allow for better floating point equality
+ testing. Generally, floating points always have small variations in their
+ values because the way that floating point numbers are encoded. It is often
+ useful to do equality comparison checks between floating point numbers in a
+ variety of contexts. There are two main ways of doing this type of
+ comparison. The first is to use a percentage tolerance between two numbers,
+ eg. Two floating point numbers are equal if they are within 0.01% of each
+ other. Another is to compare if the two numbers are within an absolute range
+ from each other, eg. Two floating point numbers are equal if they are within
+ 0.0001 units of each other.
+
+ This library does comparison by absolute value comparison through digit
+ precision. Numbers are considered equal if they are equal when rounded to
+ the number of digits as specified by &lt;c&gt;Float.DigitPrecision&lt;/c&gt;. The default is
+ 10 digits, so by default &lt;c&gt;2.0 = 2.00000000003&lt;/c&gt; (the 11th digit is a 3).
+
+ &lt;c&gt;Float.Epsilon&lt;/c&gt; is a derived value from the number of digits and represents
+ the maximum difference between two numbers that is considered equal. This
+ number is &lt;c&gt;10^-DigitPrecision&lt;/c&gt; which by default is &lt;c&gt;10^(-10)&lt;/c&gt;, or
+ &lt;c&gt;0.000000001&lt;/c&gt;.
+
+ In general the rules followed by this extension are from
+ &lt;a href=&quot;https://floating-point-gui.de/errors/comparison&quot;&gt;The Floating Point Guide on Comparison&lt;/a&gt;&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs5">val almostEqual: a: float -&gt; b: float -&gt; bool<br /><em>&lt;summary&gt;
+ Compare two floating point values for equality. Equality testing is done
+ based on a tolerance vale specified by &amp;lt;c&amp;gt;Float.Epsilon&amp;lt;/c&amp;gt;.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs6">property Float.DigitPrecision: int with get, set<br /><em>&lt;summary&gt;
+ The number of digits (in base 10) that are used for approximate equality tests.
+&lt;/summary&gt;</em></div>
 
         </div>
 
         <!-- BEGIN SEARCH BOX: this adds support for the search box -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-        <script type="text/javascript">var fsdocs_search_baseurl = '/Math.Units/';</script>
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://evelios.github.io/Math.Units/';</script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-        <script type="text/javascript" src="/Math.Units/content/fsdocs-search.js"></script>
+        <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-search.js"></script>
         <!-- END SEARCH BOX: this adds support for the search box -->
     </div>
 </body>

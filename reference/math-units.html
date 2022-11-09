@@ -1,0 +1,3790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Math.Units</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Thomas Waters">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://evelios.github.io/Math.Units/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="https://evelios.github.io/Math.Units/"><img id="fsdocs-logo" src="https://evelios.github.io/Math.Units/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/LICENSE.md">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/">Source Repository</a></li>
+                <li class="nav-header">
+  Tutorials
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/digit-precision.html">
+    Digit Precision
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/quantity.html">
+    Quantity
+  </a>
+</li>             
+<li class="nav-header">
+  Modules
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/angle.html">
+    Angle
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/length.html">
+    Lengths
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/interval.html">
+    Interval
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="https://evelios.github.io/Math.Units/">Math.Units</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2 id="math-units">
+    Math.Units Namespace
+  </h2>
+  <div class="fsdocs-xmldoc"></div>
+  <h3>
+    Contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#category-0_0">
+        Other namespace members
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_1">
+        Unit Relation
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_2">
+        Unit Space
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_3">
+        Unit Type
+      </a>
+    </li>
+  </ul>
+  <h3>
+    <a class="anchor" name="category-0_0" href="#category-0_0">
+      Other namespace members
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type/Module
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Acceleration">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-accelerationmodule.html">
+                Acceleration
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.AccelerationModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.AccelerationModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Acceleration.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ An <code>Acceleration</code> represents an acceleration in meters per second squared,
+ feet per second squared or
+ <a href="https://en.wikipedia.org/wiki/G-force#Unit_and_measurement">gees</a>.
+ It is stored as a number of meters per second squared.
+ Note that since <code>MetersPerSecondSquared</code> is defined as <code>Rate MetersPerSecond Seconds</code>
+ (change in speed per unit time), you can construct an <code>Acceleration</code>
+ value using <code>Quantity.per</code>:
+ <pre><code class="">
+     let acceleration =
+         changeInSpeed |&gt; Quantity.per duration</code></pre>
+ You can also do rate-related calculations with <code>Acceleration</code> values to compute
+ <code>Speed</code> or <code>Duration</code>:
+ <pre><code class="">
+     let changeInSpeed =
+         acceleration |&gt; Quantity.for duration
+     let alsoChangeInSpeed =
+         duration |&gt; Quantity.at acceleration
+     let duration =
+         changeInSpeed |&gt; Quantity.at_ acceleration</code></pre>
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Angle">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-anglemodule.html">
+                Angle
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.AngleModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.AngleModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="AngularAcceleration">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-angularaccelerationmodule.html">
+                AngularAcceleration
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.AngularAccelerationModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.AngularAccelerationModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/AngularAcceleration.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="AngularSpeed">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-angularspeedmodule.html">
+                AngularSpeed
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.AngularSpeedModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.AngularSpeedModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/AngularSpeed.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Area">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-areamodule.html">
+                Area
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.AreaModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.AreaModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Area.fs#L11-11" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ An <c>1</c represents an area in square meters, square feet, acres, hectares
+ etc. It is stored as a number of square meters.
+ Note that you can construct an <c>1</c value directly using the functions in this
+ module, but it also works to call [<c>1</c>](Quantity#squared) on a
+ <c>Length</c> or [<c>Quantity.times</c>](Quantity#times) on a pair of <c>Length</c>s. The
+ following are all equivalent:
+     Area.squareFeet 100
+     Quantity.squared (Length.feet 10)
+     Length.feet 25 |> Quantity.times (Length.feet 4)
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Capacitance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-capacitancemodule.html">
+                Capacitance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.CapacitanceModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.CapacitanceModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Capacitance.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Charge">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-chargemodule.html">
+                Charge
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.ChargeModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.ChargeModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Charge.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Constants">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-constants.html">
+                Constants
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Constants`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Constants\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Constants.fs#L6-6" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ All conversion factors sourced from 
+ <a href="https://www.nist.gov/pml/weights-and-measures/publications/nist-handbooks/handbook-44">National Institute of Standards and Technology</a>
+ unless otherwise specified.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Current">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-currentmodule.html">
+                Current
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.CurrentModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.CurrentModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Density">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-densitymodule.html">
+                Density
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.DensityModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.DensityModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Density.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Duration">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-durationmodule.html">
+                Duration
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.DurationModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.DurationModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Energy">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-energymodule.html">
+                Energy
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.EnergyModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.EnergyModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Energy.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Float">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-floatmodule.html">
+                Float (Module)
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.FloatModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.FloatModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Float.fs#L53-53" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Float">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-float.html">
+                Float (Type)
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Float`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Float\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Float.fs#L36-36" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A module that allows for approximate comparison of floating point
+ values. This works by limiting the amount of precision that is used
+ when comparing two floating point values for comparison.
+
+ A static class providing added features to the floating point number class.
+ The main features of this class allow for better floating point equality
+ testing. Generally, floating points always have small variations in their
+ values because the way that floating point numbers are encoded. It is often
+ useful to do equality comparison checks between floating point numbers in a
+ variety of contexts. There are two main ways of doing this type of
+ comparison. The first is to use a percentage tolerance between two numbers,
+ eg. Two floating point numbers are equal if they are within 0.01% of each
+ other. Another is to compare if the two numbers are within an absolute range
+ from each other, eg. Two floating point numbers are equal if they are within
+ 0.0001 units of each other.
+
+ This library does comparison by absolute value comparison through digit
+ precision. Numbers are considered equal if they are equal when rounded to
+ the number of digits as specified by <code>Float.DigitPrecision</code>. The default is
+ 10 digits, so by default <code>2.0 = 2.00000000003</code> (the 11th digit is a 3).
+
+ <code>Float.Epsilon</code> is a derived value from the number of digits and represents
+ the maximum difference between two numbers that is considered equal. This
+ number is <code>10^-DigitPrecision</code> which by default is <code>10^(-10)</code>, or
+ <code>0.000000001</code>.
+
+ In general the rules followed by this extension are from
+ <a href="https://floating-point-gui.de/errors/comparison">The Floating Point Guide on Comparison</a>
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Force">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-forcemodule.html">
+                Force
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.ForceModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.ForceModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Force.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Illuminance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-illuminancemodule.html">
+                Illuminance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.IlluminanceModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.IlluminanceModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Illuminance.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Inductance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-inductancemodule.html">
+                Inductance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.InductanceModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.InductanceModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Inductance.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Interval">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-interval.html">
+                Interval
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Interval`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Interval\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Interval.fs#L1-1" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Interval<'Units>">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-interval-1.html">
+                Interval<'Units>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Math.Units.Interval`1``')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Interval`1\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L465-465" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A finite, closed interval with a minimum and maximum number. This can
+ represent an interval of any type.
+
+ For example...
+     Interval float
+     Interval int
+     Interval Angle
+
+ <category index=4>Advanced Types</category>
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Length">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-lengthmodule.html">
+                Length
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.LengthModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.LengthModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Length.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Luminance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-luminancemodule.html">
+                Luminance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.LuminanceModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.LuminanceModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Luminance.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="LuminousFlux">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-luminousfluxmodule.html">
+                LuminousFlux
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.LuminousFluxModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.LuminousFluxModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousFlux.fs#L2-2" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="LuminousIntensity">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-luminousintensitymodule.html">
+                LuminousIntensity
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.LuminousIntensityModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.LuminousIntensityModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousIntensity.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ [Luminous intensity][wp-luminous-intensity] is a measure of the amount of
+ light produced ([luminous flux](LuminousFlux)) per unit [solid
+ angle](SolidAngle).
+ Consider a light bulb that emits light in all directions and a spotlight that
+ only emits light in a cone. If both lights had the same luminous flux (same
+ total amount of light produced), then the spotlight would have higher luminous
+ intensity since its light is concentrated into a smaller solid angle (and the
+ light from the spotlight would appear brighter if viewed from the same
+ distance).
+ On the other hand, if both lights had the same luminous intensity, then they
+ would appear equally bright when viewed from the same distance (something lit by
+ the spotlight would appear equally bright as the same object lit by the light
+ bulb) but the spotlight would have lower luminous flux since its light covers a
+ smaller solid angle.
+ Luminous intensity is measured in [candelas][wp-candelas].
+ [wp-luminous-intensity]: https://en.wikipedia.org/wiki/Luminous_intensity
+ [wp-candelas]: https://en.wikipedia.org/wiki/Candela
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Mass">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-massmodule.html">
+                Mass
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.MassModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.MassModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Mass.fs#L4-4" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Mass</c> represents a mass in kilograms, pounds, metric or imperial tons
+ etc. It is stored as a number of kilograms.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Molarity">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-molaritymodule.html">
+                Molarity
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.MolarityModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.MolarityModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Molarity.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Molarity</c> value represents a concentration of substance in moles per
+ cubic meter, moles per liter, millimoles per liter etc. It is stored as a number
+ of moles per cubic meter.
+ Note that the [NIST Guide to the
+ SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-8)
+ states that the term "molarity" is considered obsolete, but it appears to still
+ be in common use and is far less verbose than the alternative NIST suggestion of
+ "amount-of-substance concentration".
+ Since the units of <c>Molarity</c> are defined to be <c>Rate Moles CubicMeters</c> (amount
+ of substance per unit volume), you can construct a <c>Molarity</c> value using
+ <c>Quantity.per</c>:
+     molarity =
+         substanceAmount |> Quantity.per volume
+ You can also do rate-related calculations with <c>Molarity</c> values to compute
+ <c>SubstanceAmount</c> or <c>Volume</c>:
+     substanceAmount =
+         volume |> Quantity.at molarity
+     volume =
+         substanceAmount |> Quantity.at_ molarity
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Percent">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-percent.html">
+                Percent
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Percent`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Percent\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L285-285" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A percentage value. The default range for percentages is 0 to 1 but can also be given in the range 0 to 100.
+
+ <category>Unit Type</category>
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Pixels">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pixelsmodule.html">
+                Pixels
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.PixelsModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.PixelsModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Although most of the focus of <c>elm-units</c> is on physical/scientific units,
+ it's often useful to be able to safely convert back and forth between (for
+ example) [<c>Length</c>](Length) values in the real world and on-screen lengths in
+ pixels.
+ This module provides a standard <c>Pixels</c> units type and basic functions for
+ constructing/converting values of type <c>Quantity Int Pixels</c> or
+ <c>Quantity Float Pixels</c>, which allows you to do things like represent
+ conversions between real-world and on-screen lengths as [rates of change][1].
+ This in turn means that all the normal [<c>Quantity</c>](Quantity) functions can be
+ used to convert between pixels and other units, or even do type-safe math
+ directly on pixel values.
+ [1]: Quantity#working-with-rates
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Power">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-powermodule.html">
+                Power
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.PowerModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.PowerModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Power</c> value represents power in watts or horsepower. It is stored as a
+ number of watts.
+ Note that since <c>Watts</c> is defined as <c>Rate Joules Seconds</c> (energy per unit
+ time), you can construct a <c>Power</c> value using <c>Quantity.per</c>:
+     power =
+         energy |> Quantity.per duration
+ You can also do rate-related calculations with <c>Power</c> values to compute
+ <c>Energy</c> or <c>Duration</c>:
+     energy =
+         power |> Quantity.for duration
+     alsoEnergy =
+         duration |> Quantity.at power
+     duration =
+         energy |> Quantity.at_ power
+ [1]: https://en.wikipedia.org/wiki/Horsepower#Definitions
+
+ ## Horsepower
+ Who knew that there were not one, not two, but _three_ possible interpretations
+ of "one horsepower"? (Actually there are more than that, but these three
+ seemed the most reasonable.)
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Pressure">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pressuremodule.html">
+                Pressure
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.PressureModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.PressureModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pressure.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Pressure</c> value represents a pressure in kilopascals, pounds per square
+ inch, [atmospheres][1] etc. It is stored as a number of pascals.
+ Note that since <c>Pascals</c> is defined as <c>Rate Newtons SquareMeters</c> (force per
+ unit area), you can construct a <c>Pressure</c> value using <c>Quantity.per</c>:
+     pressure =
+         force |> Quantity.per area
+ You can also do rate-related calculations with <c>Pressure</c> values to compute
+ <c>Force</c> or <c>Area</c>:
+     force =
+         area |> Quantity.at pressure
+     area =
+         force |> Quantity.at_ pressure
+ [1]: https://en.wikipedia.org/wiki/Atmosphere_(unit)
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Quantity">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-quantitymodule.html">
+                Quantity
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.QuantityModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.QuantityModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Quantity.fs#L3-3" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Resistance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-resistancemodule.html">
+                Resistance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.ResistanceModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.ResistanceModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Resistance.fs#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Resistance</c> value represents an electrical resistance in ohms.
+ Note that since <c>Ohms</c> is defined as <c>Rate Volts Amperes</c> (voltage per unit
+ current), you can construct a <c>Resistance</c> value using <c>Quantity.per</c>:
+     resistance =
+         voltage |> Quantity.per current
+ You can also do rate-related calculations with <c>Resistance</c> values to compute
+ <c>Voltage</c> or <c>Current</c>:
+     voltage =
+         current |> Quantity.at resistance
+     current =
+         voltage |> Quantity.at_ resistance
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="SolidAngle">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-solidanglemodule.html">
+                SolidAngle
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.SolidAngleModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.SolidAngleModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ [Solid angle](https://en.wikipedia.org/wiki/Solid_angle) is a tricky concept
+ to explain, but roughly speaking solid angle is for 3D what angle is for 2D. It
+ can be used to measure three-dimensional field of view and is stored in
+ [steradians](https://en.wikipedia.org/wiki/Steradian).
+ 2D angle can be thought of as how much circumference of the unit circle is
+ covered. The unit circle (circle of radius 1) has a circumference of 2π, and an
+ angle in radians corresponds to the corresponding amount of circumference
+ covered. So an angle of 2π radians covers the entire circumference of the
+ circle, π radians covers half the circle, π/2 radians covers a quarter, etc.
+ Similarly, 3D solid angle can be thought of as how much surface area of the unit
+ sphere is covered. The unit sphere has surface area of 4π, and a solid angle in
+ steradians corresponds to the corresponding amount of surface area covered. So a
+ solid angle of 4π steradians covers the entire sphere, 2π steradians covers half
+ the sphere (one hemisphere), etc.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Speed">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-speedmodule.html">
+                Speed
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.SpeedModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.SpeedModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Speed</c> value represents a speed in meters per second, miles per hour etc.
+ It is stored as a number of meters per second.
+ Note that since <c>MetersPerSecond</c> is defined as <c>Rate Meters Seconds</c> (length
+ per unit time), you can construct a <c>Speed</c> value using <c>Quantity.per</c>:
+     speed =
+         length |> Quantity.per duration
+ You can also do rate-related calculations with <c>Speed</c> values to compute
+ <c>Length</c> or <c>Duration</c>:
+     length =
+         speed |> Quantity.for duration
+     alsoLength =
+         duration |> Quantity.at speed
+     duration =
+         length |> Quantity.at_ speed
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="SubstanceAmount">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-substanceamountmodule.html">
+                SubstanceAmount
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.SubstanceAmountModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.SubstanceAmountModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SubstanceAmount.fs#L4-4" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>SubstanceAmount</c> value represents a substance amount in [moles][1].
+ [1]: https://en.wikipedia.org/wiki/Mole_(unit)
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Temperature">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturemodule.html">
+                Temperature
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.TemperatureModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.TemperatureModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Unlike other modules in <c>elm-units</c>, this module contains two different
+ primary types:
+   - <c>Temperature</c>, which is not actually a <c>Quantity</c> since temperatures don't
+     really act like normal quantities. For example, it doesn't make sense to
+     add two temperatures or find the ratio between them.
+   - <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c>
+     _is_ a <c>Quantity</c> since it does make sense to add two deltas to get a net
+     delta, find the ratio between two deltas (one rise in temperature might be
+     twice as much as another rise in temperature), etc.
+ Since a <c>Temperature</c> value is not a <c>Quantity</c>, this module exposes specialized
+ functions for doing the operations on <c>Temperature</c> values that _do_ make sense,
+ such as comparing two temperatures or sorting a list of temperatures. It's also
+ possible to find the delta from one temperature to another using [<c>minus</c>](Temperature#minus),
+ and then add a <c>Delta</c> to a <c>Temperature</c> using [<c>plus</c>](Temperature#plus).
+
+ @docs Temperature, Delta, CelsiusDegrees
+
+ # Temperatures
+
+ @docs degreesCelsius, inDegreesCelsius, degreesFahrenheit, inDegreesFahrenheit, kelvins, inKelvins, absoluteZero
+
+ # Deltas
+
+ Following the suggestion mentioned [here](https://en.wikipedia.org/wiki/Celsius#Temperatures_and_intervals),
+ this module uses (for example) <c>celsiusDegrees</c> to indicate a temperature delta
+ (change in temperature), in contrast to <c>degreesCelsius</c> which indicates an
+ actual temperature.
+
+ @docs celsiusDegrees, inCelsiusDegrees, fahrenheitDegrees, inFahrenheitDegrees
+
+ ## Constants
+
+ Shorthand for <c>Temperature.celsiusDegrees 1</c> and `Temperature.fahrenheitDegrees
+ 1<c>. Can be convenient to use with [</c>Quantity.per`](Quantity#per).
+
+ @docs celsiusDegree, fahrenheitDegree
+
+ # Comparison
+
+ @docs lessThan, greaterThan, lessThanOrEqualTo, greaterThanOrEqualTo, compare, equalWithin, min, max
+
+ # Arithmetic
+
+ @docs plus, minus, clamp
+
+ # List functions
+
+ @docs minimum, maximum, sort, sortBy
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Voltage">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-voltagemodule.html">
+                Voltage
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.VoltageModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.VoltageModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Voltage.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Voltage</c> value represents a voltage (electric potential difference, if
+ we're being picky) in volts.
+ Note that since <c>Volts</c> is defined as <c>Rate Watts Amperes</c> (power per unit
+ current), you can do rate-related calculations with <c>Voltage</c> values to compute
+ <c>Power</c> or <c>Current</c>:
+     -- elm-units version of 'P = V * I'
+     power =
+         current |> Quantity.at voltage
+     -- I = P / V
+     current =
+         power |> Quantity.at_ voltage
+ Just for fun, note that since you can also [express <c>Voltage</c> in terms of
+ <c>Current</c> and <c>Resistance</c>](Resistance), you could rewrite the second example
+ above as
+     -- P = I^2 * R
+     power =
+         current
+             |> Quantity.at
+                 (current
+                     |> Quantity.at resistance
+                 )
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Volume">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-volumemodule.html">
+                Volume
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.VolumeModule`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.VolumeModule\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Volume.fs#L5-5" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <c>Volume</c> represents a volume in cubic meters, cubic feet, liters, US
+ liquid gallons, imperial fluid ounces etc. It is stored as a number of cubic
+ meters.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_1" href="#category-0_1">
+      Unit Relation
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Cubed<'Units>">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-cubed-1.html">
+                Cubed<'Units>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Math.Units.Cubed`1``')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Cubed`1\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L80-80" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Represents a units type that is the cube of some other units type; for
+ example, <code>Meters</code> is one units type (the units type of a [<code>Length</code>](Length)) and
+ <code>Cubed Meters</code> is another (the units type of an [<code>Volume</code>](Volume)). See the
+ [<code>cubed</code>](Quantity#cubed) and [<code>cbrt</code>](Quantity#cbrt) functions for examples of
+ use.
+ This is a special case of the <code>Product</code> units type.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Product<'Unit1, 'Unit2>">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-product-2.html">
+                Product<'Unit1, 'Unit2>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Math.Units.Product`2``')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Product`2\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Represents a units type that is the product of two other units types. This
+ is a more general form of <code>Squared</code> or <code>Cubed</code>. See
+ <a href="https://docs.microsoft.com/dotnet/api/math.units.quantity.product">Quantity.product</a>,
+ <a href="https://docs.microsoft.com/dotnet/api/math.units.quantity.times">Quantity.times</a>,
+ <a href="https://docs.microsoft.com/dotnet/api/math.units.quantity.over">Quantity.over</a> and
+ <a href="https://docs.microsoft.com/dotnet/api/math.units.quantity.over_">Quantity.over_</a> for how it can be used.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Rate<'DependentUnits, 'IndependentUnits>">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-rate-2.html">
+                Rate<'DependentUnits, 'IndependentUnits>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Math.Units.Rate`2``')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Rate`2\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L89-89" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Represents the units type of a rate or quotient such as a speed (`Rate
+ Meters Seconds<code>) or a pressure (</code>Rate Newtons SquareMeters`). See [Working with
+ rates](#working-with-rates) for details.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Squared<'Units>">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-squared-1.html">
+                Squared<'Units>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Math.Units.Squared`1``')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Squared`1\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Represents a units type that is the square of some other units type; for
+ example, <code>Meters</code> is one units type (the units type of a <code>Length</code>) and
+ <code>Squared Meters</code> is another (the units type of an <code>Area</code>). See the
+ <a href="https://docs.microsoft.com/dotnet/api/math.units.quantity.squared">squared</a> and [<code>sqrt</code>](#sqrt)
+ <a href="https://docs.microsoft.com/dotnet/api/math.units.quantity.sqrt">sqrt</a>
+ functions for examples of use. This is a special case of the <code>Product</code> units type.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_2" href="#category-0_2">
+      Unit Space
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Amperes">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-amperes.html">
+                Amperes
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Amperes`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Amperes\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Candelas">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-candelas.html">
+                Candelas
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Candelas`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Candelas\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L128-128" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="CelsiusDegrees">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-celsiusdegrees.html">
+                CelsiusDegrees
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.CelsiusDegrees`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.CelsiusDegrees\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Coulombs">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-coulombs.html">
+                Coulombs
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Coulombs`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Coulombs\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="CubicMeters">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-cubicmeters.html">
+                CubicMeters
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.CubicMeters`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.CubicMeters\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L110-110" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Farads">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-farads.html">
+                Farads
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Farads`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Farads\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L150-150" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Henries">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-henries.html">
+                Henries
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Henries`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Henries\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L152-152" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Joules">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-joules.html">
+                Joules
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Joules`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Joules\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L122-122" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Kilograms">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-kilograms.html">
+                Kilograms
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Kilograms`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Kilograms\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="KilogramsPerCubicMeter">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-kilogramspercubicmeter.html">
+                KilogramsPerCubicMeter
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.KilogramsPerCubicMeter`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.KilogramsPerCubicMeter\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L120-120" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Lumens">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-lumens.html">
+                Lumens
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Lumens`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Lumens\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L36-36" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Lux">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-lux.html">
+                Lux
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Lux`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Lux\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L130-130" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Meters">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-meters.html">
+                Meters
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Meters`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Meters\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="MetersPerSecond">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-meterspersecond.html">
+                MetersPerSecond
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.MetersPerSecond`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.MetersPerSecond\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L104-104" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="MetersPerSecondSquared">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-meterspersecondsquared.html">
+                MetersPerSecondSquared
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.MetersPerSecondSquared`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.MetersPerSecondSquared\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L106-106" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Moles">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-moles.html">
+                Moles
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Moles`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Moles\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="MolesPerCubicMeter">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-molespercubicmeter.html">
+                MolesPerCubicMeter
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.MolesPerCubicMeter`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.MolesPerCubicMeter\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L138-138" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Newtons">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-newtons.html">
+                Newtons
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Newtons`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Newtons\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L116-116" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Nits">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-nits.html">
+                Nits
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Nits`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Nits\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L132-132" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Ohms">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-ohms.html">
+                Ohms
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Ohms`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Ohms\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L154-154" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Pascals">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pascals.html">
+                Pascals
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Pascals`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Pascals\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L118-118" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Percentage">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-percentage.html">
+                Percentage
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Percentage`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Percentage\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Pixel">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pixel.html">
+                Pixel
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Pixel`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Pixel\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PixelsPerSecond">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pixelspersecond.html">
+                PixelsPerSecond
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.PixelsPerSecond`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.PixelsPerSecond\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L161-161" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PixelsPerSecondSquared">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pixelspersecondsquared.html">
+                PixelsPerSecondSquared
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.PixelsPerSecondSquared`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.PixelsPerSecondSquared\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L163-163" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Radians">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-radians.html">
+                Radians
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Radians`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Radians\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="RadiansPerSecond">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-radianspersecond.html">
+                RadiansPerSecond
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.RadiansPerSecond`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.RadiansPerSecond\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L96-96" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="RadiansPerSecondSquared">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-radianspersecondsquared.html">
+                RadiansPerSecondSquared
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.RadiansPerSecondSquared`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.RadiansPerSecondSquared\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Seconds">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-seconds.html">
+                Seconds
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Seconds`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Seconds\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L30-30" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="SquareMeters">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-squaremeters.html">
+                SquareMeters
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.SquareMeters`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.SquareMeters\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L108-108" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="SquarePixels">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-squarepixels.html">
+                SquarePixels
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.SquarePixels`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.SquarePixels\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L165-165" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Steradians">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-steradians.html">
+                Steradians
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Steradians`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Steradians\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Unitless">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-unitless.html">
+                Unitless
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Unitless`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Unitless\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A special units type representing 'no units'. A <code>Quantity Unitless</code>
+ value is interchangeable with a simple <code>float</code>.
+ A generic number that doesn't undergo any type mutation.
+ Eg.
+ <pre><code class="">
+     Unitless: Unitless 1. * Unitless 1. = Unitless 1.
+     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.</code></pre>
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Volts">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-volts.html">
+                Volts
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Volts`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Volts\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L148-148" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Watts">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-watts.html">
+                Watts
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Watts`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Watts\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L144-144" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_3" href="#category-0_3">
+      Unit Type
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Acceleration">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-acceleration.html">
+                Acceleration
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Acceleration`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Acceleration\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L304-304" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Angle">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">
+                Angle
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Angle`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Angle\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L311-311" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="AngularAcceleration">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-angularacceleration.html">
+                AngularAcceleration
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.AngularAcceleration`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.AngularAcceleration\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L315-315" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="AngularSpeed">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-angularspeed.html">
+                AngularSpeed
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.AngularSpeed`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.AngularSpeed\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L313-313" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Area">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-area.html">
+                Area
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Area`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Area\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L296-296" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Capacitance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-capacitance.html">
+                Capacitance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Capacitance`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Capacitance\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L362-362" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Charge">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-charge.html">
+                Charge
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Charge`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Charge\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L358-358" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Current">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-current.html">
+                Current
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Current`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Current\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L360-360" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Delta">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">
+                Delta
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Delta`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Delta\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L376-376" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Density">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-density.html">
+                Density
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Density`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Density\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L326-326" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Duration">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-duration.html">
+                Duration
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Duration`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Duration\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L288-288" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Energy">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-energy.html">
+                Energy
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Energy`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Energy\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L330-330" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Force">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-force.html">
+                Force
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Force`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Force\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L328-328" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Illuminance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-illuminance.html">
+                Illuminance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Illuminance`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Illuminance\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L342-342" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Inductance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-inductance.html">
+                Inductance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Inductance`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Inductance\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L364-364" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Length">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-length.html">
+                Length
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Length`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Length\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L294-294" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Luminance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-luminance.html">
+                Luminance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Luminance`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Luminance\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L344-344" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="LuminousFlux">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-luminousflux.html">
+                LuminousFlux
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.LuminousFlux`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.LuminousFlux\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L338-338" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="LuminousIntensity">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-luminousintensity.html">
+                LuminousIntensity
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.LuminousIntensity`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.LuminousIntensity\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L340-340" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Mass">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-mass.html">
+                Mass
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Mass`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Mass\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L324-324" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Molarity">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-molarity.html">
+                Molarity
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Molarity`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Molarity\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L352-352" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Pixels">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pixels.html">
+                Pixels
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Pixels`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Pixels\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L300-300" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Power">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-power.html">
+                Power
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Power`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Power\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L366-366" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Pressure">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-pressure.html">
+                Pressure
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Pressure`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Pressure\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L332-332" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Quantity<'Units>">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-quantity-1.html">
+                Quantity<'Units>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Math.Units.Quantity`1``')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Quantity`1\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L181-181" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A <code>Quantity</code> is effectively a <code>number</code> (an <code>Int</code> or <code>Float</code>) tagged with a
+ <code>units</code> type. So a
+     Quantity Float Meters
+ is a <code>Float</code> number of <code>Meters</code> and a
+     Quantity Int Pixels
+ is an <code>Int</code> number of <code>Pixels</code>. When compiling with <code>elm make --optimize</code> the
+ <code>Quantity</code> wrapper type will be compiled away, so the runtime performance should
+ be comparable to using a raw <code>Float</code> or <code>Int</code>.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Resistance">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-resistance.html">
+                Resistance
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Resistance`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Resistance\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L368-368" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="SolidAngle">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-solidangle.html">
+                SolidAngle
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.SolidAngle`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.SolidAngle\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L317-317" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Speed">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-speed.html">
+                Speed
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Speed`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Speed\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L302-302" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="SubstanceAmount">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-substanceamount.html">
+                SubstanceAmount
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.SubstanceAmount`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.SubstanceAmount\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L350-350" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Temperature">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">
+                Temperature
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Temperature`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Temperature\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L379-379" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Voltage">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-voltage.html">
+                Voltage
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Voltage`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Voltage\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L370-370" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Volume">
+              <a href="https://evelios.github.io/Math.Units/reference/math-units-volume.html">
+                Volume
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Math.Units.Volume`')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Math.Units.Volume\'/>')">
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Types.fs#L298-298" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+              <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://evelios.github.io/Math.Units/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Math.Units Package</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="">
+    <meta name="author" content="Thomas Waters">
 
     <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -13,11 +13,11 @@
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-    <link rel="shortcut icon" type="image/x-icon" href="/Math.Units/img/favicon.ico">
-    <link type="text/css" rel="stylesheet" href="/Math.Units/content/navbar-fixed-left.css" />
-    <link type="text/css" rel="stylesheet" href="/Math.Units/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="/Math.Units/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="/Math.Units/content/fsdocs-tips.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://evelios.github.io/Math.Units/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://evelios.github.io/Math.Units/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -34,7 +34,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
-            <a href="/Math.Units/"><img id="fsdocs-logo" src="/Math.Units/img/logo.png" /></a>
+            <a href="https://evelios.github.io/Math.Units/"><img id="fsdocs-logo" src="https://evelios.github.io/Math.Units/img/logo.png" /></a>
             <!-- BEGIN SEARCH BOX: this adds support for the search box -->
             <div id="header">
                 <div class="searchbox" id="fsdocs-searchbox">
@@ -51,19 +51,19 @@
             <!-- END SEARCH BOX: this adds support for the search box -->
             <ul class="navbar-nav">
                 <li class="nav-header">Links</li>
-                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="{{fsdocs-license-link}}">License</a></li>
-                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="{{fsdocs-release-notes-link}}">Release Notes</a></li>
-                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="{{fsdocs-repository-link}}">Source Repository</a></li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/LICENSE.md">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/">Source Repository</a></li>
                 <li class="nav-header">
   Tutorials
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/digit-precision.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/digit-precision.html">
     Digit Precision
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/quantity.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/quantity.html">
     Quantity
   </a>
 </li>             
@@ -71,27 +71,34 @@
   Modules
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/angle.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/angle.html">
     Angle
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/length.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/length.html">
     Lengths
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="/Math.Units/interval.html">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/interval.html">
     Interval
   </a>
 </li>
-                {{fsdocs-list-of-namespaces}}
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://evelios.github.io/Math.Units/reference/index.html">
+    All Namespaces
+  </a>
+</li>
             </ul>
         </div>
     </nav>
     <div class="container">
         <div class="masthead">
-            <h3 class="muted"><a href="/Math.Units/">Math.Units</a></h3>
+            <h3 class="muted"><a href="https://evelios.github.io/Math.Units/">Math.Units</a></h3>
         </div>
         <hr />
         <div class="container" id="fsdocs-content">
@@ -277,7 +284,7 @@ defined as...</p>
 </code></pre>
 <p>For example, <code>Length</code> is defined as</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs48', 91)" onmouseover="showTip(event, 'fs48', 91)" class="rt">Meters</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs48', 92)" onmouseover="showTip(event, 'fs48', 92)" class="uc">Meters</span>
-<span class="k">type</span> <span onmouseout="hideTip(event, 'fs16', 93)" onmouseover="showTip(event, 'fs16', 93)" class="rt">Length</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 94)" onmouseover="showTip(event, 'fs44', 94)" class="rt">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 95)" onmouseover="showTip(event, 'fs48', 95)" class="rt">Meters</span><span class="pn">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs49', 93)" onmouseover="showTip(event, 'fs49', 93)" class="rt">Length</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 94)" onmouseover="showTip(event, 'fs44', 94)" class="rt">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 95)" onmouseover="showTip(event, 'fs48', 95)" class="rt">Meters</span><span class="pn">&gt;</span>
 </code></pre>
 <p>This means that a <code>Length</code> is internally stored as a <code>float</code> number of <code>Meters</code>,
 but the choice of internal units can mostly be treated as an implementation
@@ -287,39 +294,39 @@ arithmetic and comparison operations that work on any kind of quantity; read on!
 <h3><a name="Basic-arithmetic-and-comparison" class="anchor" href="#Basic-arithmetic-and-comparison">Basic arithmetic and comparison</a></h3>
 <p>You can do basic math with <code>Quantity</code> values:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// 6 feet 3 inches, converted to meters</span>
-<span onmouseout="hideTip(event, 'fs16', 96)" onmouseover="showTip(event, 'fs16', 96)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 97)" onmouseover="showTip(event, 'fs17', 97)" class="id">feet</span> <span class="n">6.</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 98)" onmouseover="showTip(event, 'fs44', 98)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 99)" onmouseover="showTip(event, 'fs37', 99)" class="id">plus</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 100)" onmouseover="showTip(event, 'fs16', 100)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs49', 101)" onmouseover="showTip(event, 'fs49', 101)" class="id">inches</span> <span class="n">3.</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 102)" onmouseover="showTip(event, 'fs16', 102)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 103)" onmouseover="showTip(event, 'fs29', 103)" class="id">inMeters</span>
+<span onmouseout="hideTip(event, 'fs49', 96)" onmouseover="showTip(event, 'fs49', 96)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 97)" onmouseover="showTip(event, 'fs17', 97)" class="id">feet</span> <span class="n">6.</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 98)" onmouseover="showTip(event, 'fs44', 98)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 99)" onmouseover="showTip(event, 'fs37', 99)" class="id">plus</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 100)" onmouseover="showTip(event, 'fs49', 100)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 101)" onmouseover="showTip(event, 'fs50', 101)" class="id">inches</span> <span class="n">3.</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs49', 102)" onmouseover="showTip(event, 'fs49', 102)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 103)" onmouseover="showTip(event, 'fs29', 103)" class="id">inMeters</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>1.905</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 104)" onmouseover="showTip(event, 'fs8', 104)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 105)" onmouseover="showTip(event, 'fs27', 105)" class="id">hours</span> <span class="n">1.</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 106)" onmouseover="showTip(event, 'fs44', 106)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 107)" onmouseover="showTip(event, 'fs50', 107)" class="id">minus</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 108)" onmouseover="showTip(event, 'fs8', 108)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 109)" onmouseover="showTip(event, 'fs38', 109)" class="id">minutes</span> <span class="n">15.</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 110)" onmouseover="showTip(event, 'fs8', 110)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 111)" onmouseover="showTip(event, 'fs51', 111)" class="id">inMinutes</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 106)" onmouseover="showTip(event, 'fs44', 106)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 107)" onmouseover="showTip(event, 'fs51', 107)" class="id">minus</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 108)" onmouseover="showTip(event, 'fs8', 108)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 109)" onmouseover="showTip(event, 'fs38', 109)" class="id">minutes</span> <span class="n">15.</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 110)" onmouseover="showTip(event, 'fs8', 110)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 111)" onmouseover="showTip(event, 'fs52', 111)" class="id">inMinutes</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>45.0</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// pi radians plus 45 degrees is 5/8 of a full turn</span>
-<span onmouseout="hideTip(event, 'fs44', 112)" onmouseover="showTip(event, 'fs44', 112)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 113)" onmouseover="showTip(event, 'fs52', 113)" class="id">sum</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs6', 114)" onmouseover="showTip(event, 'fs6', 114)" class="m">Angle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 115)" onmouseover="showTip(event, 'fs42', 115)" class="id">radians</span> <span onmouseout="hideTip(event, 'fs2', 116)" onmouseover="showTip(event, 'fs2', 116)" class="id">Math</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 117)" onmouseover="showTip(event, 'fs53', 117)" class="id">PI</span>
+<span onmouseout="hideTip(event, 'fs44', 112)" onmouseover="showTip(event, 'fs44', 112)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 113)" onmouseover="showTip(event, 'fs53', 113)" class="id">sum</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs6', 114)" onmouseover="showTip(event, 'fs6', 114)" class="m">Angle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 115)" onmouseover="showTip(event, 'fs42', 115)" class="id">radians</span> <span onmouseout="hideTip(event, 'fs2', 116)" onmouseover="showTip(event, 'fs2', 116)" class="id">Math</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 117)" onmouseover="showTip(event, 'fs54', 117)" class="id">PI</span>
                <span onmouseout="hideTip(event, 'fs6', 118)" onmouseover="showTip(event, 'fs6', 118)" class="m">Angle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 119)" onmouseover="showTip(event, 'fs20', 119)" class="id">degrees</span> <span class="n">45.</span> <span class="pn">]</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 120)" onmouseover="showTip(event, 'fs6', 120)" class="m">Angle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 121)" onmouseover="showTip(event, 'fs54', 121)" class="id">inTurns</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs6', 120)" onmouseover="showTip(event, 'fs6', 120)" class="m">Angle</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 121)" onmouseover="showTip(event, 'fs55', 121)" class="id">inTurns</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>0.625</code></pre></td></tr></table>
 <p><code>Quantity</code> values can be compared/sorted:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs16', 122)" onmouseover="showTip(event, 'fs16', 122)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 123)" onmouseover="showTip(event, 'fs18', 123)" class="id">meters</span> <span class="n">1.</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 124)" onmouseover="showTip(event, 'fs44', 124)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 125)" onmouseover="showTip(event, 'fs55', 125)" class="id">greaterThan</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 126)" onmouseover="showTip(event, 'fs16', 126)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 127)" onmouseover="showTip(event, 'fs17', 127)" class="id">feet</span> <span class="n">3.</span><span class="pn">)</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs49', 122)" onmouseover="showTip(event, 'fs49', 122)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 123)" onmouseover="showTip(event, 'fs18', 123)" class="id">meters</span> <span class="n">1.</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 124)" onmouseover="showTip(event, 'fs44', 124)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 125)" onmouseover="showTip(event, 'fs56', 125)" class="id">greaterThan</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 126)" onmouseover="showTip(event, 'fs49', 126)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 127)" onmouseover="showTip(event, 'fs17', 127)" class="id">feet</span> <span class="n">3.</span><span class="pn">)</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>true</code></pre></td></tr></table>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 128)" onmouseover="showTip(event, 'fs44', 128)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 129)" onmouseover="showTip(event, 'fs56', 129)" class="id">compare</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 130)" onmouseover="showTip(event, 'fs16', 130)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 131)" onmouseover="showTip(event, 'fs18', 131)" class="id">meters</span> <span class="n">1.</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 132)" onmouseover="showTip(event, 'fs16', 132)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 133)" onmouseover="showTip(event, 'fs17', 133)" class="id">feet</span> <span class="n">3.</span><span class="pn">)</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 128)" onmouseover="showTip(event, 'fs44', 128)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 129)" onmouseover="showTip(event, 'fs57', 129)" class="id">compare</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 130)" onmouseover="showTip(event, 'fs49', 130)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 131)" onmouseover="showTip(event, 'fs18', 131)" class="id">meters</span> <span class="n">1.</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 132)" onmouseover="showTip(event, 'fs49', 132)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 133)" onmouseover="showTip(event, 'fs17', 133)" class="id">feet</span> <span class="n">3.</span><span class="pn">)</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>1</code></pre></td></tr></table>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 134)" onmouseover="showTip(event, 'fs44', 134)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 135)" onmouseover="showTip(event, 'fs57', 135)" class="id">max</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 136)" onmouseover="showTip(event, 'fs16', 136)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 137)" onmouseover="showTip(event, 'fs18', 137)" class="id">meters</span> <span class="n">1.</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 138)" onmouseover="showTip(event, 'fs16', 138)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 139)" onmouseover="showTip(event, 'fs17', 139)" class="id">feet</span> <span class="n">3.</span><span class="pn">)</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 134)" onmouseover="showTip(event, 'fs44', 134)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 135)" onmouseover="showTip(event, 'fs58', 135)" class="id">max</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 136)" onmouseover="showTip(event, 'fs49', 136)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 137)" onmouseover="showTip(event, 'fs18', 137)" class="id">meters</span> <span class="n">1.</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 138)" onmouseover="showTip(event, 'fs49', 138)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 139)" onmouseover="showTip(event, 'fs17', 139)" class="id">feet</span> <span class="n">3.</span><span class="pn">)</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>1 Meters</code></pre></td></tr></table>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 140)" onmouseover="showTip(event, 'fs44', 140)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 141)" onmouseover="showTip(event, 'fs58', 141)" class="id">maximum</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs16', 142)" onmouseover="showTip(event, 'fs16', 142)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 143)" onmouseover="showTip(event, 'fs18', 143)" class="id">meters</span> <span class="n">1.</span>
-                   <span onmouseout="hideTip(event, 'fs16', 144)" onmouseover="showTip(event, 'fs16', 144)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 145)" onmouseover="showTip(event, 'fs17', 145)" class="id">feet</span> <span class="n">3.</span> <span class="pn">]</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 140)" onmouseover="showTip(event, 'fs44', 140)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 141)" onmouseover="showTip(event, 'fs59', 141)" class="id">maximum</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs49', 142)" onmouseover="showTip(event, 'fs49', 142)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 143)" onmouseover="showTip(event, 'fs18', 143)" class="id">meters</span> <span class="n">1.</span>
+                   <span onmouseout="hideTip(event, 'fs49', 144)" onmouseover="showTip(event, 'fs49', 144)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 145)" onmouseover="showTip(event, 'fs17', 145)" class="id">feet</span> <span class="n">3.</span> <span class="pn">]</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>Some 1 Meters</code></pre></td></tr></table>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 146)" onmouseover="showTip(event, 'fs44', 146)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 147)" onmouseover="showTip(event, 'fs41', 147)" class="id">sort</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs16', 148)" onmouseover="showTip(event, 'fs16', 148)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 149)" onmouseover="showTip(event, 'fs18', 149)" class="id">meters</span> <span class="n">1.</span>
-                <span onmouseout="hideTip(event, 'fs16', 150)" onmouseover="showTip(event, 'fs16', 150)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 151)" onmouseover="showTip(event, 'fs17', 151)" class="id">feet</span> <span class="n">3.</span> <span class="pn">]</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 146)" onmouseover="showTip(event, 'fs44', 146)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 147)" onmouseover="showTip(event, 'fs41', 147)" class="id">sort</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs49', 148)" onmouseover="showTip(event, 'fs49', 148)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 149)" onmouseover="showTip(event, 'fs18', 149)" class="id">meters</span> <span class="n">1.</span>
+                <span onmouseout="hideTip(event, 'fs49', 150)" onmouseover="showTip(event, 'fs49', 150)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 151)" onmouseover="showTip(event, 'fs17', 151)" class="id">feet</span> <span class="n">3.</span> <span class="pn">]</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>[0.9143999999999999 Meters; 1 Meters]</code></pre></td></tr></table>
 <h3><a name="Multiplication-and-division" class="anchor" href="#Multiplication-and-division">Multiplication and division</a></h3>
@@ -358,86 +365,86 @@ the same units to get a plain <code>Float</code> value
 <p>For example, to calculate the area of a triangle:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Area of a triangle with base of 2 feet and</span>
 <span class="c">// height of 8 inches</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 152)" onmouseover="showTip(event, 'fs59', 152)" class="id">baseSize</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 153)" onmouseover="showTip(event, 'fs16', 153)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 154)" onmouseover="showTip(event, 'fs17', 154)" class="id">feet</span> <span class="n">2.</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs60', 155)" onmouseover="showTip(event, 'fs60', 155)" class="id">height</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 156)" onmouseover="showTip(event, 'fs16', 156)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs49', 157)" onmouseover="showTip(event, 'fs49', 157)" class="id">inches</span> <span class="n">8.</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs60', 152)" onmouseover="showTip(event, 'fs60', 152)" class="id">baseSize</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs49', 153)" onmouseover="showTip(event, 'fs49', 153)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 154)" onmouseover="showTip(event, 'fs17', 154)" class="id">feet</span> <span class="n">2.</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 155)" onmouseover="showTip(event, 'fs61', 155)" class="id">height</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs49', 156)" onmouseover="showTip(event, 'fs49', 156)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 157)" onmouseover="showTip(event, 'fs50', 157)" class="id">inches</span> <span class="n">8.</span>
 
-<span onmouseout="hideTip(event, 'fs44', 158)" onmouseover="showTip(event, 'fs44', 158)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 159)" onmouseover="showTip(event, 'fs61', 159)" class="id">half</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 160)" onmouseover="showTip(event, 'fs44', 160)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 161)" onmouseover="showTip(event, 'fs62', 161)" class="id">product</span> <span onmouseout="hideTip(event, 'fs59', 162)" onmouseover="showTip(event, 'fs59', 162)" class="id">baseSize</span> <span onmouseout="hideTip(event, 'fs60', 163)" onmouseover="showTip(event, 'fs60', 163)" class="id">height</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs63', 164)" onmouseover="showTip(event, 'fs63', 164)" class="m">Area</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 165)" onmouseover="showTip(event, 'fs64', 165)" class="id">inSquareInches</span>
+<span onmouseout="hideTip(event, 'fs44', 158)" onmouseover="showTip(event, 'fs44', 158)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 159)" onmouseover="showTip(event, 'fs62', 159)" class="id">half</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 160)" onmouseover="showTip(event, 'fs44', 160)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 161)" onmouseover="showTip(event, 'fs63', 161)" class="id">product</span> <span onmouseout="hideTip(event, 'fs60', 162)" onmouseover="showTip(event, 'fs60', 162)" class="id">baseSize</span> <span onmouseout="hideTip(event, 'fs61', 163)" onmouseover="showTip(event, 'fs61', 163)" class="id">height</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs64', 164)" onmouseover="showTip(event, 'fs64', 164)" class="m">Area</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 165)" onmouseover="showTip(event, 'fs65', 165)" class="id">inSquareInches</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>96.0</code></pre></td></tr></table>
 <p>Comprehensive support is provided for working with rates of change:</p>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// How fast are we going if we travel 30 meters in</span>
 <span class="c">// 2 seconds?</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs65', 166)" onmouseover="showTip(event, 'fs65', 166)" class="id">speed</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs16', 167)" onmouseover="showTip(event, 'fs16', 167)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 168)" onmouseover="showTip(event, 'fs18', 168)" class="id">meters</span> <span class="n">30.</span>
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 169)" onmouseover="showTip(event, 'fs44', 169)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 170)" onmouseover="showTip(event, 'fs66', 170)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 171)" onmouseover="showTip(event, 'fs8', 171)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 172)" onmouseover="showTip(event, 'fs19', 172)" class="id">seconds</span> <span class="n">2.</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs66', 166)" onmouseover="showTip(event, 'fs66', 166)" class="id">speed</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 167)" onmouseover="showTip(event, 'fs49', 167)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 168)" onmouseover="showTip(event, 'fs18', 168)" class="id">meters</span> <span class="n">30.</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 169)" onmouseover="showTip(event, 'fs44', 169)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 170)" onmouseover="showTip(event, 'fs67', 170)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 171)" onmouseover="showTip(event, 'fs8', 171)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 172)" onmouseover="showTip(event, 'fs19', 172)" class="id">seconds</span> <span class="n">2.</span><span class="pn">)</span>
 <span class="c">// How far do we go if we travel for 2 minutes</span>
 <span class="c">// at that speed?</span>
 <span onmouseout="hideTip(event, 'fs8', 173)" onmouseover="showTip(event, 'fs8', 173)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 174)" onmouseover="showTip(event, 'fs38', 174)" class="id">minutes</span> <span class="n">2.</span> <span class="c">// duration</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 175)" onmouseover="showTip(event, 'fs44', 175)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 176)" onmouseover="showTip(event, 'fs67', 176)" class="id">at</span> <span onmouseout="hideTip(event, 'fs65', 177)" onmouseover="showTip(event, 'fs65', 177)" class="id">speed</span> <span class="c">// length per duration</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs16', 178)" onmouseover="showTip(event, 'fs16', 178)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 179)" onmouseover="showTip(event, 'fs68', 179)" class="id">inKilometers</span> <span class="c">// gives us a length!</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 175)" onmouseover="showTip(event, 'fs44', 175)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 176)" onmouseover="showTip(event, 'fs68', 176)" class="id">at</span> <span onmouseout="hideTip(event, 'fs66', 177)" onmouseover="showTip(event, 'fs66', 177)" class="id">speed</span> <span class="c">// length per duration</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs49', 178)" onmouseover="showTip(event, 'fs49', 178)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 179)" onmouseover="showTip(event, 'fs69', 179)" class="id">inKilometers</span> <span class="c">// gives us a length!</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>1.8</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// How long will it take to travel 20 km</span>
 <span class="c">// if we&#39;re driving at 60 mph?</span>
-<span onmouseout="hideTip(event, 'fs16', 180)" onmouseover="showTip(event, 'fs16', 180)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 181)" onmouseover="showTip(event, 'fs69', 181)" class="id">kilometers</span> <span class="n">20.</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 182)" onmouseover="showTip(event, 'fs44', 182)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 183)" onmouseover="showTip(event, 'fs70', 183)" class="id">at_</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs30', 184)" onmouseover="showTip(event, 'fs30', 184)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 185)" onmouseover="showTip(event, 'fs31', 185)" class="id">milesPerHour</span> <span class="n">60.</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 186)" onmouseover="showTip(event, 'fs8', 186)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 187)" onmouseover="showTip(event, 'fs51', 187)" class="id">inMinutes</span>
+<span onmouseout="hideTip(event, 'fs49', 180)" onmouseover="showTip(event, 'fs49', 180)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 181)" onmouseover="showTip(event, 'fs70', 181)" class="id">kilometers</span> <span class="n">20.</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 182)" onmouseover="showTip(event, 'fs44', 182)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 183)" onmouseover="showTip(event, 'fs71', 183)" class="id">at_</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs30', 184)" onmouseover="showTip(event, 'fs30', 184)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 185)" onmouseover="showTip(event, 'fs31', 185)" class="id">milesPerHour</span> <span class="n">60.</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 186)" onmouseover="showTip(event, 'fs8', 186)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 187)" onmouseover="showTip(event, 'fs52', 187)" class="id">inMinutes</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>12.42742384</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// How fast is &quot;a mile a minute&quot;, in kilometers per hour?</span>
-<span onmouseout="hideTip(event, 'fs16', 188)" onmouseover="showTip(event, 'fs16', 188)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 189)" onmouseover="showTip(event, 'fs71', 189)" class="id">miles</span> <span class="n">1.</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 190)" onmouseover="showTip(event, 'fs44', 190)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 191)" onmouseover="showTip(event, 'fs66', 191)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 192)" onmouseover="showTip(event, 'fs8', 192)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 193)" onmouseover="showTip(event, 'fs38', 193)" class="id">minutes</span> <span class="n">1.</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 194)" onmouseover="showTip(event, 'fs30', 194)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs72', 195)" onmouseover="showTip(event, 'fs72', 195)" class="id">inKilometersPerHour</span>
+<span onmouseout="hideTip(event, 'fs49', 188)" onmouseover="showTip(event, 'fs49', 188)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs72', 189)" onmouseover="showTip(event, 'fs72', 189)" class="id">miles</span> <span class="n">1.</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 190)" onmouseover="showTip(event, 'fs44', 190)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 191)" onmouseover="showTip(event, 'fs67', 191)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 192)" onmouseover="showTip(event, 'fs8', 192)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 193)" onmouseover="showTip(event, 'fs38', 193)" class="id">minutes</span> <span class="n">1.</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 194)" onmouseover="showTip(event, 'fs30', 194)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs73', 195)" onmouseover="showTip(event, 'fs73', 195)" class="id">inKilometersPerHour</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>96.56064</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Reverse engineer the speed of light from defined</span>
 <span class="c">// lengths/durations (the speed of light is &#39;one light</span>
 <span class="c">// year per year&#39;)</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs73', 196)" onmouseover="showTip(event, 'fs73', 196)" class="id">speedOfLight</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs16', 197)" onmouseover="showTip(event, 'fs16', 197)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs74', 198)" onmouseover="showTip(event, 'fs74', 198)" class="id">lightYears</span> <span class="n">1.</span>
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 199)" onmouseover="showTip(event, 'fs44', 199)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 200)" onmouseover="showTip(event, 'fs66', 200)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 201)" onmouseover="showTip(event, 'fs8', 201)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 202)" onmouseover="showTip(event, 'fs75', 202)" class="id">julianYears</span> <span class="n">1.</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs74', 196)" onmouseover="showTip(event, 'fs74', 196)" class="id">speedOfLight</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 197)" onmouseover="showTip(event, 'fs49', 197)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 198)" onmouseover="showTip(event, 'fs75', 198)" class="id">lightYears</span> <span class="n">1.</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 199)" onmouseover="showTip(event, 'fs44', 199)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 200)" onmouseover="showTip(event, 'fs67', 200)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs8', 201)" onmouseover="showTip(event, 'fs8', 201)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 202)" onmouseover="showTip(event, 'fs76', 202)" class="id">julianYears</span> <span class="n">1.</span><span class="pn">)</span>
 
-<span onmouseout="hideTip(event, 'fs73', 203)" onmouseover="showTip(event, 'fs73', 203)" class="id">speedOfLight</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 204)" onmouseover="showTip(event, 'fs30', 204)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 205)" onmouseover="showTip(event, 'fs32', 205)" class="id">inMetersPerSecond</span>
+<span onmouseout="hideTip(event, 'fs74', 203)" onmouseover="showTip(event, 'fs74', 203)" class="id">speedOfLight</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs30', 204)" onmouseover="showTip(event, 'fs30', 204)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 205)" onmouseover="showTip(event, 'fs32', 205)" class="id">inMetersPerSecond</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>299792458.0</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// One astronomical unit is the (average) distance from the</span>
 <span class="c">// Sun to the Earth. Roughly how long does it take light to</span>
 <span class="c">// reach the Earth from the Sun?</span>
-<span onmouseout="hideTip(event, 'fs16', 206)" onmouseover="showTip(event, 'fs16', 206)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 207)" onmouseover="showTip(event, 'fs76', 207)" class="id">astronomicalUnits</span> <span class="n">1.</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 208)" onmouseover="showTip(event, 'fs44', 208)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 209)" onmouseover="showTip(event, 'fs70', 209)" class="id">at_</span> <span onmouseout="hideTip(event, 'fs73', 210)" onmouseover="showTip(event, 'fs73', 210)" class="id">speedOfLight</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 211)" onmouseover="showTip(event, 'fs8', 211)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 212)" onmouseover="showTip(event, 'fs51', 212)" class="id">inMinutes</span>
+<span onmouseout="hideTip(event, 'fs49', 206)" onmouseover="showTip(event, 'fs49', 206)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs77', 207)" onmouseover="showTip(event, 'fs77', 207)" class="id">astronomicalUnits</span> <span class="n">1.</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 208)" onmouseover="showTip(event, 'fs44', 208)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 209)" onmouseover="showTip(event, 'fs71', 209)" class="id">at_</span> <span onmouseout="hideTip(event, 'fs74', 210)" onmouseover="showTip(event, 'fs74', 210)" class="id">speedOfLight</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs8', 211)" onmouseover="showTip(event, 'fs8', 211)" class="m">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 212)" onmouseover="showTip(event, 'fs52', 212)" class="id">inMinutes</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>8.316746397</code></pre></td></tr></table>
 <p>Note that the various functions above are not restricted to speed (length per
 unit time) - any units work:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs77', 213)" onmouseover="showTip(event, 'fs77', 213)" class="id">pixelDensity</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs78', 214)" onmouseover="showTip(event, 'fs78', 214)" class="m">Pixels</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs79', 215)" onmouseover="showTip(event, 'fs79', 215)" class="id">float</span> <span class="n">96.</span>
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 216)" onmouseover="showTip(event, 'fs44', 216)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 217)" onmouseover="showTip(event, 'fs66', 217)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 218)" onmouseover="showTip(event, 'fs16', 218)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs49', 219)" onmouseover="showTip(event, 'fs49', 219)" class="id">inches</span> <span class="n">1.</span><span class="pn">)</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs78', 213)" onmouseover="showTip(event, 'fs78', 213)" class="id">pixelDensity</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs79', 214)" onmouseover="showTip(event, 'fs79', 214)" class="m">Pixels</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs80', 215)" onmouseover="showTip(event, 'fs80', 215)" class="id">float</span> <span class="n">96.</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 216)" onmouseover="showTip(event, 'fs44', 216)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 217)" onmouseover="showTip(event, 'fs67', 217)" class="id">per</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 218)" onmouseover="showTip(event, 'fs49', 218)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 219)" onmouseover="showTip(event, 'fs50', 219)" class="id">inches</span> <span class="n">1.</span><span class="pn">)</span>
 
-<span onmouseout="hideTip(event, 'fs16', 220)" onmouseover="showTip(event, 'fs16', 220)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 221)" onmouseover="showTip(event, 'fs39', 221)" class="id">centimeters</span> <span class="n">3.</span> <span class="c">// length</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 222)" onmouseover="showTip(event, 'fs44', 222)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 223)" onmouseover="showTip(event, 'fs67', 223)" class="id">at</span> <span onmouseout="hideTip(event, 'fs77', 224)" onmouseover="showTip(event, 'fs77', 224)" class="id">pixelDensity</span> <span class="c">// pixels per length</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs78', 225)" onmouseover="showTip(event, 'fs78', 225)" class="m">Pixels</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs80', 226)" onmouseover="showTip(event, 'fs80', 226)" class="id">toFloat</span> <span class="c">// gives us pixels!</span>
+<span onmouseout="hideTip(event, 'fs49', 220)" onmouseover="showTip(event, 'fs49', 220)" class="m">Length</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 221)" onmouseover="showTip(event, 'fs39', 221)" class="id">centimeters</span> <span class="n">3.</span> <span class="c">// length</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 222)" onmouseover="showTip(event, 'fs44', 222)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 223)" onmouseover="showTip(event, 'fs68', 223)" class="id">at</span> <span onmouseout="hideTip(event, 'fs78', 224)" onmouseover="showTip(event, 'fs78', 224)" class="id">pixelDensity</span> <span class="c">// pixels per length</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs79', 225)" onmouseover="showTip(event, 'fs79', 225)" class="m">Pixels</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs81', 226)" onmouseover="showTip(event, 'fs81', 226)" class="id">toFloat</span> <span class="c">// gives us pixels!</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>113.3858268</code></pre></td></tr></table>
 <h3><a name="Argument-order" class="anchor" href="#Argument-order">Argument order</a></h3>
 <p>Note that several functions like <code>Quantity.minus</code> and <code>Quantity.lessThan</code> (and
 their <code>Temperature</code> equivalents) that mimic binary operators like <code>-</code> and <code>&lt;</code>
 "take the second argument first"; for example,</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 233)" onmouseover="showTip(event, 'fs44', 233)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 234)" onmouseover="showTip(event, 'fs36', 234)" class="id">lessThan</span> <span onmouseout="hideTip(event, 'fs81', 235)" onmouseover="showTip(event, 'fs81', 235)" class="id">x</span> <span onmouseout="hideTip(event, 'fs83', 236)" onmouseover="showTip(event, 'fs83', 236)" class="id">y</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 233)" onmouseover="showTip(event, 'fs44', 233)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 234)" onmouseover="showTip(event, 'fs36', 234)" class="id">lessThan</span> <span onmouseout="hideTip(event, 'fs82', 235)" onmouseover="showTip(event, 'fs82', 235)" class="id">x</span> <span onmouseout="hideTip(event, 'fs84', 236)" onmouseover="showTip(event, 'fs84', 236)" class="id">y</span>
 </code></pre>
 <p>means <code>y &lt; x</code>, <em>not</em> <code>x &lt; y</code>. This is done for a couple of reasons. First, so
 that use with <code>|&gt;</code> works naturally; for example,</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs81', 237)" onmouseover="showTip(event, 'fs81', 237)" class="id">x</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 238)" onmouseover="showTip(event, 'fs44', 238)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 239)" onmouseover="showTip(event, 'fs36', 239)" class="id">lessThan</span> <span onmouseout="hideTip(event, 'fs83', 240)" onmouseover="showTip(event, 'fs83', 240)" class="id">y</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs82', 237)" onmouseover="showTip(event, 'fs82', 237)" class="id">x</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs44', 238)" onmouseover="showTip(event, 'fs44', 238)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 239)" onmouseover="showTip(event, 'fs36', 239)" class="id">lessThan</span> <span onmouseout="hideTip(event, 'fs84', 240)" onmouseover="showTip(event, 'fs84', 240)" class="id">y</span>
 </code></pre>
 <p><em>does</em> mean <code>x &lt; y</code>. The 'reversed' argument order also means that things like</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs87', 250)" onmouseover="showTip(event, 'fs87', 250)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs88', 251)" onmouseover="showTip(event, 'fs88', 251)" class="id">map</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 252)" onmouseover="showTip(event, 'fs44', 252)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 253)" onmouseover="showTip(event, 'fs50', 253)" class="id">minus</span> <span onmouseout="hideTip(event, 'fs81', 254)" onmouseover="showTip(event, 'fs81', 254)" class="id">x</span><span class="pn">)</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs84', 255)" onmouseover="showTip(event, 'fs84', 255)" class="id">a</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs85', 256)" onmouseover="showTip(event, 'fs85', 256)" class="id">b</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs86', 257)" onmouseover="showTip(event, 'fs86', 257)" class="id">c</span> <span class="pn">]</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs88', 250)" onmouseover="showTip(event, 'fs88', 250)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs89', 251)" onmouseover="showTip(event, 'fs89', 251)" class="id">map</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 252)" onmouseover="showTip(event, 'fs44', 252)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 253)" onmouseover="showTip(event, 'fs51', 253)" class="id">minus</span> <span onmouseout="hideTip(event, 'fs82', 254)" onmouseover="showTip(event, 'fs82', 254)" class="id">x</span><span class="pn">)</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs85', 255)" onmouseover="showTip(event, 'fs85', 255)" class="id">a</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs86', 256)" onmouseover="showTip(event, 'fs86', 256)" class="id">b</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs87', 257)" onmouseover="showTip(event, 'fs87', 257)" class="id">c</span> <span class="pn">]</span>
 </code></pre>
 <p>will work as expected - it will result in</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span> <span onmouseout="hideTip(event, 'fs84', 258)" onmouseover="showTip(event, 'fs84', 258)" class="id">a</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs81', 259)" onmouseover="showTip(event, 'fs81', 259)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs85', 260)" onmouseover="showTip(event, 'fs85', 260)" class="id">b</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs81', 261)" onmouseover="showTip(event, 'fs81', 261)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs86', 262)" onmouseover="showTip(event, 'fs86', 262)" class="id">c</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs81', 263)" onmouseover="showTip(event, 'fs81', 263)" class="id">x</span> <span class="pn">]</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span> <span onmouseout="hideTip(event, 'fs85', 258)" onmouseover="showTip(event, 'fs85', 258)" class="id">a</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs82', 259)" onmouseover="showTip(event, 'fs82', 259)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs86', 260)" onmouseover="showTip(event, 'fs86', 260)" class="id">b</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs82', 261)" onmouseover="showTip(event, 'fs82', 261)" class="id">x</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs87', 262)" onmouseover="showTip(event, 'fs87', 262)" class="id">c</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs82', 263)" onmouseover="showTip(event, 'fs82', 263)" class="id">x</span> <span class="pn">]</span>
 </code></pre>
 <p>instead of</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span> <span onmouseout="hideTip(event, 'fs81', 264)" onmouseover="showTip(event, 'fs81', 264)" class="id">x</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs84', 265)" onmouseover="showTip(event, 'fs84', 265)" class="id">a</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs81', 266)" onmouseover="showTip(event, 'fs81', 266)" class="id">x</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs85', 267)" onmouseover="showTip(event, 'fs85', 267)" class="id">b</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs81', 268)" onmouseover="showTip(event, 'fs81', 268)" class="id">x</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs86', 269)" onmouseover="showTip(event, 'fs86', 269)" class="id">c</span> <span class="pn">]</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">[</span> <span onmouseout="hideTip(event, 'fs82', 264)" onmouseover="showTip(event, 'fs82', 264)" class="id">x</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs85', 265)" onmouseover="showTip(event, 'fs85', 265)" class="id">a</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs82', 266)" onmouseover="showTip(event, 'fs82', 266)" class="id">x</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs86', 267)" onmouseover="showTip(event, 'fs86', 267)" class="id">b</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs82', 268)" onmouseover="showTip(event, 'fs82', 268)" class="id">x</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs87', 269)" onmouseover="showTip(event, 'fs87', 269)" class="id">c</span> <span class="pn">]</span>
 </code></pre>
 <p>which is what you would get if <code>Quantity.minus</code> took arguments in the 'normal'
 order.</p>
@@ -458,8 +465,8 @@ but "<code>a</code> minus <code>b</code>" (and so <code>a |&gt; Quantity.minus b
 Take kinetic energy <code>E_k = 1/2 * m * v^2</code>, for example - the <code>Math.Units</code> type
 system is not sophisticated enough to work out the units properly. Instead,
 you'd need to create a custom function like</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs89', 270)" onmouseover="showTip(event, 'fs89', 270)" class="fn">kineticEnergy</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs90', 271)" onmouseover="showTip(event, 'fs90', 271)" class="fn">m</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs91', 272)" onmouseover="showTip(event, 'fs91', 272)" class="rt">Mass</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs92', 273)" onmouseover="showTip(event, 'fs92', 273)" class="fn">v</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs30', 274)" onmouseover="showTip(event, 'fs30', 274)" class="rt">Speed</span><span class="pn">)</span> <span class="pn">:</span> <span onmouseout="hideTip(event, 'fs93', 275)" onmouseover="showTip(event, 'fs93', 275)" class="rt">Energy</span> <span class="o">=</span>
-    <span onmouseout="hideTip(event, 'fs44', 276)" onmouseover="showTip(event, 'fs44', 276)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs94', 277)" onmouseover="showTip(event, 'fs94', 277)" class="id">create</span> <span class="pn">(</span><span class="n">0.5</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs90', 278)" onmouseover="showTip(event, 'fs90', 278)" class="fn">m</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 279)" onmouseover="showTip(event, 'fs95', 279)" class="id">Value</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs92', 280)" onmouseover="showTip(event, 'fs92', 280)" class="fn">v</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 281)" onmouseover="showTip(event, 'fs95', 281)" class="id">Value</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs92', 282)" onmouseover="showTip(event, 'fs92', 282)" class="fn">v</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 283)" onmouseover="showTip(event, 'fs95', 283)" class="id">Value</span><span class="pn">)</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs90', 270)" onmouseover="showTip(event, 'fs90', 270)" class="fn">kineticEnergy</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs91', 271)" onmouseover="showTip(event, 'fs91', 271)" class="fn">m</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs92', 272)" onmouseover="showTip(event, 'fs92', 272)" class="rt">Mass</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs93', 273)" onmouseover="showTip(event, 'fs93', 273)" class="fn">v</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs30', 274)" onmouseover="showTip(event, 'fs30', 274)" class="rt">Speed</span><span class="pn">)</span> <span class="pn">:</span> <span onmouseout="hideTip(event, 'fs94', 275)" onmouseover="showTip(event, 'fs94', 275)" class="rt">Energy</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs44', 276)" onmouseover="showTip(event, 'fs44', 276)" class="m">Quantity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 277)" onmouseover="showTip(event, 'fs95', 277)" class="id">create</span> <span class="pn">(</span><span class="n">0.5</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs91', 278)" onmouseover="showTip(event, 'fs91', 278)" class="fn">m</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 279)" onmouseover="showTip(event, 'fs96', 279)" class="id">Value</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs93', 280)" onmouseover="showTip(event, 'fs93', 280)" class="fn">v</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 281)" onmouseover="showTip(event, 'fs96', 281)" class="id">Value</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs93', 282)" onmouseover="showTip(event, 'fs93', 282)" class="fn">v</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 283)" onmouseover="showTip(event, 'fs96', 283)" class="id">Value</span><span class="pn">)</span>
 </code></pre>
 <p>In the <em>implementation</em> of <code>kineticEnergy</code>, you're working with raw <code>Float</code>
 values so you need to be careful to make sure the units actually do work out.
@@ -468,8 +475,8 @@ values so you need to be careful to make sure the units actually do work out.
 can be used in a completely type-safe way - callers can supply arguments
 using whatever units they have, and extract results in whatever units they want:
 [6]:</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs89', 284)" onmouseover="showTip(event, 'fs89', 284)" class="fn">kineticEnergy</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs91', 285)" onmouseover="showTip(event, 'fs91', 285)" class="m">Mass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 286)" onmouseover="showTip(event, 'fs96', 286)" class="id">shortTons</span> <span class="n">1.5</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs30', 287)" onmouseover="showTip(event, 'fs30', 287)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 288)" onmouseover="showTip(event, 'fs31', 288)" class="id">milesPerHour</span> <span class="n">60.</span><span class="pn">)</span>
-<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs93', 289)" onmouseover="showTip(event, 'fs93', 289)" class="m">Energy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs97', 290)" onmouseover="showTip(event, 'fs97', 290)" class="id">inKilowattHours</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs90', 284)" onmouseover="showTip(event, 'fs90', 284)" class="fn">kineticEnergy</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs92', 285)" onmouseover="showTip(event, 'fs92', 285)" class="m">Mass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs97', 286)" onmouseover="showTip(event, 'fs97', 286)" class="id">shortTons</span> <span class="n">1.5</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs30', 287)" onmouseover="showTip(event, 'fs30', 287)" class="m">Speed</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 288)" onmouseover="showTip(event, 'fs31', 288)" class="id">milesPerHour</span> <span class="n">60.</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs94', 289)" onmouseover="showTip(event, 'fs94', 289)" class="m">Energy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs98', 290)" onmouseover="showTip(event, 'fs98', 290)" class="id">inKilowattHours</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>0.1359720886</code></pre></td></tr></table>
 <h3><a name="Custom-Units" class="anchor" href="#Custom-Units">Custom Units</a></h3>
@@ -478,19 +485,19 @@ own! See [CustomUnits][#CustomUnits] for an example.</p>
 <h3><a name="Understanding-quantity-types" class="anchor" href="#Understanding-quantity-types">Understanding quantity types</a></h3>
 <p>The same quantity type can often be expressed in multiple different ways. Take
 the <code>Volume</code> type as an example. It is an alias for</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 291)" onmouseover="showTip(event, 'fs44', 291)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs98', 292)" onmouseover="showTip(event, 'fs98', 292)" class="rt">CubicMeters</span><span class="pn">&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 291)" onmouseover="showTip(event, 'fs44', 291)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs99', 292)" onmouseover="showTip(event, 'fs99', 292)" class="rt">CubicMeters</span><span class="pn">&gt;</span>
 </code></pre>
 <p>but expanding the <code>CubicMeters</code> type alias, this is equivalent to</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 293)" onmouseover="showTip(event, 'fs44', 293)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 294)" onmouseover="showTip(event, 'fs48', 294)" class="rt">Meters</span> <span onmouseout="hideTip(event, 'fs99', 295)" onmouseover="showTip(event, 'fs99', 295)" class="rt">Cubed</span><span class="pn">&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 293)" onmouseover="showTip(event, 'fs44', 293)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 294)" onmouseover="showTip(event, 'fs48', 294)" class="rt">Meters</span> <span onmouseout="hideTip(event, 'fs100', 295)" onmouseover="showTip(event, 'fs100', 295)" class="rt">Cubed</span><span class="pn">&gt;</span>
 </code></pre>
 <p>which expands further to</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 296)" onmouseover="showTip(event, 'fs44', 296)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs100', 297)" onmouseover="showTip(event, 'fs100', 297)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs100', 298)" onmouseover="showTip(event, 'fs100', 298)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 299)" onmouseover="showTip(event, 'fs48', 299)" class="rt">Meters</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 300)" onmouseover="showTip(event, 'fs48', 300)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 301)" onmouseover="showTip(event, 'fs48', 301)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 296)" onmouseover="showTip(event, 'fs44', 296)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs101', 297)" onmouseover="showTip(event, 'fs101', 297)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs101', 298)" onmouseover="showTip(event, 'fs101', 298)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 299)" onmouseover="showTip(event, 'fs48', 299)" class="rt">Meters</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 300)" onmouseover="showTip(event, 'fs48', 300)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 301)" onmouseover="showTip(event, 'fs48', 301)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">&gt;</span>
 </code></pre>
 <p>which could also be written as</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 302)" onmouseover="showTip(event, 'fs44', 302)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs100', 303)" onmouseover="showTip(event, 'fs100', 303)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 304)" onmouseover="showTip(event, 'fs48', 304)" class="rt">Meters</span> <span onmouseout="hideTip(event, 'fs101', 305)" onmouseover="showTip(event, 'fs101', 305)" class="rt">Squared</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 306)" onmouseover="showTip(event, 'fs48', 306)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 302)" onmouseover="showTip(event, 'fs44', 302)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs101', 303)" onmouseover="showTip(event, 'fs101', 303)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs48', 304)" onmouseover="showTip(event, 'fs48', 304)" class="rt">Meters</span> <span onmouseout="hideTip(event, 'fs102', 305)" onmouseover="showTip(event, 'fs102', 305)" class="rt">Squared</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 306)" onmouseover="showTip(event, 'fs48', 306)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">&gt;</span>
 </code></pre>
 <p>or even</p>
-<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 307)" onmouseover="showTip(event, 'fs44', 307)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs100', 308)" onmouseover="showTip(event, 'fs100', 308)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs102', 309)" onmouseover="showTip(event, 'fs102', 309)" class="rt">SquareMeters</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 310)" onmouseover="showTip(event, 'fs48', 310)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs44', 307)" onmouseover="showTip(event, 'fs44', 307)" class="fn">Quantity</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs101', 308)" onmouseover="showTip(event, 'fs101', 308)" class="rt">Product</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs103', 309)" onmouseover="showTip(event, 'fs103', 309)" class="rt">SquareMeters</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs48', 310)" onmouseover="showTip(event, 'fs48', 310)" class="rt">Meters</span><span class="pn">&gt;</span><span class="pn">&gt;</span>
 </code></pre>
 <p>and you may see any one of these forms pop up in compiler error messages.</p>
 <h2><a name="API" class="anchor" href="#API">API</a></h2>
@@ -558,15 +565,64 @@ message][https://chris.beams.io/posts/git-commit/#seven-rules], although I'm not
 <div class="fsdocs-tip" id="fs5">Camera.fieldOfView: Angle</div>
 <div class="fsdocs-tip" id="fs6">Multiple items<br />module Angle
 
-from Math.Units<br /><br />--------------------<br />type Angle = Quantity&lt;Radians&gt;</div>
+from Math.Units<br /><br />--------------------<br />type Angle = Quantity&lt;Radians&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs7">Camera.shutterSpeed: Duration</div>
 <div class="fsdocs-tip" id="fs8">Multiple items<br />module Duration
 
-from Math.Units<br /><br />--------------------<br />type Duration = Quantity&lt;Seconds&gt;</div>
+from Math.Units<br /><br />--------------------<br />type Duration = Quantity&lt;Seconds&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs9">Camera.minimumOperatingTemperature: Temperature</div>
 <div class="fsdocs-tip" id="fs10">Multiple items<br />module Temperature
 
-from Math.Units<br /><br />--------------------<br />type Temperature =
+from Math.Units<br /><em>&lt;summary&gt;
+ Unlike other modules in &amp;lt;c&amp;gt;elm-units&amp;lt;/c&amp;gt;, this module contains two different
+ primary types:
+   - &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt;, which is not actually a &amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt; since temperatures don&#39;t
+     really act like normal quantities. For example, it doesn&#39;t make sense to
+     add two temperatures or find the ratio between them.
+   - &amp;lt;c&amp;gt;Delta&amp;lt;/c&amp;gt;, which represents the difference between two temperatures. A &amp;lt;c&amp;gt;Delta&amp;lt;/c&amp;gt;
+     _is_ a &amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt; since it does make sense to add two deltas to get a net
+     delta, find the ratio between two deltas (one rise in temperature might be
+     twice as much as another rise in temperature), etc.
+ Since a &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt; value is not a &amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt;, this module exposes specialized
+ functions for doing the operations on &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt; values that _do_ make sense,
+ such as comparing two temperatures or sorting a list of temperatures. It&#39;s also
+ possible to find the delta from one temperature to another using [&amp;lt;c&amp;gt;minus&amp;lt;/c&amp;gt;](Temperature#minus),
+ and then add a &amp;lt;c&amp;gt;Delta&amp;lt;/c&amp;gt; to a &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt; using [&amp;lt;c&amp;gt;plus&amp;lt;/c&amp;gt;](Temperature#plus).
+
+ @docs Temperature, Delta, CelsiusDegrees
+
+ # Temperatures
+
+ @docs degreesCelsius, inDegreesCelsius, degreesFahrenheit, inDegreesFahrenheit, kelvins, inKelvins, absoluteZero
+
+ # Deltas
+
+ Following the suggestion mentioned [here](https://en.wikipedia.org/wiki/Celsius#Temperatures_and_intervals),
+ this module uses (for example) &amp;lt;c&amp;gt;celsiusDegrees&amp;lt;/c&amp;gt; to indicate a temperature delta
+ (change in temperature), in contrast to &amp;lt;c&amp;gt;degreesCelsius&amp;lt;/c&amp;gt; which indicates an
+ actual temperature.
+
+ @docs celsiusDegrees, inCelsiusDegrees, fahrenheitDegrees, inFahrenheitDegrees
+
+ ## Constants
+
+ Shorthand for &amp;lt;c&amp;gt;Temperature.celsiusDegrees 1&amp;lt;/c&amp;gt; and `Temperature.fahrenheitDegrees
+ 1&amp;lt;c&amp;gt;. Can be convenient to use with [&amp;lt;/c&amp;gt;Quantity.per`](Quantity#per).
+
+ @docs celsiusDegree, fahrenheitDegree
+
+ # Comparison
+
+ @docs lessThan, greaterThan, lessThanOrEqualTo, greaterThanOrEqualTo, compare, equalWithin, min, max
+
+ # Arithmetic
+
+ @docs plus, minus, clamp
+
+ # List functions
+
+ @docs minimum, maximum, sort, sortBy
+&lt;/summary&gt;</em><br /><br />--------------------<br />type Temperature =
   interface IComparable
   interface IComparable&lt;Temperature&gt;
   new: kelvin: float -&gt; Temperature
@@ -577,7 +633,7 @@ from Math.Units<br /><br />--------------------<br />type Temperature =
   override ToString: unit -&gt; string
   static member (+) : lhs: Temperature * rhs: Delta -&gt; Temperature + 1 overload
   static member (-) : lhs: Temperature * rhs: Temperature -&gt; Delta
-  ...<br /><br />--------------------<br />new: kelvin: float -&gt; Temperature</div>
+  ...<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em><br /><br />--------------------<br />new: kelvin: float -&gt; Temperature</div>
 <div class="fsdocs-tip" id="fs11">val canOperateAt: temperature: Temperature -&gt; camera: Camera -&gt; bool</div>
 <div class="fsdocs-tip" id="fs12">val temperature: Temperature</div>
 <div class="fsdocs-tip" id="fs13">val camera: Camera</div>
@@ -586,27 +642,68 @@ type bool = Boolean<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt
 <div class="fsdocs-tip" id="fs15">val greaterThan: rhs: Temperature -&gt; lhs: Temperature -&gt; bool</div>
 <div class="fsdocs-tip" id="fs16">Multiple items<br />module Length
 
-from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;</div>
+from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs17">val feet: l: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs18">val meters: m: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs19">val seconds: numSeconds: float -&gt; Duration</div>
+<div class="fsdocs-tip" id="fs19">val seconds: numSeconds: float -&gt; Duration<br /><em>&lt;summary&gt;
+ Construct a &amp;lt;c&amp;gt;1&amp;lt;/c from a given number of seconds.
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs20">val degrees: d: float -&gt; Angle</div>
-<div class="fsdocs-tip" id="fs21">val degreesFahrenheit: numDegreesFahrenheit: float -&gt; Temperature</div>
+<div class="fsdocs-tip" id="fs21">val degreesFahrenheit: numDegreesFahrenheit: float -&gt; Temperature<br /><em>&lt;summary&gt;
+ Construct a temperature from a number of degrees Fahrenheit.
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs22">val inCentimeters: l: Length -&gt; float</div>
 <div class="fsdocs-tip" id="fs23">val inMiles: l: Length -&gt; float</div>
-<div class="fsdocs-tip" id="fs24">val inHours: duration: Duration -&gt; float</div>
+<div class="fsdocs-tip" id="fs24">val inHours: duration: Duration -&gt; float<br /><em>&lt;summary&gt;
+ Convert a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; to a value in hours.
+    Duration.minutes 120 |&amp;gt; Duration.inHours
+    --&amp;gt; 2
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs25">val inRadians: r: Angle -&gt; float</div>
-<div class="fsdocs-tip" id="fs26">val inDegreesCelsius: temperature: Temperature -&gt; float</div>
-<div class="fsdocs-tip" id="fs27">val hours: numHours: float -&gt; Duration</div>
-<div class="fsdocs-tip" id="fs28">val inSeconds: numSeconds: Duration -&gt; float</div>
+<div class="fsdocs-tip" id="fs26">val inDegreesCelsius: temperature: Temperature -&gt; float<br /><em>&lt;summary&gt;
+ Convert a temperature to a number of degrees Celsius.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">val hours: numHours: float -&gt; Duration<br /><em>&lt;summary&gt;
+ Construct a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; from a given number of hours.
+    Duration.hours 1
+    --&amp;gt; Duration.seconds 3600
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">val inSeconds: numSeconds: Duration -&gt; float<br /><em>&lt;summary&gt;
+ Convert a &amp;lt;c&amp;gt;1&amp;lt;/c&amp;gt; to a value in seconds.
+    Duration.milliseconds 10 |&amp;gt; Duration.inSeconds
+    --&amp;gt; 0.01
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs29">val inMeters: l: Length -&gt; float</div>
 <div class="fsdocs-tip" id="fs30">Multiple items<br />module Speed
 
-from Math.Units<br /><br />--------------------<br />type Speed = Quantity&lt;MetersPerSecond&gt;</div>
-<div class="fsdocs-tip" id="fs31">val milesPerHour: numMilesPerHour: float -&gt; Speed</div>
-<div class="fsdocs-tip" id="fs32">val inMetersPerSecond: numMetersPerSecond: Speed -&gt; float</div>
-<div class="fsdocs-tip" id="fs33">val degreesCelsius: numDegreesCelsius: float -&gt; Temperature</div>
-<div class="fsdocs-tip" id="fs34">val inDegreesFahrenheit: temperature: Temperature -&gt; float</div>
+from Math.Units<br /><em>&lt;summary&gt;
+ A &amp;lt;c&amp;gt;Speed&amp;lt;/c&amp;gt; value represents a speed in meters per second, miles per hour etc.
+ It is stored as a number of meters per second.
+ Note that since &amp;lt;c&amp;gt;MetersPerSecond&amp;lt;/c&amp;gt; is defined as &amp;lt;c&amp;gt;Rate Meters Seconds&amp;lt;/c&amp;gt; (length
+ per unit time), you can construct a &amp;lt;c&amp;gt;Speed&amp;lt;/c&amp;gt; value using &amp;lt;c&amp;gt;Quantity.per&amp;lt;/c&amp;gt;:
+     speed =
+         length |&amp;gt; Quantity.per duration
+ You can also do rate-related calculations with &amp;lt;c&amp;gt;Speed&amp;lt;/c&amp;gt; values to compute
+ &amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt; or &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt;:
+     length =
+         speed |&amp;gt; Quantity.for duration
+     alsoLength =
+         duration |&amp;gt; Quantity.at speed
+     duration =
+         length |&amp;gt; Quantity.at_ speed
+&lt;/summary&gt;</em><br /><br />--------------------<br />type Speed = Quantity&lt;MetersPerSecond&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val milesPerHour: numMilesPerHour: float -&gt; Speed<br /><em>&lt;summary&gt;
+ Construct a speed from a number of miles per hour.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">val inMetersPerSecond: numMetersPerSecond: Speed -&gt; float<br /><em>&lt;summary&gt;
+ Convert a speed to a number of meters per second.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">val degreesCelsius: numDegreesCelsius: float -&gt; Temperature<br /><em>&lt;summary&gt;
+ Construct a temperature from a number of degrees Celsius.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">val inDegreesFahrenheit: temperature: Temperature -&gt; float<br /><em>&lt;summary&gt;
+ Convert a temperature to a number of degrees Fahrenheit.
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs35">Multiple items<br />module Quantity
 
 from Math.Units<br /><br />--------------------<br />type Quantity&lt;&#39;Units&gt; =
@@ -620,10 +717,23 @@ from Math.Units<br /><br />--------------------<br />type Quantity&lt;&#39;Units
   override ToString: unit -&gt; string
   static member (%) : q: Quantity&lt;&#39;Units&gt; * modulus: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;
   static member ( * ) : q: Quantity&lt;&#39;Units&gt; * scale: float -&gt; Quantity&lt;&#39;Units&gt; + 2 overloads
-  ...<br /><br />--------------------<br />new: quantity: float -&gt; Quantity&lt;&#39;Units&gt;</div>
+  ...<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;<br />&lt;summary&gt;
+ A &lt;c&gt;Quantity&lt;/c&gt; is effectively a &lt;c&gt;number&lt;/c&gt; (an &lt;c&gt;Int&lt;/c&gt; or &lt;c&gt;Float&lt;/c&gt;) tagged with a
+ &lt;c&gt;units&lt;/c&gt; type. So a
+     Quantity Float Meters
+ is a &lt;c&gt;Float&lt;/c&gt; number of &lt;c&gt;Meters&lt;/c&gt; and a
+     Quantity Int Pixels
+ is an &lt;c&gt;Int&lt;/c&gt; number of &lt;c&gt;Pixels&lt;/c&gt;. When compiling with &lt;c&gt;elm make --optimize&lt;/c&gt; the
+ &lt;c&gt;Quantity&lt;/c&gt; wrapper type will be compiled away, so the runtime performance should
+ be comparable to using a raw &lt;c&gt;Float&lt;/c&gt; or &lt;c&gt;Int&lt;/c&gt;.
+ &lt;/summary&gt;</em><br /><br />--------------------<br />new: quantity: float -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs36">static member Quantity.lessThan: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; bool</div>
 <div class="fsdocs-tip" id="fs37">static member Quantity.plus: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs38">val minutes: numMinutes: float -&gt; Duration</div>
+<div class="fsdocs-tip" id="fs38">val minutes: numMinutes: float -&gt; Duration<br /><em>&lt;summary&gt;
+ Construct a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; from a given number of minutes.
+    Duration.minutes 3
+    --&amp;gt; Duration.seconds 180
+&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs39">val centimeters: l: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs40">static member Quantity.times: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Product&lt;&#39;Units,&#39;Units&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs41">static member Quantity.sort: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt; list</div>
@@ -646,49 +756,107 @@ type float = Double<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt
  &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category index=&quot;6&quot;&gt;Basic Types with Units of Measure&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs47">val this: Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs48">Multiple items<br />union case Meters.Meters: Meters<br /><br />--------------------<br />type Meters = | Meters</div>
-<div class="fsdocs-tip" id="fs49">val inches: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs50">static member Quantity.minus: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs51">val inMinutes: duration: Duration -&gt; float</div>
-<div class="fsdocs-tip" id="fs52">static member Quantity.sum: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs53">field Math.PI: float = 3.14159265359</div>
-<div class="fsdocs-tip" id="fs54">val inTurns: angle: Angle -&gt; float</div>
-<div class="fsdocs-tip" id="fs55">static member Quantity.greaterThan: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; bool</div>
-<div class="fsdocs-tip" id="fs56">static member Quantity.compare: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; int</div>
-<div class="fsdocs-tip" id="fs57">static member Quantity.max: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs58">static member Quantity.maximum: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt; option</div>
-<div class="fsdocs-tip" id="fs59">val baseSize: Length</div>
-<div class="fsdocs-tip" id="fs60">val height: Length</div>
-<div class="fsdocs-tip" id="fs61">static member Quantity.half: quantity: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs62">static member Quantity.product: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Product&lt;&#39;Units,&#39;Units&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs63">Multiple items<br />module Area
+<div class="fsdocs-tip" id="fs49">Multiple items<br />module Length
 
-from Math.Units<br /><br />--------------------<br />type Area = Quantity&lt;SquareMeters&gt;</div>
-<div class="fsdocs-tip" id="fs64">val inSquareInches: area: Area -&gt; float</div>
-<div class="fsdocs-tip" id="fs65">val speed: Quantity&lt;Rate&lt;Meters,Seconds&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs66">static member Quantity.per: independentValue: Quantity&lt;&#39;Independent&gt; -&gt; dependentValue: Quantity&lt;&#39;Dependent&gt; -&gt; Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs67">static member Quantity.at: rateOfChange: Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt; -&gt; independentValue: Quantity&lt;&#39;Independent&gt; -&gt; Quantity&lt;&#39;Dependent&gt;</div>
-<div class="fsdocs-tip" id="fs68">val inKilometers: l: Length -&gt; float</div>
-<div class="fsdocs-tip" id="fs69">val kilometers: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs70">static member Quantity.at_: rateOfChange: Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt; -&gt; dependentValue: Quantity&lt;&#39;Depenent&gt; -&gt; Quantity&lt;&#39;Independent&gt;</div>
-<div class="fsdocs-tip" id="fs71">val miles: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs72">val inKilometersPerHour: speed: Speed -&gt; float</div>
-<div class="fsdocs-tip" id="fs73">val speedOfLight: Quantity&lt;Rate&lt;Meters,Seconds&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs74">val lightYears: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs75">val julianYears: numJulianYears: float -&gt; Duration</div>
-<div class="fsdocs-tip" id="fs76">val astronomicalUnits: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs77">val pixelDensity: Quantity&lt;Rate&lt;Pixel,Meters&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs78">Multiple items<br />module Pixels
+from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;</div>
+<div class="fsdocs-tip" id="fs50">val inches: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs51">static member Quantity.minus: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs52">val inMinutes: duration: Duration -&gt; float<br /><em>&lt;summary&gt;
+ Convert a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; to a value in minutes.
+    Duration.seconds 90 |&amp;gt; Duration.inMinutes
+    --&amp;gt; 1.5
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs53">static member Quantity.sum: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs54">field Math.PI: float = 3.14159265359</div>
+<div class="fsdocs-tip" id="fs55">val inTurns: angle: Angle -&gt; float</div>
+<div class="fsdocs-tip" id="fs56">static member Quantity.greaterThan: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; bool</div>
+<div class="fsdocs-tip" id="fs57">static member Quantity.compare: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; int</div>
+<div class="fsdocs-tip" id="fs58">static member Quantity.max: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs59">static member Quantity.maximum: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt; option</div>
+<div class="fsdocs-tip" id="fs60">val baseSize: Length</div>
+<div class="fsdocs-tip" id="fs61">val height: Length</div>
+<div class="fsdocs-tip" id="fs62">static member Quantity.half: quantity: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs63">static member Quantity.product: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Product&lt;&#39;Units,&#39;Units&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs64">Multiple items<br />module Area
 
-from Math.Units<br /><br />--------------------<br />type Pixels = Quantity&lt;Pixel&gt;</div>
-<div class="fsdocs-tip" id="fs79">val float: numPixels: float -&gt; Pixels</div>
-<div class="fsdocs-tip" id="fs80">val toFloat: numPixels: Pixels -&gt; float</div>
-<div class="fsdocs-tip" id="fs81">val x: Quantity&lt;Unitless&gt;</div>
-<div class="fsdocs-tip" id="fs82">static member Quantity.unitless: value: float -&gt; Quantity&lt;Unitless&gt;</div>
-<div class="fsdocs-tip" id="fs83">val y: Quantity&lt;Unitless&gt;</div>
-<div class="fsdocs-tip" id="fs84">val a: Quantity&lt;Unitless&gt;</div>
-<div class="fsdocs-tip" id="fs85">val b: Quantity&lt;Unitless&gt;</div>
-<div class="fsdocs-tip" id="fs86">val c: Quantity&lt;Unitless&gt;</div>
-<div class="fsdocs-tip" id="fs87">Multiple items<br />module List
+from Math.Units<br /><em>&lt;summary&gt;
+ An &amp;lt;c&amp;gt;1&amp;lt;/c represents an area in square meters, square feet, acres, hectares
+ etc. It is stored as a number of square meters.
+ Note that you can construct an &amp;lt;c&amp;gt;1&amp;lt;/c value directly using the functions in this
+ module, but it also works to call [&amp;lt;c&amp;gt;1&amp;lt;/c&amp;gt;](Quantity#squared) on a
+ &amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt; or [&amp;lt;c&amp;gt;Quantity.times&amp;lt;/c&amp;gt;](Quantity#times) on a pair of &amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt;s. The
+ following are all equivalent:
+     Area.squareFeet 100
+     Quantity.squared (Length.feet 10)
+     Length.feet 25 |&amp;gt; Quantity.times (Length.feet 4)
+&lt;/summary&gt;</em><br /><br />--------------------<br />type Area = Quantity&lt;SquareMeters&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs65">val inSquareInches: area: Area -&gt; float<br /><em>&lt;summary&gt;
+ Convert an area to a number of square inches.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs66">val speed: Quantity&lt;Rate&lt;Meters,Seconds&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs67">static member Quantity.per: independentValue: Quantity&lt;&#39;Independent&gt; -&gt; dependentValue: Quantity&lt;&#39;Dependent&gt; -&gt; Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs68">static member Quantity.at: rateOfChange: Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt; -&gt; independentValue: Quantity&lt;&#39;Independent&gt; -&gt; Quantity&lt;&#39;Dependent&gt;</div>
+<div class="fsdocs-tip" id="fs69">val inKilometers: l: Length -&gt; float</div>
+<div class="fsdocs-tip" id="fs70">val kilometers: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs71">static member Quantity.at_: rateOfChange: Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt; -&gt; dependentValue: Quantity&lt;&#39;Depenent&gt; -&gt; Quantity&lt;&#39;Independent&gt;</div>
+<div class="fsdocs-tip" id="fs72">val miles: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs73">val inKilometersPerHour: speed: Speed -&gt; float<br /><em>&lt;summary&gt;
+ Convert a speed to a number of kilometers per hour.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs74">val speedOfLight: Quantity&lt;Rate&lt;Meters,Seconds&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs75">val lightYears: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs76">val julianYears: numJulianYears: float -&gt; Duration<br /><em>&lt;summary&gt;
+ Construct a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; from a given number of [Julian years][julian_year].
+ A Julian year is defined as exactly 365.25 days, the average length of a year in
+ the historical Julian calendar. This is 10 minutes and 48 seconds longer than
+ a Gregorian year (365.2425 days), which is the average length of a year in the
+ modern Gregorian calendar, but the Julian year is a bit easier to remember and
+ reason about and has the virtue of being the &#39;year&#39; value used in the definition
+ of a [light year](Length#lightYears).
+     Duration.julianYears 1
+     --&amp;gt; Duration.days 365.25
+ [julian_year]: https://en.wikipedia.org/wiki/Julian_year_(astronomy) &quot;Julian year&quot;
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs77">val astronomicalUnits: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs78">val pixelDensity: Quantity&lt;Rate&lt;Pixel,Meters&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs79">Multiple items<br />module Pixels
+
+from Math.Units<br /><em>&lt;summary&gt;
+ Although most of the focus of &amp;lt;c&amp;gt;elm-units&amp;lt;/c&amp;gt; is on physical/scientific units,
+ it&#39;s often useful to be able to safely convert back and forth between (for
+ example) [&amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt;](Length) values in the real world and on-screen lengths in
+ pixels.
+ This module provides a standard &amp;lt;c&amp;gt;Pixels&amp;lt;/c&amp;gt; units type and basic functions for
+ constructing/converting values of type &amp;lt;c&amp;gt;Quantity Int Pixels&amp;lt;/c&amp;gt; or
+ &amp;lt;c&amp;gt;Quantity Float Pixels&amp;lt;/c&amp;gt;, which allows you to do things like represent
+ conversions between real-world and on-screen lengths as [rates of change][1].
+ This in turn means that all the normal [&amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt;](Quantity) functions can be
+ used to convert between pixels and other units, or even do type-safe math
+ directly on pixel values.
+ [1]: Quantity#working-with-rates
+&lt;/summary&gt;</em><br /><br />--------------------<br />type Pixels = Quantity&lt;Pixel&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs80">val float: numPixels: float -&gt; Pixels<br /><em>&lt;summary&gt;
+ Construct a quantity representing a floating-point number of on-screen
+ pixels:
+     lineWeight =
+         Pixels.float 1.5
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs81">val toFloat: numPixels: Pixels -&gt; float<br /><em>&lt;summary&gt;
+ Convert a floating-point number of pixels back into a plain &amp;lt;c&amp;gt;Float&amp;lt;/c&amp;gt;:
+    pixelDensity =
+        Pixels.float 96 |&amp;gt; Quantity.per (Length.inches 1)
+    Length.centimeters 1
+        |&amp;gt; Quantity.at pixelDensity
+        |&amp;gt; Pixels.toFloat
+    --&amp;gt; 37.795275590551185
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs82">val x: Quantity&lt;Unitless&gt;</div>
+<div class="fsdocs-tip" id="fs83">static member Quantity.unitless: value: float -&gt; Quantity&lt;Unitless&gt;</div>
+<div class="fsdocs-tip" id="fs84">val y: Quantity&lt;Unitless&gt;</div>
+<div class="fsdocs-tip" id="fs85">val a: Quantity&lt;Unitless&gt;</div>
+<div class="fsdocs-tip" id="fs86">val b: Quantity&lt;Unitless&gt;</div>
+<div class="fsdocs-tip" id="fs87">val c: Quantity&lt;Unitless&gt;</div>
+<div class="fsdocs-tip" id="fs88">Multiple items<br />module List
 
 from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations for working with values of type &lt;see cref=&quot;T:Microsoft.FSharp.Collections.list`1&quot; /&gt;.&lt;/summary&gt;<br />&lt;namespacedoc&gt;&lt;summary&gt;Operations for collections such as lists, arrays, sets, maps and sequences. See also 
     &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/fsharp-collection-types&quot;&gt;F# Collection Types&lt;/a&gt; in the F# Language Guide.
@@ -709,40 +877,72 @@ from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations fo
  the notation &lt;c&gt;[1;2;3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
  values of this type, or pattern match against the values directly.
  &lt;/remarks&gt;<br />&lt;exclude /&gt;</em></div>
-<div class="fsdocs-tip" id="fs88">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list<br /><em>&lt;summary&gt;Builds a new collection whose elements are the results of applying the given function
+<div class="fsdocs-tip" id="fs89">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list<br /><em>&lt;summary&gt;Builds a new collection whose elements are the results of applying the given function
  to each of the elements of the collection.&lt;/summary&gt;<br />&lt;param name=&quot;mapping&quot;&gt;The function to transform elements from the input list.&lt;/param&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The list of transformed elements.&lt;/returns&gt;<br />&lt;example id=&quot;map-1&quot;&gt;&lt;code lang=&quot;fsharp&quot;&gt;
  let inputs = [ &quot;a&quot;; &quot;bbb&quot;; &quot;cc&quot; ]
 
  inputs |&amp;gt; List.map (fun x -&amp;gt; x.Length)
  &lt;/code&gt;
  Evaluates to &lt;c&gt;[ 1; 3; 2 ]&lt;/c&gt;&lt;/example&gt;</em></div>
-<div class="fsdocs-tip" id="fs89">val kineticEnergy: m: Mass -&gt; v: Speed -&gt; Energy</div>
-<div class="fsdocs-tip" id="fs90">val m: Mass</div>
-<div class="fsdocs-tip" id="fs91">Multiple items<br />module Mass
+<div class="fsdocs-tip" id="fs90">val kineticEnergy: m: Mass -&gt; v: Speed -&gt; Energy</div>
+<div class="fsdocs-tip" id="fs91">val m: Mass</div>
+<div class="fsdocs-tip" id="fs92">Multiple items<br />module Mass
 
-from Math.Units<br /><br />--------------------<br />type Mass = Quantity&lt;Kilograms&gt;</div>
-<div class="fsdocs-tip" id="fs92">val v: Speed</div>
-<div class="fsdocs-tip" id="fs93">Multiple items<br />module Energy
+from Math.Units<br /><em>&lt;summary&gt;
+ A &amp;lt;c&amp;gt;Mass&amp;lt;/c&amp;gt; represents a mass in kilograms, pounds, metric or imperial tons
+ etc. It is stored as a number of kilograms.
+&lt;/summary&gt;</em><br /><br />--------------------<br />type Mass = Quantity&lt;Kilograms&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs93">val v: Speed</div>
+<div class="fsdocs-tip" id="fs94">Multiple items<br />module Energy
 
-from Math.Units<br /><br />--------------------<br />type Energy = Quantity&lt;Joules&gt;</div>
-<div class="fsdocs-tip" id="fs94">static member Quantity.create: value: float -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs95">property Quantity.Value: float with get</div>
-<div class="fsdocs-tip" id="fs96">val shortTons: numShortTons: float -&gt; Mass</div>
-<div class="fsdocs-tip" id="fs97">val inKilowattHours: energy: Energy -&gt; float</div>
-<div class="fsdocs-tip" id="fs98">type CubicMeters = Cubed&lt;Meters&gt;</div>
-<div class="fsdocs-tip" id="fs99">type Cubed&lt;&#39;Units&gt; = Product&lt;&#39;Units,Product&lt;&#39;Units,&#39;Units&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs100">Multiple items<br />union case Product.Product: &#39;Unit1 * &#39;Unit2 -&gt; Product&lt;&#39;Unit1,&#39;Unit2&gt;<br /><br />--------------------<br />type Product&lt;&#39;Unit1,&#39;Unit2&gt; = | Product of &#39;Unit1 * &#39;Unit2</div>
-<div class="fsdocs-tip" id="fs101">type Squared&lt;&#39;Units&gt; = Product&lt;&#39;Units,&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs102">type SquareMeters = Squared&lt;Meters&gt;</div>
+from Math.Units<br /><br />--------------------<br />type Energy = Quantity&lt;Joules&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs95">static member Quantity.create: value: float -&gt; Quantity&lt;&#39;Units&gt;</div>
+<div class="fsdocs-tip" id="fs96">property Quantity.Value: float with get</div>
+<div class="fsdocs-tip" id="fs97">val shortTons: numShortTons: float -&gt; Mass<br /><em>&lt;summary&gt;
+ Construct a mass from a number of [short tons][1]. This is the &#39;ton&#39;
+ commonly used in the United States.
+     Mass.shortTons 1
+     --&amp;gt; Mass.pounds 2000
+ [1]: https://en.wikipedia.org/wiki/Short_ton
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs98">val inKilowattHours: energy: Energy -&gt; float<br /><em>&lt;summary&gt;
+ Convert an energy value to a number of kilowatt hours.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs99">type CubicMeters = Cubed&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Space&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs100">type Cubed&lt;&#39;Units&gt; = Product&lt;&#39;Units,Product&lt;&#39;Units,&#39;Units&gt;&gt;<br /><em>&lt;category&gt;Unit Relation&lt;/category&gt;<br />&lt;summary&gt;
+ Represents a units type that is the cube of some other units type; for
+ example, &lt;c&gt;Meters&lt;/c&gt; is one units type (the units type of a [&lt;c&gt;Length&lt;/c&gt;](Length)) and
+ &lt;c&gt;Cubed Meters&lt;/c&gt; is another (the units type of an [&lt;c&gt;Volume&lt;/c&gt;](Volume)). See the
+ [&lt;c&gt;cubed&lt;/c&gt;](Quantity#cubed) and [&lt;c&gt;cbrt&lt;/c&gt;](Quantity#cbrt) functions for examples of
+ use.
+ This is a special case of the &lt;c&gt;Product&lt;/c&gt; units type.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs101">Multiple items<br />union case Product.Product: &#39;Unit1 * &#39;Unit2 -&gt; Product&lt;&#39;Unit1,&#39;Unit2&gt;<br /><br />--------------------<br />type Product&lt;&#39;Unit1,&#39;Unit2&gt; = | Product of &#39;Unit1 * &#39;Unit2<br /><em>&lt;category&gt;Unit Relation&lt;/category&gt;<br />&lt;summary&gt;
+ Represents a units type that is the product of two other units types. This
+ is a more general form of &lt;c&gt;Squared&lt;/c&gt; or &lt;c&gt;Cubed&lt;/c&gt;. See
+ &lt;see cref=&quot;M:Math.Units.Quantity.product&quot;&gt;Quantity.product&lt;/see&gt;,
+ &lt;see cref=&quot;M:Math.Units.Quantity.times&quot;&gt;Quantity.times&lt;/see&gt;,
+ &lt;see cref=&quot;M:Math.Units.Quantity.over&quot;&gt;Quantity.over&lt;/see&gt; and
+ &lt;see cref=&quot;M:Math.Units.Quantity.over_&quot;&gt;Quantity.over_&lt;/see&gt; for how it can be used.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs102">type Squared&lt;&#39;Units&gt; = Product&lt;&#39;Units,&#39;Units&gt;<br /><em>&lt;category&gt;Unit Relation&lt;/category&gt;<br />&lt;summary&gt;
+ Represents a units type that is the square of some other units type; for
+ example, &lt;c&gt;Meters&lt;/c&gt; is one units type (the units type of a &lt;c&gt;Length&lt;/c&gt;) and
+ &lt;c&gt;Squared Meters&lt;/c&gt; is another (the units type of an &lt;c&gt;Area&lt;/c&gt;). See the
+ &lt;see cref=&quot;Math.Units.Quantity.squared&quot;&gt;Quantity.squared&lt;/see&gt; and [&lt;c&gt;sqrt&lt;/c&gt;](#sqrt)
+ &lt;see cref=&quot;Math.Units.Quantity.sqrt&quot;&gt;Quantity.sqrt&lt;/see&gt;
+ functions for examples of use. This is a special case of the &lt;c&gt;Product&lt;/c&gt; units type.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs103">type SquareMeters = Squared&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Space&lt;/category&gt;</em></div>
 
         </div>
 
         <!-- BEGIN SEARCH BOX: this adds support for the search box -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-        <script type="text/javascript">var fsdocs_search_baseurl = '/Math.Units/';</script>
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://evelios.github.io/Math.Units/';</script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-        <script type="text/javascript" src="/Math.Units/content/fsdocs-search.js"></script>
+        <script type="text/javascript" src="https://evelios.github.io/Math.Units/content/fsdocs-search.js"></script>
         <!-- END SEARCH BOX: this adds support for the search box -->
     </div>
 </body>
