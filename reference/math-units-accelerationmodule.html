@@ -128,12 +128,12 @@
  Note that since <code>MetersPerSecondSquared</code> is defined as <code>Rate MetersPerSecond Seconds</code>
  (change in speed per unit time), you can construct an <code>Acceleration</code>
  value using <code>Quantity.per</code>:
- <pre><code class="">
+ <pre><code class="fsharp language-fsharp">
      let acceleration =
          changeInSpeed |&gt; Quantity.per duration</code></pre>
  You can also do rate-related calculations with <code>Acceleration</code> values to compute
  <code>Speed</code> or <code>Duration</code>:
- <pre><code class="">
+ <pre><code class="fsharp language-fsharp">
      let changeInSpeed =
          acceleration |&gt; Quantity.for duration
      let alsoChangeInSpeed =
@@ -298,7 +298,7 @@
  <a href="https://en.wikipedia.org/wiki/G-force#Unit_and_measurement">gees</a>.
  One gee is equal to 9.80665 meters per second squared (the
  standard acceleration due to gravity).
- <pre><code class="">
+ <pre><code class="fsharp language-fsharp">
      Acceleration.gees 1 = Acceleration.metersPerSecondSquared 9.80665</code></pre>
               </p>
             </div>

@@ -182,12 +182,12 @@
  Note that since <code>MetersPerSecondSquared</code> is defined as <code>Rate MetersPerSecond Seconds</code>
  (change in speed per unit time), you can construct an <code>Acceleration</code>
  value using <code>Quantity.per</code>:
- <pre><code class="">
+ <pre><code class="fsharp language-fsharp">
      let acceleration =
          changeInSpeed |&gt; Quantity.per duration</code></pre>
  You can also do rate-related calculations with <code>Acceleration</code> values to compute
  <code>Speed</code> or <code>Duration</code>:
- <pre><code class="">
+ <pre><code class="fsharp language-fsharp">
      let changeInSpeed =
          acceleration |&gt; Quantity.for duration
      let alsoChangeInSpeed =
@@ -2716,7 +2716,7 @@
  value is interchangeable with a simple <code>float</code>.
  A generic number that doesn't undergo any type mutation.
  Eg.
- <pre><code class="">
+ <pre><code class="fsharp language-fsharp">
      Unitless: Unitless 1. * Unitless 1. = Unitless 1.
      Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.</code></pre>
             </p>

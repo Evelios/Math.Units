@@ -314,7 +314,7 @@
  the end value.
 
  <example>
-  <code>
+  <code lang="fsharp">
      Float.interpolateFrom 5 10 0
      // 5
      Float.interpolateFrom 5 10 1
@@ -324,13 +324,13 @@
  </code>
 </example><example>
  The end value can be less than the start value:
- <code>
+ <code lang="fsharp">
      Float.interpolateFrom 10 5 0.1
      // 9.5
  </code></example><example>
  Parameter values less than zero or greater than one can be used to
  extrapolate:
- <code>
+ <code lang="fsharp">
      Float.interpolateFrom 5 10 1.5
      // 12.5
      Float.interpolateFrom 5 10 -0.5
