@@ -646,8 +646,8 @@ from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;M
 <div class="fsdocs-tip" id="fs17">val feet: l: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs18">val meters: m: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs19">val seconds: numSeconds: float -&gt; Duration<br /><em>&lt;summary&gt;
- Construct a &amp;lt;c&amp;gt;1&amp;lt;/c from a given number of seconds.
-&lt;/summary&gt;</em></div>
+ Construct a &lt;c&gt;1&lt;/c&gt; from a given number of seconds.
+ &lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs20">val degrees: d: float -&gt; Angle</div>
 <div class="fsdocs-tip" id="fs21">val degreesFahrenheit: numDegreesFahrenheit: float -&gt; Temperature<br /><em>&lt;summary&gt;
  Construct a temperature from a number of degrees Fahrenheit.
@@ -655,24 +655,27 @@ from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;M
 <div class="fsdocs-tip" id="fs22">val inCentimeters: l: Length -&gt; float</div>
 <div class="fsdocs-tip" id="fs23">val inMiles: l: Length -&gt; float</div>
 <div class="fsdocs-tip" id="fs24">val inHours: duration: Duration -&gt; float<br /><em>&lt;summary&gt;
- Convert a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; to a value in hours.
+ Convert a &lt;c&gt;Duration&lt;/c&gt; to a value in hours.
+ &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.minutes 120 |&amp;gt; Duration.inHours
     --&amp;gt; 2
-&lt;/summary&gt;</em></div>
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs25">val inRadians: r: Angle -&gt; float</div>
 <div class="fsdocs-tip" id="fs26">val inDegreesCelsius: temperature: Temperature -&gt; float<br /><em>&lt;summary&gt;
  Convert a temperature to a number of degrees Celsius.
 &lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs27">val hours: numHours: float -&gt; Duration<br /><em>&lt;summary&gt;
- Construct a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; from a given number of hours.
+ Construct a &lt;c&gt;Duration&lt;/c&gt; from a given number of hours.
+ &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.hours 1
     --&amp;gt; Duration.seconds 3600
-&lt;/summary&gt;</em></div>
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs28">val inSeconds: numSeconds: Duration -&gt; float<br /><em>&lt;summary&gt;
- Convert a &amp;lt;c&amp;gt;1&amp;lt;/c&amp;gt; to a value in seconds.
+ Convert a &lt;c&gt;1&lt;/c&gt; to a value in seconds.
+ &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.milliseconds 10 |&amp;gt; Duration.inSeconds
     --&amp;gt; 0.01
-&lt;/summary&gt;</em></div>
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs29">val inMeters: l: Length -&gt; float</div>
 <div class="fsdocs-tip" id="fs30">Multiple items<br />module Speed
 
@@ -683,6 +686,7 @@ from Math.Units<br /><em>&lt;summary&gt;
  per unit time), you can construct a &amp;lt;c&amp;gt;Speed&amp;lt;/c&amp;gt; value using &amp;lt;c&amp;gt;Quantity.per&amp;lt;/c&amp;gt;:
      speed =
          length |&amp;gt; Quantity.per duration
+ 
  You can also do rate-related calculations with &amp;lt;c&amp;gt;Speed&amp;lt;/c&amp;gt; values to compute
  &amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt; or &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt;:
      length =
@@ -730,10 +734,11 @@ from Math.Units<br /><br />--------------------<br />type Quantity&lt;&#39;Units
 <div class="fsdocs-tip" id="fs36">static member Quantity.lessThan: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; bool</div>
 <div class="fsdocs-tip" id="fs37">static member Quantity.plus: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs38">val minutes: numMinutes: float -&gt; Duration<br /><em>&lt;summary&gt;
- Construct a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; from a given number of minutes.
+ Construct a &lt;c&gt;Duration&lt;/c&gt; from a given number of minutes.
+ &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.minutes 3
     --&amp;gt; Duration.seconds 180
-&lt;/summary&gt;</em></div>
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs39">val centimeters: l: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs40">static member Quantity.times: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Product&lt;&#39;Units,&#39;Units&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs41">static member Quantity.sort: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt; list</div>
@@ -762,10 +767,11 @@ from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;M
 <div class="fsdocs-tip" id="fs50">val inches: l: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs51">static member Quantity.minus: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs52">val inMinutes: duration: Duration -&gt; float<br /><em>&lt;summary&gt;
- Convert a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; to a value in minutes.
+ Convert a &lt;c&gt;Duration&lt;/c&gt; to a value in minutes.
+ &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.seconds 90 |&amp;gt; Duration.inMinutes
     --&amp;gt; 1.5
-&lt;/summary&gt;</em></div>
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs53">static member Quantity.sum: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs54">field Math.PI: float = 3.14159265359</div>
 <div class="fsdocs-tip" id="fs55">val inTurns: angle: Angle -&gt; float</div>
@@ -780,16 +786,18 @@ from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;M
 <div class="fsdocs-tip" id="fs64">Multiple items<br />module Area
 
 from Math.Units<br /><em>&lt;summary&gt;
- An &amp;lt;c&amp;gt;1&amp;lt;/c represents an area in square meters, square feet, acres, hectares
+ An &lt;c&gt;Area&lt;/c&gt; represents an area in square meters, square feet, acres, hectares
  etc. It is stored as a number of square meters.
- Note that you can construct an &amp;lt;c&amp;gt;1&amp;lt;/c value directly using the functions in this
- module, but it also works to call [&amp;lt;c&amp;gt;1&amp;lt;/c&amp;gt;](Quantity#squared) on a
- &amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt; or [&amp;lt;c&amp;gt;Quantity.times&amp;lt;/c&amp;gt;](Quantity#times) on a pair of &amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt;s. The
- following are all equivalent:
-     Area.squareFeet 100
-     Quantity.squared (Length.feet 10)
-     Length.feet 25 |&amp;gt; Quantity.times (Length.feet 4)
-&lt;/summary&gt;</em><br /><br />--------------------<br />type Area = Quantity&lt;SquareMeters&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+ Note that you can construct an &lt;c&gt;Area&lt;/c&gt; value directly using the functions in this
+ module, but it also works to call &lt;c&gt;Quantity.squared&lt;/c&gt; on a
+ &lt;c&gt;Length&lt;/c&gt; or &lt;c&gt;Quantity.times&lt;/c&gt; on a pair of &lt;c&gt;Length&lt;/c&gt;s.
+ &lt;/summary&gt;<br />&lt;example&gt;
+ The following are all equivalent:
+ &lt;code&gt;
+ Area.squareFeet 100
+ Quantity.squared (Length.feet 10)
+ Length.feet 25 |&amp;gt; Quantity.times (Length.feet 4)
+ &lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />type Area = Quantity&lt;SquareMeters&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs65">val inSquareInches: area: Area -&gt; float<br /><em>&lt;summary&gt;
  Convert an area to a number of square inches.
 &lt;/summary&gt;</em></div>
@@ -806,50 +814,54 @@ from Math.Units<br /><em>&lt;summary&gt;
 <div class="fsdocs-tip" id="fs74">val speedOfLight: Quantity&lt;Rate&lt;Meters,Seconds&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs75">val lightYears: l: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs76">val julianYears: numJulianYears: float -&gt; Duration<br /><em>&lt;summary&gt;
- Construct a &amp;lt;c&amp;gt;Duration&amp;lt;/c&amp;gt; from a given number of [Julian years][julian_year].
+ Construct a &lt;c&gt;Duration&lt;/c&gt; from a given number of
+ &lt;see href=&quot;https://en.wikipedia.org/wiki/Julian_year_(astronomy)&quot;&gt;Julian years&lt;/see&gt;
  A Julian year is defined as exactly 365.25 days, the average length of a year in
  the historical Julian calendar. This is 10 minutes and 48 seconds longer than
  a Gregorian year (365.2425 days), which is the average length of a year in the
  modern Gregorian calendar, but the Julian year is a bit easier to remember and
  reason about and has the virtue of being the &#39;year&#39; value used in the definition
- of a [light year](Length#lightYears).
+ of a &lt;see href=&quot;https://en.wikipedia.org/wiki/Light-year&quot;&gt;light year&lt;/see&gt;].
+ &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
      Duration.julianYears 1
      --&amp;gt; Duration.days 365.25
- [julian_year]: https://en.wikipedia.org/wiki/Julian_year_(astronomy) &quot;Julian year&quot;
-&lt;/summary&gt;</em></div>
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs77">val astronomicalUnits: l: float -&gt; Length</div>
 <div class="fsdocs-tip" id="fs78">val pixelDensity: Quantity&lt;Rate&lt;Pixel,Meters&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs79">Multiple items<br />module Pixels
 
 from Math.Units<br /><em>&lt;summary&gt;
- Although most of the focus of &amp;lt;c&amp;gt;elm-units&amp;lt;/c&amp;gt; is on physical/scientific units,
+ Although most of the focus of &lt;c&gt;Math.Units&lt;/c&gt; is on physical/scientific units,
  it&#39;s often useful to be able to safely convert back and forth between (for
- example) [&amp;lt;c&amp;gt;Length&amp;lt;/c&amp;gt;](Length) values in the real world and on-screen lengths in
+ example) &lt;c&gt;Length&lt;/c&gt; values in the real world and on-screen lengths in
  pixels.
- This module provides a standard &amp;lt;c&amp;gt;Pixels&amp;lt;/c&amp;gt; units type and basic functions for
- constructing/converting values of type &amp;lt;c&amp;gt;Quantity Int Pixels&amp;lt;/c&amp;gt; or
- &amp;lt;c&amp;gt;Quantity Float Pixels&amp;lt;/c&amp;gt;, which allows you to do things like represent
- conversions between real-world and on-screen lengths as [rates of change][1].
- This in turn means that all the normal [&amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt;](Quantity) functions can be
+
+ &lt;para&gt;
+ This module provides a standard &lt;c&gt;Pixels&lt;/c&gt; units type and basic functions for
+ constructing/converting values of type &lt;c&gt;Quantity Int Pixels&lt;/c&gt; or
+ &lt;c&gt;Quantity Float Pixels&lt;/c&gt;, which allows you to do things like represent
+ conversions between real-world and on-screen lengths as rates of change.
+ This in turn means that all the normal &lt;c&gt;Quantity&lt;/c&gt; functions can be
  used to convert between pixels and other units, or even do type-safe math
  directly on pixel values.
- [1]: Quantity#working-with-rates
-&lt;/summary&gt;</em><br /><br />--------------------<br />type Pixels = Quantity&lt;Pixel&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+ &lt;/para&gt;&lt;/summary&gt;</em><br /><br />--------------------<br />type Pixels = Quantity&lt;Pixel&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs80">val float: numPixels: float -&gt; Pixels<br /><em>&lt;summary&gt;
  Construct a quantity representing a floating-point number of on-screen
  pixels:
-     lineWeight =
-         Pixels.float 1.5
-&lt;/summary&gt;</em></div>
+ &lt;code&gt;
+ let lineWeight =
+     Pixels.float 1.5
+ &lt;/code&gt;&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs81">val toFloat: numPixels: Pixels -&gt; float<br /><em>&lt;summary&gt;
- Convert a floating-point number of pixels back into a plain &amp;lt;c&amp;gt;Float&amp;lt;/c&amp;gt;:
-    pixelDensity =
-        Pixels.float 96 |&amp;gt; Quantity.per (Length.inches 1)
-    Length.centimeters 1
-        |&amp;gt; Quantity.at pixelDensity
-        |&amp;gt; Pixels.toFloat
-    --&amp;gt; 37.795275590551185
-&lt;/summary&gt;</em></div>
+ Convert a floating-point number of pixels back into a plain &lt;c&gt;Float&lt;/c&gt;:
+ &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
+ let pixelDensity =
+     Pixels.float 96 |&amp;gt; Quantity.per (Length.inches 1)
+ Length.centimeters 1
+     |&amp;gt; Quantity.at pixelDensity
+     |&amp;gt; Pixels.toFloat
+ --&amp;gt; 37.795275590551185
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs82">val x: Quantity&lt;Unitless&gt;</div>
 <div class="fsdocs-tip" id="fs83">static member Quantity.unitless: value: float -&gt; Quantity&lt;Unitless&gt;</div>
 <div class="fsdocs-tip" id="fs84">val y: Quantity&lt;Unitless&gt;</div>

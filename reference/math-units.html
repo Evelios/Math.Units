@@ -169,7 +169,7 @@
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Acceleration.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Acceleration.fs#L30-30" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
             </a>
@@ -179,21 +179,7 @@
  feet per second squared or
  <a href="https://en.wikipedia.org/wiki/G-force#Unit_and_measurement">gees</a>.
  It is stored as a number of meters per second squared.
- Note that since <code>MetersPerSecondSquared</code> is defined as <code>Rate MetersPerSecond Seconds</code>
- (change in speed per unit time), you can construct an <code>Acceleration</code>
- value using <code>Quantity.per</code>:
- <pre><code class="fsharp language-fsharp">
-     let acceleration =
-         changeInSpeed |&gt; Quantity.per duration</code></pre>
- You can also do rate-related calculations with <code>Acceleration</code> values to compute
- <code>Speed</code> or <code>Duration</code>:
- <pre><code class="fsharp language-fsharp">
-     let changeInSpeed =
-         acceleration |&gt; Quantity.for duration
-     let alsoChangeInSpeed =
-         duration |&gt; Quantity.at acceleration
-     let duration =
-         changeInSpeed |&gt; Quantity.at_ acceleration</code></pre>
+ 
             </p>
           </div>
         </td>
@@ -308,22 +294,18 @@
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Area.fs#L11-11" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Area.fs#L18-18" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
- An <c>1</c represents an area in square meters, square feet, acres, hectares
+ An <code>Area</code> represents an area in square meters, square feet, acres, hectares
  etc. It is stored as a number of square meters.
- Note that you can construct an <c>1</c value directly using the functions in this
- module, but it also works to call [<c>1</c>](Quantity#squared) on a
- <c>Length</c> or [<c>Quantity.times</c>](Quantity#times) on a pair of <c>Length</c>s. The
- following are all equivalent:
-     Area.squareFeet 100
-     Quantity.squared (Length.feet 10)
-     Length.feet 25 |> Quantity.times (Length.feet 4)
-
+ Note that you can construct an <code>Area</code> value directly using the functions in this
+ module, but it also works to call <code>Quantity.squared</code> on a
+ <code>Length</code> or <code>Quantity.times</code> on a pair of <code>Length</code>s.
+ 
             </p>
           </div>
         </td>
@@ -1065,25 +1047,26 @@
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L18-18" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
- Although most of the focus of <c>elm-units</c> is on physical/scientific units,
+ Although most of the focus of <code>Math.Units</code> is on physical/scientific units,
  it's often useful to be able to safely convert back and forth between (for
- example) [<c>Length</c>](Length) values in the real world and on-screen lengths in
+ example) <code>Length</code> values in the real world and on-screen lengths in
  pixels.
- This module provides a standard <c>Pixels</c> units type and basic functions for
- constructing/converting values of type <c>Quantity Int Pixels</c> or
- <c>Quantity Float Pixels</c>, which allows you to do things like represent
- conversions between real-world and on-screen lengths as [rates of change][1].
- This in turn means that all the normal [<c>Quantity</c>](Quantity) functions can be
+
+ <p class='fsdocs-para'>
+ This module provides a standard <code>Pixels</code> units type and basic functions for
+ constructing/converting values of type <code>Quantity Int Pixels</code> or
+ <code>Quantity Float Pixels</code>, which allows you to do things like represent
+ conversions between real-world and on-screen lengths as rates of change.
+ This in turn means that all the normal <code>Quantity</code> functions can be
  used to convert between pixels and other units, or even do type-safe math
  directly on pixel values.
- [1]: Quantity#working-with-rates
-
+ </p>
             </p>
           </div>
         </td>
@@ -1275,16 +1258,15 @@
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L18-18" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
-              
- [Solid angle](https://en.wikipedia.org/wiki/Solid_angle) is a tricky concept
+              <a href="https://en.wikipedia.org/wiki/Solid_angle">Solid angle</a> is a tricky concept
  to explain, but roughly speaking solid angle is for 3D what angle is for 2D. It
  can be used to measure three-dimensional field of view and is stored in
- [steradians](https://en.wikipedia.org/wiki/Steradian).
+ <a href="https://en.wikipedia.org/wiki/Steradian">steradians</a>.
  2D angle can be thought of as how much circumference of the unit circle is
  covered. The unit circle (circle of radius 1) has a circumference of 2π, and an
  angle in radians corresponds to the corresponding amount of circumference
@@ -1295,7 +1277,7 @@
  steradians corresponds to the corresponding amount of surface area covered. So a
  solid angle of 4π steradians covers the entire sphere, 2π steradians covers half
  the sphere (one hemisphere), etc.
-
+ 
             </p>
           </div>
         </td>
@@ -1320,7 +1302,7 @@
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L17-17" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
             </a>
@@ -1332,6 +1314,7 @@
  per unit time), you can construct a <c>Speed</c> value using <c>Quantity.per</c>:
      speed =
          length |> Quantity.per duration
+ 
  You can also do rate-related calculations with <c>Speed</c> values to compute
  <c>Length</c> or <c>Duration</c>:
      length =
@@ -1529,16 +1512,16 @@
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
             </div>
-            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Volume.fs#L5-5" class="fsdocs-source-link" title="Source on GitHub">
+            <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Volume.fs#L7-7" class="fsdocs-source-link" title="Source on GitHub">
               <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
               <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
             </a>
             <p class="fsdocs-summary">
               
- A <c>Volume</c> represents a volume in cubic meters, cubic feet, liters, US
+ A <code>Volume</code> represents a volume in cubic meters, cubic feet, liters, US
  liquid gallons, imperial fluid ounces etc. It is stored as a number of cubic
  meters.
-
+ 
             </p>
           </div>
         </td>

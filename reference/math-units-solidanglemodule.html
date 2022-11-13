@@ -120,11 +120,10 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- [Solid angle](https://en.wikipedia.org/wiki/Solid_angle) is a tricky concept
+        <a href="https://en.wikipedia.org/wiki/Solid_angle">Solid angle</a> is a tricky concept
  to explain, but roughly speaking solid angle is for 3D what angle is for 2D. It
  can be used to measure three-dimensional field of view and is stored in
- [steradians](https://en.wikipedia.org/wiki/Steradian).
+ <a href="https://en.wikipedia.org/wiki/Steradian">steradians</a>.
  2D angle can be thought of as how much circumference of the unit circle is
  covered. The unit circle (circle of radius 1) has a circumference of 2π, and an
  angle in radians corresponds to the corresponding amount of circumference
@@ -135,7 +134,7 @@
  steradians corresponds to the corresponding amount of surface area covered. So a
  solid angle of 4π steradians covers the entire sphere, 2π steradians covers half
  the sphere (one hemisphere), etc.
-
+ 
       </p>
     </div>
   </div>
@@ -158,7 +157,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '491', 491)" onmouseover="showTip(event, '491', 491)">
+              <code onmouseout="hideTip(event, '490', 490)" onmouseover="showTip(event, '490', 490)">
                 <p>
                   <a id="conical">
                     <a href="#conical">
@@ -167,7 +166,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="491">
+              <div class="fsdocs-tip" id="490">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>conical&#32;<span>angle</span></span></code>
@@ -204,30 +203,32 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L80-80" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L107-107" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Find the solid angle of a cone with a given tip angle (the angle between two
- opposite sides of the cone, _not_ the half-angle from the axis of the cone to
+ opposite sides of the cone, <b>not</b> the half-angle from the axis of the cone to
  its side). A 1 degree cone has a solid angle of approximately π/4 square
  degrees, similar to how a circle of diameter 1 has an area of π/4:
+ <pre><code class="">
      SolidAngle.conical (Angle.degrees 1)
-         |> SolidAngle.inSquareDegrees
-     --> 0.78539318
+         |&gt; SolidAngle.inSquareDegrees
+     --&gt; 0.78539318
      pi / 4
-     --> 0.78539816
+     --&gt; 0.78539816</code></pre>
  A cone with a tip angle of 180 degrees is just a hemisphere:
+ <pre><code class="">
      SolidAngle.conical (Angle.degrees 180)
-     --> SolidAngle.spats 0.5
+     --&gt; SolidAngle.spats 0.5</code></pre>
  "Inside out" cones are also supported, up to 360 degrees (a full sphere):
+ <pre><code class="">
      SolidAngle.conical (Angle.degrees 270)
-     --> SolidAngle.spats 0.85355
+     --&gt; SolidAngle.spats 0.85355
      SolidAngle.conical (Angle.degrees 360)
-     --> SolidAngle.spats 1
-
+     --&gt; SolidAngle.spats 1</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -254,7 +255,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '492', 492)" onmouseover="showTip(event, '492', 492)">
+              <code onmouseout="hideTip(event, '491', 491)" onmouseover="showTip(event, '491', 491)">
                 <p>
                   <a id="inSpats">
                     <a href="#inSpats">
@@ -263,7 +264,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="492">
+              <div class="fsdocs-tip" id="491">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inSpats&#32;<span>solidAngle</span></span></code>
@@ -300,16 +301,16 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L51-51" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Convert a solid angle to a number of spats.
-     SolidAngle.steradians (2 * pi) |> SolidAngle.inSpats
-     --> 0.5
-
+ <pre><code class="">
+ SolidAngle.steradians (2 * pi) |&gt; SolidAngle.inSpats
+ --&gt; 0.5</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -336,7 +337,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '493', 493)" onmouseover="showTip(event, '493', 493)">
+              <code onmouseout="hideTip(event, '492', 492)" onmouseover="showTip(event, '492', 492)">
                 <p>
                   <a id="inSquareDegrees">
                     <a href="#inSquareDegrees">
@@ -345,7 +346,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="493">
+              <div class="fsdocs-tip" id="492">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inSquareDegrees&#32;<span>solidAngle</span></span></code>
@@ -382,16 +383,16 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Convert a solid angle to a number of square degrees.
-    SolidAngle.spats 1 |> SolidAngle.inSquareDegrees
-    --> 41252.96125
-
+ <pre><code class="">
+    SolidAngle.spats 1 |&gt; SolidAngle.inSquareDegrees
+    --&gt; 41252.96125</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -418,7 +419,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '494', 494)" onmouseover="showTip(event, '494', 494)">
+              <code onmouseout="hideTip(event, '493', 493)" onmouseover="showTip(event, '493', 493)">
                 <p>
                   <a id="inSteradians">
                     <a href="#inSteradians">
@@ -427,7 +428,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="494">
+              <div class="fsdocs-tip" id="493">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inSteradians&#32;<span>numSteradians</span></span></code>
@@ -464,7 +465,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -498,7 +499,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '495', 495)" onmouseover="showTip(event, '495', 495)">
+              <code onmouseout="hideTip(event, '494', 494)" onmouseover="showTip(event, '494', 494)">
                 <p>
                   <a id="pyramidal">
                     <a href="#pyramidal">
@@ -507,7 +508,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="495">
+              <div class="fsdocs-tip" id="494">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pyramidal&#32;<span>theta&#32;phi</span></span></code>
@@ -552,7 +553,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L112-112" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L148-148" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -561,31 +562,34 @@
  Find the solid angle of a rectangular pyramid given the angles between the
  two pairs of sides. A 1 degree by 1 degree pyramid has a solid angle of almost
  exactly 1 square degree:
+ <pre><code class="">
      SolidAngle.pyramidal
          (Angle.degrees 1)
          (Angle.degrees 1)
-     --> SolidAngle.squareDegrees 0.9999746
- In general, the solid angle of a pyramid that is _n_ degrees wide by _m_ degrees
- tall is (for relatively small values of _n_ and _m_) approximately _nm_ square
+     --&gt; SolidAngle.squareDegrees 0.9999746</code></pre>
+ In general, the solid angle of a pyramid that is <b>n</b> degrees wide by <b>m</b> degrees
+ tall is (for relatively small values of <b>n</b> and <b>m</b>) approximately <b>nm</b> square
  degrees:
+ <pre><code class="">
      SolidAngle.pyramidal
          (Angle.degrees 10)
          (Angle.degrees 10)
-     --> SolidAngle.squareDegrees 99.7474
+     --&gt; SolidAngle.squareDegrees 99.7474
      SolidAngle.pyramidal
          (Angle.degrees 60)
          (Angle.degrees 30)
-     --> SolidAngle.squareDegrees 1704.08
+     --&gt; SolidAngle.squareDegrees 1704.08</code></pre>
  A pyramid that is 180 degrees by 180 degrees covers an entire hemisphere:
+ <pre><code class="">
      SolidAngle.pyramidal
          (Angle.degrees 180)
          (Angle.degrees 180)
-     --> SolidAngle.spats 0.5
+     --&gt; SolidAngle.spats 0.5</code></pre>
  "Inside out" pyramids greater than 180 degrees are not supported and will be
  treated as the corresponding "normal" pyramid (an angle of 240 degrees will be
  treated as 120 degrees, an angle of 330 degrees will be treated as 30 degrees,
  etc.).
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -620,7 +624,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '496', 496)" onmouseover="showTip(event, '496', 496)">
+              <code onmouseout="hideTip(event, '495', 495)" onmouseover="showTip(event, '495', 495)">
                 <p>
                   <a id="spats">
                     <a href="#spats">
@@ -629,7 +633,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="496">
+              <div class="fsdocs-tip" id="495">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>spats&#32;<span>numSpats</span></span></code>
@@ -666,22 +670,22 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a solid angle from a number of [spats][1]. One spat is the 3D
+ Construct a solid angle from a number of <a href="https://en.wikipedia.org/wiki/Spat_(unit)">spats</a>.
+ One spat is the 3D
  equivalent of one full turn; in the same way that one turn is the angle that
  covers an entire circle, one spat is the solid angle that covers an entire
  sphere. It's rare to have solid angles more than one spat, since solid angles
  are usually used to measure what angular fraction of a full sphere something
  covers.
-     SolidAngle.spats 1
-     --> SolidAngle.steradians (4 * pi)
- [1]: https://en.wikipedia.org/wiki/Spat_(unit)
-
+ <pre><code class="">
+ SolidAngle.spats 1
+ --&gt; SolidAngle.steradians (4 * pi)</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -708,7 +712,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '497', 497)" onmouseover="showTip(event, '497', 497)">
+              <code onmouseout="hideTip(event, '496', 496)" onmouseover="showTip(event, '496', 496)">
                 <p>
                   <a id="squareDegrees">
                     <a href="#squareDegrees">
@@ -717,7 +721,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="497">
+              <div class="fsdocs-tip" id="496">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>squareDegrees&#32;<span>numSquareDegrees</span></span></code>
@@ -754,20 +758,21 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a solid angle from a number of [square
- degrees](https://en.wikipedia.org/wiki/Square_degree). One square degree is,
+ Construct a solid angle from a number of
+ <a href="https://en.wikipedia.org/wiki/Square_degree">square degrees</a>
+ One square degree is,
  roughly speaking, the solid angle of a square on the surface of a sphere where
  the square is one degree wide and one degree tall as viewed from the center of
  the sphere.
+ <pre><code class="">
      SolidAngle.squareDegrees 100
-     -> SolidAngle.steradians 0.03046
-
+     -&gt; SolidAngle.steradians 0.03046</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -794,7 +799,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '498', 498)" onmouseover="showTip(event, '498', 498)">
+              <code onmouseout="hideTip(event, '497', 497)" onmouseover="showTip(event, '497', 497)">
                 <p>
                   <a id="steradians">
                     <a href="#steradians">
@@ -803,7 +808,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="498">
+              <div class="fsdocs-tip" id="497">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>steradians&#32;<span>numSteradians</span></span></code>
@@ -840,7 +845,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/SolidAngle.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>

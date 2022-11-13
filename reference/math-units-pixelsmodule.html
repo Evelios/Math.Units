@@ -121,19 +121,20 @@
     <div>
       <p class="fsdocs-summary">
         
- Although most of the focus of <c>elm-units</c> is on physical/scientific units,
+ Although most of the focus of <code>Math.Units</code> is on physical/scientific units,
  it's often useful to be able to safely convert back and forth between (for
- example) [<c>Length</c>](Length) values in the real world and on-screen lengths in
+ example) <code>Length</code> values in the real world and on-screen lengths in
  pixels.
- This module provides a standard <c>Pixels</c> units type and basic functions for
- constructing/converting values of type <c>Quantity Int Pixels</c> or
- <c>Quantity Float Pixels</c>, which allows you to do things like represent
- conversions between real-world and on-screen lengths as [rates of change][1].
- This in turn means that all the normal [<c>Quantity</c>](Quantity) functions can be
+
+ <p class='fsdocs-para'>
+ This module provides a standard <code>Pixels</code> units type and basic functions for
+ constructing/converting values of type <code>Quantity Int Pixels</code> or
+ <code>Quantity Float Pixels</code>, which allows you to do things like represent
+ conversions between real-world and on-screen lengths as rates of change.
+ This in turn means that all the normal <code>Quantity</code> functions can be
  used to convert between pixels and other units, or even do type-safe math
  directly on pixel values.
- [1]: Quantity#working-with-rates
-
+ </p>
       </p>
     </div>
   </div>
@@ -156,7 +157,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '381', 381)" onmouseover="showTip(event, '381', 381)">
+              <code onmouseout="hideTip(event, '380', 380)" onmouseover="showTip(event, '380', 380)">
                 <p>
                   <a id="float">
                     <a href="#float">
@@ -165,7 +166,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="381">
+              <div class="fsdocs-tip" id="380">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>float&#32;<span>numPixels</span></span></code>
@@ -202,7 +203,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L20-20" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -210,9 +211,9 @@
                 
  Construct a quantity representing a floating-point number of on-screen
  pixels:
-     lineWeight =
-         Pixels.float 1.5
-
+ <pre><code class="">
+ let lineWeight =
+     Pixels.float 1.5</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -239,7 +240,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '382', 382)" onmouseover="showTip(event, '382', 382)">
+              <code onmouseout="hideTip(event, '381', 381)" onmouseover="showTip(event, '381', 381)">
                 <p>
                   <a id="inPixelsPerSecond">
                     <a href="#inPixelsPerSecond">
@@ -248,7 +249,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="382">
+              <div class="fsdocs-tip" id="381">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inPixelsPerSecond&#32;<span>numPixelsPerSecond</span></span></code>
@@ -285,22 +286,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Convert an on-screen speed to a number of pixels per second.
-     elapsedTime =
-         Duration.milliseconds 16
-     dragDistance =
-         Pixels.float 2
-     dragSpeed =
-         dragDistance |> Quantity.per elapsedTime
-     dragSpeed |> Pixels.inPixelsPerSecond
-     --> 125
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -322,12 +315,26 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+ let elapsedTime =
+     Duration.milliseconds 16
+ let dragDistance =
+     Pixels.float 2
+ let dragSpeed =
+     dragDistance |&gt; Quantity.per elapsedTime
+ let dragSpeed |&gt; Pixels.inPixelsPerSecond
+ --&gt; 125</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '383', 383)" onmouseover="showTip(event, '383', 383)">
+              <code onmouseout="hideTip(event, '382', 382)" onmouseover="showTip(event, '382', 382)">
                 <p>
                   <a id="inPixelsPerSecondSquared">
                     <a href="#inPixelsPerSecondSquared">
@@ -336,7 +343,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="383">
+              <div class="fsdocs-tip" id="382">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inPixelsPerSecondSquared&#32;<span>numPixelsPerSecondSquared</span></span></code>
@@ -373,7 +380,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L73-73" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -407,7 +414,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '384', 384)" onmouseover="showTip(event, '384', 384)">
+              <code onmouseout="hideTip(event, '383', 383)" onmouseover="showTip(event, '383', 383)">
                 <p>
                   <a id="inSquarePixels">
                     <a href="#inSquarePixels">
@@ -416,7 +423,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="384">
+              <div class="fsdocs-tip" id="383">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inSquarePixels&#32;<span>numSquarePixels</span></span></code>
@@ -453,7 +460,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L85-85" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -491,7 +498,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '385', 385)" onmouseover="showTip(event, '385', 385)">
+              <code onmouseout="hideTip(event, '384', 384)" onmouseover="showTip(event, '384', 384)">
                 <p>
                   <a id="pixel">
                     <a href="#pixel">
@@ -500,7 +507,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="385">
+              <div class="fsdocs-tip" id="384">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pixel&#32;<span></span></span></code>
@@ -525,15 +532,15 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Shorthand for <c>Pixels.float 1.</c>. Can be convenient to use with
- [<c>Quantity.per</c>](Quantity#per).
-
+ Shorthand for <code>Pixels.float 1.</code>. Can be convenient to use with
+ <code>Quantity.per</code>].
+ 
               </p>
             </div>
             <dl class="fsdocs-returns">
@@ -550,7 +557,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '386', 386)" onmouseover="showTip(event, '386', 386)">
+              <code onmouseout="hideTip(event, '385', 385)" onmouseover="showTip(event, '385', 385)">
                 <p>
                   <a id="pixelsPerSecond">
                     <a href="#pixelsPerSecond">
@@ -559,7 +566,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="386">
+              <div class="fsdocs-tip" id="385">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pixelsPerSecond&#32;<span>numPixelsPerSecond</span></span></code>
@@ -596,7 +603,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L36-36" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -630,7 +637,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '387', 387)" onmouseover="showTip(event, '387', 387)">
+              <code onmouseout="hideTip(event, '386', 386)" onmouseover="showTip(event, '386', 386)">
                 <p>
                   <a id="pixelsPerSecondSquared">
                     <a href="#pixelsPerSecondSquared">
@@ -639,7 +646,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="387">
+              <div class="fsdocs-tip" id="386">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>pixelsPerSecondSquared&#32;<span>numPixelsPerSecondSquared</span></span></code>
@@ -676,7 +683,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L51-51" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -711,7 +718,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '388', 388)" onmouseover="showTip(event, '388', 388)">
+              <code onmouseout="hideTip(event, '387', 387)" onmouseover="showTip(event, '387', 387)">
                 <p>
                   <a id="squarePixels">
                     <a href="#squarePixels">
@@ -720,7 +727,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="388">
+              <div class="fsdocs-tip" id="387">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>squarePixels&#32;<span>numSquarePixels</span></span></code>
@@ -757,7 +764,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L60-60" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -791,7 +798,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '389', 389)" onmouseover="showTip(event, '389', 389)">
+              <code onmouseout="hideTip(event, '388', 388)" onmouseover="showTip(event, '388', 388)">
                 <p>
                   <a id="toFloat">
                     <a href="#toFloat">
@@ -800,7 +807,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="389">
+              <div class="fsdocs-tip" id="388">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>toFloat&#32;<span>numPixels</span></span></code>
@@ -837,20 +844,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Pixels.fs#L41-41" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a floating-point number of pixels back into a plain <c>Float</c>:
-    pixelDensity =
-        Pixels.float 96 |> Quantity.per (Length.inches 1)
-    Length.centimeters 1
-        |> Quantity.at pixelDensity
-        |> Pixels.toFloat
-    --> 37.795275590551185
-
+ Convert a floating-point number of pixels back into a plain <code>Float</code>:
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -872,6 +873,18 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+ let pixelDensity =
+     Pixels.float 96 |&gt; Quantity.per (Length.inches 1)
+ Length.centimeters 1
+     |&gt; Quantity.at pixelDensity
+     |&gt; Pixels.toFloat
+ --&gt; 37.795275590551185</code></pre>
+            </p>
           </td>
         </tr>
       </tbody>

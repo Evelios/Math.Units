@@ -177,13 +177,13 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L122-122" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L169-169" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- day : Duration
+ One day
 
               </p>
             </div>
@@ -247,19 +247,17 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L95-95" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Duration</c> from a given number of days. A day is defined as
+ Construct a <code>Duration</code> from a given number of days. A day is defined as
  exactly 24 hours or 86400 seconds. Therefore, it is only equal to the length of
  a given calendar day if that calendar day does not include either a leap second
  or any added/removed daylight savings hours.
-     Duration.days 1
-     --> Duration.hours 24
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -281,6 +279,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Duration.days 1
+     --&gt; Duration.hours 24</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -320,13 +326,13 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L119-119" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L166-166" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- hour : Duration
+ One hour
 
               </p>
             </div>
@@ -390,16 +396,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L71-71" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Duration</c> from a given number of hours.
-    Duration.hours 1
-    --> Duration.seconds 3600
-
+ Construct a <code>Duration</code> from a given number of hours.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -421,6 +425,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.hours 1
+    --&gt; Duration.seconds 3600</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -472,16 +484,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L66-66" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L105-105" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Duration</c> to a value in days.
-    Duration.hours 72 |> Duration.inDays
-    --> 3
-
+ Convert a <code>Duration</code> to a value in days.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -503,6 +513,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.hours 72 |&gt; Duration.inDays
+    --&gt; 3</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -554,16 +572,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L53-53" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L82-82" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Duration</c> to a value in hours.
-    Duration.minutes 120 |> Duration.inHours
-    --> 2
-
+ Convert a <code>Duration</code> to a value in hours.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -585,6 +601,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.minutes 120 |&gt; Duration.inHours
+    --&gt; 2</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -636,16 +660,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L94-94" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L153-153" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Duration</c> to a value in Julian years.
-    Duration.hours 10000 |> Duration.inJulianYears
-    --> 1.1407711613050422
-
+ Convert a <code>Duration</code> to a value in Julian years.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -667,6 +689,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.hours 10000 |&gt; Duration.inJulianYears
+    --&gt; 1.1407711613050422</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -718,16 +748,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L30-30" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Duration</c> to a value in milliseconds.
-    Duration.seconds 0.5 |> Duration.inMilliseconds
-    --> 500
-
+ Convert a <code>Duration</code> to a value in milliseconds.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -749,6 +777,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.seconds 0.5 |&gt; Duration.inMilliseconds
+    --&gt; 500</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -800,16 +836,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Duration</c> to a value in minutes.
-    Duration.seconds 90 |> Duration.inMinutes
-    --> 1.5
-
+ Convert a <code>Duration</code> to a value in minutes.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -831,6 +865,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.seconds 90 |&gt; Duration.inMinutes
+    --&gt; 1.5</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -882,16 +924,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L18-18" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>1</c> to a value in seconds.
-    Duration.milliseconds 10 |> Duration.inSeconds
-    --> 0.01
-
+ Convert a <code>1</code> to a value in seconds.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -913,6 +953,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.milliseconds 10 |&gt; Duration.inSeconds
+    --&gt; 0.01</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -964,16 +1012,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L76-76" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L125-125" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Duration</c> to a value in weeks.
-    Duration.days 28 |> Duration.inWeeks
-    --> 4
-
+ Convert a <code>Duration</code> to a value in weeks.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -995,6 +1041,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.days 28 |&gt; Duration.inWeeks
+    --&gt; 4</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1034,14 +1088,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L128-128" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L182-182" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- julianYear : Duration
-
+ One Julian Year
+ 
               </p>
             </div>
             <dl class="fsdocs-returns">
@@ -1053,6 +1107,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Duration.julianYear
+     --&gt; Duration.days 365.25</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1104,23 +1166,21 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L88-88" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L142-142" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Duration</c> from a given number of [Julian years][julian_year].
+ Construct a <code>Duration</code> from a given number of
+ 
  A Julian year is defined as exactly 365.25 days, the average length of a year in
  the historical Julian calendar. This is 10 minutes and 48 seconds longer than
  a Gregorian year (365.2425 days), which is the average length of a year in the
  modern Gregorian calendar, but the Julian year is a bit easier to remember and
  reason about and has the virtue of being the 'year' value used in the definition
- of a [light year](Length#lightYears).
-     Duration.julianYears 1
-     --> Duration.days 365.25
- [julian_year]: https://en.wikipedia.org/wiki/Julian_year_(astronomy) "Julian year"
-
+ of a ].
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1142,6 +1202,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Duration.julianYears 1
+     --&gt; Duration.days 365.25</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1181,13 +1249,13 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L160-160" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- millisecond : Duration
+ One millisecond
 
               </p>
             </div>
@@ -1251,16 +1319,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Duration</c> from a given number of milliseconds.
-    Duration.milliseconds 5000
-    --> Duration.seconds 5
-
+ Construct a <code>Duration</code> from a given number of milliseconds.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1282,6 +1348,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.milliseconds 5000
+    --&gt; Duration.seconds 5</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1321,13 +1395,13 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L116-116" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L163-163" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- minute : Duration
+ One minute
 
               </p>
             </div>
@@ -1391,16 +1465,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L36-36" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Duration</c> from a given number of minutes.
-    Duration.minutes 3
-    --> Duration.seconds 180
-
+ Construct a <code>Duration</code> from a given number of minutes.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1422,6 +1494,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.minutes 3
+    --&gt; Duration.seconds 180</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1461,13 +1541,13 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L110-110" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L157-157" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- second : Duration
+ One second
 
               </p>
             </div>
@@ -1531,14 +1611,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L7-7" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>1</c from a given number of seconds.
-
+ Construct a <code>1</code> from a given number of seconds.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1599,13 +1679,13 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L125-125" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L172-172" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- week : Duration
+ One week
 
               </p>
             </div>
@@ -1669,16 +1749,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L71-71" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Duration.fs#L115-115" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Duration</c> from a given number of weeks.
-    Duration.weeks 1
-    --> Duration.days 7
-
+ Construct a <code>Duration</code> from a given number of weeks.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1700,6 +1778,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Duration.weeks 1
+    --&gt; Duration.days 7</code></pre>
+            </p>
           </td>
         </tr>
       </tbody>
