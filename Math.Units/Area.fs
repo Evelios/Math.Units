@@ -1,12 +1,19 @@
-/// An <c>1</c represents an area in square meters, square feet, acres, hectares
+/// <summary>
+/// An <c>Area</c> represents an area in square meters, square feet, acres, hectares
 /// etc. It is stored as a number of square meters.
-/// Note that you can construct an <c>1</c value directly using the functions in this
-/// module, but it also works to call [<c>1</c>](Quantity#squared) on a
-/// <c>Length</c> or [<c>Quantity.times</c>](Quantity#times) on a pair of <c>Length</c>s. The
-/// following are all equivalent:
-///     Area.squareFeet 100
-///     Quantity.squared (Length.feet 10)
-///     Length.feet 25 |> Quantity.times (Length.feet 4)
+/// Note that you can construct an <c>Area</c> value directly using the functions in this
+/// module, but it also works to call <c>Quantity.squared</c> on a
+/// <c>Length</c> or <c>Quantity.times</c> on a pair of <c>Length</c>s.
+/// </summary>
+///
+/// <example>
+/// The following are all equivalent:
+/// <code>
+/// Area.squareFeet 100
+/// Quantity.squared (Length.feet 10)
+/// Length.feet 25 |> Quantity.times (Length.feet 4)
+/// </code>
+/// </example>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Area
 

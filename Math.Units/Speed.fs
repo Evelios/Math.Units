@@ -4,6 +4,7 @@
 /// per unit time), you can construct a <c>Speed</c> value using <c>Quantity.per</c>:
 ///     speed =
 ///         length |> Quantity.per duration
+/// 
 /// You can also do rate-related calculations with <c>Speed</c> values to compute
 /// <c>Length</c> or <c>Duration</c>:
 ///     length =
