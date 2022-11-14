@@ -51,8 +51,8 @@
             <!-- END SEARCH BOX: this adds support for the search box -->
             <ul class="navbar-nav">
                 <li class="nav-header">Links</li>
-                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/LICENSE.md">License</a></li>
-                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://opensource.org/licenses/MIT">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://www.nuget.org/packages/Math.Units/">Release Notes</a></li>
                 <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/">Source Repository</a></li>
                 <li class="nav-header">
   Tutorials
@@ -120,25 +120,24 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- [Luminous intensity][wp-luminous-intensity] is a measure of the amount of
- light produced ([luminous flux](LuminousFlux)) per unit [solid
- angle](SolidAngle).
+        <p class='fsdocs-para'><a href="https://en.wikipedia.org/wiki/Luminous_intensity">Luminous intensity</a>
+ is a measure of the amount of light produced
+ <b>luminous flux</b> per unit <b>solid angle</b>.
  Consider a light bulb that emits light in all directions and a spotlight that
  only emits light in a cone. If both lights had the same luminous flux (same
  total amount of light produced), then the spotlight would have higher luminous
  intensity since its light is concentrated into a smaller solid angle (and the
  light from the spotlight would appear brighter if viewed from the same
  distance).
+ </p><p class='fsdocs-para'>
  On the other hand, if both lights had the same luminous intensity, then they
  would appear equally bright when viewed from the same distance (something lit by
  the spotlight would appear equally bright as the same object lit by the light
  bulb) but the spotlight would have lower luminous flux since its light covers a
  smaller solid angle.
- Luminous intensity is measured in [candelas][wp-candelas].
- [wp-luminous-intensity]: https://en.wikipedia.org/wiki/Luminous_intensity
- [wp-candelas]: https://en.wikipedia.org/wiki/Candela
-
+ </p><p class='fsdocs-para'>
+ Luminous intensity is measured in <a href="https://en.wikipedia.org/wiki/Candela">candelas</a>.
+ </p>
       </p>
     </div>
   </div>
@@ -207,7 +206,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousIntensity.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousIntensity.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -288,26 +287,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousIntensity.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousIntensity.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a luminous intensity to a number of candelas. For example, to
- compute the luminous intensity of a light bulb with an output of 470 lumens
- which emits light equally in all directions:
-     LuminousFlux.lumens 470
-         |> Quantity.per (SolidAngle.spats 1)
-         |> LuminousIntensity.inCandelas
-     --> 37.4014
- If the same amount of light was emitted over a hemisphere instead of a full
- sphere, the luminous intensity would be twice as great:
-     LuminousFlux.lumens 470
-         |> Quantity.per (SolidAngle.spats 0.5)
-         |> LuminousIntensity.inCandelas
-     --> 74.8028
-
+ Convert a luminous intensity to a number of candelas.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -329,6 +316,28 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ For example, to
+ compute the luminous intensity of a light bulb with an output of 470 lumens
+ which emits light equally in all directions:
+ <pre><code class="">
+     LuminousFlux.lumens 470
+         |&gt; Quantity.per (SolidAngle.spats 1)
+         |&gt; LuminousIntensity.inCandelas
+     --&gt; 37.4014</code></pre>
+ 
+ If the same amount of light was emitted over a hemisphere instead of a full
+ sphere, the luminous intensity would be twice as great:
+ <pre><code class="">
+     LuminousFlux.lumens 470
+         |&gt; Quantity.per (SolidAngle.spats 0.5)
+         |&gt; LuminousIntensity.inCandelas
+     --&gt; 74.8028</code></pre>
+            </p>
           </td>
         </tr>
       </tbody>

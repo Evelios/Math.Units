@@ -51,8 +51,8 @@
             <!-- END SEARCH BOX: this adds support for the search box -->
             <ul class="navbar-nav">
                 <li class="nav-header">Links</li>
-                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/LICENSE.md">License</a></li>
-                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://opensource.org/licenses/MIT">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://www.nuget.org/packages/Math.Units/">Release Notes</a></li>
                 <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/Evelios/Math.Units/">Source Repository</a></li>
                 <li class="nav-header">
   Tutorials
@@ -153,10 +153,8 @@ from Math.Units<br /><br />--------------------<br />type Float =
   static member DigitPrecision: int
   static member Epsilon: float
   static member MinNormal: float<br /><em>&lt;summary&gt;
- A module that allows for approximate comparison of floating point
- values. This works by limiting the amount of precision that is used
- when comparing two floating point values for comparison.
-
+ A static class providing added features to the floating point number class.
+ &lt;/summary&gt;<br />&lt;remark&gt;&lt;para&gt;
  A static class providing added features to the floating point number class.
  The main features of this class allow for better floating point equality
  testing. Generally, floating points always have small variations in their
@@ -168,19 +166,18 @@ from Math.Units<br /><br />--------------------<br />type Float =
  other. Another is to compare if the two numbers are within an absolute range
  from each other, eg. Two floating point numbers are equal if they are within
  0.0001 units of each other.
-
+ &lt;/para&gt;&lt;para&gt;
  This library does comparison by absolute value comparison through digit
  precision. Numbers are considered equal if they are equal when rounded to
- the number of digits as specified by &lt;c&gt;Float.DigitPrecision&lt;/c&gt;. The default is
- 10 digits, so by default &lt;c&gt;2.0 = 2.00000000003&lt;/c&gt; (the 11th digit is a 3).
-
- &lt;c&gt;Float.Epsilon&lt;/c&gt; is a derived value from the number of digits and represents
+ the number of digits as specified by &lt;c&gt;Float.DigitPrecision&lt;/c&gt;.
+ The default is 10 digits, so by default &lt;c&gt;2.0 = 2.00000000003&lt;/c&gt; (the 11th digit is a 3).
+ &lt;/para&gt;&lt;para&gt;&lt;c&gt;Float.Epsilon&lt;/c&gt; is a derived value from the number of digits and represents
  the maximum difference between two numbers that is considered equal. This
- number is &lt;c&gt;10^-DigitPrecision&lt;/c&gt; which by default is &lt;c&gt;10^(-10)&lt;/c&gt;, or
+ number is &lt;c&gt;10^-(DigitPrecision)&lt;/c&gt; which by default is &lt;c&gt;10^(-10)&lt;/c&gt;, or
  &lt;c&gt;0.000000001&lt;/c&gt;.
-
+ &lt;/para&gt;&lt;para&gt;
  In general the rules followed by this extension are from
- &lt;a href=&quot;https://floating-point-gui.de/errors/comparison&quot;&gt;The Floating Point Guide on Comparison&lt;/a&gt;&lt;/summary&gt;</em></div>
+ &lt;a href=&quot;https://floating-point-gui.de/errors/comparison/&quot;&gt;The Floating Point Guide on Comparison&lt;/a&gt;&lt;/para&gt;&lt;/remark&gt;</em></div>
 <div class="fsdocs-tip" id="fs5">val almostEqual: a: float -&gt; b: float -&gt; bool<br /><em>&lt;summary&gt;
  Compare two floating point values for equality. Equality testing is done
  based on a tolerance vale specified by &amp;lt;c&amp;gt;Float.Epsilon&amp;lt;/c&amp;gt;.
