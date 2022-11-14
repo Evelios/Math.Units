@@ -121,30 +121,38 @@
     <div>
       <p class="fsdocs-summary">
         
- A <c>Voltage</c> value represents a voltage (electric potential difference, if
+ A <code>Voltage</code> value represents a voltage (electric potential difference, if
  we're being picky) in volts.
- Note that since <c>Volts</c> is defined as <c>Rate Watts Amperes</c> (power per unit
- current), you can do rate-related calculations with <c>Voltage</c> values to compute
- <c>Power</c> or <c>Current</c>:
-     -- elm-units version of 'P = V * I'
-     power =
-         current |> Quantity.at voltage
-     -- I = P / V
-     current =
-         power |> Quantity.at_ voltage
- Just for fun, note that since you can also [express <c>Voltage</c> in terms of
- <c>Current</c> and <c>Resistance</c>](Resistance), you could rewrite the second example
- above as
-     -- P = I^2 * R
-     power =
-         current
-             |> Quantity.at
-                 (current
-                     |> Quantity.at resistance
-                 )
-
+ 
       </p>
     </div>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      <p class='fsdocs-para'>
+ Since <code>Volts</code> is defined as <code>Rate Watts Amperes</code> (power per unit
+ current), you can do rate-related calculations with <code>Voltage</code> values to compute
+ <code>Power</code> or <code>Current</code>:
+ </p><pre><code class="">
+     // elm-units version of &#39;P = V * I&#39;
+     power =
+         current |&gt; Quantity.at voltage
+     // I = P / V
+     current =
+         power |&gt; Quantity.at_ voltage</code></pre><p class='fsdocs-para'>
+ Just for fun, note that since you can also express <code>Voltage</code> in terms of
+ <code>Current</code> and <code>Resistance</code>, you could rewrite the second example
+ above as
+ </p><pre><code class="">
+     // P = I^2 * R
+     let power =
+         current
+             |&gt; Quantity.at
+                 (current
+                     |&gt; Quantity.at resistance
+                 )</code></pre>
+    </p>
   </div>
   <div>
     <h3>
@@ -211,7 +219,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Voltage.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Voltage.fs#L44-44" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -291,7 +299,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Voltage.fs#L27-27" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Voltage.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>

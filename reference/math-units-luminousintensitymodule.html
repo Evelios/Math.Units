@@ -287,7 +287,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousIntensity.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/LuminousIntensity.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -320,19 +320,18 @@
               Example
             </h5>
             <p class="fsdocs-example" id="example">
-              
+              <p class='fsdocs-para'>
  For example, to
  compute the luminous intensity of a light bulb with an output of 470 lumens
  which emits light equally in all directions:
- <pre><code class="">
+ </p><pre><code class="">
      LuminousFlux.lumens 470
          |&gt; Quantity.per (SolidAngle.spats 1)
          |&gt; LuminousIntensity.inCandelas
-     --&gt; 37.4014</code></pre>
- 
+     --&gt; 37.4014</code></pre><p class='fsdocs-para'>
  If the same amount of light was emitted over a hemisphere instead of a full
  sphere, the luminous intensity would be twice as great:
- <pre><code class="">
+ </p><pre><code class="">
      LuminousFlux.lumens 470
          |&gt; Quantity.per (SolidAngle.spats 0.5)
          |&gt; LuminousIntensity.inCandelas

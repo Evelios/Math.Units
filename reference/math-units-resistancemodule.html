@@ -121,20 +121,27 @@
     <div>
       <p class="fsdocs-summary">
         
- A <c>Resistance</c> value represents an electrical resistance in ohms.
- Note that since <c>Ohms</c> is defined as <c>Rate Volts Amperes</c> (voltage per unit
- current), you can construct a <c>Resistance</c> value using <c>Quantity.per</c>:
-     resistance =
-         voltage |> Quantity.per current
- You can also do rate-related calculations with <c>Resistance</c> values to compute
- <c>Voltage</c> or <c>Current</c>:
-     voltage =
-         current |> Quantity.at resistance
-     current =
-         voltage |> Quantity.at_ resistance
-
+ A <code>Resistance</code> value represents an electrical resistance in ohms.
+ 
       </p>
     </div>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      <p class='fsdocs-para'>
+ Since <code>Ohms</code> is defined as <code>Rate Volts Amperes</code> (voltage per unit
+ current), you can construct a <code>Resistance</code> value using <code>Quantity.per</code>:
+ </p><pre><code class="">
+     let resistance =
+         voltage |&gt; Quantity.per current</code></pre><p class='fsdocs-para'>
+ You can also do rate-related calculations with <code>Resistance</code> values to compute
+ </p><pre><code class="">Voltage or Current:
+     let voltage =
+         current |&gt; Quantity.at resistance
+     let current =
+         voltage |&gt; Quantity.at_ resistance</code></pre>
+    </p>
   </div>
   <div>
     <h3>
@@ -201,7 +208,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Resistance.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Resistance.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -281,7 +288,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Resistance.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Resistance.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>

@@ -574,55 +574,21 @@ from Math.Units<br /><br />--------------------<br />type Duration = Quantity&lt
 <div class="fsdocs-tip" id="fs10">Multiple items<br />module Temperature
 
 from Math.Units<br /><em>&lt;summary&gt;
- Unlike other modules in &amp;lt;c&amp;gt;elm-units&amp;lt;/c&amp;gt;, this module contains two different
+ Unlike other modules in &lt;c&gt;Math.Units&lt;/c&gt;, this module contains two different
  primary types:
-   - &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt;, which is not actually a &amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt; since temperatures don&#39;t
+ &lt;list type=&quot;bullet&quot;&gt;&lt;item&gt;&lt;description&gt;&lt;c&gt;Temperature&lt;/c&gt;, which is not actually a &lt;c&gt;Quantity&lt;/c&gt; since temperatures don&#39;t
      really act like normal quantities. For example, it doesn&#39;t make sense to
      add two temperatures or find the ratio between them.
-   - &amp;lt;c&amp;gt;Delta&amp;lt;/c&amp;gt;, which represents the difference between two temperatures. A &amp;lt;c&amp;gt;Delta&amp;lt;/c&amp;gt;
-     _is_ a &amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt; since it does make sense to add two deltas to get a net
+ &lt;/description&gt;&lt;/item&gt;&lt;item&gt;&lt;description&gt;&lt;c&gt;Delta&lt;/c&gt;, which represents the difference between two temperatures. A &lt;c&gt;Delta&lt;/c&gt;&lt;i&gt;is&lt;/i&gt; a &lt;c&gt;Quantity&lt;/c&gt; since it does make sense to add two deltas to get a net
      delta, find the ratio between two deltas (one rise in temperature might be
      twice as much as another rise in temperature), etc.
- Since a &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt; value is not a &amp;lt;c&amp;gt;Quantity&amp;lt;/c&amp;gt;, this module exposes specialized
- functions for doing the operations on &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt; values that _do_ make sense,
+ &lt;/description&gt;&lt;/item&gt;&lt;/list&gt;
+ Since a &lt;c&gt;Temperature&lt;/c&gt; value is not a &lt;c&gt;Quantity&lt;/c&gt;, this module exposes specialized
+ functions for doing the operations on &lt;c&gt;Temperature&lt;/c&gt; values that &lt;i&gt;do&lt;/i&gt; make sense,
  such as comparing two temperatures or sorting a list of temperatures. It&#39;s also
- possible to find the delta from one temperature to another using [&amp;lt;c&amp;gt;minus&amp;lt;/c&amp;gt;](Temperature#minus),
- and then add a &amp;lt;c&amp;gt;Delta&amp;lt;/c&amp;gt; to a &amp;lt;c&amp;gt;Temperature&amp;lt;/c&amp;gt; using [&amp;lt;c&amp;gt;plus&amp;lt;/c&amp;gt;](Temperature#plus).
-
- @docs Temperature, Delta, CelsiusDegrees
-
- # Temperatures
-
- @docs degreesCelsius, inDegreesCelsius, degreesFahrenheit, inDegreesFahrenheit, kelvins, inKelvins, absoluteZero
-
- # Deltas
-
- Following the suggestion mentioned [here](https://en.wikipedia.org/wiki/Celsius#Temperatures_and_intervals),
- this module uses (for example) &amp;lt;c&amp;gt;celsiusDegrees&amp;lt;/c&amp;gt; to indicate a temperature delta
- (change in temperature), in contrast to &amp;lt;c&amp;gt;degreesCelsius&amp;lt;/c&amp;gt; which indicates an
- actual temperature.
-
- @docs celsiusDegrees, inCelsiusDegrees, fahrenheitDegrees, inFahrenheitDegrees
-
- ## Constants
-
- Shorthand for &amp;lt;c&amp;gt;Temperature.celsiusDegrees 1&amp;lt;/c&amp;gt; and `Temperature.fahrenheitDegrees
- 1&amp;lt;c&amp;gt;. Can be convenient to use with [&amp;lt;/c&amp;gt;Quantity.per`](Quantity#per).
-
- @docs celsiusDegree, fahrenheitDegree
-
- # Comparison
-
- @docs lessThan, greaterThan, lessThanOrEqualTo, greaterThanOrEqualTo, compare, equalWithin, min, max
-
- # Arithmetic
-
- @docs plus, minus, clamp
-
- # List functions
-
- @docs minimum, maximum, sort, sortBy
-&lt;/summary&gt;</em><br /><br />--------------------<br />type Temperature =
+ possible to find the delta from one temperature to another using &lt;c&gt;Temperature.minus&lt;/c&gt;,
+ and then add a &lt;c&gt;Delta&lt;/c&gt; to a &lt;c&gt;Temperature&lt;/c&gt; using &lt;c&gt;Temperature.plus&lt;/c&gt;.
+ &lt;/summary&gt;</em><br /><br />--------------------<br />type Temperature =
   interface IComparable
   interface IComparable&lt;Temperature&gt;
   new: kelvin: float -&gt; Temperature
@@ -639,7 +605,12 @@ from Math.Units<br /><em>&lt;summary&gt;
 <div class="fsdocs-tip" id="fs13">val camera: Camera</div>
 <div class="fsdocs-tip" id="fs14">[&lt;Struct&gt;]
 type bool = Boolean<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Boolean&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em></div>
-<div class="fsdocs-tip" id="fs15">val greaterThan: rhs: Temperature -&gt; lhs: Temperature -&gt; bool</div>
+<div class="fsdocs-tip" id="fs15">val greaterThan: rhs: Temperature -&gt; lhs: Temperature -&gt; bool<br /><em>&lt;summary&gt;
+ This is meant to be used with pipe operators.
+ &lt;code&gt;
+     Temperature.inDegreesCelsius 30.
+     |&amp;gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
+ &lt;/code&gt;&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs16">Multiple items<br />module Length
 
 from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
@@ -927,9 +898,9 @@ from Math.Units<br /><br />--------------------<br />type Energy = Quantity&lt;J
 <div class="fsdocs-tip" id="fs99">type CubicMeters = Cubed&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Space&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs100">type Cubed&lt;&#39;Units&gt; = Product&lt;&#39;Units,Product&lt;&#39;Units,&#39;Units&gt;&gt;<br /><em>&lt;category&gt;Unit Relation&lt;/category&gt;<br />&lt;summary&gt;
  Represents a units type that is the cube of some other units type; for
- example, &lt;c&gt;Meters&lt;/c&gt; is one units type (the units type of a [&lt;c&gt;Length&lt;/c&gt;](Length)) and
- &lt;c&gt;Cubed Meters&lt;/c&gt; is another (the units type of an [&lt;c&gt;Volume&lt;/c&gt;](Volume)). See the
- [&lt;c&gt;cubed&lt;/c&gt;](Quantity#cubed) and [&lt;c&gt;cbrt&lt;/c&gt;](Quantity#cbrt) functions for examples of
+ example, &lt;c&gt;Meters&lt;/c&gt; is one units type (the units type of a &lt;c&gt;Length&lt;/c&gt;) and
+ &lt;c&gt;Cubed Meters&lt;/c&gt; is another (the units type of an &lt;c&gt;Volume&lt;/c&gt;). See the
+ &lt;c&gt;Quantity.cubed&lt;/c&gt; and &lt;c&gt;Quantity.cbrt&lt;/c&gt; functions for examples of
  use.
  This is a special case of the &lt;c&gt;Product&lt;/c&gt; units type.
  &lt;/summary&gt;</em></div>

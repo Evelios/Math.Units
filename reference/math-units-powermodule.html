@@ -121,29 +121,31 @@
     <div>
       <p class="fsdocs-summary">
         
- A <c>Power</c> value represents power in watts or horsepower. It is stored as a
+ A <code>Power</code> value represents power in watts or horsepower. It is stored as a
  number of watts.
- Note that since <c>Watts</c> is defined as <c>Rate Joules Seconds</c> (energy per unit
- time), you can construct a <c>Power</c> value using <c>Quantity.per</c>:
-     power =
-         energy |> Quantity.per duration
- You can also do rate-related calculations with <c>Power</c> values to compute
- <c>Energy</c> or <c>Duration</c>:
-     energy =
-         power |> Quantity.for duration
-     alsoEnergy =
-         duration |> Quantity.at power
-     duration =
-         energy |> Quantity.at_ power
- [1]: https://en.wikipedia.org/wiki/Horsepower#Definitions
-
- ## Horsepower
- Who knew that there were not one, not two, but _three_ possible interpretations
- of "one horsepower"? (Actually there are more than that, but these three
- seemed the most reasonable.)
 
       </p>
     </div>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      
+ Since <code>Watts</code> are defined as <code>Rate Joules Seconds</code> (energy per unit
+ time), you can construct a <code>Power</code> value using <code>Quantity.per</code>:
+ <pre><code class="">
+     let power =
+         energy |&gt; Quantity.per duration</code></pre>
+ You can also do rate-related calculations with <code>Power</code> values to compute
+ <code>Energy</code> or <code>Duration</code>:
+ <pre><code class="">
+     let energy =
+         power |&gt; Quantity.for duration
+     let alsoEnergy =
+         duration |&gt; Quantity.at power
+     let duration =
+         energy |&gt; Quantity.at_ power</code></pre>
+    </p>
   </div>
   <div>
     <h3>
@@ -210,17 +212,17 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L71-71" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L109-109" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Power</c> value from an number of [electrical horsepower][1].
+ Construct a <code>Power</code> value from an number of
+ <a href="https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower">electrical horsepower</a>.
+ <pre><code class="">
      Power.electricalHorsepower 1
-     --> Power.watts 746
- [1]: https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower
-
+     --&gt; Power.watts 746</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -293,14 +295,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L118-118" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Power</c> value to a number of electrical horsepower.
-
+ Convert a <code>Power</code> value to a number of electrical horsepower.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -373,14 +375,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Power</c> value to a number of kilowatts.
-
+ Convert a <code>Power</code> value to a number of kilowatts.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -453,14 +455,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Power</c> value to a number of mechanical horsepower.
-
+ Convert a <code>Power</code> value to a number of mechanical horsepower.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -533,14 +535,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L62-62" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Power</c> value to a number of megawatts.
-
+ Convert a <code>Power</code> value to a number of megawatts.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -613,14 +615,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Power</c> value to a number of metric horsepower.
-
+ Convert a <code>Power</code> value to a number of metric horsepower.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -693,14 +695,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L42-42" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Convert a <c>Power</c> value to a number of watts.
-
+ Convert a <code>Power</code> value to a number of watts.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -773,14 +775,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Power</c> value from a number of kilowatts.
-
+ Construct a <code>Power</code> value from a number of kilowatts.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -853,17 +855,17 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L89-89" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Power</c> value from an number of [mechanical horsepower][1].
+ Construct a <code>Power</code> value from an number of
+ <a href="https://en.wikipedia.org/wiki/Horsepower#Mechanical_horsepower">mechanical horsepower</a>.
+ <pre><code class="">
      Power.mechanicalHorsepower 1
-     --> Power.watts 745.6998715822702
- [1]: https://en.wikipedia.org/wiki/Horsepower#Mechanical_horsepower
-
+     --&gt; Power.watts 745.6998715822702</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -936,14 +938,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Power</c> value from a number of megawatts.
-
+ Construct a <code>Power</code> value from a number of megawatts.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1016,17 +1018,17 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L72-72" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Power</c> value from an number of [metric horsepower][1].
+ Construct a <code>Power</code> value from an number of
+ <a href="https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower">metric horsepower</a>.
+ <pre><code class="">
      Power.metricHorsepower 1
-     --> Power.watts 735.49875
- [1]: https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower
-
+     --&gt; Power.watts 735.49875</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1099,14 +1101,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Power.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a <c>Power</c> value from a number of watts.
-
+ Construct a <code>Power</code> value from a number of watts.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">

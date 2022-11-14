@@ -269,18 +269,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L12-12" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L18-18" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Convert a current to a number of amperes.
-    Charge.coulombs 10
-        |> Quantity.per (Duration.seconds 2)
-        |> Current.inAmperes
-    --> 5
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -302,6 +298,16 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Charge.coulombs 10
+        |&gt; Quantity.per (Duration.seconds 2)
+        |&gt; Current.inAmperes
+    --&gt; 5</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -353,16 +359,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Convert a current to number of milliamperes.
-    Current.amperes 2 |> Current.inMilliamperes
-    --> 2000
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -384,6 +388,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Current.amperes 2 |&gt; Current.inMilliamperes
+    --&gt; 2000</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -435,16 +447,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L17-17" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Construct a current from a number of milliamperes.
-    Current.milliamperes 500
-    --> Current.amperes 0.5
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -466,6 +476,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Current.milliamperes 500
+    --&gt; Current.amperes 0.5</code></pre>
+            </p>
           </td>
         </tr>
       </tbody>

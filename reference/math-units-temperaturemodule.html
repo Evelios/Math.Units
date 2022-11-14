@@ -121,55 +121,23 @@
     <div>
       <p class="fsdocs-summary">
         
- Unlike other modules in <c>elm-units</c>, this module contains two different
+ Unlike other modules in <code>Math.Units</code>, this module contains two different
  primary types:
-   - <c>Temperature</c>, which is not actually a <c>Quantity</c> since temperatures don't
+ <ul><li><description>
+  <c>Temperature</c>, which is not actually a <c>Quantity</c> since temperatures don't
      really act like normal quantities. For example, it doesn't make sense to
      add two temperatures or find the ratio between them.
-   - <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c>
-     _is_ a <c>Quantity</c> since it does make sense to add two deltas to get a net
+ </description></li><li><description>
+  <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c><i>is</i> a <c>Quantity</c> since it does make sense to add two deltas to get a net
      delta, find the ratio between two deltas (one rise in temperature might be
      twice as much as another rise in temperature), etc.
- Since a <c>Temperature</c> value is not a <c>Quantity</c>, this module exposes specialized
- functions for doing the operations on <c>Temperature</c> values that _do_ make sense,
+ </description></li></ul>
+ Since a <code>Temperature</code> value is not a <code>Quantity</code>, this module exposes specialized
+ functions for doing the operations on <code>Temperature</code> values that <i>do</i> make sense,
  such as comparing two temperatures or sorting a list of temperatures. It's also
- possible to find the delta from one temperature to another using [<c>minus</c>](Temperature#minus),
- and then add a <c>Delta</c> to a <c>Temperature</c> using [<c>plus</c>](Temperature#plus).
-
- @docs Temperature, Delta, CelsiusDegrees
-
- # Temperatures
-
- @docs degreesCelsius, inDegreesCelsius, degreesFahrenheit, inDegreesFahrenheit, kelvins, inKelvins, absoluteZero
-
- # Deltas
-
- Following the suggestion mentioned [here](https://en.wikipedia.org/wiki/Celsius#Temperatures_and_intervals),
- this module uses (for example) <c>celsiusDegrees</c> to indicate a temperature delta
- (change in temperature), in contrast to <c>degreesCelsius</c> which indicates an
- actual temperature.
-
- @docs celsiusDegrees, inCelsiusDegrees, fahrenheitDegrees, inFahrenheitDegrees
-
- ## Constants
-
- Shorthand for <c>Temperature.celsiusDegrees 1</c> and `Temperature.fahrenheitDegrees
- 1<c>. Can be convenient to use with [</c>Quantity.per`](Quantity#per).
-
- @docs celsiusDegree, fahrenheitDegree
-
- # Comparison
-
- @docs lessThan, greaterThan, lessThanOrEqualTo, greaterThanOrEqualTo, compare, equalWithin, min, max
-
- # Arithmetic
-
- @docs plus, minus, clamp
-
- # List functions
-
- @docs minimum, maximum, sort, sortBy
-
+ possible to find the delta from one temperature to another using <code>Temperature.minus</code>,
+ and then add a <code>Delta</code> to a <code>Temperature</code> using <code>Temperature.plus</code>.
+ 
       </p>
     </div>
   </div>
@@ -238,7 +206,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L171-171" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L191-191" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -304,17 +272,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L84-84" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L72-72" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                
- [Absolute zero](https://en.wikipedia.org/wiki/Absolute_zero), equal to zero
- kelvins or -273.15 degrees Celsius.
-     Temperature.absoluteZero
-     --> Temperature.degreesCelsius -273.15
-
+                <a href="https://en.wikipedia.org/wiki/Absolute_zero">Absolute zero</a>,
+ equal to zero kelvins or -273.15 degrees Celsius.
+ 
               </p>
             </div>
             <dl class="fsdocs-returns">
@@ -326,6 +291,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.absoluteZero
+     --&gt; Temperature.degreesCelsius -273.15</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -365,7 +338,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L107-107" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L104-104" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -433,7 +406,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L90-90" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -529,29 +502,15 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L164-164" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L184-184" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Given a lower and upper bound, clamp a given temperature to within those
- bounds. Say you wanted to clamp a temperature to be between 18 and 22 degrees
- Celsius:
-     lowerBound =
-         Temperature.degreesCelsius 18
-     upperBound =
-         Temperature.degreesCelsius 22
-     Temperature.degreesCelsius 25
-         |> Temperature.clamp lowerBound upperBound
-     --> Temperature.degreesCelsius 22
-     Temperature.degreesFahrenheit 67 -- approx 19.4 °C
-         |> Temperature.clamp lowerBound upperBound
-     --> Temperature.degreesFahrenheit 67
-     Temperature.absoluteZero
-         |> Temperature.clamp lowerBound upperBound
-     --> Temperature.degreesCelsius 18
-
+ bounds.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -589,6 +548,30 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ Say you wanted to clamp a temperature to be between 18 and 22 degrees /// Celsius:
+ <pre><code class="">
+     let lowerBound =
+         Temperature.degreesCelsius 18
+     let upperBound =
+         Temperature.degreesCelsius 22
+ 
+     let Temperature.degreesCelsius 25
+         |&gt; Temperature.clamp lowerBound upperBound
+     --&gt; Temperature.degreesCelsius 22
+ 
+     let Temperature.degreesFahrenheit 67 -- approx 19.4 &#176;C
+         |&gt; Temperature.clamp lowerBound upperBound
+     --&gt; Temperature.degreesFahrenheit 67
+ 
+     let Temperature.absoluteZero
+         |&gt; Temperature.clamp lowerBound upperBound
+     --&gt; Temperature.degreesCelsius 18</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -640,7 +623,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -720,7 +703,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L73-73" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -788,7 +771,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L108-108" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L105-105" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -856,16 +839,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L98-98" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L91-91" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Construct a temperature delta from a number of Fahrenheit degrees.
-    Temperature.fahrenheitDegrees 36
-    --> Temperature.celsiusDegrees 20
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -887,6 +868,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Temperature.fahrenheitDegrees 36
+    --&gt; Temperature.celsiusDegrees 20</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -946,12 +935,16 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L128-128" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L134-134" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 30.
+     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1040,12 +1033,16 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L134-134" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L143-143" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 30.
+     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1126,7 +1123,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L93-93" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L81-81" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1206,7 +1203,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L70-70" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L53-53" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1286,7 +1283,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L77-77" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L60-60" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1366,17 +1363,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L105-105" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L102-102" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Convert a temperature delta to a number of Fahrenheit degrees.
-    Temperature.celsiusDegrees 10
-        |> Temperature.inFahrenheitDegrees
-    --> 18
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1398,6 +1392,15 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Temperature.celsiusDegrees 10
+        |&gt; Temperature.inFahrenheitDegrees
+    --&gt; 18</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1449,17 +1452,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Convert a temperature to a number of kelvins.
-    Temperature.degreesCelsius 0
-        |> Temperature.inKelvins
-    --> 273.15
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1481,6 +1481,15 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Temperature.degreesCelsius 0
+        |&gt; Temperature.inKelvins
+    --&gt; 273.15</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1532,17 +1541,15 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Construct a temperature from a number of [kelvins][kelvin].
-     Temperature.kelvins 300
-     --> Temperature.degreesCelsius 26.85
- [kelvin]: https://en.wikipedia.org/wiki/Kelvin "Kelvin"
-
+ Construct a temperature from a number of
+ <a href="https://en.wikipedia.org/wiki/Kelvin">kelvins</a>.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1564,6 +1571,14 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.kelvins 300
+     --&gt; Temperature.degreesCelsius 26.85</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1629,6 +1644,10 @@
               </a>
               <p class="fsdocs-summary">
                 
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 10.
+     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1717,12 +1736,16 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L122-122" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L125-125" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 10.
+     |&gt; Temperature.greaterThanOrEqualTo (Temperature.inDegreesCelsius 15.)</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1811,7 +1834,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L175-175" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L195-195" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1897,21 +1920,15 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L201-201" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L229-229" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Find the maximum of a list of temperatures. Returns <c>Nothing</c> if the list
+ Find the maximum of a list of temperatures. Returns <code>Nothing</code> if the list
  is empty.
-     Temperature.maximum
-         [ Temperature.degreesCelsius 20
-         , Temperature.kelvins 300
-         , Temperature.degreesFahrenheit 74
-         ]
-     --> Just (Temperature.kelvins 300)
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1933,6 +1950,18 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.maximum
+         [ Temperature.degreesCelsius 20
+           Temperature.kelvins 300
+           Temperature.degreesFahrenheit 74
+         ]
+     --&gt; Some (Temperature.kelvins 300)</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -1992,7 +2021,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L173-173" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L193-193" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2078,21 +2107,15 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L187-187" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L211-211" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Find the minimum of a list of temperatures. Returns <c>Nothing</c> if the list
+ Find the minimum of a list of temperatures. Returns <code>Nothing</code> if the list
  is empty.
-     Temperature.minimum
-         [ Temperature.degreesCelsius 20
-         , Temperature.kelvins 300
-         , Temperature.degreesFahrenheit 74
-         ]
-     --> Just (Temperature.degreesCelsius 20)
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -2114,6 +2137,18 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.minimum
+         [ Temperature.degreesCelsius 20
+           Temperature.kelvins 300
+           Temperature.degreesFahrenheit 74
+         ]
+     --&gt; Some (Temperature.degreesCelsius 20)</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
@@ -2173,12 +2208,17 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L143-143" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L154-154" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 20.
+     |&gt; Temperature.plus (Temperature.celsiusDegrees 35.)
+     --&gt; Temperature.inDegreesCelsius 55.</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -2259,7 +2299,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L169-169" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L189-189" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2337,23 +2377,23 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L218-218" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L250-250" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
  Sort a list of temperatures from lowest to highest.
+ <pre><code class="">
      Temperature.sort
          [ Temperature.degreesCelsius 20
-         , Temperature.kelvins 300
-         , Temperature.degreesFahrenheit 74
+           Temperature.kelvins 300
+           Temperature.degreesFahrenheit 74
          ]
-     --> [ Temperature.degreesCelsius 20
-     --> , Temperature.degreesFahrenheit 74
-     --> , Temperature.kelvins 300
-     --> ]
-
+     --&gt; [ Temperature.degreesCelsius 20
+     --&gt;   Temperature.degreesFahrenheit 74
+     --&gt;   Temperature.kelvins 300
+     --&gt; ]</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -2434,27 +2474,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L235-235" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L277-277" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Sort an arbitrary list of values by a derived <c>Temperature</c>. If you had
-     rooms =
-         [ ( "Lobby", Temperature.degreesCelsius 21 )
-         , ( "Locker room", Temperature.degreesCelsius 17 )
-         , ( "Rink", Temperature.degreesCelsius -4 )
-         , ( "Sauna", Temperature.degreesCelsius 82 )
-         ]
- then you could sort by temperature with
-     Temperature.sortBy Tuple.second rooms
-     --> [ ( "Rink", Temperature.degreesCelsius -4 )
-     --> , ( "Locker room", Temperature.degreesCelsius 17 )
-     --> , ( "Lobby", Temperature.degreesCelsius 21 )
-     --> , ( "Sauna", Temperature.degreesCelsius 82 )
-     --> ]
-
+ Sort an arbitrary list of values by a derived <code>Temperature</code>.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -2484,6 +2511,24 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <p class='fsdocs-para'>If you had</p><pre><code class="">
+     let rooms =
+         [ ( &quot;Lobby&quot;, Temperature.degreesCelsius 21 )
+           ( &quot;Locker room&quot;, Temperature.degreesCelsius 17 )
+           ( &quot;Rink&quot;, Temperature.degreesCelsius -4 )
+           ( &quot;Sauna&quot;, Temperature.degreesCelsius 82 )
+         ]</code></pre><p class='fsdocs-para'>then you could sort by temperature with</p><pre><code class="">
+     Temperature.sortBy Tuple.second rooms
+     --&gt; [ ( &quot;Rink&quot;, Temperature.degreesCelsius -4 )
+     --&gt;   ( &quot;Locker room&quot;, Temperature.degreesCelsius 17 )
+     --&gt;   ( &quot;Lobby&quot;, Temperature.degreesCelsius 21 )
+     --&gt;   ( &quot;Sauna&quot;, Temperature.degreesCelsius 82 )
+     --&gt; ]</code></pre>
+            </p>
           </td>
         </tr>
       </tbody>
