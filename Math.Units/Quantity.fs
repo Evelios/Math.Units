@@ -25,7 +25,7 @@ type Quantity<'Units> with
     /// <summary>
     /// A generic zero value. This can be treated as a quantity in any
     /// units type, similar to how <c>None</c> can be treated as any kind
-    /// of <c>Maybe</c> type and <c>[]</c> can be treated as any kind of <c>List</c>.
+    /// of <c>Option</c> type and <c>[]</c> can be treated as any kind of <c>List</c>.
     /// </summary>
     static member zero: Quantity<'Units> =
         Quantity LanguagePrimitives.GenericZero
@@ -37,7 +37,7 @@ type Quantity<'Units> with
 
 
     /// <summary>
-    /// Alias for <c>positiveInfinity</c>.
+    /// Alias for <c>Quantity.positiveInfinity</c>.
     /// </summary>
     static member infinity: Quantity<'Units> =
         Quantity.positiveInfinity
@@ -191,18 +191,19 @@ type Quantity<'Units> with
     ///     Get the absolute value of a quantity.
     /// </summary>
     ///
-    /// <example><code lang="fsharp">
-    ///     Quantity.abs (Duration.milliseconds -10)
-    ///     Duration.milliseconds 10
-    /// </code></example>
-    ///
     /// <example>
-    ///   This function can be called from the global function or the module
-    ///   function. They both return the same result
-    ///   <code lang="fsharp">
-    ///     abs quantity
-    ///     Units.abs quantity
-    ///   </code>
+    /// <para>
+    /// This function can be called from the global function or the module
+    /// function. They both return the same result
+    /// </para>
+    /// <code>
+    ///     abs quantity = Units.abs quantity
+    /// </code>
+    /// 
+    /// <code>
+    ///     Quantity.abs (Duration.milliseconds -10)
+    ///     --> Duration.milliseconds 10
+    /// </code>
     /// </example>
     static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity.Abs quantity
 

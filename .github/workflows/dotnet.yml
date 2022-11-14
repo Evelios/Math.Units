@@ -42,21 +42,19 @@ jobs:
 
       - name: Run Tests
         run: dotnet test --configuration Release /p:Version=${{ steps.gitversion.outputs.AssemblySemVer }} --no-build --verbosity normal
+        
+      - name: Download fsdocs documentation tool
+        run: dotnet tool restore
 
+      - name: Build documentation
+        run: dotnet fsdocs build --strict --eval --input Docs --properties Configuration=Release
+        
       - name: Package nuget
         run: dotnet pack Math.Units.sln --configuration Release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
 
       - name: Push generated package to GitHub registry
         run: dotnet nuget push ./package/Math.Units.*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }}
         
-      - name: Push generated package to Nuget registry
-        run: nuget push ./package/Math.Units.*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NugetKey}}
-     
-      - name: Download fsdocs documentation tool
-        run: dotnet tool restore
-        
-      - name: Build documentation
-        run: dotnet fsdocs build --strict --eval --input Docs --properties Configuration=Release
       - name: Push documentation
         uses: s0/git-publish-subdir-action@develop
         env:
@@ -64,3 +62,7 @@ jobs:
           BRANCH: docs
           FOLDER: output
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Push generated package to Nuget registry
+        run: nuget push ./package/Math.Units.*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NugetKey}}
+     

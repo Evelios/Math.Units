@@ -1,14 +1,27 @@
+/// <summary>
 /// A <c>Resistance</c> value represents an electrical resistance in ohms.
-/// Note that since <c>Ohms</c> is defined as <c>Rate Volts Amperes</c> (voltage per unit
+/// </summary>
+/// 
+/// <note>
+/// <para>
+/// Since <c>Ohms</c> is defined as <c>Rate Volts Amperes</c> (voltage per unit
 /// current), you can construct a <c>Resistance</c> value using <c>Quantity.per</c>:
-///     resistance =
+/// </para>
+/// <code>
+///     let resistance =
 ///         voltage |> Quantity.per current
+/// </code>
+/// <para>
 /// You can also do rate-related calculations with <c>Resistance</c> values to compute
+/// </para>
+/// <code>
 /// <c>Voltage</c> or <c>Current</c>:
-///     voltage =
+///     let voltage =
 ///         current |> Quantity.at resistance
-///     current =
+///     let current =
 ///         voltage |> Quantity.at_ resistance
+/// </code>
+/// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Resistance
 

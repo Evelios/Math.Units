@@ -1,66 +1,49 @@
-/// Unlike other modules in <c>elm-units</c>, this module contains two different
+/// <summary>
+/// Unlike other modules in <c>Math.Units</c>, this module contains two different
 /// primary types:
-///   - <c>Temperature</c>, which is not actually a <c>Quantity</c> since temperatures don't
+/// <list type="bullet">
+/// <item><description>
+///     <c>Temperature</c>, which is not actually a <c>Quantity</c> since temperatures don't
 ///     really act like normal quantities. For example, it doesn't make sense to
 ///     add two temperatures or find the ratio between them.
-///   - <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c>
-///     _is_ a <c>Quantity</c> since it does make sense to add two deltas to get a net
+/// </description></item>
+/// <item><description>
+///     <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c>
+///     <i>is</i> a <c>Quantity</c> since it does make sense to add two deltas to get a net
 ///     delta, find the ratio between two deltas (one rise in temperature might be
 ///     twice as much as another rise in temperature), etc.
+/// </description></item>
+/// </list>
 /// Since a <c>Temperature</c> value is not a <c>Quantity</c>, this module exposes specialized
-/// functions for doing the operations on <c>Temperature</c> values that _do_ make sense,
+/// functions for doing the operations on <c>Temperature</c> values that <i>do</i> make sense,
 /// such as comparing two temperatures or sorting a list of temperatures. It's also
-/// possible to find the delta from one temperature to another using [<c>minus</c>](Temperature#minus),
-/// and then add a <c>Delta</c> to a <c>Temperature</c> using [<c>plus</c>](Temperature#plus).
-///
-/// @docs Temperature, Delta, CelsiusDegrees
-///
-/// # Temperatures
-///
-/// @docs degreesCelsius, inDegreesCelsius, degreesFahrenheit, inDegreesFahrenheit, kelvins, inKelvins, absoluteZero
-///
-/// # Deltas
-///
-/// Following the suggestion mentioned [here](https://en.wikipedia.org/wiki/Celsius#Temperatures_and_intervals),
-/// this module uses (for example) <c>celsiusDegrees</c> to indicate a temperature delta
-/// (change in temperature), in contrast to <c>degreesCelsius</c> which indicates an
-/// actual temperature.
-///
-/// @docs celsiusDegrees, inCelsiusDegrees, fahrenheitDegrees, inFahrenheitDegrees
-///
-/// ## Constants
-///
-/// Shorthand for <c>Temperature.celsiusDegrees 1</c> and `Temperature.fahrenheitDegrees
-/// 1<c>. Can be convenient to use with [</c>Quantity.per`](Quantity#per).
-///
-/// @docs celsiusDegree, fahrenheitDegree
-///
-/// # Comparison
-///
-/// @docs lessThan, greaterThan, lessThanOrEqualTo, greaterThanOrEqualTo, compare, equalWithin, min, max
-///
-/// # Arithmetic
-///
-/// @docs plus, minus, clamp
-///
-/// # List functions
-///
-/// @docs minimum, maximum, sort, sortBy
+/// possible to find the delta from one temperature to another using <c>Temperature.minus</c>,
+/// and then add a <c>Delta</c> to a <c>Temperature</c> using <c>Temperature.plus</c>.
+/// </summary>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Temperature
 
 
 
-/// Construct a temperature from a number of [kelvins][kelvin].
+/// <summary>
+/// Construct a temperature from a number of
+/// <a href="https://en.wikipedia.org/wiki/Kelvin">kelvins</a>.
+/// </summary>
+/// 
+/// <example><code>
 ///     Temperature.kelvins 300
-///     --> Temperature.degreesCelsius 26.85
-/// [kelvin]: https://en.wikipedia.org/wiki/Kelvin "Kelvin"
+///     --&gt; Temperature.degreesCelsius 26.85
+/// </code></example>
 let kelvins (numKelvins: float) : Temperature = Temperature numKelvins
 
+/// <summary>
 /// Convert a temperature to a number of kelvins.
+/// </summary>
+/// <example><code>
 ///    Temperature.degreesCelsius 0
-///        |> Temperature.inKelvins
-///    --> 273.15
+///        |&gt; Temperature.inKelvins
+///    --&gt; 273.15
+/// </code></example>
 let inKelvins (numKelvins: Temperature) : float = numKelvins.Value
 
 /// Construct a temperature from a number of degrees Celsius.
@@ -77,10 +60,15 @@ let degreesFahrenheit (numDegreesFahrenheit: float) : Temperature =
 let inDegreesFahrenheit (temperature: Temperature) : float =
     32. + 1.8 * inDegreesCelsius temperature
 
-/// [Absolute zero](https://en.wikipedia.org/wiki/Absolute_zero), equal to zero
-/// kelvins or -273.15 degrees Celsius.
+/// <summary>
+/// <a href="https://en.wikipedia.org/wiki/Absolute_zero">Absolute zero</a>,
+/// equal to zero kelvins or -273.15 degrees Celsius.
+/// </summary>
+/// 
+/// <example><code>
 ///     Temperature.absoluteZero
-///     --> Temperature.degreesCelsius -273.15
+///     --&gt; Temperature.degreesCelsius -273.15
+/// </code></example>
 let absoluteZero = kelvins 0
 
 
@@ -92,16 +80,25 @@ let celsiusDegrees (numCelsiusDegrees: float) : Delta = Quantity numCelsiusDegre
 /// Convert a temperature delta to a number of Celsius degrees.
 let inCelsiusDegrees (numCelsiusDegrees: Delta) : float = numCelsiusDegrees.Value
 
+/// <summary>
 /// Construct a temperature delta from a number of Fahrenheit degrees.
+/// </summary>
+/// 
+/// <example><code>
 ///    Temperature.fahrenheitDegrees 36
-///    --> Temperature.celsiusDegrees 20
+///    --&gt; Temperature.celsiusDegrees 20
+/// </code></example>
 let fahrenheitDegrees (numFahrenheitDegrees: float) : Delta =
     celsiusDegrees (numFahrenheitDegrees / 1.8)
 
+/// <summary>
 /// Convert a temperature delta to a number of Fahrenheit degrees.
+/// </summary>
+/// <example><code>
 ///    Temperature.celsiusDegrees 10
-///        |> Temperature.inFahrenheitDegrees
-///    --> 18
+///        |&gt; Temperature.inFahrenheitDegrees
+///    --&gt; 18
+/// </code></example>
 let inFahrenheitDegrees (quantity: Delta) : float = inCelsiusDegrees quantity * 1.8
 
 let celsiusDegree = celsiusDegrees 1
@@ -109,58 +106,81 @@ let fahrenheitDegree = fahrenheitDegrees 1
 
 // ---- Operators --------------------------------------------------------------
 
-// This is meant to be used with pipe operators.
-//     Temperature.inDegreesCelsius 10.
-//     |> Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
-//
+/// <summary>
+/// This is meant to be used with pipe operators.
+/// <code>
+///     Temperature.inDegreesCelsius 10.
+///     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
+/// </code>
+/// </summary>
 let lessThan (rhs: Temperature) (lhs: Temperature) : bool = lhs < rhs
 
-// This is meant to be used with pipe operators.
-//     Temperature.inDegreesCelsius 10.
-//     |> Temperature.greaterThanOrEqualTo (Temperature.inDegreesCelsius 15.)
-//
+/// <summary>
+/// This is meant to be used with pipe operators.
+/// <code>
+///     Temperature.inDegreesCelsius 10.
+///     |&gt; Temperature.greaterThanOrEqualTo (Temperature.inDegreesCelsius 15.)
+/// </code>
+/// </summary>
 let lessThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs <= rhs
 
-// This is meant to be used with pipe operators.
-//     Temperature.inDegreesCelsius 30.
-//     |> Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
-//
+/// <summary>
+/// This is meant to be used with pipe operators.
+/// <code>
+///     Temperature.inDegreesCelsius 30.
+///     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
+/// </code>
+/// </summary>
 let greaterThan (rhs: Temperature) (lhs: Temperature) : bool = lhs > rhs
 
-// This is meant to be used with pipe operators.
-//     Temperature.inDegreesCelsius 30.
-//     |> Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
-//
+/// <summary>
+/// This is meant to be used with pipe operators.
+/// <code>
+///     Temperature.inDegreesCelsius 30.
+///     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
+/// </code>
+/// </summary>
 let greaterThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs >= rhs
 
 
-// This is meant to be used with pipe operators.
-//     Temperature.inDegreesCelsius 20.
-//     |> Temperature.plus (Temperature.celsiusDegrees 35.)
-//
-//     ---- Temperature.inDegreesCelsius 55.
-//
+/// <summary>
+/// This is meant to be used with pipe operators.
+/// <code>
+///     Temperature.inDegreesCelsius 20.
+///     |&gt; Temperature.plus (Temperature.celsiusDegrees 35.)
+///     --&gt; Temperature.inDegreesCelsius 55.
+/// </code>
+/// </summary>
 let plus (rhs: Delta) (lhs: Temperature) : Temperature = lhs + rhs
 
 
 // ---- Functions --------------------------------------------------------------
 
+/// <summary>
 /// Given a lower and upper bound, clamp a given temperature to within those
-/// bounds. Say you wanted to clamp a temperature to be between 18 and 22 degrees
-/// Celsius:
-///     lowerBound =
+/// bounds.
+/// </summary>
+///
+/// <example>
+/// Say you wanted to clamp a temperature to be between 18 and 22 degrees /// Celsius:
+/// <code>
+///     let lowerBound =
 ///         Temperature.degreesCelsius 18
-///     upperBound =
+///     let upperBound =
 ///         Temperature.degreesCelsius 22
-///     Temperature.degreesCelsius 25
-///         |> Temperature.clamp lowerBound upperBound
-///     --> Temperature.degreesCelsius 22
-///     Temperature.degreesFahrenheit 67 -- approx 19.4 °C
-///         |> Temperature.clamp lowerBound upperBound
-///     --> Temperature.degreesFahrenheit 67
-///     Temperature.absoluteZero
-///         |> Temperature.clamp lowerBound upperBound
-///     --> Temperature.degreesCelsius 18
+/// 
+///     let Temperature.degreesCelsius 25
+///         |&gt; Temperature.clamp lowerBound upperBound
+///     --&gt; Temperature.degreesCelsius 22
+/// 
+///     let Temperature.degreesFahrenheit 67 -- approx 19.4 °C
+///         |&gt; Temperature.clamp lowerBound upperBound
+///     --&gt; Temperature.degreesFahrenheit 67
+/// 
+///     let Temperature.absoluteZero
+///         |&gt; Temperature.clamp lowerBound upperBound
+///     --&gt; Temperature.degreesCelsius 18
+/// </code></example>
 let clamp (lower: Temperature) (upper: Temperature) (temperature: Temperature) : Temperature =
     max lower.Value temperature.Value
     |> min upper.Value
@@ -176,28 +196,36 @@ let max (first: Temperature) (second: Temperature) : Temperature = max first sec
 
 // ---- List Functions ---------------------------------------------------------
 
+/// <summary>
 /// Find the minimum of a list of temperatures. Returns <c>Nothing</c> if the list
 /// is empty.
+/// </summary>
+/// <example><code>
 ///     Temperature.minimum
 ///         [ Temperature.degreesCelsius 20
-///         , Temperature.kelvins 300
-///         , Temperature.degreesFahrenheit 74
+///           Temperature.kelvins 300
+///           Temperature.degreesFahrenheit 74
 ///         ]
-///     --> Just (Temperature.degreesCelsius 20)
+///     --&gt; Some (Temperature.degreesCelsius 20)
+/// </code></example>
 let minimum (temperatures: Temperature list) : Temperature option =
     match temperatures with
     | first :: rest -> Some(List.fold min first rest)
     | [] -> None
 
 
+/// <summary>
 /// Find the maximum of a list of temperatures. Returns <c>Nothing</c> if the list
 /// is empty.
+/// </summary>
+/// <example><code>
 ///     Temperature.maximum
 ///         [ Temperature.degreesCelsius 20
-///         , Temperature.kelvins 300
-///         , Temperature.degreesFahrenheit 74
+///           Temperature.kelvins 300
+///           Temperature.degreesFahrenheit 74
 ///         ]
-///     --> Just (Temperature.kelvins 300)
+///     --&gt; Some (Temperature.kelvins 300)
+/// </code></example>
 let maximum (temperatures: Temperature list) : Temperature option =
     match temperatures with
     | first :: rest -> Some(List.fold max first rest)
@@ -205,33 +233,47 @@ let maximum (temperatures: Temperature list) : Temperature option =
     | [] -> None
 
 
+/// <summary>
 /// Sort a list of temperatures from lowest to highest.
+/// <code>
 ///     Temperature.sort
 ///         [ Temperature.degreesCelsius 20
-///         , Temperature.kelvins 300
-///         , Temperature.degreesFahrenheit 74
+///           Temperature.kelvins 300
+///           Temperature.degreesFahrenheit 74
 ///         ]
-///     --> [ Temperature.degreesCelsius 20
-///     --> , Temperature.degreesFahrenheit 74
-///     --> , Temperature.kelvins 300
-///     --> ]
+///     --&gt; [ Temperature.degreesCelsius 20
+///     --&gt;   Temperature.degreesFahrenheit 74
+///     --&gt;   Temperature.kelvins 300
+///     --&gt; ]
+/// </code>
+/// </summary>
 let sort (temperatures: Temperature list) : Temperature list = List.sortBy inKelvins temperatures
 
 
-/// Sort an arbitrary list of values by a derived <c>Temperature</c>. If you had
-///     rooms =
+/// <summary>
+/// Sort an arbitrary list of values by a derived <c>Temperature</c>.
+/// </summary>
+///
+/// <example>
+/// <para>If you had</para>
+/// <code>
+///     let rooms =
 ///         [ ( "Lobby", Temperature.degreesCelsius 21 )
-///         , ( "Locker room", Temperature.degreesCelsius 17 )
-///         , ( "Rink", Temperature.degreesCelsius -4 )
-///         , ( "Sauna", Temperature.degreesCelsius 82 )
+///           ( "Locker room", Temperature.degreesCelsius 17 )
+///           ( "Rink", Temperature.degreesCelsius -4 )
+///           ( "Sauna", Temperature.degreesCelsius 82 )
 ///         ]
-/// then you could sort by temperature with
+/// </code>
+/// <para>then you could sort by temperature with</para>
+/// <code>
 ///     Temperature.sortBy Tuple.second rooms
-///     --> [ ( "Rink", Temperature.degreesCelsius -4 )
-///     --> , ( "Locker room", Temperature.degreesCelsius 17 )
-///     --> , ( "Lobby", Temperature.degreesCelsius 21 )
-///     --> , ( "Sauna", Temperature.degreesCelsius 82 )
-///     --> ]
+///     --&gt; [ ( "Rink", Temperature.degreesCelsius -4 )
+///     --&gt;   ( "Locker room", Temperature.degreesCelsius 17 )
+///     --&gt;   ( "Lobby", Temperature.degreesCelsius 21 )
+///     --&gt;   ( "Sauna", Temperature.degreesCelsius 82 )
+///     --&gt; ]
+/// </code>
+/// </example>
 let sortBy (toTemperature: 'a -> Temperature) (list: 'a list) : 'a list =
     let comparator first second =
         compare (toTemperature first) (toTemperature second)

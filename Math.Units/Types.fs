@@ -71,9 +71,9 @@ type Squared<'Units> = Product<'Units, 'Units>
 /// <category>Unit Relation</category>
 /// <summary>
 /// Represents a units type that is the cube of some other units type; for
-/// example, <c>Meters</c> is one units type (the units type of a [<c>Length</c>](Length)) and
-/// <c>Cubed Meters</c> is another (the units type of an [<c>Volume</c>](Volume)). See the
-/// [<c>cubed</c>](Quantity#cubed) and [<c>cbrt</c>](Quantity#cbrt) functions for examples of
+/// example, <c>Meters</c> is one units type (the units type of a <c>Length</c>) and
+/// <c>Cubed Meters</c> is another (the units type of an <c>Volume</c>). See the
+/// <c>Quantity.cubed</c> and <c>Quantity.cbrt</c> functions for examples of
 /// use.
 /// This is a special case of the <c>Product</c> units type.
 /// </summary>
@@ -82,9 +82,8 @@ type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 
 /// <category>Unit Relation</category>
 /// <summary>
-/// Represents the units type of a rate or quotient such as a speed (`Rate
-/// Meters Seconds<c>) or a pressure (</c>Rate Newtons SquareMeters`). See [Working with
-/// rates](#working-with-rates) for details.
+/// Represents the units type of a rate or quotient such as a speed (<c>Rate
+/// Meters Seconds</c>) or a pressure (<c>Rate Newtons SquareMeters</c>).
 /// </summary>
 type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'IndependentUnits
 
@@ -452,15 +451,18 @@ type Temperature(kelvin: float) =
 // ---- Interval ---------------------------------------------------------------
 
 
+/// <category index="4">Advanced Types</category>
+/// <summary>
 /// A finite, closed interval with a minimum and maximum number. This can
 /// represent an interval of any type.
 ///
 /// For example...
+/// <code>
 ///     Interval float
 ///     Interval int
 ///     Interval Angle
-///
-/// <category index=4>Advanced Types</category>
+/// </code>
+/// </summary>
 [<CustomEquality; NoComparison>]
 type Interval<'Units> =
     | Interval of Start: Quantity<'Units> * Finish: Quantity<'Units>

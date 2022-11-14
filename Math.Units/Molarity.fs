@@ -1,22 +1,33 @@
+/// <summary>
 /// A <c>Molarity</c> value represents a concentration of substance in moles per
 /// cubic meter, moles per liter, millimoles per liter etc. It is stored as a number
 /// of moles per cubic meter.
-/// Note that the [NIST Guide to the
-/// SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-8)
+/// </summary>
+/// 
+/// <note>
+/// The <a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-8">NIST Guide to the SI</a>
 /// states that the term "molarity" is considered obsolete, but it appears to still
 /// be in common use and is far less verbose than the alternative NIST suggestion of
 /// "amount-of-substance concentration".
 /// Since the units of <c>Molarity</c> are defined to be <c>Rate Moles CubicMeters</c> (amount
 /// of substance per unit volume), you can construct a <c>Molarity</c> value using
 /// <c>Quantity.per</c>:
+/// <code>
 ///     molarity =
 ///         substanceAmount |> Quantity.per volume
+/// </code>
+/// </note>
+///
+/// <note>
 /// You can also do rate-related calculations with <c>Molarity</c> values to compute
 /// <c>SubstanceAmount</c> or <c>Volume</c>:
-///     substanceAmount =
+/// <code>
+///     let substanceAmount =
 ///         volume |> Quantity.at molarity
-///     volume =
+///     let volume =
 ///         substanceAmount |> Quantity.at_ molarity
+/// </code>
+/// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Molarity
 

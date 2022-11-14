@@ -36,18 +36,22 @@ let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 /// </summary>
 ///
 /// <example>
+/// <para>
 /// For example, to
 /// compute the luminous intensity of a light bulb with an output of 470 lumens
 /// which emits light equally in all directions:
+/// </para>
 /// <code>
 ///     LuminousFlux.lumens 470
 ///         |> Quantity.per (SolidAngle.spats 1)
 ///         |> LuminousIntensity.inCandelas
 ///     --> 37.4014
 /// </code>
-/// 
+///
+/// <para>
 /// If the same amount of light was emitted over a hemisphere instead of a full
 /// sphere, the luminous intensity would be twice as great:
+/// </para>
 /// <code>
 ///     LuminousFlux.lumens 470
 ///         |> Quantity.per (SolidAngle.spats 0.5)
