@@ -1,11 +1,12 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.LuminousFlux
 
+/// <summary>
 /// Construct a luminous flux value from a number of lumens. See
-/// [here][wp-luminous-flux-examples] and [here][wp-lumen-lighting] for the number
-/// of lumens emitted by some common light sources.
-/// [wp-luminous-flux-examples]: https://en.wikipedia.org/wiki/Luminous_flux#Examples
-/// [wp-lumen-lighting]: https://en.wikipedia.org/wiki/Lumen_(unit)#Lighting
+/// <a href="https://en.wikipedia.org/wiki/Luminous_flux#Examples">here</a>
+/// and <a href="https://en.wikipedia.org/wiki/Lumen_(unit)#Lighting">here</a>
+/// for the number of lumens emitted by some common light sources.
+/// </summary>
 let lumens (numLumens: float) : LuminousFlux = Quantity numLumens
 
 

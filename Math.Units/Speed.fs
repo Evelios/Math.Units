@@ -1,18 +1,27 @@
+/// <summary>
 /// A <c>Speed</c> value represents a speed in meters per second, miles per hour etc.
 /// It is stored as a number of meters per second.
-/// Note that since <c>MetersPerSecond</c> is defined as <c>Rate Meters Seconds</c> (length
+/// </summary>
+/// 
+/// <note>
+/// Since <c>MetersPerSecond</c> is defined as <c>Rate Meters Seconds</c> (length
 /// per unit time), you can construct a <c>Speed</c> value using <c>Quantity.per</c>:
+/// <code>
 ///     speed =
 ///         length |> Quantity.per duration
+/// </code>
 /// 
 /// You can also do rate-related calculations with <c>Speed</c> values to compute
 /// <c>Length</c> or <c>Duration</c>:
+/// <code>
 ///     length =
 ///         speed |> Quantity.for duration
 ///     alsoLength =
 ///         duration |> Quantity.at speed
 ///     duration =
 ///         length |> Quantity.at_ speed
+/// </code>
+/// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Speed
 

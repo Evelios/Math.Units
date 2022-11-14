@@ -18,7 +18,8 @@ dotnet tool install fsdocs-tool
 dotnet fsdocs build --input Docs --eval
 dotnet fsdocs watch --input Docs --eval
 
-dotnet fsdocs watch --projects Math.Units --input Docs --eval --properties Configuration=Releas
+dotnet fsdocs watch --projects Math.Units --input Docs --eval --properties Configuration=Release
+dotnet build --configuration Release && dotnet fsdocs watch --projects Math.Units --input Docs eval --properties Configuration=Release --clean
 ```
 
 

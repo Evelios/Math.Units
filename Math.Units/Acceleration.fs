@@ -18,7 +18,7 @@
 /// </code></example>
 ///
 /// <note>
-/// Note that since <c>MetersPerSecondSquared</c> is defined as <c>Rate MetersPerSecond Seconds</c>
+/// Since <c>MetersPerSecondSquared</c> is defined as <c>Rate MetersPerSecond Seconds</c>
 /// (change in speed per unit time), you can construct an <c>Acceleration</c>
 /// value using <c>Quantity.per</c>:
 /// <code lang="fsharp">

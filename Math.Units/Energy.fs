@@ -19,9 +19,13 @@ let megajoules (numMegajoules: float) : Energy = joules (1.0e6 * numMegajoules)
 /// Convert an energy value to a number of megajoules.
 let inMegajoules (energy: Energy) : float = inJoules energy / 1.0e6
 
+/// <summary>
+/// <code>
 /// Construct an energy value from a number of kilowatt hours.
 ///    Energy.kilowattHours 1
 ///    --> Energy.megajoules 3.6
+/// </code>
+/// </summary>
 let kilowattHours (numKilowattHours: float) : Energy = joules (3.6e6 * numKilowattHours)
 
 /// Convert an energy value to a number of kilowatt hours.

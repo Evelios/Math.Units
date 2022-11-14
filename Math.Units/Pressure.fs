@@ -1,16 +1,23 @@
+/// <summary>
 /// A <c>Pressure</c> value represents a pressure in kilopascals, pounds per square
-/// inch, [atmospheres][1] etc. It is stored as a number of pascals.
-/// Note that since <c>Pascals</c> is defined as <c>Rate Newtons SquareMeters</c> (force per
+/// inch, <a href="https://en.wikipedia.org/wiki/Atmosphere_(unit)">atmospheres</a>
+/// etc. It is stored as a number of pascals.
+/// </summary>
+/// 
+/// <note>
+/// Since <c>Pascals</c> is defined as <c>Rate Newtons SquareMeters</c> (force per
 /// unit area), you can construct a <c>Pressure</c> value using <c>Quantity.per</c>:
 ///     pressure =
 ///         force |> Quantity.per area
 /// You can also do rate-related calculations with <c>Pressure</c> values to compute
 /// <c>Force</c> or <c>Area</c>:
-///     force =
+/// <code>
+///     let force =
 ///         area |> Quantity.at pressure
-///     area =
+///     let area =
 ///         force |> Quantity.at_ pressure
-/// [1]: https://en.wikipedia.org/wiki/Atmosphere_(unit)
+/// </code>
+/// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Pressure
 
@@ -43,8 +50,9 @@ let inPoundsPerSquareInch (pressure: Pressure) : float =
     |> Quantity.at pressure
     |> Force.inPounds
 
-/// Construct a pressure from a number of [atmospheres][1].
-/// [1]: https://en.wikipedia.org/wiki/Atmosphere_(unit)
+/// <summary>
+/// Construct a pressure from a number of <a href="https://en.wikipedia.org/wiki/Atmosphere_(unit)">atmospheres</a>.
+/// </summary>
 let atmospheres (numAtmospheres: float) : Pressure =
     pascals (Constants.atmosphere * numAtmospheres)
 

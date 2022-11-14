@@ -20,18 +20,20 @@ let meganewtons (numMeganewtons: float) : Force = newtons (1.0e6 * numMeganewton
 let inMeganewtons (force: Force) : float = inNewtons force / 1.0e6
 
 /// Construct a force value from a number of pounds force. One pound force is
-/// the force required to accelerate one [pound mass][1] at a rate of [one gee][2].
-/// [1]: Mass#pounds
-/// [2]: Acceleration#gees
+/// the force required to accelerate one pound mass at a rate of one gee.
 let pounds (numPounds: float) : Force =
     newtons (Constants.poundForce * numPounds)
 
 /// Convert a force value to a number of pounds force.
 let inPounds (force: Force) : float = inNewtons force / Constants.poundForce
 
+/// <summary>
 /// Construct a force value from a number of kips (kilopounds force).
+/// <code>
 ///    Force.kips 2
 ///    --> Force.pounds 2000
+/// </code>
+/// </summary>
 let kips (numKips: float) : Force = pounds (1000. * numKips)
 
 /// Convert a force value to a number of kips.

@@ -24,9 +24,9 @@ open System
 /// <para>
 /// This library does comparison by absolute value comparison through digit
 /// precision. Numbers are considered equal if they are equal when rounded to
-/// the number of digits as specified by <see cref="M:Math.Units.Float.DigitPrecision">.
+/// the number of digits as specified by <c>Float.DigitPrecision</c>.
 /// The default is 10 digits, so by default <c>2.0 = 2.00000000003</c> (the 11th digit is a 3).
-///  </para>
+/// </para>
 ///
 /// <para>
 /// <c>Float.Epsilon</c> is a derived value from the number of digits and represents

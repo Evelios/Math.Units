@@ -1,5 +1,7 @@
+/// <summary>
 /// A <c>Mass</c> represents a mass in kilograms, pounds, metric or imperial tons
 /// etc. It is stored as a number of kilograms.
+/// </summary>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Mass
 
@@ -24,36 +26,50 @@ let inPounds (mass: Mass) : float = inKilograms mass / Constants.pound
 /// Construct a mass from a number of ounces.
 let ounces (numOunces: float) : Mass = kilograms (Constants.ounce * numOunces)
 
+/// <summary>
 /// Convert a mass to a number of ounces.
+/// <code>
 ///    Mass.pounds 1 |> Mass.inOunces
 ///    --> 16
+/// </code>
+/// </summary>
 let inOunces (mass: Mass) : float = inKilograms mass / Constants.ounce
 
-/// Construct a mass from a number of [metric tons][1].
+/// <summary>
+/// Construct a mass from a number of <a href="https://en.wikipedia.org/wiki/Tonne">metric tons</a>.
+/// <code>
 ///    Mass.metricTons 1
 ///    --> Mass.kilograms 1000
-/// [1]: https://en.wikipedia.org/wiki/Tonne
+/// </code>
+/// </summary>
 let metricTons (numTonnes: float) : Mass = kilograms (1000. * numTonnes)
 
 /// Convert a mass to a number of metric tons.
 let inMetricTons (mass: Mass) : float = 0.001 * inKilograms mass
 
-/// Construct a mass from a number of [short tons][1]. This is the 'ton'
+/// <summary>
+/// Construct a mass from a number of <a href="https://en.wikipedia.org/wiki/Short_ton">short tons</a>. This is the 'ton'
 /// commonly used in the United States.
+/// <code>
 ///     Mass.shortTons 1
 ///     --> Mass.pounds 2000
-/// [1]: https://en.wikipedia.org/wiki/Short_ton
+/// </code>
+/// </summary>
 let shortTons (numShortTons: float) : Mass =
     kilograms (Constants.shortTon * numShortTons)
 
 /// Convert a mass to a number of short tons.
 let inShortTons (mass: Mass) : float = inKilograms mass / Constants.shortTon
 
-/// Construct a mass from a number of [long tons][1]. This is the 'ton' commonly
-/// used in the United Kingdom and British Commonwealth.
+/// <summary>
+/// Construct a mass from a number of
+/// <a href="https://en.wikipedia.org/wiki/Long_ton">long tons</a>.
+/// This is the 'ton' commonly used in the United Kingdom and British Commonwealth.
+/// <code>
 ///     Mass.longTons 1
 ///     --> Mass.pounds 2240
-/// [1]: https://en.wikipedia.org/wiki/Long_ton
+/// </code>
+/// </summary>
 let longTons (numLongTons: float) : Mass =
     kilograms (Constants.longTon * numLongTons)
 
