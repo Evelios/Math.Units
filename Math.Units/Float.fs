@@ -3,10 +3,11 @@ namespace Math.Units
 open System
 
 /// <summary>
-/// A module that allows for approximate comparison of floating point
-/// values. This works by limiting the amount of precision that is used
-/// when comparing two floating point values for comparison.
+/// A static class providing added features to the floating point number class.
+/// </summary>
 ///
+/// <remark>
+/// <para>
 /// A static class providing added features to the floating point number class.
 /// The main features of this class allow for better floating point equality
 /// testing. Generally, floating points always have small variations in their
@@ -18,20 +19,27 @@ open System
 /// other. Another is to compare if the two numbers are within an absolute range
 /// from each other, eg. Two floating point numbers are equal if they are within
 /// 0.0001 units of each other.
+/// </para>
 ///
+/// <para>
 /// This library does comparison by absolute value comparison through digit
 /// precision. Numbers are considered equal if they are equal when rounded to
-/// the number of digits as specified by <c>Float.DigitPrecision</c>. The default is
-/// 10 digits, so by default <c>2.0 = 2.00000000003</c> (the 11th digit is a 3).
+/// the number of digits as specified by <see cref="M:Math.Units.Float.DigitPrecision">.
+/// The default is 10 digits, so by default <c>2.0 = 2.00000000003</c> (the 11th digit is a 3).
+///  </para>
 ///
+/// <para>
 /// <c>Float.Epsilon</c> is a derived value from the number of digits and represents
 /// the maximum difference between two numbers that is considered equal. This
-/// number is <c>10^-DigitPrecision</c> which by default is <c>10^(-10)</c>, or
+/// number is <c>10^-(DigitPrecision)</c> which by default is <c>10^(-10)</c>, or
 /// <c>0.000000001</c>.
+/// </para>
 ///
+/// <para>
 /// In general the rules followed by this extension are from
-/// <a href="https://floating-point-gui.de/errors/comparison">The Floating Point Guide on Comparison</a>
-/// </summary>
+/// <a href="https://floating-point-gui.de/errors/comparison/">The Floating Point Guide on Comparison</a>
+/// </para>
+/// </remark>
 [<AbstractClass; Sealed>]
 type Float private () =
     static let mutable digitPrecision = 10
