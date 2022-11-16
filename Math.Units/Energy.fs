@@ -24,7 +24,7 @@ let inMegajoules (energy: Energy) : float = inJoules energy / 1.0e6
 /// <code>
 /// Construct an energy value from a number of kilowatt hours.
 ///    Energy.kilowattHours 1
-///    --> Energy.megajoules 3.6
+///    --&gt; Energy.megajoules 3.6
 /// </code>
 /// </summary>
 let kilowattHours (numKilowattHours: float) : Energy = joules (3.6e6 * numKilowattHours)

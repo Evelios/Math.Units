@@ -32,7 +32,7 @@ let inPounds (force: Force) : float = inNewtons force / Constants.poundForce
 /// Construct a force value from a number of kips (kilopounds force).
 /// <code>
 ///    Force.kips 2
-///    --> Force.pounds 2000
+///    --&gt; Force.pounds 2000
 /// </code>
 /// </summary>
 let kips (numKips: float) : Force = pounds (1000. * numKips)

@@ -67,7 +67,7 @@ let inMegawatts (power: Power) : float = inWatts power / 1.0e6
 /// <a href="https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower">metric horsepower</a>.
 /// <code>
 ///     Power.metricHorsepower 1
-///     --> Power.watts 735.49875
+///     --&gt; Power.watts 735.49875
 /// </code>
 /// </summary>
 let metricHorsepower (numMetricHorsepower: float) : Power =
@@ -84,7 +84,7 @@ let inMetricHorsepower (power: Power) : float =
 /// <a href="https://en.wikipedia.org/wiki/Horsepower#Mechanical_horsepower">mechanical horsepower</a>.
 /// <code>
 ///     Power.mechanicalHorsepower 1
-///     --> Power.watts 745.6998715822702
+///     --&gt; Power.watts 745.6998715822702
 /// </code>
 /// </summary>
 let mechanicalHorsepower (numMechanicalHorsepower: float) : Power =
@@ -104,7 +104,7 @@ let inMechanicalHorsepower (power: Power) : float =
 /// <a href="https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower">electrical horsepower</a>.
 /// <code>
 ///     Power.electricalHorsepower 1
-///     --> Power.watts 746
+///     --&gt; Power.watts 746
 /// </code>
 /// </summary>
 let electricalHorsepower (numElectricalHorsepower: float) : Power =

@@ -78,11 +78,11 @@ type Quantity<'Units> with
     ///         Length.meters 1
     ///
     ///     Length.feet 1 |&gt; Quantity.lessThan oneMeter
-    ///     --> True
+    ///     --&gt; True
     ///
     ///     // Is the same as:
     ///     Quantity.lessThan oneMeter (Length.feet 1)
-    ///     --> True
+    ///     --&gt; True
     ///
     /// </code>
     /// </example>
@@ -95,7 +95,7 @@ type Quantity<'Units> with
     ///           Length.yards 1
     ///           Length.lightYears 1
     ///         ]
-    ///     --> [ Length.feet 1; Length.yards 1 ]
+    ///     --&gt; [ Length.feet 1; Length.yards 1 ]
     /// </code>
     /// </example>
     /// </summary>
@@ -108,18 +108,18 @@ type Quantity<'Units> with
     ///    oneMeter =
     ///        Length.meters 1
     ///    Length.feet 1 |&gt; Quantity.greaterThan oneMeter
-    ///    // --> False
+    ///    // --&gt; False
     ///
     ///    // Same as:
     ///    Quantity.greaterThan oneMeter (Length.feet 1)
-    ///    // --> False
+    ///    // --&gt; False
     ///    List.filter (Quantity.greaterThan oneMeter)
     ///        [ Length.feet 1
     ///        , Length.parsecs 1
     ///        , Length.yards 1
     ///        , Length.lightYears 1
     ///        ]
-    ///    --> [ Length.parsecs 1, Length.lightYears 1 ]
+    ///    --&gt; [ Length.parsecs 1, Length.lightYears 1 ]
     /// </code></example>
     /// </summary>
     static member greaterThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x > y
@@ -177,15 +177,15 @@ type Quantity<'Units> with
     ///     Quantity.compare
     ///         (Duration.minutes 90)
     ///         (Duration.hours 1)
-    ///     --> 1
+    ///     --&gt; 1
     ///     Quantity.compare
     ///         (Duration.minutes 60)
     ///         (Duration.hours 1)
-    ///     --> 0
+    ///     --&gt; 0
     ///     Quantity.compare
     ///         (Duration.minutes 45)
     ///         (Duration.hours 1)
-    ///     --> -1
+    ///     --&gt; -1
     /// </code></example>
     static member compare (x: Quantity<'Units>) (y: Quantity<'Units>) : int = x.Comparison(y)
 
@@ -204,7 +204,7 @@ type Quantity<'Units> with
     /// 
     /// <code>
     ///     Quantity.abs (Duration.milliseconds -10)
-    ///     --> Duration.milliseconds 10
+    ///     --&gt; Duration.milliseconds 10
     /// </code>
     /// </example>
     static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity.Abs quantity
@@ -221,11 +221,11 @@ type Quantity<'Units> with
     ///     Quantity.equalWithin (Length.centimeters 10)
     ///         (Length.meters 1)
     ///         (Length.feet 3)
-    ///     --> True
+    ///     --&gt; True
     ///     Quantity.equalWithin (Length.centimeters 5)
     ///         (Length.meters 1)
     ///         (Length.feet 3)
-    ///     --> False
+    ///     --&gt; False
     /// </code></example>
     static member equalWithin (tolerance: Quantity<'Units>) (x: Quantity<'Units>) (y: Quantity<'Units>) : bool =
         abs (x - y) <= abs tolerance
@@ -237,7 +237,7 @@ type Quantity<'Units> with
     ///
     /// <example><code lang="fsharp">
     ///    Quantity.max (Duration.hours 2) (Duration.minutes 100)
-    ///    --> Duration.hours 2
+    ///    --&gt; Duration.hours 2
     /// </code></example>
     static member max (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = max x y
 
@@ -248,7 +248,7 @@ type Quantity<'Units> with
     ///
     /// <example><code lang="fsharp">
     ///    Quantity.min (Duration.hours 2) (Duration.minutes 100)
-    ///    --> Duration.minutes 100
+    ///    --&gt; Duration.minutes 100
     /// </code></example>
     static member min (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = min x y
 
@@ -262,9 +262,9 @@ type Quantity<'Units> with
     ///        (Length.meters 1
     ///            |&gt; Quantity.per (Duration.seconds 0)
     ///        )
-    ///    --> True
+    ///    --&gt; True
     ///    Quantity.isInfinite Quantity.negativeInfinity
-    ///    --> True
+    ///    --&gt; True
     /// </code></example>
     static member isInfinite(quantity: Quantity<'Units>) : bool = Double.IsInfinity quantity.Value
 
@@ -275,9 +275,9 @@ type Quantity<'Units> with
     ///
     /// <example><code lang="fsharp">
     ///    Quantity.isNan (Quantity.sqrt (Area.squareMeters -4))
-    ///    --> True
+    ///    --&gt; True
     ///    Quantity.isNan (Quantity.sqrt (Area.squareMeters 4))
-    ///    --> False
+    ///    --&gt; False
     /// </code></example>
     static member isNaN(quantity: Quantity<'Units>) : bool = Double.IsNaN quantity.Value
 
@@ -292,7 +292,7 @@ type Quantity<'Units> with
     ///
     /// <example><code lang="fsharp">
     ///    Quantity.negate (Length.millimeters 10)
-    ///    --> Length.millimeters -10
+    ///    --&gt; Length.millimeters -10
     /// </code></example>
     static member negate(value: Quantity<'Units>) : Quantity<'Units> = -value
 
@@ -303,7 +303,7 @@ type Quantity<'Units> with
     ///
     /// <example><code lang="fsharp">
     ///    Length.meters 1 |&gt; Quantity.plus (Length.centimeters 5)
-    ///    --> Length.centimeters 105
+    ///    --&gt; Length.centimeters 105
     /// </code></example>
     static member plus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x + y
 
@@ -316,7 +316,7 @@ type Quantity<'Units> with
     ///    Quantity.difference
     ///        (Duration.hours 1)
     ///        (Duration.minutes 15)
-    ///    --> Duration.minutes 45
+    ///    --&gt; Duration.minutes 45
     /// </code></example>
     static member difference (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x - y
 
@@ -342,10 +342,10 @@ type Quantity<'Units> with
     ///         , Duration.hours 2
     ///         , Duration.minutes 30
     ///         ]
-    ///     --> [ Duration.minutes 45
-    ///     --> , Duration.minutes 105
-    ///     --> , Duration.minutes 15
-    ///     --> ]
+    ///     --&gt; [ Duration.minutes 45
+    ///     --&gt; , Duration.minutes 105
+    ///     --&gt; , Duration.minutes 15
+    ///     --&gt; ]
     /// </code>
     /// </note>
     static member minus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x - y
@@ -361,14 +361,14 @@ type Quantity<'Units> with
     /// <code lang="fsharp">
     ///     // This is the definition of an acre, I kid you not 😈
     ///     Quantity.product (Length.feet 66) (Length.feet 660)
-    ///     --> Area.acres 1
+    ///     --&gt; Area.acres 1
     /// </code>
     /// We can also multiply an <c>Area</c> by a <c>Length</c> to get a <c>Volume</c>:
     /// <code lang="fsharp">
     ///     Quantity.product
     ///         (Area.squareMeters 1)
     ///         (Length.centimeters 1)
-    ///     --> Volume.liters 10
+    ///     --&gt; Volume.liters 10
     /// </code>
     /// </summary>
     ///
@@ -428,7 +428,7 @@ type Quantity<'Units> with
     ///     Force.newtons 100
     ///         |&gt; Quantity.over
     ///             (Mass.kilograms 50)
-    ///     --> Acceleration.metersPerSecondSquared 2
+    ///     --&gt; Acceleration.metersPerSecondSquared 2
     /// </code>
     /// </summary>
     /// <note>There are other forms of division.</note>
@@ -443,7 +443,7 @@ type Quantity<'Units> with
     ///     Force.newtons 100
     ///         |&gt; Quantity.over_
     ///             (Acceleration.metersPerSecondSquared 5)
-    ///     --> Mass.kilograms 20
+    ///     --&gt; Mass.kilograms 20
     /// </code>
     /// </summary>
     static member over_ (y: Quantity<'U2>) (x: Quantity<Product<'U1, 'U2>>) : Quantity<'U1> =
@@ -471,7 +471,7 @@ type Quantity<'Units> with
     /// Find the ratio of two quantities with the same units.
     /// <code lang="fsharp">
     ///    Quantity.ratio (Length.miles 1) (Length.yards 1)
-    ///    --> 1760
+    ///    --&gt; 1760
     /// </code>
     /// </summary>
     static member ratio (x: Quantity<'Units>) (y: Quantity<'Units>) : float = x / y
@@ -481,7 +481,7 @@ type Quantity<'Units> with
     /// Scale a <c>Quantity</c> by a <c>number</c>.
     /// <code lang="fsharp">
     ///     Quantity.multiplyBy 1.5 (Duration.hours 1)
-    ///     --> Duration.minutes 90
+    ///     --&gt; Duration.minutes 90
     /// </code>
     /// </summary>
     /// <note>There are other forms of multiplication</note>
@@ -494,7 +494,7 @@ type Quantity<'Units> with
     /// </summary>
     /// <code lang="fsharp">
     ///     Quantity.divideBy 2 (Duration.hours 1)
-    ///     --> Duration.minutes 30
+    ///     --&gt; Duration.minutes 30
     /// </code>
     /// <note>There are other forms of division</note>
     static member divideBy (divisor: float) (quantity: Quantity<'Units>) : Quantity<'Units> =
@@ -505,7 +505,7 @@ type Quantity<'Units> with
     /// Convenient shorthand for <c>Quantity.multiplyBy 2</c>.
     /// <code lang="fsharp">
     ///    Quantity.twice (Duration.minutes 30)
-    ///    --> Duration.hours 1
+    ///    --&gt; Duration.hours 1
     /// </code>
     /// </summary>
     static member twice(quantity: Quantity<'Units>) : Quantity<'Units> = 2. * quantity
@@ -515,7 +515,7 @@ type Quantity<'Units> with
     /// Convenient shorthand for <c>Quantity.multiplyBy 0.5</c>.
     /// <code lang="fsharp">
     ///    Quantity.half (Length.meters 1)
-    ///    --> Length.centimeters 50
+    ///    --&gt; Length.centimeters 50
     /// </code>
     /// </summary>
     static member half(quantity: Quantity<'Units>) : Quantity<'Units> = 0.5 * quantity
@@ -529,12 +529,12 @@ type Quantity<'Units> with
     ///     let upperBound =
     ///         Angle.degrees 30
     ///     Quantity.clamp lowerBound upperBound (Angle.degrees 5)
-    ///     --> Angle.degrees 5
+    ///     --&gt; Angle.degrees 5
     ///     -- One radian is approximately 57 degrees
     ///     Quantity.clamp lowerBound upperBound (Angle.radians 1)
-    ///     --> Angle.degrees 30
+    ///     --&gt; Angle.degrees 30
     ///     Quantity.clamp lowerBound upperBound (Angle.turns -0.5)
-    ///     --> Angle.degrees -30
+    ///     --&gt; Angle.degrees -30
     /// </code>
     /// </summary>
     static member clamp (lower: Quantity<'Units>) (upper: Quantity<'Units>) (quantity: Quantity<'Units>) =
@@ -556,7 +556,7 @@ type Quantity<'Units> with
     /// <c>Squared units</c>:
     /// <code lang="fsharp">
     ///     Quantity.squared (Length.meters 5)
-    ///     --> Area.squareMeters 25
+    ///     --&gt; Area.squareMeters 25
     /// See also <c>Quantity.squaredUnitless</c>.
     /// </code>
     /// </summary>
@@ -575,7 +575,7 @@ type Quantity<'Units> with
     /// quantity in plain <c>units</c>:
     /// <code lang="fsharp">
     ///     Quantity.sqrt (Area.hectares 1)
-    ///     --> Length.meters 100
+    ///     --&gt; Length.meters 100
     /// </code>
     /// Getting fancier, you could write a 2D hypotenuse (magnitude) function that
     /// worked on <b>any</b> quantity type (length, speed, force...) as
@@ -607,7 +607,7 @@ type Quantity<'Units> with
     /// <c>Cubed units</c>.
     /// <code lang="fsharp">
     ///     Quantity.cubed (Length.meters 5)
-    ///     --> Volume.cubicMeters 125
+    ///     --&gt; Volume.cubicMeters 125
     /// </code>
     /// See also <c>Quantity.cubedUnitless</c>.
     /// </summary>
@@ -633,7 +633,7 @@ type Quantity<'Units> with
     /// quantity in plain <c>units</c>.
     /// <code lang="fsharp">
     ///     Quantity.cbrt (Volume.liters 1)
-    ///     --> Length.centimeters 10
+    ///     --&gt; Length.centimeters 10
     /// </code>
     /// See also <c>Quantity.cbrtUnitless</c>.
     /// </summary>
@@ -648,7 +648,7 @@ type Quantity<'Units> with
     /// Find the inverse of a unitless quantity.
     /// <code lang="fsharp">
     ///    Quantity.reciprocal (Quantity.float 5)
-    ///    --> Quantity.float 0.2
+    ///    --&gt; Quantity.float 0.2
     /// </code>
     /// </summary>
     static member reciprocal(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(1. / quantity.Value)
@@ -680,25 +680,25 @@ type Quantity<'Units> with
     ///     tenMeters =
     ///         Length.meters 10
     ///     Quantity.interpolateFrom fiveMeters tenMeters 0
-    ///     --> Length.meters 5
+    ///     --&gt; Length.meters 5
     ///     Quantity.interpolateFrom fiveMeters tenMeters 1
-    ///     --> Length.meters 10
+    ///     --&gt; Length.meters 10
     ///     Quantity.interpolateFrom fiveMeters tenMeters 0.6
-    ///     --> Length.meters 8
+    ///     --&gt; Length.meters 8
     /// </code>
     /// The end quantity can be less than the start quantity:
     /// <code lang="fsharp">
     ///     Quantity.interpolateFrom tenMeters fiveMeters 0.1
-    ///     --> Length.meters 9.5
+    ///     --&gt; Length.meters 9.5
     /// </code>
     /// Parameter quantitys less than zero or greater than one can be used to extrapolate:
     /// <code lang="fsharp">
     ///     Quantity.interpolateFrom fiveMeters tenMeters 1.5
-    ///     --> Length.meters 12.5
+    ///     --&gt; Length.meters 12.5
     ///     Quantity.interpolateFrom fiveMeters tenMeters -0.5
-    ///     --> Length.meters 2.5
+    ///     --&gt; Length.meters 2.5
     ///     Quantity.interpolateFrom tenMeters fiveMeters -0.2
-    ///     --> Length.meters 11
+    ///     --&gt; Length.meters 11
     /// </code>
     /// </summary>
     static member interpolateFrom
@@ -723,7 +723,7 @@ type Quantity<'Units> with
     /// Find the midpoint between two quantities.
     /// <code lang="fsharp">
     ///    Quantity.midpoint (Length.meters 5) (Length.meters 10)
-    ///    --> Length.meters 7.5
+    ///    --&gt; Length.meters 7.5
     /// </code>
     /// </summary>
     static member midpoint (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x + 0.5 * (y - x)
@@ -743,13 +743,13 @@ type Quantity<'Units> with
     ///         , end = Length.meters 3
     ///         , steps = 5
     ///         }
-    ///     --> [ Length.centimeters 200
-    ///     -->   Length.centimeters 220
-    ///     -->   Length.centimeters 240
-    ///     -->   Length.centimeters 260
-    ///     -->   Length.centimeters 280
-    ///     -->   Length.centimeters 300
-    ///     --> ]
+    ///     --&gt; [ Length.centimeters 200
+    ///     --&gt;   Length.centimeters 220
+    ///     --&gt;   Length.centimeters 240
+    ///     --&gt;   Length.centimeters 260
+    ///     --&gt;   Length.centimeters 280
+    ///     --&gt;   Length.centimeters 300
+    ///     --&gt; ]
     /// </code>
     ///
     /// The start and end quantitys can be in either order:
@@ -760,12 +760,12 @@ type Quantity<'Units> with
     ///         , end = Quantity.zero
     ///         , steps = 4
     ///         }
-    ///     --> [ Duration.minutes 60
-    ///     -->   Duration.minutes 45
-    ///     -->   Duration.minutes 30
-    ///     -->   Duration.minutes 15
-    ///     -->   Duration.minutes 0
-    ///     --> ]
+    ///     --&gt; [ Duration.minutes 60
+    ///     --&gt;   Duration.minutes 45
+    ///     --&gt;   Duration.minutes 30
+    ///     --&gt;   Duration.minutes 15
+    ///     --&gt;   Duration.minutes 0
+    ///     --&gt; ]
     /// </code>
     /// 
     /// Passing a negative or zero <c>steps</c> quantity will result in an empty list being
@@ -780,23 +780,23 @@ type Quantity<'Units> with
     ///         ( Quantity.interpolateFrom
     ///             (Length.meters 2)
     ///             (Length.meters 3) )
-    ///     --> [ Length.centimeters 200
-    ///     -->   Length.centimeters 225
-    ///     -->   Length.centimeters 250
-    ///     -->   Length.centimeters 275
-    ///     -->   Length.centimeters 300
-    ///     --> ]
+    ///     --&gt; [ Length.centimeters 200
+    ///     --&gt;   Length.centimeters 225
+    ///     --&gt;   Length.centimeters 250
+    ///     --&gt;   Length.centimeters 275
+    ///     --&gt;   Length.centimeters 300
+    ///     --&gt; ]
     /// 
     ///     // Omit the last quantity
     ///     Parameter1d.leading 4
     ///         ( Quantity.interpolateFrom
     ///             (Length.meters 2)
     ///             (Length.meters 3) )
-    ///     --> [ Length.centimeters 200
-    ///     -->   Length.centimeters 225
-    ///     -->   Length.centimeters 250
-    ///     -->   Length.centimeters 275
-    ///     --> ]
+    ///     --&gt; [ Length.centimeters 200
+    ///     --&gt;   Length.centimeters 225
+    ///     --&gt;   Length.centimeters 250
+    ///     --&gt;   Length.centimeters 275
+    ///     --&gt; ]
     /// </code>
     static member range (start: Quantity<'Units>) (finish: Quantity<'Units>) (steps: int) : Quantity<'Units> list =
         let rec rangeHelp
@@ -833,13 +833,13 @@ type Quantity<'Units> with
     /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
     ///         |&gt; Speed.inFeetPerSecond
-    ///     --> 16.4042
+    ///     --&gt; 16.4042
     /// </code>
     /// is equivalent to
     /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
     ///         |&gt; Quantity.in_ Speed.feetPerSecond
-    ///     --> 16.4042
+    ///     --&gt; 16.4042
     /// </code>
     /// More interestingly, if you wanted to get speed in some weirder unit like
     /// millimeters per minute (not directly supported by <c>elm-units</c>), you could do
@@ -849,7 +849,7 @@ type Quantity<'Units> with
     ///             (Length.millimeters
     ///                 >> Quantity.per (Duration.minutes 1)
     ///             )
-    ///     --> 300000
+    ///     --&gt; 300000
     /// </code>
     /// Internally,
     /// <code lang="fsharp">
@@ -873,7 +873,7 @@ type Quantity<'Units> with
     /// not do what you expect](#-int-float-conversion).
     /// <code lang="fsharp">
     ///     Quantity.round (Pixels.pixels 3.5)
-    ///     --> Pixels.pixels 4
+    ///     --&gt; Pixels.pixels 4
     /// </code>
     /// </summary>
     static member round(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(round quantity.Value)
@@ -884,9 +884,9 @@ type Quantity<'Units> with
     /// may not do what you expect](#-int-float-conversion).
     /// <code lang="fsharp">
     ///     Quantity.floor (Pixels.pixels 2.9)
-    ///     --> Pixels.pixels 2
+    ///     --&gt; Pixels.pixels 2
     ///     Quantity.floor (Pixels.pixels -2.1)
-    ///     --> Pixels.pixels -3
+    ///     --&gt; Pixels.pixels -3
     /// </code>
     /// </summary>
     static member floor(quantity: Quantity<'Units>) : Quantity<'Units> = floor quantity
@@ -896,9 +896,9 @@ type Quantity<'Units> with
     /// Round a <c>Float</c>-valued quantity up to the nearest <c>Int</c>.
     /// <code lang="fsharp">
     ///     Quantity.ceiling (Pixels.pixels 1.2)
-    ///     --> Pixels.pixels 2
+    ///     --&gt; Pixels.pixels 2
     ///     Quantity.ceiling (Pixels.pixels -2.1)
-    ///     --> Pixels.pixels -2
+    ///     --&gt; Pixels.pixels -2
     /// </code>
     /// </summary>
     /// <note>This may not do what you expect.</note>
@@ -908,7 +908,7 @@ type Quantity<'Units> with
     /// Round a <c>Float</c>-valued quantity towards zero.
     /// <code lang="fsharp">
     ///     Quantity.truncate (Pixels.pixels -2.8)
-    ///     --> Pixels.pixels -2
+    ///     --&gt; Pixels.pixels -2
     /// </code>
     /// </summary>
     /// <note>This may not do what you expect.</note>
@@ -924,9 +924,9 @@ type Quantity<'Units> with
     ///        , Length.centimeters 2
     ///        , Length.millimeters 3
     ///        ]
-    ///    --> Length.meters 1.023
+    ///    --&gt; Length.meters 1.023
     ///    Quantity.sum []
-    ///    --> Quantity.zero
+    ///    --&gt; Quantity.zero
     /// </code>
     /// </summary>
     static member sum(quantities: Quantity<'Units> list) : Quantity<'Units> =
@@ -941,7 +941,7 @@ type Quantity<'Units> with
     ///        , Mass.pounds 2
     ///        , Mass.tonnes 3
     ///        ]
-    ///    --> Some (Mass.pounds 2)
+    ///    --&gt; Some (Mass.pounds 2)
     /// </code>
     /// </summary>
     static member minimum(quantities: Quantity<'Units> list) : Quantity<'Units> option =
@@ -960,7 +960,7 @@ type Quantity<'Units> with
     ///         , Mass.pounds 2
     ///         , Mass.tonnes 3
     ///         ]
-    ///     --> Some (Mass.tonnes 3)
+    ///     --&gt; Some (Mass.tonnes 3)
     /// </code>
     /// </summary>
     static member maximum(quantities: Quantity<'Units> list) : Quantity<'Units> option =
@@ -979,7 +979,7 @@ type Quantity<'Units> with
     ///           { Name = "Alice", Height = Length.meters 1.8 }
     ///         ]
     ///     Quantity.minimumBy (fun person -> person.Height) people
-    ///     --> Some { Name = "Bob"; Height = Length.meters 1.6 }
+    ///     --&gt; Some { Name = "Bob"; Height = Length.meters 1.6 }
     /// </code>
     /// If the list is empty, returns <c>None</c>. If multiple items in the list are tied,
     /// then the first one is returned.
@@ -1017,7 +1017,7 @@ type Quantity<'Units> with
     ///           { Name = "Alice", Height = Length.meters 1.8 }
     ///         ]
     ///     Quantity.maximumBy (fun person -> person.Height) people
-    ///     --> Some { Name = "Charlie"; Height = Length.meters 2.0 }
+    ///     --&gt; Some { Name = "Charlie"; Height = Length.meters 2.0 }
     /// </code>
     /// If the list is empty, returns <c>None</c>. If multiple items in the list are tied,
     /// then the first one is returned.
@@ -1053,10 +1053,10 @@ type Quantity<'Units> with
     ///          Mass.pounds 2
     ///          Mass.tonnes 3
     ///        ]
-    ///    --> [ Mass.pounds 2
-    ///    -->   Mass.kilograms 1
-    ///    -->   Mass.tonnes 3
-    ///    --> ]
+    ///    --&gt; [ Mass.pounds 2
+    ///    --&gt;   Mass.kilograms 1
+    ///    --&gt;   Mass.tonnes 3
+    ///    --&gt; ]
     /// </code>
     /// </summary>
     static member sort(quantities: Quantity<'Units> list) : Quantity<'Units> list =
@@ -1079,18 +1079,18 @@ type Quantity<'Units> with
     /// then you could sort by Name with
     /// <code lang="fsharp">
     ///     List.sortBy (fun person -> person.Name) people
-    ///     --> [ { Name = "Alice"; Height = Length.meters 1.8 }
-    ///     -->   { Name = "Bob"; Height = Length.meters 1.6 }
-    ///     -->   { Name = "Charlie"; Height = Length.meters 2.0 }
-    ///     --> ]
+    ///     --&gt; [ { Name = "Alice"; Height = Length.meters 1.8 }
+    ///     --&gt;   { Name = "Bob"; Height = Length.meters 1.6 }
+    ///     --&gt;   { Name = "Charlie"; Height = Length.meters 2.0 }
+    ///     --&gt; ]
     /// </code>
     /// (nothing new there!), and sort by Height with
     /// <code lang="fsharp">
     ///     Quantity.sortBy (fun person -> person.Height) people
-    ///     --> [ { Name = "Bob"; Height = Length.meters 1.6 }
-    ///     -->   { Name = "Alice"; Height = Length.meters 1.8 }
-    ///     -->   { Name = "Charlie"; Height = Length.meters 2.0 }
-    ///     --> ]
+    ///     --&gt; [ { Name = "Bob"; Height = Length.meters 1.6 }
+    ///     --&gt;   { Name = "Alice"; Height = Length.meters 1.8 }
+    ///     --&gt;   { Name = "Charlie"; Height = Length.meters 2.0 }
+    ///     --&gt; ]
     /// </code>
     /// </example>
     static member sortBy (toQuantity: 'a -> Quantity<'Units>) (list: 'a list) : 'a list =
@@ -1112,7 +1112,7 @@ type Quantity<'Units> with
     ///         Quantity.rate (Length.miles 1) Duration.minute
     /// 
     ///     speed |&gt; Speed.inMilesPerHour
-    ///     --> 60
+    ///     --&gt; 60
     /// </code>
     /// 
     /// We could directly use our rate of change quantity as a <c>Speed</c>! That is
@@ -1160,7 +1160,7 @@ type Quantity<'Units> with
     ///       Duration.minutes 30
     ///           |&gt; Quantity.at
     ///               (Speed.kilometersPerHour 100)
-    ///       --> Length.kilometers 50
+    ///       --&gt; Length.kilometers 50
     /// </code>
     ///
     /// Can be useful to define conversion functions from one unit to another, since
@@ -1174,7 +1174,7 @@ type Quantity<'Units> with
     ///           Quantity.at pixelDensity length
     /// 
     ///       lengthToPixels (Length.inches 3)
-    ///       --> Pixels.pixels 288
+    ///       --&gt; Pixels.pixels 288
     /// </code>
     ///
     /// Eagle-eyed readers will note that using partial application you could also
@@ -1201,7 +1201,7 @@ type Quantity<'Units> with
     ///     Length.kilometers 75
     ///         |&gt; Quantity.at_
     ///             (Speed.kilometersPerHour 100)
-    ///     --> Duration.minutes 45
+    ///     --&gt; Duration.minutes 45
     /// </code>
     /// 
     /// Where <c>at</c> performs multiplication, <c>at_</c> performs division - you multiply a
@@ -1216,11 +1216,11 @@ type Quantity<'Units> with
     ///         Quantity.at_ pixelDensity pixels
     /// 
     ///     pixelsToLength (Pixels.pixels 48)
-    ///     --> Length.inches 0.5
+    ///     --&gt; Length.inches 0.5
     /// 
     ///     Rate&lt;DependentUnits, IndependentUnits&gt;
-    ///     --> Quantity DependentUnits
-    ///     --> Quantity IndependentUnits
+    ///     --&gt; Quantity DependentUnits
+    ///     --&gt; Quantity IndependentUnits
     /// </code>
     /// </summary>
     static member at_
@@ -1237,7 +1237,7 @@ type Quantity<'Units> with
     ///     Speed.kilometersPerHour 100
     ///         |&gt; Quantity.for
     ///             (Duration.minutes 30)
-    ///     --> Length.kilometers 50
+    ///     --&gt; Length.kilometers 50
     /// </code>
     /// </summary>
     static member for_
@@ -1275,7 +1275,7 @@ type Quantity<'Units> with
     ///         Pixels.float 96 |&gt; Quantity.per Length.inch
     /// 
     ///     Quantity.rateProduct realWorldSpeed resolution
-    ///     --> Pixels.pixelsPerSecond 377.95
+    ///     --&gt; Pixels.pixelsPerSecond 377.95
     /// </code>
     /// 
     /// That is, "length per duration" multiplied by "pixels per length" gives you
@@ -1292,7 +1292,7 @@ type Quantity<'Units> with
     ///         Pixels.float 96 |&gt; Quantity.per Length.inch
     ///     Quantity.rateProduct pixelSpeed
     ///         (Quantity.inverse resolution).Value
-    ///     --> Speed.metersPerSecond 0.1323
+    ///     --&gt; Speed.metersPerSecond 0.1323
     /// </code>
     /// </summary>
     static member rateProduct

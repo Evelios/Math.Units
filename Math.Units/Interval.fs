@@ -17,7 +17,7 @@ let inline unit<'Units> : Interval<'Units> =
 ///
 /// <code lang="fsharp">
 ///     Interval.from (3, 2)
-///     --> Interval (2, 3)
+///     --&gt; Interval (2, 3)
 /// </code>
 /// </summary>
 let from (first: Quantity<'Units>) (second: Quantity<'Units>) : Interval<'Units> =
@@ -34,7 +34,7 @@ let from (first: Quantity<'Units>) (second: Quantity<'Units>) : Interval<'Units>
 ///
 /// <code lang="fsharp">
 ///     Interval.fromEndpoints (3, 2)
-///     --> Interval (2, 3)
+///     --&gt; Interval (2, 3)
 /// </code>
 /// </summary>
 let fromEndpoints (first, second) : Interval<'Units> = from first second
@@ -70,7 +70,7 @@ let endpoints (Interval.Interval (a, b): Interval<'Units>) : Quantity<'Units> * 
 /// <code lang="fsharp">
 /// Get the minimum value of an interval.
 ///     Interval.minValue (Interval.from 1 3)
-///     --> 1
+///     --&gt; 1
 /// </code>
 /// </summary>
 let minValue (Interval (a, _): Interval<'Units>) : Quantity<'Units> = a
@@ -80,7 +80,7 @@ let minValue (Interval (a, _): Interval<'Units>) : Quantity<'Units> = a
 /// Get the maximum value of an interval.
 /// <code lang="fsharp">
 ///     Interval.maxValue (Interval.from 1 3)
-///     --> 3
+///     --&gt; 3
 /// </code>
 /// </summary>
 let maxValue (Interval (_, b): Interval<'Units>) : Quantity<'Units> = b
@@ -90,7 +90,7 @@ let maxValue (Interval (_, b): Interval<'Units>) : Quantity<'Units> = b
 /// Get the midpoint of an interval.
 /// <code lang="fsharp">
 ///     Interval.midpoint (Interval.from 1 4)
-///     --> 2.5
+///     --&gt; 2.5
 /// </code>
 /// </summary>
 let inline midpoint (Interval (a, b): Interval<'Units>) : Quantity<'Units> = a + 0.5 * (b - a)
@@ -99,7 +99,7 @@ let inline midpoint (Interval (a, b): Interval<'Units>) : Quantity<'Units> = a +
 /// Get the width of an interval.
 /// <code lang="fsharp">
 ///     Interval.width (Interval.from 1 5)
-///     --> 4
+///     --&gt; 4
 /// </code>
 /// </summary>
 let inline width (Interval (a, b)) : Quantity<'Units> = b - a
@@ -109,9 +109,9 @@ let inline width (Interval (a, b)) : Quantity<'Units> = b - a
 /// same).
 /// <code lang="fsharp">
 ///     Interval.isSingleton (Interval.from 2 2)
-///     --> True
+///     --&gt; True
 ///     Interval.isSingleton (Interval.from 2 3)
-///     --> False
+///     --&gt; False
 /// </code>
 /// </summary>
 let isSingleton (Interval (a, b): Interval<'Units>) : bool = a = b
@@ -127,7 +127,7 @@ let isSingleton (Interval (a, b): Interval<'Units>) : bool = a = b
 ///     let secondInterval =
 ///         Interval.from 3 6
 ///     let Interval.union firstInterval secondInterval
-///     --> Interval.from 1 6
+///     --&gt; Interval.from 1 6
 /// </code>
 /// </summary>
 ///
@@ -148,11 +148,11 @@ let union (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> = Interval(
 ///     Interval.intersection
 ///         (Interval.from 1 3)
 ///         (Interval.from 2 5)
-///     --> Some (Interval.from 2 3)
+///     --&gt; Some (Interval.from 2 3)
 ///     Interval.intersection
 ///         (Interval.from 1 3)
 ///         (Interval.from 4 7)
-///     --> None
+///     --&gt; None
 /// </code>
 ///
 /// If the two intervals just touch, a singleton interval will be returned:
@@ -160,7 +160,7 @@ let union (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> = Interval(
 ///     Interval.intersection
 ///         (Interval.from 1 3)
 ///         (Interval.from 3 5)
-///     --> Some (Interval.singleton 3)
+///     --&gt; Some (Interval.singleton 3)
 /// </code>
 /// </summary>
 let intersection (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> option =
@@ -176,7 +176,7 @@ let intersection (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> opti
 /// Negate an interval. Note that this will flip the order of the endpoints.
 /// <code lang="fsharp">
 ///    Interval.negate (Interval.from 2 3)
-///    --> Interval.from -3 -2
+///    --&gt; Interval.from -3 -2
 /// </code>
 /// </summary>
 let inline negate (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(-b, -a)
@@ -186,7 +186,7 @@ let inline negate (Interval (a, b): Interval<'Units>) : Interval<'Units> = Inter
 /// Add the given amount to an interval.
 /// <code lang="fsharp">
 ///    Interval.from -1 5 |&gt; Interval.add 3
-///    --> Interval.from 2 8
+///    --&gt; Interval.from 2 8
 /// </code>
 /// </summary>
 let inline plus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
@@ -197,7 +197,7 @@ let inline plus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : 
 /// Subtract the given amount from an interval.
 /// <code lang="fsharp">
 ///    Interval.from -1 5 |&gt; Interval.subtract 3
-///    --> Interval.from -4 2
+///    --&gt; Interval.from -4 2
 /// </code>
 /// </summary>
 let inline minus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
@@ -223,9 +223,9 @@ let difference (x: Quantity<'Units>) (interval: Interval<'Units>) =
 /// of the interval's endpoints if the given value is negative.
 /// <code lang="fsharp">
 ///     Interval.multiplyBy 5 (Interval.from 2 3)
-///     --> Interval.from 10 15
+///     --&gt; Interval.from 10 15
 ///     Interval.multiplyBy -2 (Interval.from 2 3)
-///     --> Interval.from -6 -4
+///     --&gt; Interval.from -6 -4
 /// </code>
 /// </summary>
 let multiplyBy (scale: float) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
@@ -261,9 +261,9 @@ let product
 /// of the interval's endpoints if the given value is negative.
 /// <code lang="fsharp">
 ///     Interval.divideBy 2 (Interval.from 2 3)
-///     --> Interval.from 1 1.5
+///     --&gt; Interval.from 1 1.5
 ///     Interval.divideBy -2 (Interval.from 2 3)
-///     --> Interval.from -1.5 -1
+///     --&gt; Interval.from -1.5 -1
 /// </code>
 /// </summary>
 let divideBy (divisor: float) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
@@ -293,7 +293,7 @@ let twice (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(2. *
 /// <code lang="fsharp">
 ///     Interval.from 5 10
 ///         |&gt; Interval.plus (Interval.from 2 3)
-///     --> Interval.from 7 13
+///     --&gt; Interval.from 7 13
 /// </code>
 /// </summary>
 let plusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 + b1)
@@ -305,13 +305,13 @@ let plusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 
 /// <code lang="fsharp">
 ///     Interval.from 5 10
 ///         |&gt; Interval.minus (Interval.from 2 3)
-///     --> Interval.from 2 8
+///     --&gt; Interval.from 2 8
 /// </code>
 /// Without the pipe operator, the above would be written as:
 /// <code lang="fsharp">
 ///     Interval.minus (Interval.from 2 3)
 ///         (Interval.from 5 10)
-///     --> Interval.from 2 8
+///     --&gt; Interval.from 2 8
 /// </code>
 /// </summary>
 let minusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a1 - b2, b1 - a2)
@@ -353,7 +353,7 @@ let timesUnitless (x: Quantity<Unitless>) (interval: Interval<Unitless>) : Inter
 ///     Interval.from 10 12
 ///         |&gt; Interval.times
 ///             (Interval.from 5 6)
-///     --> Interval.from 50 72
+///     --&gt; Interval.from 50 72
 /// </code>
 /// </summary>
 let timesInterval
@@ -391,10 +391,10 @@ let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Inte
 ///             ( Quantity.float 2
 ///             , Quantity.float 3
 ///             )
-///     --> Interval.fromEndpoints
-///     -->     ( Quantity.float 0.333
-///     -->     , Quantity.float 0.500
-///     -->     )
+///     --&gt; Interval.fromEndpoints
+///     --&gt;     ( Quantity.float 0.333
+///     --&gt;     , Quantity.float 0.500
+///     --&gt;     )
 /// </code>
 ///
 /// Avoid using this function whenever possible, since it's very easy to get
@@ -405,10 +405,10 @@ let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Inte
 ///             ( Quantity.float -1
 ///             , Quantity.float 2
 ///             )
-///     --> Interval.fromEndpoints
-///     -->     ( Quantity.negativeInfinity
-///     -->     , Quantity.negativeInfinity
-///     -->     )
+///     --&gt; Interval.fromEndpoints
+///     --&gt;     ( Quantity.negativeInfinity
+///     --&gt;     , Quantity.negativeInfinity
+///     --&gt;     )
 /// </code>
 ///
 /// Since zero is contained in the above interval, the range of possible reciprocals
@@ -436,8 +436,8 @@ let reciprocal (Interval (a, b): Interval<Unitless>) : Interval<Unitless> =
 ///     Interval.abs &lt;|
 ///         Interval.fromEndpoints
 ///             ( Length.meters -3  Length.meters 2 )
-///     --> Interval.fromEndpoints
-///     -->     (Length.meters 0) (Length.meters 3)
+///     --&gt; Interval.fromEndpoints
+///     --&gt;     (Length.meters 0) (Length.meters 3)
 /// </code>
 /// </summary>
 let abs (Interval (a, b) as interval: Interval<'Units>) : Interval<'Units> =
@@ -529,9 +529,9 @@ let sinIncludesMinMax (interval: Interval<'Units>) : bool * bool =
 /// Get the image of <c>sin(x)</c> applied on the interval.
 /// <code lang="fsharp">
 ///     Interval.sin (Interval.from 0 (degrees 45))
-///     --> Interval.from 0 0.7071
+///     --&gt; Interval.from 0 0.7071
 ///     Interval.sin (Interval.from 0 pi)
-///     --> Interval.from 0 1
+///     --&gt; Interval.from 0 1
 /// </code>
 /// </summary>
 let sin (interval: Interval<Radians>) : Interval<Unitless> =
@@ -565,9 +565,9 @@ let sin (interval: Interval<Radians>) : Interval<Unitless> =
 ///  Get the image of <c>cos(x)</c> applied on the interval.
 /// <code lang="fsharp">
 ///     Interval.cos (Interval.from 0 (degrees 45))
-///     --> Interval.from 0.7071 1
+///     --&gt; Interval.from 0.7071 1
 ///     Interval.cos (Interval.from 0 pi)
-///     --> Interval.from -1 1
+///     --&gt; Interval.from -1 1
 /// </code>
 /// </summary>
 let cos (interval: Interval<Radians>) : Interval<Unitless> =
@@ -606,23 +606,23 @@ let cos (interval: Interval<Radians>) : Interval<Unitless> =
 /// 1.0 corresponds to its maximum value:
 /// <code lang="fsharp">
 ///     Interval.interpolate (Interval.from 1 5) 0
-///     --> 1
+///     --&gt; 1
 ///     Interval.interpolate (Interval.from 1 5) 0.75
-///     --> 4
+///     --&gt; 4
 /// </code>
 /// Values less than 0.0 or greater than 1.0 can be used to extrapolate:
 /// <code lang="fsharp">
 ///     Interval.interpolate (Interval.from 1 5) 1.5
-///     --> 7
+///     --&gt; 7
 /// </code>
 /// Note that because of how <c>Interval.from</c> works, the interpolation is in
 /// fact from the minimum value to the maximum, _not_ "from the first
 /// <c>Interval.from</c> argument to the second":
 /// <code lang="fsharp">
 ///     Interval.interpolate (Interval.from 0 10) 0.2
-///     --> 2
+///     --&gt; 2
 ///     Interval.interpolate (Interval.from 10 0) 0.2
-///     --> 2 // not 8!
+///     --&gt; 2 // not 8!
 /// </code>
 /// </summary>
 let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units> =
@@ -638,7 +638,7 @@ let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units
 ///     Interval.interpolationParameter
 ///         (Interval.from 10 15)
 ///         12
-///     --> 0.4
+///     --&gt; 0.4
 /// </code>
 ///
 /// The result will be between 0 and 1 if (and only if) the given value is within
@@ -647,11 +647,11 @@ let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units
 ///     Interval.interpolationParameter
 ///         (Interval.from 10 15)
 ///         18
-///     --> 1.6
+///     --&gt; 1.6
 ///     Interval.interpolationParameter
 ///         (Interval.from 10 15)
 ///         9
-///     --> -0.2
+///     --&gt; -0.2
 /// </code>
 ///
 /// This is the inverse of <c>interpolate</c>; for any non-zero-width <c>interval</c>,
@@ -686,10 +686,10 @@ let contains (value: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : boo
 /// <code lang="fsharp">
 ///     Interval.from -5 5
 ///         |&gt; Interval.intersects (Interval.from 0 10)
-///     --> True
+///     --&gt; True
 ///     Interval.from -5 5
 ///         |&gt; Interval.intersects (Interval.from 10 20)
-///     --> False
+///     --&gt; False
 /// </code>j
 ///
 /// Intervals that just touch each other are considered to intersect (this is
@@ -698,7 +698,7 @@ let contains (value: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : boo
 /// <code lang="fsharp">
 ///     Interval.from -5 5
 ///         |&gt; Interval.intersects (Interval.from 5 10)
-///     --> True
+///     --&gt; True
 /// </code>
 /// </summary>
 let intersects (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interval<'Units>) : bool = a1 <= b2 && b1 >= a2
@@ -709,10 +709,10 @@ let intersects (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interva
 /// <code lang="fsharp">
 ///     Interval.from -5 5
 ///         |&gt; Interval.isContainedIn (Interval.from 0 10)
-///     --> False
+///     --&gt; False
 ///     Interval.from -5 5
 ///         |&gt; Interval.isContainedIn (Interval.from -10 10)
-///     --> True
+///     --&gt; True
 /// </code>
 ///
 /// Be careful with the argument order! If not using the <c>|&gt;</c> operator, the second
@@ -720,7 +720,7 @@ let intersects (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interva
 /// <code lang="fsharp">
 ///     Interval.isContainedIn (Interval.from -10 10)
 ///         (Interval.from -5 5)
-///     --> True
+///     --&gt; True
 /// </code>
 /// </summary>
 let isContainedIn (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interval<'Units>) : bool =
@@ -731,7 +731,7 @@ let isContainedIn (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Inte
 /// Find the interval containing one or more input values:
 /// <code lang="fsharp">
 ///    Interval.hull 5 [ 3; 2; 4 ]
-///    --> Interval.from 2 5
+///    --&gt; Interval.from 2 5
 /// </code>
 /// See also <c>Interval.hullN</c>
 /// </summary>
@@ -765,11 +765,11 @@ let hull3 (a: Quantity<'Units>) (b: Quantity<'Units>) (c: Quantity<'Units>) : In
 /// value, you can use <c>Interval.hull</c> instead.
 /// <code lang="fsharp">
 ///     Interval.hullN [ 2; 1; 3 ]
-///     --> Just (Interval.from 1 3)
+///     --&gt; Just (Interval.from 1 3)
 ///     Interval.hullN [ -3 ]
-///     --> Just (Interval.singleton -3)
+///     --&gt; Just (Interval.singleton -3)
 ///     Interval.hullN []
-///     --> Nothing
+///     --&gt; Nothing
 /// </code>
 /// </summary>
 let hullN (values: Quantity<'Units> list) : Interval<'Units> option =
@@ -828,7 +828,7 @@ let hullOfN (getValue: 'a -> Quantity<'Units>) (items: 'a list) : Interval<'Unit
 ///         [ Interval.singleton 4
 ///         , Interval.singleton 3
 ///         ]
-///     --> Interval.from 2 4
+///     --&gt; Interval.from 2 4
 /// </code>
 ///
 /// Works much like <c>Interval.hull</c>. See also <c>Interval.aggregateN</c>.

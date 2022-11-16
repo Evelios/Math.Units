@@ -37,7 +37,7 @@ let float (numPixels: float) : Pixels = Quantity numPixels
 /// Length.centimeters 1
 ///     |&gt; Quantity.at pixelDensity
 ///     |&gt; Pixels.toFloat
-/// --> 37.795275590551185
+/// --&gt; 37.795275590551185
 /// </code></example>
 let toFloat (numPixels: Pixels) : float = numPixels.Value
 
@@ -61,7 +61,7 @@ let pixelsPerSecond (numPixelsPerSecond: float) : Quantity<PixelsPerSecond> = Qu
 /// let dragSpeed =
 ///     dragDistance |&gt; Quantity.per elapsedTime
 /// let dragSpeed |&gt; Pixels.inPixelsPerSecond
-/// --> 125
+/// --&gt; 125
 /// </code></example>
 let inPixelsPerSecond (numPixelsPerSecond: Quantity<PixelsPerSecond>) : float = numPixelsPerSecond.Value
 
@@ -82,5 +82,5 @@ let squarePixels (numSquarePixels: float) : Quantity<SquarePixels> = Quantity nu
 ///    area =
 ///        Pixels.int 1928 |&gt; Quantity.times (Pixels.int 1080)
 ///    area |&gt; Pixels.inSquarePixels
-///    --> 2073600
+///    --&gt; 2073600
 let inSquarePixels (numSquarePixels: Quantity<SquarePixels>) : float = numSquarePixels.Value

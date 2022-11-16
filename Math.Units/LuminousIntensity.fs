@@ -46,7 +46,7 @@ let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 ///     LuminousFlux.lumens 470
 ///         |&gt; Quantity.per (SolidAngle.spats 1)
 ///         |&gt; LuminousIntensity.inCandelas
-///     --> 37.4014
+///     --&gt; 37.4014
 /// </code>
 ///
 /// <para>
@@ -57,7 +57,7 @@ let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 ///     LuminousFlux.lumens 470
 ///         |&gt; Quantity.per (SolidAngle.spats 0.5)
 ///         |&gt; LuminousIntensity.inCandelas
-///     --> 74.8028
+///     --&gt; 74.8028
 /// </code>
 /// </example>
 let inCandelas (numCandelas: LuminousIntensity) : float = numCandelas.Value

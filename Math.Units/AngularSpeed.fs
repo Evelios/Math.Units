@@ -1,4 +1,32 @@
 /// <category>Module: Unit System</category>
+/// <summary>
+/// An <c>AngularSpeed</c> represents a rotation rate in radians per second, degrees
+/// per second, turns (revolutions) per second or turns (revolutions) per minute.
+/// It is stored as a number of radians per second.
+/// </summary>
+/// 
+/// <note>
+/// <para>
+/// Since <c>RadiansPerSecond</c> is defined as <c>Rate Radians Seconds</c> (angle
+/// per unit time), you can construct an <c>AngularSpeed</c> value using <c>Quantity.per</c>:
+/// </para>
+/// <code>
+///     let angularSpeed =
+///         angle |&gt; Quantity.per duration
+/// </code>
+/// <para>
+/// You can also do rate-related calculations with <c>AngularSpeed</c> values to compute
+/// <c>Angle</c> or <c>Duration</c>:
+/// </para>
+/// <code>
+///     let angle =
+///         angularSpeed |&gt; Quantity.for duration
+///     let alsoAngle =
+///         duration |&gt; Quantity.at angularSpeed
+///     let duration =
+///         angle |&gt; Quantity.at_ angularSpeed
+/// </code>
+/// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.AngularSpeed
 

@@ -31,7 +31,7 @@ let ounces (numOunces: float) : Mass = kilograms (Constants.ounce * numOunces)
 /// Convert a mass to a number of ounces.
 /// <code>
 ///    Mass.pounds 1 |&gt; Mass.inOunces
-///    --> 16
+///    --&gt; 16
 /// </code>
 /// </summary>
 let inOunces (mass: Mass) : float = inKilograms mass / Constants.ounce
@@ -40,7 +40,7 @@ let inOunces (mass: Mass) : float = inKilograms mass / Constants.ounce
 /// Construct a mass from a number of <a href="https://en.wikipedia.org/wiki/Tonne">metric tons</a>.
 /// <code>
 ///    Mass.metricTons 1
-///    --> Mass.kilograms 1000
+///    --&gt; Mass.kilograms 1000
 /// </code>
 /// </summary>
 let metricTons (numTonnes: float) : Mass = kilograms (1000. * numTonnes)
@@ -53,7 +53,7 @@ let inMetricTons (mass: Mass) : float = 0.001 * inKilograms mass
 /// commonly used in the United States.
 /// <code>
 ///     Mass.shortTons 1
-///     --> Mass.pounds 2000
+///     --&gt; Mass.pounds 2000
 /// </code>
 /// </summary>
 let shortTons (numShortTons: float) : Mass =
@@ -68,7 +68,7 @@ let inShortTons (mass: Mass) : float = inKilograms mass / Constants.shortTon
 /// This is the 'ton' commonly used in the United Kingdom and British Commonwealth.
 /// <code>
 ///     Mass.longTons 1
-///     --> Mass.pounds 2240
+///     --&gt; Mass.pounds 2240
 /// </code>
 /// </summary>
 let longTons (numLongTons: float) : Mass =

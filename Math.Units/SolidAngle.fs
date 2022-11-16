@@ -36,7 +36,7 @@ let inSteradians (numSteradians: SolidAngle) : float = numSteradians.Value
 /// covers.
 /// <code>
 /// SolidAngle.spats 1
-/// --> SolidAngle.steradians (4 * pi)
+/// --&gt; SolidAngle.steradians (4 * pi)
 /// </code>
 /// </summary>
 let spats (numSpats: float) : SolidAngle = steradians (4. * Math.PI * numSpats)
@@ -46,7 +46,7 @@ let spats (numSpats: float) : SolidAngle = steradians (4. * Math.PI * numSpats)
 /// Convert a solid angle to a number of spats.
 /// <code>
 /// SolidAngle.steradians (2 * pi) |&gt; SolidAngle.inSpats
-/// --> 0.5
+/// --&gt; 0.5
 /// </code>
 /// </summary>
 let inSpats (solidAngle: SolidAngle) : float =
@@ -73,7 +73,7 @@ let squareDegrees (numSquareDegrees: float) : SolidAngle =
 /// Convert a solid angle to a number of square degrees.
 /// <code>
 ///    SolidAngle.spats 1 |&gt; SolidAngle.inSquareDegrees
-///    --> 41252.96125
+///    --&gt; 41252.96125
 /// </code>
 /// </summary>
 let inSquareDegrees (solidAngle: SolidAngle) : float =
@@ -88,21 +88,21 @@ let inSquareDegrees (solidAngle: SolidAngle) : float =
 /// <code>
 ///     SolidAngle.conical (Angle.degrees 1)
 ///         |&gt; SolidAngle.inSquareDegrees
-///     --> 0.78539318
+///     --&gt; 0.78539318
 ///     pi / 4
-///     --> 0.78539816
+///     --&gt; 0.78539816
 /// </code>
 /// A cone with a tip angle of 180 degrees is just a hemisphere:
 /// <code>
 ///     SolidAngle.conical (Angle.degrees 180)
-///     --> SolidAngle.spats 0.5
+///     --&gt; SolidAngle.spats 0.5
 /// </code>
 /// "Inside out" cones are also supported, up to 360 degrees (a full sphere):
 /// <code>
 ///     SolidAngle.conical (Angle.degrees 270)
-///     --> SolidAngle.spats 0.85355
+///     --&gt; SolidAngle.spats 0.85355
 ///     SolidAngle.conical (Angle.degrees 360)
-///     --> SolidAngle.spats 1
+///     --&gt; SolidAngle.spats 1
 /// </code>
 /// </summary>
 let conical (angle: Angle) : SolidAngle =
@@ -119,7 +119,7 @@ let conical (angle: Angle) : SolidAngle =
 ///     SolidAngle.pyramidal
 ///         (Angle.degrees 1)
 ///         (Angle.degrees 1)
-///     --> SolidAngle.squareDegrees 0.9999746
+///     --&gt; SolidAngle.squareDegrees 0.9999746
 /// </code>
 /// In general, the solid angle of a pyramid that is <b>n</b> degrees wide by <b>m</b> degrees
 /// tall is (for relatively small values of <b>n</b> and <b>m</b>) approximately <b>nm</b> square
@@ -128,18 +128,18 @@ let conical (angle: Angle) : SolidAngle =
 ///     SolidAngle.pyramidal
 ///         (Angle.degrees 10)
 ///         (Angle.degrees 10)
-///     --> SolidAngle.squareDegrees 99.7474
+///     --&gt; SolidAngle.squareDegrees 99.7474
 ///     SolidAngle.pyramidal
 ///         (Angle.degrees 60)
 ///         (Angle.degrees 30)
-///     --> SolidAngle.squareDegrees 1704.08
+///     --&gt; SolidAngle.squareDegrees 1704.08
 /// </code>
 /// A pyramid that is 180 degrees by 180 degrees covers an entire hemisphere:
 /// <code>
 ///     SolidAngle.pyramidal
 ///         (Angle.degrees 180)
 ///         (Angle.degrees 180)
-///     --> SolidAngle.spats 0.5
+///     --&gt; SolidAngle.spats 0.5
 /// </code>
 /// "Inside out" pyramids greater than 180 degrees are not supported and will be
 /// treated as the corresponding "normal" pyramid (an angle of 240 degrees will be

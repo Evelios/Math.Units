@@ -14,7 +14,7 @@ let seconds (numSeconds: float) : Duration = Quantity numSeconds
 ///
 /// <example><code>
 ///    Duration.milliseconds 10 |&gt; Duration.inSeconds
-///    --> 0.01
+///    --&gt; 0.01
 /// </code></example>
 let inSeconds (numSeconds: Duration) : float = numSeconds.Value
 
@@ -24,7 +24,7 @@ let inSeconds (numSeconds: Duration) : float = numSeconds.Value
 ///
 /// <example><code>
 ///    Duration.milliseconds 5000
-///    --> Duration.seconds 5
+///    --&gt; Duration.seconds 5
 /// </code></example>
 let milliseconds (numMilliseconds: float) : Duration = seconds (0.001 * numMilliseconds)
 
@@ -35,7 +35,7 @@ let milliseconds (numMilliseconds: float) : Duration = seconds (0.001 * numMilli
 ///
 /// <example><code>
 ///    Duration.seconds 0.5 |&gt; Duration.inMilliseconds
-///    --> 500
+///    --&gt; 500
 /// </code></example>
 let inMilliseconds (duration: Duration) : float = inSeconds duration * 1000.
 
@@ -46,7 +46,7 @@ let inMilliseconds (duration: Duration) : float = inSeconds duration * 1000.
 ///
 /// <example><code>
 ///    Duration.minutes 3
-///    --> Duration.seconds 180
+///    --&gt; Duration.seconds 180
 /// </code></example>
 let minutes (numMinutes: float) : Duration = seconds (60. * numMinutes)
 
@@ -57,7 +57,7 @@ let minutes (numMinutes: float) : Duration = seconds (60. * numMinutes)
 ///
 /// <example><code>
 ///    Duration.seconds 90 |&gt; Duration.inMinutes
-///    --> 1.5
+///    --&gt; 1.5
 /// </code></example>
 let inMinutes (duration: Duration) : float = inSeconds duration / 60.
 
@@ -67,7 +67,7 @@ let inMinutes (duration: Duration) : float = inSeconds duration / 60.
 ///
 /// <example><code>
 ///    Duration.hours 1
-///    --> Duration.seconds 3600
+///    --&gt; Duration.seconds 3600
 /// </code></example>
 let hours (numHours: float) : Duration = seconds (Constants.hour * numHours)
 
@@ -78,7 +78,7 @@ let hours (numHours: float) : Duration = seconds (Constants.hour * numHours)
 ///
 /// <example><code>
 ///    Duration.minutes 120 |&gt; Duration.inHours
-///    --> 2
+///    --&gt; 2
 /// </code></example>
 let inHours (duration: Duration) : float = inSeconds duration / Constants.hour
 
@@ -91,7 +91,7 @@ let inHours (duration: Duration) : float = inSeconds duration / Constants.hour
 ///
 /// <example><code>
 ///     Duration.days 1
-///     --> Duration.hours 24
+///     --&gt; Duration.hours 24
 /// </code></example>
 let days (numDays: float) : Duration = seconds (Constants.day * numDays)
 
@@ -101,7 +101,7 @@ let days (numDays: float) : Duration = seconds (Constants.day * numDays)
 ///
 /// <example><code>
 ///    Duration.hours 72 |&gt; Duration.inDays
-///    --> 3
+///    --&gt; 3
 /// </code></example>
 let inDays (duration: Duration) : float = inSeconds duration / Constants.day
 
@@ -111,7 +111,7 @@ let inDays (duration: Duration) : float = inSeconds duration / Constants.day
 ///
 /// <example><code>
 ///    Duration.weeks 1
-///    --> Duration.days 7
+///    --&gt; Duration.days 7
 /// </code></example>
 let weeks (numWeeks: float) : Duration = seconds (Constants.week * numWeeks)
 
@@ -121,7 +121,7 @@ let weeks (numWeeks: float) : Duration = seconds (Constants.week * numWeeks)
 ///
 /// <example><code>
 ///    Duration.days 28 |&gt; Duration.inWeeks
-///    --> 4
+///    --&gt; 4
 /// </code></example>
 let inWeeks (duration: Duration) : float = inSeconds duration / Constants.week
 
@@ -138,7 +138,7 @@ let inWeeks (duration: Duration) : float = inSeconds duration / Constants.week
 ///
 /// <example><code>
 ///     Duration.julianYears 1
-///     --> Duration.days 365.25
+///     --&gt; Duration.days 365.25
 /// </code></example>
 let julianYears (numJulianYears: float) : Duration =
     seconds (Constants.julianYear * numJulianYears)
@@ -149,7 +149,7 @@ let julianYears (numJulianYears: float) : Duration =
 ///
 /// <example><code>
 ///    Duration.hours 10000 |&gt; Duration.inJulianYears
-///    --> 1.1407711613050422
+///    --&gt; 1.1407711613050422
 /// </code></example>
 let inJulianYears (duration: Duration) : float =
     inSeconds duration / Constants.julianYear
@@ -178,6 +178,6 @@ let week: Duration = weeks 1
 ///
 /// <example><code>
 ///     Duration.julianYear
-///     --> Duration.days 365.25
+///     --&gt; Duration.days 365.25
 /// </code></example>
 let julianYear: Duration = julianYears 1

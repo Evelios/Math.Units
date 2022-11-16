@@ -14,7 +14,7 @@ let amperes (numAmperes: float) : Current = Quantity numAmperes
 ///    Charge.coulombs 10
 ///        |&gt; Quantity.per (Duration.seconds 2)
 ///        |&gt; Current.inAmperes
-///    --> 5
+///    --&gt; 5
 /// </code></example>
 let inAmperes (numAmperes: Current) : float = numAmperes.Value
 
@@ -24,7 +24,7 @@ let inAmperes (numAmperes: Current) : float = numAmperes.Value
 /// 
 /// <example><code>
 ///    Current.milliamperes 500
-///    --> Current.amperes 0.5
+///    --&gt; Current.amperes 0.5
 /// </code></example>
 let milliamperes (numMilliamperes: float) : Current = amperes (numMilliamperes * 1.0e-3)
 
@@ -34,6 +34,6 @@ let milliamperes (numMilliamperes: float) : Current = amperes (numMilliamperes *
 /// 
 /// <example><code>
 ///    Current.amperes 2 |&gt; Current.inMilliamperes
-///    --> 2000
+///    --&gt; 2000
 /// </code></example>
 let inMilliamperes (current: Current) : float = inAmperes current / 1.0e-3
