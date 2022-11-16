@@ -1,4 +1,50 @@
 /// <category>Interval</category>
+/// <summary>
+/// These functions let you do math with <c>Interval</c> values, following the rules of
+/// <a href="https://en.wikipedia.org/wiki/Interval_arithmetic">interval arithmetic</a>.
+/// </summary>
+///
+/// <example>
+/// Various functionality is included for constructing intervals (including as
+/// the hull or intersection of other intervals), checking for
+/// overlap/intersection/containment, and performing limited arithmetic on
+/// intervals:
+/// 
+/// <code>
+///     let unitInterval =
+///         Interval.from 0 1
+///     
+///     Interval.endpoints unitInterval
+///     --&gt; ( 0, 1 )
+///     
+///     Interval.hull 5 [ 3, 2, 4 ]
+///     --&gt; Interval.from 2 5
+///     
+///     Interval.union
+///         (Interval.from 1 2)
+///         (Interval.from 3 5)
+///     --&gt; Interval.from 1 5
+///     
+///     Interval.intersection
+///         (Interval.from 1 3)
+///         (Interval.from 2 5)
+///     --&gt; Just (Interval.from 2 3)
+///     
+///     Interval.intersection
+///         (Interval.from 1 2)
+///         (Interval.from 3 5)
+///     --&gt; Nothing
+///     
+///     Interval.contains 0 (Interval.from -1 3)
+///     --&gt; True
+///     
+///     Interval.contains 5 (Interval.from -1 3)
+///     --&gt; False
+///     
+///     Interval.sin (Interval.from 0 pi)
+///     --&gt; Interval.from 0 1
+/// </code>
+/// </example>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Interval
 
@@ -632,8 +678,8 @@ let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units
 
 /// <summary>
 /// Given an interval and a given value, determine the corresponding
-/// interpolation parameter (the parameter that you would pass to [<c>interpolate</c>](#interpolate)
-/// to get the given value):
+/// interpolation parameter (the parameter that you would pass to
+/// <c>Interval.interpolate</c> to get the given value):
 /// <code lang="fsharp">
 ///     Interval.interpolationParameter
 ///         (Interval.from 10 15)
@@ -826,7 +872,7 @@ let hullOfN (getValue: 'a -> Quantity<'Units>) (items: 'a list) : Interval<'Unit
 ///     Interval.aggregate
 ///         (Interval.singleton 2)
 ///         [ Interval.singleton 4
-///         , Interval.singleton 3
+///           Interval.singleton 3
 ///         ]
 ///     --&gt; Interval.from 2 4
 /// </code>
