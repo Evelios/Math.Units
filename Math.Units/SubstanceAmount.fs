@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>SubstanceAmount</c> value represents a substance amount in
 /// <a href="https://en.wikipedia.org/wiki/Mole_(unit)">moles</a>.

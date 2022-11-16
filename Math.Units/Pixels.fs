@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// Although most of the focus of <c>Math.Units</c> is on physical/scientific units,
 /// it's often useful to be able to safely convert back and forth between (for
@@ -32,10 +33,10 @@ let float (numPixels: float) : Pixels = Quantity numPixels
 /// </summary>
 /// <example><code>
 /// let pixelDensity =
-///     Pixels.float 96 |> Quantity.per (Length.inches 1)
+///     Pixels.float 96 |&gt; Quantity.per (Length.inches 1)
 /// Length.centimeters 1
-///     |> Quantity.at pixelDensity
-///     |> Pixels.toFloat
+///     |&gt; Quantity.at pixelDensity
+///     |&gt; Pixels.toFloat
 /// --> 37.795275590551185
 /// </code></example>
 let toFloat (numPixels: Pixels) : float = numPixels.Value
@@ -79,7 +80,7 @@ let squarePixels (numSquarePixels: float) : Quantity<SquarePixels> = Quantity nu
 
 /// Convert an on-screen area to a number of square pixels.
 ///    area =
-///        Pixels.int 1928 |> Quantity.times (Pixels.int 1080)
-///    area |> Pixels.inSquarePixels
+///        Pixels.int 1928 |&gt; Quantity.times (Pixels.int 1080)
+///    area |&gt; Pixels.inSquarePixels
 ///    --> 2073600
 let inSquarePixels (numSquarePixels: Quantity<SquarePixels>) : float = numSquarePixels.Value

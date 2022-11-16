@@ -1,3 +1,4 @@
+/// <category>Other</category>
 /// <summary>
 /// All conversion factors sourced from 
 /// <a href="https://www.nist.gov/pml/weights-and-measures/publications/nist-handbooks/handbook-44">National Institute of Standards and Technology</a>

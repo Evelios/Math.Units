@@ -451,7 +451,7 @@ kineticEnergy (Mass.shortTons 1.5) (Speed.milesPerHour 60.)
 (**
 ### Custom Units
 
-`Math.Units` defines many standard unit types, but you can easily define your
+`Math.Units` defines many standard Unit Systems, but you can easily define your
 own! See [CustomUnits][#CustomUnits] for an example.
 
 ### Understanding quantity types

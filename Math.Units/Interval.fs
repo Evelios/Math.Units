@@ -1,3 +1,5 @@
+/// <category>Interval</category>
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Interval
 
 open System
@@ -183,7 +185,7 @@ let inline negate (Interval (a, b): Interval<'Units>) : Interval<'Units> = Inter
 /// <summary>
 /// Add the given amount to an interval.
 /// <code lang="fsharp">
-///    Interval.from -1 5 |> Interval.add 3
+///    Interval.from -1 5 |&gt; Interval.add 3
 ///    --> Interval.from 2 8
 /// </code>
 /// </summary>
@@ -194,7 +196,7 @@ let inline plus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : 
 /// <summary>
 /// Subtract the given amount from an interval.
 /// <code lang="fsharp">
-///    Interval.from -1 5 |> Interval.subtract 3
+///    Interval.from -1 5 |&gt; Interval.subtract 3
 ///    --> Interval.from -4 2
 /// </code>
 /// </summary>
@@ -205,7 +207,7 @@ let inline minus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) :
 /// Subtract an interval from the given amount. So if you wanted to compute
 /// <c>interval - quantity</c> you would write
 /// <code lang="fsharp">
-///     interval |> Interval.minus quantity
+///     interval |&gt; Interval.minus quantity
 /// </code>
 /// but if you wanted to compute <c>quantity - interval</c> then you would write
 /// <code lang="fsharp">
@@ -290,7 +292,7 @@ let twice (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(2. *
 /// Add two intervals together.
 /// <code lang="fsharp">
 ///     Interval.from 5 10
-///         |> Interval.plus (Interval.from 2 3)
+///         |&gt; Interval.plus (Interval.from 2 3)
 ///     --> Interval.from 7 13
 /// </code>
 /// </summary>
@@ -302,7 +304,7 @@ let plusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 
 /// the most sense when using <c>|&gt;</c>:
 /// <code lang="fsharp">
 ///     Interval.from 5 10
-///         |> Interval.minus (Interval.from 2 3)
+///         |&gt; Interval.minus (Interval.from 2 3)
 ///     --> Interval.from 2 8
 /// </code>
 /// Without the pipe operator, the above would be written as:
@@ -317,7 +319,7 @@ let minusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a1 - b2, b1
 /// <summary>
 /// Multiply an <c>Interval</c> by a <c>Quantity</c>, for example
 /// <code lang="fsharp">
-///     interval |> Interval.times quantity
+///     interval |&gt; Interval.times quantity
 /// </code>
 /// </summary>
 let times
@@ -349,7 +351,7 @@ let timesUnitless (x: Quantity<Unitless>) (interval: Interval<Unitless>) : Inter
 /// Multiply the two given intervals.
 /// <code lang="fsharp">
 ///     Interval.from 10 12
-///         |> Interval.times
+///         |&gt; Interval.times
 ///             (Interval.from 5 6)
 ///     --> Interval.from 50 72
 /// </code>
@@ -655,7 +657,7 @@ let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units
 /// This is the inverse of <c>interpolate</c>; for any non-zero-width <c>interval</c>,
 /// <code lang="fsharp">
 ///     Interval.interpolationParameter interval value
-///         |> Interval.interpolate interval
+///         |&gt; Interval.interpolate interval
 /// </code>
 /// should be equal to the original <c>value</c> (within numerical round off).
 /// </summary>
@@ -683,10 +685,10 @@ let contains (value: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : boo
 /// Check if two intervals touch or overlap (have any values in common).
 /// <code lang="fsharp">
 ///     Interval.from -5 5
-///         |> Interval.intersects (Interval.from 0 10)
+///         |&gt; Interval.intersects (Interval.from 0 10)
 ///     --> True
 ///     Interval.from -5 5
-///         |> Interval.intersects (Interval.from 10 20)
+///         |&gt; Interval.intersects (Interval.from 10 20)
 ///     --> False
 /// </code>j
 ///
@@ -695,7 +697,7 @@ let contains (value: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : boo
 /// intersection of two just-touching intervals):
 /// <code lang="fsharp">
 ///     Interval.from -5 5
-///         |> Interval.intersects (Interval.from 5 10)
+///         |&gt; Interval.intersects (Interval.from 5 10)
 ///     --> True
 /// </code>
 /// </summary>
@@ -706,14 +708,14 @@ let intersects (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interva
 /// Check if the second interval is fully contained in the first.
 /// <code lang="fsharp">
 ///     Interval.from -5 5
-///         |> Interval.isContainedIn (Interval.from 0 10)
+///         |&gt; Interval.isContainedIn (Interval.from 0 10)
 ///     --> False
 ///     Interval.from -5 5
-///         |> Interval.isContainedIn (Interval.from -10 10)
+///         |&gt; Interval.isContainedIn (Interval.from -10 10)
 ///     --> True
 /// </code>
 ///
-/// Be careful with the argument order! If not using the <c>|></c> operator, the second
+/// Be careful with the argument order! If not using the <c>|&gt;</c> operator, the second
 /// example would be written as:
 /// <code lang="fsharp">
 ///     Interval.isContainedIn (Interval.from -10 10)

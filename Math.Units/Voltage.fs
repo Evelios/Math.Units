@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Voltage</c> value represents a voltage (electric potential difference, if
 /// we're being picky) in volts.
@@ -12,10 +13,10 @@
 /// <code>
 ///     // elm-units version of 'P = V * I'
 ///     power =
-///         current |> Quantity.at voltage
+///         current |&gt; Quantity.at voltage
 ///     // I = P / V
 ///     current =
-///         power |> Quantity.at_ voltage
+///         power |&gt; Quantity.at_ voltage
 /// </code>
 /// <para>
 /// Just for fun, note that since you can also express <c>Voltage</c> in terms of
@@ -26,9 +27,9 @@
 ///     // P = I^2 * R
 ///     let power =
 ///         current
-///             |> Quantity.at
+///             |&gt; Quantity.at
 ///                 (current
-///                     |> Quantity.at resistance
+///                     |&gt; Quantity.at resistance
 ///                 )
 /// </code>
 /// </note>

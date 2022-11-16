@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Pressure</c> value represents a pressure in kilopascals, pounds per square
 /// inch, <a href="https://en.wikipedia.org/wiki/Atmosphere_(unit)">atmospheres</a>
@@ -8,14 +9,14 @@
 /// Since <c>Pascals</c> is defined as <c>Rate Newtons SquareMeters</c> (force per
 /// unit area), you can construct a <c>Pressure</c> value using <c>Quantity.per</c>:
 ///     pressure =
-///         force |> Quantity.per area
+///         force |&gt; Quantity.per area
 /// You can also do rate-related calculations with <c>Pressure</c> values to compute
 /// <c>Force</c> or <c>Area</c>:
 /// <code>
 ///     let force =
-///         area |> Quantity.at pressure
+///         area |&gt; Quantity.at pressure
 ///     let area =
-///         force |> Quantity.at_ pressure
+///         force |&gt; Quantity.at_ pressure
 /// </code>
 /// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]

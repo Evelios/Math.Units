@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// An <c>Acceleration</c> represents an acceleration in meters per second squared,
 /// feet per second squared or
@@ -10,11 +11,11 @@
 /// <c>Speed</c> or <c>Duration</c>:
 /// <code lang="fsharp">
 ///     let changeInSpeed =
-///         acceleration |> Quantity.for duration
+///         acceleration |&gt; Quantity.for duration
 ///     let alsoChangeInSpeed =
-///         duration |> Quantity.at acceleration
+///         duration |&gt; Quantity.at acceleration
 ///     let duration =
-///         changeInSpeed |> Quantity.at_ acceleration
+///         changeInSpeed |&gt; Quantity.at_ acceleration
 /// </code></example>
 ///
 /// <note>
@@ -23,7 +24,7 @@
 /// value using <c>Quantity.per</c>:
 /// <code lang="fsharp">
 ///     let acceleration =
-///         changeInSpeed |> Quantity.per duration
+///         changeInSpeed |&gt; Quantity.per duration
 /// </code>
 /// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
@@ -49,10 +50,13 @@ let inFeetPerSecondSquared (acceleration: Acceleration) : float =
 /// <a href="https://en.wikipedia.org/wiki/G-force#Unit_and_measurement">gees</a>.
 /// One gee is equal to 9.80665 meters per second squared (the
 /// standard acceleration due to gravity).
+/// </summary>
+/// 
+/// <example>
 /// <code lang="fsharp">
 ///     Acceleration.gees 1 = Acceleration.metersPerSecondSquared 9.80665
 /// </code>
-/// </summary>
+/// </example>
 let gees (numGees: float) : Acceleration =
     metersPerSecondSquared (Constants.gee * numGees)
 

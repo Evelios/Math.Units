@@ -3,42 +3,44 @@
 open System
 open Math.Units
 
-// ---- Unit Systems -----------------------------------------------------------
+// ---- Units -----------------------------------------------------------
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 /// <summary>
 /// A special units type representing 'no units'. A <c>Quantity Unitless</c>
 /// value is interchangeable with a simple <c>float</c>.
 /// A generic number that doesn't undergo any type mutation.
-/// Eg.
+/// </summary>
+/// 
+/// <example>
 /// <code lang="fsharp">
 ///     Unitless: Unitless 1. * Unitless 1. = Unitless 1.
 ///     Meters  : Meters 1. * Meters 1. = (Meters Squared) 1.
 /// </code>
-/// </summary>
+/// </example>
 type Unitless = Unitless
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Pixel = Pixel
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Meters = Meters
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Kilograms = Kilograms
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Radians = Radians
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Seconds = Seconds
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Coulombs = Coulombs
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Percentage = Percentage
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Lumens = Lumens
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Steradians = Steradians
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Moles = Moles
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type CelsiusDegrees = CelsiusDegrees
 
 
@@ -91,82 +93,88 @@ type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'Indep
 // ---- Unit Aliases -----------------------------------------------------------
 
 // ---- Angular
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type RadiansPerSecond = Rate<Radians, Seconds>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type RadiansPerSecondSquared = Rate<RadiansPerSecond, Seconds>
 
 
 // ---- Distance
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type MetersPerSecond = Rate<Meters, Seconds>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type MetersPerSecondSquared = Rate<MetersPerSecond, Seconds>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type SquareMeters = Squared<Meters>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type CubicMeters = Cubed<Meters>
 
 
 // ---- Mass
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Newtons = Product<Kilograms, MetersPerSecondSquared>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Pascals = Rate<Newtons, SquareMeters>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type KilogramsPerCubicMeter = Rate<Kilograms, CubicMeters>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Joules = Product<Newtons, Meters>
 
 
 // ---- Light
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
+/// <summary>
+/// <a href="https://en.wikipedia.org/wiki/Candela">Candelas</a>
+/// are a measure of <see cref="T:Math.Units.LuminousIntensity"/>
+/// measured in <see cref="T:Math.Units.Lumens"/> per
+/// <see cref="T:Math.Units.Steradians"/>.
+/// </summary>
 type Candelas = Rate<Lumens, Steradians>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Lux = Rate<Lumens, SquareMeters>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Nits = Rate<Candelas, SquareMeters>
 
 
 // ---- Atomic
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type MolesPerCubicMeter = Rate<Moles, CubicMeters>
 
 
 // ---- Electrical
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Watts = Rate<Joules, Seconds>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Amperes = Rate<Coulombs, Seconds>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Volts = Rate<Watts, Amperes>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Farads = Rate<Coulombs, Volts>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Henries = Rate<Volts, Rate<Amperes, Seconds>>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type Ohms = Rate<Volts, Amperes>
 
 
 // ---- Pixels
 
 
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type PixelsPerSecond = Rate<Pixel, Seconds>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type PixelsPerSecondSquared = Rate<PixelsPerSecond, Seconds>
-/// <category>Unit Space</category>
+/// <category>Unit</category>
 type SquarePixels = Squared<Pixel>
 
 
 // ---- Quantity Declaration ---------------------------------------------------
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 /// <summary>
 /// A <c>Quantity</c> is effectively a <c>number</c> (an <c>Int</c> or <c>Float</c>) tagged with a
 /// <c>units</c> type. So a
@@ -278,103 +286,102 @@ type Quantity<'Units>(quantity: float) =
 // ---- Quantity Types ---------------------------------------------------------
 
 
+/// <category>Unit System</category>
 /// A percentage value. The default range for percentages is 0 to 1 but can also be given in the range 0 to 100.
-///
-/// <category>Unit Type</category>
 type Percent = Quantity<Percentage>
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Duration = Quantity<Seconds>
 
 
 // ---- Distance
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Length = Quantity<Meters>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Area = Quantity<SquareMeters>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Volume = Quantity<CubicMeters>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Pixels = Quantity<Pixel>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Speed = Quantity<MetersPerSecond>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Acceleration = Quantity<MetersPerSecondSquared>
 
 
 // ---- Angular
 
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Angle = Quantity<Radians>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type AngularSpeed = Quantity<RadiansPerSecond>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type AngularAcceleration = Quantity<RadiansPerSecondSquared>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type SolidAngle = Quantity<Steradians>
 
 
 // ---- Mass
 
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Mass = Quantity<Kilograms>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Density = Quantity<KilogramsPerCubicMeter>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Force = Quantity<Newtons>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Energy = Quantity<Joules>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Pressure = Quantity<Pascals>
 
 // ---- Light
 
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type LuminousFlux = Quantity<Lumens>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type LuminousIntensity = Quantity<Candelas>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Illuminance = Quantity<Lux>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Luminance = Quantity<Nits>
 
 // ---- Atomic
 
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type SubstanceAmount = Quantity<Moles>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Molarity = Quantity<MolesPerCubicMeter>
 
 // ---- Electrical
 
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Charge = Quantity<Coulombs>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Current = Quantity<Amperes>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Capacitance = Quantity<Farads>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Inductance = Quantity<Henries>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Power = Quantity<Watts>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Resistance = Quantity<Ohms>
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Voltage = Quantity<Volts>
 
 // ---- Temperature ------------------------------------------------------------
 
 
-/// <category>Unit Type</category>
-type Delta = Quantity<CelsiusDegrees>
+/// <category>Unit System</category>
+type TemperatureDelta = Quantity<CelsiusDegrees>
 
-/// <category>Unit Type</category>
+/// <category>Unit System</category>
 type Temperature(kelvin: float) =
     interface IComparable<Temperature> with
         member this.CompareTo(temp: Temperature) : int = this.Comparison(temp)
@@ -441,17 +448,17 @@ type Temperature(kelvin: float) =
 
     // ---- Operators ----
 
-    static member (+)(lhs: Temperature, rhs: Delta) : Temperature = Temperature(lhs.Value + rhs.Value)
+    static member (+)(lhs: Temperature, rhs: TemperatureDelta) : Temperature = Temperature(lhs.Value + rhs.Value)
 
-    static member (+)(lhs: Delta, rhs: Temperature) : Temperature = Temperature(lhs.Value + rhs.Value)
+    static member (+)(lhs: TemperatureDelta, rhs: Temperature) : Temperature = Temperature(lhs.Value + rhs.Value)
 
-    static member (-)(lhs: Temperature, rhs: Temperature) : Delta = Delta(lhs.Value - rhs.Value)
+    static member (-)(lhs: Temperature, rhs: Temperature) : TemperatureDelta = TemperatureDelta(lhs.Value - rhs.Value)
 
 
 // ---- Interval ---------------------------------------------------------------
 
 
-/// <category index="4">Advanced Types</category>
+/// <category>Unit Relation</category>
 /// <summary>
 /// A finite, closed interval with a minimum and maximum number. This can
 /// represent an interval of any type.

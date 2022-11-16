@@ -128,7 +128,7 @@ let Truncate () =
 [<Test>]
 let Addition () =
     let temp = Temperature 1.
-    let delta = Delta 2.
+    let delta = TemperatureDelta 2.
     let expected = Temperature 3.
 
     Assert.AreEqual(expected, temp + delta)
@@ -137,7 +137,7 @@ let Addition () =
 [<Test>]
 let Subtraction () =
     let actual = Temperature 3. - Temperature 2.
-    let expected = Delta 1.
+    let expected = TemperatureDelta 1.
 
     Assert.AreEqual(actual, expected)
 

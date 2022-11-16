@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// Unlike other modules in <c>Math.Units</c>, this module contains two different
 /// primary types:
@@ -8,7 +9,7 @@
 ///     add two temperatures or find the ratio between them.
 /// </description></item>
 /// <item><description>
-///     <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c>
+///     <c>TemperatureDelta</c>, which represents the difference between two temperatures. A <c>TemperatureDelta</c>
 ///     <i>is</i> a <c>Quantity</c> since it does make sense to add two deltas to get a net
 ///     delta, find the ratio between two deltas (one rise in temperature might be
 ///     twice as much as another rise in temperature), etc.
@@ -18,7 +19,7 @@
 /// functions for doing the operations on <c>Temperature</c> values that <i>do</i> make sense,
 /// such as comparing two temperatures or sorting a list of temperatures. It's also
 /// possible to find the delta from one temperature to another using <c>Temperature.minus</c>,
-/// and then add a <c>Delta</c> to a <c>Temperature</c> using <c>Temperature.plus</c>.
+/// and then add a <c>TemperatureDelta</c> to a <c>Temperature</c> using <c>Temperature.plus</c>.
 /// </summary>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Temperature
@@ -75,10 +76,10 @@ let absoluteZero = kelvins 0
 // ---- Deltas ----
 
 /// Construct a temperature delta from a number of Celsius degrees.
-let celsiusDegrees (numCelsiusDegrees: float) : Delta = Quantity numCelsiusDegrees
+let celsiusDegrees (numCelsiusDegrees: float) : TemperatureDelta = Quantity numCelsiusDegrees
 
 /// Convert a temperature delta to a number of Celsius degrees.
-let inCelsiusDegrees (numCelsiusDegrees: Delta) : float = numCelsiusDegrees.Value
+let inCelsiusDegrees (numCelsiusDegrees: TemperatureDelta) : float = numCelsiusDegrees.Value
 
 /// <summary>
 /// Construct a temperature delta from a number of Fahrenheit degrees.
@@ -88,7 +89,7 @@ let inCelsiusDegrees (numCelsiusDegrees: Delta) : float = numCelsiusDegrees.Valu
 ///    Temperature.fahrenheitDegrees 36
 ///    --&gt; Temperature.celsiusDegrees 20
 /// </code></example>
-let fahrenheitDegrees (numFahrenheitDegrees: float) : Delta =
+let fahrenheitDegrees (numFahrenheitDegrees: float) : TemperatureDelta =
     celsiusDegrees (numFahrenheitDegrees / 1.8)
 
 /// <summary>
@@ -99,7 +100,7 @@ let fahrenheitDegrees (numFahrenheitDegrees: float) : Delta =
 ///        |&gt; Temperature.inFahrenheitDegrees
 ///    --&gt; 18
 /// </code></example>
-let inFahrenheitDegrees (quantity: Delta) : float = inCelsiusDegrees quantity * 1.8
+let inFahrenheitDegrees (quantity: TemperatureDelta) : float = inCelsiusDegrees quantity * 1.8
 
 let celsiusDegree = celsiusDegrees 1
 let fahrenheitDegree = fahrenheitDegrees 1
@@ -151,7 +152,7 @@ let greaterThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs >= r
 ///     --&gt; Temperature.inDegreesCelsius 55.
 /// </code>
 /// </summary>
-let plus (rhs: Delta) (lhs: Temperature) : Temperature = lhs + rhs
+let plus (rhs: TemperatureDelta) (lhs: Temperature) : Temperature = lhs + rhs
 
 
 // ---- Functions --------------------------------------------------------------

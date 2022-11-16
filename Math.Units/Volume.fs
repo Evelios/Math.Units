@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Volume</c> represents a volume in cubic meters, cubic feet, liters, US
 /// liquid gallons, imperial fluid ounces etc. It is stored as a number of cubic

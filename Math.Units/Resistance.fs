@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Resistance</c> value represents an electrical resistance in ohms.
 /// </summary>
@@ -9,7 +10,7 @@
 /// </para>
 /// <code>
 ///     let resistance =
-///         voltage |> Quantity.per current
+///         voltage |&gt; Quantity.per current
 /// </code>
 /// <para>
 /// You can also do rate-related calculations with <c>Resistance</c> values to compute
@@ -17,9 +18,9 @@
 /// <code>
 /// <c>Voltage</c> or <c>Current</c>:
 ///     let voltage =
-///         current |> Quantity.at resistance
+///         current |&gt; Quantity.at resistance
 ///     let current =
-///         voltage |> Quantity.at_ resistance
+///         voltage |&gt; Quantity.at_ resistance
 /// </code>
 /// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]

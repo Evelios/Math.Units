@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Speed</c> value represents a speed in meters per second, miles per hour etc.
 /// It is stored as a number of meters per second.
@@ -8,18 +9,18 @@
 /// per unit time), you can construct a <c>Speed</c> value using <c>Quantity.per</c>:
 /// <code>
 ///     speed =
-///         length |> Quantity.per duration
+///         length |&gt; Quantity.per duration
 /// </code>
 /// 
 /// You can also do rate-related calculations with <c>Speed</c> values to compute
 /// <c>Length</c> or <c>Duration</c>:
 /// <code>
 ///     length =
-///         speed |> Quantity.for duration
+///         speed |&gt; Quantity.for duration
 ///     alsoLength =
-///         duration |> Quantity.at speed
+///         duration |&gt; Quantity.at speed
 ///     duration =
-///         length |> Quantity.at_ speed
+///         length |&gt; Quantity.at_ speed
 /// </code>
 /// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]

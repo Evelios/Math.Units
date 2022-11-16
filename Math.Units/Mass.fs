@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Mass</c> represents a mass in kilograms, pounds, metric or imperial tons
 /// etc. It is stored as a number of kilograms.
@@ -29,7 +30,7 @@ let ounces (numOunces: float) : Mass = kilograms (Constants.ounce * numOunces)
 /// <summary>
 /// Convert a mass to a number of ounces.
 /// <code>
-///    Mass.pounds 1 |> Mass.inOunces
+///    Mass.pounds 1 |&gt; Mass.inOunces
 ///    --> 16
 /// </code>
 /// </summary>

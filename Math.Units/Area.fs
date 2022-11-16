@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// An <c>Area</c> represents an area in square meters, square feet, acres, hectares
 /// etc. It is stored as a number of square meters.
@@ -11,7 +12,7 @@
 /// <code>
 /// Area.squareFeet 100
 /// Quantity.squared (Length.feet 10)
-/// Length.feet 25 |> Quantity.times (Length.feet 4)
+/// Length.feet 25 |&gt; Quantity.times (Length.feet 4)
 /// </code>
 /// </example>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]

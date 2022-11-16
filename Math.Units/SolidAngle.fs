@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// <a href="https://en.wikipedia.org/wiki/Solid_angle">Solid angle</a> is a tricky concept
 /// to explain, but roughly speaking solid angle is for 3D what angle is for 2D. It
@@ -44,7 +45,7 @@ let spats (numSpats: float) : SolidAngle = steradians (4. * Math.PI * numSpats)
 /// <summary>
 /// Convert a solid angle to a number of spats.
 /// <code>
-/// SolidAngle.steradians (2 * pi) |> SolidAngle.inSpats
+/// SolidAngle.steradians (2 * pi) |&gt; SolidAngle.inSpats
 /// --> 0.5
 /// </code>
 /// </summary>
@@ -71,7 +72,7 @@ let squareDegrees (numSquareDegrees: float) : SolidAngle =
 /// <summary>
 /// Convert a solid angle to a number of square degrees.
 /// <code>
-///    SolidAngle.spats 1 |> SolidAngle.inSquareDegrees
+///    SolidAngle.spats 1 |&gt; SolidAngle.inSquareDegrees
 ///    --> 41252.96125
 /// </code>
 /// </summary>
@@ -86,7 +87,7 @@ let inSquareDegrees (solidAngle: SolidAngle) : float =
 /// degrees, similar to how a circle of diameter 1 has an area of π/4:
 /// <code>
 ///     SolidAngle.conical (Angle.degrees 1)
-///         |> SolidAngle.inSquareDegrees
+///         |&gt; SolidAngle.inSquareDegrees
 ///     --> 0.78539318
 ///     pi / 4
 ///     --> 0.78539816

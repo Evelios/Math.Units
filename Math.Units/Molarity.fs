@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Molarity</c> value represents a concentration of substance in moles per
 /// cubic meter, moles per liter, millimoles per liter etc. It is stored as a number
@@ -14,7 +15,7 @@
 /// <c>Quantity.per</c>:
 /// <code>
 ///     molarity =
-///         substanceAmount |> Quantity.per volume
+///         substanceAmount |&gt; Quantity.per volume
 /// </code>
 /// </note>
 ///
@@ -23,9 +24,9 @@
 /// <c>SubstanceAmount</c> or <c>Volume</c>:
 /// <code>
 ///     let substanceAmount =
-///         volume |> Quantity.at molarity
+///         volume |&gt; Quantity.at molarity
 ///     let volume =
-///         substanceAmount |> Quantity.at_ molarity
+///         substanceAmount |&gt; Quantity.at_ molarity
 /// </code>
 /// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]

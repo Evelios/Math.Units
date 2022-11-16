@@ -22,7 +22,7 @@ type Cartesian = Cartesian
 
 @docs Quantity
 
-# Unit types
+# Unit Systems
 
 The <c>Squared</c>, <c>Cubed</c>, `Product` and `Rate` units types allow you to build up
 and work with composite units in a fairly flexible way.

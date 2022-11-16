@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Duration
 
@@ -12,7 +13,7 @@ let seconds (numSeconds: float) : Duration = Quantity numSeconds
 /// </summary>
 ///
 /// <example><code>
-///    Duration.milliseconds 10 |> Duration.inSeconds
+///    Duration.milliseconds 10 |&gt; Duration.inSeconds
 ///    --> 0.01
 /// </code></example>
 let inSeconds (numSeconds: Duration) : float = numSeconds.Value
@@ -55,7 +56,7 @@ let minutes (numMinutes: float) : Duration = seconds (60. * numMinutes)
 /// </summary>
 ///
 /// <example><code>
-///    Duration.seconds 90 |> Duration.inMinutes
+///    Duration.seconds 90 |&gt; Duration.inMinutes
 ///    --> 1.5
 /// </code></example>
 let inMinutes (duration: Duration) : float = inSeconds duration / 60.
@@ -76,7 +77,7 @@ let hours (numHours: float) : Duration = seconds (Constants.hour * numHours)
 /// </summary>
 ///
 /// <example><code>
-///    Duration.minutes 120 |> Duration.inHours
+///    Duration.minutes 120 |&gt; Duration.inHours
 ///    --> 2
 /// </code></example>
 let inHours (duration: Duration) : float = inSeconds duration / Constants.hour
@@ -99,7 +100,7 @@ let days (numDays: float) : Duration = seconds (Constants.day * numDays)
 /// </summary>
 ///
 /// <example><code>
-///    Duration.hours 72 |> Duration.inDays
+///    Duration.hours 72 |&gt; Duration.inDays
 ///    --> 3
 /// </code></example>
 let inDays (duration: Duration) : float = inSeconds duration / Constants.day
@@ -119,7 +120,7 @@ let weeks (numWeeks: float) : Duration = seconds (Constants.week * numWeeks)
 /// </summary>
 ///
 /// <example><code>
-///    Duration.days 28 |> Duration.inWeeks
+///    Duration.days 28 |&gt; Duration.inWeeks
 ///    --> 4
 /// </code></example>
 let inWeeks (duration: Duration) : float = inSeconds duration / Constants.week

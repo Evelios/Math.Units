@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// A <c>Power</c> value represents power in watts or horsepower. It is stored as a
 /// number of watts.
@@ -8,17 +9,17 @@
 /// time), you can construct a <c>Power</c> value using <c>Quantity.per</c>:
 /// <code>
 ///     let power =
-///         energy |> Quantity.per duration
+///         energy |&gt; Quantity.per duration
 /// </code>
 /// You can also do rate-related calculations with <c>Power</c> values to compute
 /// <c>Energy</c> or <c>Duration</c>:
 /// <code>
 ///     let energy =
-///         power |> Quantity.for duration
+///         power |&gt; Quantity.for duration
 ///     let alsoEnergy =
-///         duration |> Quantity.at power
+///         duration |&gt; Quantity.at power
 ///     let duration =
-///         energy |> Quantity.at_ power
+///         energy |&gt; Quantity.at_ power
 /// </code>
 /// </note>
 ///

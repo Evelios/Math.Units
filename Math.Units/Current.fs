@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Current
 
@@ -11,8 +12,8 @@ let amperes (numAmperes: float) : Current = Quantity numAmperes
 /// 
 /// <example><code>
 ///    Charge.coulombs 10
-///        |> Quantity.per (Duration.seconds 2)
-///        |> Current.inAmperes
+///        |&gt; Quantity.per (Duration.seconds 2)
+///        |&gt; Current.inAmperes
 ///    --> 5
 /// </code></example>
 let inAmperes (numAmperes: Current) : float = numAmperes.Value
@@ -32,7 +33,7 @@ let milliamperes (numMilliamperes: float) : Current = amperes (numMilliamperes *
 /// </summary>
 /// 
 /// <example><code>
-///    Current.amperes 2 |> Current.inMilliamperes
+///    Current.amperes 2 |&gt; Current.inMilliamperes
 ///    --> 2000
 /// </code></example>
 let inMilliamperes (current: Current) : float = inAmperes current / 1.0e-3

@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.AngularSpeed
 

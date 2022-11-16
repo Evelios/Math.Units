@@ -1,9 +1,11 @@
+/// <category>Module: Unit System</category>
 [<AutoOpen>]
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Quantity
 
 open System
 
+/// <category>Module: Unit System</category>
 /// <summary>
 /// Quantity of any floating point value. This structure is represented as a
 /// class so that all these functions can be inherited by the type alias.
@@ -75,7 +77,7 @@ type Quantity<'Units> with
     ///     let oneMeter =
     ///         Length.meters 1
     ///
-    ///     Length.feet 1 |> Quantity.lessThan oneMeter
+    ///     Length.feet 1 |&gt; Quantity.lessThan oneMeter
     ///     --> True
     ///
     ///     // Is the same as:
@@ -105,7 +107,7 @@ type Quantity<'Units> with
     /// <example><code lang="fsharp">
     ///    oneMeter =
     ///        Length.meters 1
-    ///    Length.feet 1 |> Quantity.greaterThan oneMeter
+    ///    Length.feet 1 |&gt; Quantity.greaterThan oneMeter
     ///    // --> False
     ///
     ///    // Same as:
@@ -258,7 +260,7 @@ type Quantity<'Units> with
     /// <example><code lang="fsharp">
     ///    Quantity.isInfinite
     ///        (Length.meters 1
-    ///            |> Quantity.per (Duration.seconds 0)
+    ///            |&gt; Quantity.per (Duration.seconds 0)
     ///        )
     ///    --> True
     ///    Quantity.isInfinite Quantity.negativeInfinity
@@ -300,7 +302,7 @@ type Quantity<'Units> with
     /// </summary>
     ///
     /// <example><code lang="fsharp">
-    ///    Length.meters 1 |> Quantity.plus (Length.centimeters 5)
+    ///    Length.meters 1 |&gt; Quantity.plus (Length.centimeters 5)
     ///    --> Length.centimeters 105
     /// </code></example>
     static member plus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x + y
@@ -327,7 +329,7 @@ type Quantity<'Units> with
     /// </code>
     /// can be written as
     /// <code lang="fsharp">
-    ///     x |> Quantity.minus y
+    ///     x |&gt; Quantity.minus y
     /// </code>
     /// </summary>
     /// 
@@ -383,7 +385,7 @@ type Quantity<'Units> with
     /// </code>
     /// can be written as
     /// <code lang="fsharp">
-    ///     a |> Quantity.times b
+    ///     a |&gt; Quantity.times b
     /// </code>
     /// </summary>
     static member times (y: Quantity<'Units>) (x: Quantity<'Units>) = x * y
@@ -393,7 +395,7 @@ type Quantity<'Units> with
     /// If you use <c>times</c>) or product to multiply one
     /// quantity by another <c>Unitless</c> quantity, for example
     /// <code lang="fsharp">
-    ///     quantity |> Quantity.times unitlessQuantity
+    ///     quantity |&gt; Quantity.times unitlessQuantity
     /// </code>
     /// then the result you'll get will have units type <c>Product units Unitless</c>. But
     /// this is silly and not super useful, since the product of <c>units</c> and <c>Unitless</c>
@@ -403,12 +405,12 @@ type Quantity<'Units> with
     /// You can think of <c>timesUnitless</c> as shorthand for <c>toFloat</c> and <c>multiplyBy</c>;
     /// for <c>Float</c>-valued quantities,
     /// <code lang="fsharp">
-    ///     quantity |> Quantity.timesUnitless unitlessQuantity
+    ///     quantity |&gt; Quantity.timesUnitless unitlessQuantity
     /// </code>
     /// is equivalent to
     /// <code lang="fsharp">
     ///     quantity
-    ///         |> Quantity.multiplyBy
+    ///         |&gt; Quantity.multiplyBy
     ///             (Quantity.toFloat unitlessQuantity)
     /// </code>
     /// </summary>
@@ -424,7 +426,7 @@ type Quantity<'Units> with
     /// be accelerated by the given force:
     /// <code lang="fsharp">
     ///     Force.newtons 100
-    ///         |> Quantity.over
+    ///         |&gt; Quantity.over
     ///             (Mass.kilograms 50)
     ///     --> Acceleration.metersPerSecondSquared 2
     /// </code>
@@ -439,7 +441,7 @@ type Quantity<'Units> with
     /// acceleration to determine how much mass could be accelerated at that rate:
     /// <code lang="fsharp">
     ///     Force.newtons 100
-    ///         |> Quantity.over_
+    ///         |&gt; Quantity.over_
     ///             (Acceleration.metersPerSecondSquared 5)
     ///     --> Mass.kilograms 20
     /// </code>
@@ -453,12 +455,12 @@ type Quantity<'Units> with
     /// divide one quantity by a second [unitless](#Unitless) quantity without affecting
     /// the units;
     /// <code lang="fsharp">
-    ///     quantity |> Quantity.overUnitless unitlessQuantity
+    ///     quantity |&gt; Quantity.overUnitless unitlessQuantity
     /// </code>
     /// is equivalent to
     /// <code lang="fsharp">
     ///     quantity
-    ///         |> Quantity.divideBy
+    ///         |&gt; Quantity.divideBy
     ///             (Quantity.toFloat unitlessQuantity)
     /// </code>
     /// </summary>
@@ -585,7 +587,7 @@ type Quantity<'Units> with
     ///     hypotenuse x y =
     ///         Quantity.sqrt
     ///             (Quantity.squared x
-    ///                 |> Quantity.plus
+    ///                 |&gt; Quantity.plus
     ///                     (Quantity.squared y)
     ///             )
     /// </code>
@@ -826,24 +828,24 @@ type Quantity<'Units> with
     /// <summary>
     /// Generalized units conversion function that lets you convert to many kinds of
     /// units not directly supported by <c>elm-units</c>. The first argument is a function
-    /// that constructs a quantity of the desired unit type, and the second is the quantity
+    /// that constructs a quantity of the desired Unit System, and the second is the quantity
     /// to convert. For example,
     /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
-    ///         |> Speed.inFeetPerSecond
+    ///         |&gt; Speed.inFeetPerSecond
     ///     --> 16.4042
     /// </code>
     /// is equivalent to
     /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
-    ///         |> Quantity.in_ Speed.feetPerSecond
+    ///         |&gt; Quantity.in_ Speed.feetPerSecond
     ///     --> 16.4042
     /// </code>
     /// More interestingly, if you wanted to get speed in some weirder unit like
     /// millimeters per minute (not directly supported by <c>elm-units</c>), you could do
     /// <code lang="fsharp">
     ///     Speed.metersPerSecond 5
-    ///         |> Quantity.in_
+    ///         |&gt; Quantity.in_
     ///             (Length.millimeters
     ///                 >> Quantity.per (Duration.minutes 1)
     ///             )
@@ -1109,7 +1111,7 @@ type Quantity<'Units> with
     ///     let speed =
     ///         Quantity.rate (Length.miles 1) Duration.minute
     /// 
-    ///     speed |> Speed.inMilesPerHour
+    ///     speed |&gt; Speed.inMilesPerHour
     ///     --> 60
     /// </code>
     /// 
@@ -1140,7 +1142,7 @@ type Quantity<'Units> with
     /// </code>
     /// can be written as
     /// <code lang="fsharp">
-    ///     distance |> Quantity.per time
+    ///     distance |&gt; Quantity.per time
     /// </code>
     /// </summary>
     static member per
@@ -1156,7 +1158,7 @@ type Quantity<'Units> with
     ///
     /// <code lang="fsharp">
     ///       Duration.minutes 30
-    ///           |> Quantity.at
+    ///           |&gt; Quantity.at
     ///               (Speed.kilometersPerHour 100)
     ///       --> Length.kilometers 50
     /// </code>
@@ -1167,7 +1169,7 @@ type Quantity<'Units> with
     ///
     /// <code lang="fsharp">
     ///       let pixelDensity : Rate&lt;Pixels, Meters&gt; =
-    ///           Pixels.pixels 96 |> Quantity.per (Length.inches 1)
+    ///           Pixels.pixels 96 |&gt; Quantity.per (Length.inches 1)
     ///       let lengthToPixels : Length -> Pixels =
     ///           Quantity.at pixelDensity length
     /// 
@@ -1197,7 +1199,7 @@ type Quantity<'Units> with
     /// necessary amount of the <b>Independent</b> quantity:
     /// <code lang="fsharp">
     ///     Length.kilometers 75
-    ///         |> Quantity.at_
+    ///         |&gt; Quantity.at_
     ///             (Speed.kilometersPerHour 100)
     ///     --> Duration.minutes 45
     /// </code>
@@ -1208,7 +1210,7 @@ type Quantity<'Units> with
     /// Similar to <c>at</c>, <c>at_</c> can be used to define an _inverse_ conversion function:
     /// <code lang="fsharp">
     ///     let pixelDensity : Rate&lt;Pixels, Meters&gt;
-    ///         Pixels.pixels 96 |> Quantity.per (Length.inches 1)
+    ///         Pixels.pixels 96 |&gt; Quantity.per (Length.inches 1)
     /// 
     ///     let pixelsToLength (pixels: Pixels): Length =
     ///         Quantity.at_ pixelDensity pixels
@@ -1233,7 +1235,7 @@ type Quantity<'Units> with
     /// in some cases:
     /// <code lang="fsharp">
     ///     Speed.kilometersPerHour 100
-    ///         |> Quantity.for
+    ///         |&gt; Quantity.for
     ///             (Duration.minutes 30)
     ///     --> Length.kilometers 50
     /// </code>
@@ -1270,7 +1272,7 @@ type Quantity<'Units> with
     ///     let realWorldSpeed =
     ///         Speed.metersPerSecond 0.1
     ///     let resolution =
-    ///         Pixels.float 96 |> Quantity.per Length.inch
+    ///         Pixels.float 96 |&gt; Quantity.per Length.inch
     /// 
     ///     Quantity.rateProduct realWorldSpeed resolution
     ///     --> Pixels.pixelsPerSecond 377.95
@@ -1287,7 +1289,7 @@ type Quantity<'Units> with
     ///     let pixelSpeed =
     ///         Pixels.pixelsPerSecond 500
     ///     let resolution =
-    ///         Pixels.float 96 |> Quantity.per Length.inch
+    ///         Pixels.float 96 |&gt; Quantity.per Length.inch
     ///     Quantity.rateProduct pixelSpeed
     ///         (Quantity.inverse resolution).Value
     ///     --> Speed.metersPerSecond 0.1323

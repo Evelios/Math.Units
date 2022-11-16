@@ -1,3 +1,22 @@
+/// <category>Module: Unit System</category>
+/// <summary>
+/// An <c>Angle</c> represents an angle in degrees, radians, or turns. It is stored
+/// as a number of radians.
+/// </summary>
+///
+/// <note>
+/// Angles are sometimes measured in degrees, minutes, and seconds, where 1 minute =
+/// 1/60th of a degree and 1 second = 1/60th of a minute.
+/// </note>
+/// 
+/// <example>
+/// You can construct an angle from your unit scheme. All of the following are equivalent.
+/// <code>
+///     Angle.radians Math.PI
+///     Angle.degrees 180.
+///     Angle.turns 0.5
+/// </code>
+/// </example>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Angle
 

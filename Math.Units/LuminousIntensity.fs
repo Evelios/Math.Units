@@ -1,3 +1,4 @@
+/// <category>Module: Unit System</category>
 /// <summary>
 /// <para>
 /// <a href="https://en.wikipedia.org/wiki/Luminous_intensity">Luminous intensity</a>
@@ -43,8 +44,8 @@ let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 /// </para>
 /// <code>
 ///     LuminousFlux.lumens 470
-///         |> Quantity.per (SolidAngle.spats 1)
-///         |> LuminousIntensity.inCandelas
+///         |&gt; Quantity.per (SolidAngle.spats 1)
+///         |&gt; LuminousIntensity.inCandelas
 ///     --> 37.4014
 /// </code>
 ///
@@ -54,8 +55,8 @@ let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 /// </para>
 /// <code>
 ///     LuminousFlux.lumens 470
-///         |> Quantity.per (SolidAngle.spats 0.5)
-///         |> LuminousIntensity.inCandelas
+///         |&gt; Quantity.per (SolidAngle.spats 0.5)
+///         |&gt; LuminousIntensity.inCandelas
 ///     --> 74.8028
 /// </code>
 /// </example>

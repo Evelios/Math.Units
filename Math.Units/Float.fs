@@ -2,6 +2,7 @@ namespace Math.Units
 
 open System
 
+/// <category>Other</category>
 /// <summary>
 /// A static class providing added features to the floating point number class.
 /// </summary>
@@ -58,6 +59,7 @@ type Float private () =
     static member Epsilon =
         10. ** (float -Float.DigitPrecision)
 
+/// <category>Other</category>
 module Float =
 
     /// Compare two floating point values for equality. Equality testing is done
