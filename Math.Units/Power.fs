@@ -32,36 +32,43 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Power
 
+/// <category>Metric</category>
 /// <summary>
 /// Construct a <c>Power</c> value from a number of watts.
 /// </summary>
 let watts (numWatts: float) : Power = Quantity numWatts
 
+/// <category>Metric</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of watts.
 /// </summary>
 let inWatts (numWatts: Power) : float = numWatts.Value
 
+/// <category>Metric</category>
 /// <summary>
 /// Construct a <c>Power</c> value from a number of kilowatts.
 /// </summary>
 let kilowatts (numKilowatts: float) : Power = watts (1000. * numKilowatts)
 
+/// <category>Metric</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of kilowatts.
 /// </summary>
 let inKilowatts (power: Power) : float = inWatts power / 1000.
 
+/// <category>Conversions</category>
 /// <summary>
 /// Construct a <c>Power</c> value from a number of megawatts.
 /// </summary>
 let megawatts (numMegawatts: float) : Power = watts (1.0e6 * numMegawatts)
 
+/// <category>Metric</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of megawatts.
 /// </summary>
 let inMegawatts (power: Power) : float = inWatts power / 1.0e6
 
+/// <category>Horsepower</category>
 /// <summary>
 /// Construct a <c>Power</c> value from an number of
 /// <a href="https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower">metric horsepower</a>.
@@ -73,12 +80,14 @@ let inMegawatts (power: Power) : float = inWatts power / 1.0e6
 let metricHorsepower (numMetricHorsepower: float) : Power =
     watts (Constants.metricHorsepower * numMetricHorsepower)
 
+/// <category>Horsepower</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of metric horsepower.
 /// </summary>
 let inMetricHorsepower (power: Power) : float =
     inWatts power / Constants.metricHorsepower
 
+/// <category>Horsepower</category>
 /// <summary>
 /// Construct a <c>Power</c> value from an number of
 /// <a href="https://en.wikipedia.org/wiki/Horsepower#Mechanical_horsepower">mechanical horsepower</a>.
@@ -93,12 +102,14 @@ let mechanicalHorsepower (numMechanicalHorsepower: float) : Power =
         * Constants.mechanicalHorsepower
     )
 
+/// <category>Horsepower</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of mechanical horsepower.
 /// </summary>
 let inMechanicalHorsepower (power: Power) : float =
     inWatts power / Constants.mechanicalHorsepower
 
+/// <category>Horsepower</category>
 /// <summary>
 /// Construct a <c>Power</c> value from an number of
 /// <a href="https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower">electrical horsepower</a>.
@@ -113,6 +124,7 @@ let electricalHorsepower (numElectricalHorsepower: float) : Power =
         * numElectricalHorsepower
     )
 
+/// <category>Horsepower</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of electrical horsepower.
 /// </summary>

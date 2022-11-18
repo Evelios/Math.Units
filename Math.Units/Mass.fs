@@ -6,27 +6,35 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Mass
 
+/// <category>Metric</category>
 /// Construct a mass from a number of kilograms.
 let kilograms (numKilograms: float) : Mass = Quantity numKilograms
 
+/// <category>Metric</category>
 /// Convert a mass to a number of kilograms.
 let inKilograms (numKilograms: Mass) : float = numKilograms.Value
 
+/// <category>Metric</category>
 /// Construct a mass from a number of grams.
 let grams (numGrams: float) : Mass = kilograms (0.001 * numGrams)
 
+/// <category>Metric</category>
 /// Convert a mass to a number of grams.
 let inGrams (mass: Mass) : float = 1000. * inKilograms mass
 
+/// <category>Imperial</category>
 /// Construct a mass from a number of pounds.
 let pounds (numPounds: float) : Mass = kilograms (Constants.pound * numPounds)
 
+/// <category>Imperial</category>
 /// Convert a mass to a number of pounds.
 let inPounds (mass: Mass) : float = inKilograms mass / Constants.pound
 
+/// <category>Imperial</category>
 /// Construct a mass from a number of ounces.
 let ounces (numOunces: float) : Mass = kilograms (Constants.ounce * numOunces)
 
+/// <category>Imperial</category>
 /// <summary>
 /// Convert a mass to a number of ounces.
 /// <code>
@@ -36,6 +44,7 @@ let ounces (numOunces: float) : Mass = kilograms (Constants.ounce * numOunces)
 /// </summary>
 let inOunces (mass: Mass) : float = inKilograms mass / Constants.ounce
 
+/// <category>Imperial</category>
 /// <summary>
 /// Construct a mass from a number of <a href="https://en.wikipedia.org/wiki/Tonne">metric tons</a>.
 /// <code>
@@ -45,9 +54,11 @@ let inOunces (mass: Mass) : float = inKilograms mass / Constants.ounce
 /// </summary>
 let metricTons (numTonnes: float) : Mass = kilograms (1000. * numTonnes)
 
+/// <category>Imperial</category>
 /// Convert a mass to a number of metric tons.
 let inMetricTons (mass: Mass) : float = 0.001 * inKilograms mass
 
+/// <category>Imperial</category>
 /// <summary>
 /// Construct a mass from a number of <a href="https://en.wikipedia.org/wiki/Short_ton">short tons</a>. This is the 'ton'
 /// commonly used in the United States.
@@ -59,9 +70,11 @@ let inMetricTons (mass: Mass) : float = 0.001 * inKilograms mass
 let shortTons (numShortTons: float) : Mass =
     kilograms (Constants.shortTon * numShortTons)
 
+/// <category>Imperial</category>
 /// Convert a mass to a number of short tons.
 let inShortTons (mass: Mass) : float = inKilograms mass / Constants.shortTon
 
+/// <category>Imperial</category>
 /// <summary>
 /// Construct a mass from a number of
 /// <a href="https://en.wikipedia.org/wiki/Long_ton">long tons</a>.
@@ -74,13 +87,34 @@ let inShortTons (mass: Mass) : float = inKilograms mass / Constants.shortTon
 let longTons (numLongTons: float) : Mass =
     kilograms (Constants.longTon * numLongTons)
 
+/// <category>Imperial</category>
 /// Convert a mass to a number of long tons.
 let inLongTons (mass: Mass) : float = inKilograms mass / Constants.longTon
 
+/// <category>Constants</category>
+/// One kilogram.
 let kilogram = kilograms 1
+
+/// <category>Constants</category>
+/// One gram.
 let gram = grams 1
+
+/// <category>Constants</category>
+/// One metric ton.
 let metricTon = metricTons 1
+
+/// <category>Constants</category>
+/// One pound.
 let pound = pounds 1
+
+/// <category>Constants</category>
+/// One ounce.
 let ounce = ounces 1
+
+/// <category>Constants</category>
+/// One longTon.
 let longTon = longTons 1
+
+/// <category>Constants</category>
+/// One shortTon.
 let shortTon = shortTons 1

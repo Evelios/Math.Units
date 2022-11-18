@@ -17,6 +17,7 @@ open System
 /// </summary>
 type Quantity<'Units> with
 
+    /// <category>Unitless</category>
     /// <summary>
     /// Create a unitless quantity. Unitless quantities must use the unitless
     /// functions in this module to avoid accumulating unit ratios. Using
@@ -24,6 +25,7 @@ type Quantity<'Units> with
     /// </summary>
     static member unitless value : Quantity<Unitless> = Quantity value
 
+    /// <category>Constants</category>
     /// <summary>
     /// A generic zero value. This can be treated as a quantity in any
     /// units type, similar to how <c>None</c> can be treated as any kind
@@ -33,11 +35,13 @@ type Quantity<'Units> with
         Quantity LanguagePrimitives.GenericZero
 
 
+    /// <category>Constants</category>
     /// A generic positive infinity value.
     static member positiveInfinity: Quantity<'Units> =
         Quantity Double.PositiveInfinity
 
 
+    /// <category>Constants</category>
     /// <summary>
     /// Alias for <c>Quantity.positiveInfinity</c>.
     /// </summary>
@@ -45,6 +49,7 @@ type Quantity<'Units> with
         Quantity.positiveInfinity
 
 
+    /// <category>Constants</category>
     /// <summary>
     /// A generic negative infinity value.
     /// </summary>
@@ -53,6 +58,7 @@ type Quantity<'Units> with
 
     // ---- Unsafe Operations ------------------------------------------------------
 
+    /// <category>Conversions</category>
     /// This function allows you to create a quantity of any value and type.
     /// This should only try to use in library functions. This does however
     /// let you create units of generic types and types that are compiler
@@ -60,6 +66,7 @@ type Quantity<'Units> with
     static member create<'Units> value : Quantity<'Units> = Quantity value
 
 
+    /// <category>Conversions</category>
     /// This function provides access to the floating point value represented by
     /// the quantity. This should only try to use in library functions.
     static member unwrap(quantity: Quantity<'Units>) : float = quantity.Value
@@ -69,6 +76,7 @@ type Quantity<'Units> with
     // --- Comparison --------------------------------------------------------------
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Check if one quantity is less than another. Note the <b>argument order!</b>
     ///
@@ -102,6 +110,7 @@ type Quantity<'Units> with
     static member lessThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x < y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Check if one quantity is greater than another. Note the <b>argument order!</b>
     /// <example><code lang="fsharp">
@@ -125,6 +134,7 @@ type Quantity<'Units> with
     static member greaterThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x > y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Check if one quantity is less than or equal to another. Note the <b>argument
     /// order!</b>
@@ -132,6 +142,7 @@ type Quantity<'Units> with
     static member lessThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x <= y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Check if one quantity is greater than or equal to another. Note the
     /// <b>argument order!</b>
@@ -139,6 +150,7 @@ type Quantity<'Units> with
     static member greaterThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x >= y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Short form for <c>Quantity.lessThan Quantity.zero</c>.
     /// </summary>
@@ -146,6 +158,7 @@ type Quantity<'Units> with
         x < Quantity LanguagePrimitives.GenericZero
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Short form for <c>Quantity.greaterThan Quantity.zero</c>.
     /// </summary>
@@ -153,6 +166,8 @@ type Quantity<'Units> with
         x > Quantity LanguagePrimitives.GenericZero
 
 
+    /// <category>Operators</category>
+    /// <category>Operators</category>
     /// <summary>
     /// Short form for <c>Quantity.lessThanOrEqualTo Quantity.zero</c>.
     /// </summary>
@@ -160,6 +175,7 @@ type Quantity<'Units> with
         x <= Quantity LanguagePrimitives.GenericZero
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Short form for <c>Quantity.greaterThanOrEqualTo Quantity.zero</c>.
     /// </summary>
@@ -167,6 +183,7 @@ type Quantity<'Units> with
         x >= Quantity LanguagePrimitives.GenericZero
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Compare two quantities, returning an int value indicating whether
     /// the first is less than, equal to or greater than the second.
@@ -189,6 +206,30 @@ type Quantity<'Units> with
     /// </code></example>
     static member compare (x: Quantity<'Units>) (y: Quantity<'Units>) : int = x.Comparison(y)
 
+
+    /// <category>Operators</category>
+    /// <summary>
+    /// Check if two quantities are equal within a given absolute tolerance. The
+    /// given tolerance must be greater than or equal to zero - if it is negative, then
+    /// the result will always be false.
+    /// </summary>
+    ///
+    /// <example><code lang="fsharp">
+    ///     // 3 feet is 91.44 centimeters or 0.9144 meters
+    ///     Quantity.equalWithin (Length.centimeters 10)
+    ///         (Length.meters 1)
+    ///         (Length.feet 3)
+    ///     --&gt; True
+    ///     Quantity.equalWithin (Length.centimeters 5)
+    ///         (Length.meters 1)
+    ///         (Length.feet 3)
+    ///     --&gt; False
+    /// </code></example>
+    static member equalWithin (tolerance: Quantity<'Units>) (x: Quantity<'Units>) (y: Quantity<'Units>) : bool =
+        abs (x - y) <= abs tolerance
+        
+        
+    /// <category>Math</category>
     /// <summary>
     ///     Get the absolute value of a quantity.
     /// </summary>
@@ -210,27 +251,7 @@ type Quantity<'Units> with
     static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity.Abs quantity
 
 
-    /// <summary>
-    /// Check if two quantities are equal within a given absolute tolerance. The
-    /// given tolerance must be greater than or equal to zero - if it is negative, then
-    /// the result will always be false.
-    /// </summary>
-    ///
-    /// <example><code lang="fsharp">
-    ///     // 3 feet is 91.44 centimeters or 0.9144 meters
-    ///     Quantity.equalWithin (Length.centimeters 10)
-    ///         (Length.meters 1)
-    ///         (Length.feet 3)
-    ///     --&gt; True
-    ///     Quantity.equalWithin (Length.centimeters 5)
-    ///         (Length.meters 1)
-    ///         (Length.feet 3)
-    ///     --&gt; False
-    /// </code></example>
-    static member equalWithin (tolerance: Quantity<'Units>) (x: Quantity<'Units>) (y: Quantity<'Units>) : bool =
-        abs (x - y) <= abs tolerance
-
-
+    /// <category>Math</category>
     /// <summary>
     /// Find the maximum of two quantities.
     /// </summary>
@@ -242,6 +263,7 @@ type Quantity<'Units> with
     static member max (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = max x y
 
 
+    /// <category>Math</category>
     /// <summary>
     /// Find the minimum of two quantities.
     /// </summary>
@@ -253,6 +275,7 @@ type Quantity<'Units> with
     static member min (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = min x y
 
 
+    /// <category>Accessors</category>
     /// <summary>
     /// Check if a quantity is positive or negative infinity.
     /// </summary>
@@ -269,6 +292,7 @@ type Quantity<'Units> with
     static member isInfinite(quantity: Quantity<'Units>) : bool = Double.IsInfinity quantity.Value
 
 
+    /// <category>Accessors</category>
     /// <summary>
     /// Check if a quantity's underlying value is NaN (not-a-number).
     /// </summary>
@@ -286,6 +310,7 @@ type Quantity<'Units> with
     // ---- Arithmetic -------------------------------------------------------------
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Negate a quantity
     /// </summary>
@@ -297,6 +322,7 @@ type Quantity<'Units> with
     static member negate(value: Quantity<'Units>) : Quantity<'Units> = -value
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Add two quantities.
     /// </summary>
@@ -308,6 +334,7 @@ type Quantity<'Units> with
     static member plus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x + y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Subtract one quantity from another.
     /// </summary>
@@ -321,6 +348,7 @@ type Quantity<'Units> with
     static member difference (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x - y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// An 'infix' version of <c>difference</c>, intended to be used in
     /// pipeline form;
@@ -351,6 +379,7 @@ type Quantity<'Units> with
     static member minus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x - y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Multiply two quantities with units types <c>units1</c> and <c>units2</c> together,
     /// resulting in a quantity with units type <c>Product units1 units2</c>.
@@ -377,6 +406,7 @@ type Quantity<'Units> with
     static member product (x: Quantity<'Units>) (y: Quantity<'Units>) = x * y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// An 'infix' version of <c>product</c>, intended to be used in pipeline
     /// form;
@@ -391,6 +421,7 @@ type Quantity<'Units> with
     static member times (y: Quantity<'Units>) (x: Quantity<'Units>) = x * y
 
 
+    /// <category>Unitless</category>
     /// <summary>
     /// If you use <c>times</c>) or product to multiply one
     /// quantity by another <c>Unitless</c> quantity, for example
@@ -418,6 +449,7 @@ type Quantity<'Units> with
         Quantity(x.Value * y.Value)
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Divide a quantity in <c>Product units1 units2</c> by a quantity in <c>units1</c>,
     /// resulting in another quantity in <c>units2</c>. For example, the units type of a
@@ -435,6 +467,7 @@ type Quantity<'Units> with
     static member over (y: Quantity<'U1>) (x: Quantity<Product<'U1, 'U2>>) : Quantity<'U2> = Quantity(x.Value / y.Value)
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Just like <c>over</c> but divide by a quantity in <c>units2</c>, resulting in another
     /// quantity in <c>units1</c>. For example, we could divide a force by a desired
@@ -450,8 +483,9 @@ type Quantity<'Units> with
         Quantity(x.Value / y.Value)
 
 
+    /// <category>Unitless</category>
     /// <summary>
-    /// Similar to [<c>timesUnitless</c>](#timesUnitless), <c>overUnitless</c> lets you
+    /// Similar to <c>timesUnitless</c>, <c>overUnitless</c> lets you
     /// divide one quantity by a second [unitless](#Unitless) quantity without affecting
     /// the units;
     /// <code lang="fsharp">
@@ -467,6 +501,7 @@ type Quantity<'Units> with
     static member overUnitless (y: Quantity<Unitless>) (x: Quantity<Unitless>) : Quantity<Unitless> = Quantity(x / y)
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Find the ratio of two quantities with the same units.
     /// <code lang="fsharp">
@@ -477,6 +512,7 @@ type Quantity<'Units> with
     static member ratio (x: Quantity<'Units>) (y: Quantity<'Units>) : float = x / y
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Scale a <c>Quantity</c> by a <c>number</c>.
     /// <code lang="fsharp">
@@ -489,6 +525,7 @@ type Quantity<'Units> with
         Quantity(scale * quantity.Value)
 
 
+    /// <category>Operators</category>
     /// <summary>
     /// Divide a <c>Quantity</c> by a <c>Float</c>.
     /// </summary>
@@ -501,6 +538,7 @@ type Quantity<'Units> with
         Quantity(quantity.Value / divisor)
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Convenient shorthand for <c>Quantity.multiplyBy 2</c>.
     /// <code lang="fsharp">
@@ -511,6 +549,7 @@ type Quantity<'Units> with
     static member twice(quantity: Quantity<'Units>) : Quantity<'Units> = 2. * quantity
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Convenient shorthand for <c>Quantity.multiplyBy 0.5</c>.
     /// <code lang="fsharp">
@@ -520,6 +559,7 @@ type Quantity<'Units> with
     /// </summary>
     static member half(quantity: Quantity<'Units>) : Quantity<'Units> = 0.5 * quantity
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Given a lower and upper bound, clamp a given quantity to within those
     /// bounds. Say you wanted to clamp an angle to be between +/-30 degrees:
@@ -551,6 +591,7 @@ type Quantity<'Units> with
         else
             clampHelper upper lower
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Square a quantity with some <c>units</c>, resulting in a new quantity in
     /// <c>Squared units</c>:
@@ -563,13 +604,14 @@ type Quantity<'Units> with
     static member squared(quantity: Quantity<'Units>) : Quantity<'Units Squared> = quantity * quantity
 
 
-    ///
+    /// <category>Unitless</category>
     static member squaredUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> =
         Quantity(quantity.Value * quantity.Value)
 
-    ///
+    /// <category>Unitless</category>
     static member sqrtUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> = Quantity(sqrt quantity.Value)
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Take a quantity in <c>Squared units</c> and return the square root of that
     /// quantity in plain <c>units</c>:
@@ -602,6 +644,7 @@ type Quantity<'Units> with
     static member sqrt(quantity: Quantity<'Units Squared>) = Quantity(sqrt quantity.Value)
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Cube a quantity with some <c>units</c>, resulting in a new quantity in
     /// <c>Cubed units</c>.
@@ -615,11 +658,12 @@ type Quantity<'Units> with
         Quantity(quantity.Value * quantity.Value * quantity.Value)
 
 
-    ///
+    /// <category>Unitless</category>
     static member cubedUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> =
         Quantity(quantity.Value * quantity.Value * quantity.Value)
 
 
+    /// <category>Modifiers</category>
     static member unsafeCbrt(quantity: Quantity<'Units1>) : Quantity<'Units2> =
         if quantity.Value >= 0. then
             Quantity(Math.Pow(quantity.Value, (1. / 3.)))
@@ -628,6 +672,7 @@ type Quantity<'Units> with
             Quantity(-(Math.Pow(-quantity.Value, (1. / 3.))))
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Take a quantity in <c>Cubed units</c> and return the cube root of that
     /// quantity in plain <c>units</c>.
@@ -640,10 +685,11 @@ type Quantity<'Units> with
     static member cbrt(quantity: Quantity<'Units Cubed>) : Quantity<'Units> = Quantity.unsafeCbrt quantity
 
 
-    ///
+    /// <category>Unitless</category>
     static member cbrtUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> = Quantity.unsafeCbrt quantity
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Find the inverse of a unitless quantity.
     /// <code lang="fsharp">
@@ -655,6 +701,7 @@ type Quantity<'Units> with
 
 
     
+    /// <category>Modifiers</category>
     /// <summary>
     /// Returns the remainder of the modulus operation.
     /// </summary>
@@ -662,6 +709,7 @@ type Quantity<'Units> with
     static member modBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) : Quantity<'Units> = quantity % modulus
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Returns the remainder of the modulus operation.
     /// </summary>
@@ -670,6 +718,7 @@ type Quantity<'Units> with
         abs (quantity % modulus)
 
 
+    /// <category>Queries</category>
     /// <summary>
     /// Interpolate from the first quantity to the second, based on a parameter that
     /// ranges from zero to one. Passing a parameter quantity of zero will return the start
@@ -719,6 +768,7 @@ type Quantity<'Units> with
             )
 
 
+    /// <category>Queries</category>
     /// <summary>
     /// Find the midpoint between two quantities.
     /// <code lang="fsharp">
@@ -729,6 +779,7 @@ type Quantity<'Units> with
     static member midpoint (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x + 0.5 * (y - x)
 
 
+    /// <category>Queries</category>
     /// <summary>
     /// Construct a range of evenly-spaced quantitys given a <c>start</c> quantity, an <c>end</c>
     /// quantity and the number of <c>steps</c> to take from the start to the end. The first
@@ -825,6 +876,7 @@ type Quantity<'Units> with
             []
 
 
+    /// <category>Conversions</category>
     /// <summary>
     /// Generalized units conversion function that lets you convert to many kinds of
     /// units not directly supported by <c>elm-units</c>. The first argument is a function
@@ -865,9 +917,11 @@ type Quantity<'Units> with
 
     // ---- Float Conversions ------------------------------------------------------------------------------------------
 
+    /// <category>Modifiers</category>
     static member roundTo (digits: int) (quantity: Quantity<'Units>) : Quantity<'Units> =
         Quantity(Float.roundFloatTo digits quantity.Value)
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Round a <c>Float</c>-valued quantity to the nearest <c>Int</c>. Note that [this may
     /// not do what you expect](#-int-float-conversion).
@@ -879,6 +933,7 @@ type Quantity<'Units> with
     static member round(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(round quantity.Value)
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Round a <c>Float</c>-valued quantity down to the nearest <c>Int</c>. Note that [this
     /// may not do what you expect](#-int-float-conversion).
@@ -892,6 +947,7 @@ type Quantity<'Units> with
     static member floor(quantity: Quantity<'Units>) : Quantity<'Units> = floor quantity
 
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Round a <c>Float</c>-valued quantity up to the nearest <c>Int</c>.
     /// <code lang="fsharp">
@@ -904,6 +960,7 @@ type Quantity<'Units> with
     /// <note>This may not do what you expect.</note>
     static member ceil(quantity: Quantity<'Units>) : Quantity<'Units> = ceil quantity
 
+    /// <category>Modifiers</category>
     /// <summary>
     /// Round a <c>Float</c>-valued quantity towards zero.
     /// <code lang="fsharp">
@@ -916,6 +973,7 @@ type Quantity<'Units> with
 
     // ---- LIST FUNCTIONS ---------------------------------------------------------
 
+    /// <category>List Functions</category>
     /// <summary>
     /// Find the sum of a list of quantities.
     /// <code lang="fsharp">
@@ -932,6 +990,7 @@ type Quantity<'Units> with
     static member sum(quantities: Quantity<'Units> list) : Quantity<'Units> =
         List.fold Quantity.plus Quantity.zero quantities
 
+    /// <category>List Functions</category>
     /// <summary>
     /// Find the minimum quantity in a list of quantities. Returns <c>None</c> if the
     /// list is empty.
@@ -951,6 +1010,7 @@ type Quantity<'Units> with
         | first :: rest -> Some(List.fold min first rest)
 
 
+    /// <category>List Functions</category>
     /// <summary>
     /// Find the maximum quantity in a list of quantities. Returns <c>None</c> if the
     /// list is empty.
@@ -970,6 +1030,7 @@ type Quantity<'Units> with
         | first :: rest -> Some(List.fold max first rest)
 
 
+    /// <category>List Functions</category>
     /// <summary>
     /// Find the 'minimum' item in a list as measured by some derived <c>Quantity</c>:
     /// <code lang="fsharp">
@@ -1008,6 +1069,7 @@ type Quantity<'Units> with
 
 
 
+    /// <category>List Functions</category>
     /// <summary>
     /// Find the 'maximum' item in a list as measured by some derived <c>Quantity</c>:
     /// <code lang="fsharp">
@@ -1045,6 +1107,7 @@ type Quantity<'Units> with
 
 
 
+    /// <category>List Functions</category>
     /// <summary>
     /// Sort a list of quantities.
     /// <code lang="fsharp">
@@ -1063,6 +1126,7 @@ type Quantity<'Units> with
         List.sortBy Quantity.unwrap quantities
 
 
+    /// <category>List Functions</category>
     /// <summary>
     /// Sort an arbitrary list of quantitys by a derived <c>Quantity</c>.
     /// </summary>
@@ -1104,6 +1168,7 @@ type Quantity<'Units> with
     // ---- Working With Rates -----------------------------------------------------
 
 
+    /// <category>Rates</category>
     /// <summary>
     /// Construct a rate of change by dividing a dependent quantity (numerator) by
     /// an independent quantity (denominator):
@@ -1135,6 +1200,7 @@ type Quantity<'Units> with
         : Quantity<Rate<'Dependent, 'Independent>> =
         Quantity(dependentValue.Value / independentValue.Value)
 
+    /// <category>Rates</category>
     /// <summary>
     /// 'Infix' version of [<c>rate</c>](#rate), meant to be used in pipeline form;
     /// <code lang="fsharp">
@@ -1152,6 +1218,7 @@ type Quantity<'Units> with
         Quantity(dependentValue.Value / independentValue.Value)
 
 
+    /// <category>Rates</category>
     /// <summary>
     /// Multiply a rate of change by an independent quantity (the denominator in
     /// the rate) to get a total quantity:
@@ -1194,6 +1261,7 @@ type Quantity<'Units> with
         Quantity(rateOfChange.Value * independentValue.Value)
 
 
+    /// <category>Rates</category>
     /// <summary>
     /// Given a rate and a <b>Dependent</b> quantity (total quantity), determine the
     /// necessary amount of the <b>Independent</b> quantity:
@@ -1230,6 +1298,7 @@ type Quantity<'Units> with
         Quantity(dependentValue.Value / rateOfChange.Value)
 
 
+    /// <category>Rates</category>
     /// <summary>
     /// Same as <c>at</c> but with the argument order flipped, which may read better
     /// in some cases:
@@ -1247,6 +1316,7 @@ type Quantity<'Units> with
         Quantity(rateOfChange.Value * independentValue.Value)
 
 
+    /// <category>Rates</category>
     /// <summary>
     /// Find the inverse of a given rate. May be useful if you are using a rate to
     /// define a conversion, and want to convert the other way;
@@ -1264,6 +1334,7 @@ type Quantity<'Units> with
         Quantity(1. / rateOfChange.Value)
 
 
+    /// <category>Rates</category>
     /// <summary>
     /// Multiply two rates of change that 'cancel out' together, resulting in a new
     /// rate. For example, if you know the real-world speed of an on-screen object and

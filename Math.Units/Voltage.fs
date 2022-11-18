@@ -37,9 +37,11 @@
 module Math.Units.Voltage
 
 
+/// <category>Conversions</category>
 /// Construct a voltage from a number of volts.
 let volts (numVolts: float) : Voltage = Quantity numVolts
 
 
+/// <category>Conversions</category>
 /// Convert a voltage to a number of volts.
 let inVolts (numVolts: Voltage) : float = numVolts.Value

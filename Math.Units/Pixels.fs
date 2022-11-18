@@ -18,6 +18,7 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Pixels
 
+/// <category>Distance</category>
 /// <summary>
 /// Construct a quantity representing a floating-point number of on-screen
 /// pixels:
@@ -28,6 +29,7 @@ module Math.Units.Pixels
 /// </summary>
 let float (numPixels: float) : Pixels = Quantity numPixels
 
+/// <category>Distance</category>
 /// <summary>
 /// Convert a floating-point number of pixels back into a plain <c>Float</c>:
 /// </summary>
@@ -41,15 +43,18 @@ let float (numPixels: float) : Pixels = Quantity numPixels
 /// </code></example>
 let toFloat (numPixels: Pixels) : float = numPixels.Value
 
+/// <category>Constants</category>
 /// <summary>
 /// Shorthand for <c>Pixels.float 1.</c>. Can be convenient to use with
 /// <c>Quantity.per</c>].
 /// </summary>
 let pixel = float 1.
 
+/// <category>Rate</category>
 /// Construct an on-screen speed from a number of pixels per second.
 let pixelsPerSecond (numPixelsPerSecond: float) : Quantity<PixelsPerSecond> = Quantity numPixelsPerSecond
 
+/// <category>Rate</category>
 /// <summary>
 /// Convert an on-screen speed to a number of pixels per second.
 /// </summary>
@@ -65,19 +70,23 @@ let pixelsPerSecond (numPixelsPerSecond: float) : Quantity<PixelsPerSecond> = Qu
 /// </code></example>
 let inPixelsPerSecond (numPixelsPerSecond: Quantity<PixelsPerSecond>) : float = numPixelsPerSecond.Value
 
+/// <category>Rate</category>
 /// Construct an on-screen acceleration from a number of pixels per second
 /// squared.
 let pixelsPerSecondSquared (numPixelsPerSecondSquared: float) : Quantity<PixelsPerSecondSquared> =
     Quantity numPixelsPerSecondSquared
 
+/// <category>Rate</category>
 /// Convert an on-screen acceleration to a number of pixels per second squared.
 let inPixelsPerSecondSquared (numPixelsPerSecondSquared: Quantity<PixelsPerSecondSquared>) : float =
     numPixelsPerSecondSquared.Value
 
 
+/// <category>Area</category>
 /// Construct an on-screen area from a number of square pixels.
 let squarePixels (numSquarePixels: float) : Quantity<SquarePixels> = Quantity numSquarePixels
 
+/// <category>Area</category>
 /// Convert an on-screen area to a number of square pixels.
 ///    area =
 ///        Pixels.int 1928 |&gt; Quantity.times (Pixels.int 1080)

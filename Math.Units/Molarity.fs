@@ -35,58 +35,72 @@ module Math.Units.Molarity
 
 // ---- Constants --------------------------------------------------------------
 
+/// <category>Constants</category>
 /// One mole per liter, in moles per cubic meter
 let oneMolePerLiter =
     Constants.mole / Constants.liter
 
+/// <category>Constants</category>
 /// One decimole per liter, in moles per cubic meter
 let oneDecimolePerLiter =
     0.1 * Constants.mole / Constants.liter
 
 
-// ---- Functions --------------------------------------------------------------
+// ---- Conversions ------------------------------------------------------------
 
+/// <category>Conversions</category>
 /// Construct a molarity from a number of moles per cubic meter.
 let molesPerCubicMeter (numMolesPerCubicMeter: float) : Molarity = Quantity numMolesPerCubicMeter
 
+/// <category>Conversions</category>
 /// Convert a molarity to a number of moles per cubic meter.
 let inMolesPerCubicMeter (numMolesPerCubicMeter: Molarity) : float = numMolesPerCubicMeter.Value
 
+/// <category>Conversions</category>
 /// Construct a molarity from a number of moles per liter.
 let molesPerLiter (numMolesPerLiter: float) : Molarity =
     molesPerCubicMeter (numMolesPerLiter * oneMolePerLiter)
 
+/// <category>Conversions</category>
 /// Convert a molarity to a number of moles per liter.
 let inMolesPerLiter (molarity: Molarity) : float =
     inMolesPerCubicMeter molarity / oneMolePerLiter
 
 
+/// <category>Conversions</category>
 /// Construct a molarity from a number of decimoles per liter.
 let decimolesPerLiter (numDecimolesPerLiter: float) : Molarity =
     molesPerCubicMeter (numDecimolesPerLiter * oneDecimolePerLiter)
 
+/// <category>Conversions</category>
 /// Convert a molarity to a number of decimoles per liter.
 let inDecimolesPerLiter (molarity: Molarity) : float =
     inMolesPerCubicMeter molarity
     / oneDecimolePerLiter
 
+/// <category>Conversions</category>
 /// Construct a molarity from a number of centimoles per liter.
 let centimolesPerLiter (numCentimolesPerLiter: float) : Molarity =
     decimolesPerLiter (10. * numCentimolesPerLiter)
 
+/// <category>Conversions</category>
 /// Convert a molarity to a number of centimoles per liter.
 let inCentimolesPerLiter (molar: Molarity) : float = inDecimolesPerLiter molar / 10.
 
+/// <category>Conversions</category>
 /// Construct a molarity from a number of millimoles per liter.
 let millimolesPerLiter (numMillimolesPerLiter: float) : Molarity =
     decimolesPerLiter (100. * numMillimolesPerLiter)
 
+/// <category>Conversions</category>
 /// Convert a molarity to a number of millimoles per liter.
 let inMillimolesPerLiter (molar: Molarity) : float = inDecimolesPerLiter molar / 100.
 
+/// <category>Conversions</category>
 /// Construct a molarity from a number of micromoles per liter.
 let micromolesPerLiter (numMicromolesPerLiter: float) : Molarity =
     decimolesPerLiter (1000. * numMicromolesPerLiter)
 
+/// <category>Conversions</category>
 /// Convert a molarity to a number of micromoles per liter.
 let inMicromolesPerLiter (molar: Molarity) : float = inDecimolesPerLiter molar / 1000.

@@ -15,17 +15,19 @@
 ///     twice as much as another rise in temperature), etc.
 /// </description></item>
 /// </list>
+/// </summary>
+/// 
+/// <note>
 /// Since a <c>Temperature</c> value is not a <c>Quantity</c>, this module exposes specialized
 /// functions for doing the operations on <c>Temperature</c> values that <i>do</i> make sense,
 /// such as comparing two temperatures or sorting a list of temperatures. It's also
 /// possible to find the delta from one temperature to another using <c>Temperature.minus</c>,
 /// and then add a <c>TemperatureDelta</c> to a <c>Temperature</c> using <c>Temperature.plus</c>.
-/// </summary>
+/// </note>
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Temperature
 
-
-
+/// <category>Temperature Conversions</category>
 /// <summary>
 /// Construct a temperature from a number of
 /// <a href="https://en.wikipedia.org/wiki/Kelvin">kelvins</a>.
@@ -37,6 +39,7 @@ module Math.Units.Temperature
 /// </code></example>
 let kelvins (numKelvins: float) : Temperature = Temperature numKelvins
 
+/// <category>Temperature Conversions</category>
 /// <summary>
 /// Convert a temperature to a number of kelvins.
 /// </summary>
@@ -47,20 +50,25 @@ let kelvins (numKelvins: float) : Temperature = Temperature numKelvins
 /// </code></example>
 let inKelvins (numKelvins: Temperature) : float = numKelvins.Value
 
+/// <category>Temperature Conversions</category>
 /// Construct a temperature from a number of degrees Celsius.
 let degreesCelsius (numDegreesCelsius: float) : Temperature = kelvins (273.15 + numDegreesCelsius)
 
+/// <category>Temperature Conversions</category>
 /// Convert a temperature to a number of degrees Celsius.
 let inDegreesCelsius (temperature: Temperature) : float = inKelvins temperature - 273.15
 
+/// <category>Temperature Conversions</category>
 /// Construct a temperature from a number of degrees Fahrenheit.
 let degreesFahrenheit (numDegreesFahrenheit: float) : Temperature =
     degreesCelsius ((numDegreesFahrenheit - 32.) / 1.8)
 
+/// <category>Temperature Conversions</category>
 /// Convert a temperature to a number of degrees Fahrenheit.
 let inDegreesFahrenheit (temperature: Temperature) : float =
     32. + 1.8 * inDegreesCelsius temperature
 
+/// <category>Constants</category>
 /// <summary>
 /// <a href="https://en.wikipedia.org/wiki/Absolute_zero">Absolute zero</a>,
 /// equal to zero kelvins or -273.15 degrees Celsius.
@@ -75,12 +83,15 @@ let absoluteZero = kelvins 0
 
 // ---- Deltas ----
 
+/// <category>Temperature Delta Conversions</category>
 /// Construct a temperature delta from a number of Celsius degrees.
 let celsiusDegrees (numCelsiusDegrees: float) : TemperatureDelta = Quantity numCelsiusDegrees
 
+/// <category>Temperature Delta Conversions</category>
 /// Convert a temperature delta to a number of Celsius degrees.
 let inCelsiusDegrees (numCelsiusDegrees: TemperatureDelta) : float = numCelsiusDegrees.Value
 
+/// <category>Temperature Delta Conversions</category>
 /// <summary>
 /// Construct a temperature delta from a number of Fahrenheit degrees.
 /// </summary>
@@ -92,6 +103,7 @@ let inCelsiusDegrees (numCelsiusDegrees: TemperatureDelta) : float = numCelsiusD
 let fahrenheitDegrees (numFahrenheitDegrees: float) : TemperatureDelta =
     celsiusDegrees (numFahrenheitDegrees / 1.8)
 
+/// <category>Temperature Delta Conversions</category>
 /// <summary>
 /// Convert a temperature delta to a number of Fahrenheit degrees.
 /// </summary>
@@ -102,11 +114,14 @@ let fahrenheitDegrees (numFahrenheitDegrees: float) : TemperatureDelta =
 /// </code></example>
 let inFahrenheitDegrees (quantity: TemperatureDelta) : float = inCelsiusDegrees quantity * 1.8
 
+/// <category>Constants</category>
 let celsiusDegree = celsiusDegrees 1
+/// <category>Constants</category>
 let fahrenheitDegree = fahrenheitDegrees 1
 
 // ---- Operators --------------------------------------------------------------
 
+/// <category>Operators</category>
 /// <summary>
 /// This is meant to be used with pipe operators.
 /// <code>
@@ -116,6 +131,7 @@ let fahrenheitDegree = fahrenheitDegrees 1
 /// </summary>
 let lessThan (rhs: Temperature) (lhs: Temperature) : bool = lhs < rhs
 
+/// <category>Operators</category>
 /// <summary>
 /// This is meant to be used with pipe operators.
 /// <code>
@@ -125,6 +141,7 @@ let lessThan (rhs: Temperature) (lhs: Temperature) : bool = lhs < rhs
 /// </summary>
 let lessThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs <= rhs
 
+/// <category>Operators</category>
 /// <summary>
 /// This is meant to be used with pipe operators.
 /// <code>
@@ -134,6 +151,7 @@ let lessThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs <= rhs
 /// </summary>
 let greaterThan (rhs: Temperature) (lhs: Temperature) : bool = lhs > rhs
 
+/// <category>Operators</category>
 /// <summary>
 /// This is meant to be used with pipe operators.
 /// <code>
@@ -144,6 +162,7 @@ let greaterThan (rhs: Temperature) (lhs: Temperature) : bool = lhs > rhs
 let greaterThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs >= rhs
 
 
+/// <category>Operators</category>
 /// <summary>
 /// This is meant to be used with pipe operators.
 /// <code>
@@ -157,6 +176,7 @@ let plus (rhs: TemperatureDelta) (lhs: Temperature) : Temperature = lhs + rhs
 
 // ---- Functions --------------------------------------------------------------
 
+/// <category>Modifiers</category>
 /// <summary>
 /// Given a lower and upper bound, clamp a given temperature to within those
 /// bounds.
@@ -187,16 +207,21 @@ let clamp (lower: Temperature) (upper: Temperature) (temperature: Temperature) :
     |> min upper.Value
     |> Temperature
 
+/// <category>Modifiers</category>
 let round (temp: Temperature) : Temperature = round temp
 
+/// <category>Modifiers</category>
 let abs (temp: Temperature) = abs temp
 
+/// <category>Modifiers</category>
 let min (first: Temperature) (second: Temperature) : Temperature = min first second
 
+/// <category>Modifiers</category>
 let max (first: Temperature) (second: Temperature) : Temperature = max first second
 
 // ---- List Functions ---------------------------------------------------------
 
+/// <category>List Functions</category>
 /// <summary>
 /// Find the minimum of a list of temperatures. Returns <c>Nothing</c> if the list
 /// is empty.
@@ -215,6 +240,7 @@ let minimum (temperatures: Temperature list) : Temperature option =
     | [] -> None
 
 
+/// <category>List Functions</category>
 /// <summary>
 /// Find the maximum of a list of temperatures. Returns <c>Nothing</c> if the list
 /// is empty.
@@ -234,6 +260,7 @@ let maximum (temperatures: Temperature list) : Temperature option =
     | [] -> None
 
 
+/// <category>List Functions</category>
 /// <summary>
 /// Sort a list of temperatures from lowest to highest.
 /// <code>
@@ -251,6 +278,7 @@ let maximum (temperatures: Temperature list) : Temperature option =
 let sort (temperatures: Temperature list) : Temperature list = List.sortBy inKelvins temperatures
 
 
+/// <category>List Functions</category>
 /// <summary>
 /// Sort an arbitrary list of values by a derived <c>Temperature</c>.
 /// </summary>

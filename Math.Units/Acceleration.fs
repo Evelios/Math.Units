@@ -30,21 +30,26 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Acceleration
 
+/// <category>Metric</category>
 /// Construct an acceleration from a number of meters per second squared.
 let metersPerSecondSquared (numMetersPerSecondSquared: float) : Acceleration = Quantity numMetersPerSecondSquared
 
+/// <category>Metric</category>
 /// Convert an acceleration to a number of meters per second squared.
 let inMetersPerSecondSquared (numMetersPerSecondSquared: Acceleration) : float = numMetersPerSecondSquared.Value
 
+/// <category>Imperial</category>
 /// Construct an acceleration from a number of feet per second squared.
 let feetPerSecondSquared (numFeetPerSecondSquared: float) : Acceleration =
     metersPerSecondSquared (Constants.foot * numFeetPerSecondSquared)
 
+/// <category>Imperial</category>
 /// Convert an acceleration to a number of feet per second squared.
 let inFeetPerSecondSquared (acceleration: Acceleration) : float =
     inMetersPerSecondSquared acceleration
     / Constants.foot
 
+/// <category>Imperial</category>
 /// <summary>
 /// Construct an acceleration from a number of
 /// <a href="https://en.wikipedia.org/wiki/G-force#Unit_and_measurement">gees</a>.
@@ -60,6 +65,7 @@ let inFeetPerSecondSquared (acceleration: Acceleration) : float =
 let gees (numGees: float) : Acceleration =
     metersPerSecondSquared (Constants.gee * numGees)
 
+/// <category>Imperial</category>
 /// Convert an acceleration to a number of gees.
 let inGees (acceleration: Acceleration) : float =
     inMetersPerSecondSquared acceleration

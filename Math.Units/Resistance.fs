@@ -26,8 +26,10 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Resistance
 
+/// <category>Conversions</category>
 /// Construct a resistance from a number of ohms.
 let ohms (numOhms: float) : Resistance = Quantity numOhms
 
+/// <category>Conversions</category>
 /// Convert a resistance to a number of ohms.
 let inOhms (numOhms: Resistance) : float = numOhms.Value

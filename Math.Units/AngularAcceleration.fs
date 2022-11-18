@@ -34,27 +34,33 @@ module Math.Units.AngularAcceleration
 
 open System
 
+/// <category>Conversions</category>
 /// Construct an angular acceleration from a number of radians per second squared.
 let radiansPerSecondSquared (numRadiansPerSecondSquared: float) : AngularAcceleration =
     Quantity numRadiansPerSecondSquared
 
+/// <category>Conversions</category>
 /// Convert an angular acceleration to a number of radians per second squared.
 let inRadiansPerSecondSquared (numRadiansPerSecondSquared: AngularAcceleration) : float =
     numRadiansPerSecondSquared.Value
 
+/// <category>Conversions</category>
 /// Construct an angular acceleration from a number of degrees per second squared.
 let degreesPerSecondSquared (numDegreesPerSecondSquared: float) : AngularAcceleration =
     radiansPerSecondSquared (Math.PI / 180. * numDegreesPerSecondSquared)
 
+/// <category>Conversions</category>
 /// Convert an angular acceleration to a number of degrees per second squared.
 let inDegreesPerSecondSquared (angularAcceleration: AngularAcceleration) =
     inRadiansPerSecondSquared angularAcceleration
     / (Math.PI / 180.)
 
+/// <category>Conversions</category>
 /// Construct an angular acceleration from a number of turns per second squared.
 let turnsPerSecondSquared (numTurnsPerSecondSquared: float) : AngularAcceleration =
     radiansPerSecondSquared (2. * Math.PI * numTurnsPerSecondSquared)
 
+/// <category>Conversions</category>
 /// Convert an angular acceleration to a number of turns per second squared.
 let inTurnsPerSecondSquared (angularAcceleration: AngularAcceleration) : float =
     inRadiansPerSecondSquared angularAcceleration

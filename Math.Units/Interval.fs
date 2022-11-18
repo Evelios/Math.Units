@@ -52,9 +52,11 @@ open System
 
 open Math.Units
 
+/// <category>Builders</category>
 let inline unit<'Units> : Interval<'Units> =
     Interval(Quantity LanguagePrimitives.GenericZero, Quantity LanguagePrimitives.GenericOne)
 
+/// <category>Builders</category>
 /// <summary>
 /// Construct an interval from two given values.
 ///
@@ -73,6 +75,8 @@ let from (first: Quantity<'Units>) (second: Quantity<'Units>) : Interval<'Units>
         Interval(second, first)
 
 
+/// <category>Builders</category>
+/// <summary>
 /// Construct an interval from it's endpoints.
 ///
 /// The values should be given in order, but will be swapped if needed to
@@ -85,12 +89,14 @@ let from (first: Quantity<'Units>) (second: Quantity<'Units>) : Interval<'Units>
 /// </summary>
 let fromEndpoints (first, second) : Interval<'Units> = from first second
 
+/// <category>Builders</category>
 /// Construct a zero width interval containing a single value
 let singleton n : Interval<'Units> = Interval(n, n)
 
 
 // ---- Accessors ---
 
+/// <category>Accessors</category>
 /// <summary>
 /// Get the endpoints of an interval (its minimum and maximum values) as a
 /// tuple. The first value will always be less than or equal to the second.
@@ -112,6 +118,7 @@ let singleton n : Interval<'Units> = Interval(n, n)
 let endpoints (Interval.Interval (a, b): Interval<'Units>) : Quantity<'Units> * Quantity<'Units> = (a, b)
 
 
+/// <category>Accessors</category>
 /// <summary>
 /// <code lang="fsharp">
 /// Get the minimum value of an interval.
@@ -122,6 +129,7 @@ let endpoints (Interval.Interval (a, b): Interval<'Units>) : Quantity<'Units> * 
 let minValue (Interval (a, _): Interval<'Units>) : Quantity<'Units> = a
 
 
+/// <category>Accessors</category>
 /// <summary>
 /// Get the maximum value of an interval.
 /// <code lang="fsharp">
@@ -132,6 +140,7 @@ let minValue (Interval (a, _): Interval<'Units>) : Quantity<'Units> = a
 let maxValue (Interval (_, b): Interval<'Units>) : Quantity<'Units> = b
 
 
+/// <category>Accessors</category>
 /// <summary>
 /// Get the midpoint of an interval.
 /// <code lang="fsharp">
@@ -141,6 +150,7 @@ let maxValue (Interval (_, b): Interval<'Units>) : Quantity<'Units> = b
 /// </summary>
 let inline midpoint (Interval (a, b): Interval<'Units>) : Quantity<'Units> = a + 0.5 * (b - a)
 
+/// <category>Accessors</category>
 /// <summary>
 /// Get the width of an interval.
 /// <code lang="fsharp">
@@ -150,6 +160,7 @@ let inline midpoint (Interval (a, b): Interval<'Units>) : Quantity<'Units> = a +
 /// </summary>
 let inline width (Interval (a, b)) : Quantity<'Units> = b - a
 
+/// <category>Accessors</category>
 /// <summary>
 /// Check if the interval is a singleton (the minimum and maximum values are the
 /// same).
@@ -165,6 +176,7 @@ let isSingleton (Interval (a, b): Interval<'Units>) : bool = a = b
 
 // ---- Math Operations ----
 
+/// <category>Math</category>
 /// <summary>
 /// Construct an interval containing both of the given intervals.
 /// <code lang="fsharp">
@@ -185,6 +197,7 @@ let isSingleton (Interval (a, b): Interval<'Units>) : bool = a = b
 /// </note>
 let union (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> = Interval(min a1 a2, max b1 b2)
 
+/// <category>Math</category>
 /// <summary>
 /// Attempt to construct an interval containing all the values common to both
 /// given intervals.
@@ -218,6 +231,7 @@ let intersection (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> opti
     else
         None
 
+/// <category>Math</category>
 /// <summary>
 /// Negate an interval. Note that this will flip the order of the endpoints.
 /// <code lang="fsharp">
@@ -228,6 +242,7 @@ let intersection (Interval (a1, b1)) (Interval (a2, b2)) : Interval<'Units> opti
 let inline negate (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(-b, -a)
 
 
+/// <category>Math</category>
 /// <summary>
 /// Add the given amount to an interval.
 /// <code lang="fsharp">
@@ -239,6 +254,7 @@ let inline plus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : 
     Interval(delta + a, delta + b)
 
 
+/// <category>Math</category>
 /// <summary>
 /// Subtract the given amount from an interval.
 /// <code lang="fsharp">
@@ -249,6 +265,7 @@ let inline plus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : 
 let inline minus (delta: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : Interval<'Units> =
     Interval(a - delta, b - delta)
 
+/// <category>Math</category>
 /// <summary>
 /// Subtract an interval from the given amount. So if you wanted to compute
 /// <c>interval - quantity</c> you would write
@@ -264,6 +281,7 @@ let difference (x: Quantity<'Units>) (interval: Interval<'Units>) =
     let (Interval (a, b)) = interval
     Interval(x - b, x - a)
 
+/// <category>Math</category>
 /// <summary>
 /// Multiply an interval by a given value. Note that this will flip the order
 /// of the interval's endpoints if the given value is negative.
@@ -281,6 +299,7 @@ let multiplyBy (scale: float) (Interval (a, b): Interval<'Units>) : Interval<'Un
     else
         Interval(b * scale, a * scale)
 
+/// <category>Math</category>
 /// <summary>
 /// Multiply an <c>Interval</c> by a <c>Quantity</c>, for example
 ///     Interval.product quantity interval
@@ -302,6 +321,7 @@ let product
         Interval(x * b, x * a)
 
 
+/// <category>Math</category>
 /// <summary>
 /// Divide an interval by a given value. Note that this will flip the order
 /// of the interval's endpoints if the given value is negative.
@@ -323,17 +343,20 @@ let divideBy (divisor: float) (Interval (a, b): Interval<'Units>) : Interval<'Un
         Interval(b / divisor, a / divisor)
 
 
+/// <category>Math</category>
 /// <summary>
 /// Shorthand for <c>multiplyBy 0.5</c>.
 /// </summary>
 let half (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(0.5 * a, 0.5 * b)
 
 
+/// <category>Math</category>
 /// <summary>
 /// Shorthand for <c>multiplyBy 2</c>.
 /// </summary>
 let twice (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(2. * a, 2. * b)
 
+/// <category>Math</category>
 /// <summary>
 /// Add two intervals together.
 /// <code lang="fsharp">
@@ -345,6 +368,7 @@ let twice (Interval (a, b): Interval<'Units>) : Interval<'Units> = Interval(2. *
 let plusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 + b1)
 
 
+/// <category>Math</category>
 /// <summary>
 /// Subtract the first interval from the second. This means that <c>minus</c> makes
 /// the most sense when using <c>|&gt;</c>:
@@ -362,6 +386,7 @@ let plusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a2 + a1, b2 
 /// </summary>
 let minusInterval (Interval (a2, b2)) (Interval (a1, b1)) = Interval(a1 - b2, b1 - a2)
 
+/// <category>Math</category>
 /// <summary>
 /// Multiply an <c>Interval</c> by a <c>Quantity</c>, for example
 /// <code lang="fsharp">
@@ -380,6 +405,7 @@ let times
     else
         Interval(b * x, a * x)
 
+/// <category>Unitless</category>
 /// <summary>
 /// Multiply an <c>Interval</c> by a unitless <c>Quantity</c>. See the documentation for
 /// <c>Quantity.timesUnitless</c> for more details.
@@ -393,6 +419,7 @@ let timesUnitless (x: Quantity<Unitless>) (interval: Interval<Unitless>) : Inter
     else
         Interval(b * x.Value, a * x.Value)
 
+/// <category>Math</category>
 /// <summary>
 /// Multiply the two given intervals.
 /// <code lang="fsharp">
@@ -413,6 +440,7 @@ let timesInterval
 
     Interval(min (min (min aa ab) ba) bb, max (max (max aa ab) ba) bb)
 
+/// <category>Unitless</category>
 /// <summary>
 /// Combination of <c>Quantity.timesInterval</c> and <c>Quantity.timesUnitless</c>
 /// for when one of the intervals in a product is unitless.
@@ -429,6 +457,7 @@ let timesUnitlessInterval (unitlessInterval: Interval<Unitless>) (interval: Inte
 
     Interval(Quantity start.Value, Quantity finish.Value)
 
+/// <category>Math</category>
 /// <summary>
 /// Find the inverse of a unitless interval:
 /// <code lang="fsharp">
@@ -476,6 +505,7 @@ let reciprocal (Interval (a, b): Interval<Unitless>) : Interval<Unitless> =
     else
         Interval(Quantity(Quantity.zero / Quantity.zero), Quantity(Quantity.zero / Quantity.zero))
 
+/// <category>Math</category>
 /// <summary>
 /// Get the absolute value of an interval.
 /// <code lang="fsharp">
@@ -497,7 +527,7 @@ let abs (Interval (a, b) as interval: Interval<'Units>) : Interval<'Units> =
         Interval(Quantity.zero, max -a b)
 
 
-///
+/// <category>Math</category>
 let unsafeSquared (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
     if a >= Quantity.zero then
         Interval(Quantity(a.Value * a.Value), Quantity(b.Value * b.Value))
@@ -512,30 +542,35 @@ let unsafeSquared (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
         Interval(Quantity.zero, Quantity(a.Value * a.Value))
 
 
+/// <category>Math</category>
 /// Get the square of an interval.
 let squared (interval: Interval<'Units>) : Interval<Squared<'Units>> = unsafeSquared interval
 
 
+/// <category>Unitless</category>
 /// <summary>
 /// Specialized version of <c>squared</c> for unitless intervals.
 /// </summary>
 let squaredUnitless (interval: Interval<Unitless>) : Interval<Unitless> = unsafeSquared interval
 
 
-///
+/// <category>Math</category>
 let unsafeCubed (Interval (a, b): Interval<'Units>) : Interval<'ResultUnits> =
     Interval(Quantity(a.Value * a.Value * a.Value), Quantity(b.Value * b.Value * b.Value))
 
 
+/// <category>Math</category>
 /// Get the cube of an interval.
 let cubed (interval: Interval<'Units>) : Interval<Cubed<'Units>> = unsafeCubed interval
 
 
+/// <category>Unitless</category>
 /// <summary>
 /// Specialized version of <c>cubed</c> for unitless intervals.
 /// </summary>
 let cubedUnitless (interval: Interval<Unitless>) : Interval<Unitless> = unsafeCubed interval
 
+/// <category>Math</category>
 /// <summary>
 /// The maximum of <c>cos(x) is x = 2 pi \* k</c> for every integer k.
 /// If <c>minValue</c> and <c>maxValue</c> are in different branches
@@ -548,6 +583,7 @@ let cosIncludesMax (Interval (a, b)) : bool =
     let maxBranch = floor (b / (2. * Math.PI))
     minBranch <> maxBranch
 
+/// <category>Math</category>
 /// <summary>
 /// <c>cos(x + pi) = -cos(x)</c>, therefore if <c>cos(interval + pi)</c> includes the maximum,
 /// that means <c>cos(interval)</c> includes the minimum.
@@ -558,6 +594,7 @@ let cosIncludesMinMax (interval: Interval<'Units>) : bool * bool =
      |> cosIncludesMax,
      interval |> cosIncludesMax)
 
+/// <category>Math</category>
 /// <summary>
 /// <c>cos(x - pi/2) = sin(x)</c>, therefore if <c>cos(interval - pi/2)</c> includes
 /// the maximum/minimum, that means <c>sin(interval)</c> includes the maximum/minimum
@@ -571,6 +608,7 @@ let sinIncludesMinMax (interval: Interval<'Units>) : bool * bool =
     |> cosIncludesMinMax
 
 
+/// <category>Math</category>
 /// <summary>
 /// Get the image of <c>sin(x)</c> applied on the interval.
 /// <code lang="fsharp">
@@ -607,6 +645,7 @@ let sin (interval: Interval<Radians>) : Interval<Unitless> =
         fromEndpoints (Quantity newMin, Quantity newMax)
 
 
+/// <category>Math</category>
 /// <summary>
 ///  Get the image of <c>cos(x)</c> applied on the interval.
 /// <code lang="fsharp">
@@ -645,6 +684,7 @@ let cos (interval: Interval<Radians>) : Interval<Unitless> =
 
 // ---- Queries ----
 
+/// <category>Queries</category>
 /// <summary>
 /// Interpolate between an interval's endpoints based on a parameter value that
 /// will generally be between 0.0 and 1.0. A value of 0.0 corresponds to the minimum
@@ -676,6 +716,7 @@ let interpolate (Interval (a, b): Interval<'Units>) (t: float) : Quantity<'Units
     |> Quantity
 
 
+/// <category>Queries</category>
 /// <summary>
 /// Given an interval and a given value, determine the corresponding
 /// interpolation parameter (the parameter that you would pass to
@@ -723,10 +764,12 @@ let interpolationParameter (Interval (a, b): Interval<'Units>) (value: Quantity<
         // value, a and intervalMaxValue are all equal
         0.
 
+/// <category>Queries</category>
 /// Test if a value is contained with a particular interval.
 let contains (value: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : bool = a <= value && value <= b
 
 
+/// <category>Queries</category>
 /// <summary>
 /// Check if two intervals touch or overlap (have any values in common).
 /// <code lang="fsharp">
@@ -750,6 +793,7 @@ let contains (value: Quantity<'Units>) (Interval (a, b): Interval<'Units>) : boo
 let intersects (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Interval<'Units>) : bool = a1 <= b2 && b1 >= a2
 
 
+/// <category>Queries</category>
 /// <summary>
 /// Check if the second interval is fully contained in the first.
 /// <code lang="fsharp">
@@ -773,6 +817,7 @@ let isContainedIn (Interval (a1, b1): Interval<'Units>) (Interval (a2, b2): Inte
     a1 <= a2 && b2 <= b1
 
 
+/// <category>Queries</category>
 /// <summary>
 /// Find the interval containing one or more input values:
 /// <code lang="fsharp">
@@ -790,6 +835,7 @@ let hull (first: Quantity<'Units>) (rest: Quantity<'Units> list) : Interval<'Uni
 
     hullHelp first first rest
 
+/// <category>Queries</category>
 /// <summary>
 /// Construct an interval containing the three given values;
 /// <code lang="fsharp">
@@ -805,6 +851,7 @@ let hull (first: Quantity<'Units>) (rest: Quantity<'Units> list) : Interval<'Uni
 let hull3 (a: Quantity<'Units>) (b: Quantity<'Units>) (c: Quantity<'Units>) : Interval<'Units> =
     Interval(min a (min b c), max a (max b c))
 
+/// <category>Queries</category>
 /// <summary>
 /// Attempt to construct an interval containing all _N_ values in the given
 /// list. If the list is empty, returns <c>Nothing</c>. If you know you have at least one
@@ -823,6 +870,7 @@ let hullN (values: Quantity<'Units> list) : Interval<'Units> option =
     | first :: rest -> Some(hull first rest)
     | [] -> None
 
+/// <category>Queries</category>
 /// <summary>
 /// Like <c>Quantity.hull</c>, but lets you work on any kind of item as long as a
 /// number can be extracted from it. For example, if you had
@@ -858,6 +906,7 @@ let hullOf (getValue: 'a -> Quantity<'Units>) (first: 'a) (rest: 'a list) : Inte
     let firstValue = getValue first
     hullOfHelp firstValue firstValue getValue rest
 
+/// <category>Queries</category>
 /// <summary>
 /// Combination of <c>Interval.hullOf</c> and <c>Interval.hullN</c>.
 /// </summary>
@@ -866,6 +915,7 @@ let hullOfN (getValue: 'a -> Quantity<'Units>) (items: 'a list) : Interval<'Unit
     | first :: rest -> Some(hullOf getValue first rest)
     | [] -> None
 
+/// <category>Queries</category>
 /// <summary>
 /// Construct an interval containing one or more given intervals:
 /// <code lang="fsharp">
@@ -888,6 +938,7 @@ let aggregate (Interval (a, b)) (rest: Interval<'Units> list) : Interval<'Units>
 
     aggregateHelp a b rest
 
+/// <category>Queries</category>
 /// <summary>
 /// Special case of <c>Interval.aggregate</c> for the case of three intervals;
 /// <code lang="fsharp">
@@ -903,6 +954,7 @@ let aggregate (Interval (a, b)) (rest: Interval<'Units> list) : Interval<'Units>
 let aggregate3 (Interval (a1, b1)) (Interval (a2, b2)) (Interval (a3, b3)) : Interval<'Units> =
     Interval(min a1 (min a2 a3), max b1 (max b2 b3))
 
+/// <category>Queries</category>
 /// <summary>
 ///  Attempt to construct an interval containing all of the intervals in the given
 /// list. If the list is empty, returns <c>None</c>. If you know you have at least one
@@ -913,6 +965,7 @@ let aggregateN intervals : Interval<'Units> option =
     | first :: rest -> Some(aggregate first rest)
     | [] -> None
 
+/// <category>Queries</category>
 /// <summary>
 /// Like <c>Interval.aggregate</c>], but lets you work on any kind of item as
 /// long as an interval can be generated from it similar to <c>Interval.hullOf</c>.
@@ -929,6 +982,7 @@ let aggregateOf (getInterval: 'a -> Interval<'Units>) (first: 'a) (rest: 'a list
     let (Interval (a, b)) = getInterval first
     aggregateOfHelp a b getInterval rest
 
+/// <category>Queries</category>
 /// <summary>
 /// Combination of <c>Interval.aggregateOf</c> and <c>Interval.aggregateN</c>.
 /// </summary>

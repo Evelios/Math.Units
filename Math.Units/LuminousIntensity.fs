@@ -27,11 +27,13 @@
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.LuminousIntensity
 
+/// <category>Conversions</category>
 /// Construct a luminous intensity value from a number of candelas. One candela
 /// is roughly equivalent to the luminous intensity of a single wax candle.
 let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 
 
+/// <category>Conversions</category>
 /// <summary>
 /// Convert a luminous intensity to a number of candelas.
 /// </summary>

@@ -32,32 +32,40 @@ module Math.Units.AngularSpeed
 
 open System
 
+/// <category>Conversions</category>
 /// Construct an angular speed from a number of radians per second.
 let radiansPerSecond (numRadiansPerSecond: float) : AngularSpeed = Quantity numRadiansPerSecond
 
+/// <category>Conversions</category>
 /// Convert an angular speed to a number of radians per second.
 let inRadiansPerSecond (numRadiansPerSecond: AngularSpeed) : float = numRadiansPerSecond.Value
 
+/// <category>Conversions</category>
 /// Construct an angular speed from a number of degrees per second.
 let degreesPerSecond (numDegreesPerSecond: float) : AngularSpeed =
     radiansPerSecond (Math.PI / 180. * numDegreesPerSecond)
 
+/// <category>Conversions</category>
 /// Convert an angular speed to a number of degrees per second.
 let inDegreesPerSecond (angularSpeed: AngularSpeed) : float =
     inRadiansPerSecond angularSpeed / (Math.PI / 180.)
 
+/// <category>Conversions</category>
 /// Construct an angular speed from a number of turns per second.
 let turnsPerSecond (numTurnsPerSecond: float) : AngularSpeed =
     radiansPerSecond (2. * Math.PI * numTurnsPerSecond)
 
+/// <category>Conversions</category>
 /// Convert an angular speed to a number of turns per second.
 let inTurnsPerSecond (angularSpeed: AngularSpeed) : float =
     inRadiansPerSecond angularSpeed / (2. * Math.PI)
 
+/// <category>Conversions</category>
 /// Construct an angular speed from a number of turns per minute.
 let turnsPerMinute (numTurnsPerMinute: float) : AngularSpeed =
     radiansPerSecond ((2. * Math.PI * numTurnsPerMinute) / 60.)
 
+/// <category>Conversions</category>
 /// Convert an angular speed to a number of turns per minute.
 let inTurnsPerMinute (angularSpeed: AngularSpeed) : float =
     inRadiansPerSecond angularSpeed
@@ -65,22 +73,26 @@ let inTurnsPerMinute (angularSpeed: AngularSpeed) : float =
 
 // ---- Function Aliases -------------------------------------------------------
 
+/// <category>Conversions</category>
 /// <summary>
 /// Alias for <c>AngularSpeed.turnsPerSecond</c>.
 /// </summary>
 let revolutionsPerSecond = turnsPerSecond
 
+/// <category>Conversions</category>
 /// <summary>
 /// Alias for <c>AngularSpeed.inTurnsPerSecond</c>.
 /// </summary>
 let inRevolutionsPerSecond =
     inTurnsPerSecond
 
+/// <category>Conversions</category>
 /// <summary>
 /// Alias for <c>AngularSpeed.turnsPerMinute</c>.
 /// </summary>
 let revolutionsPerMinute = turnsPerMinute
 
+/// <category>Conversions</category>
 /// <summary>
 /// Alias for <c>AngularSpeed.inTurnsPerMinute</c>.
 /// </summary>

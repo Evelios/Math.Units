@@ -20,12 +20,15 @@ module Math.Units.SolidAngle
 
 open System
 
+/// <category>Conversions</category>
 /// Construct a solid angle from a number of steradians.
 let steradians (numSteradians: float) : SolidAngle = Quantity numSteradians
 
+/// <category>Conversions</category>
 /// Convert a solid angle to a number of steradians.
 let inSteradians (numSteradians: SolidAngle) : float = numSteradians.Value
 
+/// <category>Conversions</category>
 /// <summary>
 /// Construct a solid angle from a number of <a href="https://en.wikipedia.org/wiki/Spat_(unit)">spats</a>.
 /// One spat is the 3D
@@ -42,6 +45,7 @@ let inSteradians (numSteradians: SolidAngle) : float = numSteradians.Value
 let spats (numSpats: float) : SolidAngle = steradians (4. * Math.PI * numSpats)
 
 
+/// <category>Conversions</category>
 /// <summary>
 /// Convert a solid angle to a number of spats.
 /// <code>
@@ -53,6 +57,7 @@ let inSpats (solidAngle: SolidAngle) : float =
     inSteradians solidAngle / (4. * Math.PI)
 
 
+/// <category>Conversions</category>
 /// <summary>
 /// Construct a solid angle from a number of
 /// <a href="https://en.wikipedia.org/wiki/Square_degree">square degrees</a>
@@ -69,6 +74,7 @@ let squareDegrees (numSquareDegrees: float) : SolidAngle =
     steradians (numSquareDegrees * (Math.PI / 180.) ** 2)
 
 
+/// <category>Conversions</category>
 /// <summary>
 /// Convert a solid angle to a number of square degrees.
 /// <code>
@@ -80,6 +86,7 @@ let inSquareDegrees (solidAngle: SolidAngle) : float =
     inSteradians solidAngle / ((Math.PI / 180.) ** 2)
 
 
+/// <category>Queries</category>
 /// <summary>
 /// Find the solid angle of a cone with a given tip angle (the angle between two
 /// opposite sides of the cone, <b>not</b> the half-angle from the axis of the cone to
@@ -110,7 +117,7 @@ let conical (angle: Angle) : SolidAngle =
     steradians (2. * Math.PI * (1. - Angle.cos halfAngle))
 
 
-
+/// <category>Queries</category>
 /// <summary>
 /// Find the solid angle of a rectangular pyramid given the angles between the
 /// two pairs of sides. A 1 degree by 1 degree pyramid has a solid angle of almost
