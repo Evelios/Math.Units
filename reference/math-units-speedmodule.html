@@ -134,17 +134,17 @@
  Since <code>MetersPerSecond</code> is defined as <code>Rate Meters Seconds</code> (length
  per unit time), you can construct a <code>Speed</code> value using <code>Quantity.per</code>:
  <pre><code class="">
-     speed =
+     let speed =
          length |&gt; Quantity.per duration</code></pre>
  
  You can also do rate-related calculations with <code>Speed</code> values to compute
  <code>Length</code> or <code>Duration</code>:
  <pre><code class="">
-     length =
+     let length =
          speed |&gt; Quantity.for duration
-     alsoLength =
+     let alsoLength =
          duration |&gt; Quantity.at speed
-     duration =
+     let duration =
          length |&gt; Quantity.at_ speed</code></pre>
     </p>
   </div>
@@ -213,7 +213,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -293,7 +293,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L39-39" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L44-44" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -373,7 +373,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L54-54" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -453,7 +453,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L35-35" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -533,7 +533,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -613,7 +613,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L43-43" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L49-49" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -693,7 +693,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -773,7 +773,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L51-51" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Speed.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>

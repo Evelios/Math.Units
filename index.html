@@ -480,7 +480,7 @@ using whatever units they have, and extract results in whatever units they want:
 </code></pre>
 <table class="pre"><tr><td><pre><code>0.1359720886</code></pre></td></tr></table>
 <h3><a name="Custom-Units" class="anchor" href="#Custom-Units">Custom Units</a></h3>
-<p><code>Math.Units</code> defines many standard unit types, but you can easily define your
+<p><code>Math.Units</code> defines many standard Unit Systems, but you can easily define your
 own! See [CustomUnits][#CustomUnits] for an example.</p>
 <h3><a name="Understanding-quantity-types" class="anchor" href="#Understanding-quantity-types">Understanding quantity types</a></h3>
 <p>The same quantity type can often be expressed in multiple different ways. Take
@@ -565,30 +565,46 @@ message][https://chris.beams.io/posts/git-commit/#seven-rules], although I'm not
 <div class="fsdocs-tip" id="fs5">Camera.fieldOfView: Angle</div>
 <div class="fsdocs-tip" id="fs6">Multiple items<br />module Angle
 
-from Math.Units<br /><br />--------------------<br />type Angle = Quantity&lt;Radians&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
+ An &lt;c&gt;Angle&lt;/c&gt; represents an angle in degrees, radians, or turns. It is stored
+ as a number of radians.
+ &lt;/summary&gt;<br />&lt;note&gt;
+ Angles are sometimes measured in degrees, minutes, and seconds, where 1 minute =
+ 1/60th of a degree and 1 second = 1/60th of a minute.
+ &lt;/note&gt;<br />&lt;example&gt;
+ You can construct an angle from your unit scheme. All of the following are equivalent.
+ &lt;code&gt;
+     Angle.radians Math.PI
+     Angle.degrees 180.
+     Angle.turns 0.5
+ &lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />type Angle = Quantity&lt;Radians&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs7">Camera.shutterSpeed: Duration</div>
 <div class="fsdocs-tip" id="fs8">Multiple items<br />module Duration
 
-from Math.Units<br /><br />--------------------<br />type Duration = Quantity&lt;Seconds&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />
+  A <br />&lt;c&gt;Duration&lt;/c&gt;<br />&#160;refers to an elapsed time in seconds, milliseconds, hours etc.,
+ as opposed to a specific instant in time (which would generally be represented
+ by a <br />&lt;see cref=&quot;System.DateTime&quot; /&gt;<br />. value). It is stored as a number of seconds.
+</em><br /><br />--------------------<br />type Duration = Quantity&lt;Seconds&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs9">Camera.minimumOperatingTemperature: Temperature</div>
 <div class="fsdocs-tip" id="fs10">Multiple items<br />module Temperature
 
-from Math.Units<br /><em>&lt;summary&gt;
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
  Unlike other modules in &lt;c&gt;Math.Units&lt;/c&gt;, this module contains two different
  primary types:
  &lt;list type=&quot;bullet&quot;&gt;&lt;item&gt;&lt;description&gt;&lt;c&gt;Temperature&lt;/c&gt;, which is not actually a &lt;c&gt;Quantity&lt;/c&gt; since temperatures don&#39;t
      really act like normal quantities. For example, it doesn&#39;t make sense to
      add two temperatures or find the ratio between them.
- &lt;/description&gt;&lt;/item&gt;&lt;item&gt;&lt;description&gt;&lt;c&gt;Delta&lt;/c&gt;, which represents the difference between two temperatures. A &lt;c&gt;Delta&lt;/c&gt;&lt;i&gt;is&lt;/i&gt; a &lt;c&gt;Quantity&lt;/c&gt; since it does make sense to add two deltas to get a net
+ &lt;/description&gt;&lt;/item&gt;&lt;item&gt;&lt;description&gt;&lt;c&gt;TemperatureDelta&lt;/c&gt;, which represents the difference between two temperatures. A &lt;c&gt;TemperatureDelta&lt;/c&gt;&lt;i&gt;is&lt;/i&gt; a &lt;c&gt;Quantity&lt;/c&gt; since it does make sense to add two deltas to get a net
      delta, find the ratio between two deltas (one rise in temperature might be
      twice as much as another rise in temperature), etc.
- &lt;/description&gt;&lt;/item&gt;&lt;/list&gt;
+ &lt;/description&gt;&lt;/item&gt;&lt;/list&gt;&lt;/summary&gt;<br />&lt;note&gt;
  Since a &lt;c&gt;Temperature&lt;/c&gt; value is not a &lt;c&gt;Quantity&lt;/c&gt;, this module exposes specialized
  functions for doing the operations on &lt;c&gt;Temperature&lt;/c&gt; values that &lt;i&gt;do&lt;/i&gt; make sense,
  such as comparing two temperatures or sorting a list of temperatures. It&#39;s also
  possible to find the delta from one temperature to another using &lt;c&gt;Temperature.minus&lt;/c&gt;,
- and then add a &lt;c&gt;Delta&lt;/c&gt; to a &lt;c&gt;Temperature&lt;/c&gt; using &lt;c&gt;Temperature.plus&lt;/c&gt;.
- &lt;/summary&gt;</em><br /><br />--------------------<br />type Temperature =
+ and then add a &lt;c&gt;TemperatureDelta&lt;/c&gt; to a &lt;c&gt;Temperature&lt;/c&gt; using &lt;c&gt;Temperature.plus&lt;/c&gt;.
+ &lt;/note&gt;</em><br /><br />--------------------<br />type Temperature =
   interface IComparable
   interface IComparable&lt;Temperature&gt;
   new: kelvin: float -&gt; Temperature
@@ -597,15 +613,15 @@ from Math.Units<br /><em>&lt;summary&gt;
   override GetHashCode: unit -&gt; int
   member LessThan: other: Temperature -&gt; bool
   override ToString: unit -&gt; string
-  static member (+) : lhs: Temperature * rhs: Delta -&gt; Temperature + 1 overload
-  static member (-) : lhs: Temperature * rhs: Temperature -&gt; Delta
-  ...<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em><br /><br />--------------------<br />new: kelvin: float -&gt; Temperature</div>
+  static member (+) : lhs: Temperature * rhs: TemperatureDelta -&gt; Temperature + 1 overload
+  static member (-) : lhs: Temperature * rhs: Temperature -&gt; TemperatureDelta
+  ...<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em><br /><br />--------------------<br />new: kelvin: float -&gt; Temperature</div>
 <div class="fsdocs-tip" id="fs11">val canOperateAt: temperature: Temperature -&gt; camera: Camera -&gt; bool</div>
 <div class="fsdocs-tip" id="fs12">val temperature: Temperature</div>
 <div class="fsdocs-tip" id="fs13">val camera: Camera</div>
 <div class="fsdocs-tip" id="fs14">[&lt;Struct&gt;]
 type bool = Boolean<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Boolean&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em></div>
-<div class="fsdocs-tip" id="fs15">val greaterThan: rhs: Temperature -&gt; lhs: Temperature -&gt; bool<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs15">val greaterThan: rhs: Temperature -&gt; lhs: Temperature -&gt; bool<br /><em>&lt;category&gt;Operators&lt;/category&gt;<br />&lt;summary&gt;
  This is meant to be used with pipe operators.
  &lt;code&gt;
      Temperature.inDegreesCelsius 30.
@@ -613,79 +629,86 @@ type bool = Boolean<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt
  &lt;/code&gt;&lt;/summary&gt;</em></div>
 <div class="fsdocs-tip" id="fs16">Multiple items<br />module Length
 
-from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
-<div class="fsdocs-tip" id="fs17">val feet: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs18">val meters: m: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs19">val seconds: numSeconds: float -&gt; Duration<br /><em>&lt;summary&gt;
- Construct a &lt;c&gt;1&lt;/c&gt; from a given number of seconds.
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
+ A &lt;c&gt;Length&lt;/c&gt; represents a length in meters, feet, centimeters, miles etc. It
+ is stored as a number of meters.
+ &lt;/summary&gt;</em><br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">val feet: l: float -&gt; Length<br /><em>&lt;category&gt;Imperial&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">val meters: m: float -&gt; Length<br /><em>&lt;category index=&quot;2&quot;&gt;Metric&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">val seconds: numSeconds: float -&gt; Duration<br /><em>&lt;category index=&quot;1&quot;&gt;Conversions&lt;/category&gt;<br />&lt;summary&gt;
+ Construct a &lt;c&gt;Duration&lt;/c&gt; from a given number of seconds.
  &lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs20">val degrees: d: float -&gt; Angle</div>
-<div class="fsdocs-tip" id="fs21">val degreesFahrenheit: numDegreesFahrenheit: float -&gt; Temperature<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs20">val degrees: d: float -&gt; Angle<br /><em>&lt;category&gt;Degrees&lt;/category&gt;<br />
+ Create an angle from a number of degrees.
+</em></div>
+<div class="fsdocs-tip" id="fs21">val degreesFahrenheit: numDegreesFahrenheit: float -&gt; Temperature<br /><em>&lt;category&gt;Temperature Conversions&lt;/category&gt;<br />
  Construct a temperature from a number of degrees Fahrenheit.
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs22">val inCentimeters: l: Length -&gt; float</div>
-<div class="fsdocs-tip" id="fs23">val inMiles: l: Length -&gt; float</div>
-<div class="fsdocs-tip" id="fs24">val inHours: duration: Duration -&gt; float<br /><em>&lt;summary&gt;
+</em></div>
+<div class="fsdocs-tip" id="fs22">val inCentimeters: l: Length -&gt; float<br /><em>&lt;category&gt;Metric&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">val inMiles: l: Length -&gt; float<br /><em>&lt;category&gt;Imperial&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">val inHours: duration: Duration -&gt; float<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />&lt;summary&gt;
  Convert a &lt;c&gt;Duration&lt;/c&gt; to a value in hours.
  &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.minutes 120 |&amp;gt; Duration.inHours
     --&amp;gt; 2
  &lt;/code&gt;&lt;/example&gt;</em></div>
-<div class="fsdocs-tip" id="fs25">val inRadians: r: Angle -&gt; float</div>
-<div class="fsdocs-tip" id="fs26">val inDegreesCelsius: temperature: Temperature -&gt; float<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs25">val inRadians: r: Angle -&gt; float<br /><em>&lt;category&gt;Radians&lt;/category&gt;<br />
+ Get a <br />&lt;c&gt;float&lt;/c&gt;<br />&#160;of the given angle in radians
+</em></div>
+<div class="fsdocs-tip" id="fs26">val inDegreesCelsius: temperature: Temperature -&gt; float<br /><em>&lt;category&gt;Temperature Conversions&lt;/category&gt;<br />
  Convert a temperature to a number of degrees Celsius.
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs27">val hours: numHours: float -&gt; Duration<br /><em>&lt;summary&gt;
+</em></div>
+<div class="fsdocs-tip" id="fs27">val hours: numHours: float -&gt; Duration<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />&lt;summary&gt;
  Construct a &lt;c&gt;Duration&lt;/c&gt; from a given number of hours.
  &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.hours 1
     --&amp;gt; Duration.seconds 3600
  &lt;/code&gt;&lt;/example&gt;</em></div>
-<div class="fsdocs-tip" id="fs28">val inSeconds: numSeconds: Duration -&gt; float<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs28">val inSeconds: numSeconds: Duration -&gt; float<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />&lt;summary&gt;
  Convert a &lt;c&gt;1&lt;/c&gt; to a value in seconds.
  &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.milliseconds 10 |&amp;gt; Duration.inSeconds
     --&amp;gt; 0.01
  &lt;/code&gt;&lt;/example&gt;</em></div>
-<div class="fsdocs-tip" id="fs29">val inMeters: l: Length -&gt; float</div>
+<div class="fsdocs-tip" id="fs29">val inMeters: l: Length -&gt; float<br /><em>&lt;category&gt;Metric&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs30">Multiple items<br />module Speed
 
-from Math.Units<br /><em>&lt;summary&gt;
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
  A &lt;c&gt;Speed&lt;/c&gt; value represents a speed in meters per second, miles per hour etc.
  It is stored as a number of meters per second.
  &lt;/summary&gt;<br />&lt;note&gt;
  Since &lt;c&gt;MetersPerSecond&lt;/c&gt; is defined as &lt;c&gt;Rate Meters Seconds&lt;/c&gt; (length
  per unit time), you can construct a &lt;c&gt;Speed&lt;/c&gt; value using &lt;c&gt;Quantity.per&lt;/c&gt;:
  &lt;code&gt;
-     speed =
+     let speed =
          length |&amp;gt; Quantity.per duration
  &lt;/code&gt;
  
  You can also do rate-related calculations with &lt;c&gt;Speed&lt;/c&gt; values to compute
  &lt;c&gt;Length&lt;/c&gt; or &lt;c&gt;Duration&lt;/c&gt;:
  &lt;code&gt;
-     length =
+     let length =
          speed |&amp;gt; Quantity.for duration
-     alsoLength =
+     let alsoLength =
          duration |&amp;gt; Quantity.at speed
-     duration =
+     let duration =
          length |&amp;gt; Quantity.at_ speed
- &lt;/code&gt;&lt;/note&gt;</em><br /><br />--------------------<br />type Speed = Quantity&lt;MetersPerSecond&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
-<div class="fsdocs-tip" id="fs31">val milesPerHour: numMilesPerHour: float -&gt; Speed<br /><em>&lt;summary&gt;
+ &lt;/code&gt;&lt;/note&gt;</em><br /><br />--------------------<br />type Speed = Quantity&lt;MetersPerSecond&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val milesPerHour: numMilesPerHour: float -&gt; Speed<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />
  Construct a speed from a number of miles per hour.
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs32">val inMetersPerSecond: numMetersPerSecond: Speed -&gt; float<br /><em>&lt;summary&gt;
+</em></div>
+<div class="fsdocs-tip" id="fs32">val inMetersPerSecond: numMetersPerSecond: Speed -&gt; float<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />
  Convert a speed to a number of meters per second.
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs33">val degreesCelsius: numDegreesCelsius: float -&gt; Temperature<br /><em>&lt;summary&gt;
+</em></div>
+<div class="fsdocs-tip" id="fs33">val degreesCelsius: numDegreesCelsius: float -&gt; Temperature<br /><em>&lt;category&gt;Temperature Conversions&lt;/category&gt;<br />
  Construct a temperature from a number of degrees Celsius.
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs34">val inDegreesFahrenheit: temperature: Temperature -&gt; float<br /><em>&lt;summary&gt;
+</em></div>
+<div class="fsdocs-tip" id="fs34">val inDegreesFahrenheit: temperature: Temperature -&gt; float<br /><em>&lt;category&gt;Temperature Conversions&lt;/category&gt;<br />
  Convert a temperature to a number of degrees Fahrenheit.
-&lt;/summary&gt;</em></div>
+</em></div>
 <div class="fsdocs-tip" id="fs35">Multiple items<br />module Quantity
 
-from Math.Units<br /><br />--------------------<br />type Quantity&lt;&#39;Units&gt; =
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;</em><br /><br />--------------------<br />type Quantity&lt;&#39;Units&gt; =
   interface IComparable
   interface IComparable&lt;Quantity&lt;&#39;Units&gt;&gt;
   new: quantity: float -&gt; Quantity&lt;&#39;Units&gt;
@@ -696,7 +719,7 @@ from Math.Units<br /><br />--------------------<br />type Quantity&lt;&#39;Units
   override ToString: unit -&gt; string
   static member (%) : q: Quantity&lt;&#39;Units&gt; * modulus: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;
   static member ( * ) : q: Quantity&lt;&#39;Units&gt; * scale: float -&gt; Quantity&lt;&#39;Units&gt; + 2 overloads
-  ...<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;<br />&lt;summary&gt;
+  ...<br /><em>&lt;category&gt;Unit System&lt;/category&gt;<br />&lt;summary&gt;
  A &lt;c&gt;Quantity&lt;/c&gt; is effectively a &lt;c&gt;number&lt;/c&gt; (an &lt;c&gt;Int&lt;/c&gt; or &lt;c&gt;Float&lt;/c&gt;) tagged with a
  &lt;c&gt;units&lt;/c&gt; type. So a
      Quantity Float Meters
@@ -708,20 +731,24 @@ from Math.Units<br /><br />--------------------<br />type Quantity&lt;&#39;Units
  &lt;/summary&gt;</em><br /><br />--------------------<br />new: quantity: float -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs36">static member Quantity.lessThan: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; bool</div>
 <div class="fsdocs-tip" id="fs37">static member Quantity.plus: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs38">val minutes: numMinutes: float -&gt; Duration<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs38">val minutes: numMinutes: float -&gt; Duration<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />&lt;summary&gt;
  Construct a &lt;c&gt;Duration&lt;/c&gt; from a given number of minutes.
  &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.minutes 3
     --&amp;gt; Duration.seconds 180
  &lt;/code&gt;&lt;/example&gt;</em></div>
-<div class="fsdocs-tip" id="fs39">val centimeters: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs39">val centimeters: l: float -&gt; Length<br /><em>&lt;category&gt;Metric&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs40">static member Quantity.times: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Product&lt;&#39;Units,&#39;Units&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs41">static member Quantity.sort: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt; list</div>
-<div class="fsdocs-tip" id="fs42">val radians: r: float -&gt; Angle</div>
-<div class="fsdocs-tip" id="fs43">val turns: numTurns: float -&gt; Angle</div>
+<div class="fsdocs-tip" id="fs42">val radians: r: float -&gt; Angle<br /><em>&lt;category&gt;Radians&lt;/category&gt;<br />
+ Create an angle from a number of radians.
+</em></div>
+<div class="fsdocs-tip" id="fs43">val turns: numTurns: float -&gt; Angle<br /><em>&lt;category&gt;Turns&lt;/category&gt;<br />
+ Create an angle from a number of turns.
+</em></div>
 <div class="fsdocs-tip" id="fs44">Multiple items<br />module Quantity
 
-from Math.Units<br /><br />--------------------<br />type Quantity&lt;&#39;Units&gt; =
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;</em><br /><br />--------------------<br />type Quantity&lt;&#39;Units&gt; =
   new: quantity: float -&gt; Quantity&lt;&#39;Units&gt;
   member Value: float<br /><br />--------------------<br />new: quantity: float -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs45">val quantity: float</div>
@@ -738,10 +765,13 @@ type float = Double<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt
 <div class="fsdocs-tip" id="fs48">Multiple items<br />union case Meters.Meters: Meters<br /><br />--------------------<br />type Meters = | Meters</div>
 <div class="fsdocs-tip" id="fs49">Multiple items<br />module Length
 
-from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;</div>
-<div class="fsdocs-tip" id="fs50">val inches: l: float -&gt; Length</div>
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
+ A &lt;c&gt;Length&lt;/c&gt; represents a length in meters, feet, centimeters, miles etc. It
+ is stored as a number of meters.
+ &lt;/summary&gt;</em><br /><br />--------------------<br />type Length = Quantity&lt;Meters&gt;</div>
+<div class="fsdocs-tip" id="fs50">val inches: l: float -&gt; Length<br /><em>&lt;category&gt;Imperial&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs51">static member Quantity.minus: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
-<div class="fsdocs-tip" id="fs52">val inMinutes: duration: Duration -&gt; float<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs52">val inMinutes: duration: Duration -&gt; float<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />&lt;summary&gt;
  Convert a &lt;c&gt;Duration&lt;/c&gt; to a value in minutes.
  &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
     Duration.seconds 90 |&amp;gt; Duration.inMinutes
@@ -749,7 +779,9 @@ from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;M
  &lt;/code&gt;&lt;/example&gt;</em></div>
 <div class="fsdocs-tip" id="fs53">static member Quantity.sum: quantities: Quantity&lt;&#39;Units&gt; list -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs54">field Math.PI: float = 3.14159265359</div>
-<div class="fsdocs-tip" id="fs55">val inTurns: angle: Angle -&gt; float</div>
+<div class="fsdocs-tip" id="fs55">val inTurns: angle: Angle -&gt; float<br /><em>&lt;category&gt;Turns&lt;/category&gt;<br />
+ Get a <br />&lt;c&gt;float&lt;/c&gt;<br />&#160;of the given angle in turns.
+</em></div>
 <div class="fsdocs-tip" id="fs56">static member Quantity.greaterThan: y: Quantity&lt;&#39;Units&gt; -&gt; x: Quantity&lt;&#39;Units&gt; -&gt; bool</div>
 <div class="fsdocs-tip" id="fs57">static member Quantity.compare: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; int</div>
 <div class="fsdocs-tip" id="fs58">static member Quantity.max: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;&#39;Units&gt;</div>
@@ -760,7 +792,7 @@ from Math.Units<br /><br />--------------------<br />type Length = Quantity&lt;M
 <div class="fsdocs-tip" id="fs63">static member Quantity.product: x: Quantity&lt;&#39;Units&gt; -&gt; y: Quantity&lt;&#39;Units&gt; -&gt; Quantity&lt;Product&lt;&#39;Units,&#39;Units&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs64">Multiple items<br />module Area
 
-from Math.Units<br /><em>&lt;summary&gt;
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
  An &lt;c&gt;Area&lt;/c&gt; represents an area in square meters, square feet, acres, hectares
  etc. It is stored as a number of square meters.
  Note that you can construct an &lt;c&gt;Area&lt;/c&gt; value directly using the functions in this
@@ -772,23 +804,23 @@ from Math.Units<br /><em>&lt;summary&gt;
  Area.squareFeet 100
  Quantity.squared (Length.feet 10)
  Length.feet 25 |&amp;gt; Quantity.times (Length.feet 4)
- &lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />type Area = Quantity&lt;SquareMeters&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
-<div class="fsdocs-tip" id="fs65">val inSquareInches: area: Area -&gt; float<br /><em>&lt;summary&gt;
+ &lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />type Area = Quantity&lt;SquareMeters&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs65">val inSquareInches: area: Area -&gt; float<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />
  Convert an area to a number of square inches.
-&lt;/summary&gt;</em></div>
+</em></div>
 <div class="fsdocs-tip" id="fs66">val speed: Quantity&lt;Rate&lt;Meters,Seconds&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs67">static member Quantity.per: independentValue: Quantity&lt;&#39;Independent&gt; -&gt; dependentValue: Quantity&lt;&#39;Dependent&gt; -&gt; Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs68">static member Quantity.at: rateOfChange: Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt; -&gt; independentValue: Quantity&lt;&#39;Independent&gt; -&gt; Quantity&lt;&#39;Dependent&gt;</div>
-<div class="fsdocs-tip" id="fs69">val inKilometers: l: Length -&gt; float</div>
-<div class="fsdocs-tip" id="fs70">val kilometers: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs69">val inKilometers: l: Length -&gt; float<br /><em>&lt;category&gt;Metric&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs70">val kilometers: l: float -&gt; Length<br /><em>&lt;category&gt;Metric&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs71">static member Quantity.at_: rateOfChange: Quantity&lt;Rate&lt;&#39;Dependent,&#39;Independent&gt;&gt; -&gt; dependentValue: Quantity&lt;&#39;Depenent&gt; -&gt; Quantity&lt;&#39;Independent&gt;</div>
-<div class="fsdocs-tip" id="fs72">val miles: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs73">val inKilometersPerHour: speed: Speed -&gt; float<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs72">val miles: l: float -&gt; Length<br /><em>&lt;category&gt;Imperial&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs73">val inKilometersPerHour: speed: Speed -&gt; float<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />
  Convert a speed to a number of kilometers per hour.
-&lt;/summary&gt;</em></div>
+</em></div>
 <div class="fsdocs-tip" id="fs74">val speedOfLight: Quantity&lt;Rate&lt;Meters,Seconds&gt;&gt;</div>
-<div class="fsdocs-tip" id="fs75">val lightYears: l: float -&gt; Length</div>
-<div class="fsdocs-tip" id="fs76">val julianYears: numJulianYears: float -&gt; Duration<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs75">val lightYears: l: float -&gt; Length<br /><em>&lt;category&gt;Astronomical&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs76">val julianYears: numJulianYears: float -&gt; Duration<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />&lt;summary&gt;
  Construct a &lt;c&gt;Duration&lt;/c&gt; from a given number of
  &lt;see href=&quot;https://en.wikipedia.org/wiki/Julian_year_(astronomy)&quot;&gt;Julian years&lt;/see&gt;
  A Julian year is defined as exactly 365.25 days, the average length of a year in
@@ -801,11 +833,11 @@ from Math.Units<br /><em>&lt;summary&gt;
      Duration.julianYears 1
      --&amp;gt; Duration.days 365.25
  &lt;/code&gt;&lt;/example&gt;</em></div>
-<div class="fsdocs-tip" id="fs77">val astronomicalUnits: l: float -&gt; Length</div>
+<div class="fsdocs-tip" id="fs77">val astronomicalUnits: l: float -&gt; Length<br /><em>&lt;category index=&quot;5&quot;&gt;Astronomical&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs78">val pixelDensity: Quantity&lt;Rate&lt;Pixel,Meters&gt;&gt;</div>
 <div class="fsdocs-tip" id="fs79">Multiple items<br />module Pixels
 
-from Math.Units<br /><em>&lt;summary&gt;
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
  Although most of the focus of &lt;c&gt;Math.Units&lt;/c&gt; is on physical/scientific units,
  it&#39;s often useful to be able to safely convert back and forth between (for
  example) &lt;c&gt;Length&lt;/c&gt; values in the real world and on-screen lengths in
@@ -819,15 +851,15 @@ from Math.Units<br /><em>&lt;summary&gt;
  This in turn means that all the normal &lt;c&gt;Quantity&lt;/c&gt; functions can be
  used to convert between pixels and other units, or even do type-safe math
  directly on pixel values.
- &lt;/para&gt;&lt;/summary&gt;</em><br /><br />--------------------<br />type Pixels = Quantity&lt;Pixel&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
-<div class="fsdocs-tip" id="fs80">val float: numPixels: float -&gt; Pixels<br /><em>&lt;summary&gt;
+ &lt;/para&gt;&lt;/summary&gt;</em><br /><br />--------------------<br />type Pixels = Quantity&lt;Pixel&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs80">val float: numPixels: float -&gt; Pixels<br /><em>&lt;category&gt;Distance&lt;/category&gt;<br />&lt;summary&gt;
  Construct a quantity representing a floating-point number of on-screen
  pixels:
  &lt;code&gt;
  let lineWeight =
      Pixels.float 1.5
  &lt;/code&gt;&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs81">val toFloat: numPixels: Pixels -&gt; float<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs81">val toFloat: numPixels: Pixels -&gt; float<br /><em>&lt;category&gt;Distance&lt;/category&gt;<br />&lt;summary&gt;
  Convert a floating-point number of pixels back into a plain &lt;c&gt;Float&lt;/c&gt;:
  &lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;
  let pixelDensity =
@@ -875,27 +907,36 @@ from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations fo
 <div class="fsdocs-tip" id="fs91">val m: Mass</div>
 <div class="fsdocs-tip" id="fs92">Multiple items<br />module Mass
 
-from Math.Units<br /><em>&lt;summary&gt;
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
  A &lt;c&gt;Mass&lt;/c&gt; represents a mass in kilograms, pounds, metric or imperial tons
  etc. It is stored as a number of kilograms.
- &lt;/summary&gt;</em><br /><br />--------------------<br />type Mass = Quantity&lt;Kilograms&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+ &lt;/summary&gt;</em><br /><br />--------------------<br />type Mass = Quantity&lt;Kilograms&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs93">val v: Speed</div>
 <div class="fsdocs-tip" id="fs94">Multiple items<br />module Energy
 
-from Math.Units<br /><br />--------------------<br />type Energy = Quantity&lt;Joules&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
+ An &lt;c&gt;Energy&lt;/c&gt; value represents an amount of energy (or work) in joules,
+ kilowatt hours etc. It is stored as a number of joules.
+ &lt;/summary&gt;<br />&lt;note&gt;&lt;para&gt;
+ Since &lt;c&gt;Joules&lt;/c&gt; is defined as &lt;c&gt;Product&amp;lt;Newtons, Meters&amp;gt;&lt;/c&gt;,
+ you can compute energy directly as a product of force and distance:
+ &lt;/para&gt;&lt;code&gt;
+     Force.newtons 5 |&amp;gt; Quantity.times (Length.meters 4)
+     --&amp;gt; Energy.joules 20
+ &lt;/code&gt;&lt;/note&gt;</em><br /><br />--------------------<br />type Energy = Quantity&lt;Joules&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs95">static member Quantity.create: value: float -&gt; Quantity&lt;&#39;Units&gt;</div>
 <div class="fsdocs-tip" id="fs96">property Quantity.Value: float with get</div>
-<div class="fsdocs-tip" id="fs97">val shortTons: numShortTons: float -&gt; Mass<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs97">val shortTons: numShortTons: float -&gt; Mass<br /><em>&lt;category&gt;Imperial&lt;/category&gt;<br />&lt;summary&gt;
  Construct a mass from a number of &lt;a href=&quot;https://en.wikipedia.org/wiki/Short_ton&quot;&gt;short tons&lt;/a&gt;. This is the &#39;ton&#39;
  commonly used in the United States.
  &lt;code&gt;
      Mass.shortTons 1
      --&amp;gt; Mass.pounds 2000
  &lt;/code&gt;&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs98">val inKilowattHours: energy: Energy -&gt; float<br /><em>&lt;summary&gt;
+<div class="fsdocs-tip" id="fs98">val inKilowattHours: energy: Energy -&gt; float<br /><em>&lt;category&gt;Conversions&lt;/category&gt;<br />
  Convert an energy value to a number of kilowatt hours.
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs99">type CubicMeters = Cubed&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Space&lt;/category&gt;</em></div>
+</em></div>
+<div class="fsdocs-tip" id="fs99">type CubicMeters = Cubed&lt;Meters&gt;<br /><em>&lt;category&gt;Unit&lt;/category&gt;</em></div>
 <div class="fsdocs-tip" id="fs100">type Cubed&lt;&#39;Units&gt; = Product&lt;&#39;Units,Product&lt;&#39;Units,&#39;Units&gt;&gt;<br /><em>&lt;category&gt;Unit Relation&lt;/category&gt;<br />&lt;summary&gt;
  Represents a units type that is the cube of some other units type; for
  example, &lt;c&gt;Meters&lt;/c&gt; is one units type (the units type of a &lt;c&gt;Length&lt;/c&gt;) and
@@ -920,7 +961,7 @@ from Math.Units<br /><br />--------------------<br />type Energy = Quantity&lt;J
  &lt;see cref=&quot;Math.Units.Quantity.sqrt&quot;&gt;Quantity.sqrt&lt;/see&gt;
  functions for examples of use. This is a special case of the &lt;c&gt;Product&lt;/c&gt; units type.
  &lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs103">type SquareMeters = Squared&lt;Meters&gt;<br /><em>&lt;category&gt;Unit Space&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs103">type SquareMeters = Squared&lt;Meters&gt;<br /><em>&lt;category&gt;Unit&lt;/category&gt;</em></div>
 
         </div>
 

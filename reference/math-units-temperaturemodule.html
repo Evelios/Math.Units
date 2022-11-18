@@ -128,19 +128,63 @@
      really act like normal quantities. For example, it doesn't make sense to
      add two temperatures or find the ratio between them.
  </description></li><li><description>
-  <c>Delta</c>, which represents the difference between two temperatures. A <c>Delta</c><i>is</i> a <c>Quantity</c> since it does make sense to add two deltas to get a net
+  <c>TemperatureDelta</c>, which represents the difference between two temperatures. A <c>TemperatureDelta</c><i>is</i> a <c>Quantity</c> since it does make sense to add two deltas to get a net
      delta, find the ratio between two deltas (one rise in temperature might be
      twice as much as another rise in temperature), etc.
  </description></li></ul>
+      </p>
+    </div>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      
  Since a <code>Temperature</code> value is not a <code>Quantity</code>, this module exposes specialized
  functions for doing the operations on <code>Temperature</code> values that <i>do</i> make sense,
  such as comparing two temperatures or sorting a list of temperatures. It's also
  possible to find the delta from one temperature to another using <code>Temperature.minus</code>,
- and then add a <code>Delta</code> to a <code>Temperature</code> using <code>Temperature.plus</code>.
+ and then add a <code>TemperatureDelta</code> to a <code>Temperature</code> using <code>Temperature.plus</code>.
  
-      </p>
-    </div>
+    </p>
   </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Constants
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        List Functions
+      </a>
+    </li>
+    <li>
+      <a href="#section2">
+        Modifiers
+      </a>
+    </li>
+    <li>
+      <a href="#section3">
+        Operators
+      </a>
+    </li>
+    <li>
+      <a href="#section4">
+        Temperature Conversions
+      </a>
+    </li>
+    <li>
+      <a href="#section5">
+        Temperature Delta Conversions
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Constants
+  </h2>
   <div>
     <h3>
       Functions and values
@@ -162,6 +206,633 @@
             <div>
               <code onmouseout="hideTip(event, '526', 526)" onmouseover="showTip(event, '526', 526)">
                 <p>
+                  <a id="absoluteZero">
+                    <a href="#absoluteZero">
+                      <code><span>absoluteZero&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="526">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>absoluteZero&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.TemperatureModule.absoluteZero`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.TemperatureModule.absoluteZero\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L81-81" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                <a href="https://en.wikipedia.org/wiki/Absolute_zero">Absolute zero</a>,
+ equal to zero kelvins or -273.15 degrees Celsius.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.absoluteZero
+     --&gt; Temperature.degreesCelsius -273.15</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '527', 527)" onmouseover="showTip(event, '527', 527)">
+                <p>
+                  <a id="celsiusDegree">
+                    <a href="#celsiusDegree">
+                      <code><span>celsiusDegree&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="527">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>celsiusDegree&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.TemperatureModule.celsiusDegree`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.TemperatureModule.celsiusDegree\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L118-118" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '528', 528)" onmouseover="showTip(event, '528', 528)">
+                <p>
+                  <a id="fahrenheitDegree">
+                    <a href="#fahrenheitDegree">
+                      <code><span>fahrenheitDegree&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="528">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>fahrenheitDegree&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.TemperatureModule.fahrenheitDegree`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.TemperatureModule.fahrenheitDegree\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L120-120" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    List Functions
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '529', 529)" onmouseover="showTip(event, '529', 529)">
+                <p>
+                  <a id="maximum">
+                    <a href="#maximum">
+                      <code><span>maximum&#32;<span>temperatures</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="529">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>maximum&#32;<span>temperatures</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        temperatures
+                      </b>
+                      :
+                      <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.maximum`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.maximum\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L256-256" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Find the maximum of a list of temperatures. Returns <code>Nothing</code> if the list
+ is empty.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  temperatures
+                </span>
+                :
+                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.maximum
+         [ Temperature.degreesCelsius 20
+           Temperature.kelvins 300
+           Temperature.degreesFahrenheit 74
+         ]
+     --&gt; Some (Temperature.kelvins 300)</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '530', 530)" onmouseover="showTip(event, '530', 530)">
+                <p>
+                  <a id="minimum">
+                    <a href="#minimum">
+                      <code><span>minimum&#32;<span>temperatures</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="530">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>minimum&#32;<span>temperatures</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        temperatures
+                      </b>
+                      :
+                      <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.minimum`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.minimum\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L237-237" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Find the minimum of a list of temperatures. Returns <code>Nothing</code> if the list
+ is empty.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  temperatures
+                </span>
+                :
+                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.minimum
+         [ Temperature.degreesCelsius 20
+           Temperature.kelvins 300
+           Temperature.degreesFahrenheit 74
+         ]
+     --&gt; Some (Temperature.degreesCelsius 20)</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '531', 531)" onmouseover="showTip(event, '531', 531)">
+                <p>
+                  <a id="sort">
+                    <a href="#sort">
+                      <code><span>sort&#32;<span>temperatures</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="531">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>sort&#32;<span>temperatures</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        temperatures
+                      </b>
+                      :
+                      <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.sort`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.sort\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L278-278" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Sort a list of temperatures from lowest to highest.
+ <pre><code class="">
+     Temperature.sort
+         [ Temperature.degreesCelsius 20
+           Temperature.kelvins 300
+           Temperature.degreesFahrenheit 74
+         ]
+     --&gt; [ Temperature.degreesCelsius 20
+     --&gt;   Temperature.degreesFahrenheit 74
+     --&gt;   Temperature.kelvins 300
+     --&gt; ]</code></pre>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  temperatures
+                </span>
+                :
+                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '532', 532)" onmouseover="showTip(event, '532', 532)">
+                <p>
+                  <a id="sortBy">
+                    <a href="#sortBy">
+                      <code><span>sortBy&#32;<span>toTemperature&#32;list</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="532">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>sortBy&#32;<span>toTemperature&#32;list</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        toTemperature
+                      </b>
+                      :
+                      <code><span>'a&#32;->&#32;<a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        list
+                      </b>
+                      :
+                      <code><span>'a&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Math.Units.TemperatureModule.sortBy``1```')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.sortBy``1\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L306-306" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Sort an arbitrary list of values by a derived <code>Temperature</code>.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  toTemperature
+                </span>
+                :
+                <code><span>'a&#32;->&#32;<a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  list
+                </span>
+                :
+                <code><span>'a&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <p class='fsdocs-para'>If you had</p><pre><code class="">
+     let rooms =
+         [ ( &quot;Lobby&quot;, Temperature.degreesCelsius 21 )
+           ( &quot;Locker room&quot;, Temperature.degreesCelsius 17 )
+           ( &quot;Rink&quot;, Temperature.degreesCelsius -4 )
+           ( &quot;Sauna&quot;, Temperature.degreesCelsius 82 )
+         ]</code></pre><p class='fsdocs-para'>then you could sort by temperature with</p><pre><code class="">
+     Temperature.sortBy Tuple.second rooms
+     --&gt; [ ( &quot;Rink&quot;, Temperature.degreesCelsius -4 )
+     --&gt;   ( &quot;Locker room&quot;, Temperature.degreesCelsius 17 )
+     --&gt;   ( &quot;Lobby&quot;, Temperature.degreesCelsius 21 )
+     --&gt;   ( &quot;Sauna&quot;, Temperature.degreesCelsius 82 )
+     --&gt; ]</code></pre>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section2">
+    Modifiers
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '533', 533)" onmouseover="showTip(event, '533', 533)">
+                <p>
                   <a id="abs">
                     <a href="#abs">
                       <code><span>abs&#32;<span>temp</span></span></code>
@@ -169,7 +840,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="526">
+              <div class="fsdocs-tip" id="533">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>abs&#32;<span>temp</span></span></code>
@@ -206,7 +877,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L191-191" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L214-214" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -238,209 +909,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '527', 527)" onmouseover="showTip(event, '527', 527)">
-                <p>
-                  <a id="absoluteZero">
-                    <a href="#absoluteZero">
-                      <code><span>absoluteZero&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="527">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>absoluteZero&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.TemperatureModule.absoluteZero`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.TemperatureModule.absoluteZero\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L72-72" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                <a href="https://en.wikipedia.org/wiki/Absolute_zero">Absolute zero</a>,
- equal to zero kelvins or -273.15 degrees Celsius.
- 
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre><code class="">
-     Temperature.absoluteZero
-     --&gt; Temperature.degreesCelsius -273.15</code></pre>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '528', 528)" onmouseover="showTip(event, '528', 528)">
-                <p>
-                  <a id="celsiusDegree">
-                    <a href="#celsiusDegree">
-                      <code><span>celsiusDegree&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="528">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>celsiusDegree&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.TemperatureModule.celsiusDegree`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.TemperatureModule.celsiusDegree\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L104-104" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '529', 529)" onmouseover="showTip(event, '529', 529)">
-                <p>
-                  <a id="celsiusDegrees">
-                    <a href="#celsiusDegrees">
-                      <code><span>celsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="529">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>celsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        numCelsiusDegrees
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.celsiusDegrees`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.celsiusDegrees\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L78-78" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Construct a temperature delta from a number of Celsius degrees.
-
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  numCelsiusDegrees
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '530', 530)" onmouseover="showTip(event, '530', 530)">
+              <code onmouseout="hideTip(event, '534', 534)" onmouseover="showTip(event, '534', 534)">
                 <p>
                   <a id="clamp">
                     <a href="#clamp">
@@ -449,7 +918,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="530">
+              <div class="fsdocs-tip" id="534">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>clamp&#32;<span>lower&#32;upper&#32;temperature</span></span></code>
@@ -502,7 +971,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L184-184" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L205-205" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -577,1210 +1046,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '531', 531)" onmouseover="showTip(event, '531', 531)">
-                <p>
-                  <a id="degreesCelsius">
-                    <a href="#degreesCelsius">
-                      <code><span>degreesCelsius&#32;<span>numDegreesCelsius</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="531">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>degreesCelsius&#32;<span>numDegreesCelsius</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        numDegreesCelsius
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.degreesCelsius`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.degreesCelsius\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Construct a temperature from a number of degrees Celsius.
-
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  numDegreesCelsius
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '532', 532)" onmouseover="showTip(event, '532', 532)">
-                <p>
-                  <a id="degreesFahrenheit">
-                    <a href="#degreesFahrenheit">
-                      <code><span>degreesFahrenheit&#32;<span>numDegreesFahrenheit</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="532">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>degreesFahrenheit&#32;<span>numDegreesFahrenheit</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        numDegreesFahrenheit
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.degreesFahrenheit`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.degreesFahrenheit\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Construct a temperature from a number of degrees Fahrenheit.
-
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  numDegreesFahrenheit
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '533', 533)" onmouseover="showTip(event, '533', 533)">
-                <p>
-                  <a id="fahrenheitDegree">
-                    <a href="#fahrenheitDegree">
-                      <code><span>fahrenheitDegree&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="533">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>fahrenheitDegree&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.TemperatureModule.fahrenheitDegree`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.TemperatureModule.fahrenheitDegree\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L105-105" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '534', 534)" onmouseover="showTip(event, '534', 534)">
-                <p>
-                  <a id="fahrenheitDegrees">
-                    <a href="#fahrenheitDegrees">
-                      <code><span>fahrenheitDegrees&#32;<span>numFahrenheitDegrees</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="534">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>fahrenheitDegrees&#32;<span>numFahrenheitDegrees</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        numFahrenheitDegrees
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.fahrenheitDegrees`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.fahrenheitDegrees\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L91-91" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Construct a temperature delta from a number of Fahrenheit degrees.
- 
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  numFahrenheitDegrees
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre><code class="">
-    Temperature.fahrenheitDegrees 36
-    --&gt; Temperature.celsiusDegrees 20</code></pre>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
               <code onmouseout="hideTip(event, '535', 535)" onmouseover="showTip(event, '535', 535)">
-                <p>
-                  <a id="greaterThan">
-                    <a href="#greaterThan">
-                      <code><span>greaterThan&#32;<span>rhs&#32;lhs</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="535">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>greaterThan&#32;<span>rhs&#32;lhs</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        rhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        lhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.greaterThan`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.greaterThan\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L134-134" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- This is meant to be used with pipe operators.
- <pre><code class="">
-     Temperature.inDegreesCelsius 30.
-     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  lhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '536', 536)" onmouseover="showTip(event, '536', 536)">
-                <p>
-                  <a id="greaterThanOrEqualTo">
-                    <a href="#greaterThanOrEqualTo">
-                      <code><span>greaterThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="536">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>greaterThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        rhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        lhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.greaterThanOrEqualTo`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.greaterThanOrEqualTo\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L143-143" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- This is meant to be used with pipe operators.
- <pre><code class="">
-     Temperature.inDegreesCelsius 30.
-     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  lhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '537', 537)" onmouseover="showTip(event, '537', 537)">
-                <p>
-                  <a id="inCelsiusDegrees">
-                    <a href="#inCelsiusDegrees">
-                      <code><span>inCelsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="537">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>inCelsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        numCelsiusDegrees
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inCelsiusDegrees`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inCelsiusDegrees\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L81-81" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Convert a temperature delta to a number of Celsius degrees.
-
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  numCelsiusDegrees
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '538', 538)" onmouseover="showTip(event, '538', 538)">
-                <p>
-                  <a id="inDegreesCelsius">
-                    <a href="#inDegreesCelsius">
-                      <code><span>inDegreesCelsius&#32;<span>temperature</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="538">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>inDegreesCelsius&#32;<span>temperature</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        temperature
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inDegreesCelsius`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inDegreesCelsius\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L53-53" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Convert a temperature to a number of degrees Celsius.
-
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  temperature
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '539', 539)" onmouseover="showTip(event, '539', 539)">
-                <p>
-                  <a id="inDegreesFahrenheit">
-                    <a href="#inDegreesFahrenheit">
-                      <code><span>inDegreesFahrenheit&#32;<span>temperature</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="539">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>inDegreesFahrenheit&#32;<span>temperature</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        temperature
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inDegreesFahrenheit`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inDegreesFahrenheit\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L60-60" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Convert a temperature to a number of degrees Fahrenheit.
-
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  temperature
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '540', 540)" onmouseover="showTip(event, '540', 540)">
-                <p>
-                  <a id="inFahrenheitDegrees">
-                    <a href="#inFahrenheitDegrees">
-                      <code><span>inFahrenheitDegrees&#32;<span>quantity</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="540">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>inFahrenheitDegrees&#32;<span>quantity</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        quantity
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inFahrenheitDegrees`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inFahrenheitDegrees\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L102-102" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Convert a temperature delta to a number of Fahrenheit degrees.
- 
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  quantity
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre><code class="">
-    Temperature.celsiusDegrees 10
-        |&gt; Temperature.inFahrenheitDegrees
-    --&gt; 18</code></pre>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
-                <p>
-                  <a id="inKelvins">
-                    <a href="#inKelvins">
-                      <code><span>inKelvins&#32;<span>numKelvins</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="541">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>inKelvins&#32;<span>numKelvins</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        numKelvins
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inKelvins`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inKelvins\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Convert a temperature to a number of kelvins.
- 
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  numKelvins
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre><code class="">
-    Temperature.degreesCelsius 0
-        |&gt; Temperature.inKelvins
-    --&gt; 273.15</code></pre>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
-                <p>
-                  <a id="kelvins">
-                    <a href="#kelvins">
-                      <code><span>kelvins&#32;<span>numKelvins</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="542">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>kelvins&#32;<span>numKelvins</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        numKelvins
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.kelvins`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.kelvins\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Construct a temperature from a number of
- <a href="https://en.wikipedia.org/wiki/Kelvin">kelvins</a>.
- 
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  numKelvins
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre><code class="">
-     Temperature.kelvins 300
-     --&gt; Temperature.degreesCelsius 26.85</code></pre>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
-                <p>
-                  <a id="lessThan">
-                    <a href="#lessThan">
-                      <code><span>lessThan&#32;<span>rhs&#32;lhs</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="543">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>lessThan&#32;<span>rhs&#32;lhs</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        rhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        lhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.lessThan`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.lessThan\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L116-116" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- This is meant to be used with pipe operators.
- <pre><code class="">
-     Temperature.inDegreesCelsius 10.
-     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  lhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
-                <p>
-                  <a id="lessThanOrEqualTo">
-                    <a href="#lessThanOrEqualTo">
-                      <code><span>lessThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="544">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>lessThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        rhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        lhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>bool</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.lessThanOrEqualTo`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.lessThanOrEqualTo\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L125-125" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- This is meant to be used with pipe operators.
- <pre><code class="">
-     Temperature.inDegreesCelsius 10.
-     |&gt; Temperature.greaterThanOrEqualTo (Temperature.inDegreesCelsius 15.)</code></pre>
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  lhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
                 <p>
                   <a id="max">
                     <a href="#max">
@@ -1789,7 +1055,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="545">
+              <div class="fsdocs-tip" id="535">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>max&#32;<span>first&#32;second</span></span></code>
@@ -1834,7 +1100,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L195-195" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L220-220" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1874,100 +1140,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
-                <p>
-                  <a id="maximum">
-                    <a href="#maximum">
-                      <code><span>maximum&#32;<span>temperatures</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="546">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>maximum&#32;<span>temperatures</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        temperatures
-                      </b>
-                      :
-                      <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.maximum`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.maximum\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L229-229" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Find the maximum of a list of temperatures. Returns <code>Nothing</code> if the list
- is empty.
- 
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  temperatures
-                </span>
-                :
-                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre><code class="">
-     Temperature.maximum
-         [ Temperature.degreesCelsius 20
-           Temperature.kelvins 300
-           Temperature.degreesFahrenheit 74
-         ]
-     --&gt; Some (Temperature.kelvins 300)</code></pre>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '547', 547)" onmouseover="showTip(event, '547', 547)">
+              <code onmouseout="hideTip(event, '536', 536)" onmouseover="showTip(event, '536', 536)">
                 <p>
                   <a id="min">
                     <a href="#min">
@@ -1976,7 +1149,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="547">
+              <div class="fsdocs-tip" id="536">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>min&#32;<span>first&#32;second</span></span></code>
@@ -2021,7 +1194,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L193-193" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L217-217" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2061,199 +1234,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '548', 548)" onmouseover="showTip(event, '548', 548)">
-                <p>
-                  <a id="minimum">
-                    <a href="#minimum">
-                      <code><span>minimum&#32;<span>temperatures</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="548">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>minimum&#32;<span>temperatures</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        temperatures
-                      </b>
-                      :
-                      <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.minimum`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.minimum\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L211-211" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Find the minimum of a list of temperatures. Returns <code>Nothing</code> if the list
- is empty.
- 
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  temperatures
-                </span>
-                :
-                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;option</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre><code class="">
-     Temperature.minimum
-         [ Temperature.degreesCelsius 20
-           Temperature.kelvins 300
-           Temperature.degreesFahrenheit 74
-         ]
-     --&gt; Some (Temperature.degreesCelsius 20)</code></pre>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
-                <p>
-                  <a id="plus">
-                    <a href="#plus">
-                      <code><span>plus&#32;<span>rhs&#32;lhs</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="549">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>plus&#32;<span>rhs&#32;lhs</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        rhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        lhs
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.plus`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.plus\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L154-154" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- This is meant to be used with pipe operators.
- <pre><code class="">
-     Temperature.inDegreesCelsius 20.
-     |&gt; Temperature.plus (Temperature.celsiusDegrees 35.)
-     --&gt; Temperature.inDegreesCelsius 55.</code></pre>
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  rhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-delta.html">Delta</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  lhs
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '550', 550)" onmouseover="showTip(event, '550', 550)">
+              <code onmouseout="hideTip(event, '537', 537)" onmouseover="showTip(event, '537', 537)">
                 <p>
                   <a id="round">
                     <a href="#round">
@@ -2262,7 +1243,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="550">
+              <div class="fsdocs-tip" id="537">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>round&#32;<span>temp</span></span></code>
@@ -2299,7 +1280,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L189-189" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L211-211" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -2328,39 +1309,77 @@
             </dl>
           </td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section3">
+    Operators
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '551', 551)" onmouseover="showTip(event, '551', 551)">
+              <code onmouseout="hideTip(event, '538', 538)" onmouseover="showTip(event, '538', 538)">
                 <p>
-                  <a id="sort">
-                    <a href="#sort">
-                      <code><span>sort&#32;<span>temperatures</span></span></code>
+                  <a id="greaterThan">
+                    <a href="#greaterThan">
+                      <code><span>greaterThan&#32;<span>rhs&#32;lhs</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="551">
+              <div class="fsdocs-tip" id="538">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>sort&#32;<span>temperatures</span></span></code>
+                  <code><span>greaterThan&#32;<span>rhs&#32;lhs</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        temperatures
+                        rhs
                       </b>
                       :
-                      <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                    <code>bool</code>
                   </span>
                   <br/>
                 </div>
@@ -2369,40 +1388,41 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.sort`')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.greaterThan`')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.sort\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.greaterThan\'/>')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L250-250" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L152-152" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Sort a list of temperatures from lowest to highest.
+ This is meant to be used with pipe operators.
  <pre><code class="">
-     Temperature.sort
-         [ Temperature.degreesCelsius 20
-           Temperature.kelvins 300
-           Temperature.degreesFahrenheit 74
-         ]
-     --&gt; [ Temperature.degreesCelsius 20
-     --&gt;   Temperature.degreesFahrenheit 74
-     --&gt;   Temperature.kelvins 300
-     --&gt; ]</code></pre>
+     Temperature.inDegreesCelsius 30.
+     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
               </p>
             </div>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  temperatures
+                  rhs
                 </span>
                 :
-                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  lhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -2411,7 +1431,1206 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a>&#32;list</span></code>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '539', 539)" onmouseover="showTip(event, '539', 539)">
+                <p>
+                  <a id="greaterThanOrEqualTo">
+                    <a href="#greaterThanOrEqualTo">
+                      <code><span>greaterThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="539">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>greaterThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.greaterThanOrEqualTo`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.greaterThanOrEqualTo\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L162-162" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 30.
+     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  rhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  lhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '540', 540)" onmouseover="showTip(event, '540', 540)">
+                <p>
+                  <a id="lessThan">
+                    <a href="#lessThan">
+                      <code><span>lessThan&#32;<span>rhs&#32;lhs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="540">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>lessThan&#32;<span>rhs&#32;lhs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.lessThan`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.lessThan\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L132-132" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 10.
+     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)</code></pre>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  rhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  lhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
+                <p>
+                  <a id="lessThanOrEqualTo">
+                    <a href="#lessThanOrEqualTo">
+                      <code><span>lessThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="541">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>lessThanOrEqualTo&#32;<span>rhs&#32;lhs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.lessThanOrEqualTo`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.lessThanOrEqualTo\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L142-142" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 10.
+     |&gt; Temperature.greaterThanOrEqualTo (Temperature.inDegreesCelsius 15.)</code></pre>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  rhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  lhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
+                <p>
+                  <a id="plus">
+                    <a href="#plus">
+                      <code><span>plus&#32;<span>rhs&#32;lhs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="542">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>plus&#32;<span>rhs&#32;lhs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        rhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        lhs
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.plus`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.plus\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L174-174" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ This is meant to be used with pipe operators.
+ <pre><code class="">
+     Temperature.inDegreesCelsius 20.
+     |&gt; Temperature.plus (Temperature.celsiusDegrees 35.)
+     --&gt; Temperature.inDegreesCelsius 55.</code></pre>
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  rhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  lhs
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section4">
+    Temperature Conversions
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
+                <p>
+                  <a id="degreesCelsius">
+                    <a href="#degreesCelsius">
+                      <code><span>degreesCelsius&#32;<span>numDegreesCelsius</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="543">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>degreesCelsius&#32;<span>numDegreesCelsius</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numDegreesCelsius
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.degreesCelsius`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.degreesCelsius\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a temperature from a number of degrees Celsius.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numDegreesCelsius
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
+                <p>
+                  <a id="degreesFahrenheit">
+                    <a href="#degreesFahrenheit">
+                      <code><span>degreesFahrenheit&#32;<span>numDegreesFahrenheit</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="544">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>degreesFahrenheit&#32;<span>numDegreesFahrenheit</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numDegreesFahrenheit
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.degreesFahrenheit`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.degreesFahrenheit\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a temperature from a number of degrees Fahrenheit.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numDegreesFahrenheit
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
+                <p>
+                  <a id="inDegreesCelsius">
+                    <a href="#inDegreesCelsius">
+                      <code><span>inDegreesCelsius&#32;<span>temperature</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="545">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inDegreesCelsius&#32;<span>temperature</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        temperature
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inDegreesCelsius`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inDegreesCelsius\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a temperature to a number of degrees Celsius.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  temperature
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
+                <p>
+                  <a id="inDegreesFahrenheit">
+                    <a href="#inDegreesFahrenheit">
+                      <code><span>inDegreesFahrenheit&#32;<span>temperature</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="546">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inDegreesFahrenheit&#32;<span>temperature</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        temperature
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inDegreesFahrenheit`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inDegreesFahrenheit\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a temperature to a number of degrees Fahrenheit.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  temperature
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '547', 547)" onmouseover="showTip(event, '547', 547)">
+                <p>
+                  <a id="inKelvins">
+                    <a href="#inKelvins">
+                      <code><span>inKelvins&#32;<span>numKelvins</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="547">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inKelvins&#32;<span>numKelvins</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numKelvins
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inKelvins`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inKelvins\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L51-51" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a temperature to a number of kelvins.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numKelvins
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Temperature.degreesCelsius 0
+        |&gt; Temperature.inKelvins
+    --&gt; 273.15</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '548', 548)" onmouseover="showTip(event, '548', 548)">
+                <p>
+                  <a id="kelvins">
+                    <a href="#kelvins">
+                      <code><span>kelvins&#32;<span>numKelvins</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="548">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>kelvins&#32;<span>numKelvins</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numKelvins
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.kelvins`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.kelvins\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a temperature from a number of
+ <a href="https://en.wikipedia.org/wiki/Kelvin">kelvins</a>.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numKelvins
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+     Temperature.kelvins 300
+     --&gt; Temperature.degreesCelsius 26.85</code></pre>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section5">
+    Temperature Delta Conversions
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
+                <p>
+                  <a id="celsiusDegrees">
+                    <a href="#celsiusDegrees">
+                      <code><span>celsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="549">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>celsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numCelsiusDegrees
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.celsiusDegrees`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.celsiusDegrees\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L88-88" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a temperature delta from a number of Celsius degrees.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numCelsiusDegrees
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '550', 550)" onmouseover="showTip(event, '550', 550)">
+                <p>
+                  <a id="fahrenheitDegrees">
+                    <a href="#fahrenheitDegrees">
+                      <code><span>fahrenheitDegrees&#32;<span>numFahrenheitDegrees</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="550">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>fahrenheitDegrees&#32;<span>numFahrenheitDegrees</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numFahrenheitDegrees
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.fahrenheitDegrees`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.fahrenheitDegrees\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L103-103" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Construct a temperature delta from a number of Fahrenheit degrees.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numFahrenheitDegrees
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              <pre><code class="">
+    Temperature.fahrenheitDegrees 36
+    --&gt; Temperature.celsiusDegrees 20</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '551', 551)" onmouseover="showTip(event, '551', 551)">
+                <p>
+                  <a id="inCelsiusDegrees">
+                    <a href="#inCelsiusDegrees">
+                      <code><span>inCelsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="551">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>inCelsiusDegrees&#32;<span>numCelsiusDegrees</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numCelsiusDegrees
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inCelsiusDegrees`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inCelsiusDegrees\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L92-92" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Convert a temperature delta to a number of Celsius degrees.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numCelsiusDegrees
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -2422,9 +2641,9 @@
             <div>
               <code onmouseout="hideTip(event, '552', 552)" onmouseover="showTip(event, '552', 552)">
                 <p>
-                  <a id="sortBy">
-                    <a href="#sortBy">
-                      <code><span>sortBy&#32;<span>toTemperature&#32;list</span></span></code>
+                  <a id="inFahrenheitDegrees">
+                    <a href="#inFahrenheitDegrees">
+                      <code><span>inFahrenheitDegrees&#32;<span>quantity</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -2432,32 +2651,24 @@
               <div class="fsdocs-tip" id="552">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>sortBy&#32;<span>toTemperature&#32;list</span></span></code>
+                  <code><span>inFahrenheitDegrees&#32;<span>quantity</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        toTemperature
+                        quantity
                       </b>
                       :
-                      <code><span>'a&#32;->&#32;<a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></span></code>
-                    </span>
-                    <br/>
-                    <span>
-                      <b>
-                        list
-                      </b>
-                      :
-                      <code><span>'a&#32;list</span></code>
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span>'a&#32;list</span></code>
+                    <code>float</code>
                   </span>
                   <br/>
                 </div>
@@ -2466,39 +2677,31 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Math.Units.TemperatureModule.sortBy``1```')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.TemperatureModule.inFahrenheitDegrees`')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.sortBy``1\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.TemperatureModule.inFahrenheitDegrees\'/>')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L277-277" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Temperature.fs#L115-115" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
- Sort an arbitrary list of values by a derived <code>Temperature</code>.
+ Convert a temperature delta to a number of Fahrenheit degrees.
  
               </p>
             </div>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  toTemperature
+                  quantity
                 </span>
                 :
-                <code><span>'a&#32;->&#32;<a href="https://evelios.github.io/Math.Units/reference/math-units-temperature.html">Temperature</a></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  list
-                </span>
-                :
-                <code><span>'a&#32;list</span></code>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-temperaturedelta.html">TemperatureDelta</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -2507,7 +2710,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span>'a&#32;list</span></code>
+                <code>float</code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -2515,19 +2718,10 @@
               Example
             </h5>
             <p class="fsdocs-example" id="example">
-              <p class='fsdocs-para'>If you had</p><pre><code class="">
-     let rooms =
-         [ ( &quot;Lobby&quot;, Temperature.degreesCelsius 21 )
-           ( &quot;Locker room&quot;, Temperature.degreesCelsius 17 )
-           ( &quot;Rink&quot;, Temperature.degreesCelsius -4 )
-           ( &quot;Sauna&quot;, Temperature.degreesCelsius 82 )
-         ]</code></pre><p class='fsdocs-para'>then you could sort by temperature with</p><pre><code class="">
-     Temperature.sortBy Tuple.second rooms
-     --&gt; [ ( &quot;Rink&quot;, Temperature.degreesCelsius -4 )
-     --&gt;   ( &quot;Locker room&quot;, Temperature.degreesCelsius 17 )
-     --&gt;   ( &quot;Lobby&quot;, Temperature.degreesCelsius 21 )
-     --&gt;   ( &quot;Sauna&quot;, Temperature.degreesCelsius 82 )
-     --&gt; ]</code></pre>
+              <pre><code class="">
+    Temperature.celsiusDegrees 10
+        |&gt; Temperature.inFahrenheitDegrees
+    --&gt; 18</code></pre>
             </p>
           </td>
         </tr>

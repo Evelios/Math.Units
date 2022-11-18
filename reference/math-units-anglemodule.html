@@ -121,9 +121,70 @@
     <div>
       <p class="fsdocs-summary">
         
+ An <code>Angle</code> represents an angle in degrees, radians, or turns. It is stored
+ as a number of radians.
+ 
       </p>
     </div>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      
+ Angles are sometimes measured in degrees, minutes, and seconds, where 1 minute =
+ 1/60th of a degree and 1 second = 1/60th of a minute.
+ 
+    </p>
+    <h5 class="fsdocs-example-header">
+      Example
+    </h5>
+    <p class="fsdocs-example">
+      
+ You can construct an angle from your unit scheme. All of the following are equivalent.
+ <pre><code class="">
+     Angle.radians Math.PI
+     Angle.degrees 180.
+     Angle.turns 0.5</code></pre>
+    </p>
   </div>
+  <h3>
+    Table of contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#section0">
+        Constants
+      </a>
+    </li>
+    <li>
+      <a href="#section1">
+        Degrees
+      </a>
+    </li>
+    <li>
+      <a href="#section2">
+        Modifiers
+      </a>
+    </li>
+    <li>
+      <a href="#section3">
+        Radians
+      </a>
+    </li>
+    <li>
+      <a href="#section4">
+        Trigonometry
+      </a>
+    </li>
+    <li>
+      <a href="#section5">
+        Turns
+      </a>
+    </li>
+  </ul>
+  <h2 id="section0">
+    Constants
+  </h2>
   <div>
     <h3>
       Functions and values
@@ -145,318 +206,6 @@
             <div>
               <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
                 <p>
-                  <a id="acos">
-                    <a href="#acos">
-                      <code><span>acos&#32;<span>x</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="7">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>acos&#32;<span>x</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        x
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.acos`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.acos\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
-                <p>
-                  <a id="asin">
-                    <a href="#asin">
-                      <code><span>asin&#32;<span>x</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="8">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>asin&#32;<span>x</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        x
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.asin`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.asin\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
-                <p>
-                  <a id="atan">
-                    <a href="#atan">
-                      <code><span>atan&#32;<span>x</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="9">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>atan&#32;<span>x</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        x
-                      </b>
-                      :
-                      <code>float</code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.atan`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.atan\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  x
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
-                <p>
-                  <a id="cos">
-                    <a href="#cos">
-                      <code><span>cos&#32;<span>r</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="10">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>cos&#32;<span>r</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        r
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.cos`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.cos\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  r
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
-                <p>
                   <a id="degree">
                     <a href="#degree">
                       <code><span>degree&#32;<span></span></span></code>
@@ -464,7 +213,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="11">
+              <div class="fsdocs-tip" id="7">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>degree&#32;<span></span></span></code>
@@ -489,12 +238,247 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L212-212" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ One degree.
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+                <p>
+                  <a id="halfPi">
+                    <a href="#halfPi">
+                      <code><span>halfPi&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="8">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>halfPi&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.halfPi`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.halfPi\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L100-100" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ π/2.
+ Alias for <a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle.piOverTwo</a>.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+                <p>
+                  <a id="minute">
+                    <a href="#minute">
+                      <code><span>minute&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="9">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>minute&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.minute`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.minute\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L220-220" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ One minute.
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+                <p>
+                  <a id="pi">
+                    <a href="#pi">
+                      <code><span>pi&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="10">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>pi&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.pi`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.pi\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L85-85" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ π
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+                <p>
+                  <a id="piOverTwo">
+                    <a href="#piOverTwo">
+                      <code><span>piOverTwo&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="11">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>piOverTwo&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.piOverTwo`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.piOverTwo\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L93-93" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ π/2
+
               </p>
             </div>
             <dl class="fsdocs-returns">
@@ -513,6 +497,268 @@
             <div>
               <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
                 <p>
+                  <a id="radian">
+                    <a href="#radian">
+                      <code><span>radian&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="12">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>radian&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.radian`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.radian\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L208-208" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ One radian.
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+                <p>
+                  <a id="second">
+                    <a href="#second">
+                      <code><span>second&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="13">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>second&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.second`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.second\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L224-224" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ One second.
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+                <p>
+                  <a id="turn">
+                    <a href="#turn">
+                      <code><span>turn&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="14">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>turn&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.turn`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.turn\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L216-216" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ One turn.
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+                <p>
+                  <a id="twoPi">
+                    <a href="#twoPi">
+                      <code><span>twoPi&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="15">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>twoPi&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.twoPi`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.twoPi\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L89-89" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ 2π
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section1">
+    Degrees
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+                <p>
                   <a id="degrees">
                     <a href="#degrees">
                       <code><span>degrees&#32;<span>d</span></span></code>
@@ -520,7 +766,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="12">
+              <div class="fsdocs-tip" id="16">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>degrees&#32;<span>d</span></span></code>
@@ -557,12 +803,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L19-19" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L43-43" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Create an angle from a number of degrees.
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -589,65 +837,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
-                <p>
-                  <a id="halfPi">
-                    <a href="#halfPi">
-                      <code><span>halfPi&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="13">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>halfPi&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.halfPi`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.halfPi\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L17-17" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- Alias for <c>1</c
-
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+              <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
                 <p>
                   <a id="inDegrees">
                     <a href="#inDegrees">
@@ -656,7 +846,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="14">
+              <div class="fsdocs-tip" id="17">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inDegrees&#32;<span>angle</span></span></code>
@@ -693,12 +883,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L48-48" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Get a <code>float</code> of the given angle in degrees.
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -725,7 +917,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+              <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
                 <p>
                   <a id="inMinutes">
                     <a href="#inMinutes">
@@ -734,7 +926,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="15">
+              <div class="fsdocs-tip" id="18">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inMinutes&#32;<span>angle</span></span></code>
@@ -771,12 +963,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L59-59" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Get a <code>float</code> of the given angle in minutes.
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -803,85 +997,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
-                <p>
-                  <a id="inRadians">
-                    <a href="#inRadians">
-                      <code><span>inRadians&#32;<span>r</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="16">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>inRadians&#32;<span>r</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        r
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.inRadians`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.inRadians\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L11-11" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  r
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+              <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
                 <p>
                   <a id="inSeconds">
                     <a href="#inSeconds">
@@ -890,7 +1006,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="17">
+              <div class="fsdocs-tip" id="19">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inSeconds&#32;<span>angle</span></span></code>
@@ -927,12 +1043,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L69-69" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Get a <code>float</code> of the given angle in seconds.
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -951,140 +1069,6 @@
                   Returns: 
                 </span>
                 <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
-                <p>
-                  <a id="inTurns">
-                    <a href="#inTurns">
-                      <code><span>inTurns&#32;<span>angle</span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="18">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>inTurns&#32;<span>angle</span></span></code>
-                  <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        angle
-                      </b>
-                      :
-                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                    </span>
-                    <br/>
-                  </ul>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code>float</code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.inTurns`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.inTurns\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  angle
-                </span>
-                :
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
-                <p>
-                  <a id="minute">
-                    <a href="#minute">
-                      <code><span>minute&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="19">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>minute&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.minute`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.minute\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1139,12 +1123,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Create an angle from a number of minutes.
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1173,6 +1159,116 @@
             <div>
               <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
                 <p>
+                  <a id="seconds">
+                    <a href="#seconds">
+                      <code><span>seconds&#32;<span>numSeconds</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="21">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>seconds&#32;<span>numSeconds</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numSeconds
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.seconds`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.seconds\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Create an angle from a number of seconds.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numSeconds
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section2">
+    Modifiers
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+                <p>
                   <a id="normalize">
                     <a href="#normalize">
                       <code><span>normalize&#32;<span>r</span></span></code>
@@ -1180,7 +1276,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="21">
+              <div class="fsdocs-tip" id="22">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>normalize&#32;<span>r</span></span></code>
@@ -1217,7 +1313,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L40-40" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L111-111" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -1226,7 +1322,7 @@
  Convert an arbitrary angle to the equivalent angle in the range -180 to 180
  degrees (-π to π radians), by adding or subtracting some multiple of 360
  degrees (2π radians) if necessary.
-
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1250,70 +1346,44 @@
             </dl>
           </td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section3">
+    Radians
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
         <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
-                <p>
-                  <a id="pi">
-                    <a href="#pi">
-                      <code><span>pi&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="22">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>pi&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
+          <td class="fsdocs-member-list-header">
+            Function or value
           </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.pi`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.pi\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L13-13" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+          <td class="fsdocs-member-list-header">
+            Description
           </td>
         </tr>
+      </thead>
+      <tbody>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
               <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
                 <p>
-                  <a id="piOverTwo">
-                    <a href="#piOverTwo">
-                      <code><span>piOverTwo&#32;<span></span></span></code>
+                  <a id="inRadians">
+                    <a href="#inRadians">
+                      <code><span>inRadians&#32;<span>r</span></span></code>
                     </a>
                   </a>
                 </p>
@@ -1321,12 +1391,24 @@
               <div class="fsdocs-tip" id="23">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>piOverTwo&#32;<span></span></span></code>
+                  <code><span>inRadians&#32;<span>r</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        r
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                    <code>float</code>
                   </span>
                   <br/>
                 </div>
@@ -1335,28 +1417,40 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.piOverTwo`')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.inRadians`')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.piOverTwo\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.inRadians\'/>')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L15-15" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Get a <code>float</code> of the given angle in radians
+
               </p>
             </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  r
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                <code>float</code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1367,62 +1461,6 @@
             <div>
               <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
                 <p>
-                  <a id="radian">
-                    <a href="#radian">
-                      <code><span>radian&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="24">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>radian&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.radian`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.radian\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
-                <p>
                   <a id="radians">
                     <a href="#radians">
                       <code><span>radians&#32;<span>r</span></span></code>
@@ -1430,7 +1468,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="25">
+              <div class="fsdocs-tip" id="24">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>radians&#32;<span>r</span></span></code>
@@ -1467,12 +1505,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Create an angle from a number of radians.
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1496,85 +1536,59 @@
             </dl>
           </td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section4">
+    Trigonometry
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
         <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
-                <p>
-                  <a id="second">
-                    <a href="#second">
-                      <code><span>second&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="26">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>second&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
+          <td class="fsdocs-member-list-header">
+            Function or value
           </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.second`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.second\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+          <td class="fsdocs-member-list-header">
+            Description
           </td>
         </tr>
+      </thead>
+      <tbody>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+              <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
                 <p>
-                  <a id="seconds">
-                    <a href="#seconds">
-                      <code><span>seconds&#32;<span>numMinutes</span></span></code>
+                  <a id="acos">
+                    <a href="#acos">
+                      <code><span>acos&#32;<span>x</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="27">
+              <div class="fsdocs-tip" id="25">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>seconds&#32;<span>numMinutes</span></span></code>
+                  <code><span>acos&#32;<span>x</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        numMinutes
+                        x
                       </b>
                       :
                       <code>float</code>
@@ -1593,26 +1607,28 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.seconds`')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.acos`')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.seconds\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.acos\'/>')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L188-188" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Run the <code>acos</code> function on an angle.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
               <dt class="fsdocs-param">
                 <span class="fsdocs-param-name">
-                  numMinutes
+                  x
                 </span>
                 :
                 <code>float</code>
@@ -1628,12 +1644,288 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ This can also be called using the builtin <code>acos</code> function.
+ <pre><code class="">
+ acos Angle.pi = Angle.acos Angle.pi</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
+                <p>
+                  <a id="asin">
+                    <a href="#asin">
+                      <code><span>asin&#32;<span>x</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="26">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>asin&#32;<span>x</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.asin`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.asin\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L175-175" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Run the <code>asin</code> function on an angle.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ This can also be called using the builtin <code>asin</code> function.
+ <pre><code class="">
+ asin Angle.pi = Angle.asin Angle.pi</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+                <p>
+                  <a id="atan">
+                    <a href="#atan">
+                      <code><span>atan&#32;<span>x</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="27">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>atan&#32;<span>x</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.atan`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.atan\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L201-201" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Run the <code>atan</code> function on an angle.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ This can also be called using the builtin <code>atan</code> function.
+ <pre><code class="">
+ atan Angle.pi = Angle.atan Angle.pi</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
               <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+                <p>
+                  <a id="cos">
+                    <a href="#cos">
+                      <code><span>cos&#32;<span>r</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="28">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>cos&#32;<span>r</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        r
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.cos`')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.cos\'/>')">
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L149-149" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
+                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Run the <code>cos</code> function on an angle.
+ 
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  r
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ This can also be called using the builtin <code>cos</code> function.
+ <pre><code class="">
+ cos Angle.pi = Angle.cos Angle.pi</code></pre>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
                 <p>
                   <a id="sin">
                     <a href="#sin">
@@ -1642,7 +1934,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="28">
+              <div class="fsdocs-tip" id="29">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>sin&#32;<span>r</span></span></code>
@@ -1679,12 +1971,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L54-54" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L136-136" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Run the <code>sin</code> function on an angle.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1706,12 +2000,21 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ This can also be called using the builtin <code>sin</code> function.
+ <pre><code class="">
+ sin Angle.pi = Angle.sin Angle.pi</code></pre>
+            </p>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+              <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
                 <p>
                   <a id="tan">
                     <a href="#tan">
@@ -1720,7 +2023,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="29">
+              <div class="fsdocs-tip" id="30">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>tan&#32;<span>r</span></span></code>
@@ -1757,12 +2060,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L162-162" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Run the <code>tan</code> function on an angle.
+ 
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1784,29 +2089,80 @@
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
+            <h5 class="fsdocs-example-header">
+              Example
+            </h5>
+            <p class="fsdocs-example" id="example">
+              
+ This can also be called using the builtin <code>tan</code> function.
+ <pre><code class="">
+ tan Angle.pi = Angle.tan Angle.pi</code></pre>
+            </p>
           </td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <h2 id="section5">
+    Turns
+  </h2>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+              <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
                 <p>
-                  <a id="turn">
-                    <a href="#turn">
-                      <code><span>turn&#32;<span></span></span></code>
+                  <a id="inTurns">
+                    <a href="#inTurns">
+                      <code><span>inTurns&#32;<span>angle</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="30">
+              <div class="fsdocs-tip" id="31">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>turn&#32;<span></span></span></code>
+                  <code><span>inTurns&#32;<span>angle</span></span></code>
                   <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        angle
+                      </b>
+                      :
+                      <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                    </span>
+                    <br/>
+                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                    <code>float</code>
                   </span>
                   <br/>
                 </div>
@@ -1815,28 +2171,40 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.turn`')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Math.Units.AngleModule.inTurns`')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.turn\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Math.Units.AngleModule.inTurns\'/>')">
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L66-66" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L79-79" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Get a <code>float</code> of the given angle in turns.
+
               </p>
             </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  angle
+                </span>
+                :
+                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
+                <code>float</code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1845,7 +2213,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+              <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
                 <p>
                   <a id="turns">
                     <a href="#turns">
@@ -1854,7 +2222,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="31">
+              <div class="fsdocs-tip" id="32">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>turns&#32;<span>numTurns</span></span></code>
@@ -1891,12 +2259,14 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L25-25" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L75-75" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
                 
+ Create an angle from a number of turns.
+
               </p>
             </div>
             <dl class="fsdocs-params">
@@ -1909,62 +2279,6 @@
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
-                <p>
-                  <a id="twoPi">
-                    <a href="#twoPi">
-                      <code><span>twoPi&#32;<span></span></span></code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="32">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code><span>twoPi&#32;<span></span></span></code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Returns: 
-                    <code><a href="https://evelios.github.io/Math.Units/reference/math-units-angle.html">Angle</a></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Math.Units.AngleModule.twoPi`')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Math.Units.AngleModule.twoPi\'/>')">
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Angle.fs#L14-14" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
-                <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
-              </p>
-            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">

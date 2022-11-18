@@ -284,22 +284,81 @@
 <div class="fsdocs-tip" id="fs4">Multiple items<br />union case Cartesian.Cartesian: Cartesian<br /><br />--------------------<br />type Cartesian = | Cartesian</div>
 <div class="fsdocs-tip" id="fs5">Multiple items<br />module Angle
 
-from Math.Units<br /><br />--------------------<br />type Angle = Quantity&lt;Radians&gt;<br /><em>&lt;category&gt;Unit Type&lt;/category&gt;</em></div>
-<div class="fsdocs-tip" id="fs6">val degrees: d: float -&gt; Angle</div>
-<div class="fsdocs-tip" id="fs7">val radians: r: float -&gt; Angle</div>
+from Math.Units<br /><em>&lt;category&gt;Module: Unit System&lt;/category&gt;<br />&lt;summary&gt;
+ An &lt;c&gt;Angle&lt;/c&gt; represents an angle in degrees, radians, or turns. It is stored
+ as a number of radians.
+ &lt;/summary&gt;<br />&lt;note&gt;
+ Angles are sometimes measured in degrees, minutes, and seconds, where 1 minute =
+ 1/60th of a degree and 1 second = 1/60th of a minute.
+ &lt;/note&gt;<br />&lt;example&gt;
+ You can construct an angle from your unit scheme. All of the following are equivalent.
+ &lt;code&gt;
+     Angle.radians Math.PI
+     Angle.degrees 180.
+     Angle.turns 0.5
+ &lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />type Angle = Quantity&lt;Radians&gt;<br /><em>&lt;category&gt;Unit System&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs6">val degrees: d: float -&gt; Angle<br /><em>&lt;category&gt;Degrees&lt;/category&gt;<br />
+ Create an angle from a number of degrees.
+</em></div>
+<div class="fsdocs-tip" id="fs7">val radians: r: float -&gt; Angle<br /><em>&lt;category&gt;Radians&lt;/category&gt;<br />
+ Create an angle from a number of radians.
+</em></div>
 <div class="fsdocs-tip" id="fs8">field Math.PI: float = 3.14159265359<br /><em>&lt;summary&gt;Represents the ratio of the circumference of a circle to its diameter, specified by the constant, π.&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs9">val inDegrees: angle: Angle -&gt; float</div>
+<div class="fsdocs-tip" id="fs9">val inDegrees: angle: Angle -&gt; float<br /><em>&lt;category&gt;Degrees&lt;/category&gt;<br />
+ Get a <br />&lt;c&gt;float&lt;/c&gt;<br />&#160;of the given angle in degrees.
+</em></div>
 <div class="fsdocs-tip" id="fs10">val halfPi: Angle<br /><em>&lt;summary&gt;
- Alias for &amp;lt;c&amp;gt;1&amp;lt;/c
-&lt;/summary&gt;</em></div>
-<div class="fsdocs-tip" id="fs11">val inRadians: r: Angle -&gt; float</div>
-<div class="fsdocs-tip" id="fs12">val sin: r: Angle -&gt; float</div>
-<div class="fsdocs-tip" id="fs13">val pi: Angle</div>
-<div class="fsdocs-tip" id="fs14">val cos: r: Angle -&gt; float</div>
-<div class="fsdocs-tip" id="fs15">val tan: r: Angle -&gt; float</div>
-<div class="fsdocs-tip" id="fs16">val asin: x: float -&gt; Angle</div>
-<div class="fsdocs-tip" id="fs17">val acos: x: float -&gt; Angle</div>
-<div class="fsdocs-tip" id="fs18">val atan: x: float -&gt; Angle</div>
+ π/2.
+ Alias for &lt;see cref=&quot;M:Math.Units.Angle.piOverTwo&quot; /&gt;.
+ &lt;/summary&gt;<br />&lt;category&gt;Constants&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">val inRadians: r: Angle -&gt; float<br /><em>&lt;category&gt;Radians&lt;/category&gt;<br />
+ Get a <br />&lt;c&gt;float&lt;/c&gt;<br />&#160;of the given angle in radians
+</em></div>
+<div class="fsdocs-tip" id="fs12">val sin: r: Angle -&gt; float<br /><em>&lt;category&gt;Trigonometry&lt;/category&gt;<br />&lt;summary&gt;
+ Run the &lt;c&gt;sin&lt;/c&gt; function on an angle.
+ &lt;/summary&gt;<br />&lt;example&gt;
+ This can also be called using the builtin &lt;c&gt;sin&lt;/c&gt; function.
+ &lt;code&gt;
+ sin Angle.pi = Angle.sin Angle.pi
+ &lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val pi: Angle<br /><em>&lt;category&gt;Constants&lt;/category&gt;<br />
+ π
+</em></div>
+<div class="fsdocs-tip" id="fs14">val cos: r: Angle -&gt; float<br /><em>&lt;category&gt;Trigonometry&lt;/category&gt;<br />&lt;summary&gt;
+ Run the &lt;c&gt;cos&lt;/c&gt; function on an angle.
+ &lt;/summary&gt;<br />&lt;example&gt;
+ This can also be called using the builtin &lt;c&gt;cos&lt;/c&gt; function.
+ &lt;code&gt;
+ cos Angle.pi = Angle.cos Angle.pi
+ &lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">val tan: r: Angle -&gt; float<br /><em>&lt;category&gt;Trigonometry&lt;/category&gt;<br />&lt;summary&gt;
+ Run the &lt;c&gt;tan&lt;/c&gt; function on an angle.
+ &lt;/summary&gt;<br />&lt;example&gt;
+ This can also be called using the builtin &lt;c&gt;tan&lt;/c&gt; function.
+ &lt;code&gt;
+ tan Angle.pi = Angle.tan Angle.pi
+ &lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">val asin: x: float -&gt; Angle<br /><em>&lt;category&gt;Trigonometry&lt;/category&gt;<br />&lt;summary&gt;
+ Run the &lt;c&gt;asin&lt;/c&gt; function on an angle.
+ &lt;/summary&gt;<br />&lt;example&gt;
+ This can also be called using the builtin &lt;c&gt;asin&lt;/c&gt; function.
+ &lt;code&gt;
+ asin Angle.pi = Angle.asin Angle.pi
+ &lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">val acos: x: float -&gt; Angle<br /><em>&lt;category&gt;Trigonometry&lt;/category&gt;<br />&lt;summary&gt;
+ Run the &lt;c&gt;acos&lt;/c&gt; function on an angle.
+ &lt;/summary&gt;<br />&lt;example&gt;
+ This can also be called using the builtin &lt;c&gt;acos&lt;/c&gt; function.
+ &lt;code&gt;
+ acos Angle.pi = Angle.acos Angle.pi
+ &lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">val atan: x: float -&gt; Angle<br /><em>&lt;category&gt;Trigonometry&lt;/category&gt;<br />&lt;summary&gt;
+ Run the &lt;c&gt;atan&lt;/c&gt; function on an angle.
+ &lt;/summary&gt;<br />&lt;example&gt;
+ This can also be called using the builtin &lt;c&gt;atan&lt;/c&gt; function.
+ &lt;code&gt;
+ atan Angle.pi = Angle.atan Angle.pi
+ &lt;/code&gt;&lt;/example&gt;</em></div>
 
         </div>
 

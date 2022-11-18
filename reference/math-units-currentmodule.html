@@ -121,8 +121,36 @@
     <div>
       <p class="fsdocs-summary">
         
+ A <code>Current</code> value represents an electrical current in amperes.
+ 
       </p>
     </div>
+    <h5 class="fsdocs-note-header">
+      Note
+    </h5>
+    <p class="fsdocs-note">
+      
+ Since <code>Amperes</code> is defined as <code>Rate Coulombs Seconds</code> (charge
+ per unit time), you can construct a <code>Current</code> value using <code>Quantity.per</code>:
+ <pre><code class="">
+     let current =
+         charge |&gt; Quantity.per duration</code></pre>
+    </p>
+    <h5 class="fsdocs-example-header">
+      Example
+    </h5>
+    <p class="fsdocs-example">
+      
+ You can also do rate-related calculations with <code>Current</code> values to compute
+ <code>Charge</code> or <code>Duration</code>:
+ <pre><code class="">
+     let charge =
+         current |&gt; Quantity.for duration
+     let alsoCharge =
+         duration |&gt; Quantity.at current
+     let duration =
+         charge |&gt; Quantity.at_ current</code></pre>
+    </p>
   </div>
   <div>
     <h3>
@@ -189,7 +217,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L5-5" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L32-32" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -269,7 +297,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L18-18" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -359,7 +387,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L38-38" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
@@ -447,7 +475,7 @@
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L28-28" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/Evelios/Math.Units/tree/master/Math.Units/Current.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="https://evelios.github.io/Math.Units/content/img/github.png" class="normal"/>
                 <img src="https://evelios.github.io/Math.Units/content/img/github-hover.png" class="hover"/>
               </a>
