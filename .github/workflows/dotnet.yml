@@ -56,7 +56,7 @@ jobs:
         run: nuget push ./package/Math.Units.*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NugetKey}}
 
       - name: Push generated package to GitHub registry
-        run: dotnet nuget push ./package/Math.Units.*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }} --skip-duplicates
+        run: dotnet nuget push ./package/Math.Units.*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }} --skip-duplicate
 
       - name: Push documentation
         uses: s0/git-publish-subdir-action@develop
