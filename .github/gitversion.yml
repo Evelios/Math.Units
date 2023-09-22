@@ -1,7 +1,6 @@
 # For more information on configuring this file refer to
 # https://gitversion.net/docs/reference/configuration
 
-next-version: 0.1.150
 mode: ContinuousDeployment
 branches:
   feature:
