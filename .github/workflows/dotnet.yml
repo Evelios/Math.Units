@@ -53,7 +53,7 @@ jobs:
         run: dotnet pack Math.Units.sln --configuration Release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
 
       - name: Push generated package to GitHub registry
-        run: dotnet nuget push ./package/Math.Units.*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }}
+        run: dotnet nuget push --include-source ./package/Math.Units.*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }}
         
       - name: Push documentation
         uses: s0/git-publish-subdir-action@develop
