@@ -200,7 +200,12 @@ type Quantity<'Units>(quantity: float) =
 
     member this.Value = quantity
 
-    override this.ToString() = $"{quantity}"
+    override this.ToString() =
+#if FABLE_COMPILER
+        $"{quantity}"
+#else
+        $"{quantity} {typeof<'Units>.Name}"
+#endif
 
 
     // ---- IComparable Implementation ----
