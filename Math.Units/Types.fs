@@ -11,7 +11,7 @@ open Math.Units
 /// value is interchangeable with a simple <c>float</c>.
 /// A generic number that doesn't undergo any type mutation.
 /// </summary>
-/// 
+///
 /// <example>
 /// <code lang="fsharp">
 ///     Unitless: Unitless 1. * Unitless 1. = Unitless 1.
@@ -200,7 +200,7 @@ type Quantity<'Units>(quantity: float) =
 
     member this.Value = quantity
 
-    override this.ToString() = $"{quantity} {typeof<'Units>.Name}"
+    override this.ToString() = $"{quantity}"
 
 
     // ---- IComparable Implementation ----
@@ -219,9 +219,7 @@ type Quantity<'Units>(quantity: float) =
 
 
     override this.GetHashCode() =
-        this.Value
-        |> Float.roundFloatTo Float.DigitPrecision
-        |> hash
+        this.Value |> Float.roundFloatTo Float.DigitPrecision |> hash
 
 
     override this.Equals(obj: obj) : bool =
@@ -416,9 +414,7 @@ type Temperature(kelvin: float) =
 
 
     override this.GetHashCode() =
-        this.Value
-        |> Float.roundFloatTo Float.DigitPrecision
-        |> hash
+        this.Value |> Float.roundFloatTo Float.DigitPrecision |> hash
 
 
     override this.Equals(obj: obj) : bool =
@@ -478,15 +474,21 @@ type Interval<'Units> =
         match obj with
         | :? Interval<'Units> as other ->
             match this, other with
-            | Interval (thisStart, thisFinish), Interval (otherStart, otherFinish) ->
+            | Interval(thisStart, thisFinish), Interval(otherStart, otherFinish) ->
                 thisStart = otherStart && thisFinish = otherFinish
 
         | _ -> false
 
     override this.ToString() =
         match this with
-        | Interval (start, finish) -> $"Interval [ {start} -> {finish} ]"
+        | Interval(start, finish) -> $"Interval [ {start} -> {finish} ]"
 
     override this.GetHashCode() : int =
+        let mutable hash = 17
+        let multiplier = 23
+
         match this with
-        | Interval (start, finish) -> HashCode.Combine(start, finish)
+        | Interval(start, finish) ->
+            hash <- hash * multiplier * start
+            hash <- hash * multiplier * finish
+            hash
