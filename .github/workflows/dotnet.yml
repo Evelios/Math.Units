@@ -50,7 +50,7 @@ jobs:
         run: dotnet fsdocs build --strict --eval --input Docs --properties Configuration=Release
 
       - name: Package nuget
-        run: dotnet pack --include-source Math.Units.sln --configuration Release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
+        run: dotnet pack Math.Units.sln --configuration Release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
 
       - name: Push generated package to Nuget registry
         run: nuget push ./package/Math.Units.*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NugetKey}}
