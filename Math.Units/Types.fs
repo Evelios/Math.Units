@@ -484,11 +484,5 @@ type Interval<'Units> =
         | Interval(start, finish) -> $"Interval [ {start} -> {finish} ]"
 
     override this.GetHashCode() : int =
-        let mutable hash = 17
-        let multiplier = 23
-
         match this with
-        | Interval(start, finish) ->
-            hash <- hash * multiplier * start
-            hash <- hash * multiplier * finish
-            hash
+        | Interval(start, finish) -> hash (start, finish)
