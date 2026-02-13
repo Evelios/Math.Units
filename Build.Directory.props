@@ -1,7 +1,5 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <Version>0.0.1</Version>
-        <PackageVersion>0.0.1</PackageVersion>
         <Product>Math.Units</Product>
         <Authors>Thomas Waters</Authors>
         <Copyright>Thomas Waters</Copyright>
