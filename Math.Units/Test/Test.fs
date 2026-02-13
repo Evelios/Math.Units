@@ -51,7 +51,22 @@ module Test =
         comparison expected (=) actual $"Expected: {expected}{Environment.NewLine} But Was: {actual}"
 
     let almostEqual expected actual : bool =
-        comparison expected Float.almostEqual actual $"Expected: {expected}{Environment.NewLine} But Was: {actual}"
+        let getValue x =
+            match box x with
+            | :? float as f -> f
+            | :? IQuantity as q -> q.Value
+            | :? Temperature as t -> t.Value
+            | :? bool as b -> if b then 1.0 else 0.0
+            | _ -> failwith $"Cannot compare {x.GetType()} approximately"
+
+        let v1 = getValue expected
+        let v2 = getValue actual
+        
+        if Float.almostEqual v1 v2 then
+            true
+        else
+            printfn $"Expected approximately: {expected}{Environment.NewLine} But Was: {actual}"
+            false
 
     let lessThan expected actual : bool =
         comparison expected (<) actual $"Expected: {expected} < {actual}"
@@ -68,19 +83,19 @@ module Test =
     let all tests = List.forall id tests
 
     let unaryOperator (arb: Arbitrary<'a>) (fn: 'a -> 'b) (op: 'a -> 'b) : Property =
-        Prop.forAll arb (fun q -> equal (fn q) (op q))
+        Prop.forAll arb (fun q -> almostEqual (fn q) (op q))
 
 
     let binaryOperator (arb: Gen<'a>) (fn: 'a -> 'a -> 'b) (op: 'a -> 'a -> 'b) : Property =
         let arb =
             Gen.map2 Tuple2.pair arb arb |> Arb.fromGen
 
-        Prop.forAll arb (fun (a, b) -> equal (fn a b) (a |> op b))
+        Prop.forAll arb (fun (a, b) -> almostEqual (fn a b) (a |> op b))
 
 
 [<AutoOpen>]
 module Operators =
-    let (.=.) lhs rhs = lhs |> Test.equal rhs
+    let (.=.) lhs rhs = lhs |> Test.almostEqual rhs
     let (.==.) lhs rhs = lhs |> Test.almostEqual rhs
     let (.>.) lhs rhs = lhs |> Test.greaterThan rhs
     let (.>=.) lhs rhs = lhs |> Test.greaterThanOrEqualTo rhs

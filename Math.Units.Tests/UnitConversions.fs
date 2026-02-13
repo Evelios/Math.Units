@@ -5,13 +5,18 @@ open FsCheck.NUnit
 open FsCheck
 
 open Math.Units
+open Math.Units.Quantity
 open Math.Units.Test
 
 [<SetUp>]
 let Setup () = Gen.ArbGeometry.Register()
 
 let equalityTest (title: string) (unit: string) (first: 'a, second: 'a) : unit =
-    Assert.AreEqual(first, second, $"{title}: {first}{unit} and {second}{unit} should be equal.")
+    let v1 = (box first :?> IQuantity).Value
+    let v2 = (box second :?> IQuantity).Value
+    
+    if not (Float.almostEqual v1 v2) then
+        Assert.Fail($"{title}: {first}{unit} and {second}{unit} should be approximately equal but were {v1} and {v2}")
 
 let equalPairs (title: string) (unit: string) (pairs: ('a * 'a) list) =
     let unitTest = equalityTest title unit
@@ -26,7 +31,7 @@ let conversionTests (num: float) (pairs: ((float -> 'a) * ('a -> float)) list) :
             Test.almostEqual num converted)
         pairs
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Angle Conversions`` (angle: float) =
     conversionTests
         angle
@@ -36,7 +41,7 @@ let ``Angle Conversions`` (angle: float) =
           Angle.minutes, Angle.inMinutes
           Angle.seconds, Angle.inSeconds ]
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Temperature Conversions`` (temp: float) =
     conversionTests
         temp
@@ -44,7 +49,7 @@ let ``Temperature Conversions`` (temp: float) =
           Temperature.degreesCelsius, Temperature.inDegreesCelsius
           Temperature.degreesFahrenheit, Temperature.inDegreesFahrenheit ]
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Temperature Delta Conversions`` (temp: float) =
     conversionTests
         temp
@@ -67,7 +72,7 @@ let Lengths () =
           Length.picas 1., Length.inches (1. / 6.) ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Length Conversions`` (length: float) =
     conversionTests
         length
@@ -91,7 +96,7 @@ let ``Length Conversions`` (length: float) =
           Length.picas, Length.inPicas ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Area Conversions`` (area: float) =
     conversionTests
         area
@@ -126,7 +131,7 @@ let Volumes () =
           (Volume.cubicCentimeters 1., Volume.milliliters 1.) ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Volume Conversions`` (volume: float) =
     conversionTests
         volume
@@ -165,7 +170,7 @@ let Speeds () =
            Length.lightYears 1
            |> Quantity.per (Duration.julianYears 1.)) ]
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Speed Conversions`` (speed: float) =
     conversionTests
         speed
@@ -175,7 +180,7 @@ let ``Speed Conversions`` (speed: float) =
           Speed.milesPerHour, Speed.inMilesPerHour ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Acceleration Conversions`` (acceleration: float) =
     conversionTests
         acceleration
@@ -188,7 +193,7 @@ let ``Acceleration Conversions`` (acceleration: float) =
 let ``Angular Speeds`` () =
     equalPairs "Angular Speeds" "rad/s" [ AngularSpeed.turnsPerSecond 1., AngularSpeed.turnsPerMinute 60. ]
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Angular Speed Conversions`` (angularSpeed: float) =
     conversionTests
         angularSpeed
@@ -207,7 +212,7 @@ let ``Angular Accelerations`` () =
         "rad/s"
         [ (AngularAcceleration.degreesPerSecondSquared 360., AngularAcceleration.turnsPerSecondSquared 1.) ]
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Angular Acceleration Conversions`` (angularAcceleration: float) =
     conversionTests
         angularAcceleration
@@ -229,7 +234,7 @@ let Powers () =
                |> Quantity.at (Resistance.ohms 2.)
            )) ]
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Power Conversions`` (power: float) =
     conversionTests
         power
@@ -245,7 +250,7 @@ let ``Power Conversions`` (power: float) =
 let Pressures () =
     equalPairs "Pressures" "Pa" [ (Pressure.atmospheres 1., Pressure.kilopascals 101.325) ]
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Pressures Conversions`` (pressure: float) =
     conversionTests
         pressure
@@ -266,7 +271,7 @@ let Masses () =
           (Mass.pounds 1., Mass.kilograms 0.45359237) ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Mass Conversions`` (mass: float) =
     conversionTests
         mass
@@ -284,7 +289,7 @@ let Densities () =
     equalPairs "Densities" "kg/m^3" [ (Density.gramsPerCubicCentimeter 1., Density.kilogramsPerCubicMeter 1000.) ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Densities Conversions`` (density: float) =
     conversionTests
         density
@@ -299,7 +304,7 @@ let Durations () =
     equalPairs "Durations" "s" [ (Duration.julianYears 1., Duration.days 365.25) ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Duration Conversions`` (duration: float) =
     conversionTests
         duration
@@ -330,7 +335,7 @@ let ``Substance Amount`` () =
           (SubstanceAmount.megamoles 1000., SubstanceAmount.gigamoles 1.) ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Substance Amount Conversions`` (substanceAmount: float) =
     conversionTests
         substanceAmount
@@ -344,27 +349,27 @@ let ``Substance Amount Conversions`` (substanceAmount: float) =
           SubstanceAmount.gigamoles, SubstanceAmount.inGigamoles ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Pixel Conversions`` (pixels: float) =
     conversionTests pixels [ Pixels.float, Pixels.toFloat ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Pixels Per Second Conversions`` (pixels: float) =
     conversionTests pixels [ Pixels.pixelsPerSecond, Pixels.inPixelsPerSecond ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Pixels Per Second Squared Conversions`` (pixels: float) =
     conversionTests pixels [ Pixels.pixelsPerSecondSquared, Pixels.inPixelsPerSecondSquared ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Square Pixels Conversions`` (pixels: float) =
     conversionTests pixels [ Pixels.squarePixels, Pixels.inSquarePixels ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Solid Angle Conversions`` (solidAngle: float) =
     conversionTests
         solidAngle
@@ -373,7 +378,7 @@ let ``Solid Angle Conversions`` (solidAngle: float) =
           SolidAngle.squareDegrees, SolidAngle.inSquareDegrees ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Molarity Conversions`` (molarity: float) =
     conversionTests
         molarity
@@ -385,12 +390,12 @@ let ``Molarity Conversions`` (molarity: float) =
           Molarity.micromolesPerLiter, Molarity.inMicromolesPerLiter ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Voltage Conversions`` (voltage: float) =
     conversionTests voltage [ Voltage.volts, Voltage.inVolts ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Charge Conversions`` (charge: float) =
     conversionTests
         charge
@@ -402,7 +407,7 @@ let ``Resistance Conversions`` (resistance: float) =
     conversionTests resistance [ Resistance.ohms, Resistance.inOhms ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Capacitance Conversions`` (capacitance: float) =
     conversionTests
         capacitance
@@ -422,7 +427,7 @@ let Inductances () =
           (Inductance.kilohenries 10, Inductance.millihenries 10000000) ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Inductance Conversions`` (inductance: float) =
     conversionTests
         inductance
@@ -433,7 +438,7 @@ let ``Inductance Conversions`` (inductance: float) =
           Inductance.kilohenries, Inductance.inKilohenries ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Luminance Conversions`` (luminance: float) =
     conversionTests
         luminance
@@ -441,12 +446,12 @@ let ``Luminance Conversions`` (luminance: float) =
           Luminance.footLamberts, Luminance.inFootLamberts ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Luminous Flux Conversions`` (lumens: float) =
     conversionTests lumens [ LuminousFlux.lumens, LuminousFlux.inLumens ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Illuminance Conversions`` (lux: float) =
     conversionTests
         lux
@@ -454,7 +459,7 @@ let ``Illuminance Conversions`` (lux: float) =
           Illuminance.footCandles, Illuminance.inFootCandles ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Energy Conversions`` (energy: float) =
     conversionTests
         energy

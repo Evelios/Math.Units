@@ -5,6 +5,7 @@ open FsCheck.NUnit
 open FsCheck
 
 open Math.Units
+open Math.Units.Quantity
 open Math.Units.Test
 
 [<SetUp>]
@@ -26,7 +27,7 @@ let ``Unitless initialization`` () =
 let ``Quantity string representation`` () =
     let expected = "1 Meters"
 
-    let actual =
+    let actual: string =
         (Quantity<Meters> 1.).ToString()
 
     Assert.AreEqual(expected, actual)
@@ -34,7 +35,7 @@ let ``Quantity string representation`` () =
 [<Test>]
 let ``Unsafe construction`` () =
     let expected: Quantity<Unitless> =
-        Quantity.create 1.
+        Math.Units.Quantity.create<Unitless> 1.
 
     let actual: Quantity<Unitless> = Quantity 1.
 
@@ -51,16 +52,16 @@ let Unwrap () =
 
 [<Test>]
 let Infinity () =
-    let expected = Quantity.infinity
-    let actual = Quantity 1. / 0.
+    let expected: Quantity<Unitless> = Quantity.infinity
+    let actual: Quantity<Unitless> = Quantity (1. / 0.)
 
     Assert.AreEqual(expected, actual)
 
 
 [<Test>]
 let ``Negative Infinity`` () =
-    let expected = Quantity.negativeInfinity
-    let actual = Quantity -1. / 0.
+    let expected: Quantity<Unitless> = Quantity.negativeInfinity
+    let actual: Quantity<Unitless> = Quantity (-1. / 0.)
 
     Assert.AreEqual(expected, actual)
 
@@ -83,11 +84,11 @@ let Inequality () =
 [<Test>]
 let ``Inequality with other object`` () =
     let first = Quantity 1.
-    let second = obj
+    let second = obj()
 
     Assert.AreNotEqual(first, second)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Equal with self`` (x: float) =
     let quantity = Quantity x
 
@@ -98,9 +99,11 @@ let ``Approximate equality`` () =
     let first = Quantity 1.
     let second = Quantity 1.00000000001
     let notEqual = Quantity 1.000000001
+    
+    let tolerance = Quantity 1e-10
 
-    Assert.AreEqual(first, second)
-    Assert.AreNotEqual(first, notEqual)
+    Assert.True(Quantity.equalWithin tolerance first second)
+    Assert.False(Quantity.equalWithin tolerance first notEqual)
 
 
 [<Test>]
@@ -124,7 +127,7 @@ let Comparison () =
     Assert.AreEqual(lower.Comparison(higher), Quantity.compare lower higher)
     Assert.AreEqual(higher.Comparison(lower), Quantity.compare higher lower)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Equal Within`` (quantity: Quantity<Unitless>) (tolerance: Quantity<Unitless>) (ZeroToOne offset) =
     let offsetQuantity: Quantity<Unitless> =
         Quantity.interpolateFrom -tolerance tolerance offset
@@ -363,7 +366,7 @@ let ``Negative Modulus`` () =
     let expected = Quantity -1.5
     Assert.AreEqual(expected, actual)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Clamp (first: Quantity<Meters>) (second: Quantity<Meters>) (quantity: Quantity<Meters>) =
     let lower = min first second
     let upper = max first second
@@ -655,102 +658,106 @@ let ``Greater Than Or Equal To Zero`` () =
 
 // ---- Unary Comparison ---
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Abs Comparison`` () =
     Test.unaryOperator Arb.quantity Quantity.abs Quantity.Abs
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Sqrt Comparison`` () =
     Test.unaryOperator Arb.quantity Quantity.sqrt Quantity.Sqrt
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Floor Comparison`` () =
     Test.unaryOperator Arb.quantity Quantity.floor Quantity.Floor
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Round Comparison`` () =
     Test.unaryOperator Arb.quantity Quantity.round Quantity.Round
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Ceiling Comparison`` () =
     Test.unaryOperator Arb.quantity Quantity.ceil Quantity.Ceiling
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Truncate Comparison`` () =
     Test.unaryOperator Arb.quantity Quantity.truncate Quantity.Truncate
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Negate Comparison`` () =
     Test.unaryOperator Arb.quantity Quantity.negate (fun a -> -a)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Hash Comparison`` () =
-    Test.unaryOperator Arb.quantity hash (fun q -> q.GetHashCode())
+    Prop.forAll Arb.quantity (fun q -> 
+        let h1 = hash q
+        let h2 = q.GetHashCode()
+        Assert.AreEqual(h1, h2)
+        true)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Equality and Hash should be equal`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
     (first = second) = (first.GetHashCode() = second.GetHashCode())
 
 // ---- Binary Comparison ----
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Max Comparison`` () =
     Test.binaryOperator Gen.quantity Quantity.max (fun a b -> Quantity.Max(a, b))
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Min Comparison`` () =
     Test.binaryOperator Gen.quantity Quantity.min (fun a b -> Quantity.Min(a, b))
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Less Than`` () =
     Test.binaryOperator Gen.quantity Quantity.lessThan (<)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Less Than Or Equal`` () =
     Test.binaryOperator Gen.quantity Quantity.lessThanOrEqualTo (<=)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Greater Than `` () =
     Test.binaryOperator Gen.quantity Quantity.greaterThan (>)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Greater Than Or Equal`` () =
     Test.binaryOperator Gen.quantity Quantity.greaterThanOrEqualTo (>=)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Plus () =
     Test.binaryOperator Gen.quantity Quantity.plus (+)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Minus () =
     Test.binaryOperator Gen.quantity Quantity.minus (-)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Difference () =
     Test.binaryOperator Gen.quantity (fun y x -> Quantity.difference x y) (-)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Difference And Minus`` () =
     Test.binaryOperator Gen.quantity Quantity.difference Quantity.minus
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Product and Times`` () =
     Test.binaryOperator Gen.quantity Quantity.product Quantity.times
 
 
 // ----  Accessors -------------------------------------------------------------
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Is Infinite`` () =
     Assert.IsTrue(Quantity.isInfinite Quantity.positiveInfinity)
     Assert.IsTrue(Quantity.isInfinite Quantity.negativeInfinity)
     Assert.IsTrue(Quantity.isInfinite Quantity.infinity)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Is NaN`` () =
     Assert.IsTrue(Quantity.isNaN (Quantity nan))
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Minimum quantity of list is the smallest`` (quantities: Quantity<Unitless> list) =
     let maybeMinimum =
         Quantity.minimum quantities
@@ -764,7 +771,7 @@ let ``Minimum quantity of list is the smallest`` (quantities: Quantity<Unitless>
             "Minimum should only be an empty list when the list of quantities is also an empty list."
             (quantities = [])
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``MinimumBy quantity of list is the smallest`` (quantities: (Quantity<Unitless> * unit) list) =
     let maybeMinimum =
         Quantity.minimumBy fst quantities
@@ -778,7 +785,7 @@ let ``MinimumBy quantity of list is the smallest`` (quantities: (Quantity<Unitle
             "Minimum should only be an empty list when the list of quantities is also an empty list."
             (quantities = [])
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Maximum quantity of list is the smallest`` (quantities: Quantity<Unitless> list) =
     let maybeMaximum =
         Quantity.maximum quantities
@@ -792,7 +799,7 @@ let ``Maximum quantity of list is the smallest`` (quantities: Quantity<Unitless>
             "Maximum should only be an empty list when the list of quantities is also an empty list."
             (quantities = [])
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``MaximumBy quantity of list is the smallest`` (quantities: (Quantity<Unitless> * unit) list) =
     let maybeMaximum =
         Quantity.maximumBy fst quantities
@@ -806,14 +813,14 @@ let ``MaximumBy quantity of list is the smallest`` (quantities: (Quantity<Unitle
             "Minimum should only be an empty list when the list of quantities is also an empty list."
             (quantities = [])
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Sort (quantities: Quantity<Unitless> list) =
     let sorted = Quantity.sort quantities
 
     List.pairwise sorted
     |> List.fold (fun wellSorted (first, second) -> first <= second && wellSorted) true
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let SortBy (quantities: (Quantity<Unitless> * unit) list) =
     let sorted = Quantity.sortBy fst quantities
 

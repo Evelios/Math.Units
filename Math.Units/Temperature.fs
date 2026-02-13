@@ -173,6 +173,24 @@ let greaterThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs >= r
 /// </summary>
 let plus (rhs: TemperatureDelta) (lhs: Temperature) : Temperature = lhs + rhs
 
+/// <category>Operators</category>
+/// <summary>
+/// Find the delta from the first temperature to the second.
+/// <code>
+///     Temperature.minus
+///         (Temperature.degreesCelsius 20)
+///         (Temperature.degreesCelsius 25)
+///     --&gt; Temperature.celsiusDegrees 5
+/// </code>
+/// </summary>
+let minus (lhs: Temperature) (rhs: Temperature) : TemperatureDelta = rhs - lhs
+
+/// <category>Operators</category>
+/// <summary>
+/// Find the ratio between two temperature deltas.
+/// </summary>
+let ratio (x: TemperatureDelta) (y: TemperatureDelta) : float = Quantity.ratio x y
+
 
 // ---- Functions --------------------------------------------------------------
 
@@ -211,7 +229,13 @@ let clamp (lower: Temperature) (upper: Temperature) (temperature: Temperature) :
 let round (temp: Temperature) : Temperature = round temp
 
 /// <category>Modifiers</category>
-let abs (temp: Temperature) = abs temp
+let floor (temp: Temperature) : Temperature = floor temp
+
+/// <category>Modifiers</category>
+let ceil (temp: Temperature) : Temperature = ceil temp
+
+/// <category>Modifiers</category>
+let truncate (temp: Temperature) : Temperature = truncate temp
 
 /// <category>Modifiers</category>
 let min (first: Temperature) (second: Temperature) : Temperature = min first second

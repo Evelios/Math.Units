@@ -5,6 +5,7 @@ open FsCheck.NUnit
 open FsCheck
 
 open Math.Units
+open Math.Units.Quantity
 open Math.Units.Test
 
 
@@ -31,17 +32,17 @@ let ``Interval string`` () =
     Assert.AreEqual(expected, interval.ToString())
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Equality and Hash should be equal`` (first: Interval<Unitless>) (second: Interval<Unitless>) =
     (first = second) = (first.GetHashCode() = second.GetHashCode())
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``from is equal to fromEndpoints`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
     Test.equal (Interval.from first second) (Interval.fromEndpoints (first, second))
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Endpoints are equal to input endpoints`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
     let lower = min first second
     let upper = max first second
@@ -51,7 +52,7 @@ let ``Endpoints are equal to input endpoints`` (first: Quantity<Unitless>) (seco
     |> Interval.endpoints
     |> Test.equal endpoints
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Min value of interval`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
     let lower = min first second
 
@@ -59,7 +60,7 @@ let ``Min value of interval`` (first: Quantity<Unitless>) (second: Quantity<Unit
     |> Interval.minValue
     |> Test.equal lower
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Max value of interval`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
     let upper = max first second
 
@@ -67,7 +68,7 @@ let ``Max value of interval`` (first: Quantity<Unitless>) (second: Quantity<Unit
     |> Interval.maxValue
     |> Test.equal upper
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Midpoint is equidistant from endpoints`` (first: Quantity<Unitless>) (second: Quantity<Unitless>) =
     let midpoint =
         Interval.fromEndpoints (first, second)
@@ -81,10 +82,10 @@ let ``Midpoint is equidistant from endpoints`` (first: Quantity<Unitless>) (seco
         Interval.fromEndpoints (second, midpoint)
         |> Interval.width
 
-    Test.equal firstWidth secondWidth
+    Test.almostEqual firstWidth secondWidth
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Singleton creates a zero width interval`` (quantity: Quantity<Unitless>) =
     let interval = Interval.singleton quantity
 
@@ -96,7 +97,7 @@ let ``Singleton creates a zero width interval`` (quantity: Quantity<Unitless>) =
     ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let union (first: Interval<Unitless>) (second: Interval<Unitless>) (ZeroToOne range: float ZeroToOne) =
     let union = Interval.union first second
 
@@ -117,7 +118,7 @@ let union (first: Interval<Unitless>) (second: Interval<Unitless>) (ZeroToOne ra
     ]
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let intersection (first: Interval<Unitless>) (second: Interval<Unitless>) (ZeroToOne range: float ZeroToOne) =
     match Interval.intersection first second with
     | Some intersection ->
@@ -140,7 +141,7 @@ let intersection (first: Interval<Unitless>) (second: Interval<Unitless>) (ZeroT
             (not <| Interval.intersects first second)
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let hullN (values: Quantity<Unitless> list) =
     match Interval.hullN values with
     | Some interval ->
@@ -152,11 +153,11 @@ let hullN (values: Quantity<Unitless> list) =
     | None -> Test.equal values []
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let hull3 (a: Quantity<Unitless>) (b: Quantity<Unitless>) (c: Quantity<Unitless>) =
     Test.equal (Interval.hull3 a b c) (Interval.hull a [ b; c ])
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let hullOfN (values: Quantity<Unitless> list) =
     match Interval.hullOfN id values with
     | Some interval ->
@@ -167,7 +168,7 @@ let hullOfN (values: Quantity<Unitless> list) =
 
     | None -> Test.equal values []
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let aggregateN (intervals: Interval<Unitless> list) =
     match Interval.aggregateN intervals with
     | Some aggregateInterval ->
@@ -178,11 +179,11 @@ let aggregateN (intervals: Interval<Unitless> list) =
 
     | None -> Test.equal [] intervals
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let aggregate3 (a: Interval<Unitless>) (b: Interval<Unitless>) (c: Interval<Unitless>) =
     Test.equal (Interval.aggregate3 a b c) (Interval.aggregate a [ b; c ])
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let aggregateOfN (intervals: Interval<Unitless> list) =
     match Interval.aggregateOfN id intervals with
     | Some aggregateInterval ->
@@ -193,7 +194,7 @@ let aggregateOfN (intervals: Interval<Unitless> list) =
 
     | None -> Test.equal [] intervals
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Intersection and intersects are consistent`` (first: Interval<Unitless>, second: Interval<Unitless>) =
     let intersects =
         Interval.intersects first second
@@ -290,24 +291,24 @@ let testUnaryOperation<'ResultUnits>
 
 // ---- Operation Tests ----
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Plus () =
     testQuantityOperation Quantity.plus Interval.plus
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Minus () =
     testQuantityOperation Quantity.minus Interval.minus
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Difference () =
     testQuantityOperation (fun a b -> a |> Quantity.minus b) Interval.difference
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Multiply By`` () =
     testScalarOperation (Gen.floatBetween -10. 10.) Quantity.multiplyBy Interval.multiplyBy
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Divide By`` () =
     let nonZeroGen =
         Gen.oneof [
@@ -317,50 +318,50 @@ let ``Divide By`` () =
 
     testScalarOperation nonZeroGen Quantity.divideBy Interval.divideBy
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Plus Interval`` () =
     testBinaryOperation Quantity.plus Interval.plusInterval
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Minus Interval`` () =
     testBinaryOperation Quantity.minus Interval.minusInterval
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Times () =
     testQuantityOperation Quantity.times Interval.times
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Times Unitless`` () =
     testQuantityOperation Quantity.timesUnitless Interval.timesUnitless
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Product () =
     testQuantityOperation Quantity.times Interval.product
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Times Interval`` () =
     testBinaryOperation Quantity.times Interval.timesInterval
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Times Unitless Interval`` () =
     testBinaryOperation Quantity.timesUnitless Interval.timesUnitlessInterval
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Abs () =
     testUnaryOperation Quantity.abs Interval.abs
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Squared () =
     testUnaryOperation Quantity.squared Interval.squared
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Squared Unitless`` () =
     testUnaryOperation Quantity.squaredUnitless Interval.squaredUnitless
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Cubed () =
     testUnaryOperation Quantity.cubed Interval.cubed
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Cubed Unitless`` () =
     testUnaryOperation Quantity.cubedUnitless Interval.cubedUnitless

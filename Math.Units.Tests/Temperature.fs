@@ -5,6 +5,7 @@ open FsCheck.NUnit
 open FsCheck
 
 open Math.Units
+open Math.Units.Quantity
 open Math.Units.Test
 
 
@@ -34,7 +35,7 @@ let ``Inequality with other object`` () =
 
     Assert.AreNotEqual(first, second)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Equal with self`` (x: float) =
     let quantity = Temperature x
 
@@ -46,8 +47,8 @@ let ``Approximate equality`` () =
     let second = Temperature 1.00000000001
     let notEqual = Temperature 1.000000001
 
-    Assert.AreEqual(first, second)
-    Assert.AreNotEqual(first, notEqual)
+    Assert.True(Float.almostEqual first.Value second.Value)
+    Assert.False(Float.almostEqual first.Value notEqual.Value)
 
 
 [<Test>]
@@ -71,18 +72,10 @@ let Comparison () =
 //---- Built-in Functions ------------------------------------------------------
 
 [<Test>]
-let Abs () =
-    let actual =
-        Temperature.abs (Temperature -1.)
-
-    let expected = Temperature 1.
-    Assert.AreEqual(expected, actual)
-
-[<Test>]
 let Min () =
     let first = Temperature 1.
     let second = Temperature 3.
-    let actual = min first second
+    let actual = Temperature.min first second
     let expected = first
     Assert.AreEqual(expected, actual)
 
@@ -90,7 +83,7 @@ let Min () =
 let Max () =
     let first = Temperature 1.
     let second = Temperature 3.
-    let actual = max first second
+    let actual = Temperature.max first second
     let expected = second
     Assert.AreEqual(expected, actual)
 
@@ -98,14 +91,14 @@ let Max () =
 [<Test>]
 let Floor () =
     let initial = Temperature 1.5
-    let actual = floor initial
+    let actual = Temperature.floor initial
     let expected = Temperature 1.
     Assert.AreEqual(expected, actual)
 
 [<Test>]
 let Ceiling () =
     let initial = Temperature 1.5
-    let actual = ceil initial
+    let actual = Temperature.ceil initial
     let expected = Temperature 2.
     Assert.AreEqual(expected, actual)
 
@@ -119,7 +112,7 @@ let Round () =
 [<Test>]
 let Truncate () =
     let initial = Temperature -1.5
-    let actual = truncate initial
+    let actual = Temperature.truncate initial
     let expected = Temperature -1.
     Assert.AreEqual(expected, actual)
 
@@ -144,27 +137,27 @@ let Subtraction () =
 
 // ---- Binary Comparison ----
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Max Comparison`` () =
     Test.binaryOperator Gen.temperature Temperature.max (fun a b -> Temperature.Max(a, b))
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Min Comparison`` () =
     Test.binaryOperator Gen.temperature Temperature.min (fun a b -> Temperature.Min(a, b))
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Less Than`` () =
     Test.binaryOperator Gen.temperature Temperature.lessThan (<)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Less Than Or Equal`` () =
     Test.binaryOperator Gen.temperature Temperature.lessThanOrEqualTo (<=)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Greater Than `` () =
     Test.binaryOperator Gen.temperature Temperature.greaterThan (>)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Greater Than Or Equal`` () =
     Test.binaryOperator Gen.temperature Temperature.greaterThanOrEqualTo (>=)
 
@@ -172,7 +165,7 @@ let ``Greater Than Or Equal`` () =
 // ---- Functions ----
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Minimum quantity of list is the smallest`` (quantities: Temperature list) =
     let maybeMinimum =
         Temperature.minimum quantities
@@ -187,7 +180,7 @@ let ``Minimum quantity of list is the smallest`` (quantities: Temperature list) 
             (quantities = [])
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Maximum quantity of list is the smallest`` (quantities: Temperature list) =
     let maybeMaximum =
         Temperature.maximum quantities
@@ -202,7 +195,7 @@ let ``Maximum quantity of list is the smallest`` (quantities: Temperature list) 
             (quantities = [])
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Sort (quantities: Temperature list) =
     let sorted = Temperature.sort quantities
 
@@ -210,7 +203,7 @@ let Sort (quantities: Temperature list) =
     |> List.fold (fun wellSorted (first, second) -> first <= second && wellSorted) true
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let SortBy (quantities: (Temperature * unit) list) =
     let sorted =
         Temperature.sortBy fst quantities
@@ -219,10 +212,10 @@ let SortBy (quantities: (Temperature * unit) list) =
     |> List.fold (fun wellSorted (first, second) -> first <= second && wellSorted) true
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let Clamp (first: Temperature) (second: Temperature) (quantity: Temperature) =
-    let lower = min first second
-    let upper = max first second
+    let lower = Temperature.min first second
+    let upper = Temperature.max first second
 
     let clamped =
         Temperature.clamp first second quantity

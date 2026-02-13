@@ -6,6 +6,7 @@ open FsCheck
 open System
 
 open Math.Units
+open Math.Units.Quantity
 open Math.Units.Test
 
 [<SetUp>]
@@ -14,15 +15,15 @@ let Setup () = Gen.ArbGeometry.Register()
 
 // ---- Builders and Accessors
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``From radians and back`` (angle: Angle) =
     angle .=. (Angle.inRadians angle |> Angle.radians)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``From degrees and back`` (angle: Angle) =
     angle .=. (Angle.inDegrees angle |> Angle.degrees)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Normalized value always within -Pi to Pi`` (angle: Angle) =
     Test.all [
         angle
@@ -121,12 +122,12 @@ let ``Angle multiplication`` () =
 let ``Angle division`` () =
     Assert.AreEqual(Angle.degrees 10., Angle.degrees 100. / 10.)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Equality and hash code comparison with random angles`` (first: Angle) (second: Angle) =
     (first = second) = (first.GetHashCode() = second.GetHashCode())
 
 // ---- Modifiers ----
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Half of Twice is identity `` (angle: Angle) =
     Test.equal angle (Angle.twice angle |> Angle.half)

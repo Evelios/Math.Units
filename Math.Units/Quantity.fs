@@ -1,5 +1,4 @@
 /// <category>Module: Unit System</category>
-[<AutoOpen>]
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Math.Units.Quantity
 
@@ -912,7 +911,7 @@ type Quantity<'Units> with
     ///     Quantity.ratio some(someUnits 1)
     /// </code>
     /// </summary>
-    static member in_ (units: float -> 'a) (quantity: Quantity<'Units>) : float = Quantity.ratio quantity (units 1.)
+    static member in_ (units: float -> Quantity<'Units>) (quantity: Quantity<'Units>) : float = Quantity.ratio quantity (units 1.)
 
 
     // ---- Float Conversions ------------------------------------------------------------------------------------------
@@ -1371,3 +1370,207 @@ type Quantity<'Units> with
         (secondRate: Quantity<Rate<'U3, 'U2>>)
         : Quantity<Rate<'U3, 'U1>> =
         Quantity(firstRate.Value * secondRate.Value)
+
+
+// ---- Module Functions -------------------------------------------------------
+
+/// <category index="1">Unitless</category>
+let unitless value = Quantity.unitless value
+
+/// <category index="2">Constants</category>
+let zero<'Units> : Quantity<'Units> = Quantity.zero
+
+/// <category index="2">Constants</category>
+let positiveInfinity<'Units> : Quantity<'Units> = Quantity.positiveInfinity
+
+/// <category index="2">Constants</category>
+let negativeInfinity<'Units> : Quantity<'Units> = Quantity.negativeInfinity
+
+/// <category index="3">Conversions</category>
+let create<'Units> value = Quantity.create<'Units> value
+
+/// <category index="3">Conversions</category>
+let unwrap quantity = Quantity.unwrap quantity
+
+/// <category index="4">Operators</category>
+let lessThan y x = Quantity.lessThan y x
+
+/// <category index="4">Operators</category>
+let greaterThan y x = Quantity.greaterThan y x
+
+/// <category index="4">Operators</category>
+let lessThanOrEqualTo y x = Quantity.lessThanOrEqualTo y x
+
+/// <category index="4">Operators</category>
+let greaterThanOrEqualTo y x = Quantity.greaterThanOrEqualTo y x
+
+/// <category index="4">Operators</category>
+let lessThanZero x = Quantity.lessThanZero x
+
+/// <category index="4">Operators</category>
+let greaterThanZero x = Quantity.greaterThanZero x
+
+/// <category index="4">Operators</category>
+let lessThanOrEqualToZero x = Quantity.lessThanOrEqualToZero x
+
+/// <category index="4">Operators</category>
+let greaterThanOrEqualToZero x = Quantity.greaterThanOrEqualToZero x
+
+/// <category index="4">Operators</category>
+let compare x y = Quantity.compare x y
+
+/// <category index="4">Operators</category>
+let equalWithin tolerance x y = Quantity.equalWithin tolerance x y
+
+/// <category index="5">Math</category>
+let abs quantity = Quantity.abs quantity
+
+/// <category index="5">Math</category>
+let max x y = Quantity.max x y
+
+/// <category index="5">Math</category>
+let min x y = Quantity.min x y
+
+/// <category index="6">Accessors</category>
+let isInfinite quantity = Quantity.isInfinite quantity
+
+/// <category index="6">Accessors</category>
+let isNaN quantity = Quantity.isNaN quantity
+
+/// <category index="7">Arithmetic</category>
+let negate value = Quantity.negate value
+
+/// <category index="7">Arithmetic</category>
+let plus y x = Quantity.plus y x
+
+/// <category index="7">Arithmetic</category>
+let difference x y = Quantity.difference x y
+
+/// <category index="7">Arithmetic</category>
+let minus y x = Quantity.minus y x
+
+/// <category index="7">Arithmetic</category>
+let product x y = Quantity.product x y
+
+/// <category index="7">Arithmetic</category>
+let times y x = Quantity.times y x
+
+/// <category index="7">Arithmetic</category>
+let timesUnitless y x = Quantity.timesUnitless y x
+
+/// <category index="7">Arithmetic</category>
+let over y x = Quantity.over y x
+
+/// <category index="7">Arithmetic</category>
+let over_ y x = Quantity.over_ y x
+
+/// <category index="7">Arithmetic</category>
+let overUnitless y x = Quantity.overUnitless y x
+
+/// <category index="7">Arithmetic</category>
+let ratio x y = Quantity.ratio x y
+
+/// <category index="7">Arithmetic</category>
+let multiplyBy scale quantity = Quantity.multiplyBy scale quantity
+
+/// <category index="7">Arithmetic</category>
+let divideBy divisor quantity = Quantity.divideBy divisor quantity
+
+/// <category index="8">Modifiers</category>
+let twice quantity = Quantity.twice quantity
+
+/// <category index="8">Modifiers</category>
+let half quantity = Quantity.half quantity
+
+/// <category index="8">Modifiers</category>
+let clamp lower upper quantity = Quantity.clamp lower upper quantity
+
+/// <category index="8">Modifiers</category>
+let squared quantity = Quantity.squared quantity
+
+/// <category index="8">Modifiers</category>
+let sqrt quantity = Quantity.sqrt quantity
+
+/// <category index="8">Modifiers</category>
+let cubed quantity = Quantity.cubed quantity
+
+/// <category index="8">Modifiers</category>
+let cbrt quantity = Quantity.cbrt quantity
+
+/// <category index="8">Modifiers</category>
+let reciprocal quantity = Quantity.reciprocal quantity
+
+/// <category index="8">Modifiers</category>
+let modBy modulus quantity = Quantity.modBy modulus quantity
+
+/// <category index="8">Modifiers</category>
+let remainderBy modulus quantity = Quantity.remainderBy modulus quantity
+
+/// <category index="9">Queries</category>
+let interpolateFrom start finish parameter = Quantity.interpolateFrom start finish parameter
+
+/// <category index="9">Queries</category>
+let midpoint x y = Quantity.midpoint x y
+
+/// <category index="9">Queries</category>
+let range start finish steps = Quantity.range start finish steps
+
+/// <category index="3">Conversions</category>
+let in_ units quantity = Quantity.in_ units quantity
+
+/// <category index="8">Modifiers</category>
+let roundTo digits quantity = Quantity.roundTo digits quantity
+
+/// <category index="8">Modifiers</category>
+let round quantity = Quantity.round quantity
+
+/// <category index="8">Modifiers</category>
+let floor quantity = Quantity.floor quantity
+
+/// <category index="8">Modifiers</category>
+let ceil quantity = Quantity.ceil quantity
+
+/// <category index="8">Modifiers</category>
+let truncate quantity = Quantity.truncate quantity
+
+/// <category index="10">List Functions</category>
+let sum quantities = Quantity.sum quantities
+
+/// <category index="10">List Functions</category>
+let minimum quantities = Quantity.minimum quantities
+
+/// <category index="10">List Functions</category>
+let maximum quantities = Quantity.maximum quantities
+
+/// <category index="10">List Functions</category>
+let minimumBy toQuantity quantities = Quantity.minimumBy toQuantity quantities
+
+/// <category index="10">List Functions</category>
+let maximumBy toQuantity quantities = Quantity.maximumBy toQuantity quantities
+
+/// <category index="10">List Functions</category>
+let sort quantities = Quantity.sort quantities
+
+/// <category index="10">List Functions</category>
+let sortBy toQuantity list = Quantity.sortBy toQuantity list
+
+/// <category index="11">Rates</category>
+let rate dependentValue independentValue = Quantity.rate dependentValue independentValue
+
+/// <category index="11">Rates</category>
+let per independentValue dependentValue = Quantity.per independentValue dependentValue
+
+/// <category index="11">Rates</category>
+let at rateOfChange independentValue = Quantity.at rateOfChange independentValue
+
+/// <category index="11">Rates</category>
+let at_ rateOfChange dependentValue = Quantity.at_ rateOfChange dependentValue
+
+/// <category index="11">Rates</category>
+let for_ independentValue rateOfChange = Quantity.for_ independentValue rateOfChange
+
+/// <category index="11">Rates</category>
+let inverse rateOfChange = Quantity.inverse rateOfChange
+
+/// <category index="11">Rates</category>
+let rateProduct firstRate secondRate = Quantity.rateProduct firstRate secondRate

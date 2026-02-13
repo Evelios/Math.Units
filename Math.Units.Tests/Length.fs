@@ -5,6 +5,7 @@ open FsCheck.NUnit
 open FsCheck
 
 open Math.Units
+open Math.Units.Quantity
 open Math.Units.Test
 
 [<SetUp>]
@@ -35,7 +36,7 @@ let ``Length greater than or equal to`` () =
     Assert.GreaterOrEqual(Length.unitless 2., Length.unitless 1.)
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Equality and hash code comparison with random lengths`` (first: Length) (second: Length) =
     (first = second) = (first.GetHashCode() = second.GetHashCode())
 
@@ -49,7 +50,7 @@ let ``Length in units equals zero`` () =
 
 // ---- Length Correlations -----
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Conversion to Length and back`` (length: float) =
     let testCases =
         [ Length.meters, Length.inMeters
@@ -79,7 +80,7 @@ let ``Conversion to Length and back`` (length: float) =
 
 // ---- Math Operators ----
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Absolute value is always greater or equal to zero `` (l: Length) = Length.abs l >= Length.zero
 
 

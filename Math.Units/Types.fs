@@ -175,6 +175,10 @@ type SquarePixels = Squared<Pixel>
 // ---- Quantity Declaration ---------------------------------------------------
 
 /// <category>Unit System</category>
+type IQuantity =
+    abstract member Value : float
+
+/// <category>Unit System</category>
 /// <summary>
 /// A <c>Quantity</c> is effectively a <c>number</c> (an <c>Int</c> or <c>Float</c>) tagged with a
 /// <c>units</c> type. So a
@@ -185,7 +189,11 @@ type SquarePixels = Squared<Pixel>
 /// <c>Quantity</c> wrapper type will be compiled away, so the runtime performance should
 /// be comparable to using a raw <c>Float</c> or <c>Int</c>.
 /// </summary>
+[<Struct; CustomEquality; CustomComparison>]
 type Quantity<'Units>(quantity: float) =
+    interface IQuantity with
+        member this.Value = quantity
+
     interface IComparable<Quantity<'Units>> with
         member this.CompareTo(quantity: Quantity<'Units>) : int = this.Comparison(quantity)
 
@@ -211,20 +219,20 @@ type Quantity<'Units>(quantity: float) =
     // ---- IComparable Implementation ----
 
     member this.Comparison(other: Quantity<'Units>) =
-        if this.Equals(other) then 0
-        elif this.LessThan(other) then -1
+        if this.Value = other.Value then 0
+        elif this.Value < other.Value then -1
         else 1
 
 
     member this.Equals(other: Quantity<'Units>) : bool =
-        Float.almostEqual this.Value other.Value
+        this.Value = other.Value
 
 
     member this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
 
 
     override this.GetHashCode() =
-        this.Value |> Float.roundFloatTo Float.DigitPrecision |> hash
+        hash this.Value
 
 
     override this.Equals(obj: obj) : bool =
@@ -385,6 +393,7 @@ type Voltage = Quantity<Volts>
 type TemperatureDelta = Quantity<CelsiusDegrees>
 
 /// <category>Unit System</category>
+[<Struct; CustomEquality; CustomComparison>]
 type Temperature(kelvin: float) =
     interface IComparable<Temperature> with
         member this.CompareTo(temp: Temperature) : int = this.Comparison(temp)
@@ -406,20 +415,20 @@ type Temperature(kelvin: float) =
     // ---- IComparable Implementation ----
 
     member this.Comparison(other: Temperature) =
-        if this.Equals(other) then 0
-        elif this.LessThan(other) then -1
+        if this.Value = other.Value then 0
+        elif this.Value < other.Value then -1
         else 1
 
 
     member this.Equals(other: Temperature) : bool =
-        Float.almostEqual this.Value other.Value
+        this.Value = other.Value
 
 
     member this.LessThan(other: Temperature) = this.Value < other.Value
 
 
     override this.GetHashCode() =
-        this.Value |> Float.roundFloatTo Float.DigitPrecision |> hash
+        hash this.Value
 
 
     override this.Equals(obj: obj) : bool =
@@ -430,13 +439,9 @@ type Temperature(kelvin: float) =
 
     // ---- Built In Functions ----
 
-    static member Abs(q: Temperature) : Temperature = Temperature(abs q.Value)
-
     static member Min(lhs: Temperature, rhs: Temperature) : Temperature = Temperature(min lhs.Value rhs.Value)
 
     static member Max(lhs: Temperature, rhs: Temperature) : Temperature = Temperature(max lhs.Value rhs.Value)
-
-    static member Sqrt(value: Quantity<'Units Squared>) : Temperature = Temperature(sqrt value.Value)
 
     static member Floor(value: Temperature) : Temperature = Temperature(floor value.Value)
 
@@ -454,6 +459,8 @@ type Temperature(kelvin: float) =
     static member (+)(lhs: TemperatureDelta, rhs: Temperature) : Temperature = Temperature(lhs.Value + rhs.Value)
 
     static member (-)(lhs: Temperature, rhs: Temperature) : TemperatureDelta = TemperatureDelta(lhs.Value - rhs.Value)
+
+    static member (-)(lhs: Temperature, rhs: TemperatureDelta) : Temperature = Temperature(lhs.Value - rhs.Value)
 
 
 // ---- Interval ---------------------------------------------------------------

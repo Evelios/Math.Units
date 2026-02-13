@@ -14,17 +14,17 @@ let Setup () = Gen.ArbGeometry.Register()
 let ``Floating point rounding`` () =
     Assert.AreEqual(2.0, Float.roundFloatTo 10 2.00000000003)
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Round to float`` (f: float) =
     Float.roundFloatTo Float.DigitPrecision f
     |> Float.almostEqual (Float.roundFloat f)
 
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Interpolation gives start point`` (start: float) (finish: float) =
     Float.interpolateFrom start finish 0. .=. start
 
-[<Property>]
+[<Property(QuietOnSuccess = true)>]
 let ``Interpolation gives end point`` (start: float) (finish: float) =
     Float.interpolateFrom start finish 1. .=. finish
 
