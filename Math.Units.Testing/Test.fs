@@ -88,7 +88,7 @@ module Test =
 
     let binaryOperator (arb: Gen<'a>) (fn: 'a -> 'a -> 'b) (op: 'a -> 'a -> 'b) : Property =
         let arb =
-            Gen.map2 Tuple2.pair arb arb |> Arb.fromGen
+            Gen.map2 (fun a b -> a, b) arb arb |> Arb.fromGen
 
         Prop.forAll arb (fun (a, b) -> almostEqual (fn a b) (a |> op b))
 

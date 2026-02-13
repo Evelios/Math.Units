@@ -52,11 +52,11 @@ jobs:
       - name: Package nuget
         run: dotnet pack Math.Units.sln --configuration Release -o:package /p:PackageVersion=${{ steps.gitversion.outputs.AssemblySemVer }}
 
-      - name: Push generated package to Nuget registry
-        run: dotnet nuget push ./package/Math.Units.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NugetKey}} --skip-duplicate
+      - name: Push generated packages to Nuget registry
+        run: dotnet nuget push ./package/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NugetKey}} --skip-duplicate
 
-      - name: Push generated package to GitHub registry
-        run: dotnet nuget push ./package/Math.Units.*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }} --skip-duplicate
+      - name: Push generated packages to GitHub registry
+        run: dotnet nuget push ./package/*.nupkg --source https://nuget.pkg.github.com/evelios/index.json --api-key ${{ github.token }} --skip-duplicate
 
       - name: Push documentation
         uses: s0/git-publish-subdir-action@develop

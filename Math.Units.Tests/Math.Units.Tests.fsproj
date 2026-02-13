@@ -37,6 +37,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Math.Units\Math.Units.fsproj" />
+      <ProjectReference Include="..\Math.Units.Testing\Math.Units.Testing.fsproj" />
     </ItemGroup>
 
 </Project>

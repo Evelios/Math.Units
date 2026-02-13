@@ -5,29 +5,10 @@
         <RootNamespace>Units</RootNamespace>
 
         <Product>Math.Units</Product>
-        <Authors>Thomas Waters</Authors>
-        <Copyright>Thomas Waters</Copyright>
-        <Company/>
-        <PackageTags>units, fsharp, f#</PackageTags>
-        <PackageLicense>MIT</PackageLicense>
-        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-        <RepositoryUrl>https://github.com/Evelios/Math.Units</RepositoryUrl>
-        <PackageProjectUrl>https://evelios.github.io/Math.Units/</PackageProjectUrl>
+        <Description>A functional-first units of measurement library for F# and Fable.</Description>
+        <PackageTags>math, units, fsharp, f#, fable, fable-library</PackageTags>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
-        <RepositoryType>git</RepositoryType>
-        <NeutralLanguage>en-US</NeutralLanguage>
-
-        <FsDocsLicenseLink>https://opensource.org/licenses/MIT</FsDocsLicenseLink>
-        <FsDocsReleaseNotesLink>https://www.nuget.org/packages/Math.Units/</FsDocsReleaseNotesLink>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <!--<FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>-->
-        <FsDocsTheme>default</FsDocsTheme>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Content Include="../LICENSE.md" Pack="true" PackagePath=""/>
-    </ItemGroup>
 
     <ItemGroup>
         <Compile Include="Extensions\TupleExtensions.fs"/>
@@ -66,13 +47,9 @@
         <Compile Include="Resistance.fs"/>
         <Compile Include="Voltage.fs"/>
         <Compile Include="Temperature.fs"/>
-        <Compile Include="Test\Gen.fs"/>
-        <Compile Include="Test\Test.fs"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FsCheck.NUnit" Version="2.16.6"/>
-        <PackageReference Include="NUnit" Version="3.13.3"/>
         <PackageReference Update="FSharp.Core" Version="7.0.400"/>
     </ItemGroup>
 
@@ -81,11 +58,6 @@
         <EmbeddedResource Remove="bin\**"/>
     </ItemGroup>
 
-
-    <!-- Fable Properties -->
-    <PropertyGroup>
-        <PackageTags>fable;fable-library</PackageTags>
-    </PropertyGroup>
 
     <!-- Add source files to "fable" folder in Nuget package -->
     <ItemGroup>
