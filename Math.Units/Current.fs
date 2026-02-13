@@ -28,7 +28,8 @@
 module Math.Units.Current
 
 /// <category>Conversions</category>
-/// Construct a current from a number of amperes.
+/// <summary>Construct a current from a number of amperes.</summary>
+/// <param name="numAmperes">The number of amperes.</param>
 let amperes (numAmperes: float) : Current = Quantity numAmperes
 
 
@@ -43,7 +44,8 @@ let amperes (numAmperes: float) : Current = Quantity numAmperes
 ///        |&gt; Current.inAmperes
 ///    --&gt; 5
 /// </code></example>
-let inAmperes (numAmperes: Current) : float = numAmperes.Value
+/// <param name="current">The current to convert.</param>
+let inAmperes (current: Current) : float = current.Value
 
 /// <category>Conversions</category>
 /// <summary>
@@ -54,6 +56,7 @@ let inAmperes (numAmperes: Current) : float = numAmperes.Value
 ///    Current.milliamperes 500
 ///    --&gt; Current.amperes 0.5
 /// </code></example>
+/// <param name="numMilliamperes">The number of milliamperes.</param>
 let milliamperes (numMilliamperes: float) : Current = amperes (numMilliamperes * 1.0e-3)
 
 /// <category>Conversions</category>
@@ -65,4 +68,5 @@ let milliamperes (numMilliamperes: float) : Current = amperes (numMilliamperes *
 ///    Current.amperes 2 |&gt; Current.inMilliamperes
 ///    --&gt; 2000
 /// </code></example>
+/// <param name="current">The current to convert.</param>
 let inMilliamperes (current: Current) : float = inAmperes current / 1.0e-3

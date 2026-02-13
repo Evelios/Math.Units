@@ -31,20 +31,24 @@
 module Math.Units.Acceleration
 
 /// <category>Metric</category>
-/// Construct an acceleration from a number of meters per second squared.
+/// <summary>Construct an acceleration from a number of meters per second squared.</summary>
+/// <param name="numMetersPerSecondSquared">The number of meters per second squared.</param>
 let metersPerSecondSquared (numMetersPerSecondSquared: float) : Acceleration = Quantity numMetersPerSecondSquared
 
 /// <category>Metric</category>
-/// Convert an acceleration to a number of meters per second squared.
-let inMetersPerSecondSquared (numMetersPerSecondSquared: Acceleration) : float = numMetersPerSecondSquared.Value
+/// <summary>Convert an acceleration to a number of meters per second squared.</summary>
+/// <param name="acceleration">The acceleration to convert.</param>
+let inMetersPerSecondSquared (acceleration: Acceleration) : float = acceleration.Value
 
 /// <category>Imperial</category>
-/// Construct an acceleration from a number of feet per second squared.
+/// <summary>Construct an acceleration from a number of feet per second squared.</summary>
+/// <param name="numFeetPerSecondSquared">The number of feet per second squared.</param>
 let feetPerSecondSquared (numFeetPerSecondSquared: float) : Acceleration =
     metersPerSecondSquared (Constants.foot * numFeetPerSecondSquared)
 
 /// <category>Imperial</category>
-/// Convert an acceleration to a number of feet per second squared.
+/// <summary>Convert an acceleration to a number of feet per second squared.</summary>
+/// <param name="acceleration">The acceleration to convert.</param>
 let inFeetPerSecondSquared (acceleration: Acceleration) : float =
     inMetersPerSecondSquared acceleration
     / Constants.foot
@@ -56,6 +60,7 @@ let inFeetPerSecondSquared (acceleration: Acceleration) : float =
 /// One gee is equal to 9.80665 meters per second squared (the
 /// standard acceleration due to gravity).
 /// </summary>
+/// <param name="numGees">The number of gees.</param>
 /// 
 /// <example>
 /// <code lang="fsharp">
@@ -66,7 +71,8 @@ let gees (numGees: float) : Acceleration =
     metersPerSecondSquared (Constants.gee * numGees)
 
 /// <category>Imperial</category>
-/// Convert an acceleration to a number of gees.
+/// <summary>Convert an acceleration to a number of gees.</summary>
+/// <param name="acceleration">The acceleration to convert.</param>
 let inGees (acceleration: Acceleration) : float =
     inMetersPerSecondSquared acceleration
     / Constants.gee

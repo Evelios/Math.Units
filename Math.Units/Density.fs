@@ -32,27 +32,32 @@
 module Math.Units.Density
 
 /// <category>Metric</category>
-/// Construct a density from a number of kilograms per cubic meter.
+/// <summary>Construct a density from a number of kilograms per cubic meter.</summary>
+/// <param name="numKilogramsPerCubicMeter">The number of kilograms per cubic meter.</param>
 let kilogramsPerCubicMeter (numKilogramsPerCubicMeter: float) : Density = Quantity numKilogramsPerCubicMeter
 
 
 /// <category>Metric</category>
-/// Convert a density to a number of kilograms per cubic meter.
-let inKilogramsPerCubicMeter (numKilogramsPerCubicMeter: Density) : float = numKilogramsPerCubicMeter.Value
+/// <summary>Convert a density to a number of kilograms per cubic meter.</summary>
+/// <param name="density">The density to convert.</param>
+let inKilogramsPerCubicMeter (density: Density) : float = density.Value
 
 /// <category>Metric</category>
-/// Construct a density from a number of grams per cubic centimeter.
+/// <summary>Construct a density from a number of grams per cubic centimeter.</summary>
+/// <param name="numGramsPerCubicCentimeter">The number of grams per cubic centimeter.</param>
 let gramsPerCubicCentimeter (numGramsPerCubicCentimeter: float) : Density =
     kilogramsPerCubicMeter (1000. * numGramsPerCubicCentimeter)
 
 
 /// <category>Metric</category>
-/// Convert a density to a number of grams per cubic centimeter.
+/// <summary>Convert a density to a number of grams per cubic centimeter.</summary>
+/// <param name="density">The density to convert.</param>
 let inGramsPerCubicCentimeter (density: Density) : float =
     inKilogramsPerCubicMeter density / 1000.
 
 /// <category>Imperial</category>
-/// Construct a density from a number of pounds per cubic inch.
+/// <summary>Construct a density from a number of pounds per cubic inch.</summary>
+/// <param name="numPoundsPerCubicInch">The number of pounds per cubic inch.</param>
 let poundsPerCubicInch (numPoundsPerCubicInch: float) : Density =
     kilogramsPerCubicMeter (
         Constants.pound / Constants.cubicInch
@@ -60,13 +65,15 @@ let poundsPerCubicInch (numPoundsPerCubicInch: float) : Density =
     )
 
 /// <category>Imperial</category>
-/// Convert a density to a number of pounds per cubic inch.
+/// <summary>Convert a density to a number of pounds per cubic inch.</summary>
+/// <param name="density">The density to convert.</param>
 let inPoundsPerCubicInch (density: Density) : float =
     inKilogramsPerCubicMeter density
     / (Constants.pound / Constants.cubicInch)
 
 /// <category>Imperial</category>
-/// Construct a density from a number of pounds per cubic foot.
+/// <summary>Construct a density from a number of pounds per cubic foot.</summary>
+/// <param name="numPoundsPerCubicFoot">The number of pounds per cubic foot.</param>
 let poundsPerCubicFoot (numPoundsPerCubicFoot: float) : Density =
     kilogramsPerCubicMeter (
         Constants.pound / Constants.cubicFoot
@@ -74,7 +81,8 @@ let poundsPerCubicFoot (numPoundsPerCubicFoot: float) : Density =
     )
 
 /// <category>Imperial</category>
-/// Convert a density to a number of pounds per cubic foot.
+/// <summary>Convert a density to a number of pounds per cubic foot.</summary>
+/// <param name="density">The density to convert.</param>
 let inPoundsPerCubicFoot (density: Density) : float =
     inKilogramsPerCubicMeter density
     / (Constants.pound / Constants.cubicFoot)

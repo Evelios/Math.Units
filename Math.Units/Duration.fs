@@ -10,19 +10,21 @@ module Math.Units.Duration
 /// <summary>
 /// Construct a <c>Duration</c> from a given number of seconds.
 /// </summary>
+/// <param name="numSeconds">The number of seconds.</param>
 let seconds (numSeconds: float) : Duration = Quantity numSeconds
 
 
 /// <category>Conversions</category>
 /// <summary>
-/// Convert a <c>1</c> to a value in seconds.
+/// Convert a <c>Duration</c> to a value in seconds.
 /// </summary>
 ///
 /// <example><code>
 ///    Duration.milliseconds 10 |&gt; Duration.inSeconds
 ///    --&gt; 0.01
 /// </code></example>
-let inSeconds (numSeconds: Duration) : float = numSeconds.Value
+/// <param name="duration">The duration to convert.</param>
+let inSeconds (duration: Duration) : float = duration.Value
 
 /// <category>Conversions</category>
 /// <summary>
@@ -33,6 +35,7 @@ let inSeconds (numSeconds: Duration) : float = numSeconds.Value
 ///    Duration.milliseconds 5000
 ///    --&gt; Duration.seconds 5
 /// </code></example>
+/// <param name="numMilliseconds">The number of milliseconds.</param>
 let milliseconds (numMilliseconds: float) : Duration = seconds (0.001 * numMilliseconds)
 
 
@@ -45,6 +48,7 @@ let milliseconds (numMilliseconds: float) : Duration = seconds (0.001 * numMilli
 ///    Duration.seconds 0.5 |&gt; Duration.inMilliseconds
 ///    --&gt; 500
 /// </code></example>
+/// <param name="duration">The duration to convert.</param>
 let inMilliseconds (duration: Duration) : float = inSeconds duration * 1000.
 
 
@@ -57,6 +61,7 @@ let inMilliseconds (duration: Duration) : float = inSeconds duration * 1000.
 ///    Duration.minutes 3
 ///    --&gt; Duration.seconds 180
 /// </code></example>
+/// <param name="numMinutes">The number of minutes.</param>
 let minutes (numMinutes: float) : Duration = seconds (60. * numMinutes)
 
 
@@ -69,6 +74,7 @@ let minutes (numMinutes: float) : Duration = seconds (60. * numMinutes)
 ///    Duration.seconds 90 |&gt; Duration.inMinutes
 ///    --&gt; 1.5
 /// </code></example>
+/// <param name="duration">The duration to convert.</param>
 let inMinutes (duration: Duration) : float = inSeconds duration / 60.
 
 /// <category>Conversions</category>
@@ -80,6 +86,7 @@ let inMinutes (duration: Duration) : float = inSeconds duration / 60.
 ///    Duration.hours 1
 ///    --&gt; Duration.seconds 3600
 /// </code></example>
+/// <param name="numHours">The number of hours.</param>
 let hours (numHours: float) : Duration = seconds (Constants.hour * numHours)
 
 
@@ -92,6 +99,7 @@ let hours (numHours: float) : Duration = seconds (Constants.hour * numHours)
 ///    Duration.minutes 120 |&gt; Duration.inHours
 ///    --&gt; 2
 /// </code></example>
+/// <param name="duration">The duration to convert.</param>
 let inHours (duration: Duration) : float = inSeconds duration / Constants.hour
 
 /// <category>Conversions</category>
@@ -106,6 +114,7 @@ let inHours (duration: Duration) : float = inSeconds duration / Constants.hour
 ///     Duration.days 1
 ///     --&gt; Duration.hours 24
 /// </code></example>
+/// <param name="numDays">The number of days.</param>
 let days (numDays: float) : Duration = seconds (Constants.day * numDays)
 
 /// <category>Conversions</category>
@@ -117,6 +126,7 @@ let days (numDays: float) : Duration = seconds (Constants.day * numDays)
 ///    Duration.hours 72 |&gt; Duration.inDays
 ///    --&gt; 3
 /// </code></example>
+/// <param name="duration">The duration to convert.</param>
 let inDays (duration: Duration) : float = inSeconds duration / Constants.day
 
 /// <category>Conversions</category>
@@ -128,6 +138,7 @@ let inDays (duration: Duration) : float = inSeconds duration / Constants.day
 ///    Duration.weeks 1
 ///    --&gt; Duration.days 7
 /// </code></example>
+/// <param name="numWeeks">The number of weeks.</param>
 let weeks (numWeeks: float) : Duration = seconds (Constants.week * numWeeks)
 
 /// <category>Conversions</category>
@@ -139,6 +150,7 @@ let weeks (numWeeks: float) : Duration = seconds (Constants.week * numWeeks)
 ///    Duration.days 28 |&gt; Duration.inWeeks
 ///    --&gt; 4
 /// </code></example>
+/// <param name="duration">The duration to convert.</param>
 let inWeeks (duration: Duration) : float = inSeconds duration / Constants.week
 
 /// <category>Conversions</category>
@@ -157,6 +169,7 @@ let inWeeks (duration: Duration) : float = inSeconds duration / Constants.week
 ///     Duration.julianYears 1
 ///     --&gt; Duration.days 365.25
 /// </code></example>
+/// <param name="numJulianYears">The number of Julian years.</param>
 let julianYears (numJulianYears: float) : Duration =
     seconds (Constants.julianYear * numJulianYears)
 
@@ -169,6 +182,7 @@ let julianYears (numJulianYears: float) : Duration =
 ///    Duration.hours 10000 |&gt; Duration.inJulianYears
 ///    --&gt; 1.1407711613050422
 /// </code></example>
+/// <param name="duration">The duration to convert.</param>
 let inJulianYears (duration: Duration) : float =
     inSeconds duration / Constants.julianYear
 

@@ -33,40 +33,48 @@ module Math.Units.AngularSpeed
 open System
 
 /// <category>Conversions</category>
-/// Construct an angular speed from a number of radians per second.
+/// <summary>Construct an angular speed from a number of radians per second.</summary>
+/// <param name="numRadiansPerSecond">The number of radians per second.</param>
 let radiansPerSecond (numRadiansPerSecond: float) : AngularSpeed = Quantity numRadiansPerSecond
 
 /// <category>Conversions</category>
-/// Convert an angular speed to a number of radians per second.
-let inRadiansPerSecond (numRadiansPerSecond: AngularSpeed) : float = numRadiansPerSecond.Value
+/// <summary>Convert an angular speed to a number of radians per second.</summary>
+/// <param name="angularSpeed">The angular speed to convert.</param>
+let inRadiansPerSecond (angularSpeed: AngularSpeed) : float = angularSpeed.Value
 
 /// <category>Conversions</category>
-/// Construct an angular speed from a number of degrees per second.
+/// <summary>Construct an angular speed from a number of degrees per second.</summary>
+/// <param name="numDegreesPerSecond">The number of degrees per second.</param>
 let degreesPerSecond (numDegreesPerSecond: float) : AngularSpeed =
     radiansPerSecond (Math.PI / 180. * numDegreesPerSecond)
 
 /// <category>Conversions</category>
-/// Convert an angular speed to a number of degrees per second.
+/// <summary>Convert an angular speed to a number of degrees per second.</summary>
+/// <param name="angularSpeed">The angular speed to convert.</param>
 let inDegreesPerSecond (angularSpeed: AngularSpeed) : float =
     inRadiansPerSecond angularSpeed / (Math.PI / 180.)
 
 /// <category>Conversions</category>
-/// Construct an angular speed from a number of turns per second.
+/// <summary>Construct an angular speed from a number of turns per second.</summary>
+/// <param name="numTurnsPerSecond">The number of turns per second.</param>
 let turnsPerSecond (numTurnsPerSecond: float) : AngularSpeed =
     radiansPerSecond (2. * Math.PI * numTurnsPerSecond)
 
 /// <category>Conversions</category>
-/// Convert an angular speed to a number of turns per second.
+/// <summary>Convert an angular speed to a number of turns per second.</summary>
+/// <param name="angularSpeed">The angular speed to convert.</param>
 let inTurnsPerSecond (angularSpeed: AngularSpeed) : float =
     inRadiansPerSecond angularSpeed / (2. * Math.PI)
 
 /// <category>Conversions</category>
-/// Construct an angular speed from a number of turns per minute.
+/// <summary>Construct an angular speed from a number of turns per minute.</summary>
+/// <param name="numTurnsPerMinute">The number of turns per minute.</param>
 let turnsPerMinute (numTurnsPerMinute: float) : AngularSpeed =
     radiansPerSecond ((2. * Math.PI * numTurnsPerMinute) / 60.)
 
 /// <category>Conversions</category>
-/// Convert an angular speed to a number of turns per minute.
+/// <summary>Convert an angular speed to a number of turns per minute.</summary>
+/// <param name="angularSpeed">The angular speed to convert.</param>
 let inTurnsPerMinute (angularSpeed: AngularSpeed) : float =
     inRadiansPerSecond angularSpeed
     / ((2. * Math.PI) / 60.)

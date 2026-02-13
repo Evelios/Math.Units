@@ -28,8 +28,8 @@
 module Math.Units.LuminousIntensity
 
 /// <category>Conversions</category>
-/// Construct a luminous intensity value from a number of candelas. One candela
-/// is roughly equivalent to the luminous intensity of a single wax candle.
+/// <summary>Construct a luminous intensity value from a number of candelas.</summary>
+/// <param name="numCandelas">The number of candelas.</param>
 let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 
 
@@ -62,4 +62,5 @@ let candelas (numCandelas: float) : LuminousIntensity = Quantity numCandelas
 ///     --&gt; 74.8028
 /// </code>
 /// </example>
-let inCandelas (numCandelas: LuminousIntensity) : float = numCandelas.Value
+/// <param name="luminousIntensity">The luminous intensity value to convert.</param>
+let inCandelas (luminousIntensity: LuminousIntensity) : float = luminousIntensity.Value

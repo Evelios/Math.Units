@@ -24,37 +24,44 @@
 module Math.Units.Force
 
 /// <category>Metric</category>
-/// Construct a force value from a number of newtons.
+/// <summary>Construct a force value from a number of newtons.</summary>
+/// <param name="numNewtons">The number of newtons.</param>
 let newtons (numNewtons: float) : Force = Quantity numNewtons
 
 /// <category>Metric</category>
-/// Convert a force value to a number of newtons.
-let inNewtons (numNewtons: Force) : float = numNewtons.Value
+/// <summary>Convert a force value to a number of newtons.</summary>
+/// <param name="force">The force value to convert.</param>
+let inNewtons (force: Force) : float = force.Value
 
 /// <category>Metric</category>
-/// Construct a force value from a number of kilonewtons.
+/// <summary>Construct a force value from a number of kilonewtons.</summary>
+/// <param name="numKilonewtons">The number of kilonewtons.</param>
 let kilonewtons (numKilonewtons: float) : Force = newtons (1000. * numKilonewtons)
 
 /// <category>Metric</category>
-/// Convert a force value to a number of kilonewtons.
+/// <summary>Convert a force value to a number of kilonewtons.</summary>
+/// <param name="force">The force value to convert.</param>
 let inKilonewtons (force: Force) : float = inNewtons force / 1000.
 
 /// <category>Metric</category>
-/// Construct a force value from a number of meganewtons.
+/// <summary>Construct a force value from a number of meganewtons.</summary>
+/// <param name="numMeganewtons">The number of meganewtons.</param>
 let meganewtons (numMeganewtons: float) : Force = newtons (1.0e6 * numMeganewtons)
 
 /// <category>Metric</category>
-/// Convert a force value to a number of meganewtons.
+/// <summary>Convert a force value to a number of meganewtons.</summary>
+/// <param name="force">The force value to convert.</param>
 let inMeganewtons (force: Force) : float = inNewtons force / 1.0e6
 
 /// <category>Imperial</category>
-/// Construct a force value from a number of pounds force. One pound force is
-/// the force required to accelerate one pound mass at a rate of one gee.
+/// <summary>Construct a force value from a number of pounds force.</summary>
+/// <param name="numPounds">The number of pounds force.</param>
 let pounds (numPounds: float) : Force =
     newtons (Constants.poundForce * numPounds)
 
 /// <category>Imperial</category>
-/// Convert a force value to a number of pounds force.
+/// <summary>Convert a force value to a number of pounds force.</summary>
+/// <param name="force">The force value to convert.</param>
 let inPounds (force: Force) : float = inNewtons force / Constants.poundForce
 
 /// <category>Imperial</category>
@@ -65,8 +72,10 @@ let inPounds (force: Force) : float = inNewtons force / Constants.poundForce
 ///    --&gt; Force.pounds 2000
 /// </code>
 /// </summary>
+/// <param name="numKips">The number of kips.</param>
 let kips (numKips: float) : Force = pounds (1000. * numKips)
 
 /// <category>Imperial</category>
-/// Convert a force value to a number of kips.
+/// <summary>Convert a force value to a number of kips.</summary>
+/// <param name="force">The force value to convert.</param>
 let inKips (force: Force) : float = inPounds force / 1000.

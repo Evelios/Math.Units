@@ -12,7 +12,13 @@ index: 2
 *)
 (*** hide ***)
 
-#r "../Math.Units/bin/Release/net6.0/Math.Units.dll"
+#I "../Math.Units/bin/Release/net8.0"
+#I "../Math.Units/bin/Debug/net8.0"
+#I "../Math.Units/bin/Release/net9.0"
+#I "../Math.Units/bin/Debug/net9.0"
+#I "../Math.Units/bin/Release/net10.0"
+#I "../Math.Units/bin/Debug/net10.0"
+#r "Math.Units.dll"
 
 open Math.Units
 
@@ -57,14 +63,14 @@ type Cartesian = Cartesian
 
 | Operator | Lhs    | Rhs    | Return Type | Example           | Function |
 |----------|--------|--------|-------------|-------------      |----------|
-| -        | Length |        | Length      | `-length`         | `Length2D.neg` |
-| +        | Length | Length | Length      | `lhs + rhs`       | `Length2D.plus` |
-| -        | Length | Length | Length      | `lhs - rhs`       | `Length2D.minus` |
-| *        | Length | float  | Length      | `lhs * 0.5`       | `Length2D.times` |
-| *        | float  | Length | Length      | `0.5 * rhs`       | None |
+| -        | Length |        | Length      | `-length`         | `Quantity.negate` |
+| +        | Length | Length | Length      | `lhs + rhs`       | `Quantity.plus` |
+| -        | Length | Length | Length      | `lhs - rhs`       | `Quantity.minus` |
+| *        | Length | float  | Length      | `lhs * 0.5`       | `Quantity.multiplyBy` |
+| *        | float  | Length | Length      | `0.5 * rhs`       | `Quantity.multiplyBy` |
 | *        | Angle  | Length | Length      | `angle / length`  | None |
 | *        | Length | Angle  | Length      | `length / angle`  | None |
-| /        | Length | float  | Length      | `lhs / 4.`        | `Length2D.dividedBy` |
+| /        | Length | float  | Length      | `lhs / 4.`        | `Quantity.divideBy` |
 | /        | Angle  | Length | Length      | `angle / length`  | None |
 | /        | Length | Angle  | Length      | `length / angle`  | None |
 *)
@@ -75,34 +81,34 @@ type Cartesian = Cartesian
 
 let length = Length.meters 10.
 
-Length.squared length
+Quantity.squared length
 (*** include-it ***)
 
-let lengthSquared = Length.meters 3. * Length.meters 12.
+let lengthSquared = Quantity.product (Length.meters 3.) (Length.meters 12.)
 
-Length.sqrt lengthSquared
+Quantity.sqrt lengthSquared
 (*** include-it ***)
 
-Length.twice length = 2. * length
+Quantity.twice length = (Quantity.multiplyBy 2. length)
 
-Length.half length = 0.5 * length
-Length.half length = length / 2.
+Quantity.half length = (Quantity.multiplyBy 0.5 length)
+Quantity.half length = (Quantity.divideBy 2. length)
 
 (** Round to the nearest 10th digit. You can read more about [digit precision] *)
 
-Length.round (Length.meters 0.123456789123456789)
+Quantity.round length
 (*** include-it ***)
 
-Length.roundTo 3 (Length.meters 0.11111)
+Quantity.roundTo 3 (Length.meters 0.11111)
 (*** include-it ***)
 
-Length.min (Length.meters 3.) (Length.meters 4.)
+Quantity.min (Length.meters 3.) (Length.meters 4.)
 (*** include-it ***)
 
-Length.max (Length.meters 3.) (Length.meters 4.)
+Quantity.max (Length.meters 3.) (Length.meters 4.)
 (*** include-it ***)
 
-Length.sum [ Length.meters 1.; Length.meters 2. ]
+Quantity.sum [ Length.meters 1.; Length.meters 2. ]
 (*** include-it ***)
 
 

@@ -27,33 +27,41 @@
 module Math.Units.Capacitance
 
 /// <category>Conversions</category>
-/// Construct capacitance from a number of farads.
+/// <summary>Construct capacitance from a number of farads.</summary>
+/// <param name="numFarads">The number of farads.</param>
 let farads (numFarads: float) : Capacitance = Quantity numFarads
 
 /// <category>Conversions</category>
-/// Convert capacitance to a number of farads.
-let inFarads (numFarads: Capacitance) : float = numFarads.Value
+/// <summary>Convert capacitance to a number of farads.</summary>
+/// <param name="capacitance">The capacitance to convert.</param>
+let inFarads (capacitance: Capacitance) : float = capacitance.Value
 
 /// <category>Conversions</category>
-/// Construct a capacitance from a number of microfarads.
+/// <summary>Construct a capacitance from a number of microfarads.</summary>
+/// <param name="numMicrofarads">The number of microfarads.</param>
 let microfarads (numMicrofarads: float) = farads (numMicrofarads * 1.0e-6)
 
 /// <category>Conversions</category>
-/// Convert a capacitance to a number of microfarads
+/// <summary>Convert a capacitance to a number of microfarads.</summary>
+/// <param name="capacitance">The capacitance to convert.</param>
 let inMicrofarads (capacitance: Capacitance) : float = inFarads capacitance / 1.0e-6
 
 /// <category>Conversions</category>
-/// Construct a capacitance from a number of nanofarads
+/// <summary>Construct a capacitance from a number of nanofarads.</summary>
+/// <param name="numNanofarads">The number of nanofarads.</param>
 let nanofarads (numNanofarads: float) : Capacitance = farads (numNanofarads * 1.0e-9)
 
 /// <category>Conversions</category>
-/// Convert a capacitance to a number of nanofarads
+/// <summary>Convert a capacitance to a number of nanofarads.</summary>
+/// <param name="capacitance">The capacitance to convert.</param>
 let inNanofarads (capacitance: Capacitance) : float = inFarads capacitance / 1.0e-9
 
 /// <category>Conversions</category>
-/// Construct capacitance from a number of picofarads.
+/// <summary>Construct capacitance from a number of picofarads.</summary>
+/// <param name="numPicofarads">The number of picofarads.</param>
 let picofarads (numPicofarads: float) : Capacitance = farads (numPicofarads * 1.0e-12)
 
 /// <category>Conversions</category>
-/// Convert a capacitance to a number of picofarads.
+/// <summary>Convert a capacitance to a number of picofarads.</summary>
+/// <param name="capacitance">The capacitance to convert.</param>
 let inPicofarads (capacitance: Capacitance) : float = inFarads capacitance / 1.0e-12

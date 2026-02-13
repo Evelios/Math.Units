@@ -19,113 +19,133 @@
 module Math.Units.Area
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square meters.
+/// <summary>Construct an area from a number of square meters.</summary>
+/// <param name="numSquareMeters">The number of square meters.</param>
 let squareMeters (numSquareMeters: float) : Area = Quantity numSquareMeters
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square meters.
-let inSquareMeters (numSquareMeters: Area) : float = numSquareMeters.Value
+/// <summary>Convert an area to a number of square meters.</summary>
+/// <param name="area">The area to convert.</param>
+let inSquareMeters (area: Area) : float = area.Value
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square millimeters.
+/// <summary>Construct an area from a number of square millimeters.</summary>
+/// <param name="numSquareMillimeters">The number of square millimeters.</param>
 let squareMillimeters (numSquareMillimeters: float) : Area =
     squareMeters (1.0e-6 * numSquareMillimeters)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square millimeters.
+/// <summary>Convert an area to a number of square millimeters.</summary>
+/// <param name="area">The area to convert.</param>
 let inSquareMillimeters (area: Area) : float = 1.0e6 * inSquareMeters area
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square inches.
+/// <summary>Construct an area from a number of square inches.</summary>
+/// <param name="numSquareInches">The number of square inches.</param>
 let squareInches (numSquareInches: float) : Area =
     squareMeters (Constants.squareInch * numSquareInches)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square inches.
+/// <summary>Convert an area to a number of square inches.</summary>
+/// <param name="area">The area to convert.</param>
 let inSquareInches (area: Area) : float =
     inSquareMeters area / Constants.squareInch
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square centimeters.
+/// <summary>Construct an area from a number of square centimeters.</summary>
+/// <param name="numSquareCentimeters">The number of square centimeters.</param>
 let squareCentimeters (numSquareCentimeters: float) : Area =
     squareMeters (1.0e-4 * numSquareCentimeters)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square centimeters.
+/// <summary>Convert an area to a number of square centimeters.</summary>
+/// <param name="area">The area to convert.</param>
 let inSquareCentimeters (area: Area) : float = 1.0e4 * inSquareMeters area
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square feet.
+/// <summary>Construct an area from a number of square feet.</summary>
+/// <param name="numSquareFeet">The number of square feet.</param>
 let squareFeet (numSquareFeet: float) : Area =
     squareMeters (Constants.squareFoot * numSquareFeet)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square feet.
+/// <summary>Convert an area to a number of square feet.</summary>
+/// <param name="area">The area to convert.</param>
 let inSquareFeet (area: Area) : float =
     inSquareMeters area / Constants.squareFoot
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square yards.
+/// <summary>Construct an area from a number of square yards.</summary>
+/// <param name="numSquareYards">The number of square yards.</param>
 let squareYards (numSquareYards: float) : Area =
     squareMeters (Constants.squareYard * numSquareYards)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square yards.
+/// <summary>Convert an area to a number of square yards.</summary>
+/// <param name="area">The area to convert.</param>
 let inSquareYards (area: Area) : float =
     inSquareMeters area / Constants.squareYard
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of hectares.
+/// <summary>Construct an area from a number of hectares.</summary>
+/// <param name="numHectares">The number of hectares.</param>
 let hectares (numHectares: float) : Area = squareMeters (1.0e4 * numHectares)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of hectares.
+/// <summary>Convert an area to a number of hectares.</summary>
+/// <param name="area">The area to convert.</param>
 let inHectares (area: Area) : float = 1.0e-4 * inSquareMeters area
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square kilometers.
+/// <summary>Construct an area from a number of square kilometers.</summary>
+/// <param name="numSquareKilometers">The number of square kilometers.</param>
 let squareKilometers (numSquareKilometers: float) : Area =
     squareMeters (1.0e6 * numSquareKilometers)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square kilometers.
+/// <summary>Convert an area to a number of square kilometers.</summary>
+/// <param name="area">The area to convert.</param>
 let inSquareKilometers (area: Area) : float = 1.0e-6 * inSquareMeters area
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of acres.
+/// <summary>Construct an area from a number of acres.</summary>
+/// <param name="numAcres">The number of acres.</param>
 let acres (numAcres: float) : Area =
     squareMeters (Constants.acre * numAcres)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of acres.
+/// <summary>Convert an area to a number of acres.</summary>
+/// <param name="area">The area to convert.</param>
 let inAcres (area: Area) : float = inSquareMeters area / Constants.acre
 
 
 /// <category>Conversions</category>
-/// Construct an area from a number of square miles.
+/// <summary>Construct an area from a number of square miles.</summary>
+/// <param name="numSquareMiles">The number of square miles.</param>
 let squareMiles (numSquareMiles: float) : Area =
     squareMeters (Constants.squareMile * numSquareMiles)
 
 
 /// <category>Conversions</category>
-/// Convert an area to a number of square miles.
+/// <summary>Convert an area to a number of square miles.</summary>
+/// <param name="area">The area to convert.</param>
 let inSquareMiles (area: Area) : float =
     inSquareMeters area / Constants.squareMile
 

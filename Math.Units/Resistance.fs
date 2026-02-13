@@ -27,9 +27,11 @@
 module Math.Units.Resistance
 
 /// <category>Conversions</category>
-/// Construct a resistance from a number of ohms.
+/// <summary>Construct a resistance from a number of ohms.</summary>
+/// <param name="numOhms">The number of ohms.</param>
 let ohms (numOhms: float) : Resistance = Quantity numOhms
 
 /// <category>Conversions</category>
-/// Convert a resistance to a number of ohms.
-let inOhms (numOhms: Resistance) : float = numOhms.Value
+/// <summary>Convert a resistance to a number of ohms.</summary>
+/// <param name="resistance">The resistance value to convert.</param>
+let inOhms (resistance: Resistance) : float = resistance.Value

@@ -21,12 +21,14 @@ module Math.Units.SolidAngle
 open System
 
 /// <category>Conversions</category>
-/// Construct a solid angle from a number of steradians.
+/// <summary>Construct a solid angle from a number of steradians.</summary>
+/// <param name="numSteradians">The number of steradians.</param>
 let steradians (numSteradians: float) : SolidAngle = Quantity numSteradians
 
 /// <category>Conversions</category>
-/// Convert a solid angle to a number of steradians.
-let inSteradians (numSteradians: SolidAngle) : float = numSteradians.Value
+/// <summary>Convert a solid angle to a number of steradians.</summary>
+/// <param name="solidAngle">The solid angle to convert.</param>
+let inSteradians (solidAngle: SolidAngle) : float = solidAngle.Value
 
 /// <category>Conversions</category>
 /// <summary>
@@ -42,6 +44,7 @@ let inSteradians (numSteradians: SolidAngle) : float = numSteradians.Value
 /// --&gt; SolidAngle.steradians (4 * pi)
 /// </code>
 /// </summary>
+/// <param name="numSpats">The number of spats.</param>
 let spats (numSpats: float) : SolidAngle = steradians (4. * Math.PI * numSpats)
 
 
@@ -53,6 +56,7 @@ let spats (numSpats: float) : SolidAngle = steradians (4. * Math.PI * numSpats)
 /// --&gt; 0.5
 /// </code>
 /// </summary>
+/// <param name="solidAngle">The solid angle to convert.</param>
 let inSpats (solidAngle: SolidAngle) : float =
     inSteradians solidAngle / (4. * Math.PI)
 
@@ -70,6 +74,7 @@ let inSpats (solidAngle: SolidAngle) : float =
 ///     -> SolidAngle.steradians 0.03046
 /// </code>
 /// </summary>
+/// <param name="numSquareDegrees">The number of square degrees.</param>
 let squareDegrees (numSquareDegrees: float) : SolidAngle =
     steradians (numSquareDegrees * (Math.PI / 180.) ** 2)
 
@@ -82,6 +87,7 @@ let squareDegrees (numSquareDegrees: float) : SolidAngle =
 ///    --&gt; 41252.96125
 /// </code>
 /// </summary>
+/// <param name="solidAngle">The solid angle to convert.</param>
 let inSquareDegrees (solidAngle: SolidAngle) : float =
     inSteradians solidAngle / ((Math.PI / 180.) ** 2)
 
@@ -112,6 +118,7 @@ let inSquareDegrees (solidAngle: SolidAngle) : float =
 ///     --&gt; SolidAngle.spats 1
 /// </code>
 /// </summary>
+/// <param name="angle">The tip angle.</param>
 let conical (angle: Angle) : SolidAngle =
     let halfAngle = Quantity.half angle
     steradians (2. * Math.PI * (1. - Angle.cos halfAngle))
@@ -153,6 +160,8 @@ let conical (angle: Angle) : SolidAngle =
 /// treated as 120 degrees, an angle of 330 degrees will be treated as 30 degrees,
 /// etc.).
 /// </summary>
+/// <param name="theta">The width angle.</param>
+/// <param name="phi">The height angle.</param>
 let pyramidal (theta: Angle) (phi: Angle) : SolidAngle =
     let halfTheta = Quantity.half theta
     let halfPhi = Quantity.half phi

@@ -29,53 +29,63 @@ open Math.Units
 // ---- Radians ----
 
 /// <category>Radians</category>
-/// Create an angle from a number of radians.
+/// <summary>Create an angle from a number of radians.</summary>
+/// <param name="r">The number of radians.</param>
 let radians (r: float) : Angle = Angle r
 
 /// <category>Radians</category>
-/// Get a <c>float</c> of the given angle in radians
+/// <summary>Get a <c>float</c> of the given angle in radians</summary>
+/// <param name="r">The angle to convert.</param>
 let inRadians (r: Angle) : float = r.Value
 
 // ---- Degrees ----
 
 /// <category>Degrees</category>
-/// Create an angle from a number of degrees.
+/// <summary>Create an angle from a number of degrees.</summary>
+/// <param name="d">The number of degrees.</param>
 let degrees (d: float) : Angle =
     d * Constants.degreesToRadians |> radians
 
 /// <category>Degrees</category>
-/// Get a <c>float</c> of the given angle in degrees.
+/// <summary>Get a <c>float</c> of the given angle in degrees.</summary>
+/// <param name="angle">The angle to convert.</param>
 let inDegrees (angle: Angle) : float =
     angle.Value * Constants.radiansToDegrees
 
 // ---- Minutes ----
 
 /// <category>Degrees</category>
-/// Create an angle from a number of minutes.
+/// <summary>Create an angle from a number of minutes.</summary>
+/// <param name="numMinutes">The number of minutes.</param>
 let minutes (numMinutes: float) : Angle = degrees (numMinutes / 60.)
 
 /// <category>Degrees</category>
-/// Get a <c>float</c> of the given angle in minutes.
+/// <summary>Get a <c>float</c> of the given angle in minutes.</summary>
+/// <param name="angle">The angle to convert.</param>
 let inMinutes (angle: Angle) : float = 60. * inDegrees angle
 
 // ---- Seconds ----
 
 /// <category>Degrees</category>
-/// Create an angle from a number of seconds.
+/// <summary>Create an angle from a number of seconds.</summary>
+/// <param name="numSeconds">The number of seconds.</param>
 let seconds (numSeconds: float) : Angle = degrees (numSeconds / 3600.)
 
 /// <category>Degrees</category>
-/// Get a <c>float</c> of the given angle in seconds.
+/// <summary>Get a <c>float</c> of the given angle in seconds.</summary>
+/// <param name="angle">The angle to convert.</param>
 let inSeconds (angle: Angle) : float = 3600. * inDegrees angle
 
 // ---- Turns ----
 
 /// <category>Turns</category>
-/// Create an angle from a number of turns.
+/// <summary>Create an angle from a number of turns.</summary>
+/// <param name="numTurns">The number of turns.</param>
 let turns (numTurns: float) : Angle = radians (2. * numTurns * Math.PI)
 
 /// <category>Turns</category>
-/// Get a <c>float</c> of the given angle in turns.
+/// <summary>Get a <c>float</c> of the given angle in turns.</summary>
+/// <param name="angle">The angle to convert.</param>
 let inTurns (angle: Angle) : float = inRadians (angle / (2. * Math.PI))
 
 // ---- Constants --------------------------------------------------------------
@@ -107,6 +117,7 @@ let halfPi: Angle = piOverTwo
 /// degrees (-π to π radians), by adding or subtracting some multiple of 360
 /// degrees (2π radians) if necessary.
 /// </summary>
+/// <param name="r">The angle to normalize.</param>
 /// <category>Modifiers</category>
 let normalize (r: Angle) : Angle =
     let turns = (r / twoPi.Value)
@@ -126,6 +137,7 @@ let normalize (r: Angle) : Angle =
 /// <summary>
 /// Run the <c>sin</c> function on an angle.
 /// </summary>
+/// <param name="r">The angle.</param>
 ///
 /// <example>
 /// This can also be called using the builtin <c>sin</c> function.
@@ -139,6 +151,7 @@ let sin (r: Angle) : float = sin r.Value
 /// <summary>
 /// Run the <c>cos</c> function on an angle.
 /// </summary>
+/// <param name="r">The angle.</param>
 ///
 /// <example>
 /// This can also be called using the builtin <c>cos</c> function.
@@ -152,6 +165,7 @@ let cos (r: Angle) : float = cos r.Value
 /// <summary>
 /// Run the <c>tan</c> function on an angle.
 /// </summary>
+/// <param name="r">The angle.</param>
 ///
 /// <example>
 /// This can also be called using the builtin <c>tan</c> function.
@@ -165,6 +179,7 @@ let tan (r: Angle) : float = tan r.Value
 /// <summary>
 /// Run the <c>asin</c> function on an angle.
 /// </summary>
+/// <param name="x">The sine value.</param>
 ///
 /// <example>
 /// This can also be called using the builtin <c>asin</c> function.
@@ -178,6 +193,7 @@ let asin (x: float) : Angle = radians (asin x)
 /// <summary>
 /// Run the <c>acos</c> function on an angle.
 /// </summary>
+/// <param name="x">The cosine value.</param>
 ///
 /// <example>
 /// This can also be called using the builtin <c>acos</c> function.
@@ -191,6 +207,7 @@ let acos (x: float) : Angle = radians (acos x)
 /// <summary>
 /// Run the <c>atan</c> function on an angle.
 /// </summary>
+/// <param name="x">The tangent value.</param>
 ///
 /// <example>
 /// This can also be called using the builtin <c>atan</c> function.

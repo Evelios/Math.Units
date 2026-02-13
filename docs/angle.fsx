@@ -8,7 +8,13 @@ index: 1
 *)
 (*** hide ***)
 
-#r "../Math.Units/bin/Release/net6.0/Math.Units.dll"
+#I "../Math.Units/bin/Release/net8.0"
+#I "../Math.Units/bin/Debug/net8.0"
+#I "../Math.Units/bin/Release/net9.0"
+#I "../Math.Units/bin/Debug/net9.0"
+#I "../Math.Units/bin/Release/net10.0"
+#I "../Math.Units/bin/Debug/net10.0"
+#r "Math.Units.dll"
 
 open Math.Units
 
@@ -65,15 +71,15 @@ Angle.atan (1. / 2.)
 
 | Operator | Lhs    | Rhs    | Return Type | Example          | Function |
 |----------|--------|--------|-------------|------------------|----------|
-| -        | Angle  |        | Angle       | `-length`        | `Angle.neg` |
-| +        | Angle  | Angle  | Angle       | `lhs + rhs`      | `Angle.plus` |
-| -        | Angle  | Angle  | Angle       | `lhs - rhs`      | `Angle.minus` |
-| *        | Angle  | float  | Angle       | `lhs * 0.5`      | `Angle.times` |
-| *        | float  | Angle  | Angle       | `0.5 * rhs`      | None |
+| -        | Angle  |        | Angle       | `-length`        | `Quantity.negate` |
+| +        | Angle  | Angle  | Angle       | `lhs + rhs`      | `Quantity.plus` |
+| -        | Angle  | Angle  | Angle       | `lhs - rhs`      | `Quantity.minus` |
+| *        | Angle  | float  | Angle       | `lhs * 0.5`      | `Quantity.multiplyBy` |
+| *        | float  | Angle  | Angle       | `0.5 * rhs`      | `Quantity.multiplyBy` |
 | *        | Angle  | Length | Length      | `angle / length` | None |
 | *        | Length | Angle  | Length      | `length / angle` | None |
-| /        | Angle  | float  | Angle       | `lhs / 4.`       | `Angle.dividedBy` |
-| /        | Angle  | Angle  | float       | `lhs / rhs`      | None |
+| /        | Angle  | float  | Angle       | `lhs / 4.`       | `Quantity.divideBy` |
+| /        | Angle  | Angle  | float       | `lhs / rhs`      | `Quantity.ratio` |
 | /        | Angle  | Length | Length      | `angle / length` | None |
 | /        | Length | Angle  | Length      | `length / angle` | None |
 *)

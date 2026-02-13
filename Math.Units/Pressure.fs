@@ -23,37 +23,45 @@
 module Math.Units.Pressure
 
 /// <category>Metric</category>
-/// Construct a pressure from a number of pascals.
+/// <summary>Construct a pressure from a number of pascals.</summary>
+/// <param name="numPascals">The number of pascals.</param>
 let pascals (numPascals: float) : Pressure = Quantity numPascals
 
 /// <category>Metric</category>
-/// Convert a pressure to a number of pascals.
-let inPascals (numPascals: Pressure) : float = numPascals.Value
+/// <summary>Convert a pressure to a number of pascals.</summary>
+/// <param name="pressure">The pressure to convert.</param>
+let inPascals (pressure: Pressure) : float = pressure.Value
 
 /// <category>Metric</category>
-/// Construct a pressure from a number of kilopascals.
+/// <summary>Construct a pressure from a number of kilopascals.</summary>
+/// <param name="numKilopascals">The number of kilopascals.</param>
 let kilopascals (numKilopascals: float) : Pressure = pascals (1000. * numKilopascals)
 
 /// <category>Metric</category>
-/// Convert a pressure to a number of kilopascals.
+/// <summary>Convert a pressure to a number of kilopascals.</summary>
+/// <param name="pressure">The pressure to convert.</param>
 let inKilopascals (pressure: Pressure) : float = inPascals pressure / 1000.
 
 /// <category>Metric</category>
-/// Construct a pressure from a number of megapascals.
+/// <summary>Construct a pressure from a number of megapascals.</summary>
+/// <param name="numMegapascals">The number of megapascals.</param>
 let megapascals (numMegapascals: float) : Pressure = pascals (1.0e6 * numMegapascals)
 
-/// Convert a pressure to a number of megapascals.
 /// <category>Metric</category>
+/// <summary>Convert a pressure to a number of megapascals.</summary>
+/// <param name="pressure">The pressure to convert.</param>
 let inMegapascals (pressure: Pressure) : float = inPascals pressure / 1.0e6
 
 /// <category>Imperial</category>
-/// Construct a pressure from a number of pounds per square inch.
+/// <summary>Construct a pressure from a number of pounds per square inch.</summary>
+/// <param name="value">The number of pounds per square inch.</param>
 let poundsPerSquareInch (value: float) : Pressure =
     Force.pounds value
     |> Quantity.per (Area.squareInches 1.)
 
 /// <category>Imperial</category>
-/// Convert a pressure to a number of pounds per square inch.
+/// <summary>Convert a pressure to a number of pounds per square inch.</summary>
+/// <param name="pressure">The pressure to convert.</param>
 let inPoundsPerSquareInch (pressure: Pressure) : float =
     Area.squareInches 1.
     |> Quantity.at pressure
@@ -63,10 +71,12 @@ let inPoundsPerSquareInch (pressure: Pressure) : float =
 /// <summary>
 /// Construct a pressure from a number of <a href="https://en.wikipedia.org/wiki/Atmosphere_(unit)">atmospheres</a>.
 /// </summary>
+/// <param name="numAtmospheres">The number of atmospheres.</param>
 let atmospheres (numAtmospheres: float) : Pressure =
     pascals (Constants.atmosphere * numAtmospheres)
 
 /// <category>Atmospheric</category>
-/// Convert a pressure to a number of atmospheres.
+/// <summary>Convert a pressure to a number of atmospheres.</summary>
+/// <param name="pressure">The pressure to convert.</param>
 let inAtmospheres (pressure: Pressure) : float =
     inPascals pressure / Constants.atmosphere

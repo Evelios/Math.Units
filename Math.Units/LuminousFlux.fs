@@ -17,9 +17,11 @@ module Math.Units.LuminousFlux
 /// and <a href="https://en.wikipedia.org/wiki/Lumen_(unit)#Lighting">here</a>
 /// for the number of lumens emitted by some common light sources.
 /// </summary>
+/// <param name="numLumens">The number of lumens.</param>
 let lumens (numLumens: float) : LuminousFlux = Quantity numLumens
 
 
 /// <category>Conversions</category>
-/// Convert a luminous flux value to a number of lumens.
-let inLumens (numLumens: LuminousFlux) : float = numLumens.Value
+/// <summary>Convert a luminous flux value to a number of lumens.</summary>
+/// <param name="luminousFlux">The luminous flux value to convert.</param>
+let inLumens (luminousFlux: LuminousFlux) : float = luminousFlux.Value

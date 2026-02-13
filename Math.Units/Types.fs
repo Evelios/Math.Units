@@ -57,7 +57,10 @@ type CelsiusDegrees = CelsiusDegrees
 /// <see cref="M:Math.Units.Quantity.over">Quantity.over</see> and
 /// <see cref="M:Math.Units.Quantity.over_">Quantity.over_</see> for how it can be used.
 /// </summary>
-type Product<'Unit1, 'Unit2> = Product of 'Unit1 * 'Unit2
+type Product<'Unit1, 'Unit2> =
+    /// <param name="Item1">The first unit.</param>
+    /// <param name="Item2">The second unit.</param>
+    | Product of 'Unit1 * 'Unit2
 
 /// <category>Unit Relation</category>
 /// <summary>
@@ -87,7 +90,10 @@ type Cubed<'Units> = Product<'Units, Product<'Units, 'Units>>
 /// Represents the units type of a rate or quotient such as a speed (<c>Rate
 /// Meters Seconds</c>) or a pressure (<c>Rate Newtons SquareMeters</c>).
 /// </summary>
-type Rate<'DependentUnits, 'IndependentUnits> = Rate of 'DependentUnits * 'IndependentUnits
+type Rate<'DependentUnits, 'IndependentUnits> =
+    /// <param name="Item1">The dependent unit (numerator).</param>
+    /// <param name="Item2">The independent unit (denominator).</param>
+    | Rate of 'DependentUnits * 'IndependentUnits
 
 
 // ---- Unit Aliases -----------------------------------------------------------
@@ -102,24 +108,32 @@ type RadiansPerSecondSquared = Rate<RadiansPerSecond, Seconds>
 // ---- Distance
 
 /// <category>Unit</category>
+/// <summary>Meters per second.</summary>
 type MetersPerSecond = Rate<Meters, Seconds>
 /// <category>Unit</category>
+/// <summary>Meters per second squared.</summary>
 type MetersPerSecondSquared = Rate<MetersPerSecond, Seconds>
 /// <category>Unit</category>
+/// <summary>Square meters.</summary>
 type SquareMeters = Squared<Meters>
 /// <category>Unit</category>
+/// <summary>Cubic meters.</summary>
 type CubicMeters = Cubed<Meters>
 
 
 // ---- Mass
 
 /// <category>Unit</category>
+/// <summary>Newtons.</summary>
 type Newtons = Product<Kilograms, MetersPerSecondSquared>
 /// <category>Unit</category>
+/// <summary>Pascals.</summary>
 type Pascals = Rate<Newtons, SquareMeters>
 /// <category>Unit</category>
+/// <summary>Kilograms per cubic meter.</summary>
 type KilogramsPerCubicMeter = Rate<Kilograms, CubicMeters>
 /// <category>Unit</category>
+/// <summary>Joules.</summary>
 type Joules = Product<Newtons, Meters>
 
 
@@ -134,30 +148,39 @@ type Joules = Product<Newtons, Meters>
 /// </summary>
 type Candelas = Rate<Lumens, Steradians>
 /// <category>Unit</category>
+/// <summary>Lux.</summary>
 type Lux = Rate<Lumens, SquareMeters>
 /// <category>Unit</category>
+/// <summary>Nits.</summary>
 type Nits = Rate<Candelas, SquareMeters>
 
 
 // ---- Atomic
 
 /// <category>Unit</category>
+/// <summary>Moles per cubic meter.</summary>
 type MolesPerCubicMeter = Rate<Moles, CubicMeters>
 
 
 // ---- Electrical
 
 /// <category>Unit</category>
+/// <summary>Watts.</summary>
 type Watts = Rate<Joules, Seconds>
 /// <category>Unit</category>
+/// <summary>Amperes.</summary>
 type Amperes = Rate<Coulombs, Seconds>
 /// <category>Unit</category>
+/// <summary>Volts.</summary>
 type Volts = Rate<Watts, Amperes>
 /// <category>Unit</category>
+/// <summary>Farads.</summary>
 type Farads = Rate<Coulombs, Volts>
 /// <category>Unit</category>
+/// <summary>Henries.</summary>
 type Henries = Rate<Volts, Rate<Amperes, Seconds>>
 /// <category>Unit</category>
+/// <summary>Ohms.</summary>
 type Ohms = Rate<Volts, Amperes>
 
 
@@ -165,10 +188,13 @@ type Ohms = Rate<Volts, Amperes>
 
 
 /// <category>Unit</category>
+/// <summary>Pixels per second.</summary>
 type PixelsPerSecond = Rate<Pixel, Seconds>
 /// <category>Unit</category>
+/// <summary>Pixels per second squared.</summary>
 type PixelsPerSecondSquared = Rate<PixelsPerSecond, Seconds>
 /// <category>Unit</category>
+/// <summary>Square pixels.</summary>
 type SquarePixels = Squared<Pixel>
 
 
@@ -176,6 +202,7 @@ type SquarePixels = Squared<Pixel>
 
 /// <category>Unit System</category>
 type IQuantity =
+    /// <summary>The underlying floating point value.</summary>
     abstract member Value : float
 
 /// <category>Unit System</category>
@@ -185,19 +212,20 @@ type IQuantity =
 ///     Quantity Float Meters
 /// is a <c>Float</c> number of <c>Meters</c> and a
 ///     Quantity Int Pixels
-/// is an <c>Int</c> number of <c>Pixels</c>. When compiling with <c>elm make --optimize</c> the
-/// <c>Quantity</c> wrapper type will be compiled away, so the runtime performance should
-/// be comparable to using a raw <c>Float</c> or <c>Int</c>.
 /// </summary>
+/// <param name="quantity">The underlying floating point value.</param>
 [<Struct; CustomEquality; CustomComparison>]
 type Quantity<'Units>(quantity: float) =
     interface IQuantity with
+        /// <summary>The underlying floating point value.</summary>
         member this.Value = quantity
 
     interface IComparable<Quantity<'Units>> with
+        /// <param name="quantity">The other quantity to compare to.</param>
         member this.CompareTo(quantity: Quantity<'Units>) : int = this.Comparison(quantity)
 
     interface IComparable with
+        /// <param name="obj">The object to compare to.</param>
         member this.CompareTo(obj) =
             match obj with
             | :? Quantity<'Units> as quantity -> this.Comparison(quantity)
@@ -206,6 +234,7 @@ type Quantity<'Units>(quantity: float) =
 
     // ---- Base Properties & Functions ----
 
+    /// <summary>The underlying floating point value.</summary>
     member this.Value = quantity
 
     override this.ToString() =
@@ -218,16 +247,19 @@ type Quantity<'Units>(quantity: float) =
 
     // ---- IComparable Implementation ----
 
+    /// <param name="other">The other quantity.</param>
     member this.Comparison(other: Quantity<'Units>) =
         if this.Value = other.Value then 0
         elif this.Value < other.Value then -1
         else 1
 
 
+    /// <param name="other">The other quantity.</param>
     member this.Equals(other: Quantity<'Units>) : bool =
         this.Value = other.Value
 
 
+    /// <param name="other">The other quantity.</param>
     member this.LessThan(other: Quantity<'Units>) = this.Value < other.Value
 
 
@@ -235,6 +267,7 @@ type Quantity<'Units>(quantity: float) =
         hash this.Value
 
 
+    /// <param name="obj">The object to compare.</param>
     override this.Equals(obj: obj) : bool =
         match obj with
         | :? Quantity<'Units> as other -> this.Equals(other)
@@ -243,46 +276,73 @@ type Quantity<'Units>(quantity: float) =
 
     // ---- Built In Functions ----
 
+    /// <param name="q">The quantity.</param>
     static member Abs(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(abs q.Value)
 
+    /// <param name="lhs">The first quantity.</param>
+    /// <param name="rhs">The second quantity.</param>
     static member Min(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
         Quantity<'Units>(min lhs.Value rhs.Value)
 
+    /// <param name="lhs">The first quantity.</param>
+    /// <param name="rhs">The second quantity.</param>
     static member Max(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
         Quantity<'Units>(max lhs.Value rhs.Value)
 
+    /// <param name="value">The squared quantity.</param>
     static member Sqrt(value: Quantity<'Units Squared>) : Quantity<'Units> = Quantity<'Units>(sqrt value.Value)
 
+    /// <param name="value">The quantity.</param>
     static member Floor(value: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(floor value.Value)
 
+    /// <param name="q">The quantity.</param>
     static member Ceiling(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(ceil q.Value)
 
+    /// <param name="q">The quantity.</param>
     static member Round(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(round q.Value)
 
+    /// <param name="q">The quantity.</param>
     static member Truncate(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(truncate q.Value)
 
 
     // ---- Operators ----
 
+    /// <param name="lhs">The first quantity.</param>
+    /// <param name="rhs">The second quantity.</param>
     static member (+)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
         Quantity<'Units>(lhs.Value + rhs.Value)
 
+    /// <param name="lhs">The first quantity.</param>
+    /// <param name="rhs">The second quantity.</param>
     static member (-)(lhs: Quantity<'Units>, rhs: Quantity<'Units>) : Quantity<'Units> =
         Quantity<'Units>(lhs.Value - rhs.Value)
 
+    /// <param name="q">The quantity.</param>
     static member (~-)(q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(-q.Value)
 
+    /// <param name="q">The quantity.</param>
+    /// <param name="scale">The scaling factor.</param>
     static member (*)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
 
+    /// <param name="scale">The scaling factor.</param>
+    /// <param name="q">The quantity.</param>
     static member (*)(scale: float, q: Quantity<'Units>) : Quantity<'Units> = Quantity<'Units>(q.Value * scale)
 
+    /// <param name="lhs">The first quantity.</param>
+    /// <param name="rhs">The second quantity.</param>
     static member (*)(lhs: Quantity<'UnitA>, rhs: Quantity<'UnitB>) : Quantity<Product<'UnitA, 'UnitB>> =
         Quantity<Product<'UnitA, 'UnitB>>(lhs.Value * rhs.Value)
 
+    /// <param name="q">The quantity.</param>
+    /// <param name="scale">The divisor.</param>
     static member (/)(q: Quantity<'Units>, scale: float) : Quantity<'Units> = Quantity<'Units>(q.Value / scale)
 
+    /// <param name="q">The numerator.</param>
+    /// <param name="scale">The denominator.</param>
     static member (/)(q: Quantity<'Units>, scale: Quantity<'Units>) : float = q.Value / scale.Value
 
+    /// <param name="dependent">The dependent quantity.</param>
+    /// <param name="independent">The independent quantity.</param>
     static member (/)
         (
             dependent: Quantity<'Dependent>,
@@ -290,6 +350,8 @@ type Quantity<'Units>(quantity: float) =
         ) : Quantity<Rate<'Dependent, 'Independent>> =
         Quantity(dependent.Value / independent.Value)
 
+    /// <param name="q">The quantity.</param>
+    /// <param name="modulus">The modulus.</param>
     static member (%)(q: Quantity<'Units>, modulus: Quantity<'Units>) : Quantity<'Units> =
         Quantity(q.Value % modulus.Value)
 
@@ -393,12 +455,15 @@ type Voltage = Quantity<Volts>
 type TemperatureDelta = Quantity<CelsiusDegrees>
 
 /// <category>Unit System</category>
+/// <param name="kelvin">The absolute temperature in Kelvins.</param>
 [<Struct; CustomEquality; CustomComparison>]
 type Temperature(kelvin: float) =
     interface IComparable<Temperature> with
+        /// <param name="temp">The other temperature.</param>
         member this.CompareTo(temp: Temperature) : int = this.Comparison(temp)
 
     interface IComparable with
+        /// <param name="obj">The object to compare to.</param>
         member this.CompareTo(obj) =
             match obj with
             | :? Temperature as temp -> this.Comparison(temp)
@@ -407,6 +472,7 @@ type Temperature(kelvin: float) =
 
     // ---- Base Properties & Functions ----
 
+    /// <summary>The absolute temperature in Kelvins.</summary>
     member this.Value = kelvin
 
     override this.ToString() = $"{kelvin}K"
@@ -414,16 +480,19 @@ type Temperature(kelvin: float) =
 
     // ---- IComparable Implementation ----
 
+    /// <param name="other">The other temperature.</param>
     member this.Comparison(other: Temperature) =
         if this.Value = other.Value then 0
         elif this.Value < other.Value then -1
         else 1
 
 
+    /// <param name="other">The other temperature.</param>
     member this.Equals(other: Temperature) : bool =
         this.Value = other.Value
 
 
+    /// <param name="other">The other temperature.</param>
     member this.LessThan(other: Temperature) = this.Value < other.Value
 
 
@@ -431,6 +500,7 @@ type Temperature(kelvin: float) =
         hash this.Value
 
 
+    /// <param name="obj">The object to compare.</param>
     override this.Equals(obj: obj) : bool =
         match obj with
         | :? Temperature as other -> this.Equals(other)
@@ -439,27 +509,43 @@ type Temperature(kelvin: float) =
 
     // ---- Built In Functions ----
 
+    /// <param name="lhs">The first temperature.</param>
+    /// <param name="rhs">The second temperature.</param>
     static member Min(lhs: Temperature, rhs: Temperature) : Temperature = Temperature(min lhs.Value rhs.Value)
 
+    /// <param name="lhs">The first temperature.</param>
+    /// <param name="rhs">The second temperature.</param>
     static member Max(lhs: Temperature, rhs: Temperature) : Temperature = Temperature(max lhs.Value rhs.Value)
 
+    /// <param name="value">The temperature to round down.</param>
     static member Floor(value: Temperature) : Temperature = Temperature(floor value.Value)
 
+    /// <param name="q">The temperature to round up.</param>
     static member Ceiling(q: Temperature) : Temperature = Temperature(ceil q.Value)
 
+    /// <param name="q">The temperature to round.</param>
     static member Round(q: Temperature) : Temperature = Temperature(round q.Value)
 
+    /// <param name="q">The temperature to truncate.</param>
     static member Truncate(q: Temperature) : Temperature = Temperature(truncate q.Value)
 
 
     // ---- Operators ----
 
+    /// <param name="lhs">The absolute temperature.</param>
+    /// <param name="rhs">The change in temperature.</param>
     static member (+)(lhs: Temperature, rhs: TemperatureDelta) : Temperature = Temperature(lhs.Value + rhs.Value)
 
+    /// <param name="lhs">The change in temperature.</param>
+    /// <param name="rhs">The absolute temperature.</param>
     static member (+)(lhs: TemperatureDelta, rhs: Temperature) : Temperature = Temperature(lhs.Value + rhs.Value)
 
+    /// <param name="lhs">The first temperature.</param>
+    /// <param name="rhs">The second temperature.</param>
     static member (-)(lhs: Temperature, rhs: Temperature) : TemperatureDelta = TemperatureDelta(lhs.Value - rhs.Value)
 
+    /// <param name="lhs">The absolute temperature.</param>
+    /// <param name="rhs">The change in temperature.</param>
     static member (-)(lhs: Temperature, rhs: TemperatureDelta) : Temperature = Temperature(lhs.Value - rhs.Value)
 
 
@@ -480,8 +566,11 @@ type Temperature(kelvin: float) =
 /// </summary>
 [<CustomEquality; NoComparison>]
 type Interval<'Units> =
+    /// <param name="Start">The start of the interval.</param>
+    /// <param name="Finish">The end of the interval.</param>
     | Interval of Start: Quantity<'Units> * Finish: Quantity<'Units>
 
+    /// <param name="obj">The object to compare.</param>
     override this.Equals(obj: obj) : bool =
         match obj with
         | :? Interval<'Units> as other ->

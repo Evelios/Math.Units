@@ -27,6 +27,7 @@ module Math.Units.Pixels
 ///     Pixels.float 1.5
 /// </code>
 /// </summary>
+/// <param name="numPixels">The number of pixels.</param>
 let float (numPixels: float) : Pixels = Quantity numPixels
 
 /// <category>Distance</category>
@@ -41,6 +42,7 @@ let float (numPixels: float) : Pixels = Quantity numPixels
 ///     |&gt; Pixels.toFloat
 /// --&gt; 37.795275590551185
 /// </code></example>
+/// <param name="numPixels">The number of pixels to convert.</param>
 let toFloat (numPixels: Pixels) : float = numPixels.Value
 
 /// <category>Constants</category>
@@ -51,7 +53,8 @@ let toFloat (numPixels: Pixels) : float = numPixels.Value
 let pixel = float 1.
 
 /// <category>Rate</category>
-/// Construct an on-screen speed from a number of pixels per second.
+/// <summary>Construct an on-screen speed from a number of pixels per second.</summary>
+/// <param name="numPixelsPerSecond">The number of pixels per second.</param>
 let pixelsPerSecond (numPixelsPerSecond: float) : Quantity<PixelsPerSecond> = Quantity numPixelsPerSecond
 
 /// <category>Rate</category>
@@ -68,28 +71,35 @@ let pixelsPerSecond (numPixelsPerSecond: float) : Quantity<PixelsPerSecond> = Qu
 /// let dragSpeed |&gt; Pixels.inPixelsPerSecond
 /// --&gt; 125
 /// </code></example>
+/// <param name="numPixelsPerSecond">The speed to convert.</param>
 let inPixelsPerSecond (numPixelsPerSecond: Quantity<PixelsPerSecond>) : float = numPixelsPerSecond.Value
 
 /// <category>Rate</category>
-/// Construct an on-screen acceleration from a number of pixels per second
-/// squared.
+/// <summary>Construct an on-screen acceleration from a number of pixels per second
+/// squared.</summary>
+/// <param name="numPixelsPerSecondSquared">The number of pixels per second squared.</param>
 let pixelsPerSecondSquared (numPixelsPerSecondSquared: float) : Quantity<PixelsPerSecondSquared> =
     Quantity numPixelsPerSecondSquared
 
 /// <category>Rate</category>
-/// Convert an on-screen acceleration to a number of pixels per second squared.
+/// <summary>Convert an on-screen acceleration to a number of pixels per second squared.</summary>
+/// <param name="numPixelsPerSecondSquared">The acceleration to convert.</param>
 let inPixelsPerSecondSquared (numPixelsPerSecondSquared: Quantity<PixelsPerSecondSquared>) : float =
     numPixelsPerSecondSquared.Value
 
 
 /// <category>Area</category>
-/// Construct an on-screen area from a number of square pixels.
+/// <summary>Construct an on-screen area from a number of square pixels.</summary>
+/// <param name="numSquarePixels">The number of square pixels.</param>
 let squarePixels (numSquarePixels: float) : Quantity<SquarePixels> = Quantity numSquarePixels
 
 /// <category>Area</category>
-/// Convert an on-screen area to a number of square pixels.
+/// <summary>Convert an on-screen area to a number of square pixels.</summary>
+/// <example><code>
 ///    area =
 ///        Pixels.int 1928 |&gt; Quantity.times (Pixels.int 1080)
 ///    area |&gt; Pixels.inSquarePixels
 ///    --&gt; 2073600
+/// </code></example>
+/// <param name="numSquarePixels">The area to convert.</param>
 let inSquarePixels (numSquarePixels: Quantity<SquarePixels>) : float = numSquarePixels.Value

@@ -23,10 +23,13 @@ open System
 /// </para>
 ///
 /// <para>
-/// This library does comparison by absolute value comparison through digit
-/// precision. Numbers are considered equal if they are equal when rounded to
+/// This library uses exact structural equality for its core types (e.g. <c>Quantity</c>, <c>Temperature</c>).
+/// This means that <c>Quantity.meters 1.0 = Quantity.meters 1.00000000003</c> will return <c>false</c>.
+/// However, for cases where approximate equality is needed (such as in tests), the
+/// <c>Float.almostEqual</c> function provides comparison based on digit precision.
+/// Numbers are considered equal by <c>almostEqual</c> if they are equal when rounded to
 /// the number of digits as specified by <c>Float.DigitPrecision</c>.
-/// The default is 10 digits, so by default <c>2.0 = 2.00000000003</c> (the 11th digit is a 3).
+/// The default is 10 digits.
 /// </para>
 ///
 /// <para>
@@ -56,14 +59,19 @@ type Float private () =
         with get () = digitPrecision
         and set v = digitPrecision <- v
 
+    /// <summary>The tolerance value used for approximate equality tests.</summary>
     static member Epsilon =
         10. ** (float -Float.DigitPrecision)
 
 /// <category>Other</category>
 module Float =
 
+    /// <summary>
     /// Compare two floating point values for equality. Equality testing is done
     /// based on a tolerance vale specified by <c>Float.Epsilon</c>.
+    /// </summary>
+    /// <param name="a">The first value to compare.</param>
+    /// <param name="b">The second value to compare.</param>
     let almostEqual (a: float) (b: float) : bool =
         if a = b || Double.IsNaN a && Double.IsNaN b then
             true
@@ -81,13 +89,20 @@ module Float =
 
                 diff / divisor <= (Float.Epsilon * 1.5)
 
+    /// <summary>
     /// Round a floating point number to a specified number of digits.
+    /// </summary>
+    /// <param name="digits">The number of decimal places to round to.</param>
+    /// <param name="x">The floating point value to round.</param>
     let roundFloatTo (digits: int) (x: float) = Math.Round(x, digits)
 
 
+    /// <summary>
     /// Round a floating point number to the number of digits specified by
     /// <c>Float.DigitPrecision</c>. By default, this rounds a floating point value
     /// to 10 digits.
+    /// </summary>
+    /// <param name="x">The floating point value to round.</param>
     let roundFloat (x: float) = roundFloatTo Float.DigitPrecision x
 
 
@@ -96,8 +111,12 @@ module Float =
     /// that ranges from zero to one. Passing a parameter value of zero will
     /// return the start value and passing a parameter value of one will return
     /// the end value.
+    /// </summary>
+    /// <param name="start">The start value (at parameter 0.0).</param>
+    /// <param name="finish">The end value (at parameter 1.0).</param>
+    /// <param name="parameter">The interpolation parameter.</param>
     ///
-    /// <example><code lang="fsharp">
+    /// <example id="interpolateFrom-1"><code lang="fsharp">
     ///     Float.interpolateFrom 5 10 0
     ///     // 5
     ///     Float.interpolateFrom 5 10 1
@@ -106,7 +125,7 @@ module Float =
     ///     // 8
     /// </code></example>
     ///
-    /// <example>
+    /// <example id="interpolateFrom-2">
     /// The end value can be less than the start value:
     /// <code lang="fsharp">
     ///     Float.interpolateFrom 10 5 0.1
@@ -114,7 +133,7 @@ module Float =
     /// </code>
     /// </example>
     ///
-    /// <example>
+    /// <example id="interpolateFrom-3">
     /// Parameter values less than zero or greater than one can be used to
     /// extrapolate:
     /// <code lang="fsharp">
@@ -126,7 +145,6 @@ module Float =
     ///     // 11
     /// </code>
     /// </example>
-    /// </summary>
     let interpolateFrom (start: float) (finish: float) (parameter: float) : float =
         if parameter <= 0.5 then
             start + parameter * (finish - start)

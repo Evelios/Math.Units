@@ -22,6 +22,7 @@ type Quantity<'Units> with
     /// functions in this module to avoid accumulating unit ratios. Using
     /// the functions within this module maintains the <c>Unitless</c> type.
     /// </summary>
+    /// <param name="value">The floating point value.</param>
     static member unitless value : Quantity<Unitless> = Quantity value
 
     /// <category>Constants</category>
@@ -58,16 +59,22 @@ type Quantity<'Units> with
     // ---- Unsafe Operations ------------------------------------------------------
 
     /// <category>Conversions</category>
+    /// <summary>
     /// This function allows you to create a quantity of any value and type.
     /// This should only try to use in library functions. This does however
     /// let you create units of generic types and types that are compiler
     /// defined instead of user defined.
+    /// </summary>
+    /// <param name="value">The underlying floating point value.</param>
     static member create<'Units> value : Quantity<'Units> = Quantity value
 
 
     /// <category>Conversions</category>
+    /// <summary>
     /// This function provides access to the floating point value represented by
     /// the quantity. This should only try to use in library functions.
+    /// </summary>
+    /// <param name="quantity">The quantity to unwrap.</param>
     static member unwrap(quantity: Quantity<'Units>) : float = quantity.Value
 
 
@@ -106,6 +113,8 @@ type Quantity<'Units> with
     /// </code>
     /// </example>
     /// </summary>
+    /// <param name="y">The quantity to compare against.</param>
+    /// <param name="x">The quantity being compared.</param>
     static member lessThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x < y
 
 
@@ -130,6 +139,8 @@ type Quantity<'Units> with
     ///    --&gt; [ Length.parsecs 1, Length.lightYears 1 ]
     /// </code></example>
     /// </summary>
+    /// <param name="y">The quantity to compare against.</param>
+    /// <param name="x">The quantity being compared.</param>
     static member greaterThan (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x > y
 
 
@@ -138,6 +149,8 @@ type Quantity<'Units> with
     /// Check if one quantity is less than or equal to another. Note the <b>argument
     /// order!</b>
     /// </summary>
+    /// <param name="y">The quantity to compare against.</param>
+    /// <param name="x">The quantity being compared.</param>
     static member lessThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x <= y
 
 
@@ -146,6 +159,8 @@ type Quantity<'Units> with
     /// Check if one quantity is greater than or equal to another. Note the
     /// <b>argument order!</b>
     /// </summary>
+    /// <param name="y">The quantity to compare against.</param>
+    /// <param name="x">The quantity being compared.</param>
     static member greaterThanOrEqualTo (y: Quantity<'Units>) (x: Quantity<'Units>) : bool = x >= y
 
 
@@ -153,6 +168,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Short form for <c>Quantity.lessThan Quantity.zero</c>.
     /// </summary>
+    /// <param name="x">The quantity to compare against zero.</param>
     static member lessThanZero(x: Quantity<'Units>) : bool =
         x < Quantity LanguagePrimitives.GenericZero
 
@@ -161,6 +177,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Short form for <c>Quantity.greaterThan Quantity.zero</c>.
     /// </summary>
+    /// <param name="x">The quantity to compare against zero.</param>
     static member greaterThanZero(x: Quantity<'Units>) : bool =
         x > Quantity LanguagePrimitives.GenericZero
 
@@ -170,6 +187,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Short form for <c>Quantity.lessThanOrEqualTo Quantity.zero</c>.
     /// </summary>
+    /// <param name="x">The quantity to compare against zero.</param>
     static member lessThanOrEqualToZero(x: Quantity<'Units>) : bool =
         x <= Quantity LanguagePrimitives.GenericZero
 
@@ -178,6 +196,7 @@ type Quantity<'Units> with
     /// <summary>
     /// Short form for <c>Quantity.greaterThanOrEqualTo Quantity.zero</c>.
     /// </summary>
+    /// <param name="x">The quantity to compare against zero.</param>
     static member greaterThanOrEqualToZero(x: Quantity<'Units>) : bool =
         x >= Quantity LanguagePrimitives.GenericZero
 
@@ -203,6 +222,8 @@ type Quantity<'Units> with
     ///         (Duration.hours 1)
     ///     --&gt; -1
     /// </code></example>
+    /// <param name="x">The first quantity.</param>
+    /// <param name="y">The second quantity.</param>
     static member compare (x: Quantity<'Units>) (y: Quantity<'Units>) : int = x.Comparison(y)
 
 
@@ -224,6 +245,9 @@ type Quantity<'Units> with
     ///         (Length.feet 3)
     ///     --&gt; False
     /// </code></example>
+    /// <param name="tolerance">The absolute tolerance.</param>
+    /// <param name="x">The first quantity.</param>
+    /// <param name="y">The second quantity.</param>
     static member equalWithin (tolerance: Quantity<'Units>) (x: Quantity<'Units>) (y: Quantity<'Units>) : bool =
         abs (x - y) <= abs tolerance
         
@@ -247,6 +271,7 @@ type Quantity<'Units> with
     ///     --&gt; Duration.milliseconds 10
     /// </code>
     /// </example>
+    /// <param name="quantity">The quantity.</param>
     static member abs(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity.Abs quantity
 
 
@@ -259,6 +284,8 @@ type Quantity<'Units> with
     ///    Quantity.max (Duration.hours 2) (Duration.minutes 100)
     ///    --&gt; Duration.hours 2
     /// </code></example>
+    /// <param name="x">The first quantity.</param>
+    /// <param name="y">The second quantity.</param>
     static member max (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = max x y
 
 
@@ -271,6 +298,8 @@ type Quantity<'Units> with
     ///    Quantity.min (Duration.hours 2) (Duration.minutes 100)
     ///    --&gt; Duration.minutes 100
     /// </code></example>
+    /// <param name="x">The first quantity.</param>
+    /// <param name="y">The second quantity.</param>
     static member min (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = min x y
 
 
@@ -288,6 +317,7 @@ type Quantity<'Units> with
     ///    Quantity.isInfinite Quantity.negativeInfinity
     ///    --&gt; True
     /// </code></example>
+    /// <param name="quantity">The quantity to check.</param>
     static member isInfinite(quantity: Quantity<'Units>) : bool = Double.IsInfinity quantity.Value
 
 
@@ -302,6 +332,7 @@ type Quantity<'Units> with
     ///    Quantity.isNan (Quantity.sqrt (Area.squareMeters 4))
     ///    --&gt; False
     /// </code></example>
+    /// <param name="quantity">The quantity to check.</param>
     static member isNaN(quantity: Quantity<'Units>) : bool = Double.IsNaN quantity.Value
 
 
@@ -318,6 +349,7 @@ type Quantity<'Units> with
     ///    Quantity.negate (Length.millimeters 10)
     ///    --&gt; Length.millimeters -10
     /// </code></example>
+    /// <param name="value">The quantity to negate.</param>
     static member negate(value: Quantity<'Units>) : Quantity<'Units> = -value
 
 
@@ -330,6 +362,8 @@ type Quantity<'Units> with
     ///    Length.meters 1 |&gt; Quantity.plus (Length.centimeters 5)
     ///    --&gt; Length.centimeters 105
     /// </code></example>
+    /// <param name="y">The quantity to add.</param>
+    /// <param name="x">The quantity to add to.</param>
     static member plus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x + y
 
 
@@ -344,6 +378,8 @@ type Quantity<'Units> with
     ///        (Duration.minutes 15)
     ///    --&gt; Duration.minutes 45
     /// </code></example>
+    /// <param name="x">The first quantity (minuend).</param>
+    /// <param name="y">The second quantity (subtrahend).</param>
     static member difference (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x - y
 
 
@@ -375,6 +411,8 @@ type Quantity<'Units> with
     ///     --&gt; ]
     /// </code>
     /// </note>
+    /// <param name="y">The quantity to subtract.</param>
+    /// <param name="x">The quantity to subtract from.</param>
     static member minus (y: Quantity<'Units>) (x: Quantity<'Units>) : Quantity<'Units> = x - y
 
 
@@ -399,6 +437,8 @@ type Quantity<'Units> with
     ///     --&gt; Volume.liters 10
     /// </code>
     /// </summary>
+    /// <param name="x">The first quantity.</param>
+    /// <param name="y">The second quantity.</param>
     ///
     /// <note>There are other forms of multiplication</note>
 
@@ -417,6 +457,8 @@ type Quantity<'Units> with
     ///     a |&gt; Quantity.times b
     /// </code>
     /// </summary>
+    /// <param name="y">The quantity to multiply by.</param>
+    /// <param name="x">The quantity to be multiplied.</param>
     static member times (y: Quantity<'Units>) (x: Quantity<'Units>) = x * y
 
 
@@ -444,6 +486,8 @@ type Quantity<'Units> with
     ///             (Quantity.toFloat unitlessQuantity)
     /// </code>
     /// </summary>
+    /// <param name="y">The unitless quantity to multiply by.</param>
+    /// <param name="x">The quantity to be multiplied.</param>
     static member timesUnitless (y: Quantity<Unitless>) (x: Quantity<Unitless>) : Quantity<Unitless> =
         Quantity(x.Value * y.Value)
 
@@ -462,6 +506,8 @@ type Quantity<'Units> with
     ///     --&gt; Acceleration.metersPerSecondSquared 2
     /// </code>
     /// </summary>
+    /// <param name="y">The divisor quantity (denominator).</param>
+    /// <param name="x">The dividend quantity (numerator).</param>
     /// <note>There are other forms of division.</note>
     static member over (y: Quantity<'U1>) (x: Quantity<Product<'U1, 'U2>>) : Quantity<'U2> = Quantity(x.Value / y.Value)
 
@@ -478,6 +524,8 @@ type Quantity<'Units> with
     ///     --&gt; Mass.kilograms 20
     /// </code>
     /// </summary>
+    /// <param name="y">The divisor quantity (denominator).</param>
+    /// <param name="x">The dividend quantity (numerator).</param>
     static member over_ (y: Quantity<'U2>) (x: Quantity<Product<'U1, 'U2>>) : Quantity<'U1> =
         Quantity(x.Value / y.Value)
 
@@ -497,7 +545,9 @@ type Quantity<'Units> with
     ///             (Quantity.toFloat unitlessQuantity)
     /// </code>
     /// </summary>
-    static member overUnitless (y: Quantity<Unitless>) (x: Quantity<Unitless>) : Quantity<Unitless> = Quantity(x / y)
+    /// <param name="y">The unitless quantity to divide by.</param>
+    /// <param name="x">The quantity to be divided.</param>
+    static member overUnitless (y: Quantity<Unitless>) (x: Quantity<Unitless>) : Quantity<Unitless> = Quantity(x.Value / y.Value)
 
 
     /// <category>Operators</category>
@@ -508,7 +558,9 @@ type Quantity<'Units> with
     ///    --&gt; 1760
     /// </code>
     /// </summary>
-    static member ratio (x: Quantity<'Units>) (y: Quantity<'Units>) : float = x / y
+    /// <param name="x">The dividend quantity (numerator).</param>
+    /// <param name="y">The divisor quantity (denominator).</param>
+    static member ratio (x: Quantity<'Units>) (y: Quantity<'Units>) : float = x.Value / y.Value
 
 
     /// <category>Operators</category>
@@ -519,6 +571,8 @@ type Quantity<'Units> with
     ///     --&gt; Duration.minutes 90
     /// </code>
     /// </summary>
+    /// <param name="scale">The scaling factor.</param>
+    /// <param name="quantity">The quantity to scale.</param>
     /// <note>There are other forms of multiplication</note>
     static member multiplyBy (scale: float) (quantity: Quantity<'Units>) : Quantity<'Units> =
         Quantity(scale * quantity.Value)
@@ -532,6 +586,8 @@ type Quantity<'Units> with
     ///     Quantity.divideBy 2 (Duration.hours 1)
     ///     --&gt; Duration.minutes 30
     /// </code>
+    /// <param name="divisor">The value to divide by.</param>
+    /// <param name="quantity">The quantity to divide.</param>
     /// <note>There are other forms of division</note>
     static member divideBy (divisor: float) (quantity: Quantity<'Units>) : Quantity<'Units> =
         Quantity(quantity.Value / divisor)
@@ -545,6 +601,7 @@ type Quantity<'Units> with
     ///    --&gt; Duration.hours 1
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to double.</param>
     static member twice(quantity: Quantity<'Units>) : Quantity<'Units> = 2. * quantity
 
 
@@ -556,6 +613,7 @@ type Quantity<'Units> with
     ///    --&gt; Length.centimeters 50
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to halve.</param>
     static member half(quantity: Quantity<'Units>) : Quantity<'Units> = 0.5 * quantity
 
     /// <category>Modifiers</category>
@@ -576,6 +634,9 @@ type Quantity<'Units> with
     ///     --&gt; Angle.degrees -30
     /// </code>
     /// </summary>
+    /// <param name="lower">The lower bound.</param>
+    /// <param name="upper">The upper bound.</param>
+    /// <param name="quantity">The quantity to clamp.</param>
     static member clamp (lower: Quantity<'Units>) (upper: Quantity<'Units>) (quantity: Quantity<'Units>) =
         let clampHelper l u =
             if quantity.Value < lower.Value then
@@ -600,14 +661,19 @@ type Quantity<'Units> with
     /// See also <c>Quantity.squaredUnitless</c>.
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to square.</param>
     static member squared(quantity: Quantity<'Units>) : Quantity<'Units Squared> = quantity * quantity
 
 
     /// <category>Unitless</category>
+    /// <summary>Square a unitless quantity.</summary>
+    /// <param name="quantity">The quantity to square.</param>
     static member squaredUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> =
         Quantity(quantity.Value * quantity.Value)
 
     /// <category>Unitless</category>
+    /// <summary>Take the square root of a unitless quantity.</summary>
+    /// <param name="quantity">The quantity to take the square root of.</param>
     static member sqrtUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> = Quantity(sqrt quantity.Value)
 
     /// <category>Modifiers</category>
@@ -640,6 +706,7 @@ type Quantity<'Units> with
     ///     <c>units</c>
     /// See also <c>Quantity.sqrtUnitless</c>.
     /// </summary>
+    /// <param name="quantity">The squared quantity.</param>
     static member sqrt(quantity: Quantity<'Units Squared>) = Quantity(sqrt quantity.Value)
 
 
@@ -653,16 +720,21 @@ type Quantity<'Units> with
     /// </code>
     /// See also <c>Quantity.cubedUnitless</c>.
     /// </summary>
+    /// <param name="quantity">The quantity to cube.</param>
     static member cubed(quantity: Quantity<'Units>) : Quantity<'Units Cubed> =
         Quantity(quantity.Value * quantity.Value * quantity.Value)
 
 
     /// <category>Unitless</category>
+    /// <summary>Cube a unitless quantity.</summary>
+    /// <param name="quantity">The quantity to cube.</param>
     static member cubedUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> =
         Quantity(quantity.Value * quantity.Value * quantity.Value)
 
 
     /// <category>Modifiers</category>
+    /// <summary>Unsafe cube root conversion.</summary>
+    /// <param name="quantity">The quantity to take the cube root of.</param>
     static member unsafeCbrt(quantity: Quantity<'Units1>) : Quantity<'Units2> =
         if quantity.Value >= 0. then
             Quantity(Math.Pow(quantity.Value, (1. / 3.)))
@@ -681,10 +753,13 @@ type Quantity<'Units> with
     /// </code>
     /// See also <c>Quantity.cbrtUnitless</c>.
     /// </summary>
+    /// <param name="quantity">The cubed quantity.</param>
     static member cbrt(quantity: Quantity<'Units Cubed>) : Quantity<'Units> = Quantity.unsafeCbrt quantity
 
 
     /// <category>Unitless</category>
+    /// <summary>Take the cube root of a unitless quantity.</summary>
+    /// <param name="quantity">The quantity to take the cube root of.</param>
     static member cbrtUnitless(quantity: Quantity<Unitless>) : Quantity<Unitless> = Quantity.unsafeCbrt quantity
 
 
@@ -696,6 +771,7 @@ type Quantity<'Units> with
     ///    --&gt; Quantity.float 0.2
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to take the reciprocal of.</param>
     static member reciprocal(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(1. / quantity.Value)
 
 
@@ -704,6 +780,8 @@ type Quantity<'Units> with
     /// <summary>
     /// Returns the remainder of the modulus operation.
     /// </summary>
+    /// <param name="modulus">The modulus value.</param>
+    /// <param name="quantity">The quantity to be divided.</param>
     /// <note>This returns negative results for remainders on negative numbers.</note>
     static member modBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) : Quantity<'Units> = quantity % modulus
 
@@ -712,6 +790,8 @@ type Quantity<'Units> with
     /// <summary>
     /// Returns the remainder of the modulus operation.
     /// </summary>
+    /// <param name="modulus">The modulus value.</param>
+    /// <param name="quantity">The quantity to be divided.</param>
     /// <note>This returns positive results for remainders on negative numbers.</note>
     static member remainderBy (modulus: Quantity<'Units>) (quantity: Quantity<'Units>) : Quantity<'Units> =
         abs (quantity % modulus)
@@ -749,6 +829,9 @@ type Quantity<'Units> with
     ///     --&gt; Length.meters 11
     /// </code>
     /// </summary>
+    /// <param name="start">The start quantity (at parameter 0.0).</param>
+    /// <param name="finish">The end quantity (at parameter 1.0).</param>
+    /// <param name="parameter">The interpolation parameter.</param>
     static member interpolateFrom
         (start: Quantity<'Units>)
         (finish: Quantity<'Units>)
@@ -775,6 +858,8 @@ type Quantity<'Units> with
     ///    --&gt; Length.meters 7.5
     /// </code>
     /// </summary>
+    /// <param name="x">The first quantity.</param>
+    /// <param name="y">The second quantity.</param>
     static member midpoint (x: Quantity<'Units>) (y: Quantity<'Units>) : Quantity<'Units> = x + 0.5 * (y - x)
 
 
@@ -786,6 +871,9 @@ type Quantity<'Units> with
     /// equal to <c>end</c>. Note that the number of returned quantitys will be one greater than
     /// the number of steps!
     /// </summary>
+    /// <param name="start">The start quantity.</param>
+    /// <param name="finish">The end quantity.</param>
+    /// <param name="steps">The number of steps.</param>
     ///
     /// <code lang="fsharp">
     ///     Quantity.range
@@ -911,12 +999,17 @@ type Quantity<'Units> with
     ///     Quantity.ratio some(someUnits 1)
     /// </code>
     /// </summary>
+    /// <param name="units">The constructor for the desired unit.</param>
+    /// <param name="quantity">The quantity to convert.</param>
     static member in_ (units: float -> Quantity<'Units>) (quantity: Quantity<'Units>) : float = Quantity.ratio quantity (units 1.)
 
 
     // ---- Float Conversions ------------------------------------------------------------------------------------------
 
     /// <category>Modifiers</category>
+    /// <summary>Round a quantity to a specified number of digits.</summary>
+    /// <param name="digits">The number of digits.</param>
+    /// <param name="quantity">The quantity to round.</param>
     static member roundTo (digits: int) (quantity: Quantity<'Units>) : Quantity<'Units> =
         Quantity(Float.roundFloatTo digits quantity.Value)
 
@@ -929,6 +1022,7 @@ type Quantity<'Units> with
     ///     --&gt; Pixels.pixels 4
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to round.</param>
     static member round(quantity: Quantity<'Units>) : Quantity<'Units> = Quantity(round quantity.Value)
 
 
@@ -943,6 +1037,7 @@ type Quantity<'Units> with
     ///     --&gt; Pixels.pixels -3
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to round down.</param>
     static member floor(quantity: Quantity<'Units>) : Quantity<'Units> = floor quantity
 
 
@@ -956,6 +1051,7 @@ type Quantity<'Units> with
     ///     --&gt; Pixels.pixels -2
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to round up.</param>
     /// <note>This may not do what you expect.</note>
     static member ceil(quantity: Quantity<'Units>) : Quantity<'Units> = ceil quantity
 
@@ -967,6 +1063,7 @@ type Quantity<'Units> with
     ///     --&gt; Pixels.pixels -2
     /// </code>
     /// </summary>
+    /// <param name="quantity">The quantity to truncate.</param>
     /// <note>This may not do what you expect.</note>
     static member truncate(quantity: Quantity<'Units>) : Quantity<'Units> = truncate quantity
 
@@ -986,6 +1083,7 @@ type Quantity<'Units> with
     ///    --&gt; Quantity.zero
     /// </code>
     /// </summary>
+    /// <param name="quantities">The list of quantities to sum.</param>
     static member sum(quantities: Quantity<'Units> list) : Quantity<'Units> =
         List.fold Quantity.plus Quantity.zero quantities
 
@@ -1002,6 +1100,7 @@ type Quantity<'Units> with
     ///    --&gt; Some (Mass.pounds 2)
     /// </code>
     /// </summary>
+    /// <param name="quantities">The list of quantities.</param>
     static member minimum(quantities: Quantity<'Units> list) : Quantity<'Units> option =
         match quantities with
         | [] -> None
@@ -1022,6 +1121,7 @@ type Quantity<'Units> with
     ///     --&gt; Some (Mass.tonnes 3)
     /// </code>
     /// </summary>
+    /// <param name="quantities">The list of quantities.</param>
     static member maximum(quantities: Quantity<'Units> list) : Quantity<'Units> option =
         match quantities with
         | [] -> None
@@ -1044,6 +1144,8 @@ type Quantity<'Units> with
     /// If the list is empty, returns <c>None</c>. If multiple items in the list are tied,
     /// then the first one is returned.
     /// </summary>
+    /// <param name="toQuantity">The mapping function.</param>
+    /// <param name="quantities">The list of items.</param>
     static member minimumBy (toQuantity: 'a -> Quantity<'Units>) (quantities: 'a list) : 'a option =
         let rec minimumByHelp currentItem currentValue (currentQuantities: 'a list) =
             match currentQuantities with
@@ -1083,6 +1185,8 @@ type Quantity<'Units> with
     /// If the list is empty, returns <c>None</c>. If multiple items in the list are tied,
     /// then the first one is returned.
     /// </summary>
+    /// <param name="toQuantity">The mapping function.</param>
+    /// <param name="quantities">The list of items.</param>
     static member maximumBy (toQuantity: 'a -> Quantity<'Units>) (quantities: 'a list) : 'a option =
         let rec maximumByHelp currentItem currentValue (currentQuantities: 'a list) =
             match currentQuantities with
@@ -1121,6 +1225,7 @@ type Quantity<'Units> with
     ///    --&gt; ]
     /// </code>
     /// </summary>
+    /// <param name="quantities">The list of quantities to sort.</param>
     static member sort(quantities: Quantity<'Units> list) : Quantity<'Units> list =
         List.sortBy Quantity.unwrap quantities
 
@@ -1129,6 +1234,8 @@ type Quantity<'Units> with
     /// <summary>
     /// Sort an arbitrary list of quantitys by a derived <c>Quantity</c>.
     /// </summary>
+    /// <param name="toQuantity">The mapping function.</param>
+    /// <param name="list">The list of items.</param>
     ///
     /// <example>
     /// If you had
@@ -1192,6 +1299,8 @@ type Quantity<'Units> with
     ///   <item><c>Voltage</c> is <c>Power</c> per <c>Current</c></item>
     /// </list>
     /// </summary>
+    /// <param name="dependentValue">The numerator quantity.</param>
+    /// <param name="independentValue">The denominator quantity.</param>
     /// <note> that there are other forms of division!</note>
     static member rate
         (dependentValue: Quantity<'Dependent>)
@@ -1210,6 +1319,8 @@ type Quantity<'Units> with
     ///     distance |&gt; Quantity.per time
     /// </code>
     /// </summary>
+    /// <param name="independentValue">The denominator quantity.</param>
+    /// <param name="dependentValue">The numerator quantity.</param>
     static member per
         (independentValue: Quantity<'Independent>)
         (dependentValue: Quantity<'Dependent>)
@@ -1252,6 +1363,8 @@ type Quantity<'Units> with
     /// </code>
     ///
     /// </summary>
+    /// <param name="rateOfChange">The rate of change.</param>
+    /// <param name="independentValue">The independent quantity (denominator).</param>
     /// <note>There are other forms of multiplication!</note>
     static member at
         (rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
@@ -1290,9 +1403,11 @@ type Quantity<'Units> with
     ///     --&gt; Quantity IndependentUnits
     /// </code>
     /// </summary>
+    /// <param name="rateOfChange">The rate of change.</param>
+    /// <param name="dependentValue">The dependent quantity (numerator).</param>
     static member at_
         (rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
-        (dependentValue: Quantity<'Depenent>)
+        (dependentValue: Quantity<'Dependent>)
         : Quantity<'Independent> =
         Quantity(dependentValue.Value / rateOfChange.Value)
 
@@ -1308,6 +1423,8 @@ type Quantity<'Units> with
     ///     --&gt; Length.kilometers 50
     /// </code>
     /// </summary>
+    /// <param name="independentValue">The independent quantity (denominator).</param>
+    /// <param name="rateOfChange">The rate of change.</param>
     static member for_
         (independentValue: Quantity<'Independent>)
         (rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
@@ -1327,6 +1444,7 @@ type Quantity<'Units> with
     ///     Quantity.at_ rate
     /// </code>
     /// </summary>
+    /// <param name="rateOfChange">The rate of change.</param>
     static member inverse
         (rateOfChange: Quantity<Rate<'Dependent, 'Independent>>)
         : Quantity<Rate<'Independent, 'Dependent>> =
@@ -1365,6 +1483,8 @@ type Quantity<'Units> with
     ///     --&gt; Speed.metersPerSecond 0.1323
     /// </code>
     /// </summary>
+    /// <param name="firstRate">The first rate of change.</param>
+    /// <param name="secondRate">The second rate of change.</param>
     static member rateProduct
         (firstRate: Quantity<Rate<'U2, 'U1>>)
         (secondRate: Quantity<Rate<'U3, 'U2>>)
@@ -1375,6 +1495,8 @@ type Quantity<'Units> with
 // ---- Module Functions -------------------------------------------------------
 
 /// <category index="1">Unitless</category>
+/// <summary>Create a unitless quantity.</summary>
+/// <param name="value">The floating point value.</param>
 let unitless value = Quantity.unitless value
 
 /// <category index="2">Constants</category>
@@ -1387,190 +1509,296 @@ let positiveInfinity<'Units> : Quantity<'Units> = Quantity.positiveInfinity
 let negativeInfinity<'Units> : Quantity<'Units> = Quantity.negativeInfinity
 
 /// <category index="3">Conversions</category>
+/// <summary>Create a quantity of any value and type.</summary>
+/// <param name="value">The underlying floating point value.</param>
 let create<'Units> value = Quantity.create<'Units> value
 
 /// <category index="3">Conversions</category>
+/// <summary>Unwrap a quantity to its underlying floating point value.</summary>
+/// <param name="quantity">The quantity to unwrap.</param>
 let unwrap quantity = Quantity.unwrap quantity
 
 /// <category index="4">Operators</category>
+/// <param name="y">The quantity to compare against.</param>
+/// <param name="x">The quantity being compared.</param>
 let lessThan y x = Quantity.lessThan y x
 
 /// <category index="4">Operators</category>
+/// <param name="y">The quantity to compare against.</param>
+/// <param name="x">The quantity being compared.</param>
 let greaterThan y x = Quantity.greaterThan y x
 
 /// <category index="4">Operators</category>
+/// <param name="y">The quantity to compare against.</param>
+/// <param name="x">The quantity being compared.</param>
 let lessThanOrEqualTo y x = Quantity.lessThanOrEqualTo y x
 
 /// <category index="4">Operators</category>
+/// <param name="y">The quantity to compare against.</param>
+/// <param name="x">The quantity being compared.</param>
 let greaterThanOrEqualTo y x = Quantity.greaterThanOrEqualTo y x
 
 /// <category index="4">Operators</category>
+/// <param name="x">The quantity to compare against zero.</param>
 let lessThanZero x = Quantity.lessThanZero x
 
 /// <category index="4">Operators</category>
+/// <param name="x">The quantity to compare against zero.</param>
 let greaterThanZero x = Quantity.greaterThanZero x
 
 /// <category index="4">Operators</category>
+/// <param name="x">The quantity to compare against zero.</param>
 let lessThanOrEqualToZero x = Quantity.lessThanOrEqualToZero x
 
 /// <category index="4">Operators</category>
+/// <param name="x">The quantity to compare against zero.</param>
 let greaterThanOrEqualToZero x = Quantity.greaterThanOrEqualToZero x
 
 /// <category index="4">Operators</category>
+/// <param name="x">The first quantity.</param>
+/// <param name="y">The second quantity.</param>
 let compare x y = Quantity.compare x y
 
 /// <category index="4">Operators</category>
+/// <param name="tolerance">The absolute tolerance.</param>
+/// <param name="x">The first quantity.</param>
+/// <param name="y">The second quantity.</param>
 let equalWithin tolerance x y = Quantity.equalWithin tolerance x y
 
 /// <category index="5">Math</category>
+/// <param name="quantity">The quantity.</param>
 let abs quantity = Quantity.abs quantity
 
 /// <category index="5">Math</category>
+/// <param name="x">The first quantity.</param>
+/// <param name="y">The second quantity.</param>
 let max x y = Quantity.max x y
 
 /// <category index="5">Math</category>
+/// <param name="x">The first quantity.</param>
+/// <param name="y">The second quantity.</param>
 let min x y = Quantity.min x y
 
 /// <category index="6">Accessors</category>
+/// <param name="quantity">The quantity to check.</param>
 let isInfinite quantity = Quantity.isInfinite quantity
 
 /// <category index="6">Accessors</category>
+/// <param name="quantity">The quantity to check.</param>
 let isNaN quantity = Quantity.isNaN quantity
 
 /// <category index="7">Arithmetic</category>
+/// <param name="value">The quantity to negate.</param>
 let negate value = Quantity.negate value
 
 /// <category index="7">Arithmetic</category>
+/// <param name="y">The quantity to add.</param>
+/// <param name="x">The quantity to add to.</param>
 let plus y x = Quantity.plus y x
 
 /// <category index="7">Arithmetic</category>
+/// <param name="x">The first quantity.</param>
+/// <param name="y">The second quantity.</param>
 let difference x y = Quantity.difference x y
 
 /// <category index="7">Arithmetic</category>
+/// <param name="y">The quantity to subtract.</param>
+/// <param name="x">The quantity to subtract from.</param>
 let minus y x = Quantity.minus y x
 
 /// <category index="7">Arithmetic</category>
+/// <param name="x">The first quantity.</param>
+/// <param name="y">The second quantity.</param>
 let product x y = Quantity.product x y
 
 /// <category index="7">Arithmetic</category>
+/// <param name="y">The quantity to multiply by.</param>
+/// <param name="x">The quantity to be multiplied.</param>
 let times y x = Quantity.times y x
 
 /// <category index="7">Arithmetic</category>
+/// <param name="y">The unitless quantity to multiply by.</param>
+/// <param name="x">The quantity to be multiplied.</param>
 let timesUnitless y x = Quantity.timesUnitless y x
 
 /// <category index="7">Arithmetic</category>
+/// <param name="y">The divisor quantity (denominator).</param>
+/// <param name="x">The dividend quantity (numerator).</param>
 let over y x = Quantity.over y x
 
 /// <category index="7">Arithmetic</category>
+/// <param name="y">The divisor quantity (denominator).</param>
+/// <param name="x">The dividend quantity (numerator).</param>
 let over_ y x = Quantity.over_ y x
 
 /// <category index="7">Arithmetic</category>
+/// <param name="y">The unitless quantity to divide by.</param>
+/// <param name="x">The quantity to be divided.</param>
 let overUnitless y x = Quantity.overUnitless y x
 
 /// <category index="7">Arithmetic</category>
+/// <param name="x">The dividend quantity.</param>
+/// <param name="y">The divisor quantity.</param>
 let ratio x y = Quantity.ratio x y
 
 /// <category index="7">Arithmetic</category>
+/// <param name="scale">The scaling factor.</param>
+/// <param name="quantity">The quantity to scale.</param>
 let multiplyBy scale quantity = Quantity.multiplyBy scale quantity
 
 /// <category index="7">Arithmetic</category>
+/// <param name="divisor">The value to divide by.</param>
+/// <param name="quantity">The quantity to divide.</param>
 let divideBy divisor quantity = Quantity.divideBy divisor quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to double.</param>
 let twice quantity = Quantity.twice quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to halve.</param>
 let half quantity = Quantity.half quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="lower">The lower bound.</param>
+/// <param name="upper">The upper bound.</param>
+/// <param name="quantity">The quantity to clamp.</param>
 let clamp lower upper quantity = Quantity.clamp lower upper quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to square.</param>
 let squared quantity = Quantity.squared quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to take the square root of.</param>
 let sqrt quantity = Quantity.sqrt quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to cube.</param>
 let cubed quantity = Quantity.cubed quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to take the cube root of.</param>
 let cbrt quantity = Quantity.cbrt quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to take the reciprocal of.</param>
 let reciprocal quantity = Quantity.reciprocal quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="modulus">The modulus value.</param>
+/// <param name="quantity">The quantity to be divided.</param>
 let modBy modulus quantity = Quantity.modBy modulus quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="modulus">The modulus value.</param>
+/// <param name="quantity">The quantity to be divided.</param>
 let remainderBy modulus quantity = Quantity.remainderBy modulus quantity
 
 /// <category index="9">Queries</category>
+/// <param name="start">The start quantity.</param>
+/// <param name="finish">The end quantity.</param>
+/// <param name="parameter">The interpolation parameter.</param>
 let interpolateFrom start finish parameter = Quantity.interpolateFrom start finish parameter
 
 /// <category index="9">Queries</category>
+/// <param name="x">The first quantity.</param>
+/// <param name="y">The second quantity.</param>
 let midpoint x y = Quantity.midpoint x y
 
 /// <category index="9">Queries</category>
+/// <param name="start">The start quantity.</param>
+/// <param name="finish">The end quantity.</param>
+/// <param name="steps">The number of steps.</param>
 let range start finish steps = Quantity.range start finish steps
 
 /// <category index="3">Conversions</category>
+/// <param name="units">The constructor for the desired unit.</param>
+/// <param name="quantity">The quantity to convert.</param>
 let in_ units quantity = Quantity.in_ units quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="digits">The number of digits.</param>
+/// <param name="quantity">The quantity to round.</param>
 let roundTo digits quantity = Quantity.roundTo digits quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to round.</param>
 let round quantity = Quantity.round quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to round down.</param>
 let floor quantity = Quantity.floor quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to round up.</param>
 let ceil quantity = Quantity.ceil quantity
 
 /// <category index="8">Modifiers</category>
+/// <param name="quantity">The quantity to truncate.</param>
 let truncate quantity = Quantity.truncate quantity
 
 /// <category index="10">List Functions</category>
+/// <param name="quantities">The list of quantities to sum.</param>
 let sum quantities = Quantity.sum quantities
 
 /// <category index="10">List Functions</category>
+/// <param name="quantities">The list of quantities.</param>
 let minimum quantities = Quantity.minimum quantities
 
 /// <category index="10">List Functions</category>
+/// <param name="quantities">The list of quantities.</param>
 let maximum quantities = Quantity.maximum quantities
 
 /// <category index="10">List Functions</category>
+/// <param name="toQuantity">The mapping function.</param>
+/// <param name="quantities">The list of items.</param>
 let minimumBy toQuantity quantities = Quantity.minimumBy toQuantity quantities
 
 /// <category index="10">List Functions</category>
+/// <param name="toQuantity">The mapping function.</param>
+/// <param name="quantities">The list of items.</param>
 let maximumBy toQuantity quantities = Quantity.maximumBy toQuantity quantities
 
 /// <category index="10">List Functions</category>
+/// <param name="quantities">The list of quantities to sort.</param>
 let sort quantities = Quantity.sort quantities
 
 /// <category index="10">List Functions</category>
+/// <param name="toQuantity">The mapping function.</param>
+/// <param name="list">The list of items.</param>
 let sortBy toQuantity list = Quantity.sortBy toQuantity list
 
 /// <category index="11">Rates</category>
+/// <param name="dependentValue">The numerator quantity.</param>
+/// <param name="independentValue">The denominator quantity.</param>
 let rate dependentValue independentValue = Quantity.rate dependentValue independentValue
 
 /// <category index="11">Rates</category>
+/// <param name="independentValue">The denominator quantity.</param>
+/// <param name="dependentValue">The numerator quantity.</param>
 let per independentValue dependentValue = Quantity.per independentValue dependentValue
 
 /// <category index="11">Rates</category>
+/// <param name="rateOfChange">The rate of change.</param>
+/// <param name="independentValue">The independent quantity.</param>
 let at rateOfChange independentValue = Quantity.at rateOfChange independentValue
 
 /// <category index="11">Rates</category>
+/// <param name="rateOfChange">The rate of change.</param>
+/// <param name="dependentValue">The dependent quantity.</param>
 let at_ rateOfChange dependentValue = Quantity.at_ rateOfChange dependentValue
 
 /// <category index="11">Rates</category>
+/// <param name="independentValue">The independent quantity.</param>
+/// <param name="rateOfChange">The rate of change.</param>
 let for_ independentValue rateOfChange = Quantity.for_ independentValue rateOfChange
 
 /// <category index="11">Rates</category>
+/// <param name="rateOfChange">The rate of change.</param>
 let inverse rateOfChange = Quantity.inverse rateOfChange
 
 /// <category index="11">Rates</category>
+/// <param name="firstRate">The first rate.</param>
+/// <param name="secondRate">The second rate.</param>
 let rateProduct firstRate secondRate = Quantity.rateProduct firstRate secondRate

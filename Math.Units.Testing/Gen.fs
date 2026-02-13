@@ -1,7 +1,11 @@
 namespace Math.Units.Test
 
-type 'a Positive = Positive of 'a
-type 'a ZeroToOne = ZeroToOne of 'a
+/// <summary>Represents a positive value of type 'a.</summary>
+/// <param name="Item">The underlying value.</param>
+type 'a Positive = Positive of Item: 'a
+/// <summary>Represents a value of type 'a in the range [0, 1].</summary>
+/// <param name="Item">The underlying value.</param>
+type 'a ZeroToOne = ZeroToOne of Item: 'a
 
 /// <summary>
 /// Fuzz testing generator for components created in the <c>Math.Units</c> module.
@@ -25,12 +29,16 @@ module Gen =
     /// Generate a random integer value in the range [low, high] inclusive of
     /// both the lower and upper limit.
     /// </summary>
+    /// <param name="low">The lower bound.</param>
+    /// <param name="high">The upper bound.</param>
     let intBetween (low: int) (high: int) = Gen.choose (low, high)
 
     /// <summary>
     /// Generate a random float value in the range [low, high] inclusive of
     /// both the lower and upper limit.
     /// </summary>
+    /// <param name="low">The lower bound.</param>
+    /// <param name="high">The upper bound.</param>
     let floatBetween (low: float) (high: float) : Gen<float> =
         Gen.map (fun scale -> (low + (high - low)) * scale) rand
 
@@ -61,6 +69,7 @@ module Gen =
     let quantity<'Units> : Gen<Quantity<'Units>> =
         Gen.map Quantity float
 
+    /// <summary>Generate a random temperature.</summary>
     let temperature: Gen<Temperature> =
         Gen.map Temperature.kelvins positiveFloat
 
@@ -74,39 +83,55 @@ module Gen =
     /// <summary>
     /// Generate a random quantity value within a given range.
     /// </summary>
+    /// <param name="low">The lower bound.</param>
+    /// <param name="high">The upper bound.</param>
     let quantityBetween (low: Quantity<'Units>) (high: Quantity<'Units>) : Gen<Quantity<'Units>> =
 
         Gen.map Quantity (floatBetween low.Value high.Value)
 
+    /// <summary>Generate a random interval.</summary>
     let interval<'Units> : Gen<Interval<'Units>> =
         Gen.map2 Interval.from quantity<'Units> quantity<'Units>
 
-    ///
+    /// <summary>FsCheck configuration for Math.Units types.</summary>
     type ArbGeometry =
+        /// <summary>Arbitrary float.</summary>
         static member Float() = Arb.fromGen float
+        /// <summary>Register Arbitrary instances.</summary>
         static member Register() = Arb.register<ArbGeometry> () |> ignore
+        /// <summary>Arbitrary quantity.</summary>
         static member Quantity() = Arb.fromGen quantity
+        /// <summary>Arbitrary temperature.</summary>
         static member Temperature() = Arb.fromGen temperature
+        /// <summary>Arbitrary interval.</summary>
         static member Interval() = Arb.fromGen interval
+        /// <summary>Arbitrary zero-to-one float.</summary>
         static member ZeroToOneFloat() = Arb.fromGen zeroToOneFloat
 
-///
+/// <summary>FsCheck Arbitrary instances for Math.Units types.</summary>
 module Arb =
     open FsCheck
 
     open Math.Units
 
+    /// <summary>Arbitrary float.</summary>
     let float: Arbitrary<float> =
         Arb.fromGen Gen.float
 
+    /// <summary>Arbitrary float between two values.</summary>
+    /// <param name="start">The start value.</param>
+    /// <param name="finish">The end value.</param>
     let floatBetween start finish : Arbitrary<float> =
         Gen.floatBetween start finish |> Arb.fromGen
 
+    /// <summary>Arbitrary quantity.</summary>
     let quantity<'Units> : Arbitrary<Quantity<'Units>> =
         Gen.quantity |> Arb.fromGen
 
+    /// <summary>Arbitrary temperature.</summary>
     let temperature: Arbitrary<Temperature> =
         Gen.temperature |> Arb.fromGen
 
+    /// <summary>Arbitrary interval.</summary>
     let interval<'Units> : Arbitrary<Interval<'Units>> =
         Gen.interval |> Arb.fromGen

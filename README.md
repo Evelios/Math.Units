@@ -58,13 +58,13 @@ dotnet test
 To generate the documentation
 ```bash
 dotnet tool restore
-dotnet fsdocs watch --input Docs --eval
+dotnet fsdocs watch --eval
 ```
 
 To generate the documentation for a clean release build
 ```bash
-dotnet fsdocs watch --projects Math.Units --input Docs --eval --properties Configuration=Release
-dotnet build --configuration Release && dotnet fsdocs watch --projects Math.Units --input Docs --eval --properties Configuration=Release --clean
+dotnet fsdocs watch --projects Math.Units --eval --properties Configuration=Release
+dotnet build --configuration Release && dotnet fsdocs watch --projects Math.Units --eval --properties Configuration=Release --clean
 ```
 
 ## Credits

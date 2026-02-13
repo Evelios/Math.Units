@@ -21,11 +21,13 @@ module Math.Units.Illuminance
 /// <a href="https://en.wikipedia.org/wiki/Lux#Illuminance">here</a>
 /// for a table of illuminance values in lux for common environments.
 /// </summary>
+/// <param name="numLux">The number of lux.</param>
 let lux (numLux: float) : Illuminance = Quantity numLux
 
 /// <category>Conversions</category>
-/// Convert an illuminance value to a number of lux.
-let inLux (numLux: Illuminance) : float = numLux.Value
+/// <summary>Convert an illuminance value to a number of lux.</summary>
+/// <param name="illuminance">The illuminance to convert.</param>
+let inLux (illuminance: Illuminance) : float = illuminance.Value
 
 /// <category>Conversions</category>
 /// <summary>
@@ -34,12 +36,14 @@ let inLux (numLux: Illuminance) : float = numLux.Value
 /// One foot-candle is equal to one lumen per
 /// square foot.
 /// </summary>
+/// <param name="numFootCandles">The number of foot-candles.</param>
 let footCandles (numFootCandles: float) : Illuminance =
     LuminousFlux.lumens numFootCandles
     |> Quantity.per (Area.squareFeet 1)
 
 /// <category>Conversions</category>
-/// Convert an illuminance value to a number of foot-candles.
+/// <summary>Convert an illuminance value to a number of foot-candles.</summary>
+/// <param name="illuminance">The illuminance to convert.</param>
 let inFootCandles (illuminance: Illuminance) : float =
     Area.squareFeet 1
     |> Quantity.at illuminance

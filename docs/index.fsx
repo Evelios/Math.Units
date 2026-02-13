@@ -13,7 +13,13 @@ Note: This framework is currently in __alpha__ development.
 *)
 (*** hide ***)
 
-#r "../Math.Units/bin/Release/net6.0/Math.Units.dll"
+#I "../Math.Units/bin/Release/net8.0"
+#I "../Math.Units/bin/Debug/net8.0"
+#I "../Math.Units/bin/Release/net9.0"
+#I "../Math.Units/bin/Debug/net9.0"
+#I "../Math.Units/bin/Release/net10.0"
+#I "../Math.Units/bin/Debug/net10.0"
+#r "Math.Units.dll"
 
 open System
 
@@ -27,8 +33,6 @@ open Math.Units
 
 (**
 # Math.Units
-
-_Release notes for 2.0 are [here](https://github.com/ianmackenzie/elm-units/releases/tag/2.0.0)._
 
 [Math.Units](./reference/math-units.html) is useful if you want to store, pass around, convert between,
 compare, or do arithmetic on:
@@ -204,15 +208,30 @@ To take code that currently uses raw `float` values and convert it to using
 All values produced by this package (with the exception of `Temperature`, which
 is a bit of a special case) are actually values of type `Quantity`, roughly
 defined as...
-*)
 
+```fsharp
 type Quantity<'Units>(quantity: float) =
     member this.Value = quantity
+```
 
+For example, `Length` is defined as
 
-(** For example, `Length` is defined as *)
+```fsharp
 type Meters = Meters
 type Length = Quantity<Meters>
+```
+*)
+
+(*** hide ***)
+module Examples =
+    type Quantity<'Units>(quantity: float) =
+        member this.Value = quantity
+
+
+    // For example, `Length` is defined as
+    type Meters = Meters
+    type Length = Quantity<Meters>
+(***)
 
 (**
 This means that a `Length` is internally stored as a `float` number of `Meters`,
@@ -282,7 +301,7 @@ functions in the `Quantity` module, used in different contexts:
   - multiply a `Mass` by an `Acceleration` to get a `Force`
   - divide a `Volume` by an `Area` to get a `Length`
   - divide a `Force` by a `Mass` to get an `Acceleration`
-- `rate`, `per`, `at`, `at_` and `for` are used to work with rates of change:
+- `rate`, `per`, `at`, `at_` and `for_` are used to work with rates of change:
   - divide `Length` by `Duration` to get `Speed`
   - multiply `Speed` by `Duration` to get `Length`
   - divide `Length` by `Speed` to get `Duration`
@@ -432,7 +451,7 @@ you'd need to create a custom function like
 *)
 
 let kineticEnergy (m: Mass) (v: Speed) : Energy =
-    Quantity.create (0.5 * m.Value * v.Value * v.Value)
+    Math.Units.Quantity<Joules>(0.5 * m.Value * v.Value * v.Value)
 
 (**
 In the _implementation_ of `kineticEnergy`, you're working with raw `Float`

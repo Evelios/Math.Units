@@ -28,24 +28,28 @@ open System
 /// Construct a luminance value from a number of nits. One nit is equal to one
 /// <b>candela</b> per square meter, or equivalently one <b>lux</b> per <b>steradian</b>.
 /// </summary>
+/// <param name="numNits">The number of nits.</param>
 let nits (numNits: float) : Luminance = Quantity numNits
 
 /// <category>Conversions</category>
-/// Convert a luminance value to a number of nits.
-let inNits (numNits: Luminance) : float = numNits.Value
+/// <summary>Convert a luminance value to a number of nits.</summary>
+/// <param name="luminance">The luminance value to convert.</param>
+let inNits (luminance: Luminance) : float = luminance.Value
 
 /// <category>Conversions</category>
 /// <summary>
 /// Construct a luminance value from a number of
 /// <a href="https://en.wikipedia.org/wiki/Foot-lambert">foot-lamberts</a>.
 /// </summary>
+/// <param name="numFootLamberts">The number of foot-lamberts.</param>
 let footLamberts (numFootLamberts: float) : Luminance =
     LuminousIntensity.candelas numFootLamberts
     |> Quantity.per (Area.squareFeet Math.PI)
 
 
 /// <category>Conversions</category>
-/// Convert a luminance value to a number of foot-lamberts.
+/// <summary>Convert a luminance value to a number of foot-lamberts.</summary>
+/// <param name="luminance">The luminance value to convert.</param>
 let inFootLamberts (luminance: Luminance) : float =
     Area.squareFeet Math.PI
     |> Quantity.at luminance

@@ -35,33 +35,39 @@ module Math.Units.AngularAcceleration
 open System
 
 /// <category>Conversions</category>
-/// Construct an angular acceleration from a number of radians per second squared.
+/// <summary>Construct an angular acceleration from a number of radians per second squared.</summary>
+/// <param name="numRadiansPerSecondSquared">The number of radians per second squared.</param>
 let radiansPerSecondSquared (numRadiansPerSecondSquared: float) : AngularAcceleration =
     Quantity numRadiansPerSecondSquared
 
 /// <category>Conversions</category>
-/// Convert an angular acceleration to a number of radians per second squared.
-let inRadiansPerSecondSquared (numRadiansPerSecondSquared: AngularAcceleration) : float =
-    numRadiansPerSecondSquared.Value
+/// <summary>Convert an angular acceleration to a number of radians per second squared.</summary>
+/// <param name="angularAcceleration">The angular acceleration to convert.</param>
+let inRadiansPerSecondSquared (angularAcceleration: AngularAcceleration) : float =
+    angularAcceleration.Value
 
 /// <category>Conversions</category>
-/// Construct an angular acceleration from a number of degrees per second squared.
+/// <summary>Construct an angular acceleration from a number of degrees per second squared.</summary>
+/// <param name="numDegreesPerSecondSquared">The number of degrees per second squared.</param>
 let degreesPerSecondSquared (numDegreesPerSecondSquared: float) : AngularAcceleration =
     radiansPerSecondSquared (Math.PI / 180. * numDegreesPerSecondSquared)
 
 /// <category>Conversions</category>
-/// Convert an angular acceleration to a number of degrees per second squared.
+/// <summary>Convert an angular acceleration to a number of degrees per second squared.</summary>
+/// <param name="angularAcceleration">The angular acceleration to convert.</param>
 let inDegreesPerSecondSquared (angularAcceleration: AngularAcceleration) =
     inRadiansPerSecondSquared angularAcceleration
     / (Math.PI / 180.)
 
 /// <category>Conversions</category>
-/// Construct an angular acceleration from a number of turns per second squared.
+/// <summary>Construct an angular acceleration from a number of turns per second squared.</summary>
+/// <param name="numTurnsPerSecondSquared">The number of turns per second squared.</param>
 let turnsPerSecondSquared (numTurnsPerSecondSquared: float) : AngularAcceleration =
     radiansPerSecondSquared (2. * Math.PI * numTurnsPerSecondSquared)
 
 /// <category>Conversions</category>
-/// Convert an angular acceleration to a number of turns per second squared.
+/// <summary>Convert an angular acceleration to a number of turns per second squared.</summary>
+/// <param name="angularAcceleration">The angular acceleration to convert.</param>
 let inTurnsPerSecondSquared (angularAcceleration: AngularAcceleration) : float =
     inRadiansPerSecondSquared angularAcceleration
     / (2. * Math.PI)

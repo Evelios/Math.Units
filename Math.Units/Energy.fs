@@ -18,27 +18,33 @@
 module Math.Units.Energy
 
 /// <category>Conversions</category>
-/// Construct an energy value from a number of joules.
+/// <summary>Construct an energy value from a number of joules.</summary>
+/// <param name="numJoules">The number of joules.</param>
 let joules (numJoules: float) : Energy = Quantity numJoules
 
 /// <category>Conversions</category>
-/// Convert an energy value to a number of joules.
-let inJoules (numJoules: Energy) : float = numJoules.Value
+/// <summary>Convert an energy value to a number of joules.</summary>
+/// <param name="energy">The energy value to convert.</param>
+let inJoules (energy: Energy) : float = energy.Value
 
 /// <category>Conversions</category>
-/// Construct an energy value from a number of kilojoules.
+/// <summary>Construct an energy value from a number of kilojoules.</summary>
+/// <param name="numKilojoules">The number of kilojoules.</param>
 let kilojoules (numKilojoules: float) : Energy = joules (1000. * numKilojoules)
 
 /// <category>Conversions</category>
-/// Convert an energy value to a number of kilojoules.
+/// <summary>Convert an energy value to a number of kilojoules.</summary>
+/// <param name="energy">The energy value to convert.</param>
 let inKilojoules (energy: Energy) : float = inJoules energy / 1000.
 
 /// <category>Conversions</category>
-/// Construct an energy value from a number of megajoules.
+/// <summary>Construct an energy value from a number of megajoules.</summary>
+/// <param name="numMegajoules">The number of megajoules.</param>
 let megajoules (numMegajoules: float) : Energy = joules (1.0e6 * numMegajoules)
 
 /// <category>Conversions</category>
-/// Convert an energy value to a number of megajoules.
+/// <summary>Convert an energy value to a number of megajoules.</summary>
+/// <param name="energy">The energy value to convert.</param>
 let inMegajoules (energy: Energy) : float = inJoules energy / 1.0e6
 
 /// <category>Conversions</category>
@@ -49,8 +55,10 @@ let inMegajoules (energy: Energy) : float = inJoules energy / 1.0e6
 ///    --&gt; Energy.megajoules 3.6
 /// </code>
 /// </summary>
+/// <param name="numKilowattHours">The number of kilowatt hours.</param>
 let kilowattHours (numKilowattHours: float) : Energy = joules (3.6e6 * numKilowattHours)
 
 /// <category>Conversions</category>
-/// Convert an energy value to a number of kilowatt hours.
+/// <summary>Convert an energy value to a number of kilowatt hours.</summary>
+/// <param name="energy">The energy value to convert.</param>
 let inKilowattHours (energy: Energy) : float = inJoules energy / 3.6e6

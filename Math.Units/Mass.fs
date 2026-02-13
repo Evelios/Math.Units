@@ -7,31 +7,38 @@
 module Math.Units.Mass
 
 /// <category>Metric</category>
-/// Construct a mass from a number of kilograms.
+/// <summary>Construct a mass from a number of kilograms.</summary>
+/// <param name="numKilograms">The number of kilograms.</param>
 let kilograms (numKilograms: float) : Mass = Quantity numKilograms
 
 /// <category>Metric</category>
-/// Convert a mass to a number of kilograms.
-let inKilograms (numKilograms: Mass) : float = numKilograms.Value
+/// <summary>Convert a mass to a number of kilograms.</summary>
+/// <param name="mass">The mass to convert.</param>
+let inKilograms (mass: Mass) : float = mass.Value
 
 /// <category>Metric</category>
-/// Construct a mass from a number of grams.
+/// <summary>Construct a mass from a number of grams.</summary>
+/// <param name="numGrams">The number of grams.</param>
 let grams (numGrams: float) : Mass = kilograms (0.001 * numGrams)
 
 /// <category>Metric</category>
-/// Convert a mass to a number of grams.
+/// <summary>Convert a mass to a number of grams.</summary>
+/// <param name="mass">The mass to convert.</param>
 let inGrams (mass: Mass) : float = 1000. * inKilograms mass
 
 /// <category>Imperial</category>
-/// Construct a mass from a number of pounds.
+/// <summary>Construct a mass from a number of pounds.</summary>
+/// <param name="numPounds">The number of pounds.</param>
 let pounds (numPounds: float) : Mass = kilograms (Constants.pound * numPounds)
 
 /// <category>Imperial</category>
-/// Convert a mass to a number of pounds.
+/// <summary>Convert a mass to a number of pounds.</summary>
+/// <param name="mass">The mass to convert.</param>
 let inPounds (mass: Mass) : float = inKilograms mass / Constants.pound
 
 /// <category>Imperial</category>
-/// Construct a mass from a number of ounces.
+/// <summary>Construct a mass from a number of ounces.</summary>
+/// <param name="numOunces">The number of ounces.</param>
 let ounces (numOunces: float) : Mass = kilograms (Constants.ounce * numOunces)
 
 /// <category>Imperial</category>
@@ -42,6 +49,7 @@ let ounces (numOunces: float) : Mass = kilograms (Constants.ounce * numOunces)
 ///    --&gt; 16
 /// </code>
 /// </summary>
+/// <param name="mass">The mass to convert.</param>
 let inOunces (mass: Mass) : float = inKilograms mass / Constants.ounce
 
 /// <category>Imperial</category>
@@ -52,10 +60,12 @@ let inOunces (mass: Mass) : float = inKilograms mass / Constants.ounce
 ///    --&gt; Mass.kilograms 1000
 /// </code>
 /// </summary>
+/// <param name="numTonnes">The number of metric tons.</param>
 let metricTons (numTonnes: float) : Mass = kilograms (1000. * numTonnes)
 
 /// <category>Imperial</category>
-/// Convert a mass to a number of metric tons.
+/// <summary>Convert a mass to a number of metric tons.</summary>
+/// <param name="mass">The mass to convert.</param>
 let inMetricTons (mass: Mass) : float = 0.001 * inKilograms mass
 
 /// <category>Imperial</category>
@@ -67,11 +77,13 @@ let inMetricTons (mass: Mass) : float = 0.001 * inKilograms mass
 ///     --&gt; Mass.pounds 2000
 /// </code>
 /// </summary>
+/// <param name="numShortTons">The number of short tons.</param>
 let shortTons (numShortTons: float) : Mass =
     kilograms (Constants.shortTon * numShortTons)
 
 /// <category>Imperial</category>
-/// Convert a mass to a number of short tons.
+/// <summary>Convert a mass to a number of short tons.</summary>
+/// <param name="mass">The mass to convert.</param>
 let inShortTons (mass: Mass) : float = inKilograms mass / Constants.shortTon
 
 /// <category>Imperial</category>
@@ -84,11 +96,13 @@ let inShortTons (mass: Mass) : float = inKilograms mass / Constants.shortTon
 ///     --&gt; Mass.pounds 2240
 /// </code>
 /// </summary>
+/// <param name="numLongTons">The number of long tons.</param>
 let longTons (numLongTons: float) : Mass =
     kilograms (Constants.longTon * numLongTons)
 
 /// <category>Imperial</category>
-/// Convert a mass to a number of long tons.
+/// <summary>Convert a mass to a number of long tons.</summary>
+/// <param name="mass">The mass to convert.</param>
 let inLongTons (mass: Mass) : float = inKilograms mass / Constants.longTon
 
 /// <category>Constants</category>

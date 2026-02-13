@@ -36,36 +36,42 @@ module Math.Units.Power
 /// <summary>
 /// Construct a <c>Power</c> value from a number of watts.
 /// </summary>
+/// <param name="numWatts">The number of watts.</param>
 let watts (numWatts: float) : Power = Quantity numWatts
 
 /// <category>Metric</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of watts.
 /// </summary>
-let inWatts (numWatts: Power) : float = numWatts.Value
+/// <param name="power">The power value to convert.</param>
+let inWatts (power: Power) : float = power.Value
 
 /// <category>Metric</category>
 /// <summary>
 /// Construct a <c>Power</c> value from a number of kilowatts.
 /// </summary>
+/// <param name="numKilowatts">The number of kilowatts.</param>
 let kilowatts (numKilowatts: float) : Power = watts (1000. * numKilowatts)
 
 /// <category>Metric</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of kilowatts.
 /// </summary>
+/// <param name="power">The power value to convert.</param>
 let inKilowatts (power: Power) : float = inWatts power / 1000.
 
 /// <category>Conversions</category>
 /// <summary>
 /// Construct a <c>Power</c> value from a number of megawatts.
 /// </summary>
+/// <param name="numMegawatts">The number of megawatts.</param>
 let megawatts (numMegawatts: float) : Power = watts (1.0e6 * numMegawatts)
 
 /// <category>Metric</category>
 /// <summary>
 /// Convert a <c>Power</c> value to a number of megawatts.
 /// </summary>
+/// <param name="power">The power value to convert.</param>
 let inMegawatts (power: Power) : float = inWatts power / 1.0e6
 
 /// <category>Horsepower</category>
@@ -77,6 +83,7 @@ let inMegawatts (power: Power) : float = inWatts power / 1.0e6
 ///     --&gt; Power.watts 735.49875
 /// </code>
 /// </summary>
+/// <param name="numMetricHorsepower">The number of metric horsepower.</param>
 let metricHorsepower (numMetricHorsepower: float) : Power =
     watts (Constants.metricHorsepower * numMetricHorsepower)
 
@@ -84,6 +91,7 @@ let metricHorsepower (numMetricHorsepower: float) : Power =
 /// <summary>
 /// Convert a <c>Power</c> value to a number of metric horsepower.
 /// </summary>
+/// <param name="power">The power value to convert.</param>
 let inMetricHorsepower (power: Power) : float =
     inWatts power / Constants.metricHorsepower
 
@@ -96,6 +104,7 @@ let inMetricHorsepower (power: Power) : float =
 ///     --&gt; Power.watts 745.6998715822702
 /// </code>
 /// </summary>
+/// <param name="numMechanicalHorsepower">The number of mechanical horsepower.</param>
 let mechanicalHorsepower (numMechanicalHorsepower: float) : Power =
     watts (
         numMechanicalHorsepower
@@ -106,6 +115,7 @@ let mechanicalHorsepower (numMechanicalHorsepower: float) : Power =
 /// <summary>
 /// Convert a <c>Power</c> value to a number of mechanical horsepower.
 /// </summary>
+/// <param name="power">The power value to convert.</param>
 let inMechanicalHorsepower (power: Power) : float =
     inWatts power / Constants.mechanicalHorsepower
 
@@ -118,6 +128,7 @@ let inMechanicalHorsepower (power: Power) : float =
 ///     --&gt; Power.watts 746
 /// </code>
 /// </summary>
+/// <param name="numElectricalHorsepower">The number of electrical horsepower.</param>
 let electricalHorsepower (numElectricalHorsepower: float) : Power =
     watts (
         Constants.electricalHorsepower
@@ -128,5 +139,6 @@ let electricalHorsepower (numElectricalHorsepower: float) : Power =
 /// <summary>
 /// Convert a <c>Power</c> value to a number of electrical horsepower.
 /// </summary>
+/// <param name="power">The power value to convert.</param>
 let inElectricalHorsepower (power: Power) : float =
     inWatts power / Constants.electricalHorsepower

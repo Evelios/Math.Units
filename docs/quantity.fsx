@@ -11,7 +11,13 @@ index: 4
 *)
 (*** hide ***)
 
-#r "../Math.Units/bin/Release/net6.0/Math.Units.dll"
+#I "../Math.Units/bin/Release/net8.0"
+#I "../Math.Units/bin/Debug/net8.0"
+#I "../Math.Units/bin/Release/net9.0"
+#I "../Math.Units/bin/Debug/net9.0"
+#I "../Math.Units/bin/Release/net10.0"
+#I "../Math.Units/bin/Debug/net10.0"
+#r "Math.Units.dll"
 
 open Math.Units
 
@@ -59,24 +65,20 @@ Unitless`).
 
 ## Working with rates
 
-@docs rate, per, at, at_, for, inverse, rateProduct
+@docs rate, per, at, at_, for_, inverse, rateProduct
 
 ## Modular arithmetic
 
 `modBy` and `remainderBy` behave just like the [`modBy`](https://package.elm-lang.org/packages/elm/core/latest/Basics#modBy)
 and [`remainderBy`](https://package.elm-lang.org/packages/elm/core/latest/Basics#remainderBy)
 functions from Elm's built-in `Basics` module, but work on `Quantity` values
-instead of raw `Int`s. `fractionalModBy` and `fractionalRemainderBy` have the
-same behaviour but extended to `Float`-valued quantities.
+instead of raw `Int`s.
     import Pixels exposing (pixels)
     import Length exposing (meters, centimeters)
     Quantity.modBy (pixels 4) (pixels 11)
     --> pixels 3
-    Quantity.fractionalModBy (meters 0.5)
-        (centimeters 162.3)
-    --> centimeters 12.3
     
-@docs modBy, fractionalModBy, remainderBy, fractionalRemainderBy
+@docs modBy, remainderBy
 
 ## Miscellaneous
 
@@ -142,7 +144,7 @@ that can come up when authoring packages that use `elm-units`.
 | *        | Quantity  | float     | Quantity    | `lhs * 0.5`      | `Quantity.multiplyBy` |
 | *        | float     | Quantity  | Quantity    | `0.5 * rhs`      | `Quantity.multiplyBy` |
 | /        | Quantity  | Quantity  | float       | `lhs / rhs`      | `Quantity.ratio` |
-| /        | Quantity  | float     | Quantity    | `lhs / 4.`       | `Quantity.dividedBy` |
+| /        | Quantity  | float     | Quantity    | `lhs / 4.`       | `Quantity.divideBy` |
 
 *)
 
@@ -153,9 +155,9 @@ that can come up when authoring packages that use `elm-units`.
 | abs      | Quantity  | Quantity    | `-length`        | `Quantity.abs` |
 | min      | Quantity  | Quantity    | `lhs + rhs`      | `Quantity.min` |
 | max      | Quantity  | Quantity    | `lhs - rhs`      | `Quantity.max` |
-| sqrt     | Quantity<'Units>  | Quantity<'Units Squared>  | `lhs * 0.5`      | `Quantity.sqrt` |
+| sqrt     | Quantity<'Units Squared>  | Quantity<'Units>  | `lhs * 0.5`      | `Quantity.sqrt` |
 | floor    | Quantity  | Quantity    | `0.5 * rhs`      | `Quantity.floor` |
-| ceil     | Quantity  | Length      | `angle / length` | `Quantity.ceil` |
+| ceil     | Quantity  | Quantity      | `angle / length` | `Quantity.ceil` |
 | round    | Quantity  | Quantity      | `length / angle` | `Quantity.round` |
 | truncate | Quantity  | Quantity    | `lhs / 4.`       | `Quantity.truncate` |
 

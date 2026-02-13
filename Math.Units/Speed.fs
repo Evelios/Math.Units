@@ -27,40 +27,48 @@
 module Math.Units.Speed
 
 /// <category>Conversions</category>
-/// Construct a speed from a number of meters per second.
+/// <summary>Construct a speed from a number of meters per second.</summary>
+/// <param name="numMetersPerSecond">The number of meters per second.</param>
 let metersPerSecond (numMetersPerSecond: float) : Speed = Quantity numMetersPerSecond
 
 /// <category>Conversions</category>
-/// Convert a speed to a number of meters per second.
-let inMetersPerSecond (numMetersPerSecond: Speed) : float = numMetersPerSecond.Value
+/// <summary>Convert a speed to a number of meters per second.</summary>
+/// <param name="speed">The speed value to convert.</param>
+let inMetersPerSecond (speed: Speed) : float = speed.Value
 
 /// <category>Conversions</category>
-/// Construct a speed from a number of feet per second.
+/// <summary>Construct a speed from a number of feet per second.</summary>
+/// <param name="numFeetPerSecond">The number of feet per second.</param>
 let feetPerSecond (numFeetPerSecond: float) : Speed =
     metersPerSecond (Constants.foot * numFeetPerSecond)
 
 /// <category>Conversions</category>
-/// Convert a speed to a number of feet per second.
+/// <summary>Convert a speed to a number of feet per second.</summary>
+/// <param name="speed">The speed value to convert.</param>
 let inFeetPerSecond (speed: Speed) : float =
     inMetersPerSecond speed / Constants.foot
 
 /// <category>Conversions</category>
-/// Construct a speed from a number of kilometers per hour.
+/// <summary>Construct a speed from a number of kilometers per hour.</summary>
+/// <param name="numKilometersPerHour">The number of kilometers per hour.</param>
 let kilometersPerHour (numKilometersPerHour: float) : Speed =
     metersPerSecond (numKilometersPerHour * 1000. / Constants.hour)
 
 /// <category>Conversions</category>
-/// Convert a speed to a number of kilometers per hour.
+/// <summary>Convert a speed to a number of kilometers per hour.</summary>
+/// <param name="speed">The speed value to convert.</param>
 let inKilometersPerHour (speed: Speed) : float =
     Constants.hour * inMetersPerSecond speed * 0.001
 
 /// <category>Conversions</category>
-/// Construct a speed from a number of miles per hour.
+/// <summary>Construct a speed from a number of miles per hour.</summary>
+/// <param name="numMilesPerHour">The number of miles per hour.</param>
 let milesPerHour (numMilesPerHour: float) : Speed =
     metersPerSecond (numMilesPerHour * Constants.mile / Constants.hour)
 
 /// <category>Conversions</category>
-/// Convert a speed to a number of miles per hour.
+/// <summary>Convert a speed to a number of miles per hour.</summary>
+/// <param name="speed">The speed value to convert.</param>
 let inMilesPerHour (speed: Speed) : float =
     (Constants.hour / Constants.mile)
     * inMetersPerSecond speed

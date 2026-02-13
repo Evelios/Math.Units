@@ -37,6 +37,7 @@ module Math.Units.Temperature
 ///     Temperature.kelvins 300
 ///     --&gt; Temperature.degreesCelsius 26.85
 /// </code></example>
+/// <param name="numKelvins">The number of kelvins.</param>
 let kelvins (numKelvins: float) : Temperature = Temperature numKelvins
 
 /// <category>Temperature Conversions</category>
@@ -48,23 +49,28 @@ let kelvins (numKelvins: float) : Temperature = Temperature numKelvins
 ///        |&gt; Temperature.inKelvins
 ///    --&gt; 273.15
 /// </code></example>
-let inKelvins (numKelvins: Temperature) : float = numKelvins.Value
+/// <param name="temperature">The temperature to convert.</param>
+let inKelvins (temperature: Temperature) : float = temperature.Value
 
 /// <category>Temperature Conversions</category>
-/// Construct a temperature from a number of degrees Celsius.
+/// <summary>Construct a temperature from a number of degrees Celsius.</summary>
+/// <param name="numDegreesCelsius">The number of degrees Celsius.</param>
 let degreesCelsius (numDegreesCelsius: float) : Temperature = kelvins (273.15 + numDegreesCelsius)
 
 /// <category>Temperature Conversions</category>
-/// Convert a temperature to a number of degrees Celsius.
+/// <summary>Convert a temperature to a number of degrees Celsius.</summary>
+/// <param name="temperature">The temperature to convert.</param>
 let inDegreesCelsius (temperature: Temperature) : float = inKelvins temperature - 273.15
 
 /// <category>Temperature Conversions</category>
-/// Construct a temperature from a number of degrees Fahrenheit.
+/// <summary>Construct a temperature from a number of degrees Fahrenheit.</summary>
+/// <param name="numDegreesFahrenheit">The number of degrees Fahrenheit.</param>
 let degreesFahrenheit (numDegreesFahrenheit: float) : Temperature =
     degreesCelsius ((numDegreesFahrenheit - 32.) / 1.8)
 
 /// <category>Temperature Conversions</category>
-/// Convert a temperature to a number of degrees Fahrenheit.
+/// <summary>Convert a temperature to a number of degrees Fahrenheit.</summary>
+/// <param name="temperature">The temperature to convert.</param>
 let inDegreesFahrenheit (temperature: Temperature) : float =
     32. + 1.8 * inDegreesCelsius temperature
 
@@ -84,12 +90,14 @@ let absoluteZero = kelvins 0
 // ---- Deltas ----
 
 /// <category>Temperature Delta Conversions</category>
-/// Construct a temperature delta from a number of Celsius degrees.
+/// <summary>Construct a temperature delta from a number of Celsius degrees.</summary>
+/// <param name="numCelsiusDegrees">The number of Celsius degrees.</param>
 let celsiusDegrees (numCelsiusDegrees: float) : TemperatureDelta = Quantity numCelsiusDegrees
 
 /// <category>Temperature Delta Conversions</category>
-/// Convert a temperature delta to a number of Celsius degrees.
-let inCelsiusDegrees (numCelsiusDegrees: TemperatureDelta) : float = numCelsiusDegrees.Value
+/// <summary>Convert a temperature delta to a number of Celsius degrees.</summary>
+/// <param name="temperatureDelta">The temperature delta to convert.</param>
+let inCelsiusDegrees (temperatureDelta: TemperatureDelta) : float = temperatureDelta.Value
 
 /// <category>Temperature Delta Conversions</category>
 /// <summary>
@@ -100,6 +108,7 @@ let inCelsiusDegrees (numCelsiusDegrees: TemperatureDelta) : float = numCelsiusD
 ///    Temperature.fahrenheitDegrees 36
 ///    --&gt; Temperature.celsiusDegrees 20
 /// </code></example>
+/// <param name="numFahrenheitDegrees">The number of Fahrenheit degrees.</param>
 let fahrenheitDegrees (numFahrenheitDegrees: float) : TemperatureDelta =
     celsiusDegrees (numFahrenheitDegrees / 1.8)
 
@@ -112,7 +121,8 @@ let fahrenheitDegrees (numFahrenheitDegrees: float) : TemperatureDelta =
 ///        |&gt; Temperature.inFahrenheitDegrees
 ///    --&gt; 18
 /// </code></example>
-let inFahrenheitDegrees (quantity: TemperatureDelta) : float = inCelsiusDegrees quantity * 1.8
+/// <param name="temperatureDelta">The temperature delta to convert.</param>
+let inFahrenheitDegrees (temperatureDelta: TemperatureDelta) : float = inCelsiusDegrees temperatureDelta * 1.8
 
 /// <category>Constants</category>
 let celsiusDegree = celsiusDegrees 1
@@ -129,6 +139,8 @@ let fahrenheitDegree = fahrenheitDegrees 1
 ///     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
 /// </code>
 /// </summary>
+/// <param name="rhs">The temperature to compare against.</param>
+/// <param name="lhs">The temperature being compared.</param>
 let lessThan (rhs: Temperature) (lhs: Temperature) : bool = lhs < rhs
 
 /// <category>Operators</category>
@@ -139,6 +151,8 @@ let lessThan (rhs: Temperature) (lhs: Temperature) : bool = lhs < rhs
 ///     |&gt; Temperature.greaterThanOrEqualTo (Temperature.inDegreesCelsius 15.)
 /// </code>
 /// </summary>
+/// <param name="rhs">The temperature to compare against.</param>
+/// <param name="lhs">The temperature being compared.</param>
 let lessThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs <= rhs
 
 /// <category>Operators</category>
@@ -149,6 +163,8 @@ let lessThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs <= rhs
 ///     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
 /// </code>
 /// </summary>
+/// <param name="rhs">The temperature to compare against.</param>
+/// <param name="lhs">The temperature being compared.</param>
 let greaterThan (rhs: Temperature) (lhs: Temperature) : bool = lhs > rhs
 
 /// <category>Operators</category>
@@ -159,6 +175,8 @@ let greaterThan (rhs: Temperature) (lhs: Temperature) : bool = lhs > rhs
 ///     |&gt; Temperature.greaterThan (Temperature.inDegreesCelsius 15.)
 /// </code>
 /// </summary>
+/// <param name="rhs">The temperature to compare against.</param>
+/// <param name="lhs">The temperature being compared.</param>
 let greaterThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs >= rhs
 
 
@@ -171,6 +189,8 @@ let greaterThanOrEqualTo (rhs: Temperature) (lhs: Temperature) : bool = lhs >= r
 ///     --&gt; Temperature.inDegreesCelsius 55.
 /// </code>
 /// </summary>
+/// <param name="rhs">The temperature delta to add.</param>
+/// <param name="lhs">The temperature to add to.</param>
 let plus (rhs: TemperatureDelta) (lhs: Temperature) : Temperature = lhs + rhs
 
 /// <category>Operators</category>
@@ -183,12 +203,16 @@ let plus (rhs: TemperatureDelta) (lhs: Temperature) : Temperature = lhs + rhs
 ///     --&gt; Temperature.celsiusDegrees 5
 /// </code>
 /// </summary>
+/// <param name="lhs">The first temperature.</param>
+/// <param name="rhs">The second temperature.</param>
 let minus (lhs: Temperature) (rhs: Temperature) : TemperatureDelta = rhs - lhs
 
 /// <category>Operators</category>
 /// <summary>
 /// Find the ratio between two temperature deltas.
 /// </summary>
+/// <param name="x">The first temperature delta.</param>
+/// <param name="y">The second temperature delta.</param>
 let ratio (x: TemperatureDelta) (y: TemperatureDelta) : float = Quantity.ratio x y
 
 
@@ -220,27 +244,44 @@ let ratio (x: TemperatureDelta) (y: TemperatureDelta) : float = Quantity.ratio x
 ///         |&gt; Temperature.clamp lowerBound upperBound
 ///     --&gt; Temperature.degreesCelsius 18
 /// </code></example>
+/// <param name="lower">The lower bound.</param>
+/// <param name="upper">The upper bound.</param>
+/// <param name="temperature">The temperature to clamp.</param>
 let clamp (lower: Temperature) (upper: Temperature) (temperature: Temperature) : Temperature =
     max lower.Value temperature.Value
     |> min upper.Value
     |> Temperature
 
 /// <category>Modifiers</category>
+/// <summary>Round a temperature.</summary>
+/// <param name="temp">The temperature to round.</param>
 let round (temp: Temperature) : Temperature = round temp
 
 /// <category>Modifiers</category>
+/// <summary>Round a temperature down.</summary>
+/// <param name="temp">The temperature to round down.</param>
 let floor (temp: Temperature) : Temperature = floor temp
 
 /// <category>Modifiers</category>
+/// <summary>Round a temperature up.</summary>
+/// <param name="temp">The temperature to round up.</param>
 let ceil (temp: Temperature) : Temperature = ceil temp
 
 /// <category>Modifiers</category>
+/// <summary>Truncate a temperature.</summary>
+/// <param name="temp">The temperature to truncate.</param>
 let truncate (temp: Temperature) : Temperature = truncate temp
 
 /// <category>Modifiers</category>
+/// <summary>Find the minimum of two temperatures.</summary>
+/// <param name="first">The first temperature.</param>
+/// <param name="second">The second temperature.</param>
 let min (first: Temperature) (second: Temperature) : Temperature = min first second
 
 /// <category>Modifiers</category>
+/// <summary>Find the maximum of two temperatures.</summary>
+/// <param name="first">The first temperature.</param>
+/// <param name="second">The second temperature.</param>
 let max (first: Temperature) (second: Temperature) : Temperature = max first second
 
 // ---- List Functions ---------------------------------------------------------
@@ -258,6 +299,7 @@ let max (first: Temperature) (second: Temperature) : Temperature = max first sec
 ///         ]
 ///     --&gt; Some (Temperature.degreesCelsius 20)
 /// </code></example>
+/// <param name="temperatures">The list of temperatures.</param>
 let minimum (temperatures: Temperature list) : Temperature option =
     match temperatures with
     | first :: rest -> Some(List.fold min first rest)
@@ -277,6 +319,7 @@ let minimum (temperatures: Temperature list) : Temperature option =
 ///         ]
 ///     --&gt; Some (Temperature.kelvins 300)
 /// </code></example>
+/// <param name="temperatures">The list of temperatures.</param>
 let maximum (temperatures: Temperature list) : Temperature option =
     match temperatures with
     | first :: rest -> Some(List.fold max first rest)
@@ -299,6 +342,7 @@ let maximum (temperatures: Temperature list) : Temperature option =
 ///     --&gt; ]
 /// </code>
 /// </summary>
+/// <param name="temperatures">The list of temperatures.</param>
 let sort (temperatures: Temperature list) : Temperature list = List.sortBy inKelvins temperatures
 
 
@@ -327,6 +371,8 @@ let sort (temperatures: Temperature list) : Temperature list = List.sortBy inKel
 ///     --&gt; ]
 /// </code>
 /// </example>
+/// <param name="toTemperature">The mapping function.</param>
+/// <param name="list">The list of items.</param>
 let sortBy (toTemperature: 'a -> Temperature) (list: 'a list) : 'a list =
     let comparator first second =
         compare (toTemperature first) (toTemperature second)
