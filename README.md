@@ -11,6 +11,15 @@ This library provides access to a variety of units to work with.
 
 # Development
 
+## Testing
+
+To run the tests run the following
+```sh
+dotnet test
+```
+
+## Documentation
+
 To generate the API documentation you need to run the following commands.
 
 ```bash
